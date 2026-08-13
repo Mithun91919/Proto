@@ -1,0 +1,696 @@
+@import "tailwindcss";
+@import "../styles/tokens.css";
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-accent: var(--color-accent);
+  --color-accent-deep: var(--color-accent-deep);
+  --color-paper: var(--color-paper);
+  --color-ink: var(--color-ink);
+  --color-muted: var(--color-muted);
+  --color-line: var(--color-line);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  min-height: 100%;
+  color: var(--ink);
+  font-family: var(--font-sans), ui-sans-serif, system-ui, sans-serif;
+  text-rendering: optimizeLegibility;
+  background-color: var(--bg-base);
+  background-image: radial-gradient(
+    circle,
+    var(--dot-color) var(--dot-size),
+    transparent var(--dot-size)
+  );
+  background-size: var(--dot-gap) var(--dot-gap);
+  /* Fixed + shared origin so the static grid lines up with the canvas layer */
+  background-position: var(--dot-origin-x) var(--dot-origin-y);
+  background-attachment: fixed;
+}
+
+/* Keep grain / overlays off — the dot grid is the atmosphere */
+body::before,
+body::after {
+  content: none;
+  display: none;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+::selection {
+  background: color-mix(in oklab, var(--accent) 35%, white);
+  color: var(--ink);
+}
+
+:focus-visible {
+  outline: 2px solid var(--accent-deep);
+  outline-offset: 3px;
+}
+
+.site-shell {
+  position: relative;
+  z-index: 1;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.eyebrow {
+  font-family: var(--font-mono), ui-monospace, monospace;
+  font-size: 0.72rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.button {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  min-height: var(--button-height);
+  padding: 0.75rem var(--button-padding-x);
+  border-radius: var(--button-radius);
+  border: 1px solid transparent;
+  font-size: var(--button-font-size);
+  font-weight: var(--button-font-weight);
+  letter-spacing: var(--button-letter-spacing);
+  transition:
+    background var(--button-transition),
+    color var(--button-transition),
+    border-color var(--button-transition),
+    box-shadow var(--button-transition),
+    transform var(--button-transition);
+}
+
+.button::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  transform: translateX(-120%) skewX(-18deg);
+  background: linear-gradient(
+    90deg,
+    transparent,
+    var(--button-sheen),
+    transparent
+  );
+  transition: transform 0.01ms linear;
+}
+
+.button:hover::after {
+  transform: translateX(120%) skewX(-18deg);
+  transition: transform 650ms ease;
+}
+
+.button:active {
+  transform: translateY(0) scale(0.98);
+}
+
+.button-sm {
+  min-height: var(--button-height-sm);
+  padding: 0.45rem var(--button-padding-x-sm);
+  font-size: var(--button-font-size-sm);
+}
+
+.button-primary {
+  background: var(--button-primary-bg);
+  color: var(--button-primary-fg);
+  box-shadow: var(--button-primary-shadow), var(--glass-inset);
+}
+
+.button-primary:hover {
+  background: var(--button-primary-bg-hover);
+  color: var(--button-primary-fg);
+  transform: translateY(-2px);
+  box-shadow: var(--button-primary-shadow-hover);
+}
+
+.button-secondary {
+  border-color: var(--button-secondary-border);
+  background: var(--button-secondary-bg);
+  color: var(--button-secondary-fg);
+  backdrop-filter: blur(var(--button-secondary-blur))
+    saturate(var(--glass-saturate));
+  box-shadow: var(--button-secondary-shadow);
+}
+
+.button-secondary:hover {
+  border-color: var(--button-secondary-border-hover);
+  background: var(--button-secondary-bg-hover);
+  transform: translateY(-2px);
+}
+
+.pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  border-radius: var(--button-radius);
+  border: 1px solid var(--glass-border);
+  background: var(--glass-bg);
+  padding: 0.55rem 0.9rem;
+  font-size: 0.9rem;
+  color: var(--ink-soft);
+  backdrop-filter: blur(var(--glass-blur)) saturate(var(--glass-saturate));
+  box-shadow: var(--glass-inset);
+  transition:
+    transform 200ms ease,
+    border-color 200ms ease,
+    background-color 200ms ease;
+}
+
+.pill:hover {
+  transform: translateY(-2px);
+  border-color: var(--glass-border-strong);
+  background: var(--glass-bg-strong);
+}
+
+.glass-panel {
+  isolation: isolate;
+  border: 1px solid var(--glass-border);
+  border-radius: var(--glass-radius);
+  background-color: var(--glass-bg);
+  background-image: var(--glass-fill);
+  box-shadow: var(--glass-shadow), var(--glass-inset);
+}
+
+.glass-card {
+  transition:
+    transform var(--duration-med) var(--ease-out),
+    box-shadow var(--duration-med) var(--ease-out),
+    border-color var(--duration-med) ease;
+}
+
+.glass-card:hover {
+  border-color: var(--glass-border-strong);
+  box-shadow: var(--glass-shadow-hover), var(--glass-inset);
+}
+
+.portrait-frame {
+  margin: 0;
+  width: 100%;
+  max-width: 15rem;
+}
+
+@media (min-width: 768px) {
+  .portrait-frame {
+    max-width: none;
+  }
+}
+
+.portrait-image {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  border-radius: var(--glass-radius);
+  border: 1px solid var(--glass-border);
+  background: var(--glass-bg-strong);
+  box-shadow:
+    var(--glass-shadow),
+    0 0 0 6px color-mix(in oklab, var(--accent) 12%, transparent);
+  transition:
+    transform var(--duration-med) var(--ease-out),
+    box-shadow var(--duration-med) var(--ease-out);
+}
+
+.portrait-image:hover {
+  transform: translateY(-3px);
+  box-shadow:
+    var(--glass-shadow-hover),
+    0 0 0 6px color-mix(in oklab, var(--accent) 20%, transparent);
+}
+
+.portrait-avatar {
+  border-radius: 999px;
+  border: 1px solid var(--glass-border);
+  object-fit: cover;
+  box-shadow:
+    var(--glass-inset),
+    0 0 0 4px color-mix(in oklab, var(--accent) 14%, transparent);
+}
+
+.hero-stage {
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-portrait {
+  position: relative;
+  margin: 0;
+  width: 100%;
+}
+
+/* Sits on the page grid rather than in a card, so the two dot fields relate. */
+.hero-portrait-board {
+  overflow: hidden;
+  border-radius: var(--glass-radius);
+}
+
+.hero-portrait-canvas,
+.hero-portrait-fallback {
+  display: block;
+  width: 100%;
+}
+
+.hero-portrait-fallback {
+  height: auto;
+  object-fit: cover;
+}
+
+.hero-portrait-canvas {
+  opacity: 0;
+  transition: opacity var(--duration-med) var(--ease-out);
+}
+
+.hero-portrait-canvas[data-ready="true"] {
+  opacity: 1;
+}
+
+.hero-portrait-canvas:focus-visible {
+  outline: 2px solid var(--accent-deep);
+  outline-offset: 3px;
+}
+
+.contact-portrait {
+  max-width: 16rem;
+}
+
+/* Large halftone sitting behind the About intro as texture, not content. */
+.about-hero {
+  position: relative;
+  isolation: isolate;
+}
+
+/* Copy sits above the backdrop; the backdrop itself stays hit-testable. */
+.about-hero > *:not(.about-hero-backdrop) {
+  position: relative;
+  z-index: 1;
+}
+
+.about-hero-backdrop {
+  position: absolute;
+  z-index: 0;
+  top: -1rem;
+  /* Held inside the container so no edge or corner can clip. */
+  right: 0;
+  width: min(20rem, 68%);
+  opacity: 0.16;
+  mask-image: radial-gradient(
+    circle at 50% 50%,
+    var(--neutral-0) 40%,
+    transparent 70%
+  );
+  transition: opacity var(--duration-slow) var(--ease-out);
+}
+
+/* Circular board as well as a circular mask — the square canvas corners
+   would otherwise surface as the photograph fades in. */
+.about-hero-backdrop .hero-portrait-board {
+  border-radius: 999px;
+}
+
+/* Hovering anywhere in the intro resolves the halftone into the photograph. */
+.about-hero:hover .about-hero-backdrop,
+.about-hero:focus-within .about-hero-backdrop {
+  opacity: 1;
+}
+
+@media (min-width: 768px) {
+  /* Fills the intro block's height; the square canvas makes it a circle
+     that diameter wide, so it stays inside the container on the right. */
+  .about-hero-backdrop {
+    top: 0;
+    bottom: 0;
+    right: 0;
+    width: auto;
+    opacity: 0.22;
+  }
+
+  .about-hero-backdrop .hero-portrait-board {
+    height: 100%;
+  }
+
+  .about-hero-backdrop .hero-portrait-canvas {
+    width: auto;
+    height: 100%;
+  }
+}
+
+.featured-card {
+  scroll-margin-top: 5rem;
+}
+
+/* Accent rule carries each project's colour without a decorative image. */
+.featured-card::before {
+  content: "";
+  position: absolute;
+  inset: 0 0 auto 0;
+  height: 3px;
+  background: linear-gradient(
+    90deg,
+    var(--card-accent),
+    color-mix(in oklab, var(--card-accent) 35%, var(--card-soft))
+  );
+}
+
+.system-map {
+  display: grid;
+  gap: 0.5rem;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--line);
+  background: color-mix(in oklab, var(--card-soft) 28%, var(--neutral-0));
+  padding: 1rem;
+}
+
+.system-map-step {
+  transition: transform var(--duration-med) var(--ease-out);
+}
+
+.featured-card:hover .system-map-step {
+  transform: translateY(-2px);
+}
+
+.system-map-label {
+  font-family: var(--font-mono), ui-monospace, monospace;
+  font-size: 0.62rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: color-mix(in oklab, var(--card-accent) 80%, var(--neutral-900));
+}
+
+.system-map-detail {
+  margin-top: 0.4rem;
+  font-size: 0.9rem;
+  line-height: 1.5;
+  color: var(--ink-soft);
+  text-wrap: pretty;
+}
+
+.nav-link {
+  position: relative;
+}
+
+.nav-link::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -0.3rem;
+  width: 100%;
+  height: 2px;
+  border-radius: 999px;
+  background: var(--accent);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 220ms ease;
+}
+
+.nav-link:hover::after {
+  transform: scaleX(1);
+}
+
+.mark-pulse {
+  animation: mark-glow 2.8s ease-in-out infinite;
+}
+
+.reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition:
+    opacity var(--duration-slow) var(--ease-out),
+    transform var(--duration-slow) var(--ease-out);
+  transition-delay: var(--reveal-delay, 0ms);
+  will-change: opacity, transform;
+}
+
+.reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.reveal-scale {
+  opacity: 0;
+  transform: translateY(22px) scale(0.97);
+  transition:
+    opacity 750ms var(--ease-out),
+    transform 750ms var(--ease-out);
+  transition-delay: var(--reveal-delay, 0ms);
+  will-change: opacity, transform;
+}
+
+.reveal-scale.is-visible {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
+@keyframes orb-drift {
+  from {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+  to {
+    transform: translate3d(-24px, 18px, 0) scale(1.06);
+  }
+}
+
+.hero-chip {
+  display: inline-block;
+  border-radius: 0.55rem;
+  background: var(--gradient-chip);
+  padding: 0 0.5rem;
+  color: var(--color-on-accent);
+  box-shadow: var(--shadow-chip);
+  animation: chip-pop 700ms var(--ease-out) 420ms both;
+}
+
+@keyframes chip-pop {
+  from {
+    opacity: 0;
+    transform: translateY(8px) scale(0.92);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes mark-glow {
+  0%,
+  100% {
+    box-shadow: var(--shadow-mark);
+  }
+  50% {
+    box-shadow: var(--shadow-mark-strong);
+  }
+}
+
+@keyframes hero-in {
+  from {
+    opacity: 0;
+    transform: translateY(28px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.hero-in > * {
+  animation: hero-in 900ms var(--ease-out) both;
+}
+
+.hero-in > *:nth-child(1) {
+  animation-delay: 60ms;
+}
+.hero-in > *:nth-child(2) {
+  animation-delay: 160ms;
+}
+.hero-in > *:nth-child(3) {
+  animation-delay: 280ms;
+}
+.hero-in > *:nth-child(4) {
+  animation-delay: 400ms;
+}
+
+.texture-card {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  background-color: var(--glass-bg);
+}
+
+.texture-card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.07;
+  mix-blend-mode: soft-light;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* ── Type scale ─────────────────────────────────────────────
+   Sora for statements, Instrument Sans for reading, mono for
+   metadata. Sizes are fluid so the hierarchy holds at any width.
+   Sizes and tracking are tuned for Sora's weight, not a serif. */
+
+.display-title {
+  font-family: var(--font-display), ui-sans-serif, system-ui, sans-serif;
+  font-weight: 600;
+  letter-spacing: -0.035em;
+  text-wrap: balance;
+}
+
+.display-hero {
+  font-size: clamp(2.3rem, 4.6vw, 3.4rem);
+  line-height: 1.08;
+}
+
+/* Name-led home hero: larger and tighter than a sentence headline. */
+/* The role line under the name: clearly secondary, still display scale. */
+.display-name-sub {
+  font-size: clamp(1.75rem, 3.4vw, 2.65rem);
+  line-height: 1.14;
+  letter-spacing: -0.036em;
+}
+
+.display-name {
+  font-size: clamp(2.75rem, 6.2vw, 4.5rem);
+  line-height: 0.99;
+  letter-spacing: -0.042em;
+}
+
+.display-section {
+  font-size: clamp(1.7rem, 3vw, 2.4rem);
+  line-height: 1.14;
+}
+
+.display-statement {
+  font-size: clamp(1.3rem, 2vw, 1.7rem);
+  line-height: 1.26;
+}
+
+.display-sub {
+  font-size: clamp(1.12rem, 1.5vw, 1.35rem);
+  line-height: 1.32;
+  letter-spacing: -0.028em;
+}
+
+.lede {
+  max-width: 38ch;
+  font-size: clamp(1.075rem, 1.35vw, 1.25rem);
+  line-height: 1.65;
+  color: var(--ink-soft);
+  text-wrap: pretty;
+}
+
+.body-text {
+  max-width: 68ch;
+  font-size: 1.0625rem;
+  line-height: 1.75;
+  color: var(--ink-soft);
+  text-wrap: pretty;
+}
+
+.body-sm {
+  font-size: 0.95rem;
+  line-height: 1.62;
+  color: var(--ink-soft);
+  text-wrap: pretty;
+}
+
+/* Figures in the display face; tabular so they line up column-to-column. */
+.metric-value {
+  font-family: var(--font-display), ui-sans-serif, system-ui, sans-serif;
+  font-weight: 600;
+  font-size: 1.5rem;
+  line-height: 1.1;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.032em;
+  color: var(--accent-deep);
+}
+
+.metric-label {
+  margin-top: 0.35rem;
+  font-size: 0.85rem;
+  line-height: 1.45;
+  color: var(--muted);
+  text-wrap: pretty;
+}
+
+/* The "sometimes it's…" cadence reads as a set, not four paragraphs. */
+.editorial-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  border-top: 1px solid var(--line);
+}
+
+.editorial-list > li {
+  padding: 1.1rem 0;
+  border-bottom: 1px solid var(--line);
+  font-size: clamp(1.05rem, 1.5vw, 1.3rem);
+  line-height: 1.55;
+  color: var(--ink-soft);
+  text-wrap: pretty;
+}
+
+.principle-index {
+  font-family: var(--font-mono), ui-monospace, monospace;
+  font-size: 0.72rem;
+  letter-spacing: 0.16em;
+  color: var(--accent-deep);
+}
+
+.prose-case > :first-child {
+  margin-top: 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  body::before,
+  body::after {
+    opacity: 0.02;
+  }
+
+  .mark-pulse,
+  .hero-chip,
+  .hero-in > * {
+    animation: none !important;
+  }
+
+  /* The pour is skipped in JS; don't fade the canvas in either. */
+  .hero-portrait-canvas {
+    transition: none !important;
+  }
+
+  .reveal,
+  .reveal-scale {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+
+  .button::after,
+  .nav-link::after {
+    display: none;
+  }
+}

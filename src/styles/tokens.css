@@ -1,0 +1,167 @@
+/*
+  Design tokens — tweak PRIMITIVES to restyle the site.
+  Primitive → Semantic → Components
+*/
+
+:root {
+  /* ── Primitive: cyan ────────────────────────────────────── */
+  --cyan-50: #ecfeff;
+  --cyan-100: #cffafe;
+  --cyan-200: #a5f3fc;
+  --cyan-300: #67e8f9;
+  --cyan-400: #22d3ee;
+  --cyan-500: #06b6d4;
+  --cyan-600: #0891b2;
+  --cyan-700: #0e7490;
+  --cyan-800: #155e75;
+  --cyan-900: #164e63;
+  --cyan-950: #083344;
+
+  /* ── Primitive: cool neutrals ───────────────────────────── */
+  --neutral-0: #ffffff;
+  --neutral-50: #f4fafb;
+  --neutral-100: #e8f4f6;
+  --neutral-200: #d5e8ec;
+  --neutral-300: #b7d4db;
+  --neutral-700: #3d5660;
+  --neutral-800: #243942;
+  --neutral-900: #0c171c;
+  --neutral-950: #071015;
+
+  /* ── Semantic: surfaces & type ──────────────────────────── */
+  --color-paper: #f7fbfc;
+  --color-paper-deep: #f1f7f9;
+  --color-paper-bright: var(--neutral-0);
+  --color-ink: var(--neutral-900);
+  --color-ink-soft: var(--neutral-800);
+  --color-muted: var(--neutral-700);
+  --color-line: color-mix(in oklab, var(--cyan-800) 14%, transparent);
+  --color-line-strong: color-mix(in oklab, var(--cyan-800) 24%, transparent);
+  --color-surface: var(--neutral-0);
+  --color-surface-2: var(--neutral-200);
+  --color-surface-solid: var(--neutral-50);
+
+  /* ── Semantic: brand / accent ───────────────────────────── */
+  --color-accent: var(--cyan-500);
+  --color-accent-hover: var(--cyan-400);
+  --color-accent-deep: var(--cyan-700);
+  --color-accent-deeper: var(--cyan-800);
+  --color-accent-soft: var(--cyan-100);
+  --color-accent-glow: color-mix(in oklab, var(--color-accent) 28%, transparent);
+  --color-on-accent: var(--neutral-0);
+
+  /* ── Semantic: glass (cards / panels / pills) ─────────────
+     Solid surfaces — keep highlight/shadow “glass” cues without
+     letting the page dot grid show through. */
+  --glass-bg: var(--neutral-0);
+  --glass-bg-strong: var(--neutral-50);
+  --glass-bg-from: var(--neutral-0);
+  --glass-bg-to: color-mix(in oklab, var(--cyan-50) 55%, var(--neutral-0));
+  --glass-border: color-mix(in oklab, var(--cyan-800) 12%, var(--neutral-0));
+  --glass-border-strong: color-mix(in oklab, var(--cyan-500) 32%, var(--neutral-0));
+  --glass-highlight: color-mix(in oklab, var(--neutral-0) 92%, var(--cyan-100));
+  --glass-blur: 0px;
+  --glass-saturate: 100%;
+  --glass-shadow: 0 16px 40px color-mix(in oklab, var(--cyan-950) 8%, transparent);
+  --glass-shadow-hover: 0 22px 50px color-mix(in oklab, var(--cyan-900) 12%, transparent);
+  --glass-inset: inset 0 1px 0 var(--glass-highlight);
+  --glass-radius: var(--radius);
+  --glass-padding: 1.35rem;
+  --glass-fill: linear-gradient(145deg, var(--glass-bg-from), var(--glass-bg-to));
+
+  /* ── Semantic: buttons ──────────────────────────────────── */
+  --button-height: 3rem;
+  --button-height-sm: 2.4rem;
+  --button-padding-x: 1.3rem;
+  --button-padding-x-sm: 1rem;
+  --button-radius: var(--radius-sm);
+  --button-font-size: 0.95rem;
+  --button-font-size-sm: 0.875rem;
+  --button-font-weight: 600;
+  --button-letter-spacing: -0.01em;
+  --button-transition: var(--duration-fast) ease;
+
+  --button-primary-bg: linear-gradient(
+    135deg,
+    var(--color-accent-deeper),
+    var(--cyan-600)
+  );
+  --button-primary-bg-hover: linear-gradient(
+    135deg,
+    var(--color-accent-deep),
+    var(--color-accent)
+  );
+  --button-primary-fg: var(--color-on-accent);
+  --button-primary-shadow: 0 12px 30px
+    color-mix(in oklab, var(--cyan-600) 28%, transparent);
+  --button-primary-shadow-hover: 0 16px 36px
+    color-mix(in oklab, var(--color-accent) 32%, transparent);
+
+  --button-secondary-bg: var(--glass-bg);
+  --button-secondary-bg-hover: var(--glass-bg-strong);
+  --button-secondary-fg: var(--color-ink);
+  --button-secondary-border: var(--glass-border);
+  --button-secondary-border-hover: var(--glass-border-strong);
+  --button-secondary-blur: 18px;
+  --button-secondary-shadow: var(--glass-inset);
+
+  --button-sheen: color-mix(in oklab, var(--neutral-0) 28%, transparent);
+
+  /* ── Semantic: background pattern (dot grid) ────────────── */
+  --bg-base: var(--color-paper);
+  --dot-color: color-mix(in oklab, var(--cyan-800) 18%, transparent);
+  --dot-size: 1.15px;
+  --dot-gap: 22px;
+  --dot-opacity: 1;
+  /* Plain r,g,b — canvas layer needs channels, not a color-mix() */
+  --dot-cursor-rgb: 8, 145, 178;
+  /* Halftone portrait ink — lighter cyan still needs to read on paper */
+  --portrait-ink: var(--cyan-400);
+  --dot-origin-x: 0px;
+  --dot-origin-y: 0px;
+
+
+  /* ── Semantic: gradients & elevation ────────────────────── */
+  --gradient-page-top: var(--color-paper);
+  --gradient-cta: var(--button-primary-bg);
+  --gradient-cta-hover: var(--button-primary-bg-hover);
+  --shadow-cta: var(--button-primary-shadow);
+  --shadow-cta-hover: var(--button-primary-shadow-hover);
+  --shadow-header: 0 10px 40px
+    color-mix(in oklab, var(--neutral-950) 8%, transparent);
+  --shadow-mark: 0 0 0 4px
+    color-mix(in oklab, var(--color-accent) 22%, transparent);
+  --shadow-mark-strong: 0 0 0 7px
+    color-mix(in oklab, var(--color-accent) 35%, transparent);
+  --gradient-chip: linear-gradient(135deg, var(--color-accent), var(--cyan-300));
+  --shadow-chip: 0 6px 18px
+    color-mix(in oklab, var(--color-accent) 35%, transparent);
+
+  /* ── App aliases ────────────────────────────────────────── */
+  --paper: var(--color-paper);
+  --paper-deep: var(--color-paper-deep);
+  --surface: var(--color-surface);
+  --surface-solid: var(--color-surface-solid);
+  --surface-2: var(--color-surface-2);
+  --ink: var(--color-ink);
+  --ink-soft: var(--color-ink-soft);
+  --muted: var(--color-muted);
+  --line: var(--color-line);
+  --line-strong: var(--color-line-strong);
+  --accent: var(--color-accent);
+  --accent-deep: var(--color-accent-deep);
+  --accent-soft: var(--color-accent-soft);
+  --glow: var(--color-accent-glow);
+  --glass: var(--glass-bg);
+  --background: var(--color-paper);
+  --foreground: var(--color-ink);
+
+  /* ── Shape & motion ─────────────────────────────────────── */
+  --radius: 1.2rem;
+  --radius-sm: 0.9rem;
+  --radius-lg: 1.6rem;
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --duration-fast: 180ms;
+  --duration-med: 300ms;
+  --duration-slow: 800ms;
+}
