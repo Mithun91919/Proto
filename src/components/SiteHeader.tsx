@@ -5,9 +5,8 @@ import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 
 const links = [
-  { href: "/#work", label: "Work" },
-  { href: "/#about", label: "About" },
-  { href: "/about", label: "Story" },
+  { href: "/work", label: "Work" },
+  { href: "/about", label: "About" },
 ];
 
 export function SiteHeader() {
@@ -46,15 +45,22 @@ export function SiteHeader() {
           aria-label="Primary"
           className="flex items-center gap-4 sm:gap-6 md:gap-7"
         >
-          {links.map((link) => (
-            <Link
-              key={link.href}
-              href={link.href}
-              className="nav-link text-sm font-medium text-[var(--muted)] transition-colors hover:text-[var(--ink)]"
-            >
-              {link.label}
-            </Link>
-          ))}
+          {links.map((link) => {
+            const active =
+              pathname === link.href || pathname.startsWith(`${link.href}/`);
+            return (
+              <Link
+                key={link.href}
+                href={link.href}
+                aria-current={active ? "page" : undefined}
+                className={`nav-link text-sm font-medium transition-colors hover:text-[var(--ink)] ${
+                  active ? "text-[var(--ink)]" : "text-[var(--muted)]"
+                }`}
+              >
+                {link.label}
+              </Link>
+            );
+          })}
           <Link
             href={onHome ? "/#contact" : "/about#contact"}
             className="button button-primary button-sm"

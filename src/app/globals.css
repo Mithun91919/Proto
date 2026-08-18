@@ -285,23 +285,40 @@ a {
   outline-offset: 3px;
 }
 
-.contact-portrait {
-  max-width: 16rem;
+/* Closing wordmark in the contact column. Like the About backdrop, it fills
+   the block's height rather than holding a fixed box. */
+.contact-wordmark {
+  width: 100%;
 }
 
-/* Large halftone sitting behind the About intro as texture, not content. */
-.about-hero {
+@media (min-width: 768px) {
+  .contact-wordmark-slot,
+  .contact-wordmark,
+  .contact-wordmark .hero-portrait-board {
+    height: 100%;
+  }
+
+  /* Beats the inline aspect-ratio, which only governs the stacked layout. */
+  .contact-wordmark .hero-portrait-canvas {
+    height: 100%;
+    aspect-ratio: auto !important;
+  }
+}
+
+/* Large halftone sitting behind a page intro as texture, not content. Shared
+   by the About and Work heroes so both landing pages open the same way. */
+.page-hero {
   position: relative;
   isolation: isolate;
 }
 
 /* Copy sits above the backdrop; the backdrop itself stays hit-testable. */
-.about-hero > *:not(.about-hero-backdrop) {
+.page-hero > *:not(.page-hero-backdrop) {
   position: relative;
   z-index: 1;
 }
 
-.about-hero-backdrop {
+.page-hero-backdrop {
   position: absolute;
   z-index: 0;
   top: -1rem;
@@ -319,20 +336,21 @@ a {
 
 /* Circular board as well as a circular mask — the square canvas corners
    would otherwise surface as the photograph fades in. */
-.about-hero-backdrop .hero-portrait-board {
+.page-hero-backdrop .hero-portrait-board {
   border-radius: 999px;
 }
 
-/* Hovering anywhere in the intro resolves the halftone into the photograph. */
-.about-hero:hover .about-hero-backdrop,
-.about-hero:focus-within .about-hero-backdrop {
-  opacity: 1;
+/* Hovering anywhere in the intro resolves the halftone into the photograph,
+   which stays well under the copy rather than coming up to full strength. */
+.page-hero:hover .page-hero-backdrop,
+.page-hero:focus-within .page-hero-backdrop {
+  opacity: 0.3;
 }
 
 @media (min-width: 768px) {
   /* Fills the intro block's height; the square canvas makes it a circle
      that diameter wide, so it stays inside the container on the right. */
-  .about-hero-backdrop {
+  .page-hero-backdrop {
     top: 0;
     bottom: 0;
     right: 0;
@@ -340,64 +358,746 @@ a {
     opacity: 0.22;
   }
 
-  .about-hero-backdrop .hero-portrait-board {
+  .page-hero-backdrop .hero-portrait-board {
     height: 100%;
   }
 
-  .about-hero-backdrop .hero-portrait-canvas {
+  .page-hero-backdrop .hero-portrait-canvas {
     width: auto;
     height: 100%;
   }
 }
 
+/* A divider drawn in the page's own dot language instead of a solid rule.
+   The dots are the divider's own — the page grid is background-attachment:
+   fixed, so anything in the content flow would drift across it while scrolling. */
+.dot-rule {
+  position: relative;
+}
+
+.dot-rule::before {
+  content: "";
+  position: absolute;
+  inset: 0 0 auto 0;
+  height: calc(var(--rule-dot-size) * 2);
+  background-image: radial-gradient(
+    circle,
+    var(--rule-dot-color) var(--rule-dot-size),
+    transparent var(--rule-dot-size)
+  );
+  background-size: var(--rule-dot-gap) 100%;
+  background-repeat: repeat-x;
+}
+
+/* Anchor the dots to the bottom edge instead of the top. */
+.dot-rule-bottom::before {
+  inset: auto 0 0 0;
+}
+
+/* Lighter dots for rules inside a block, so hierarchy survives. */
+.dot-rule-soft {
+  --rule-dot-size: 1.15px;
+  --rule-dot-color: color-mix(in oklab, var(--cyan-800) 22%, transparent);
+}
+
+/* ── Work page ──────────────────────────────────────────────
+   Career evolution is a progression, not employment history. Read down a
+   column: when it happened, the stage of practice, then the company and the
+   work as supporting evidence. The rail runs vertically while the stages
+   stack, and turns horizontal once they sit side by side. */
+
+.timeline {
+  /* Half the page grid's pitch, and a touch heavier — otherwise the rail
+     disappears into the fixed dot-grid background behind it. */
+  --rule-dot-gap: calc(var(--dot-gap) / 2);
+  --rule-dot-size: 1.6px;
+  --rule-dot-color: color-mix(in oklab, var(--cyan-800) 40%, transparent);
+  --timeline-gap: 1.1rem;
+  --timeline-node: 0.55rem;
+  position: relative;
+  display: grid;
+  gap: 2.25rem;
+  /* Owned here rather than by a utility class: the `margin: 0` list reset is
+     unlayered, so it would beat a Tailwind `mt-*` and leave the diagram flush
+     against the section heading. */
+  margin: 2.25rem 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.timeline::before {
+  content: "";
+  position: absolute;
+  top: 0.4rem;
+  bottom: 0.4rem;
+  left: 3px;
+  width: calc(var(--rule-dot-size) * 2);
+  background-image: radial-gradient(
+    circle,
+    var(--rule-dot-color) var(--rule-dot-size),
+    transparent var(--rule-dot-size)
+  );
+  background-size: 100% var(--rule-dot-gap);
+  background-repeat: repeat-y;
+}
+
+.timeline-stage {
+  position: relative;
+  padding-left: 1.5rem;
+}
+
+.timeline-stage::before {
+  content: "";
+  position: absolute;
+  top: 0.3rem;
+  left: 0;
+  width: var(--timeline-node);
+  height: var(--timeline-node);
+  border-radius: 999px;
+  border: 1.5px solid color-mix(in oklab, var(--cyan-800) 45%, transparent);
+  background: var(--paper);
+  /* Knock the rail's dots out around each node so they don't read as one shape. */
+  box-shadow: 0 0 0 4px var(--paper);
+}
+
+.timeline-stage:last-child::before {
+  border-color: var(--accent-deep);
+  background: var(--accent-deep);
+}
+
+/* The horizontal rail segment. Only drawn once the stages sit side by side. */
+.timeline-track {
+  display: none;
+}
+
+.timeline-year {
+  font-family: var(--font-mono), ui-monospace, monospace;
+  font-size: 0.72rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--accent-deep);
+}
+
+/* Company first as the quieter label, then the stage of practice as the line
+   that carries the column. */
+.timeline-org {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  margin-top: 0.55rem;
+  font-family: var(--font-display), ui-sans-serif, system-ui, sans-serif;
+  font-weight: 600;
+  font-size: 1rem;
+  line-height: 1.3;
+  letter-spacing: -0.026em;
+  color: var(--ink-soft);
+}
+
+/* Brand marks run in their own colours, so height is the only shared measure. */
+.timeline-logo {
+  flex: none;
+  width: auto;
+  height: 1.25rem;
+  max-width: 4rem;
+  object-fit: contain;
+  object-position: left center;
+}
+
+.timeline-word {
+  margin-top: 0.15rem;
+  font-family: var(--font-display), ui-sans-serif, system-ui, sans-serif;
+  font-weight: 500;
+  font-size: clamp(0.92rem, 1.05vw, 1.02rem);
+  line-height: 1.3;
+  letter-spacing: -0.02em;
+  color: var(--muted);
+}
+
+.timeline-body {
+  font-size: 0.95rem;
+  line-height: 1.55;
+  color: var(--ink-soft);
+  text-wrap: pretty;
+}
+
+.timeline-detail {
+  margin-top: 0.5rem;
+}
+
+.timeline-detail .tag-list {
+  margin-top: 0.85rem;
+}
+
+@media (min-width: 768px) {
+  /* Align year, rail, stage and company. Body and tags stay grouped so shorter
+     descriptions don't leave a large blank row before their tags. */
+  .timeline {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    grid-template-rows: repeat(5, auto);
+    gap: 0 var(--timeline-gap);
+  }
+
+  .timeline::before,
+  .timeline-stage::before {
+    content: none;
+  }
+
+  .timeline-stage {
+    display: grid;
+    grid-row: span 5;
+    grid-template-rows: subgrid;
+    padding-left: 0;
+  }
+
+  .timeline-track {
+    position: relative;
+    display: block;
+    height: var(--timeline-node);
+    margin-top: 0.75rem;
+  }
+
+  /* Runs into the column gap so the rail reads as one continuous line. */
+  .timeline-track::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 0;
+    right: calc(var(--timeline-gap) * -1);
+    height: calc(var(--rule-dot-size) * 2);
+    transform: translateY(-50%);
+    background-image: radial-gradient(
+      circle,
+      var(--rule-dot-color) var(--rule-dot-size),
+      transparent var(--rule-dot-size)
+    );
+    background-size: var(--rule-dot-gap) 100%;
+    background-repeat: repeat-x;
+  }
+
+  .timeline-stage:last-child .timeline-track::before {
+    right: 0;
+  }
+
+  .timeline-track::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 0;
+    width: var(--timeline-node);
+    height: var(--timeline-node);
+    transform: translateY(-50%);
+    border-radius: 999px;
+    border: 1.5px solid color-mix(in oklab, var(--cyan-800) 45%, transparent);
+    background: var(--paper);
+    box-shadow: 0 0 0 4px var(--paper);
+  }
+
+  .timeline-stage:last-child .timeline-track::after {
+    border-color: var(--accent-deep);
+    background: var(--accent-deep);
+  }
+
+  .timeline-org {
+    margin-top: 0.6rem;
+  }
+
+  .timeline {
+    margin-top: 3rem;
+  }
+}
+
+/* The open end of the rail. Stronger accent framing and a system-node mark
+   distinguish the move into AI behavior without introducing a new palette. */
+.timeline-now {
+  position: relative;
+  isolation: isolate;
+  display: grid;
+  margin-top: 2.5rem;
+  padding: 1.5rem;
+}
+
+/* Surface and dot field ride on their own layers so both open edges can
+   dissolve without clipping the copy or the mark. */
+.timeline-now::before,
+.timeline-now::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  mask-image: linear-gradient(
+    to right,
+    transparent 0%,
+    black 5%,
+    black 76%,
+    transparent 99%
+  );
+}
+
+.timeline-now::before {
+  z-index: -2;
+  background: linear-gradient(
+    115deg,
+    var(--neutral-0) 20%,
+    color-mix(in oklab, var(--cyan-50) 88%, var(--neutral-0)) 100%
+  );
+}
+
+.timeline-now::after {
+  z-index: -1;
+  opacity: 0.5;
+  background-image: radial-gradient(
+    circle,
+    color-mix(in oklab, var(--accent-deep) 24%, transparent) 1.2px,
+    transparent 1.2px
+  );
+  background-size: 14px 14px;
+  mask-image:
+    linear-gradient(to right, transparent 45%, black 78%, transparent 99%);
+}
+
+.timeline-now-copy {
+  position: relative;
+  z-index: 1;
+}
+
+.timeline-now-title {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0 0.5rem;
+  font-size: clamp(1.12rem, 1.5vw, 1.35rem);
+  line-height: 1.32;
+  letter-spacing: -0.028em;
+  color: var(--ink);
+  text-wrap: pretty;
+}
+
+.timeline-now-title > span:first-child {
+  font-family: var(--font-mono), ui-monospace, monospace;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--accent-deep);
+  align-self: center;
+}
+
+.timeline-now-title > span[aria-hidden] {
+  color: var(--accent);
+}
+
+.timeline-now-body {
+  max-width: 62ch;
+  margin-top: 0.75rem;
+  font-size: 1.0625rem;
+  line-height: 1.75;
+  color: var(--ink-soft);
+  text-wrap: pretty;
+}
+
+/* Same chip treatment as the hero, without the hero's entrance pop — the
+   card has its own reveal, so the extra specificity is needed to drop it. */
+.timeline-now .timeline-now-mark {
+  position: relative;
+  justify-self: start;
+  margin-top: 1.25rem;
+  padding: 0 0.6rem;
+  font-size: 2rem;
+  line-height: 1.45;
+  animation: none;
+}
+
+/* Four-point sparkle — the conventional AI marker, tucked over the corner. */
+.timeline-now-mark::after {
+  content: "";
+  position: absolute;
+  top: -0.26em;
+  right: -0.24em;
+  width: 0.58em;
+  height: 0.58em;
+  background: var(--accent-deep);
+  mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M12 1c.6 5.6 5.4 10.4 11 11-5.6.6-10.4 5.4-11 11-.6-5.6-5.4-10.4-11-11C6.6 11.4 11.4 6.6 12 1z' fill='%23000'/%3E%3C/svg%3E");
+  mask-size: contain;
+  mask-repeat: no-repeat;
+}
+
+@media (min-width: 768px) {
+  .timeline-now {
+    grid-template-columns: minmax(0, 1fr) auto;
+    align-items: center;
+    gap: 2rem;
+    margin-top: 3rem;
+    padding: 1.8rem 5rem 1.8rem 4rem;
+  }
+
+  .timeline-now .timeline-now-mark {
+    justify-self: center;
+    margin-top: 0;
+    font-size: 2.6rem;
+  }
+}
+
+/* Simple discipline/topic tags. Compact labels rather than pill buttons. */
+.tag-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.tag {
+  display: inline-flex;
+  align-items: center;
+  border-radius: 0.4rem;
+  border: 1px solid color-mix(in oklab, var(--cyan-800) 16%, transparent);
+  background: color-mix(in oklab, var(--paper) 86%, var(--cyan-50));
+  padding: 0.32rem 0.62rem;
+  font-size: 0.75rem;
+  line-height: 1.35;
+  color: var(--ink-soft);
+}
+
+/* Proof points on one line, for the quieter supporting projects. */
+.metric-line {
+  font-family: var(--font-display), ui-sans-serif, system-ui, sans-serif;
+  font-weight: 500;
+  font-size: 1rem;
+  line-height: 1.5;
+  letter-spacing: -0.02em;
+  font-variant-numeric: tabular-nums;
+  color: var(--ink);
+  text-wrap: pretty;
+}
+
+/* The recurring transformations, drawn like the timeline: read down a column
+   and the before-state resolves into the after-state. The before sits back in
+   muted ink so the after reads as the resolution. */
+.shift-grid {
+  --rule-dot-gap: calc(var(--dot-gap) / 2);
+  --rule-dot-size: 1.6px;
+  --rule-dot-color: color-mix(in oklab, var(--cyan-800) 40%, transparent);
+  display: grid;
+  gap: 2.25rem;
+  /* Owned here for the same reason as `.timeline` — the list reset is
+     unlayered and would otherwise beat a Tailwind `mt-*`. */
+  margin: 2.25rem 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.shift-from,
+.shift-to {
+  font-size: inherit;
+  line-height: inherit;
+  text-wrap: normal;
+}
+
+.shift-statement {
+  font-size: clamp(1.25rem, 1.7vw, 1.45rem);
+  line-height: 1.25;
+  text-wrap: nowrap;
+}
+
+.shift-from {
+  color: var(--ink-soft);
+}
+
+.shift-arrow {
+  display: inline-block;
+  margin: 0 0.4rem;
+  color: color-mix(in oklab, var(--accent-deep) 45%, transparent);
+  transition:
+    transform 350ms cubic-bezier(0.22, 1, 0.36, 1),
+    color 350ms ease;
+}
+
+.shift-to {
+  color: var(--ink);
+}
+
+.shift:hover .shift-arrow {
+  transform: translateX(0.2rem);
+  color: var(--accent-deep);
+}
+
+.shift-body {
+  margin-top: 0.65rem;
+  max-width: 44ch;
+  font-size: 0.95rem;
+  line-height: 1.55;
+  color: var(--ink-soft);
+  text-wrap: pretty;
+}
+
+/* Stacked, so the repeated "Platform" in each label can't wrap into a block. */
+.shift-projects {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  margin-top: 0.9rem;
+  font-family: var(--font-mono), ui-monospace, monospace;
+  font-size: 0.72rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+@media (min-width: 768px) {
+  /* Two per row, three subgrid rows each: statement, body, projects. */
+  .shift-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-rows: repeat(6, auto);
+    gap: 0 4rem;
+    margin-top: 3rem;
+  }
+
+  .shift {
+    display: grid;
+    grid-row: span 3;
+    grid-template-rows: subgrid;
+  }
+
+  .shift:nth-child(n + 3) {
+    margin-top: 3rem;
+  }
+}
+
+.shift-project {
+  color: var(--muted);
+  transition: color 350ms ease;
+}
+
+.shift:hover .shift-project {
+  color: var(--accent-deep);
+}
+
+.shift-project:hover {
+  text-decoration: underline;
+  text-underline-offset: 0.28em;
+}
+
+/* Every section on the Work page opens the same way — one dotted rule, an
+   eyebrow, a heading, an optional lede — so the page reads as one rhythm
+   instead of six differently-dressed blocks. */
+.work-section {
+  margin-top: 3.5rem;
+  padding-top: 2.25rem;
+}
+
+/* Work is an index, not a case study. Keep its type scale deliberately compact:
+   page title → section title → item title → reading text → metadata. */
+.work-page .display-hero {
+  font-size: clamp(2.25rem, 4vw, 3rem);
+}
+
+.work-page .display-section {
+  font-size: clamp(1.6rem, 2.4vw, 2rem);
+  line-height: 1.18;
+}
+
+.work-page .display-statement,
+.work-page .shift-statement {
+  font-size: clamp(1.25rem, 1.7vw, 1.45rem);
+  line-height: 1.25;
+}
+
+.work-page .timeline-word {
+  font-size: clamp(1.05rem, 1.3vw, 1.2rem);
+  line-height: 1.25;
+}
+
+.work-page .display-sub {
+  font-size: 1.1rem;
+  line-height: 1.35;
+}
+
+.work-page .lede,
+.work-page .body-text {
+  font-size: 1rem;
+  line-height: 1.65;
+}
+
+.work-page > .hero-in .lede {
+  font-size: 1.0625rem;
+}
+
+.work-page .shift-projects,
+.work-page .timeline-year,
+.work-page .eyebrow {
+  font-size: 0.6875rem;
+  letter-spacing: 0.12em;
+}
+
+/* `balance` evens out line lengths, which breaks a heading that would other-
+   wise fit on one line into two short ones. On an index page the headings are
+   short statements, so let them fill the column instead. */
+.work-page .display-title {
+  text-wrap: pretty;
+}
+
+/* The wordmark echoes the home page's dot field so the two landing pages open
+   the same way. */
+/* Heading and lede share one band so the column width gets used, and the
+   heading keeps enough room to stay on a single line. Headings without a lede
+   run the full width. */
+.section-head {
+  display: grid;
+  gap: 0.75rem 3rem;
+}
+
+.section-head .lede {
+  max-width: 46ch;
+}
+
+@media (min-width: 900px) {
+  .section-head-split {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 17rem);
+    align-items: baseline;
+  }
+
+  .section-head-split .lede {
+    max-width: none;
+  }
+}
+
+@media (min-width: 768px) {
+  .work-section {
+    margin-top: 4.5rem;
+    padding-top: 2.75rem;
+  }
+}
+
+/* Project rows. Source order is number → title → media → copy, which is the
+   reading order on mobile; grid areas move the media beside the copy on md+. */
+.work-entry {
+  scroll-margin-top: 5rem;
+}
+
+.work-entry:hover::before {
+  background-image: radial-gradient(
+    circle,
+    color-mix(in oklab, var(--card-accent) 70%, transparent)
+      var(--rule-dot-size),
+    transparent var(--rule-dot-size)
+  );
+}
+
+.work-entry-grid {
+  margin-top: 1.5rem;
+  display: grid;
+  gap: 2rem;
+}
+
+.work-entry .project-hero-video,
+.work-entry .media-slot {
+  transition: scale 500ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.work-entry:hover .project-hero-video,
+.work-entry:hover .media-slot {
+  scale: 1.012;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .work-entry:hover .project-hero-video,
+  .work-entry:hover .media-slot {
+    scale: 1;
+  }
+}
+
+/* A reserved band rather than a fake screenshot, until real UI is cleared. */
+.media-slot {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.55rem;
+  min-height: 9rem;
+  padding: 2rem 1.5rem;
+  border: 1px dashed color-mix(in oklab, var(--cyan-800) 20%, transparent);
+  border-radius: var(--radius-lg);
+  background: color-mix(in oklab, var(--paper) 90%, var(--card-soft, var(--cyan-50)));
+  text-align: center;
+}
+
+.media-slot-note {
+  max-width: 32ch;
+  font-size: 0.9rem;
+  line-height: 1.5;
+  color: var(--muted);
+}
+
+@media (min-width: 768px) {
+  .work-entry-grid {
+    margin-top: 2rem;
+    column-gap: 3rem;
+    row-gap: 2rem;
+  }
+
+  /* Tablet keeps the editorial split but holds the media back a little. */
+  .work-entry-split .work-entry-grid {
+    grid-template-columns: 0.95fr 1.05fr;
+    grid-template-areas:
+      "title media"
+      "body media";
+    align-items: start;
+  }
+
+  .work-entry-stacked .work-entry-grid {
+    grid-template-columns: 0.9fr 1.1fr;
+    grid-template-areas:
+      "title body"
+      "media media";
+  }
+
+  /* No clip to show, so the title and copy split the width between them. */
+  .work-entry-text .work-entry-grid {
+    grid-template-columns: 0.9fr 1.1fr;
+    grid-template-areas: "title body";
+    align-items: start;
+  }
+
+  .work-entry-title {
+    grid-area: title;
+  }
+
+  .work-entry-media {
+    grid-area: media;
+  }
+
+  .work-entry-body {
+    grid-area: body;
+  }
+
+  .work-entry-split .media-slot {
+    aspect-ratio: 16 / 10;
+    min-height: 0;
+  }
+
+  .work-entry-stacked .media-slot {
+    min-height: 8.5rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .work-entry-split .work-entry-grid {
+    grid-template-columns: 0.82fr 1.18fr;
+  }
+}
+
+/* Work entries read as flat editorial rows, separated by a dotted rule — the
+   project clip carries the visual weight a card used to. */
 .featured-card {
   scroll-margin-top: 5rem;
 }
 
-/* Accent rule carries each project's colour without a decorative image. */
-.featured-card::before {
-  content: "";
-  position: absolute;
-  inset: 0 0 auto 0;
-  height: 3px;
-  background: linear-gradient(
-    90deg,
-    var(--card-accent),
-    color-mix(in oklab, var(--card-accent) 35%, var(--card-soft))
+.featured-card:hover::before {
+  background-image: radial-gradient(
+    circle,
+    color-mix(in oklab, var(--card-accent) 70%, transparent)
+      var(--rule-dot-size),
+    transparent var(--rule-dot-size)
   );
-}
-
-.system-map {
-  display: grid;
-  gap: 0.5rem;
-  border-radius: var(--radius-sm);
-  border: 1px solid var(--line);
-  background: color-mix(in oklab, var(--card-soft) 28%, var(--neutral-0));
-  padding: 1rem;
-}
-
-.system-map-step {
-  transition: transform var(--duration-med) var(--ease-out);
-}
-
-.featured-card:hover .system-map-step {
-  transform: translateY(-2px);
-}
-
-.system-map-label {
-  font-family: var(--font-mono), ui-monospace, monospace;
-  font-size: 0.62rem;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
-  color: color-mix(in oklab, var(--card-accent) 80%, var(--neutral-900));
-}
-
-.system-map-detail {
-  margin-top: 0.4rem;
-  font-size: 0.9rem;
-  line-height: 1.5;
-  color: var(--ink-soft);
-  text-wrap: pretty;
 }
 
 .nav-link {
@@ -418,7 +1118,8 @@ a {
   transition: transform 220ms ease;
 }
 
-.nav-link:hover::after {
+.nav-link:hover::after,
+.nav-link[aria-current="page"]::after {
   transform: scaleX(1);
 }
 
@@ -439,6 +1140,14 @@ a {
 .reveal.is-visible {
   opacity: 1;
   transform: translateY(0);
+}
+
+/* Release the promoted layer once the entrance has run. Leaving will-change on
+   permanently keeps a compositor layer alive over the fixed page background,
+   which flickers badly once a video is painting nearby. */
+.reveal.is-visible,
+.reveal-scale.is-visible {
+  will-change: auto;
 }
 
 .reveal-scale {
@@ -693,4 +1402,127 @@ a {
   .nav-link::after {
     display: none;
   }
+}
+
+/* Project clip — sits on the paper, framed like the other surface cards. */
+.project-hero {
+  margin: 0;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  background: var(--card-soft, color-mix(in oklab, var(--paper) 88%, var(--ink) 4%));
+  box-shadow: var(--shadow-card, 0 1px 2px rgb(15 23 42 / 0.04));
+}
+
+.project-hero-video {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: var(--hero-aspect, 16 / 10);
+  object-fit: cover;
+  background: var(--ink);
+  /* Own layer, so scrolling the fixed dot grid behind it doesn't retrigger a
+     repaint of the video on every frame. */
+  transform: translateZ(0);
+  backface-visibility: hidden;
+}
+
+.project-hero-caption {
+  padding: 0.85rem 1.1rem;
+  border-top: 1px solid var(--line);
+  font-size: 0.85rem;
+  line-height: 1.5;
+  color: var(--muted);
+  text-wrap: pretty;
+}
+
+/* Case-study hero: the clip is the first thing on the page, full-bleed and
+   unobscured. The title starts at the halfway mark, reversed to white — a
+   text-shadow does the legibility work so no scrim sits over the footage. */
+.case-hero {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  display: grid;
+  grid-template-rows: 50% auto;
+  min-height: clamp(32rem, 86vh, 52rem);
+}
+
+.case-hero-backdrop {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+
+.case-hero-backdrop .project-hero {
+  height: 100%;
+  border: 0;
+  border-radius: 0;
+  box-shadow: none;
+  background: transparent;
+}
+
+.case-hero-backdrop .project-hero-video {
+  height: 100%;
+  aspect-ratio: auto;
+  object-fit: cover;
+}
+
+/* Solid at the foot, clear at the top: the footage stays open where nothing
+   sits over it, and the type below lands on near-black. */
+.case-hero-backdrop::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to top,
+    rgb(0 0 0 / 1) 0%,
+    rgb(0 0 0 / 0.72) 28%,
+    rgb(0 0 0 / 0.28) 58%,
+    rgb(0 0 0 / 0) 100%
+  );
+}
+
+.case-hero-back {
+  position: relative;
+  z-index: 1;
+  grid-row: 1;
+  align-self: start;
+  display: flex;
+  justify-content: flex-start;
+  padding-top: clamp(1.25rem, 3vw, 2rem);
+}
+
+/* Sits in the clear part of the gradient, so it carries its own contrast. */
+.case-hero-back a {
+  text-shadow:
+    0 1px 3px rgb(0 0 0 / 0.85),
+    0 2px 16px rgb(0 0 0 / 0.65);
+}
+
+.case-hero-copy {
+  position: relative;
+  z-index: 1;
+  grid-row: 2;
+  align-self: start;
+  padding-bottom: clamp(2.5rem, 6vw, 4.5rem);
+}
+
+.case-hero a,
+.case-hero p,
+.case-hero h1,
+.case-hero .lede {
+  color: var(--neutral-0);
+}
+
+.case-hero a,
+.case-hero p,
+.case-hero h1 {
+  text-shadow:
+    0 1px 2px rgb(0 0 0 / 0.55),
+    0 4px 20px rgb(0 0 0 / 0.45);
+}
+
+.featured-card .project-hero {
+  align-self: start;
 }

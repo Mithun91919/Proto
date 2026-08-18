@@ -1,13 +1,16 @@
 import type { CaseStudy } from "./types";
 
 export const apiLifecycleCase: CaseStudy = {
-  slug: "api-lifecycle-manager",
+  slug: "api-lifecycle",
+  label: "API Lifecycle Platform",
+  internalName: "API Lifecycle Manager",
   org: "Walmart Global Tech",
   timeframe: "2022–Present",
   discipline: "Developer tools, Platform",
-  title: "Unifying the API lifecycle",
+  title:
+    "Creating one platform for engineers to discover, design, test, and govern APIs.",
   subtitle:
-    "One coherent experience for discovering, designing, testing, governing, and evolving APIs across a large engineering organisation.",
+    "API development was spread across disconnected documentation, design, testing, and subscription workflows. I helped define and design a platform built around three core experiences: Marketplace, Design Studio, and Testing.",
   story:
     "Engineers could build APIs, but discovering what already existed, designing contracts consistently, getting access, and keeping documentation trustworthy meant hopping across docs, repos, testing tools, messages, and manual approvals. I worked on the platform from early definition through delivery and adoption — not to replace isolated tools, but to create one lifecycle teams could actually run inside.",
   contributions: [
@@ -26,9 +29,12 @@ export const apiLifecycleCase: CaseStudy = {
     "AI discovery",
   ],
   metrics: [
-    { value: "3", label: "Product pillars: Marketplace, Studio, Testing" },
-    { value: "~40%", label: "Faster contract design after Studio revamp" },
-    { value: "60+", label: "Engineering adoption sessions" },
+    { value: "~500", label: "Services onboarded" },
+    {
+      value: "~40%",
+      label: "Faster contract design for teams using the redesigned Studio",
+    },
+    { value: "60+", label: "Adoption sessions" },
   ],
   chapters: [
     {

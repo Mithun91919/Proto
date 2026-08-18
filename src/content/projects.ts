@@ -16,11 +16,29 @@ export type ProjectMetric = {
   label: string;
 };
 
+/** Looping product clip shown at the top of the project's card. */
+export type ProjectMedia = {
+  mp4: string;
+  webm?: string;
+  poster: string;
+  aspect?: number;
+};
+
 export type Project = {
   slug: string;
   number: string;
+  /**
+   * Public product label — what kind of product this is. Primary eyebrow /
+   * metadata identity. Never an internal code name.
+   */
+  label: string;
+  /** Case-study headline: the problem solved or transformation created. */
   title: string;
-  shortTitle: string;
+  /**
+   * Internal product name. Optional supporting metadata only — never required
+   * to understand the project. Omit when it adds no public value (e.g. GSCOPE).
+   */
+  internalName?: string;
   summary: string;
   outcome: string;
   metrics: ProjectMetric[];
@@ -35,24 +53,26 @@ export type Project = {
   accent: string;
   accentSoft: string;
   contentPath: string;
+  media?: ProjectMedia;
   systemMap: SystemMapStep[];
   tags: string[];
 };
 
 export const projects: Project[] = [
   {
-    slug: "clipper",
+    slug: "portfolio-management",
     number: "01",
-    title:
-      "Replacing five disconnected portfolio tools with one system for managing people, products, initiatives, and goals.",
-    shortTitle: "Clipper",
+    label: "Portfolio Management Platform",
+    title: "Replacing five portfolio tools with one connected platform.",
+    internalName: "Clipper",
     summary:
-      "Walmart's technology organisation was planning and operating across separate tools for workforce data, products, roadmaps, initiatives, and administration. I led design from the first whiteboard through a multi-year rollout that brought those workflows into one connected platform.",
-    outcome: "6,000+ monthly active users · 5 legacy systems retired · $2.65M+ documented cost and automation savings",
+      "Portfolio planning was split across separate systems for people, products, initiatives, approvals, and strategic work. I led the experience from the initial platform architecture through staged rollout, migration, and adoption.",
+    outcome:
+      "6K+ monthly users · 5→1 platform consolidation · 6 connected modules",
     metrics: [
-      { value: "6,000+", label: "monthly active users" },
-      { value: "5", label: "legacy systems retired" },
-      { value: "$2.65M+", label: "documented cost and automation savings" },
+      { value: "6K+", label: "monthly users" },
+      { value: "5→1", label: "platform consolidation" },
+      { value: "6", label: "connected modules" },
     ],
     org: "Walmart Global Tech",
     domain: "Enterprise platforms",
@@ -65,6 +85,12 @@ export const projects: Project[] = [
     accent: "#155e75",
     accentSoft: "#cffafe",
     contentPath: "projects/clipper/web/clipper-web.md",
+    media: {
+      mp4: "/work/clipper/hero.mp4",
+      webm: "/work/clipper/hero.webm",
+      poster: "/work/clipper/poster.jpg",
+      aspect: 1600 / 1046,
+    },
     systemMap: [
       {
         label: "Before",
@@ -79,25 +105,26 @@ export const projects: Project[] = [
         detail: "One portfolio operating platform and system of record",
       },
     ],
-    tags: ["0→1 Platform", "Enterprise UX", "Systems Design"],
+    tags: ["0→1 Platform", "Systems Design", "Enterprise UX"],
   },
   {
-    slug: "api-lifecycle-manager",
+    slug: "api-lifecycle",
     number: "02",
+    label: "API Lifecycle Platform",
     title:
       "Creating one platform for engineers to discover, design, test, and govern APIs.",
-    shortTitle: "API Lifecycle Manager",
+    internalName: "API Lifecycle Manager",
     summary:
-      "API development was spread across documentation tools, repositories, testing software, and manual subscription processes. I helped define and design a platform that brought the lifecycle together through three core experiences: Marketplace, Design Studio, and Testing. I stayed with the product from early discovery through launch, adoption, redesign, governance, and its evolution into a deeper part of the engineering workflow.",
+      "API development was spread across disconnected documentation, design, testing, and subscription workflows. I helped define and design a platform built around three core experiences: Marketplace, Design Studio, and Testing.",
     outcome:
-      "~500 services onboarded · ~40% faster API contract design · 60+ engineering adoption sessions",
+      "~500 services onboarded · ~40% faster contract design for teams using the redesigned Studio · 60+ adoption sessions",
     metrics: [
       { value: "~500", label: "services onboarded" },
       {
         value: "~40%",
-        label: "faster API contract design for teams using the redesigned Studio",
+        label: "faster contract design for teams using the redesigned Studio",
       },
-      { value: "60+", label: "engineering adoption sessions" },
+      { value: "60+", label: "adoption sessions" },
     ],
     org: "Walmart Global Tech",
     domain: "Developer tools",
@@ -125,26 +152,27 @@ export const projects: Project[] = [
         detail: "Connected developer platform with governance and adoption paths",
       },
     ],
-    tags: ["Developer Experience", "Product Design", "Platform"],
+    tags: ["Developer Experience", "Platform Design"],
   },
   {
-    slug: "dependency-management",
+    slug: "dependency-health",
     number: "03",
+    label: "Dependency Health Platform",
     title:
-      "Turning dependency compliance data into clear actions developers can take before deployment.",
-    shortTitle: "Dependency Management",
+      "Turning dependency compliance data into clear actions developers can take.",
+    internalName: "Dependency Management",
     summary:
-      "The technical signals already existed. The problem was that developers, engineering leaders, and platform teams needed completely different answers from the same data. I designed the information architecture, prioritised which metrics mattered at each level, and created guided onboarding and remediation flows that move users from status → diagnosis → action. Post-launch feedback also led us to turn conflicting colour preferences into a platform-wide token-based theming system rather than another one-off UI decision.",
+      "The backend could provide dozens of technical signals. The UX challenge was deciding what mattered to developers, engineering leaders, and platform teams — and translating it into status, diagnosis, and guided remediation.",
     outcome:
-      "Repository → Pillar → Organisation visibility · 148 repositories tracked in the initial major-version pilot",
+      "Repository → Pillar → Organisation visibility · 148 repositories in initial major-version pilot",
     metrics: [
       {
         value: "3 levels",
-        label: "repository → pillar → organisation visibility",
+        label: "Repository → Pillar → Organisation visibility",
       },
       {
         value: "148",
-        label: "repositories tracked in the initial major-version pilot",
+        label: "repositories in initial major-version pilot",
       },
     ],
     org: "Walmart Global Tech",
@@ -176,19 +204,20 @@ export const projects: Project[] = [
     tags: ["Developer Tools", "Information Architecture", "Governance"],
   },
   {
-    slug: "fixit",
+    slug: "store-support",
     number: "04",
+    label: "Store Support Platform",
     title:
       "Redesigning IT support so store associates can diagnose and resolve issues before raising a ticket.",
-    shortTitle: "FixIt",
+    internalName: "FixIt",
     summary:
-      "Store associates were navigating unclear issue categories, limited troubleshooting, weak search, and fragmented support workflows. I redesigned the mobile experience around clearer problem classification, guided troubleshooting, search, precise location context, and better information for the support teams receiving unresolved requests.",
+      "I redesigned the self-service support experience around clearer classification, guided troubleshooting, search, location context, and better escalation information.",
     outcome:
-      "~5,900 daily active users · ~580,000-device footprint · 7,000+ weekly searches · 3.5× YoY growth",
+      "~5,900 daily users · ~580K-device footprint · 7,000+ weekly searches",
     metrics: [
-      { value: "~5,900", label: "daily active users" },
-      { value: "~580,000", label: "device footprint" },
-      { value: "7,000+", label: "weekly searches, 3.5× year on year" },
+      { value: "~5,900", label: "daily users" },
+      { value: "~580K", label: "device footprint" },
+      { value: "7,000+", label: "weekly searches" },
     ],
     org: "Walmart Global Tech",
     domain: "Consumer and mobile",
@@ -220,16 +249,15 @@ export const projects: Project[] = [
   {
     slug: "supply-chain-operations",
     number: "05",
+    label: "Supply Chain Operations Platform",
     title:
-      "Reorganising 300+ supply-chain tools into a navigation system designed for 255K+ monthly users.",
-    shortTitle: "Supply Chain Operations",
+      "Reorganising 300+ operational tools around how people actually find and use them.",
     summary:
-      "As the platform grew, a flat homepage and inconsistent navigation made hundreds of operational modules increasingly difficult to discover. Through information-architecture workshops, concept evaluation, and moderated feedback across markets, we introduced a scalable left-navigation model, search, pinned tools, recent modules, and a new platform shell.",
-    outcome: "255K+ monthly active users · 300+ modules · 15+ stakeholder groups",
+      "As the platform expanded, hundreds of operational modules became increasingly difficult to discover. I co-led the information architecture and navigation redesign, evaluating competing navigation models with users across multiple markets.",
+    outcome: "255K+ monthly users · 300+ modules",
     metrics: [
-      { value: "255K+", label: "monthly active users" },
+      { value: "255K+", label: "monthly users" },
       { value: "300+", label: "modules" },
-      { value: "15+", label: "stakeholder groups" },
     ],
     org: "Walmart Global Tech",
     domain: "Enterprise platforms",
@@ -257,9 +285,17 @@ export const projects: Project[] = [
         detail: "Scalable platform shell used across markets and teams",
       },
     ],
-    tags: ["Platform", "Information Architecture"],
+    tags: ["Platform UX", "Information Architecture", "Navigation"],
   },
 ];
+
+/** Legacy internal-name slugs → public slugs. Used for redirects. */
+export const projectSlugRedirects: Record<string, string> = {
+  clipper: "portfolio-management",
+  "api-lifecycle-manager": "api-lifecycle",
+  "dependency-management": "dependency-health",
+  fixit: "store-support",
+};
 
 export function getProject(slug: string) {
   return projects.find((project) => project.slug === slug);

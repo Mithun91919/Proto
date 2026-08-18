@@ -1,13 +1,16 @@
 import type { CaseStudy } from "./types";
 
 export const dependencyCase: CaseStudy = {
-  slug: "dependency-management",
+  slug: "dependency-health",
+  label: "Dependency Health Platform",
+  internalName: "Dependency Management",
   org: "Walmart Global Tech",
   timeframe: "2025–Present",
   discipline: "Developer tools, Governance",
-  title: "Dependency health that leads to action",
+  title:
+    "Turning dependency compliance data into clear actions developers can take.",
   subtitle:
-    "Turning abundant technical metadata into decision-ready signals, layered views, and guided remediation.",
+    "The backend could provide dozens of technical signals. The UX challenge was deciding what mattered to developers, engineering leaders, and platform teams — and translating it into status, diagnosis, and guided remediation.",
   story:
     "The technical data already existed — library baselines, Java versions, drift, conflicts, security exposure — but teams did not have a consistent way to understand dependency health or move from a compliance signal to a concrete fix. I took ownership of the portal UX so developers, leaders, and platform admins could make different decisions from the same underlying model.",
   contributions: [
@@ -26,9 +29,11 @@ export const dependencyCase: CaseStudy = {
     "Compliance UX",
   ],
   metrics: [
-    { value: "148", label: "Repositories in latest pilot baseline" },
-    { value: "3", label: "Audience decision models supported" },
-    { value: "1", label: "Shared health model across scales" },
+    {
+      value: "3 levels",
+      label: "Repository → Pillar → Organisation visibility",
+    },
+    { value: "148", label: "Repositories in initial major-version pilot" },
   ],
   chapters: [
     {

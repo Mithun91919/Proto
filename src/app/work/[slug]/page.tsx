@@ -24,8 +24,12 @@ export async function generateMetadata({
   const project = getProject(slug);
   if (!study || !project) return {};
   return {
-    title: study.title,
+    title: `${project.label} — ${study.title}`,
     description: study.subtitle,
+    openGraph: {
+      title: `${project.label} — ${study.title}`,
+      description: study.subtitle,
+    },
   };
 }
 

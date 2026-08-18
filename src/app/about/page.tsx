@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { HeroPortrait } from "@/components/HeroPortrait";
 import { Reveal } from "@/components/Reveal";
+import { SectionAnchor } from "@/components/SectionAnchor";
 
 export const metadata: Metadata = {
   title: "About",
@@ -62,13 +63,13 @@ const career = [
 export default function AboutPage() {
   return (
     <div className="mx-auto w-full max-w-[70rem] px-5 pb-16 pt-6 md:px-8 md:pb-24 md:pt-10">
-      <div className="about-hero hero-in">
+      <div className="page-hero hero-in">
         <HeroPortrait
-          className="about-hero-backdrop"
+          className="page-hero-backdrop"
           aspect={1}
           pitch={9}
           zoom={1.2}
-          hoverScope=".about-hero"
+          hoverScope=".page-hero"
           label="Portrait of Mithun Raju as a halftone of falling dots; hover to see the photograph"
         />
         <p className="eyebrow">About</p>
@@ -100,93 +101,102 @@ export default function AboutPage() {
       </div>
 
       <section className="mt-20 border-t border-[var(--line)] pt-12">
-        <Reveal>
-          <h2 className="display-title display-section text-[var(--ink)]">
-            Career progression
-          </h2>
-        </Reveal>
-        <div className="mt-10 space-y-8">
-          {career.map((item, index) => (
-            <Reveal key={item.org} delay={index * 70}>
-              <article className="grid gap-3 transition duration-300 hover:translate-x-1 md:grid-cols-[14rem_1fr]">
-                <h3 className="eyebrow">{item.org}</h3>
-                <p className="text-[1.05rem] leading-8 text-[var(--ink-soft)]">
-                  {item.body}
-                </p>
-              </article>
-            </Reveal>
-          ))}
+        <div className="grid gap-12 md:grid-cols-[0.85fr_1.15fr] md:gap-16">
+          <Reveal>
+            <SectionAnchor eyebrow="Career" title="Career progression" />
+          </Reveal>
+          <div className="space-y-8">
+            {career.map((item, index) => (
+              <Reveal key={item.org} delay={index * 70}>
+                <article className="grid gap-3 transition duration-300 hover:translate-x-1 md:grid-cols-[14rem_1fr]">
+                  <h3 className="eyebrow">{item.org}</h3>
+                  <p className="text-[1.05rem] leading-8 text-[var(--ink-soft)]">
+                    {item.body}
+                  </p>
+                </article>
+              </Reveal>
+            ))}
+          </div>
         </div>
       </section>
 
       <section className="mt-20 border-t border-[var(--line)] pt-12">
-        <Reveal>
-          <h2 className="display-title display-section text-[var(--ink)]">
-            How I approach product design
-          </h2>
-        </Reveal>
-        <div className="mt-10 grid gap-6 md:grid-cols-2">
-          {principles.map((principle, index) => (
-            <Reveal key={principle.title} delay={index * 80} variant="scale">
-              <article className="glass-panel glass-card p-6 hover:-translate-y-1">
-                <h3 className="text-xl font-semibold tracking-tight text-[var(--ink)]">
-                  {principle.title}
-                </h3>
-                <p className="mt-3 leading-7 text-[var(--ink-soft)]">{principle.body}</p>
-              </article>
-            </Reveal>
-          ))}
+        <div className="grid gap-12 md:grid-cols-[0.85fr_1.15fr] md:gap-16">
+          <Reveal>
+            <SectionAnchor
+              eyebrow="Approach"
+              title="How I approach product design"
+            />
+          </Reveal>
+          <div className="grid gap-6 md:grid-cols-2">
+            {principles.map((principle, index) => (
+              <Reveal key={principle.title} delay={index * 80} variant="scale">
+                <article className="glass-panel glass-card p-6 hover:-translate-y-1">
+                  <h3 className="text-xl font-semibold tracking-tight text-[var(--ink)]">
+                    {principle.title}
+                  </h3>
+                  <p className="mt-3 leading-7 text-[var(--ink-soft)]">
+                    {principle.body}
+                  </p>
+                </article>
+              </Reveal>
+            ))}
+          </div>
         </div>
       </section>
 
       <section className="mt-20 border-t border-[var(--line)] pt-12">
-        <Reveal>
-          <h2 className="display-title display-section text-[var(--ink)]">
-            Selected capabilities
-          </h2>
-        </Reveal>
-        <ul className="mt-8 columns-1 gap-x-12 space-y-3 md:columns-2">
-          {capabilities.map((item, index) => (
-            <Reveal key={item} delay={index * 40}>
-              <li className="break-inside-avoid border-b border-[var(--line)] pb-3 text-[var(--ink-soft)] transition hover:text-[var(--ink)]">
-                {item}
-              </li>
-            </Reveal>
-          ))}
-        </ul>
+        <div className="grid gap-12 md:grid-cols-[0.85fr_1.15fr] md:gap-16">
+          <Reveal>
+            <SectionAnchor eyebrow="Capabilities" title="Selected capabilities" />
+          </Reveal>
+          <ul className="columns-1 gap-x-12 space-y-3 md:columns-2">
+            {capabilities.map((item, index) => (
+              <Reveal key={item} delay={index * 40}>
+                <li className="break-inside-avoid border-b border-[var(--line)] pb-3 text-[var(--ink-soft)] transition hover:text-[var(--ink)]">
+                  {item}
+                </li>
+              </Reveal>
+            ))}
+          </ul>
+        </div>
       </section>
 
       <section id="contact" className="mt-20 border-t border-[var(--line)] pt-12">
-        <Reveal>
-          <h2 className="display-title display-section text-[var(--ink)]">Contact</h2>
-          <p className="mt-5 max-w-2xl text-lg leading-8 text-[var(--ink-soft)]">
-            I am open to conversations about senior product-design roles involving enterprise
-            platforms, AI products, developer tools, and design technology.
-          </p>
-          <div className="mt-8 flex flex-col gap-3 text-[var(--ink)]">
-            <span>Bengaluru, India</span>
-            <a
-              href="mailto:mithraj14@gmail.com"
-              className="font-semibold text-[var(--accent-deep)] transition hover:translate-x-1"
-            >
-              mithraj14@gmail.com
-            </a>
-            <a
-              href="https://linkedin.com/in/mithunrajuk"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="font-semibold text-[var(--accent-deep)] transition hover:translate-x-1"
-            >
-              linkedin.com/in/mithunrajuk
-            </a>
-            <Link
-              href="/work"
-              className="mt-4 inline-flex font-semibold text-[var(--accent-deep)] transition hover:translate-x-1"
-            >
-              View selected work →
-            </Link>
-          </div>
-        </Reveal>
+        <div className="grid gap-12 md:grid-cols-[0.85fr_1.15fr] md:gap-16">
+          <Reveal>
+            <SectionAnchor
+              eyebrow="Say Hi"
+              title="Contact"
+              lede="I am open to conversations about senior product-design roles involving enterprise platforms, AI products, developer tools, and design technology."
+            />
+          </Reveal>
+          <Reveal delay={80}>
+            <div className="flex flex-col gap-3 text-[var(--ink)]">
+              <span>Bengaluru, India</span>
+              <a
+                href="mailto:mithraj14@gmail.com"
+                className="font-semibold text-[var(--accent-deep)] transition hover:translate-x-1"
+              >
+                mithraj14@gmail.com
+              </a>
+              <a
+                href="https://linkedin.com/in/mithunrajuk"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="font-semibold text-[var(--accent-deep)] transition hover:translate-x-1"
+              >
+                linkedin.com/in/mithunrajuk
+              </a>
+              <Link
+                href="/work"
+                className="mt-4 inline-flex font-semibold text-[var(--accent-deep)] transition hover:translate-x-1"
+              >
+                View selected work →
+              </Link>
+            </div>
+          </Reveal>
+        </div>
       </section>
     </div>
   );

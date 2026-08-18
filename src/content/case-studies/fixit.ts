@@ -1,13 +1,16 @@
 import type { CaseStudy } from "./types";
 
 export const fixitCase: CaseStudy = {
-  slug: "fixit",
+  slug: "store-support",
+  label: "Store Support Platform",
+  internalName: "FixIt",
   org: "Walmart Global Tech",
   timeframe: "2020–2021",
   discipline: "Mobile, Operations",
-  title: "Self-service support under time pressure",
+  title:
+    "Redesigning IT support so store associates can diagnose and resolve issues before raising a ticket.",
   subtitle:
-    "A research-led redesign of store-associate support across mobile and web — clearer IA, guided troubleshooting, and design-system migration.",
+    "I redesigned the self-service support experience around clearer classification, guided troubleshooting, search, location context, and better escalation information.",
   story:
     "Store associates open a support app when something on the floor is already broken. The existing experience made people guess where problems belonged, offered little help before ticket creation, and felt disconnected from the rest of the internal product ecosystem. I redesigned the mobile and web experience so associates could diagnose, self-resolve, or escalate with better context — without creating more work in the middle of their shift.",
   contributions: [
@@ -26,9 +29,9 @@ export const fixitCase: CaseStudy = {
     "Support workflows",
   ],
   metrics: [
-    { value: "2", label: "Surfaces redesigned: mobile + web" },
-    { value: "IA", label: "Rebuilt around associate mental models" },
-    { value: "1", label: "Enterprise design-system migration" },
+    { value: "~5,900", label: "Daily users" },
+    { value: "~580K", label: "Device footprint" },
+    { value: "7,000+", label: "Weekly searches" },
   ],
   chapters: [
     {

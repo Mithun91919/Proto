@@ -14,6 +14,14 @@ export type CaseInsight = {
   body: string;
 };
 
+export type CaseHero = {
+  mp4: string;
+  webm?: string;
+  poster: string;
+  aspect?: number;
+  caption?: string;
+};
+
 export type CaseChapter = {
   number: string;
   title: string;
@@ -27,12 +35,20 @@ export type CaseChapter = {
 
 export type CaseStudy = {
   slug: string;
+  /** Public product label — what kind of product this is. */
+  label: string;
+  /**
+   * Internal product name. Optional supporting metadata only.
+   * Omit when it adds no public value.
+   */
+  internalName?: string;
   org: string;
   timeframe: string;
   discipline: string;
   title: string;
   subtitle: string;
   story: string;
+  hero?: CaseHero;
   contributions: string[];
   role: string;
   scope: string[];

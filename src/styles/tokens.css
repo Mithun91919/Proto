@@ -120,6 +120,12 @@
   --dot-origin-x: 0px;
   --dot-origin-y: 0px;
 
+  /* Dotted divider — same rhythm as the page grid, but heavy enough to read
+     as a deliberate rule rather than more background texture. */
+  --rule-dot-gap: var(--dot-gap);
+  --rule-dot-size: 1.35px;
+  --rule-dot-color: color-mix(in oklab, var(--cyan-800) 32%, transparent);
+
 
   /* ── Semantic: gradients & elevation ────────────────────── */
   --gradient-page-top: var(--color-paper);

@@ -3,6 +3,7 @@ import type { CSSProperties } from "react";
 import type { CaseStudy } from "@/content/case-studies";
 import type { Project } from "@/content/projects";
 import { MediaFrame } from "@/components/MediaFrame";
+import { ProjectHero } from "@/components/ProjectHero";
 import { Reveal } from "@/components/Reveal";
 
 function ChapterNav({ chapters }: { chapters: CaseStudy["chapters"] }) {
@@ -47,6 +48,24 @@ export function CaseStudyView({
   project: Project;
   next?: Project;
 }) {
+  const headline = (
+    <>
+      <p className="eyebrow">{study.label}</p>
+      <h1 className="display-title display-hero mt-4 max-w-[26ch] text-[var(--ink)]">
+        {study.title}
+      </h1>
+      <p className="lede mt-6 max-w-[52ch]">{study.subtitle}</p>
+      <p className="mt-5 text-sm text-[var(--muted)]">
+        {study.org} · {study.timeframe} · {study.discipline}
+      </p>
+      {study.internalName ? (
+        <p className="mt-3 text-xs tracking-wide text-[var(--muted)]">
+          Internally known as {study.internalName}
+        </p>
+      ) : null}
+    </>
+  );
+
   return (
     <article
       style={
@@ -56,24 +75,43 @@ export function CaseStudyView({
         } as CSSProperties
       }
     >
-      <div className="mx-auto w-full max-w-[70rem] px-5 pt-8 md:px-8">
-        <Link
-          href="/#work"
-          className="inline-flex text-sm font-medium text-[var(--muted)] transition hover:translate-x-[-2px] hover:text-[var(--ink)]"
-        >
-          ← All Work
-        </Link>
-      </div>
-
-      <header className="hero-in mx-auto w-full max-w-[70rem] px-5 pb-12 pt-10 md:px-8 md:pb-16 md:pt-14">
-        <p className="text-sm text-[var(--muted)]">
-          {study.org} · {study.timeframe} · {study.discipline}
-        </p>
-        <h1 className="display-title display-hero mt-4 max-w-[26ch] text-[var(--ink)]">
-          {study.title}
-        </h1>
-        <p className="lede mt-6 max-w-[52ch]">{study.subtitle}</p>
-      </header>
+      {study.hero ? (
+        <section className="case-hero">
+          {/* Decorative here: the title over it already names the work. */}
+          <div className="case-hero-backdrop" aria-hidden="true">
+            <ProjectHero
+              mp4={study.hero.mp4}
+              webm={study.hero.webm}
+              poster={study.hero.poster}
+            />
+          </div>
+          <div className="case-hero-back mx-auto w-full max-w-[70rem] px-5 md:px-8">
+            <Link
+              href="/work"
+              className="inline-flex text-base font-semibold transition hover:translate-x-[-2px]"
+            >
+              ← All Work
+            </Link>
+          </div>
+          <header className="case-hero-copy hero-in mx-auto w-full max-w-[70rem] px-5 md:px-8">
+            {headline}
+          </header>
+        </section>
+      ) : (
+        <>
+          <div className="mx-auto w-full max-w-[70rem] px-5 pt-8 md:px-8">
+            <Link
+              href="/work"
+              className="inline-flex text-sm font-medium text-[var(--muted)] transition hover:translate-x-[-2px] hover:text-[var(--ink)]"
+            >
+              ← All Work
+            </Link>
+          </div>
+          <header className="hero-in mx-auto w-full max-w-[70rem] px-5 pb-12 pt-10 md:px-8 md:pb-16 md:pt-14">
+            {headline}
+          </header>
+        </>
+      )}
 
       <section className="border-y border-[var(--line)]">
         <div className="mx-auto grid w-full max-w-[70rem] gap-12 px-5 py-14 md:grid-cols-[1.2fr_0.8fr] md:px-8 md:py-16">
@@ -260,9 +298,9 @@ export function CaseStudyView({
                   href={`/work/${next.slug}`}
                   className="glass-panel glass-card group mt-4 block p-6 hover:-translate-y-1 md:p-8"
                 >
-                  <p className="text-sm text-[var(--muted)]">{next.org}</p>
+                  <p className="eyebrow">{next.label}</p>
                   <h3 className="display-title display-sub mt-2 text-[var(--ink)] transition group-hover:text-[var(--accent-deep)]">
-                    {next.shortTitle}
+                    {next.title}
                   </h3>
                   <p className="body-sm mt-3">{next.outcome}</p>
                   <p className="mt-6 text-sm font-semibold text-[var(--accent-deep)] transition-transform duration-300 group-hover:translate-x-1">

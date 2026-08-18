@@ -2,12 +2,14 @@ import type { CaseStudy } from "./types";
 
 export const supplyChainCase: CaseStudy = {
   slug: "supply-chain-operations",
+  label: "Supply Chain Operations Platform",
   org: "Walmart Global Tech",
   timeframe: "2021–2022",
   discipline: "Platform, IA",
-  title: "Making 300+ tools easier to find",
+  title:
+    "Reorganising 300+ operational tools around how people actually find and use them.",
   subtitle:
-    "A shared information architecture, scalable navigation, personalisation, and design-system foundation for a global supply-chain operations platform.",
+    "As the platform expanded, hundreds of operational modules became increasingly difficult to discover. I co-led the information architecture and navigation redesign, evaluating competing navigation models with users across multiple markets.",
   story:
     "The platform had grown into the front door for hundreds of supply-chain workflows, but its home was still a flat tile grid: no search, no meaningful hierarchy, no personalisation. I co-led the navigation and landing redesign so hundreds of thousands of monthly users could find the right tool faster — and so the platform shell itself could become a vehicle for design-system adoption.",
   contributions: [
@@ -26,9 +28,8 @@ export const supplyChainCase: CaseStudy = {
     "VQA",
   ],
   metrics: [
-    { value: "300+", label: "Modules in the platform" },
-    { value: "255K+", label: "Monthly users at launch scale" },
-    { value: "30+", label: "Engineering teams on the shell" },
+    { value: "255K+", label: "Monthly users" },
+    { value: "300+", label: "Modules" },
   ],
   chapters: [
     {

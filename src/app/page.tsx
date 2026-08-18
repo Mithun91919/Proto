@@ -1,8 +1,10 @@
 import Link from "next/link";
+import { DotText } from "@/components/DotText";
 import { FeaturedWorkCard } from "@/components/FeaturedWorkCard";
 import { HeroPortrait } from "@/components/HeroPortrait";
 import { Reveal } from "@/components/Reveal";
-import { getFeaturedProjects, getRangeProjects } from "@/content/projects";
+import { SectionAnchor } from "@/components/SectionAnchor";
+import { getFeaturedProjects } from "@/content/projects";
 
 const problemCadence = [
   "Sometimes that's five tools doing pieces of the same job.",
@@ -28,7 +30,6 @@ const principles = [
 
 export default function HomePage() {
   const featured = getFeaturedProjects();
-  const more = getRangeProjects();
 
   return (
     <>
@@ -67,7 +68,7 @@ export default function HomePage() {
         className="mx-auto w-full max-w-[70rem] px-5 py-16 md:px-8 md:py-24"
       >
         <Reveal>
-          <div className="flex flex-wrap items-end justify-between gap-4 border-b border-[var(--line)] pb-6">
+          <div className="flex flex-wrap items-end justify-between gap-4">
             <h2 className="display-title display-section text-[var(--ink)]">
               Selected work
             </h2>
@@ -75,54 +76,25 @@ export default function HomePage() {
           </div>
         </Reveal>
 
-        <div className="mt-10 flex flex-col gap-6 md:gap-8">
+        <div className="mt-12 flex flex-col gap-14 md:gap-20">
           {featured.map((project, index) => (
-            <Reveal key={project.slug} delay={index * 70} variant="scale">
+            <Reveal key={project.slug} delay={index * 70}>
               <FeaturedWorkCard project={project} />
             </Reveal>
           ))}
         </div>
 
-        {more.length > 0 ? (
-          <div className="mt-20">
-            <Reveal>
-              <h3 className="display-title display-sub border-b border-[var(--line)] pb-5 text-[var(--ink)]">
-                More work
-              </h3>
-            </Reveal>
-            <div className="mt-8 flex flex-col gap-6">
-              {more.map((project, index) => (
-                <Reveal key={project.slug} delay={index * 90}>
-                  <Link
-                    href={`/work/${project.slug}`}
-                    className="group grid gap-6 border-b border-[var(--line)] pb-8 md:grid-cols-[1.15fr_0.85fr] md:gap-12"
-                  >
-                    <div>
-                      <p className="eyebrow">{project.shortTitle}</p>
-                      <h4 className="display-title display-sub mt-3 text-[var(--ink)] transition-colors duration-300 group-hover:text-[var(--accent-deep)]">
-                        {project.title}
-                      </h4>
-                      <p className="body-text mt-4">{project.summary}</p>
-                    </div>
-                    <div className="flex flex-col justify-between gap-6">
-                      <dl className="grid gap-4 sm:grid-cols-3 md:grid-cols-1">
-                        {project.metrics.map((metric) => (
-                          <div key={metric.label}>
-                            <dt className="metric-value">{metric.value}</dt>
-                            <dd className="metric-label">{metric.label}</dd>
-                          </div>
-                        ))}
-                      </dl>
-                      <p className="text-sm font-semibold text-[var(--ink)] transition-transform duration-300 group-hover:translate-x-1">
-                        View project →
-                      </p>
-                    </div>
-                  </Link>
-                </Reveal>
-              ))}
-            </div>
+        <Reveal delay={140}>
+          <div className="dot-rule mt-16 pt-8 md:mt-20">
+            <p className="body-text max-w-[46ch]">
+              The full body of work, and the path from mobile products into
+              platforms and developer tools.
+            </p>
+            <Link href="/work" className="button button-secondary mt-6">
+              All work →
+            </Link>
           </div>
-        ) : null}
+        </Reveal>
       </section>
 
       <section
@@ -131,16 +103,11 @@ export default function HomePage() {
       >
         <div className="mx-auto grid w-full max-w-[70rem] gap-12 px-5 py-20 md:grid-cols-[0.85fr_1.15fr] md:gap-16 md:px-8 md:py-28">
           <Reveal>
-            <div className="md:sticky md:top-28">
-              <p className="eyebrow">Approach</p>
-              <h2 className="display-title display-section mt-4 text-[var(--ink)]">
-                The kind of problems I work on
-              </h2>
-              <p className="lede mt-6">
-                Most of my work starts with something that has grown harder to understand
-                than it should be.
-              </p>
-            </div>
+            <SectionAnchor
+              eyebrow="Approach"
+              title="The kind of problems I work on"
+              lede="Most of my work starts with something that has grown harder to understand than it should be."
+            />
           </Reveal>
 
           <div>
@@ -189,13 +156,11 @@ export default function HomePage() {
       >
         <div className="grid gap-12 md:grid-cols-[0.85fr_1.15fr] md:gap-16">
           <Reveal>
-            <div>
-              <p className="eyebrow">About</p>
-              <h2 className="display-title display-section mt-4 max-w-[24ch] text-[var(--ink)]">
-                I started by designing interfaces. Over time, I became more interested in
-                the systems behind them.
-              </h2>
-            </div>
+            <SectionAnchor
+              eyebrow="About"
+              title="I started by designing interfaces. Over time, I became more interested in the systems behind them."
+              titleClassName="max-w-[24ch]"
+            />
           </Reveal>
 
           <Reveal delay={80}>
@@ -228,20 +193,14 @@ export default function HomePage() {
       </section>
 
       <section id="contact" className="border-t border-[var(--line)]">
-        <div className="mx-auto grid w-full max-w-[70rem] gap-12 px-5 py-20 md:grid-cols-[1fr_16rem] md:items-center md:gap-16 md:px-8 md:py-28">
-          <div>
-            <Reveal>
-              <p className="eyebrow">Say Hi</p>
-              <h2 className="display-title display-section mt-4 max-w-[26ch] text-[var(--ink)]">
-                Working on a product with a lot of moving parts?
-              </h2>
-              <p className="lede mt-6">
-                I&apos;m always interested in thoughtful conversations about platform
-                design, developer experience, and products that need to work at scale.
-              </p>
-            </Reveal>
-
-            <Reveal delay={80}>
+        <div className="mx-auto grid w-full max-w-[70rem] gap-12 px-5 py-20 md:grid-cols-[1fr_30rem] md:items-stretch md:gap-14 md:px-8 md:py-28">
+          <Reveal>
+            <SectionAnchor
+              eyebrow="Say Hi"
+              title="Working on a product with a lot of moving parts?"
+              titleClassName="max-w-[26ch]"
+              lede="I'm always interested in thoughtful conversations about platform design, developer experience, and products that need to work at scale."
+            >
               <div className="mt-10 flex flex-wrap gap-3">
                 <a href="mailto:mithraj14@gmail.com" className="button button-primary">
                   Email
@@ -258,16 +217,15 @@ export default function HomePage() {
                   Resume
                 </Link>
               </div>
-            </Reveal>
-          </div>
+            </SectionAnchor>
+          </Reveal>
 
-          <Reveal variant="scale" delay={120}>
-            <HeroPortrait
-              className="contact-portrait"
-              aspect={1}
-              pitch={6}
-              zoom={1.5}
-              label="Portrait of Mithun Raju as a halftone of falling dots; hover to see the photograph"
+          <Reveal delay={120} className="contact-wordmark-slot">
+            <DotText
+              className="contact-wordmark"
+              aspect={2.4}
+              pitch={4}
+              text="Say Hi"
             />
           </Reveal>
         </div>

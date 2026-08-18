@@ -1,15 +1,25 @@
 import type { CaseStudy } from "./types";
 
 export const clipperCase: CaseStudy = {
-  slug: "clipper",
+  slug: "portfolio-management",
+  label: "Portfolio Management Platform",
+  internalName: "Clipper",
   org: "Walmart Global Tech",
   timeframe: "2022–Present",
   discipline: "Platform, Enterprise",
-  title: "One system of record for portfolio work",
+  title: "Replacing five portfolio tools with one connected platform.",
   subtitle:
-    "Replacing fragmented portfolio tools with one connected operating model for products, people, initiatives, and goals.",
+    "Portfolio planning was split across separate systems for people, products, initiatives, approvals, and strategic work. I led the experience from the initial platform architecture through staged rollout, migration, and adoption.",
   story:
     "Portfolio planning had become a reconciliation job. Product data lived in one tool, people in another, initiatives in spreadsheets, and leaders spent planning cycles stitching conflicting information together. I joined at day zero and helped shape a six-module platform from the first whiteboard through multi-year launches, migrations, and strategic goal management — so the organisation could finally share one operating model.",
+  hero: {
+    mp4: "/work/clipper/hero.mp4",
+    webm: "/work/clipper/hero.webm",
+    poster: "/work/clipper/poster.jpg",
+    aspect: 1600 / 1046,
+    caption:
+      "Prototype — a profile view resolving people, product, and initiative allocations in one place.",
+  },
   contributions: [
     "Joined at inception and helped define the module architecture and shared platform shell.",
     "Led end-to-end design across Manager, People, Products, Initiatives, Intake, and Goals.",
@@ -26,9 +36,9 @@ export const clipperCase: CaseStudy = {
     "Goal management",
   ],
   metrics: [
-    { value: "6,000+", label: "Monthly active users" },
-    { value: "5", label: "Legacy systems retired / replaced" },
-    { value: "1,400+", label: "Live goals across 14 themes" },
+    { value: "6K+", label: "Monthly users" },
+    { value: "5→1", label: "Platform consolidation" },
+    { value: "6", label: "Connected modules" },
   ],
   chapters: [
     {
