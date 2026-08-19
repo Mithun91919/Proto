@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import type { ReactNode } from "react";
-import { HeroPortrait } from "@/components/HeroPortrait";
+import { DotText } from "@/components/DotText";
 import { Reveal } from "@/components/Reveal";
 import { WorkEntry } from "@/components/WorkEntry";
 import { getFeaturedProjects, getRangeProjects } from "@/content/projects";
@@ -47,13 +47,11 @@ export default function WorkPage() {
   return (
     <div className="work-page mx-auto w-full max-w-[70rem] px-5 py-16 md:px-8 md:py-24">
       <div className="page-hero hero-in">
-        <HeroPortrait
+        <DotText
           className="page-hero-backdrop"
           aspect={1}
-          pitch={9}
-          zoom={1.2}
-          hoverScope=".page-hero"
-          label="Portrait of Mithun Raju as a halftone of falling dots; hover to see the photograph"
+          pitch={4}
+          text="My Story"
         />
         <p className="eyebrow">Portfolio</p>
         <h1 className="display-title display-hero mt-4 max-w-[26ch] text-[var(--ink)]">
@@ -68,7 +66,7 @@ export default function WorkPage() {
       <section id="path" className="work-section dot-rule">
         <SectionHead
           eyebrow="Path"
-          title="The problems got bigger. My role moved further upstream."
+          title="How the work evolved"
         />
 
         <Reveal delay={80}>

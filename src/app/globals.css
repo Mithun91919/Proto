@@ -321,10 +321,10 @@ a {
 .page-hero-backdrop {
   position: absolute;
   z-index: 0;
-  top: -1rem;
-  /* Held inside the container so no edge or corner can clip. */
-  right: 0;
-  width: min(20rem, 68%);
+  top: 35%;
+  right: 2rem;
+  transform: translateY(-50%);
+  width: 45rem;
   opacity: 0.16;
   mask-image: radial-gradient(
     circle at 50% 50%,

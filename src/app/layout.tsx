@@ -49,7 +49,7 @@ export const metadata: Metadata = {
     template: "%s · Mithun Raju",
   },
   description:
-    "Senior product designer for enterprise platforms, developer tools, and agentic workflows. Based in Bengaluru.",
+    "Senior UX designer for enterprise platforms, developer tools, and agentic workflows. Based in Bengaluru.",
   openGraph: {
     title: "Mithun Raju, Designer",
     description:

@@ -46,6 +46,8 @@ export type DotBoardProps = {
   text?: string;
   /** Cross-fade to the photograph on hover or focus. */
   revealOnHover?: boolean;
+  /** Maximum opacity of the photograph at full hover (0–1). Default 1. */
+  maxPhotoAlpha?: number;
   /**
    * Selector for an ancestor that drives the reveal. Use when the canvas sits
    * behind other content and so never receives the pointer itself.
@@ -88,6 +90,7 @@ export function DotBoard({
   focusY = 0.42,
   text,
   revealOnHover = true,
+  maxPhotoAlpha = 1,
   hoverScope,
   decorative = false,
   label,
@@ -331,7 +334,7 @@ export function DotBoard({
       }
 
       if (!text && src && hover > 0.001) {
-        ctx.globalAlpha = hover;
+        ctx.globalAlpha = hover * maxPhotoAlpha;
         ctx.drawImage(image, crop.x, crop.y, crop.w, crop.h, 0, 0, width, height);
       }
       ctx.globalAlpha = 1;
@@ -423,7 +426,7 @@ export function DotBoard({
       window.removeEventListener("resize", onResize);
       image.onload = null;
     };
-  }, [aspect, pitch, src, zoom, focusY, text, revealOnHover, hoverScope]);
+  }, [aspect, pitch, src, zoom, focusY, text, revealOnHover, maxPhotoAlpha, hoverScope]);
 
   const interactive = Boolean(src) && revealOnHover && !text && !decorative;
 
