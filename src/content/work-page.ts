@@ -98,22 +98,51 @@ export type EarlierWorkEntry = {
   org: string;
   body: string;
   tags: string[];
+  image?: string;
+  slug?: string;
 };
 
 export const earlierWork: EarlierWorkEntry[] = [
   {
-    org: "bigbasket",
-    body: "Consumer subscription, commerce, ratings, and reviews.",
-    tags: ["Mobile", "Consumer product"],
+    org: "bb daily",
+    body: "Designing both sides of a recurring delivery service.",
+    tags: ["Mobile", "Operations"],
+    image: "/work/bbdaily/8f79fb_20203531c98e4bd986f2bbf39a470197~mv2.avif",
+    slug: "bb-daily",
   },
   {
-    org: "Hike",
-    body: "Consumer mobile products and product experiments.",
-    tags: ["Mobile", "Product design"],
+    org: "Ratings & Reviews",
+    body: "Designing one feedback system across mobile and web.",
+    tags: ["BIGBASKET", "Mobile", "Product design"],
+    image: "/work/bigbasket-ratings-reviews/Artboard.png",
+    slug: "ratings-reviews",
   },
   {
-    org: "CREO",
-    body: "Mobile OS and interface design.",
-    tags: ["UI", "Interaction design"],
+    org: "Job Discovery & Resume Builder",
+    body: "Helping people move from finding a job to being ready to apply.",
+    tags: ["HIKE", "Mobile", "Product design"],
+    image: "/work/hike-jobs-service/Jobs_Banner.jpg",
+    slug: "job-discovery",
+  },
+  {
+    org: "Movie Ticket Booking",
+    body: "Designing a simpler path from movie intent to payment.",
+    tags: ["HIKE", "Mobile", "Product design"],
+    image: "/work/hike-jobs-service/Home.jpg",
+    slug: "movie-tickets",
+  },
+  {
+    org: "Multilingual Mobile Experience",
+    body: "Designing a localization system across 8 Indian languages.",
+    tags: ["HIKE", "Mobile", "Localization"],
+    image: "/work/hike-jobs-service/On-Boarding.jpg",
+    slug: "multilingual-mobile",
+  },
+  {
+    org: "Smartphone Brand & Digital Experience",
+    body: "Building a visual language for a smartphone that changed every month.",
+    tags: ["CREO", "Visual design", "Web"],
+    image: "/work/creo/banner.jpg",
+    slug: "smartphone-brand",
   },
 ];

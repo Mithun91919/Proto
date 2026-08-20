@@ -1,220 +1,123 @@
-# Dependency Management
+# Dependency Health Platform
 
-## Turning dependency governance into a clear path to action
+## Turning dependency compliance data into clear actions developers can take
 
-Walmart Global Tech manages a large Java application ecosystem. Over time, applications had accumulated different library versions, legacy packages, and inconsistent upgrade paths. The technical data existed, but teams did not have a consistent way to understand dependency health, prioritise what mattered, or move from a compliance signal to a concrete fix.
+**Walmart Global Tech · 2025-Present · Developer platform · Product design**
 
-I took ownership of the UX for **Dependency Management**, the internal portal that translates that underlying governance and dependency data into an experience for developers, engineering leaders, and platform administrators.
+Large Java application ecosystems generate a lot of dependency data: standard-library versions, Java versions, security signals, conflicts, version drift, onboarding state, and technical debt.
 
-The core design problem was less about creating another dashboard and more about **turning abundant technical metadata into decision-ready information and guided action**.
+The data existed. The harder problem was helping developers and engineering leaders understand **what mattered, why it mattered, and what to do next**.
+
+I own the UX for a dependency-health platform that translates those technical signals into repository health, organisation-level visibility, and guided remediation.
+
+**Role:** Senior UX Designer; end-to-end UX owner
 
 > **At a glance**  
-> **Role:** Senior UX Designer — design lead for the portal  
-> **Timeline:** 2025–Present  
-> **Product:** Developer governance / dependency health platform  
-> **Scope:** Research, metric prioritisation, information architecture, repository and organisation views, onboarding, remediation, reporting  
-> **Current evidence:** 148 repositories tracked in the pilot for the latest major standard-library baseline
+> **Repository -> Pillar -> Organisation visibility** · **148 repositories in the initial major-version pilot** · **Self-service onboarding and remediation**
 
-> 📸 **[SYSTEM MAP: Fragmented dependency signals → prioritised health + guided remediation → clearer path to compliance]**
+[MEDIA - HERO: REPOSITORY HEALTH -> DIAGNOSIS -> ACTION]
 
-## The problem: teams had data, but not a usable decision model
+## The problem was not a lack of data
 
-Dependency health was difficult to manage consistently across a large engineering organisation.
+Teams often discovered dependency debt during migrations, breakages, or security work rather than through proactive visibility.
 
-Teams often discovered dependency debt during migrations, breakages, or security work rather than through proactive visibility. Tracking was informal, terminology was inconsistent, and engineering managers could not easily understand dependency health across a portfolio from repository-level logs.
+At the same time, exposing every available technical signal would have created a complete but overwhelming dashboard.
 
-At the same time, the platform backend could expose many technical signals: library-baseline versions, Java versions, onboarding state, security exposure, version drift, conflicts, and technical-debt categories.
+Research pointed to a more useful framing:
 
-Showing all of that equally would have created a technically complete interface that was difficult to act on.
+> **The data needed to be organised around the decisions people were trying to make.**
 
-Research revealed a more useful framing:
+A developer asks: **Is my repository healthy, and what should I fix first?**
 
-> **The problem was not a lack of data. The data was not yet structured around the decisions people needed to make.**
+A manager asks: **Which teams are falling behind?**
 
-> 📸 **[VISUAL: Before-state diagram — repository logs / spreadsheets / informal coordination → no shared view of dependency health]**
+A platform administrator asks: **What is the state of adoption and compliance across the organisation?**
 
-## Designing for three different decisions
+The same underlying data needed a different hierarchy at each level.
 
-The portal serves people looking at the same underlying data from very different levels of responsibility.
+[VISUAL - AUDIENCE -> FIRST QUESTION -> INFORMATION NEEDED]
 
-### Developers and tech leads
+## We turned technical signals into a decision model
 
-Their first question is immediate:
+The highest-leverage design work happened before the dashboard.
 
-**Is my repository compliant?**
+I mapped signals such as the approved library baseline, Java version, feature-library freshness, conflicts, and version drift against two questions:
 
-If it is not, the next question is:
+**Who needs this?**
 
-**What do I need to do first?**
+**What decision does it help them make?**
 
-For them, the experience needed an action-first repository view, clear status, plain language, and an explicit remediation path.
+That produced a layered health model rather than a wall of metrics.
 
-### Engineering managers and leaders
+For a repository, the experience begins with a concise overall state and the issues requiring attention. Detail opens progressively for diagnosis. The next action remains close to the status that created the question.
 
-Their problem is comparative rather than diagnostic:
+The interaction principle became:
 
-**Which teams are behind, and where should I focus attention?**
+**Summary for orientation -> Diagnosis for understanding -> Action for resolution**
 
-They needed aggregate health across a pillar or organisation, distribution patterns, progress over time, and a path to drill into the teams creating the risk.
+[VISUAL - OVERALL HEALTH -> UNDERLYING SIGNALS -> REMEDIATION]
 
-### Platform and governance teams
+## Compliance became a guided path, not a warning state
 
-Their view is analytical:
+Repositories that are behind may need several technical changes in sequence: updating enforcement, removing legacy libraries, upgrading Java, or adopting the current standard-library baseline.
 
-**What is the state of adoption and compliance across the organisation?**
+A red status can tell an engineer something is wrong without helping them understand how to recover.
 
-They needed granular filtering, reporting, and export across organisational and product dimensions.
+I designed onboarding and remediation as a progressive journey. The current step is explicit, completed work remains visible, dependencies between steps are clear, and each stage explains the expected action and outcome.
 
-The same dependency data therefore could not simply be repeated on three pages. It needed to be **layered differently around each audience's decision**.
+Where automation can help create the required code change, it appears at the point of action rather than as a disconnected capability.
 
-> 📸 **[VISUAL: Audience → first question → information needed. Three compact decision cards rather than personas.]**
+The goal is to close the gap between:
 
-## 1. Prioritising signals before designing the dashboard
+**"I know my repository is behind"**
 
-One of the highest-leverage design decisions was deciding what **not** to show by default.
+and
 
-The backend could expose many metrics per repository, but users did not need to understand all of them at the same time. I mapped each signal against two questions:
+**"I know what to do next."**
 
-1. **Who needs this information?**
-2. **What decision does it help them make?**
+[MEDIA - GUIDED ONBOARDING / REMEDIATION FLOW]
 
-That produced a layered information architecture.
+## The same health model had to work at different levels of scale
 
-For a developer, the entry point is a concise overall health/compliance state followed by the issues that require action. For a manager, the entry point is distribution and comparison across teams. For administrators, the interface progressively opens into the broader reporting model.
+Repository health is useful to an individual team. It becomes a different design problem when leaders need to understand hundreds of repositories together.
 
-This prevented the product from becoming a generic enterprise dashboard where every metric competes for attention.
+Pillar and organisation views aggregate the same health model for comparison and prioritisation, while governance reporting opens into deeper filtering and analysis.
 
-> 📸 **[VISUAL: Metric prioritisation matrix — signal × audience × decision × hierarchy level.]**
+The product therefore uses one underlying language across different decision contexts rather than inventing a new dashboard at every level.
 
-## 2. Making a compound health model understandable
+[VISUAL - REPOSITORY -> PILLAR -> ORGANISATION -> REPORTING]
 
-Dependency freshness is not a single number. The portal evaluates multiple dimensions, including:
+## Post-launch feedback became a systems problem
 
-- the approved library-baseline / BOM version;
-- Java version;
-- freshness of feature libraries.
+After launch, developers had different preferences for how dashboard states should be represented visually.
 
-The UX challenge was communicating an overall state quickly without hiding the reason behind it.
+Instead of hard-coding alternate colours into individual components, we moved the product toward **semantic design tokens and theme-level control**. The same meaning could remain consistent while presentation changed across themes.
 
-The repository dashboard therefore uses a **composite status first, explanation second** model. A tech lead can understand the application's overall position in seconds, while an engineer planning an upgrade can expand the underlying dimensions and inspect the detailed technical signals.
+That turned a local preference request into a more maintainable platform decision.
 
-This pattern became an important principle across the product:
+[VISUAL - COMPONENT -> SEMANTIC TOKEN -> THEME]
 
-> **Summary for orientation. Detail for diagnosis. Action for resolution.**
+## Current evidence
 
-> 📸 **[VISUAL: Repository dashboard annotated in three layers — overall status → freshness dimensions → issue/remediation detail.]**
+The product is live and continues to evolve. The initial major-version pilot covered **148 repositories**, and the platform now supports dependency-health visibility from individual repositories through pillar and organisation views, alongside self-service onboarding and remediation.
 
-## 3. Turning onboarding into a guided technical journey
+Because the programme is active, I would rather show verified adoption and workflow changes than invent a stronger-looking outcome metric.
 
-Repositories that are not yet aligned to the standard platform libraries need to move through a sequence of technical changes.
+## What I believe now
 
-The underlying process includes steps such as updating enforcement rules, removing legacy libraries, upgrading Java, and adopting the current standard-library baseline. Each step can result in a code change or pull request.
+### Technical completeness and product usefulness are not the same thing.
 
-A flat compliance checklist would tell an engineer what was wrong without helping them understand the order in which to fix it.
+The platform can generate more data than most people need. The design value comes from deciding which signals matter at which moment.
 
-I designed onboarding as a **progressive journey** instead:
+### A compliance state should always explain the path forward.
 
-- the current step is explicit;
-- dependencies between steps are visible;
-- completed work remains visible as progress;
-- each stage explains the expected action and outcome;
-- automation is surfaced at the moment it can help create the required code change.
+When people are required to resolve an issue, the product has a responsibility to explain not only what is wrong, but why it matters and what happens next.
 
-The intent was to close the gap research repeatedly exposed between:
 
-**“I know my application is behind”** and **“I know exactly what to do next.”**
+## Want to go deeper?
 
-> 📸 **[VISUAL: Guided onboarding / remediation flow from unregistered repository → sequential changes → compliant state.]**
+The protected deep dive can hold the detailed research, iterations, implementation evidence, and technical context used during interviews.
 
-## 4. One health model, different levels of scale
+**View design deep dive [locked]**
 
-Repository health is useful to an individual team. It becomes a different design problem when hundreds of repositories need to be understood together.
-
-For engineering leaders, I designed pillar and organisation views that aggregate freshness without forcing users into repository-by-repository inspection. The interface makes it possible to scan the distribution, identify areas that are lagging, and then drill down only where attention is needed.
-
-For the governance team, the same model expands into a more analytical reporting surface with organisational, product, and status filters plus export.
-
-This is the broader systems-design problem behind the product: **one underlying health model has to remain coherent as the interface moves from one repository to an organisational portfolio.**
-
-> 📸 **[VISUAL: Same data at three levels — repository → pillar/org roll-up → governance reporting.]**
-
-## 5. Designing for a product people may be required to use
-
-Dependency Management sits in an unusual product category.
-
-Compliance can be enforced through engineering processes, so some users arrive because they **need** to resolve an issue rather than because they chose the product.
-
-That changes the UX standard.
-
-When usage is mandatory, unclear terminology and dead ends are not adoption problems; they become operational friction for teams already trying to ship software.
-
-Three design principles became especially important:
-
-**Plain-language defaults.** Technical depth remains available, but the interface should not require every engineer to understand build-governance terminology before they can act.
-
-**Progressive disclosure.** Conflict chains, version drift, and other deep technical data appear when they help diagnosis rather than dominating the default experience.
-
-**Always pair status with a next step.** A red compliance state without a path forward simply transfers the governance problem to the user.
-
-> 📸 **[VISUAL: Example of status-only communication vs status + explanation + next action.]**
-
-### Post-launch iteration: when colour preference became a systems problem
-
-After the portal went live, feedback sessions surfaced mixed preferences around the dashboard's colour treatment. There was no single palette that consistently worked for everyone, and continuing to adjust colours screen by screen would have created more inconsistency.
-
-Rather than treating the feedback as a cosmetic change, we moved the solution into the design system. Components reference **semantic colour tokens rather than hard-coded values**, allowing a theme to be applied consistently across the platform while giving users a choice of visual treatment.
-
-What started as subjective feedback about colour became a more durable systems decision: **user choice at the surface, consistency and maintainability underneath.**
-
-> 📸 **[VISUAL: Same dashboard in 2–3 themes + simple diagram: component → semantic token → theme.]**
-
-## Current outcomes
-
-The portal is live and continues to evolve alongside the dependency-governance programme.
-
-Current evidence includes:
-
-- **148 repositories** tracked in the pilot for the latest major standard-library baseline;
-- guided self-service onboarding replacing a process that previously required more manual coordination;
-- dependency-health reporting available at **repository, pillar, organisation, and product level**, with each level designed around a different decision context.
-
-Because the programme is still active, I would rather show verified adoption and workflow changes than manufacture a stronger-looking outcome metric. As more post-launch data becomes available, the most useful measures will be remediation completion, time to compliance, self-service success, and reduction in repeated support or coordination.
-
-> 📸 **[VISUAL: Compact current-state metric strip + product evolution timeline. Mark active work clearly.]**
-
-## What I learned
-
-The most important lesson was that **technical completeness and product usefulness are not the same thing**.
-
-The platform could generate more dependency data than most users needed. The design value came from deciding which signals mattered at each level, translating unfamiliar concepts into a usable vocabulary, and connecting every important status to an action.
-
-The metric-prioritisation work therefore became more foundational than any individual screen. Once the information hierarchy was right, the repository dashboard, leadership roll-ups, reporting, and remediation flows could all inherit the same logic.
-
-I also learned that compliance-driven products need a particularly high standard for recovery and guidance. When users cannot opt out of the workflow, the product has a responsibility to explain not only **what** is required but **why** and **what happens next**.
-
-## What I would do differently
-
-I would involve UX earlier in the platform data model. Some terminology and grouping decisions were already encoded into the system before the interface work began, which constrained later information-architecture options.
-
-I would also run more co-design with teams while they were actively migrating complex repositories. That would expose edge cases such as custom build configurations and multi-module repositories earlier in the design cycle.
-
-Finally, I would validate the vocabulary more formally. Research identified comprehension as a problem, but several terminology decisions were improved through design review and copy iteration rather than dedicated comprehension testing.
-
-## Visual plan for the website
-
-Use approximately **8–10 strong visuals**, not a gallery of dashboards:
-
-1. System Map: fragmented signals → decision-ready health → remediation/compliance
-2. Before-state dependency-management landscape
-3. Audience / decision map
-4. Metric-prioritisation framework
-5. Annotated repository dashboard
-6. Guided onboarding/remediation flow
-7. Repository → pillar → organisation information hierarchy
-8. Progressive-disclosure / plain-language example
-9. Token-based theme system — same dashboard across themes + component → semantic token → theme
-10. Current-state impact + active-work timeline
-
-## Publication review
-
-Before publishing, review internal product names, URLs, governance terminology, screenshots, repository information, technical enforcement details, and current adoption figures. Reconstruct product visuals with fictional repositories and sample dependency data where needed.
+<!-- INTERNAL: Public label is Dependency Health Platform. Dependency Management is internal/supporting terminology only. Reconstruct screenshots with fictional repositories and dependency data. Review governance terminology, enforcement details, repository names, URLs, current adoption figures and architecture before publication. -->

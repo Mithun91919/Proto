@@ -1,121 +1,190 @@
-# Mithun Raju — Portfolio Plan
+# Mithun Raju - Portfolio Plan
 
-_Last updated: 11 August 2026_
+_Last updated: 19 August 2026_
 
 ## Purpose
 
-Build a public portfolio for **mithunraju.in** that presents Mithun as a senior product designer who simplifies fragmented enterprise systems, standardises complex workflows, and increasingly designs agentic experiences.
+Build a public portfolio for **mithunraju.in** that is easy to understand without internal company context.
 
-The portfolio is not an archive of every project. It is a curated story built around ownership, decisions, scale, collaboration, and impact.
+The portfolio should show a clear progression from visual and consumer product work into enterprise platforms, developer products, systems thinking, and newer AI-assisted interaction models.
 
-## Positioning
+The public site is a curated story, not an archive of every artefact or every UX activity.
 
-**Senior Product Designer and Creative Technologist focused on enterprise platforms, developer tools, and agentic workflows.**
+## Public positioning
 
-Working statement:
+**Mithun Raju. Product designer across digital products, platforms & AI.**
 
-> I turn fragmented enterprise workflows and disconnected tools into unified, scalable product experiences.
+Supporting direction:
 
-Supporting statement:
+> I turn fragmented tools, data, and workflows into connected products that scale - from 0-to-1 platforms to large-scale transformations.
 
-> I combine systems thinking, research, interaction design, design systems, and functional prototyping to make complex products easier to understand and use.
+Based in Bengaluru.
 
-## Portfolio story
+## Naming rule
 
-The strongest projects share a consistent theme: complex ecosystems had grown across multiple tools, teams, and workflows, and the design work created a clearer operating model.
+Internal product names are not the primary public-facing labels.
 
-Each flagship project should prove a different aspect of that capability:
+Use this hierarchy:
 
-- **Agentic enterprise product:** intelligent workflows, trust, guidance, and human control.
-- **Enterprise portfolio management:** consolidation, information architecture, planning, and end-to-end ownership.
-- **API lifecycle platform:** developer experience organised around Marketplace, Design Studio, and Testing, with governance and adoption layered across the lifecycle.
-- **Dependency Management:** turning technical dependency metadata into decision-ready health signals, layered leadership views, and guided remediation.
-- **Supply-chain operations platform:** platform-scale navigation, personalisation, design-system adoption, and implementation quality.
+1. **Public label** - what the product actually is.
+2. **Case-study headline** - the transformation or problem solved.
+3. **Internal name** - optional supporting context only.
 
-Consumer and mobile work from bigbasket, Hike, and CREO provides contrast and demonstrates range.
+Current public labels:
 
-## Project hierarchy
+- Portfolio Management Platform - internal name: Clipper
+- API Lifecycle Platform - internal name: API Lifecycle Manager / APILM
+- Dependency Health Platform - internal/supporting name: Dependency Management
+- Store Support Platform - internal name: FixIt
+- Supply Chain Operations Platform - internal name: GSCOPE
 
-| Priority | Project | Portfolio purpose | Status |
-|---|---|---|---|
-| Flagship | Current agentic enterprise product | AI workflows, trust, human control, current relevance | Raw capture |
-| Flagship | Clipper — enterprise portfolio management platform | 0-to-1 platform architecture, consolidation, portfolio workflows, migration, goals, and multi-year ownership | Master captured; web draft refined; 5 legacy systems retired |
-| Flagship | API lifecycle platform | Marketplace, Design Studio, Testing, governance, adoption, and multi-year product evolution | Master captured and web draft refined |
-| Featured / Current | Dependency Management | Developer governance, metric prioritisation, progressive disclosure, compliance UX, and guided remediation | Master captured; web draft created; active work |
-| Featured | Supply-chain operations platform | Navigation architecture, comparative concept testing, personalisation, design-system migration, VQA | Master and web drafts complete |
-| Featured contrast | bigbasket subscription delivery | Consumer mobile UX, subscriptions, research, product outcomes | Not started |
-| Featured | FixIt | Frontline operational UX, research-led IA, self-service support, mobile-to-web consistency | Master captured and web draft complete |
-| Supporting | Internal developer portal | Platform thinking and co-ownership | Not started |
-| Supporting | Internal conversational AI platform | AI-product collaboration | Not started |
-| Supporting | Ratings and reviews | Focused consumer feature and trust | Not started |
-| Earlier work | Hike and CREO collection | Mobile breadth, bilingual products, visual craft | Not started |
+## Homepage hierarchy
 
-## How projects should be presented
+The homepage is a curated edit with four featured projects:
 
-Projects should be organised by the problem they solved, not by labels such as “end-to-end,” “co-owned,” or “A/B testing.” Ownership should be shown transparently on each project card and inside each case study.
+1. **Portfolio Management Platform** - replacing five portfolio tools with one connected platform.
+2. **API Lifecycle Platform** - creating one platform for engineers to discover, design, test, and govern APIs.
+3. **Dependency Health Platform** - turning dependency compliance data into clear actions developers can take.
+4. **Store Support Platform** - helping store associates diagnose and resolve technical issues before raising a ticket.
 
-Recommended ownership labels:
+Use **Supply Chain Operations Platform** in More Work / the Work page rather than forcing a fifth featured homepage card.
 
-- End-to-end design owner
-- Primary design owner
-- Co-led with another designer
-- Co-owned with the design team
-- Focused feature ownership
-- Research-led engagement
+Current agentic work should be added later when the source material is ready; do not retrofit AI into every older project.
 
-## Case-study writing principles
+## Project tiers
 
-- Preserve the strongest source narrative instead of forcing every project into the same template.
-- Lead with the problem, stakes, role, and outcome.
-- Show the few decisions that materially changed the product.
-- Use accurate research terminology.
+### Flagship public case studies
+
+- Portfolio Management Platform
+- API Lifecycle Platform
+- Dependency Health Platform
+- Store Support Platform
+- Supply Chain Operations Platform
+
+Target public read time: roughly 3-5 minutes.
+
+### Strong earlier product story
+
+- bb daily - customer subscription + operations as one connected service story
+
+Target read time: roughly 3 minutes.
+
+### Compact earlier work
+
+- Ratings & Reviews
+- Hike - TOTAL OS Localization
+- Hike - Jobs Service
+- Hike - Movie Tickets
+- CREO - Mark 1
+
+Target read time: roughly 1-2 minutes each. These should be visually led and should not imitate full flagship case studies.
+
+## Public case-study rhythm
+
+Do not force every project into the same UX-process template. Keep a shared editorial rhythm:
+
+**What is it? -> Why did it matter? -> What decisions did I make? -> What changed? -> What did I learn / believe now?**
+
+For flagship stories:
+
+1. Public product label + transformation headline
+2. Short context and role
+3. 2-3 proof points
+4. The problem / tension
+5. 2-3 important design decisions
+6. Outcome / current evidence
+7. Short point of view
+8. Optional protected deep dive
+
+Avoid public sections titled Discover, Define, Ideate, Wireframes, Personas, Affinity Mapping, or Style Guide unless the artefact itself is central to the decision being explained.
+
+## Tone
+
+Write like an editorial product story, not a UX process report.
+
+- Use declarative section headings.
+- Keep paragraphs short.
+- Explain why a decision mattered, not only what activity happened.
+- Use first person for actual ownership.
 - Separate personal contribution from team contribution.
-- Explain internal concepts in language a general audience can understand.
-- Use real evidence where it is approved; never invent impact metrics.
-- Keep long-form case studies readable with clear headings, visual placeholders, quotations, tables, and short paragraphs.
+- Prefer concrete product language over UX jargon.
+- Use metrics only when their meaning is clear.
+- Do not imply causation when the evidence only shows scale or correlation.
+- End with a small reflective point of view rather than a generic list of lessons.
 
-## Confidentiality rules
+## Visual evidence
 
-Enterprise work should be documented here in a private working form, then reviewed before anything is published.
+Use the rule:
 
-Before public use, confirm approval for:
+**Show the product. Animate the behaviour. Diagram the system.**
 
-- company and internal product names;
-- participant names and direct quotations;
-- screenshots, research artefacts, Figma files, technical diagrams, and source code;
-- store counts, user counts, financial figures, growth figures, and current analytics;
-- internal architecture, URLs, credentials, roadmap details, or security information.
+For enterprise/internal work, use public-safe reconstructions with fictional data unless original material is explicitly approved.
 
-When approval is unavailable, use reconstructed visuals, fictional names, dummy data, and simplified terminology while preserving the original design problem and decisions.
+The recurring flagship visual grammar should be:
 
-Suggested disclosure for reconstructed work:
+**Before -> design intervention -> after / outcome**
 
-> Visuals, names, and data have been reconstructed to protect confidential information while preserving the original design problem, decisions, and interaction model.
+Do not use AI-generated marketing imagery as evidence when a product UI, reconstructed interaction, or system diagram can tell the story better.
 
-## Working process
+## Public vs protected deep dive
 
-1. Capture one project at a time in plain language.
-2. Preserve the original story and evidence.
-3. Format it as a readable long-form case study in the project’s `master/` folder.
-4. Correct only confirmed factual issues.
-5. Add visual placeholders where evidence or reconstruction is needed.
-6. Create a shorter, decision-led public version in the project’s `web/` folder.
-7. Review confidentiality, claims, metrics, and public-safe wording.
-8. Convert the approved `web/` Markdown into the website’s MDX content.
-9. Build the site only after the project stories are stable.
+The public page should be enough to evaluate the work in a few minutes.
 
-## Workspace files
+The protected deep dive is an interview companion for evidence such as:
 
-- `portfolio-plan.md` — strategy, project hierarchy, working rules, and status.
-- `website-structure.md` — website information architecture and build guidance.
-- `about.md` — About-page and short-profile copy.
-- `projects/<project>/master/` — the complete working source, evidence, quotations, metrics, artefacts, and publication-review notes.
-- `projects/<project>/web/` — a shorter, public-facing case-study draft designed for the live website.
+- detailed research artefacts;
+- original/reconstructed iterations;
+- taxonomy and information architecture;
+- full flows and edge cases;
+- migration and implementation detail;
+- VQA and design-system work;
+- approved technical architecture;
+- quotations and detailed evidence.
 
-## Build handoff
+Password protection does not create permission to disclose confidential information. Restricted material should not be uploaded at all.
 
-The recommended implementation path is **Figma for the initial visual system → Claude Code as the primary build agent → Cursor as the optional IDE/editor → GitHub → Vercel**. Use current stable Next.js with TypeScript and local MDX for case-study pages.
+## Work-page role
 
-When the core content and visual direction are ready, prepare a root `CLAUDE.md` containing technical build instructions, visual-system rules, accessibility expectations, and strict content-source rules. The case-study files should remain the source rather than being rewritten into implementation notes.
+Homepage = curated proof.
 
-See `website-structure.md` for the full Editorial Systems / Digital Product Lab visual brief and implementation guidance.
+Work page = body of work and career evolution.
+
+Case-study pages = individual product stories.
+
+The Work page should keep the career timeline compact and let projects remain the main event.
+
+Career progression language:
+
+**Digital & web -> Consumer mobile -> Commerce & delivery -> Enterprise products & platforms**
+
+Formal designations can remain subtle. Case studies should state the actual project role / ownership more clearly than the job title.
+
+## Project status
+
+| Project | Public label | Web status |
+|---|---|---|
+| Clipper | Portfolio Management Platform | Standardised public draft ready |
+| API Lifecycle Manager | API Lifecycle Platform | Standardised public draft ready |
+| Dependency Management | Dependency Health Platform | Standardised public draft ready |
+| FixIt | Store Support Platform | Standardised public draft ready |
+| GSCOPE | Supply Chain Operations Platform | Standardised public draft ready |
+| bb daily | bb daily | Unified customer + operations public draft ready |
+| Ratings & Reviews | Ratings & Reviews | Compact public draft ready |
+| TOTAL OS Localization | Multilingual Mobile Experience | Compact public draft ready |
+| Jobs Service | Job Discovery & Resume Builder | Compact public draft ready |
+| Movie Tickets | Movie Ticket Booking | Compact public draft ready |
+| CREO Mark 1 | Smartphone Brand & Digital Experience | Visual-first public draft ready |
+
+## Build rule
+
+The public page sources are:
+
+- `home.md` for the homepage;
+- `work.md` for the Work landing page;
+- `about.md` for the About page;
+- `projects/*/web/` for individual project stories.
+
+
+Master files should remain source/evidence archives and should not be shortened to match the public page.
+
+When implementing in MDX, preserve the wording of the approved web files. Use layout components for media, metrics, comparisons, quotes, and deep-dive links rather than rewriting project copy inside components.

@@ -61,7 +61,7 @@ export function WorkEntry({
         </h3>
 
         {project.media ? (
-          <div className="work-entry-media">
+          <div className="work-entry-media flex flex-col gap-6">
             <ProjectHero
               mp4={project.media.mp4}
               webm={project.media.webm}
@@ -70,6 +70,35 @@ export function WorkEntry({
               playOn="hover"
               hoverScope=".work-entry"
             />
+
+            {/* Metadata Card */}
+            <aside className="glass-panel h-fit p-6">
+              <dl className="space-y-5">
+                {[
+                  ["Role", project.role],
+                  ["Client", project.org],
+                  ["Year", project.timeframe],
+                ].map(([label, value]) => (
+                  <div key={label}>
+                    <dt className="text-sm text-[var(--muted)]">{label}</dt>
+                    <dd className="mt-1 font-medium text-[var(--ink)]">{value}</dd>
+                  </div>
+                ))}
+                <div>
+                  <dt className="text-sm text-[var(--muted)]">Focus</dt>
+                  <dd className="mt-3 flex flex-wrap gap-2">
+                    {project.tags.map((item) => (
+                      <span
+                        key={item}
+                        className="rounded-[0.7rem] border border-[var(--line)] bg-white px-3 py-1 text-sm text-[var(--ink-soft)]"
+                      >
+                        {item}
+                      </span>
+                    ))}
+                  </dd>
+                </div>
+              </dl>
+            </aside>
           </div>
         ) : null}
 
@@ -92,14 +121,6 @@ export function WorkEntry({
                 .join(" · ")}
             </p>
           )}
-
-          <ul className="tag-list mt-6">
-            {[...project.tags, project.timeframe].map((tag) => (
-              <li key={tag} className="tag">
-                {tag}
-              </li>
-            ))}
-          </ul>
 
           <p className="mt-7 text-sm font-semibold text-[var(--ink)] transition-transform duration-300 group-hover:translate-x-1">
             View case study →

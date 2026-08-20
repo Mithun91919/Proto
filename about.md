@@ -1,97 +1,76 @@
-# About Mithun
+# About
 
-_Last updated: 6 August 2026_
+## I design products by understanding the systems behind them.
 
-## Full About-page draft
+I'm Mithun, a product designer based in Bengaluru.
 
-I am a senior product designer and creative technologist based in Bengaluru. I design complex enterprise products, developer tools, and emerging agentic experiences, with a focus on turning fragmented systems into clearer, more unified workflows.
+I started my career in visual and interaction design, then moved through consumer products, commerce, and enterprise platforms as the problems I worked on became larger and more interconnected.
 
-My career began in visual and UI design, where I learned the value of craft, hierarchy, and clarity. I then moved into mobile product design at CREO and Hike, worked on end-to-end consumer and subscription experiences at bigbasket, and now design enterprise platforms at Walmart Global Tech.
+Today, I work at the intersection of **product design, technology, and systems thinking** - turning complex workflows and fragmented tools into products that feel clear and useful.
 
-Across these roles, the products have changed, but the underlying challenge has often been similar: users are asked to work across disconnected tools, inconsistent processes, and dense information. I enjoy finding the system behind that complexity and shaping it into an experience that is easier to understand, act on, and scale.
+[RETAIN EXISTING PHOTO]
 
-My work spans research, information architecture, interaction design, design systems, usability studies, and cross-functional product development. I care about the decisions behind the interface as much as the interface itself—how roles and permissions work, how edge cases are handled, how workflows change across teams, and how the design can be implemented responsibly.
+## I started with the interface. The questions kept getting bigger.
 
-More recently, I have been using AI-assisted development environments and functional prototypes to explore product behaviour earlier. Moving beyond static screens helps me test realistic states, uncover implementation questions, and collaborate more effectively with engineering.
+Early in my career, I was focused on the details of the interface - typography, composition, interaction, and how something felt to use.
 
-I am interested in senior product-design roles where enterprise complexity, AI, systems thinking, and hands-on prototyping come together.
+Consumer products pushed me to think beyond individual screens and into complete products and journeys. Commerce introduced another layer: customer experiences were connected to delivery, fulfilment, and people working on the other side of the product.
 
-## Short Home-page bio
+Enterprise software expanded that thinking again. Products were now connected to workflows, data, permissions, other tools, and entire organisations.
 
-I am Mithun, a senior product designer and creative technologist based in Bengaluru. I design enterprise platforms, developer tools, and agentic workflows that bring fragmented systems into clearer, more scalable product experiences.
+Over time, I became less interested in designing isolated screens and more interested in understanding **the system behind them**.
 
-My background spans visual design, mobile consumer products, enterprise UX, design systems, research, and AI-assisted functional prototyping.
+[VISUAL - INTERFACE -> PRODUCT -> WORKFLOW -> SYSTEM]
 
-## Compact bio
+## I like making complex things understandable - and tangible.
 
-Senior product designer and creative technologist focused on complex enterprise platforms, developer tools, and agentic workflows.
+A lot of the problems I work on do not begin with a clean product brief.
 
-## Positioning options
+They often start with fragmented workflows, technical constraints, disconnected products, or information that people can see but do not know how to act on.
 
-1. I turn fragmented enterprise workflows into unified, scalable product experiences.
-2. I design complex enterprise products and prototype how they actually work.
-3. I simplify technical systems through research, interaction design, and functional prototyping.
+I like finding the structure underneath that complexity and making ideas tangible early - through flows, prototypes, information models, or functional experiences that people can actually react to.
 
-## Career progression
+As products extend beyond traditional screens into automation and AI-assisted interactions, the surface may change, but the design questions remain familiar:
 
-### Walmart Global Tech
+**What should the system understand?**  
+**What should it do?**  
+**What should people control?**  
+**How do we make the result clear?**
 
-Designing enterprise-scale products in close collaboration with product, engineering, data science, operations, and design partners. Project areas include agentic workflows, enterprise portfolio management, API management, developer platforms, frontline-associate tools, experimentation, and internal conversational products.
+## A few principles I keep coming back to.
 
-### bigbasket
+### Understand before simplifying.
 
-Designed end-to-end experiences for a subscription-based daily-delivery product, including customer and delivery workflows, research, usability studies, and product features such as ratings and reviews for FMCG products.
+Complexity is not always something to remove. First, I want to understand why it exists and which parts actually matter.
 
-### Hike and CREO
+### Make ideas tangible early.
 
-Worked across mobile products and interface systems, including communication experiences, bus booking, a job portal, and a bilingual mobile operating-system experience.
+A prototype people can react to usually teaches me more than a long discussion about what might work.
 
-### Early visual-design work
+### Stay close to what ships.
 
-Created visual solutions for presentations, reports, print material, icons, and illustrations. This foundation continues to influence the clarity and craft of my product work.
+The experience people eventually use matters more than the design file that preceded it.
 
-## How I approach product design
+## Away from the work
 
-### Understand the system, not only the screen
+[ADD A SHORT 2-3 SENTENCE PERSONAL PARAGRAPH HERE. KEEP IT HUMAN RATHER THAN TURNING IT INTO ANOTHER DESIGN STATEMENT.]
 
-Complex products are shaped by roles, permissions, data, handoffs, legacy tools, and organisational constraints. I map those relationships before simplifying the interface.
+[OPTIONAL PERSONAL IMAGE / SMALL PHOTO GROUP]
 
-### Make the important decisions visible
+## A little more
 
-A useful product story is not a gallery of final screens. I focus on the evidence, alternatives, trade-offs, and decisions that changed the direction of the product.
+**Based in**  
+Bengaluru, India
 
-### Prototype behaviour early
+**Education**  
+[Degree] · [Institution]
 
-I use high-fidelity and functional prototypes to explore realistic states, edge cases, and implementation questions before they become expensive to change.
+**Currently**  
+Senior UX Designer · Walmart Global Tech
 
-### Design for adoption, not just completion
+**Elsewhere**  
+Resume · LinkedIn · Email
 
-For enterprise products, a good workflow also has to fit how teams operate, support legitimate exceptions, and help people move from familiar tools to a new standard.
+# Have a complicated product problem?
 
-## Selected capabilities
-
-- Enterprise product strategy and UX
-- Complex workflow and information-architecture design
-- Agentic and conversational product experiences
-- Developer tools and technical-product UX
-- User research and usability studies
-- Experimentation and evidence-led decisions
-- Scalable design systems and interaction patterns
-- Rapid functional prototyping and AI-assisted development
-- Cross-functional collaboration with product and engineering
-
-## Contact draft
-
-I am open to conversations about senior product-design roles involving enterprise platforms, AI products, developer tools, and design technology.
-
-- **Location:** Bengaluru, India
-- **Email:** mithraj14@gmail.com
-- **Portfolio:** mithunraju.in
-- **LinkedIn:** linkedin.com/in/mithunrajuk
-
-## Open items before publishing
-
-- Choose one primary positioning line.
-- Add a personal paragraph only after authentic interests or values are provided.
-- Confirm the preferred contact email and availability statement.
-- Add links from design principles to supporting case studies after those stories are complete.
+**Say hi ->**

@@ -15,7 +15,7 @@ export type CaseInsight = {
 };
 
 export type CaseHero = {
-  mp4: string;
+  mp4?: string;
   webm?: string;
   poster: string;
   aspect?: number;

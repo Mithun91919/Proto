@@ -10,6 +10,7 @@ import {
   currentStage,
   earlierWork,
 } from "@/content/work-page";
+import { Carousel } from "@/components/Carousel";
 
 export const metadata: Metadata = {
   title: "Work",
@@ -47,19 +48,20 @@ export default function WorkPage() {
   return (
     <div className="work-page mx-auto w-full max-w-[70rem] px-5 py-16 md:px-8 md:py-24">
       <div className="page-hero hero-in">
-        <DotText
-          className="page-hero-backdrop"
-          aspect={1}
-          pitch={4}
-          text="My Story"
-        />
+        <div style={{ position: "absolute", right: "2rem", top: "35%", transform: "translateY(-50%)", zIndex: 0, transition: "none", width: "180px", height: "180px", animation: "timeline-stage-reveal 0.4s ease-out both" }}>
+          <DotText
+            aspect={1}
+            pitch={8}
+            text="Hi"
+            decorative
+          />
+        </div>
         <p className="eyebrow">Portfolio</p>
-        <h1 className="display-title display-hero mt-4 max-w-[26ch] text-[var(--ink)]">
-          Work
+        <h1 className="display-title display-hero mt-4 max-w-[40ch] text-[var(--ink)]">
+          The problems got bigger. My role moved further upstream.
         </h1>
-        <p className="lede mt-6 max-w-[46ch]">
-          Products, platforms, and systems I’ve helped shape across consumer
-          experiences, enterprise software, and developer products.
+        <p className="lede mt-6" style={{ maxWidth: "84ch" }}>
+          I've worked across digital experiences, consumer products, commerce, enterprise software, and developer platforms. Over time, my work has moved from individual interfaces toward the workflows, information, and systems behind them.
         </p>
       </div>
 
@@ -148,32 +150,18 @@ export default function WorkPage() {
         <SectionHead
           eyebrow="Archive"
           title="Earlier product work"
-          lede="Mobile and consumer work from before the platform years. Kept compact until each project is properly documented."
         />
 
-        <div className="mt-8 flex flex-col md:mt-10">
-          {earlierWork.map((entry, index) => (
-            <Reveal key={entry.org} delay={index * 80}>
-              <div
-                className={`grid gap-1.5 pb-5 md:grid-cols-[9rem_minmax(0,1fr)_14rem] md:items-baseline md:gap-8 md:pb-6 ${
-                  index === 0 ? "" : "dot-rule dot-rule-soft pt-5 md:pt-6"
-                }`}
-              >
-                <h3 className="display-title display-sub text-[var(--ink)]">
-                  {entry.org}
-                </h3>
-                <p className="body-text">{entry.body}</p>
-                <ul className="tag-list">
-                  {entry.tags.map((tag) => (
-                    <li key={tag} className="tag">
-                      {tag}
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            </Reveal>
-          ))}
-        </div>
+        <Carousel
+          items={earlierWork.map((entry, index) => ({
+            id: `${entry.org}-${index}`,
+            org: entry.org,
+            body: entry.body,
+            tags: entry.tags,
+            image: entry.image,
+            slug: entry.slug,
+          }))}
+        />
       </section>
 
       <section className="work-section dot-rule">

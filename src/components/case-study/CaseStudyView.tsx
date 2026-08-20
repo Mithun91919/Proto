@@ -6,39 +6,6 @@ import { MediaFrame } from "@/components/MediaFrame";
 import { ProjectHero } from "@/components/ProjectHero";
 import { Reveal } from "@/components/Reveal";
 
-function ChapterNav({ chapters }: { chapters: CaseStudy["chapters"] }) {
-  return (
-    <nav
-      aria-label="Chapters"
-      className="glass-panel sticky top-[4.5rem] z-20 -mx-5 mb-10 overflow-x-auto px-5 py-3 md:mx-0 md:rounded-full"
-    >
-      <ul className="flex min-w-max gap-2">
-        {chapters.map((chapter) => (
-          <li key={chapter.number}>
-            <a
-              href={`#chapter-${chapter.number}`}
-              className="inline-flex items-center gap-2 rounded-full px-3 py-1.5 text-sm text-[var(--muted)] transition duration-200 hover:bg-white hover:text-[var(--ink)] active:scale-[0.98]"
-            >
-              <span className="font-[family-name:var(--font-mono)] text-[0.65rem] tracking-[0.14em]">
-                {chapter.number}
-              </span>
-              <span className="max-w-[10rem] truncate">{chapter.title}</span>
-            </a>
-          </li>
-        ))}
-        <li>
-          <a
-            href="#reflection"
-            className="inline-flex rounded-full px-3 py-1.5 text-sm text-[var(--muted)] transition duration-200 hover:bg-white hover:text-[var(--ink)]"
-          >
-            Reflection
-          </a>
-        </li>
-      </ul>
-    </nav>
-  );
-}
-
 export function CaseStudyView({
   study,
   project,
@@ -182,10 +149,32 @@ export function CaseStudyView({
         </div>
       </section>
 
-      <div className="mx-auto w-full max-w-[46rem] px-5 py-14 md:px-8 md:py-20">
-        <ChapterNav chapters={study.chapters} />
+      <div className="mx-auto w-full max-w-[70rem] px-5 py-14 md:px-8 md:py-20">
+        <div className="grid gap-12 md:grid-cols-[200px_1fr] lg:gap-16">
+          {/* Left sidebar: Contents */}
+          <aside className="md:sticky md:top-[6rem] h-fit">
+            <p className="text-sm font-medium text-[var(--muted)]">Contents</p>
+            <nav className="mt-4 space-y-2">
+              {study.chapters.map((chapter) => (
+                <a
+                  key={chapter.number}
+                  href={`#chapter-${chapter.number}`}
+                  className="block text-sm leading-6 text-[var(--ink-soft)] transition hover:text-[var(--ink)] hover:translate-x-1"
+                >
+                  {chapter.title}
+                </a>
+              ))}
+              <a
+                href="#reflection"
+                className="block text-sm leading-6 text-[var(--ink-soft)] transition hover:text-[var(--ink)] hover:translate-x-1"
+              >
+                What I learned
+              </a>
+            </nav>
+          </aside>
 
-        <div className="space-y-20">
+          {/* Right: Content */}
+          <div className="space-y-20 max-w-[46rem]">
           {study.chapters.map((chapter) => (
             <Reveal key={chapter.number}>
               <section
@@ -251,9 +240,7 @@ export function CaseStudyView({
                 ) : null}
 
                 {chapter.visuals?.map((visual) => (
-                  <MediaFrame key={visual}>
-                    <p>{visual}</p>
-                  </MediaFrame>
+                  <MediaFrame key={visual} src={visual} />
                 ))}
               </section>
             </Reveal>
@@ -310,6 +297,7 @@ export function CaseStudyView({
               </section>
             </Reveal>
           ) : null}
+            </div>
         </div>
       </div>
     </article>

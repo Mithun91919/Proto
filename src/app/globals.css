@@ -547,6 +547,27 @@ a {
     grid-row: span 5;
     grid-template-rows: subgrid;
     padding-left: 0;
+    animation: timeline-stage-reveal 0.6s ease-out both;
+  }
+
+  .timeline-stage:nth-child(1) {
+    animation-delay: 0.1s;
+  }
+
+  .timeline-stage:nth-child(2) {
+    animation-delay: 0.3s;
+  }
+
+  .timeline-stage:nth-child(3) {
+    animation-delay: 0.5s;
+  }
+
+  .timeline-stage:nth-child(4) {
+    animation-delay: 0.7s;
+  }
+
+  .timeline-stage:nth-child(5) {
+    animation-delay: 0.9s;
   }
 
   .timeline-track {
@@ -572,6 +593,7 @@ a {
     );
     background-size: var(--rule-dot-gap) 100%;
     background-repeat: repeat-x;
+    animation: timeline-grow 1.2s ease-out both;
   }
 
   .timeline-stage:last-child .timeline-track::before {
@@ -971,6 +993,7 @@ a {
    reading order on mobile; grid areas move the media beside the copy on md+. */
 .work-entry {
   scroll-margin-top: 5rem;
+  position: relative;
 }
 
 .work-entry:hover::before {
@@ -1209,6 +1232,26 @@ a {
   from {
     opacity: 0;
     transform: translateY(28px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes timeline-grow {
+  from {
+    width: 0;
+  }
+  to {
+    width: 100%;
+  }
+}
+
+@keyframes timeline-stage-reveal {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
   }
   to {
     opacity: 1;

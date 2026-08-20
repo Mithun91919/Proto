@@ -1,4 +1,5 @@
 import { apiLifecycleCase } from "./api-lifecycle-manager";
+import { bbDailyStudy } from "./bb-daily";
 import { clipperCase } from "./clipper";
 import { dependencyCase } from "./dependency-management";
 import { fixitCase } from "./fixit";
@@ -8,6 +9,7 @@ import type { CaseStudy } from "./types";
 export const caseStudies: CaseStudy[] = [
   clipperCase,
   apiLifecycleCase,
+  bbDailyStudy,
   supplyChainCase,
   dependencyCase,
   fixitCase,

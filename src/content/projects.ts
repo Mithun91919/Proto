@@ -287,6 +287,48 @@ export const projects: Project[] = [
     ],
     tags: ["Platform UX", "Information Architecture", "Navigation"],
   },
+  {
+    slug: "bb-daily",
+    number: "06",
+    label: "bb daily",
+    title: "Designing both sides of a recurring delivery service.",
+    internalName: "bb daily",
+    summary:
+      "bb daily was a recurring delivery service for grocery e-commerce. I designed both the customer subscription experience and the Android operations product managing procurement, inventory, shipments, and early-morning delivery logistics.",
+    outcome:
+      "10+ cities · 1.5M+ users · 120K average daily deliveries",
+    metrics: [
+      { value: "10+", label: "cities" },
+      { value: "1.5M+", label: "users" },
+      { value: "120K", label: "average daily deliveries" },
+    ],
+    org: "bigbasket",
+    domain: "Consumer and mobile",
+    ownership: "Product designer, dual-track design",
+    timeframe: "2019–2020",
+    role: "Product Designer",
+    tier: "range",
+    featured: false,
+    reconstructed: true,
+    accent: "#059669",
+    accentSoft: "#d1fae5",
+    contentPath: "projects/bbdaily/web/bbdaily-web.md",
+    systemMap: [
+      {
+        label: "Before",
+        detail: "Separate customer and operations apps with manual coordination",
+      },
+      {
+        label: "Intervention",
+        detail: "Connected experience for customer orders and operations fulfillment",
+      },
+      {
+        label: "After",
+        detail: "Integrated subscription and logistics platform",
+      },
+    ],
+    tags: ["Mobile", "Operations", "E-commerce"],
+  },
 ];
 
 /** Legacy internal-name slugs → public slugs. Used for redirects. */

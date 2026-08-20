@@ -4,11 +4,11 @@ import { useEffect, useRef } from "react";
 import type { CSSProperties } from "react";
 
 export type ProjectHeroProps = {
-  /** H.264 MP4 source — always required as the broadest fallback. */
-  mp4: string;
+  /** H.264 MP4 source — optional. If omitted, displays as static image. */
+  mp4?: string;
   /** Optional VP9/AV1 WebM source, offered first when supported. */
   webm?: string;
-  /** Still frame shown before play and when motion is reduced. */
+  /** Still frame or primary image. */
   poster: string;
   /** Accessible description of the clip. */
   caption?: string;
@@ -89,26 +89,36 @@ export function ProjectHero({
   }, [playOn, hoverScope]);
 
   const deferred = playOn === "hover";
+  const hasVideo = mp4 || webm;
 
   return (
     <figure
       className={`project-hero${className ? ` ${className}` : ""}`}
       style={{ "--hero-aspect": String(aspect) } as CSSProperties}
     >
-      <video
-        ref={videoRef}
-        className="project-hero-video"
-        poster={poster}
-        autoPlay={!deferred}
-        muted
-        loop
-        playsInline
-        preload={deferred ? "none" : "metadata"}
-        aria-label={caption}
-      >
-        {webm ? <source src={webm} type="video/webm" /> : null}
-        <source src={mp4} type="video/mp4" />
-      </video>
+      {hasVideo ? (
+        <video
+          ref={videoRef}
+          className="project-hero-video"
+          poster={poster}
+          autoPlay={!deferred}
+          muted
+          loop
+          playsInline
+          preload={deferred ? "none" : "metadata"}
+          aria-label={caption}
+        >
+          {webm ? <source src={webm} type="video/webm" /> : null}
+          {mp4 ? <source src={mp4} type="video/mp4" /> : null}
+        </video>
+      ) : (
+        // eslint-disable-next-line @next/next/no-img-element
+        <img
+          src={poster}
+          alt={caption || "Project visual"}
+          className="project-hero-video"
+        />
+      )}
       {caption ? (
         <figcaption className="project-hero-caption">{caption}</figcaption>
       ) : null}
