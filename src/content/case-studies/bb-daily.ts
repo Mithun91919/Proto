@@ -6,118 +6,106 @@ export const bbDailyStudy: CaseStudy = {
   internalName: "bb daily",
   org: "bigbasket",
   timeframe: "2019–2020",
-  discipline: "Product Design · Operations Design",
-  title: "Designing both sides of a recurring delivery service.",
+  discipline: "Consumer commerce · Operations UX · Mobile",
+  title: "Designing both sides of a recurring delivery service",
   subtitle:
-    "Daily operations consist of 6 key roles who look after the entire process of procurement, shipping and delivery.",
+    "bb daily was a subscription service for everyday essentials. Designing that experience meant thinking about both the customer routine and the operation behind it.",
   story:
-    "bb daily was a subscription-based grocery delivery service that operated across 10+ cities. The service required coordinating customer expectations with complex logistics operations. I designed the complete customer experience and the internal operations platform managing inventory, shipments, and same-morning delivery coordination.",
-  hero: {
-    poster: "/work/bbdaily/8f79fb_20203531c98e4bd986f2bbf39a470197~mv2.avif",
-    aspect: 1.6,
-    caption: "bb daily — Recurring grocery delivery service",
-  },
+    "bb daily was a subscription service for everyday essentials such as milk, dairy, bakery, fruits, vegetables, and other frequently purchased products. Unlike a conventional grocery order, the customer promise repeated every day. Designing that experience meant thinking about both sides of the service: how a household creates and manages a routine, and how the operation behind it procures, sorts, ships, and delivers that routine reliably.",
   contributions: [
-    "End-to-end product design for customer app",
-    "Operations platform design for internal teams",
-    "User research and testing across user groups",
-    "Design system development",
+    "Customer subscription experience design",
+    "Delivery management interface",
+    "Product positioning research",
+    "Operations workflow design",
+    "Role-based operations platform",
+    "Inventory and fulfillment digitization",
+    "End-to-end service flow design",
   ],
-  role: "Lead Product Designer",
+  role: "Research & UX Design",
   scope: [
-    "Customer subscription and ordering",
-    "Inventory and procurement",
-    "Delivery logistics coordination",
-    "Partner and vendor management",
+    "Android & iOS customer experience",
+    "Android operations experience",
+    "Subscription onboarding",
+    "Recurring order management",
+    "Serviceability and address selection",
+    "Operations roles and workflows",
+    "Inventory, packing, and delivery routing",
   ],
   metrics: [
-    { value: "10+", label: "Cities operational" },
-    { value: "1.5M+", label: "Registered users" },
-    { value: "120K", label: "Average daily deliveries" },
+    { value: "10+", label: "cities" },
+    { value: "15 lakh+", label: "users" },
+    { value: "1.2 lakh", label: "average daily deliveries" },
   ],
   chapters: [
     {
       number: "01",
-      title: "The challenge",
-      intro: "Managing a grocery delivery service meant balancing customer expectations with operational complexity.",
+      title: "The product question came before the screens",
+      intro:
+        "A recurring-delivery service behaves differently from the main bigbasket shopping experience. We explored whether bb daily should live as a separate app, as a fork inside bigbasket, or as a subscription feature within the parent product.",
       body: [
-        "bb daily operated on a daily subscription model — customers placed orders the evening before for next-morning delivery. This created tight coordination requirements across procurement, warehouse operations, delivery routing, and customer support.",
-        "The challenge wasn't just designing a seamless customer experience. It required building parallel interfaces for warehouse teams managing inventory in real-time, delivery partners tracking routes, and operations managers coordinating across multiple sites.",
+        "Research across adjacent service models helped us compare those directions. The resulting approach kept bb daily as a focused subscription experience while connecting it back to the wider bigbasket ecosystem.",
       ],
-      highlights: [
-        {
-          title: "Same-morning delivery at scale",
-          body: "Coordinating inventory, packing, and delivery across 10+ cities required systems that updated in real-time.",
-        },
-        {
-          title: "Recurring subscription model",
-          body: "Customers expected automatic recurring orders but needed flexibility to skip, modify, or pause at any time.",
-        },
-        {
-          title: "Multi-stakeholder coordination",
-          body: "Customers, warehouse staff, delivery partners, and operations teams all needed different views of the same data.",
-        },
-      ],
+      callout:
+        "The design challenge was not simply adding a repeat button. It was designing for a relationship that continues across days and weeks.",
     },
     {
       number: "02",
-      title: "Customer experience design",
+      title: "Designing the customer promise",
       intro:
-        "The customer app needed to make subscription management effortless while supporting same-morning delivery coordination.",
+        "A first-time customer needed help establishing a recurring order. A returning customer was more likely to manage an existing routine or add something to an upcoming delivery.",
       body: [
-        "Unlike traditional e-commerce, bb daily worked backwards from delivery time. Customers placed orders the evening before, knowing exactly when they'd arrive the next morning. This predictability had to be central to the interface.",
-        "The key insight was separating 'recurring orders' from 'one-time changes'. Customers set their default delivery basket (which items, which days), then made adjustments just for specific dates. This reduced friction for the common case while preserving flexibility.",
+        "The home experience therefore changed with the relationship: new users were guided toward starting a subscription while returning users got faster access to existing deliveries and add-on items.",
+        "Recurring purchases also needed flexibility. The subscription flow supported daily, alternate days, weekly, and custom dates, so customers could shape delivery around how they actually consumed an item.",
+        "Serviceability was part of onboarding too. bb daily could deliver only to activated apartments and gated communities, so the product surfaced nearby supported locations, allowed manual search, and gave people outside the service area a way to register their address.",
       ],
-      callout: "Recurring orders meant 80% of transaction decisions were made once, then automated — customers only needed to adjust exceptions.",
-      visuals: ["/work/bbdaily/BB_Daily_Milk_Basket Copy 4 (1).jpg"],
     },
     {
       number: "03",
-      title: "Operations platform design",
+      title: "Managing the routine mattered as much as creating it",
       intro:
-        "The operations platform translated customer orders into warehouse and delivery workflows.",
-      body: [
-        "Unlike the customer app, operations needed to expose complexity and data density. Teams needed to see inventory levels, capacity constraints, delivery routes, and staffing all at once.",
-        "The design prioritized real-time signals and exception handling. The baseline was a full-screen dashboard showing today's status — on-time rates, inventory issues, delivery overages. Below that layer, role-specific views let warehouse managers see picking queues, delivery coordinators see route optimization, and operations leads see across-market performance.",
-      ],
-      visuals: [
-        "/work/bbdaily/Screen Recording 2020-03-13 at 4.11.42 PM.mov",
-        "/work/bbdaily/Screen Recording 2020-03-13 at 4.46.55 PM.mov",
-      ],
-      insights: [
-        {
-          label: "Design principle",
-          title: "Transparency reduces coordination overhead",
-          body: "When all stakeholders can see current state and constraints, they make better local decisions without waiting for approval.",
-        },
-      ],
+        "Customers could review past and upcoming deliveries by date and quickly add an item to a specific delivery. This shifted the product from a one-time subscription setup into an experience for managing an ongoing household routine.",
+      body: [],
     },
     {
       number: "04",
-      title: "Design system for dual-track",
+      title: "The customer experience only worked if the operation could keep the promise",
       intro:
-        "Customer and operations interfaces needed different conventions but shared underlying logic.",
+        "Behind the customer app, six operational roles coordinated a time-sensitive early-morning process. Goods arrived from different vendors, were manually sorted and packed for delivery locations, and then moved to delivery executives for doorstep fulfilment.",
       body: [
-        "The design system organized around 'data patterns' rather than UI components. Things like 'order status', 'inventory level', 'delivery route' had standard representations across both apps. But their presentation differed — customer app surfaced reassurance and clarity, operations app surfaced completeness and diagnostics.",
-        "This separation let teams move faster: component work could happen in parallel, and changes to business logic could propagate cleanly.",
+        "Field research showed how much of that process depended on paper and manual coordination, making inventory movement and handoffs difficult to keep reliable.",
+        "This changed the design problem from 'a delivery app' into a connected operational workflow.",
+      ],
+    },
+    {
+      number: "05",
+      title: "One operations app, different jobs",
+      intro:
+        "Rather than creating a separate app for every role, the Android operations product used login/role context to surface the relevant workflow for each person.",
+      body: [
+        "The product digitised key parts of inventory movement and fulfilment: receiving goods, creating shipments for delivery locations, executing routes within a narrow delivery window, and tracking delivery-related earnings.",
+      ],
+    },
+    {
+      number: "06",
+      title: "What changed for me",
+      intro:
+        "Working across the customer and operational sides of bb daily changed how I thought about end-to-end product design.",
+      body: [
+        "The customer app shaped the promise: what will arrive, when, and how easily a routine can change. The operations product shaped whether that promise could actually be fulfilled through real inventory, handoffs, deadlines, and people in the field.",
+        "The product was the connection between the promise and the operation behind it.",
       ],
     },
   ],
   lessons: [
     {
       label: "Insight",
-      title: "Recurring transactions change the design problem",
-      body: "When most orders are recurring, the question shifts from 'how do I make ordering easy' to 'how do I make the default case automatic and exceptions obvious'.",
+      title: "End-to-end product design requires understanding both sides",
+      body: "The customer experience and the operational reality behind it have to work together or neither one works at all.",
     },
     {
       label: "Insight",
-      title: "Operations interfaces need real-time transparency",
-      body: "Staff making local decisions need visibility into system state, not requests for approval. Dashboard design directly affects coordination speed.",
-    },
-    {
-      label: "Insight",
-      title: "Design systems can separate customer experience from operational complexity",
-      body: "Shared data patterns with different presentation strategies let customer and operations apps evolve independently while staying coordinated.",
+      title: "The customer promise is only valuable when the operation can keep it",
+      body: "Designing the interface is just one part of the work. The design has to account for the people, processes, and systems that have to execute on that promise every day.",
     },
   ],
 };

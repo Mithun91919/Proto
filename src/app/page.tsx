@@ -17,12 +17,11 @@ export default function HomePage() {
             <h1 className="display-title display-name mt-6 text-[var(--ink)]">
               Mithun Raju.
               <span className="display-name-sub mt-3 block text-[var(--ink-soft)] md:mt-4">
-                Product designer across digital products, platforms{" "}
-                <span className="hero-chip">&amp; AI</span>.
+                Product designer turning complexity into connected products.
               </span>
             </h1>
             <p className="lede mt-8">
-              I turn fragmented tools, data, and workflows into connected products that scale — from 0-to-1 platforms to large-scale transformations. Based in Bengaluru.
+              I design across consumer products, enterprise platforms, and AI-assisted workflows - making complex systems easier to understand, use, and scale.
             </p>
             <div className="mt-10 flex flex-wrap gap-3">
               <span className="tag">PRODUCT DESIGN</span>

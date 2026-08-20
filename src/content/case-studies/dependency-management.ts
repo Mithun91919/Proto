@@ -1,148 +1,108 @@
 import type { CaseStudy } from "./types";
 
-export const dependencyCase: CaseStudy = {
+export const dependencyHealthStudy: CaseStudy = {
   slug: "dependency-health",
   label: "Dependency Health Platform",
-  internalName: "Dependency Management",
   org: "Walmart Global Tech",
   timeframe: "2025–Present",
-  discipline: "Developer tools, Governance",
-  title:
-    "Turning dependency compliance data into clear actions developers can take.",
+  discipline: "Developer platform · Product design",
+  title: "Turning dependency governance into a clear path to action",
   subtitle:
-    "The backend could provide dozens of technical signals. The UX challenge was deciding what mattered to developers, engineering leaders, and platform teams — and translating it into status, diagnosis, and guided remediation.",
+    "Walmart Global Tech manages a large Java application ecosystem. Over time, applications accumulated different library versions, legacy packages, and inconsistent upgrade paths. I own the UX for the portal that translates dependency data into an experience for developers, engineering leaders, and platform administrators.",
   story:
-    "The technical data already existed — library baselines, Java versions, drift, conflicts, security exposure — but teams did not have a consistent way to understand dependency health or move from a compliance signal to a concrete fix. I took ownership of the portal UX so developers, leaders, and platform admins could make different decisions from the same underlying model.",
+    "Walmart Global Tech manages a large Java application ecosystem. Over time, applications accumulated different library versions, legacy packages, and inconsistent upgrade paths. The technical data existed, but teams did not have a consistent way to understand dependency health, prioritise what mattered, or move from a compliance signal to a concrete fix. I own the UX for the portal that translates that underlying governance and dependency data into an experience for developers, engineering leaders, and platform administrators.",
   contributions: [
-    "Led UX for the Dependency Management portal end to end.",
-    "Prioritised metrics before designing dashboards.",
-    "Designed the composite health model and progressive disclosure pattern.",
-    "Created guided onboarding and remediation journeys.",
-    "Designed repository, pillar/org, and governance reporting views for different scales.",
+    "Portal UX design and information architecture",
+    "Decision model for different user roles",
+    "Repository health dashboard design",
+    "Onboarding and remediation flow design",
+    "Multi-level reporting and scale design",
+    "Token-based theming system",
   ],
-  role: "Senior UX Designer — design lead",
+  role: "Senior UX Designer; design lead for the portal",
   scope: [
-    "Metric prioritisation",
-    "IA",
-    "Progressive disclosure",
-    "Remediation",
-    "Compliance UX",
+    "Repository health dashboards",
+    "Developer onboarding flows",
+    "Compliance remediation guidance",
+    "Pillar and organisation-level reporting",
+    "Admin governance interfaces",
+    "Design system and theming",
   ],
   metrics: [
-    {
-      value: "3 levels",
-      label: "Repository → Pillar → Organisation visibility",
-    },
-    { value: "148", label: "Repositories in initial major-version pilot" },
+    { value: "148", label: "repositories in initial major-version pilot" },
   ],
   chapters: [
     {
       number: "01",
-      title: "Here's what we built",
-      highlights: [
-        {
-          title: "Summary → Detail → Action",
-          body: "Orient first, diagnose second, resolve third — the recurring interaction model across the product.",
-        },
-        {
-          title: "Composite dependency health",
-          body: "A understandable health signal instead of an equal-weight dump of every technical metric.",
-        },
-        {
-          title: "Guided onboarding and remediation",
-          body: "Compliance is not a scoreboard. The product has to show the next concrete step.",
-        },
-        {
-          title: "One model, many altitudes",
-          body: "Repository views for builders, pillar/org views for leaders, reporting for governance.",
-        },
-      ],
-      visuals: [
-        "SYSTEM MAP: Fragmented signals → prioritised health + guided remediation → clearer compliance path.",
+      title: "Teams had data, but not a usable decision model",
+      intro:
+        "The backend could expose many technical signals per repository: library-baseline versions, Java versions, onboarding state, security exposure, version drift, conflicts, and technical-debt categories.",
+      body: [
+        "Showing all of that equally would have created a technically complete interface that was difficult to act on.",
+        "Research pointed to a clearer framing: the problem was not a lack of data. The data was not yet structured around the decisions people needed to make.",
+        "Developers needed to know 'am I compliant, and what do I fix first?' Managers needed to know 'which teams are behind?' Platform teams needed to understand 'adoption and compliance across the organisation.'",
       ],
     },
     {
       number: "02",
-      title: "Teams had data, but not a usable decision model",
+      title: "We prioritised signals before designing the dashboard",
+      intro: "One of the highest-leverage decisions was deciding what not to show by default.",
       body: [
-        "Dependency debt often surfaced during migrations, breakages, or security work. Tracking was informal. Leaders could not easily understand portfolio health from repository-level logs.",
-        "Showing every backend signal equally would have created a technically complete interface that was still hard to act on.",
+        "I mapped the available signals against who needed them and what decision each one supported. That produced a layered information architecture: a concise health state at the entry point, diagnostic depth on demand, and an explicit action path when something required attention.",
+        "The repository dashboard followed a simple principle: Summary → Diagnosis → Action.",
+        "Dependency freshness itself is multi-dimensional, including the approved library baseline/BOM version, Java version, and feature-library freshness. The interface communicates overall health first, then lets engineers expand the individual dimensions and technical details when they need them.",
       ],
-      callout:
-        "The core design problem was less about creating another dashboard and more about turning abundant technical metadata into decision-ready information.",
     },
     {
       number: "03",
-      title: "Three audiences, three decisions",
-      highlights: [
-        {
-          title: "Developers and tech leads",
-          body: "Need to know what is wrong in a repository, why it matters, and what to change next.",
-        },
-        {
-          title: "Engineering managers and leaders",
-          body: "Need portfolio-level health and risk without drowning in package-level noise.",
-        },
-        {
-          title: "Platform and governance teams",
-          body: "Need adoption, compliance, and reporting views that stand up to mandatory usage.",
-        },
+      title: "We turned compliance into a guided path to action",
+      intro:
+        "Repositories that are not yet aligned need to move through a sequence of technical changes such as enforcement updates, legacy-library removal, Java upgrades, and adoption of the current standard-library baseline.",
+      body: [
+        "A flat checklist would tell an engineer what was wrong without helping them understand the order in which to fix it.",
+        "I designed onboarding and remediation as a guided journey with visible progress, clear step dependencies, actionable guidance, and automation surfaced at the moment it could create the required code change or pull request.",
+        "The intent was to close the gap between: 'I know my application is behind' and 'I know exactly what to do next.'",
       ],
     },
     {
       number: "04",
-      title: "The insight: prioritise signals before painting charts",
-      insights: [
-        {
-          label: "IA",
-          title: "Not every metric earns a top billing",
-          body: "Metric prioritisation is the design system for a governance product.",
-        },
-        {
-          label: "Interaction",
-          title: "Summary for orientation",
-          body: "Leaders and developers both need an honest top line before they opt into depth.",
-        },
-        {
-          label: "Action",
-          title: "Remediation is the product",
-          body: "If the interface cannot carry someone to a fix, the health score is only anxiety.",
-        },
-        {
-          label: "Compliance",
-          title: "Mandatory use raises the quality bar",
-          body: "When people must use a tool, clarity and fairness matter more — not less.",
-        },
+      title: "The same health model had to work at different scales",
+      intro:
+        "Repository health is useful to an individual team. It becomes a different design problem when hundreds of repositories need to be understood together.",
+      body: [
+        "For engineering leaders, pillar and organisation views aggregate freshness so they can scan the distribution, identify lagging areas, and drill down only where attention is needed. For governance teams, the same model expands into filterable reporting and export.",
+        "The underlying data remains consistent, but the information hierarchy changes with the decision context.",
       ],
     },
     {
       number: "05",
-      title: "Layered views and guided journeys",
+      title: "When colour preference became a systems problem",
+      intro:
+        "Post-launch feedback included conflicting preferences about dashboard colour treatment. Rather than hard-coding a different solution for different users, the platform moved toward token-based theming so semantic meaning could remain consistent while visual themes changed.",
       body: [
-        "The same health model powers repository diagnosis, pillar/org roll-ups, and governance reporting. Progressive disclosure keeps advanced signals available without making them the default language.",
-        "Post-launch, even preferences like colour encoding became systems problems — consistency across states and audiences mattered as much as the initial dashboard layout.",
+        "That turned an individual preference discussion into a maintainable system decision.",
       ],
-      visuals: [
-        "VISUAL: Repository view → org roll-up → governance report using one health model.",
-        "VISUAL: Onboarding / remediation journey with next-best action.",
+    },
+    {
+      number: "06",
+      title: "What changed",
+      intro: "The portal is live and continues to evolve alongside the dependency-governance programme.",
+      body: [
+        "The initial major-version pilot tracked 148 repositories, onboarding became self-service through the guided flow, and dependency-health reporting is available from repository through pillar and organisation levels.",
+        "The product's value is not the number of technical signals it can display. It is turning those signals into information that tells an engineer what matters, why it matters, and what to do next.",
       ],
     },
   ],
   lessons: [
     {
-      label: "Lesson",
-      title: "Dashboards are not decisions",
-      body: "A governance product earns trust when it helps someone act, not when it displays everything the backend can emit.",
+      label: "Insight",
+      title: "Technical completeness and product usefulness are not the same thing",
+      body: "More signals do not create more clarity. The information hierarchy became more foundational than any individual dashboard component.",
     },
     {
-      label: "Lesson",
-      title: "One model can still serve many altitudes",
-      body: "The hard part is shared meaning across repository, org, and reporting views — not separate apps for each audience.",
-    },
-    {
-      label: "Lesson",
-      title: "Compliance UX is emotional design",
-      body: "Mandatory tools need progressive disclosure, fair explanation, and a clear path out of a red state.",
+      label: "Insight",
+      title: "Compliance-driven products have a higher responsibility to explain the next step",
+      body: "When people cannot opt out of a workflow, unclear terminology and dead ends become operational friction rather than simple adoption problems.",
     },
   ],
 };
