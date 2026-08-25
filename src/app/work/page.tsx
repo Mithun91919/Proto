@@ -4,13 +4,13 @@ import type { ReactNode } from "react";
 import { DotText } from "@/components/DotText";
 import { Reveal } from "@/components/Reveal";
 import { WorkEntry } from "@/components/WorkEntry";
-import { getFeaturedProjects, getRangeProjects } from "@/content/projects";
+import { Carousel } from "@/components/Carousel";
+import { getFeaturedProjects, getProject, getRangeProjects } from "@/content/projects";
 import {
   careerStages,
   currentStage,
   earlierWork,
 } from "@/content/work-page";
-import { Carousel } from "@/components/Carousel";
 
 export const metadata: Metadata = {
   title: "Work",
@@ -46,7 +46,7 @@ export default function WorkPage() {
   const more = getRangeProjects();
 
   return (
-    <div className="work-page mx-auto w-full max-w-[70rem] px-5 py-16 md:px-8 md:py-24">
+    <div className="work-page mx-auto w-full max-w-[80rem] px-5 py-16 md:px-8 md:py-24">
       <div className="page-hero hero-in">
         <div style={{ position: "absolute", right: "2rem", top: "35%", transform: "translateY(-50%)", zIndex: 0, transition: "none", width: "180px", height: "180px", animation: "timeline-stage-reveal 0.4s ease-out both" }}>
           <DotText
@@ -61,7 +61,7 @@ export default function WorkPage() {
           The problems got bigger. My role moved further upstream.
         </h1>
         <p className="lede mt-6" style={{ maxWidth: "84ch" }}>
-          I've worked across digital experiences, consumer products, commerce, enterprise software, and developer platforms. Over time, my work has moved from individual interfaces toward the workflows, information, and systems behind them.
+          I&apos;ve worked across digital experiences, consumer products, commerce, enterprise software, and developer platforms. Over time, my work has moved from individual interfaces toward the workflows, information, and systems behind them.
         </p>
       </div>
 
@@ -159,7 +159,9 @@ export default function WorkPage() {
             body: entry.body,
             tags: entry.tags,
             image: entry.image,
-            slug: entry.slug,
+            // Only link once the project has a full entry in projects.ts —
+            // otherwise /work/[slug] 404s even though the slug looks valid.
+            slug: entry.slug && getProject(entry.slug) ? entry.slug : undefined,
           }))}
         />
       </section>

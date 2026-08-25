@@ -1,6 +1,8 @@
 import Link from "next/link";
 import type { CSSProperties } from "react";
 import { ProjectHero } from "@/components/ProjectHero";
+import { PROJECT_SHAPE } from "@/components/FeaturedWorkCard";
+import { FeaturedGlyph } from "@/components/design-system/FeaturedGlyph";
 import type { Project } from "@/content/projects";
 
 type WorkEntryProps = {
@@ -35,6 +37,7 @@ export function WorkEntry({
   /* A reserved band with nothing in it reads as a hole in the page, so an entry
      without a clip drops the media column rather than standing in for one. */
   const composition = project.media ? layout : "text";
+  const shape = PROJECT_SHAPE[project.slug];
 
   return (
     <Link
@@ -49,11 +52,18 @@ export function WorkEntry({
         } as CSSProperties
       }
     >
-      <p className="eyebrow">
-        <span className="text-[var(--accent-deep)]">{project.number}</span>
-        {" / "}
-        {project.label}
-      </p>
+      <div className="flex items-center gap-3">
+        <p className="eyebrow">
+          <span className="text-[var(--accent-deep)]">{project.number}</span>
+          {" / "}
+          {project.label}
+        </p>
+        {shape ? (
+          <span className="ml-auto opacity-70" aria-hidden>
+            <FeaturedGlyph shape={shape} />
+          </span>
+        ) : null}
+      </div>
 
       <div className="work-entry-grid">
         <h3 className="work-entry-title display-title display-statement text-[var(--ink)] transition-colors duration-300 group-hover:text-[var(--accent-deep)]">

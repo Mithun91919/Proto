@@ -5,6 +5,8 @@ import type { Project } from "@/content/projects";
 import { MediaFrame } from "@/components/MediaFrame";
 import { ProjectHero } from "@/components/ProjectHero";
 import { Reveal } from "@/components/Reveal";
+import { SpecList } from "@/components/design-system/SpecList";
+import { NextProjectNav } from "@/components/design-system/NextProjectNav";
 
 export function CaseStudyView({
   study,
@@ -52,7 +54,7 @@ export function CaseStudyView({
               poster={study.hero.poster}
             />
           </div>
-          <div className="case-hero-back mx-auto w-full max-w-[70rem] px-5 md:px-8">
+          <div className="case-hero-back mx-auto w-full max-w-[80rem] px-5 md:px-8">
             <Link
               href="/work"
               className="inline-flex text-base font-semibold transition hover:translate-x-[-2px]"
@@ -60,13 +62,13 @@ export function CaseStudyView({
               ← All Work
             </Link>
           </div>
-          <header className="case-hero-copy hero-in mx-auto w-full max-w-[70rem] px-5 md:px-8">
+          <header className="case-hero-copy hero-in mx-auto w-full max-w-[80rem] px-5 md:px-8">
             {headline}
           </header>
         </section>
       ) : (
         <>
-          <div className="mx-auto w-full max-w-[70rem] px-5 pt-8 md:px-8">
+          <div className="mx-auto w-full max-w-[80rem] px-5 pt-8 md:px-8">
             <Link
               href="/work"
               className="inline-flex text-sm font-medium text-[var(--muted)] transition hover:translate-x-[-2px] hover:text-[var(--ink)]"
@@ -74,14 +76,14 @@ export function CaseStudyView({
               ← All Work
             </Link>
           </div>
-          <header className="hero-in mx-auto w-full max-w-[70rem] px-5 pb-12 pt-10 md:px-8 md:pb-16 md:pt-14">
+          <header className="hero-in mx-auto w-full max-w-[80rem] px-5 pb-12 pt-10 md:px-8 md:pb-16 md:pt-14">
             {headline}
           </header>
         </>
       )}
 
       <section className="border-y border-[var(--line)]">
-        <div className="mx-auto grid w-full max-w-[70rem] gap-12 px-5 py-14 md:grid-cols-[1.2fr_0.8fr] md:px-8 md:py-16">
+        <div className="mx-auto grid w-full max-w-[80rem] gap-12 px-5 py-14 md:grid-cols-[1.2fr_0.8fr] md:px-8 md:py-16">
           <Reveal>
             <p className="eyebrow">The story</p>
             <p className="body-text mt-4">{study.story}</p>
@@ -103,37 +105,32 @@ export function CaseStudyView({
 
           <Reveal variant="scale" delay={120}>
             <aside className="glass-panel h-fit p-6">
-              <dl className="space-y-5">
-                {[
-                  ["Role", study.role],
-                  ["Client", study.org],
-                  ["Year", study.timeframe],
-                  ["Discipline", study.discipline],
-                ].map(([label, value]) => (
-                  <div key={label}>
-                    <dt className="text-sm text-[var(--muted)]">{label}</dt>
-                    <dd className="mt-1 font-medium text-[var(--ink)]">{value}</dd>
-                  </div>
-                ))}
-                <div>
-                  <dt className="text-sm text-[var(--muted)]">Scope</dt>
-                  <dd className="mt-3 flex flex-wrap gap-2">
-                    {study.scope.map((item) => (
-                      <span
-                        key={item}
-                        className="rounded-[0.7rem] border border-[var(--line)] bg-white px-3 py-1 text-sm text-[var(--ink-soft)]"
-                      >
-                        {item}
-                      </span>
-                    ))}
-                  </dd>
+              <SpecList
+                facts={[
+                  { label: "Role", value: study.role },
+                  { label: "Client", value: study.org },
+                  { label: "Year", value: study.timeframe },
+                  { label: "Discipline", value: study.discipline },
+                ]}
+              />
+              <div className="mt-5">
+                <p className="text-sm text-[var(--muted)]">Scope</p>
+                <div className="mt-3 flex flex-wrap gap-2">
+                  {study.scope.map((item) => (
+                    <span
+                      key={item}
+                      className="rounded-[0.7rem] border border-[var(--line)] bg-white px-3 py-1 text-sm text-[var(--ink-soft)]"
+                    >
+                      {item}
+                    </span>
+                  ))}
                 </div>
-              </dl>
+              </div>
             </aside>
           </Reveal>
         </div>
 
-        <div className="mx-auto grid w-full max-w-[70rem] gap-4 px-5 pb-14 sm:grid-cols-3 md:px-8">
+        <div className="mx-auto grid w-full max-w-[80rem] gap-4 px-5 pb-14 sm:grid-cols-3 md:px-8">
           {study.metrics.map((metric, index) => (
             <Reveal key={metric.label} delay={index * 90} variant="scale">
               <div className="glass-panel glass-card px-5 py-6 hover:-translate-y-1">
@@ -278,22 +275,7 @@ export function CaseStudyView({
           {next ? (
             <Reveal variant="scale">
               <section className="border-t border-[var(--line)] pt-10">
-                <p className="text-sm font-medium text-[var(--muted)]">
-                  Next case study
-                </p>
-                <Link
-                  href={`/work/${next.slug}`}
-                  className="glass-panel glass-card group mt-4 block p-6 hover:-translate-y-1 md:p-8"
-                >
-                  <p className="eyebrow">{next.label}</p>
-                  <h3 className="display-title display-sub mt-2 text-[var(--ink)] transition group-hover:text-[var(--accent-deep)]">
-                    {next.title}
-                  </h3>
-                  <p className="body-sm mt-3">{next.outcome}</p>
-                  <p className="mt-6 text-sm font-semibold text-[var(--accent-deep)] transition-transform duration-300 group-hover:translate-x-1">
-                    Read case study →
-                  </p>
-                </Link>
+                <NextProjectNav href={`/work/${next.slug}`} number={next.number} label={next.label} title={next.title} />
               </section>
             </Reveal>
           ) : null}

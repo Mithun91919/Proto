@@ -170,4 +170,42 @@
   --duration-fast: 180ms;
   --duration-med: 300ms;
   --duration-slow: 800ms;
+
+  /* ── Design system v6 (component library) ──────────────────
+     Scoped to the new `design-system/` component set (see
+     design-system/Components_v6_preview.html for the source guide) rather
+     than repointed onto the site-wide --color-accent/-deep aliases — the
+     guide's "accent"/"accent-deep" land one step deeper than this site's
+     current global mapping (cyan-600/800 vs. cyan-500/700). Keeping them
+     separate means existing pages are untouched while this library gets
+     pixel-accurate colour. */
+  --ds-accent: var(--cyan-600);
+  --ds-accent-deep: var(--cyan-800);
+  --ds-dot-muted: #9dbac2;
+  --ds-dot-quiet: #c3dde3;
+  --ds-mint: #5eead4;
+  --ds-dark: #0c1f26;
+  --ds-dark-ink: #eaf3f5;
+  --ds-dark-muted: #8fb3bc;
+
+  /* Three glass tiers, one solid surface — see B3 in the guide for when
+     each applies. Real backdrop-blur, unlike --glass-blur (0px) elsewhere. */
+  --ds-glass-soft-fill: linear-gradient(135deg, rgba(255, 255, 255, 0.52), rgba(247, 251, 252, 0.34));
+  --ds-glass-soft-border: rgba(255, 255, 255, 0.76);
+  --ds-glass-soft-shadow: 0 10px 28px rgba(8, 51, 68, 0.055), inset 0 1px 0 rgba(255, 255, 255, 0.72);
+  --ds-glass-soft-blur: 12px;
+
+  --ds-glass-fill: linear-gradient(135deg, rgba(255, 255, 255, 0.68), rgba(247, 251, 252, 0.48));
+  --ds-glass-border: rgba(255, 255, 255, 0.78);
+  --ds-glass-shadow: 0 16px 40px rgba(8, 51, 68, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.84);
+  --ds-glass-blur: 18px;
+
+  --ds-glass-lift-fill: linear-gradient(135deg, rgba(255, 255, 255, 0.78), rgba(247, 251, 252, 0.56));
+  --ds-glass-lift-border: rgba(255, 255, 255, 0.8);
+  --ds-glass-lift-shadow: 0 22px 54px rgba(8, 51, 68, 0.11), inset 0 1px 0 rgba(255, 255, 255, 0.9);
+  --ds-glass-lift-blur: 18px;
+
+  --ds-solid-bg: var(--neutral-0);
+  --ds-solid-border: rgba(21, 94, 117, 0.14);
+  --ds-solid-shadow: 0 14px 34px rgba(8, 51, 68, 0.07);
 }

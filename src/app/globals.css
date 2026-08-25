@@ -1,5 +1,6 @@
 @import "tailwindcss";
 @import "../styles/tokens.css";
+@import "../styles/design-system.css";
 
 @theme inline {
   --color-background: var(--background);
@@ -58,6 +59,23 @@ a {
 :focus-visible {
   outline: 2px solid var(--accent-deep);
   outline-offset: 3px;
+}
+
+.skip-link {
+  position: absolute;
+  top: -3rem;
+  left: 1rem;
+  z-index: 100;
+  padding: 0.6rem 1rem;
+  background: var(--paper);
+  color: var(--ink);
+  border: 1px solid var(--line);
+  border-radius: 0.4rem;
+  transition: top 0.2s ease;
+}
+
+.skip-link:focus-visible {
+  top: 1rem;
 }
 
 .site-shell {
@@ -1586,4 +1604,133 @@ a {
 
 .featured-card .project-hero {
   align-self: start;
+}
+
+/* ── Case-study v2: per-section dot-grid density ──────────────────────────
+   Each section can opt into "visible" / "subtle" / "hidden" via a CSS var
+   set inline by SectionShell. Reuses the exact tokens the body's own static
+   dot-grid is painted with, so this stays pixel-aligned with it — it's the
+   same grid, just re-drawn locally with a per-section opacity multiplier
+   instead of the body's single global layer. */
+.cs-section {
+  position: relative;
+}
+
+.cs-section::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background-image: radial-gradient(
+    circle,
+    var(--dot-color) var(--dot-size),
+    transparent var(--dot-size)
+  );
+  background-size: var(--dot-gap) var(--dot-gap);
+  background-position: var(--dot-origin-x) var(--dot-origin-y);
+  opacity: var(--section-grid-opacity, 0.45);
+}
+
+/* ── Case-study v2: borderless media ───────────────────────────────────────
+   Real product evidence fills the space it's given rather than sitting in
+   a bordered/shadowed card — reserved as a case-study-v2-only override so
+   ProjectHero's default card treatment elsewhere on the site (work cards,
+   home page) is untouched. */
+.cs-media-bleed.project-hero {
+  border: 0;
+  border-radius: 0;
+  box-shadow: none;
+  background: transparent;
+}
+
+/* ── Case-study v2: full-bleed media carousel ─────────────────────────────
+   A horizontal, edge-to-edge filmstrip for showing progression or a set of
+   screens — large enough that the UI stays readable, not a row of
+   thumbnails. */
+/* Height-constrained, not width-constrained: a mediaSequence mixes portrait
+   phone recordings with wide screenshot composites, and sizing everything
+   to a fixed height lets each item's own aspect ratio decide its width —
+   the natural way a horizontal filmstrip handles mixed orientations. */
+.cs-carousel {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+}
+
+.cs-carousel-item {
+  position: relative;
+  flex: 0 0 auto;
+  height: min(72vh, 640px);
+  scroll-snap-align: start;
+}
+
+.cs-carousel-item .project-hero {
+  height: 100%;
+  width: fit-content;
+}
+
+.cs-carousel-item .project-hero-video {
+  height: 100%;
+  width: auto;
+  aspect-ratio: var(--hero-aspect, auto);
+  object-fit: cover;
+}
+
+/* A scrim behind the label rather than relying on text-shadow alone — a
+   light screenshot needs it just as much as a dark video does. */
+.cs-carousel-item::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background: linear-gradient(
+    to top,
+    rgb(0 0 0 / 0.55) 0%,
+    rgb(0 0 0 / 0.22) 18%,
+    transparent 38%
+  );
+}
+
+.cs-carousel-label {
+  position: absolute;
+  left: 1.25rem;
+  bottom: 1.25rem;
+  z-index: 1;
+  color: var(--neutral-0);
+  text-shadow:
+    0 1px 2px rgb(0 0 0 / 0.55),
+    0 4px 20px rgb(0 0 0 / 0.45);
+}
+
+/* ── Case-study v2: device frame ───────────────────────────────────────────
+   Flat, editorial mobile-device chrome — a thin bezel and a notch, not a
+   skeuomorphic 3D render. */
+.device-frame {
+  position: relative;
+  border-radius: 1.6rem;
+  border: 1px solid var(--line-strong);
+  background: color-mix(in oklab, var(--ink) 4%, var(--paper));
+  padding: 0.6rem 0.5rem;
+}
+
+.device-frame-notch {
+  position: absolute;
+  top: 0.55rem;
+  left: 50%;
+  z-index: 1;
+  width: 2.75rem;
+  height: 0.3rem;
+  border-radius: 999px;
+  background: var(--line-strong);
+  transform: translateX(-50%);
+}
+
+.device-frame-screen {
+  border-radius: 1.1rem;
+  overflow: hidden;
 }

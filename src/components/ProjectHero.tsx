@@ -8,10 +8,19 @@ export type ProjectHeroProps = {
   mp4?: string;
   /** Optional VP9/AV1 WebM source, offered first when supported. */
   webm?: string;
+  /**
+   * Optional QuickTime source (e.g. an unconverted screen recording). Given
+   * without a `type` attribute so the browser sniffs the codec directly —
+   * declaring `type="video/quicktime"` makes most browsers skip the source
+   * outright even when the underlying H.264 stream would otherwise play.
+   */
+  mov?: string;
   /** Still frame or primary image. */
   poster: string;
-  /** Accessible description of the clip. */
+  /** Visible caption, rendered below the media. */
   caption?: string;
+  /** Accessible description — falls back to `caption` when omitted. */
+  alt?: string;
   /** Width / height, so the frame reserves space and never shifts layout. */
   aspect?: number;
   /**
@@ -32,13 +41,16 @@ export type ProjectHeroProps = {
 export function ProjectHero({
   mp4,
   webm,
+  mov,
   poster,
   caption,
+  alt,
   aspect = 16 / 10,
   playOn = "view",
   hoverScope,
   className,
 }: ProjectHeroProps) {
+  const accessibleText = alt ?? caption;
   const videoRef = useRef<HTMLVideoElement>(null);
 
   useEffect(() => {
@@ -89,7 +101,7 @@ export function ProjectHero({
   }, [playOn, hoverScope]);
 
   const deferred = playOn === "hover";
-  const hasVideo = mp4 || webm;
+  const hasVideo = mp4 || webm || mov;
 
   return (
     <figure
@@ -106,16 +118,17 @@ export function ProjectHero({
           loop
           playsInline
           preload={deferred ? "none" : "metadata"}
-          aria-label={caption}
+          aria-label={accessibleText}
         >
           {webm ? <source src={webm} type="video/webm" /> : null}
           {mp4 ? <source src={mp4} type="video/mp4" /> : null}
+          {mov ? <source src={mov} /> : null}
         </video>
       ) : (
         // eslint-disable-next-line @next/next/no-img-element
         <img
           src={poster}
-          alt={caption || "Project visual"}
+          alt={accessibleText || "Project visual"}
           className="project-hero-video"
         />
       )}

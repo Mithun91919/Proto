@@ -4,6 +4,8 @@ import { FeaturedWorkCard } from "@/components/FeaturedWorkCard";
 import { HeroPortrait } from "@/components/HeroPortrait";
 import { Reveal } from "@/components/Reveal";
 import { SectionAnchor } from "@/components/SectionAnchor";
+import { ProofStrip } from "@/components/design-system/ProofStrip";
+import { ScopeProgression } from "@/components/design-system/ScopeProgression";
 import { getFeaturedProjects } from "@/content/projects";
 
 export default function HomePage() {
@@ -12,12 +14,12 @@ export default function HomePage() {
   return (
     <>
       <section className="hero-stage">
-        <div className="relative z-[1] mx-auto grid w-full max-w-[70rem] gap-12 px-5 pb-16 pt-14 md:grid-cols-[1fr_24rem] md:items-center md:gap-16 md:px-8 md:pb-24 md:pt-20">
+        <div className="relative z-[1] mx-auto grid w-full max-w-[80rem] gap-12 px-5 pb-16 pt-14 md:grid-cols-[1fr_24rem] md:items-center md:gap-16 md:px-8 md:pb-24 md:pt-20">
           <div className="hero-in">
             <h1 className="display-title display-name mt-6 text-[var(--ink)]">
               Mithun Raju.
               <span className="display-name-sub mt-3 block text-[var(--ink-soft)] md:mt-4">
-                Product designer turning complexity into connected products.
+                Product designer turning complexity into <span className="text-[var(--accent-deep)]">connected products</span>.
               </span>
             </h1>
             <p className="lede mt-8">
@@ -44,7 +46,7 @@ export default function HomePage() {
 
       <section
         id="work"
-        className="mx-auto w-full max-w-[70rem] px-5 py-16 md:px-8 md:py-24"
+        className="mx-auto w-full max-w-[80rem] px-5 py-16 md:px-8 md:py-24"
       >
         <Reveal>
           <h2 className="display-title display-section text-[var(--ink)]">
@@ -83,8 +85,20 @@ export default function HomePage() {
             <p className="body-text mt-4 max-w-[60ch]">
               I co-led the redesign of the information architecture, navigation, and landing experience for a global operations platform with 139 modules.
             </p>
-            <p className="eyebrow mt-6">Nearly 1M monthly unique visitors · 139 modules · 62% less time spent on the landing page</p>
-            <Link href="/work/supply-chain-operations" className="button button-secondary mt-6">
+          </Reveal>
+
+          <Reveal delay={80} className="ds-scope mt-8">
+            <ProofStrip
+              items={[
+                { value: "1M+", label: "monthly unique visitors", glyph: "field" },
+                { value: "139", label: "modules", glyph: "modules" },
+                { value: "-62%", label: "time on the landing page", glyph: "drop" },
+              ]}
+            />
+          </Reveal>
+
+          <Reveal delay={100}>
+            <Link href="/work/supply-chain-operations" className="button button-secondary mt-8">
               View case study →
             </Link>
           </Reveal>
@@ -106,7 +120,7 @@ export default function HomePage() {
         id="approach"
         className="border-y border-[var(--line)] bg-[color-mix(in_oklab,var(--paper)_82%,var(--cyan-50))]"
       >
-        <div className="mx-auto w-full max-w-[70rem] px-5 py-20 md:px-8 md:py-28">
+        <div className="mx-auto w-full max-w-[80rem] px-5 py-20 md:px-8 md:py-28">
           <Reveal>
             <SectionAnchor
               eyebrow="How I work"
@@ -127,10 +141,10 @@ export default function HomePage() {
               </p>
             </Reveal>
 
-            <Reveal delay={140}>
-              <p className="display-title display-sub mt-8 max-w-[46ch] text-[var(--ink)]">
-                Interface → Product → Workflow → System
-              </p>
+            <Reveal delay={140} className="ds-scope">
+              <div className="mt-9">
+                <ScopeProgression />
+              </div>
             </Reveal>
 
             <Reveal delay={180}>
@@ -144,7 +158,7 @@ export default function HomePage() {
 
 
       <section id="contact" className="border-t border-[var(--line)]">
-        <div className="mx-auto grid w-full max-w-[70rem] gap-12 px-5 py-20 md:grid-cols-[1fr_30rem] md:items-stretch md:gap-14 md:px-8 md:py-28">
+        <div className="mx-auto grid w-full max-w-[80rem] gap-12 px-5 py-20 md:grid-cols-[1fr_30rem] md:items-stretch md:gap-14 md:px-8 md:py-28">
           <Reveal>
             <SectionAnchor
               eyebrow="Say Hi"

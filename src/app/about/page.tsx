@@ -11,7 +11,7 @@ export const metadata: Metadata = {
 
 export default function AboutPage() {
   return (
-    <div className="mx-auto w-full max-w-[70rem] px-5 pb-16 pt-6 md:px-8 md:pb-24 md:pt-10">
+    <div className="mx-auto w-full max-w-[80rem] px-5 pb-16 pt-6 md:px-8 md:pb-24 md:pt-10">
       {/* Hero Section */}
       <div className="page-hero hero-in">
         <HeroPortrait
@@ -26,11 +26,11 @@ export default function AboutPage() {
         <Reveal>
           <p className="eyebrow">About</p>
           <h1 className="display-title display-hero mt-4 max-w-[36ch] text-[var(--ink)]">
-            I design products by understanding the systems behind them.
+            I design products by understanding <span className="text-[var(--accent-deep)]">the systems behind them</span>.
           </h1>
           <div className="mt-10 max-w-[60ch]">
             <p className="text-lg leading-8 text-[var(--ink-soft)]">
-              I'm Mithun, a product designer based in Bengaluru.
+              I&apos;m Mithun, a product designer based in Bengaluru.
             </p>
             <p className="mt-4 text-lg leading-8 text-[var(--ink-soft)]">
               I started my career in visual and interaction design, then moved through consumer products, commerce, and enterprise platforms as the problems I worked on became larger and more interconnected.
@@ -222,7 +222,7 @@ export default function AboutPage() {
           <div className="flex-1 space-y-6 text-[1.05rem] leading-8 text-[var(--ink-soft)]">
             <Reveal delay={120}>
               <p>
-                A lot of the problems I work on don't begin with a clean product brief. They often start with fragmented workflows, technical constraints, disconnected products, or information that people can see but don't know how to act on.
+                A lot of the problems I work on don&apos;t begin with a clean product brief. They often start with fragmented workflows, technical constraints, disconnected products, or information that people can see but don&apos;t know how to act on.
               </p>
             </Reveal>
 
@@ -266,7 +266,7 @@ export default function AboutPage() {
                 Understand before simplifying.
               </h3>
               <p className="mt-3 text-[0.9rem] leading-7 text-[var(--ink-soft)]">
-                Complexity isn't always something to remove. First, I want to understand why it exists and which parts actually matter.
+                Complexity isn&apos;t always something to remove. First, I want to understand why it exists and which parts actually matter.
               </p>
             </div>
           </Reveal>

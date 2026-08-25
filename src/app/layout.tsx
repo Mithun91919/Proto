@@ -72,9 +72,14 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         className="site-shell font-[family-name:var(--font-sans)]"
         suppressHydrationWarning
       >
+        <a href="#main-content" className="skip-link">
+          Skip to content
+        </a>
         <DotGridBackground />
         <SiteHeader />
-        <main className="flex-1">{children}</main>
+        <main id="main-content" className="flex-1">
+          {children}
+        </main>
         <SiteFooter />
       </body>
     </html>

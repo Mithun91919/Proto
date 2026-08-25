@@ -29,7 +29,7 @@ export function SiteHeader() {
           : "border-transparent bg-[color-mix(in_oklab,var(--paper)_40%,transparent)] backdrop-blur-xl"
       }`}
     >
-      <div className="mx-auto flex w-full max-w-[70rem] items-center justify-between gap-4 px-5 py-4 md:gap-6 md:px-8">
+      <div className="mx-auto flex w-full max-w-[80rem] items-center justify-between gap-4 px-5 py-4 md:gap-6 md:px-8">
         <Link
           href="/"
           className="display-title group flex items-center gap-2 text-[1.15rem] text-[var(--ink)]"

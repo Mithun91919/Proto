@@ -27,10 +27,6 @@ const EXIT_STAGGER_MS = 2800;
 const HOLD_MS = 4000;
 const HOVER_SPEED = 0.06;
 
-const ENTRY_MS = FALL_MS + ENTRY_STAGGER_MS;
-const EXIT_MS = FALL_MS + EXIT_STAGGER_MS;
-const CYCLE_MS = ENTRY_MS + HOLD_MS + EXIT_MS;
-
 export type DotBoardProps = {
   className?: string;
   /** Width / height of the rendered board. */
@@ -56,6 +52,8 @@ export type DotBoardProps = {
   /** Decorative instances are hidden from assistive tech and not focusable. */
   decorative?: boolean;
   label?: string;
+  /** Multiplies the fall/stagger/hold pace. 2 runs the whole cycle twice as fast. */
+  speed?: number;
 };
 
 type Dot = {
@@ -94,6 +92,7 @@ export function DotBoard({
   hoverScope,
   decorative = false,
   label,
+  speed = 1,
 }: DotBoardProps) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
@@ -112,6 +111,14 @@ export function DotBoard({
       window.matchMedia("(hover: hover)").matches;
 
     const ink = readToken(canvas, "--portrait-ink", "#0e7490");
+
+    const fallMs = FALL_MS / speed;
+    const entryStaggerMs = ENTRY_STAGGER_MS / speed;
+    const exitStaggerMs = EXIT_STAGGER_MS / speed;
+    const holdMs = HOLD_MS / speed;
+    const entryMs = fallMs + entryStaggerMs;
+    const exitMs = fallMs + exitStaggerMs;
+    const cycleMs = entryMs + holdMs + exitMs;
 
     let dots: Dot[] = [];
     let frame: number | null = null;
@@ -291,9 +298,9 @@ export function DotBoard({
             radius,
             entryFrom: -30 - Math.random() * 140,
             // Lowest rows settle first so the image stacks up from the floor.
-            entryDelay: (1 - rowRatio) * ENTRY_STAGGER_MS,
+            entryDelay: (1 - rowRatio) * entryStaggerMs,
             // Drains from the bottom up, like the floor opening.
-            exitDelay: (1 - rowRatio) * EXIT_STAGGER_MS,
+            exitDelay: (1 - rowRatio) * exitStaggerMs,
           });
         }
       }
@@ -302,7 +309,7 @@ export function DotBoard({
     const draw = (now: number) => {
       if (!cycleStart) cycleStart = now;
       const elapsed = now - cycleStart;
-      const t = reducedMotion ? ENTRY_MS : elapsed % CYCLE_MS;
+      const t = reducedMotion ? entryMs : elapsed % cycleMs;
 
       ctx.clearRect(0, 0, width, height);
 
@@ -313,14 +320,14 @@ export function DotBoard({
           let y = dot.y;
           let alpha = 1;
 
-          if (t < ENTRY_MS) {
-            const progress = clamp01((t - dot.entryDelay) / FALL_MS);
+          if (t < entryMs) {
+            const progress = clamp01((t - dot.entryDelay) / fallMs);
             if (progress <= 0) continue;
             y = dot.entryFrom + (dot.y - dot.entryFrom) * easeOutCubic(progress);
             alpha = Math.min(1, progress * 2.5);
-          } else if (t >= ENTRY_MS + HOLD_MS) {
-            const exitT = t - (ENTRY_MS + HOLD_MS);
-            const progress = clamp01((exitT - dot.exitDelay) / FALL_MS);
+          } else if (t >= entryMs + holdMs) {
+            const exitT = t - (entryMs + holdMs);
+            const progress = clamp01((exitT - dot.exitDelay) / fallMs);
             y = dot.y + (height + 40 - dot.y) * easeInCubic(progress);
             alpha = 1 - progress;
           }
@@ -426,7 +433,18 @@ export function DotBoard({
       window.removeEventListener("resize", onResize);
       image.onload = null;
     };
-  }, [aspect, pitch, src, zoom, focusY, text, revealOnHover, maxPhotoAlpha, hoverScope]);
+  }, [
+    aspect,
+    pitch,
+    src,
+    zoom,
+    focusY,
+    text,
+    revealOnHover,
+    maxPhotoAlpha,
+    hoverScope,
+    speed,
+  ]);
 
   const interactive = Boolean(src) && revealOnHover && !text && !decorative;
 

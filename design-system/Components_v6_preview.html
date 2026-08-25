@@ -1,0 +1,1663 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script>
+class DCLogic {}
+window.DCLogic = DCLogic;
+
+function getPath(scope, expr) {
+  const parts = expr.trim().split('.');
+  let cur = scope;
+  for (const p of parts) {
+    if (cur == null) return '';
+    cur = cur[p];
+  }
+  return cur;
+}
+
+function interp(str, scope) {
+  if (typeof str !== 'string') return str;
+  return str.replace(/\{\{\s*([^}]+?)\s*\}\}/g, (_, expr) => {
+    const v = getPath(scope, expr);
+    return v == null ? '' : String(v);
+  });
+}
+
+function renderNode(node, scope) {
+  if (node.nodeType === Node.TEXT_NODE) {
+    node.textContent = interp(node.textContent, scope);
+    return;
+  }
+  if (node.nodeType !== Node.ELEMENT_NODE) return;
+
+  const tag = node.tagName.toLowerCase();
+  if (tag === 'sc-for') {
+    const listExpr = (node.getAttribute('list') || '').replace(/^\{\{|\}\}$/g, '').trim();
+    const asName = node.getAttribute('as') || 'item';
+    const list = getPath(scope, listExpr) || [];
+    const parent = node.parentNode;
+    const template = Array.from(node.childNodes).map(n => n.cloneNode(true));
+    for (const item of list) {
+      const childScope = Object.create(scope);
+      childScope[asName] = item;
+      for (const t of template) {
+        const clone = t.cloneNode(true);
+        parent.insertBefore(clone, node);
+        renderNode(clone, childScope);
+      }
+    }
+    parent.removeChild(node);
+    return;
+  }
+
+  if (tag === 'sc-if') {
+    const valExpr = (node.getAttribute('value') || '').replace(/^\{\{|\}\}$/g, '').trim();
+    const value = !!getPath(scope, valExpr);
+    const expectedRaw = node.getAttribute('hint-placeholder-val');
+    const expected = expectedRaw == null ? true : expectedRaw !== 'false';
+    const parent = node.parentNode;
+    if (value === expected) {
+      const children = Array.from(node.childNodes).map(n => n.cloneNode(true));
+      for (const ch of children) {
+        parent.insertBefore(ch, node);
+        renderNode(ch, scope);
+      }
+    }
+    parent.removeChild(node);
+    return;
+  }
+
+  for (const attr of Array.from(node.attributes)) {
+    if (attr.name === 'style-hover') continue;
+    const newVal = interp(attr.value, scope);
+    if (newVal !== attr.value) node.setAttribute(attr.name, newVal);
+  }
+  for (const child of Array.from(node.childNodes)) renderNode(child, scope);
+}
+
+window.addEventListener('DOMContentLoaded', () => {
+  const logic = document.querySelector('script[type="text/x-dc"]');
+  if (!logic) return;
+  try {
+    // The uploaded component guide declares class Component extends DCLogic.
+    // Re-wrap to expose the class value without changing the source file.
+    const src = logic.textContent.replace(/class\s+Component\s+extends\s+DCLogic\s*\{/, 'return class Component extends DCLogic {');
+    const ComponentClass = new Function('DCLogic', src)(DCLogic);
+    const vals = new ComponentClass().renderVals();
+    const root = document.querySelector('x-dc');
+    if (root) renderNode(root, vals);
+  } catch (e) {
+    console.error(e);
+  }
+});
+
+</script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<style>
+  body { margin: 0; background: #F7FBFC; }
+  * { box-sizing: border-box; }
+  a { color: #0891B2; text-decoration: none; }
+  a:hover { color: #155E75; }
+  ::selection { background: #CFFAFE; }
+
+  :root {
+    --glass-fill: rgba(255,255,255,.58);
+    --glass-fill-soft: rgba(255,255,255,.42);
+    --glass-fill-lift: rgba(255,255,255,.72);
+    --glass-border: rgba(255,255,255,.78);
+    --glass-edge: rgba(21,94,117,.12);
+    --glass-shadow: 0 18px 46px rgba(8,51,68,.09), inset 0 1px 0 rgba(255,255,255,.78);
+  }
+  .cg-glass,
+  .cg-glass-soft,
+  .cg-glass-lift {
+    border:1px solid var(--glass-border) !important;
+    -webkit-backdrop-filter:blur(18px) saturate(135%);
+    backdrop-filter:blur(18px) saturate(135%);
+    box-shadow:var(--glass-shadow);
+  }
+  .cg-glass {
+    background:linear-gradient(135deg,rgba(255,255,255,.68),rgba(247,251,252,.48)) !important;
+    box-shadow:0 16px 40px rgba(8,51,68,.08),inset 0 1px 0 rgba(255,255,255,.84);
+  }
+  .cg-glass-soft {
+    background:linear-gradient(135deg,rgba(255,255,255,.52),rgba(247,251,252,.34)) !important;
+    -webkit-backdrop-filter:blur(12px) saturate(125%);
+    backdrop-filter:blur(12px) saturate(125%);
+    box-shadow:0 10px 28px rgba(8,51,68,.055),inset 0 1px 0 rgba(255,255,255,.72);
+  }
+  .cg-glass-lift {
+    background:linear-gradient(135deg,rgba(255,255,255,.78),rgba(247,251,252,.56)) !important;
+    box-shadow:0 22px 54px rgba(8,51,68,.11),inset 0 1px 0 rgba(255,255,255,.9);
+  }
+  .cg-solid-media {
+    background:#fff !important;
+    border:1px solid rgba(21,94,117,.14) !important;
+    box-shadow:0 14px 34px rgba(8,51,68,.07);
+  }
+  .cg-surface-note { font-size:13.5px; line-height:1.6; color:#3D5660; margin:9px 0 0; }
+  .cg-surface-use { font-family:'IBM Plex Mono',monospace; font-size:9.5px; letter-spacing:.09em; text-transform:uppercase; color:#0891B2; margin:0; }
+
+  /* Divider hierarchy: dots mark the boundary; they are no longer the entire boundary. */
+  .cg-rule {
+    position:relative;
+    background-image:none !important;
+  }
+  .cg-rule::before {
+    content:"";
+    position:absolute;
+    left:30px;
+    right:0;
+    bottom:0;
+    height:1px;
+    background:linear-gradient(90deg,rgba(21,94,117,.14),rgba(21,94,117,.055) 72%,transparent 100%);
+    pointer-events:none;
+  }
+  .cg-rule::after {
+    content:"";
+    position:absolute;
+    left:0;
+    bottom:-2px;
+    width:24px;
+    height:5px;
+    background-image:radial-gradient(circle,#5E8792 1.35px,transparent 1.5px);
+    background-size:8px 5px;
+    background-repeat:repeat-x;
+    opacity:.58;
+    pointer-events:none;
+  }
+  .cg-rule-top::before { top:0; bottom:auto; }
+  .cg-rule-top::after { top:-2px; bottom:auto; }
+  .cg-section-rule {
+    position:relative;
+    background-image:none !important;
+  }
+  .cg-section-rule::before {
+    content:"";
+    position:absolute;
+    left:54px;
+    right:0;
+    bottom:0;
+    height:1px;
+    background:linear-gradient(90deg,rgba(8,145,178,.26),rgba(21,94,117,.08) 62%,transparent 100%);
+  }
+  .cg-section-rule::after {
+    content:"";
+    position:absolute;
+    left:0;
+    bottom:-2px;
+    width:42px;
+    height:5px;
+    background-image:radial-gradient(circle,#0891B2 1.55px,transparent 1.7px);
+    background-size:9px 5px;
+    background-repeat:repeat-x;
+    opacity:.86;
+  }
+  .cg-divider-demo { position:relative; height:22px; margin-top:18px; }
+  .cg-divider-major::before,
+  .cg-divider-minor::before { content:""; position:absolute; height:1px; top:10px; }
+  .cg-divider-major::before { left:54px; right:0; background:linear-gradient(90deg,rgba(8,145,178,.28),rgba(21,94,117,.06) 75%,transparent); }
+  .cg-divider-major::after { content:""; position:absolute; left:0; top:8px; width:42px; height:5px; background-image:radial-gradient(circle,#0891B2 1.55px,transparent 1.7px); background-size:9px 5px; }
+  .cg-divider-minor::before { left:30px; right:38%; background:linear-gradient(90deg,rgba(21,94,117,.16),transparent); }
+  .cg-divider-minor::after { content:""; position:absolute; left:0; top:8px; width:24px; height:5px; background-image:radial-gradient(circle,#5E8792 1.35px,transparent 1.5px); background-size:8px 5px; }
+
+
+  .cg-grid-2 { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:28px; }
+  .cg-grid-3 { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:20px; }
+  .cg-media-pair { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:24px; }
+  .cg-mobile-seq { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:18px; align-items:start; }
+  .cg-annotated { display:grid; grid-template-columns:minmax(0,1.45fr) minmax(260px,.75fr); gap:38px; align-items:start; }
+  .cg-decision { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:20px; }
+  .cg-flow { display:grid; grid-template-columns:repeat(7,minmax(0,1fr)); gap:12px; align-items:center; }
+  .cg-proof-chain { display:grid; grid-template-columns:1fr auto 1fr auto 1fr; gap:18px; align-items:center; }
+  .cg-recipe { display:grid; grid-template-columns:150px 1fr; gap:28px; align-items:start; }
+  .cg-recipe-flow { display:flex; flex-wrap:wrap; gap:8px; align-items:center; }
+  .cg-chip { border:1px solid rgba(21,94,117,.16); background:#fff; border-radius:999px; padding:8px 11px; font-family:'IBM Plex Mono',monospace; font-size:9.5px; letter-spacing:.08em; text-transform:uppercase; color:#3D5660; }
+  .cg-arrow { font-family:Sora,sans-serif; color:#0891B2; font-size:18px; text-align:center; }
+  .cg-frame { border:1px solid rgba(21,94,117,.16); border-radius:14px; overflow:hidden; background:#fff; box-shadow:0 18px 44px rgba(8,51,68,.09); }
+  .cg-framebar { display:flex; align-items:center; gap:10px; padding:10px 12px; border-bottom:1px solid rgba(21,94,117,.12); background:#F1F7F9; }
+  .cg-framebody { min-height:240px; background:linear-gradient(135deg,#F7FBFC,#EAF3F5); position:relative; }
+  /* cg-rule behavior is defined in the divider hierarchy above. */
+  .cg-phone { border:1px solid rgba(21,94,117,.18); border-radius:22px; padding:7px; background:#fff; box-shadow:0 16px 36px rgba(8,51,68,.08); }
+  .cg-phone-screen { aspect-ratio:9/18; border-radius:16px; background:linear-gradient(180deg,#F1F7F9,#DCECEF); padding:14px 10px; overflow:hidden; }
+  .cg-callout-dot { position:absolute; width:27px; height:27px; border-radius:50%; display:flex; align-items:center; justify-content:center; background:#0891B2; color:#fff; font-family:'IBM Plex Mono',monospace; font-size:10px; box-shadow:0 0 0 5px rgba(8,145,178,.15); }
+  .cg-anchor-link { color:inherit; }
+  .cg-anchor-link:hover { color:inherit; }
+  .cg-hover-lift { transition:transform .18s ease, box-shadow .18s ease, border-color .18s ease; }
+  .cg-hover-lift:hover { transform:translateY(-2px); box-shadow:0 18px 42px rgba(8,51,68,.12); border-color:rgba(8,145,178,.34); }
+
+  .cg-dot-rule-grid { display:grid; grid-template-columns:repeat(5,minmax(0,1fr)); gap:12px; }
+  .cg-dot-meaning { min-height:142px; padding:22px; border-radius:12px; background:linear-gradient(135deg,rgba(255,255,255,.56),rgba(247,251,252,.34)); border:1px solid rgba(255,255,255,.76); -webkit-backdrop-filter:blur(12px) saturate(125%); backdrop-filter:blur(12px) saturate(125%); box-shadow:0 10px 28px rgba(8,51,68,.055),inset 0 1px 0 rgba(255,255,255,.72); }
+  .cg-fingerprint-grid { display:grid; grid-template-columns:repeat(5,minmax(0,1fr)); gap:14px; }
+  .cg-fingerprint-card { padding:18px; border:1px solid rgba(255,255,255,.82); border-radius:14px; background:linear-gradient(135deg,rgba(255,255,255,.76),rgba(247,251,252,.5)); -webkit-backdrop-filter:blur(18px) saturate(135%); backdrop-filter:blur(18px) saturate(135%); box-shadow:0 16px 40px rgba(8,51,68,.075),inset 0 1px 0 rgba(255,255,255,.86); overflow:hidden; }
+  .cg-fp-stage { position:relative; height:116px; margin-bottom:14px; border-radius:8px; background:#F7FBFC; overflow:hidden; }
+  .cg-fp-state { position:absolute; inset:0; display:flex; align-items:center; justify-content:center; transition:opacity .38s ease, transform .38s ease; }
+  .cg-fp-after { opacity:0; transform:scale(1.035); }
+  .cg-fingerprint-card:hover .cg-fp-before { opacity:0; transform:scale(.965); }
+  .cg-fingerprint-card:hover .cg-fp-after { opacity:1; transform:scale(1); }
+  .cg-fp-dot { width:6px; height:6px; border-radius:50%; background:#0891B2; display:block; }
+  .cg-fp-dot.muted { background:#9DBAC2; }
+  .cg-fp-dot.soft { background:#C3DDE3; }
+  .cg-dot-annotation-layout { display:grid; grid-template-columns:minmax(0,1.35fr) minmax(260px,.75fr); gap:36px; align-items:start; }
+  .cg-dot-marker { position:absolute; z-index:3; transform:translate(-50%,-50%); }
+  .cg-dot-marker-fill { width:18px; height:18px; border-radius:50%; background:#0891B2; box-shadow:0 0 0 6px rgba(8,145,178,.14); }
+  .cg-dot-marker-ring { width:20px; height:20px; border-radius:50%; border:2px solid #0891B2; background:#fff; box-shadow:0 0 0 5px rgba(8,145,178,.1); }
+  .cg-dot-marker-system { display:flex; gap:3px; padding:7px 8px; border-radius:999px; background:#0C1F26; box-shadow:0 0 0 5px rgba(12,31,38,.08); }
+  .cg-dot-marker-system span { width:5px; height:5px; border-radius:50%; background:#5EEAD4; display:block; }
+  .cg-dot-reveal { position:relative; min-height:390px; overflow:hidden; border:1px solid rgba(21,94,117,.16); border-radius:14px; background:#fff; box-shadow:0 18px 44px rgba(8,51,68,.09); }
+  .cg-dot-reveal-ui { position:absolute; inset:0; padding:28px; background:linear-gradient(135deg,#F7FBFC,#EAF3F5); }
+  .cg-dot-curtain { position:absolute; z-index:4; left:0; top:0; bottom:0; width:62%; background-color:#0C1F26; background-image:radial-gradient(rgba(94,234,212,.58) 2px,transparent 2px); background-size:14px 14px; transition:width .62s cubic-bezier(.2,.8,.2,1), opacity .62s ease; box-shadow:18px 0 36px rgba(12,31,38,.12); }
+  .cg-dot-reveal:hover .cg-dot-curtain { width:8%; opacity:.28; }
+  .cg-dot-curtain-label { position:absolute; left:22px; bottom:20px; z-index:5; font-family:'IBM Plex Mono',monospace; font-size:9.5px; letter-spacing:.1em; text-transform:uppercase; color:#B9DDE0; transition:opacity .22s ease; }
+  .cg-dot-reveal:hover .cg-dot-curtain-label { opacity:0; }
+
+
+
+
+  /* v6: clear responsibilities — typography tells, colour directs, dots explain, glass groups. */
+  :root {
+    --ink:#0C171C;
+    --ink-soft:#243942;
+    --accent:#0891B2;
+    --accent-deep:#155E75;
+    --muted:#7C949C;
+    --dot-muted:#9DBAC2;
+    --dot-quiet:#C3DDE3;
+    --mint:#5EEAD4;
+  }
+  .cg-accent-text { color:var(--accent); }
+  .cg-deep-text { color:var(--accent-deep); }
+  .cg-muted-text { color:#6F8790; }
+  .cg-principle-grid { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:16px; }
+  .cg-role-card { min-height:232px; padding:28px; border-radius:14px; position:relative; overflow:hidden; }
+  .cg-role-icon { width:44px; height:44px; border-radius:12px; display:flex; align-items:center; justify-content:center; margin-bottom:26px; background:rgba(8,145,178,.08); border:1px solid rgba(8,145,178,.12); }
+  .cg-role-icon.dots { background-image:radial-gradient(circle,#0891B2 1.8px,transparent 2px); background-size:9px 9px; background-position:center; }
+  .cg-role-icon.colour { background:radial-gradient(circle at 40% 35%,#5EEAD4 0 18%,#0891B2 19% 48%,#D8F3F5 49% 100%); }
+  .cg-role-icon.glass { background:linear-gradient(135deg,rgba(255,255,255,.78),rgba(207,250,254,.2)); box-shadow:0 10px 22px rgba(8,51,68,.08), inset 0 1px 0 rgba(255,255,255,.9); backdrop-filter:blur(12px); }
+  .cg-role-icon.type { font-family:Sora,sans-serif; font-size:24px; font-weight:600; color:#155E75; }
+  .cg-role-formula { display:flex; align-items:center; justify-content:center; gap:12px; flex-wrap:wrap; padding:26px; border-radius:14px; background:#0C1F26; color:#EAF3F5; }
+  .cg-formula-pill { font-family:'IBM Plex Mono',monospace; font-size:10px; letter-spacing:.09em; text-transform:uppercase; border:1px solid rgba(234,243,245,.16); border-radius:999px; padding:9px 12px; color:#B6D3DA; }
+  .cg-formula-plus { color:#5EEAD4; font-family:Sora,sans-serif; }
+
+  .cg-environment-grid { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:16px; }
+  .cg-env { min-height:220px; border-radius:14px; padding:26px; position:relative; overflow:hidden; }
+  .cg-env-paper { background:#F7FBFC; border:1px solid rgba(21,94,117,.12); }
+  .cg-env-tint { background:linear-gradient(135deg,#EFF9FA,#E6F4F6); border:1px solid rgba(8,145,178,.12); }
+  .cg-env-dark { background:#0C1F26; color:#EAF3F5; border:1px solid rgba(234,243,245,.1); }
+  .cg-ambient-wrap { position:relative; padding:34px; isolation:isolate; }
+  .cg-ambient-wrap::before { content:""; position:absolute; width:230px; height:230px; right:8%; top:4%; background:radial-gradient(circle,rgba(6,182,212,.18),rgba(6,182,212,.06) 45%,transparent 70%); filter:blur(16px); z-index:-1; }
+  .cg-a11y-grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:14px; }
+  .cg-a11y-row { padding:20px 22px; border-radius:12px; }
+
+  .cg-colour-title-grid { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:16px; }
+  .cg-colour-title { min-height:245px; padding:30px; border-radius:14px; }
+  .cg-title-example { font-family:Sora,sans-serif; font-weight:500; font-size:29px; line-height:1.18; letter-spacing:-.027em; margin:26px 0 0; }
+  .cg-title-rule { padding:22px 24px; border-left:2px solid #0891B2; background:rgba(255,255,255,.28); }
+  .cg-colour-semantic { display:grid; grid-template-columns:repeat(5,minmax(0,1fr)); gap:12px; }
+  .cg-colour-role { padding:22px; border-radius:12px; min-height:156px; }
+  .cg-colour-dot { width:22px; height:22px; border-radius:50%; margin-bottom:22px; }
+
+  .cg-signature-grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:18px; }
+  .cg-reframe-block { border-radius:14px; background:#0C1F26; color:#EAF3F5; padding:48px; position:relative; overflow:hidden; }
+  .cg-reframe-block::before { content:""; position:absolute; inset:0; background-image:radial-gradient(rgba(94,234,212,.1) 1.1px,transparent 1.2px); background-size:22px 22px; opacity:.55; }
+  .cg-reframe-block > * { position:relative; }
+  .cg-beforeafter-system { display:grid; grid-template-columns:1fr auto 1fr; gap:20px; align-items:stretch; }
+  .cg-state-card { padding:28px; border-radius:14px; }
+  .cg-state-list { display:flex; flex-direction:column; gap:9px; margin-top:20px; }
+  .cg-state-line { height:8px; border-radius:999px; background:#CFE1E5; }
+  .cg-decision-record { display:grid; grid-template-columns:1fr 1fr; gap:14px; }
+  .cg-decision-option { padding:26px; border-radius:14px; position:relative; }
+  .cg-decision-option.chosen { border-color:rgba(8,145,178,.28) !important; }
+  .cg-decision-badge { display:inline-flex; align-items:center; gap:7px; font-family:'IBM Plex Mono',monospace; font-size:9.5px; letter-spacing:.09em; text-transform:uppercase; color:#155E75; }
+  .cg-decision-badge::before { content:""; width:8px; height:8px; border-radius:50%; background:#0891B2; box-shadow:0 0 0 4px rgba(8,145,178,.1); }
+  .cg-reflection { padding:36px; border-radius:14px; }
+
+  .cg-privacy-grid { display:grid; grid-template-columns:1.25fr .75fr; gap:24px; align-items:stretch; }
+  .cg-redacted-ui { min-height:300px; border-radius:14px; background:#fff; border:1px solid rgba(21,94,117,.14); padding:24px; position:relative; overflow:hidden; }
+  .cg-redact-dots { background-image:radial-gradient(circle,#9DBAC2 1.5px,transparent 1.7px); background-size:9px 9px; border-radius:6px; }
+  .cg-privacy-label { display:inline-flex; font-family:'IBM Plex Mono',monospace; font-size:9.5px; letter-spacing:.08em; text-transform:uppercase; color:#155E75; border:1px solid rgba(8,145,178,.18); border-radius:999px; padding:8px 10px; background:rgba(255,255,255,.64); }
+
+  .cg-recipe-stack { display:flex; flex-direction:column; }
+  .cg-recipe-v6 { display:grid; grid-template-columns:150px 1fr; gap:28px; align-items:center; padding:28px 0; }
+  .cg-recipe-v6 + .cg-recipe-v6 { border-top:1px solid rgba(21,94,117,.09); }
+
+  .cg-interaction-grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:18px; }
+  .cg-hover-demo { min-height:205px; padding:28px; border-radius:14px; transition:transform .18s ease,box-shadow .18s ease,border-color .18s ease; }
+  .cg-hover-demo:hover { transform:translateY(-3px); box-shadow:0 22px 52px rgba(8,51,68,.12); border-color:rgba(8,145,178,.3) !important; }
+  .cg-arrow-demo { display:inline-block; transition:transform .18s ease; }
+  .cg-hover-demo:hover .cg-arrow-demo { transform:translateX(4px); }
+  .cg-scroll-demo { display:grid; grid-template-columns:90px 1fr; gap:28px; align-items:start; }
+  .cg-scroll-rail { padding:22px 18px; border-radius:14px; display:flex; flex-direction:column; align-items:center; gap:14px; }
+  .cg-scroll-node { width:9px; height:9px; border-radius:50%; border:1.5px solid #9DBAC2; background:#F7FBFC; position:relative; }
+  .cg-scroll-node.done { background:#155E75; border-color:#155E75; }
+  .cg-scroll-node.current { width:11px; height:11px; background:#0891B2; border-color:#0891B2; box-shadow:0 0 0 5px rgba(8,145,178,.12); }
+  .cg-motion-grid { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:14px; }
+
+  .cg-antipattern-grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:16px; }
+  .cg-antipattern { padding:26px; border-radius:14px; position:relative; }
+  .cg-dont { font-family:'IBM Plex Mono',monospace; font-size:9.5px; letter-spacing:.1em; text-transform:uppercase; color:#9B4A4A; }
+  .cg-do { font-family:'IBM Plex Mono',monospace; font-size:9.5px; letter-spacing:.1em; text-transform:uppercase; color:#155E75; }
+  .cg-x { width:22px; height:22px; border-radius:50%; background:#FDECEC; color:#B95555; display:flex; align-items:center; justify-content:center; font-family:Sora,sans-serif; font-weight:600; font-size:12px; margin-bottom:18px; }
+
+  @media (max-width: 820px) {
+    .cg-principle-grid, .cg-colour-title-grid, .cg-colour-semantic, .cg-environment-grid, .cg-signature-grid, .cg-interaction-grid, .cg-motion-grid, .cg-antipattern-grid, .cg-a11y-grid, .cg-decision-record, .cg-privacy-grid { grid-template-columns:1fr !important; }
+    .cg-beforeafter-system { grid-template-columns:1fr !important; }
+    .cg-beforeafter-system .cg-arrow { transform:rotate(90deg); align-self:center; }
+    .cg-recipe-v6 { grid-template-columns:1fr !important; gap:12px; }
+    .cg-scroll-demo { grid-template-columns:70px 1fr !important; }
+  }
+
+  @supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+    .cg-glass, .cg-glass-soft, .cg-glass-lift { background:rgba(247,251,252,.92) !important; }
+  }
+  @media (max-width: 820px) {
+    header, section { padding-left:20px !important; padding-right:20px !important; }
+    .cg-grid-2, .cg-grid-3, .cg-media-pair, .cg-annotated, .cg-decision, .cg-recipe, .cg-dot-annotation-layout { grid-template-columns:1fr !important; }
+    .cg-mobile-seq { grid-template-columns:repeat(2,minmax(0,1fr)) !important; }
+    .cg-surface-tokens { grid-template-columns:repeat(2,minmax(0,1fr)) !important; }
+    .cg-dot-rule-grid { grid-template-columns:repeat(2,minmax(0,1fr)) !important; }
+    .cg-fingerprint-grid { grid-template-columns:repeat(2,minmax(0,1fr)) !important; }
+    .cg-proof-chain { grid-template-columns:1fr !important; }
+    .cg-proof-chain .cg-arrow { transform:rotate(90deg); }
+    .cg-flow { grid-template-columns:1fr !important; }
+    .cg-flow .cg-arrow { transform:rotate(90deg); }
+  }
+  @media (max-width: 520px) {
+    .cg-mobile-seq, .cg-dot-rule-grid, .cg-fingerprint-grid, .cg-surface-tokens { grid-template-columns:1fr !important; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .cg-hover-lift { transition:none; }
+    .cg-fp-state, .cg-dot-curtain { transition:none !important; }
+    .cg-hover-lift:hover { transform:none; }
+  }
+
+</style>
+</helmet>
+
+<div style="background:#F7FBFC;background-image:radial-gradient(rgba(21,94,117,0.15) 1.15px, transparent 1.15px);background-size:22px 22px;color:#0C171C;font-family:'Instrument Sans',Helvetica,sans-serif;-webkit-font-smoothing:antialiased;padding-bottom:120px">
+
+  <header style="max-width:1180px;margin:0 auto;padding:72px 40px 0">
+    <div class="cg-section-rule" style="display:flex;flex-wrap:wrap;gap:32px;padding:20px 0;font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:0.14em;text-transform:uppercase;color:#7C949C">
+      <span>Pattern library</span>
+      <span>Cool Lab</span>
+      <span style="margin-left:auto;color:#0891B2">v6</span>
+    </div>
+    <h1 style="font-family:Sora,sans-serif;font-weight:600;font-size:56px;line-height:1.04;letter-spacing:-0.04em;margin:48px 0 0;max-width:18ch">A storytelling system for <span class="cg-accent-text">complex product work</span>.</h1>
+    <p style="font-size:18px;line-height:1.7;color:#243942;max-width:62ch;margin:24px 0 0">Typography tells the story. Colour directs attention. Dots explain the system. Glass creates depth. Everything else exists to make those four roles work together.</p>
+    <div style="display:flex;flex-wrap:wrap;gap:10px;margin:32px 0 0">
+      <sc-for list="{{ index }}" as="i" hint-placeholder-count="6">
+        <a href="{{ i.href }}" style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:0.1em;text-transform:uppercase;color:#3D5660;background:#fff;border:1px solid rgba(21,94,117,0.16);padding:8px 13px;border-radius:6px" style-hover="border-color:rgba(6,182,212,0.55)">{{ i.label }}</a>
+      </sc-for>
+    </div>
+  </header>
+
+  <section id="principles" style="max-width:1180px;margin:0 auto;padding:88px 40px 0">
+    <div class="cg-section-rule" style="display:flex;align-items:baseline;gap:20px;padding-bottom:28px">
+      <span style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.14em;color:#0891B2">A</span>
+      <h2 style="font-family:Sora,sans-serif;font-weight:500;font-size:34px;letter-spacing:-.03em;margin:0">Principles</h2>
+      <span style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:#7C949C;margin-left:auto">One job per visual layer</span>
+    </div>
+    <div class="cg-rule" style="padding:48px 0">
+      <h3 style="font-family:Sora,sans-serif;font-weight:500;font-size:34px;line-height:1.15;letter-spacing:-.03em;margin:0;max-width:25ch">A portfolio system should explain the work before it decorates the page.</h3>
+      <p style="font-size:16px;line-height:1.75;color:#3D5660;max-width:68ch;margin:16px 0 30px">The visual language is deliberately split into four responsibilities. When two layers try to perform the same job, the composition gets noisy.</p>
+      <div class="cg-principle-grid">
+        <div class="cg-glass cg-role-card"><div class="cg-role-icon type">Aa</div><p class="cg-surface-use">Typography</p><h4 style="font-family:Sora,sans-serif;font-size:22px;font-weight:500;margin:11px 0 0">Tells the story</h4><p class="cg-surface-note">Carries the argument, hierarchy, voice, and reading rhythm. It should remain readable without any styling trick.</p></div>
+        <div class="cg-glass cg-role-card"><div class="cg-role-icon colour"></div><p class="cg-surface-use">Colour</p><h4 style="font-family:Sora,sans-serif;font-size:22px;font-weight:500;margin:11px 0 0">Directs attention</h4><p class="cg-surface-note">Highlights the outcome, active idea, link, or selected state. One emphasis per headline.</p></div>
+        <div class="cg-glass cg-role-card"><div class="cg-role-icon dots"></div><p class="cg-surface-use">Dots</p><h4 style="font-family:Sora,sans-serif;font-size:22px;font-weight:500;margin:11px 0 0">Explain the system</h4><p class="cg-surface-note">Show quantity, grouping, connection, state, and change. Never use them simply because the site is dot-themed.</p></div>
+        <div class="cg-glass cg-role-card"><div class="cg-role-icon glass"></div><p class="cg-surface-use">Glass</p><h4 style="font-family:Sora,sans-serif;font-size:22px;font-weight:500;margin:11px 0 0">Creates depth</h4><p class="cg-surface-note">Groups supporting content and interaction. Product interfaces and reading-heavy surfaces stay solid.</p></div>
+      </div>
+      <div class="cg-role-formula" style="margin-top:22px"><span class="cg-formula-pill">Type / story</span><span class="cg-formula-plus">+</span><span class="cg-formula-pill">Colour / focus</span><span class="cg-formula-plus">+</span><span class="cg-formula-pill">Dots / structure</span><span class="cg-formula-plus">+</span><span class="cg-formula-pill">Glass / depth</span><span class="cg-formula-plus">=</span><span style="font-family:Sora,sans-serif;font-size:17px;color:#EAF3F5">clear case study</span></div>
+    </div>
+  </section>
+
+  <section id="foundations" style="max-width:1180px;margin:0 auto;padding:56px 40px 0">
+    <div class="cg-section-rule" style="display:flex;align-items:baseline;gap:20px;padding-bottom:28px;">
+      <span style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:0.14em;color:#0891B2">B</span>
+      <h2 style="font-family:Sora,sans-serif;font-weight:500;font-size:34px;letter-spacing:-0.03em;margin:0">Foundations</h2>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:48px;padding:48px 0">
+      <div>
+        <p style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:0.12em;text-transform:uppercase;color:#7C949C;margin:0 0 20px">B1 &middot; Colour</p>
+        <div style="display:flex;flex-direction:column">
+          <sc-for list="{{ swatches }}" as="s" hint-placeholder-count="7">
+            <div class="cg-rule" style="display:grid;grid-template-columns:44px 1fr 110px;gap:18px;align-items:center;padding:12px 0;">
+              <span style="width:44px;height:28px;border-radius:3px;border:1px solid rgba(21,94,117,0.16);display:block;background:{{ s.hex }}"></span>
+              <span style="font-size:14px">{{ s.name }}</span>
+              <span style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:#7C949C">{{ s.hex }}</span>
+            </div>
+          </sc-for>
+        </div>
+      </div>
+      <div>
+        <p style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:0.12em;text-transform:uppercase;color:#7C949C;margin:0 0 20px">B2 &middot; Type</p>
+        <div style="display:flex;flex-direction:column;gap:22px">
+          <div class="cg-rule" style="padding-bottom:18px;">
+            <p style="font-family:Sora,sans-serif;font-weight:600;font-size:44px;line-height:1.05;letter-spacing:-0.035em;margin:0">Sora 600</p>
+            <p style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;color:#7C949C;margin:8px 0 0">Page titles · 44–76px · -0.035 to -0.045em</p>
+          </div>
+          <div class="cg-rule" style="padding-bottom:18px;">
+            <p style="font-family:Sora,sans-serif;font-weight:500;font-size:30px;letter-spacing:-0.025em;margin:0">Sora 500</p>
+            <p style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;color:#7C949C;margin:8px 0 0">Section + card titles · 22–44px</p>
+          </div>
+          <div class="cg-rule" style="padding-bottom:18px;">
+            <p style="font-size:18px;line-height:1.75;margin:0">Instrument Sans 400 — body copy at 16–18px, 1.75 leading, capped at 62 characters.</p>
+          </div>
+          <div>
+            <p style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:0.14em;text-transform:uppercase;margin:0">IBM Plex Mono — metadata, eyebrows, labels</p>
+            <p style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;color:#7C949C;margin:8px 0 0">10–11px · 0.10–0.16em tracking · uppercase</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    
+
+    <div class="cg-rule" style="padding:48px 0">
+      <p style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:0.12em;text-transform:uppercase;color:#0891B2;margin:0 0 12px">B3 &middot; Surface hierarchy</p>
+      <p style="font-size:15px;line-height:1.7;color:#3D5660;max-width:66ch;margin:0 0 12px">Glass is a depth cue, not the default background. Use it when a card is meant to float above the dot field; keep content that demands precision on a solid surface.</p>
+      <p style="font-family:'IBM Plex Mono',monospace;font-size:10px;line-height:1.7;letter-spacing:.06em;text-transform:uppercase;color:#7C949C;margin:0 0 30px">Rule &middot; never glass on glass &middot; one depth level per composition &middot; product UI stays solid</p>
+      <div class="cg-grid-2">
+        <div class="cg-glass-soft" style="padding:28px;border-radius:14px">
+          <p class="cg-surface-use">Glass / soft</p>
+          <h3 style="font-family:Sora,sans-serif;font-size:21px;font-weight:500;margin:12px 0 0">Supporting context</h3>
+          <p class="cg-surface-note">Use for small facts, secondary evidence, chapter notes, and passive project fingerprints. Low shadow; the page grid should remain visible through it.</p>
+        </div>
+        <div class="cg-glass" style="padding:28px;border-radius:14px">
+          <p class="cg-surface-use">Glass / base</p>
+          <h3 style="font-family:Sora,sans-serif;font-size:21px;font-weight:500;margin:12px 0 0">Evidence and comparison</h3>
+          <p class="cg-surface-note">Default card surface for metrics, decisions, comparison modules, and grouped narrative content. This is the workhorse glass level.</p>
+        </div>
+        <div class="cg-glass-lift cg-hover-lift" style="padding:28px;border-radius:14px">
+          <p class="cg-surface-use">Glass / lift</p>
+          <h3 style="font-family:Sora,sans-serif;font-size:21px;font-weight:500;margin:12px 0 0">Interactive or featured</h3>
+          <p class="cg-surface-note">Reserve for clickable project cards, next-project navigation, and hoverable transformations. Stronger shadow is allowed because interaction creates the extra depth.</p>
+        </div>
+        <div class="cg-solid-media" style="padding:28px;border-radius:14px">
+          <p style="font-family:'IBM Plex Mono',monospace;font-size:9.5px;letter-spacing:.09em;text-transform:uppercase;color:#7C949C;margin:0">Solid / media</p>
+          <h3 style="font-family:Sora,sans-serif;font-size:21px;font-weight:500;margin:12px 0 0">Precision content stays solid</h3>
+          <p class="cg-surface-note">Use for reconstructed interfaces, forms, code, dense tables, and reading-heavy content. Dark anchor blocks also remain solid. Glass here would reduce contrast without adding meaning.</p>
+        </div>
+      </div>
+      <div class="cg-surface-tokens" style="display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:20px">
+        <div style="padding:12px 0"><p class="cg-surface-use" style="color:#7C949C">Fill</p><p style="font-family:Sora,sans-serif;font-size:16px;margin:5px 0 0">42-78%</p></div>
+        <div style="padding:12px 0"><p class="cg-surface-use" style="color:#7C949C">Blur</p><p style="font-family:Sora,sans-serif;font-size:16px;margin:5px 0 0">12-18px</p></div>
+        <div style="padding:12px 0"><p class="cg-surface-use" style="color:#7C949C">Radius</p><p style="font-family:Sora,sans-serif;font-size:16px;margin:5px 0 0">12-14px</p></div>
+        <div style="padding:12px 0"><p class="cg-surface-use" style="color:#7C949C">Fallback</p><p style="font-family:Sora,sans-serif;font-size:16px;margin:5px 0 0">92% paper</p></div>
+      </div>
+    </div>
+
+    <div class="cg-rule" style="padding:48px 0">
+      <p style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:0.12em;text-transform:uppercase;color:#0891B2;margin:0 0 12px">B4 &middot; Divider hierarchy</p>
+      <p style="font-size:15px;line-height:1.7;color:#3D5660;max-width:66ch;margin:0 0 28px">Dots now mark the start of a boundary instead of forming a full dotted fence. This keeps the motif visible without cutting every section into strips.</p>
+      <div class="cg-grid-2">
+        <div class="cg-glass-soft" style="padding:26px;border-radius:14px">
+          <p class="cg-surface-use">Major divider</p>
+          <p class="cg-surface-note">Five accent dots + a fading hairline. Use only between top-level chapters and guide sections.</p>
+          <div class="cg-divider-demo cg-divider-major"></div>
+        </div>
+        <div class="cg-glass-soft" style="padding:26px;border-radius:14px">
+          <p class="cg-surface-use">Minor divider</p>
+          <p class="cg-surface-note">Three muted dots + a short hairline. Use between component examples, evidence rows, or related narrative blocks.</p>
+          <div class="cg-divider-demo cg-divider-minor"></div>
+        </div>
+      </div>
+      <p style="font-size:14px;line-height:1.65;color:#3D5660;margin:20px 0 0;max-width:66ch"><strong style="font-weight:500;color:#0C171C">Do not use a divider</strong> when spacing already makes the relationship clear. Metadata continues to use a single middle dot &middot; rather than a rule.</p>
+    </div>
+
+    <div class="cg-rule" style="padding:48px 0">
+      <p style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:0.12em;text-transform:uppercase;color:#0891B2;margin:0 0 12px">B5 &middot; Layout rhythm</p>
+      <p style="font-size:15px;line-height:1.7;color:#3D5660;max-width:62ch;margin:0 0 28px">The system uses a small set of widths and gaps. Variation comes from composition, not from inventing a new container for every chapter.</p>
+      <div class="cg-grid-3">
+        <div class="cg-glass-soft" style="padding:24px;border-radius:12px"><p style="font-family:Sora,sans-serif;font-size:28px;font-weight:500;color:#155E75;margin:0">1180</p><p style="font-family:'IBM Plex Mono',monospace;font-size:10px;text-transform:uppercase;color:#7C949C;margin:8px 0 0">Maximum page width</p></div>
+        <div class="cg-glass-soft" style="padding:24px;border-radius:12px"><p style="font-family:Sora,sans-serif;font-size:28px;font-weight:500;color:#155E75;margin:0">40 / 20</p><p style="font-family:'IBM Plex Mono',monospace;font-size:10px;text-transform:uppercase;color:#7C949C;margin:8px 0 0">Desktop / mobile gutter</p></div>
+        <div class="cg-glass-soft" style="padding:24px;border-radius:12px"><p style="font-family:Sora,sans-serif;font-size:28px;font-weight:500;color:#155E75;margin:0">48-64</p><p style="font-family:'IBM Plex Mono',monospace;font-size:10px;text-transform:uppercase;color:#7C949C;margin:8px 0 0">Primary composition gap</p></div>
+      </div>
+    </div>
+
+    <div class="cg-rule" style="padding:48px 0">
+      <p style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:0.12em;text-transform:uppercase;color:#0891B2;margin:0 0 12px">B5b &middot; Responsive behaviour</p>
+      <p style="font-size:15px;line-height:1.7;color:#3D5660;max-width:62ch;margin:0 0 28px">Mobile is a change in reading order, not a scaled desktop. Preserve the story sequence even when the composition collapses.</p>
+      <div style="display:flex;flex-direction:column;gap:0">
+        <div class="cg-rule" style="display:grid;grid-template-columns:180px 1fr;gap:34px;padding:20px 0"><p style="font-family:'IBM Plex Mono',monospace;font-size:10px;text-transform:uppercase;color:#7C949C;margin:0">Sticky narrative</p><p style="font-size:15px;line-height:1.65;color:#243942;margin:0">Stacks into title then body. No sticky behaviour below 820px.</p></div>
+        <div class="cg-rule" style="display:grid;grid-template-columns:180px 1fr;gap:34px;padding:20px 0"><p style="font-family:'IBM Plex Mono',monospace;font-size:10px;text-transform:uppercase;color:#7C949C;margin:0">Alternating rows</p><p style="font-size:15px;line-height:1.65;color:#243942;margin:0">Always become text then media, regardless of the desktop left/right order.</p></div>
+        <div class="cg-rule" style="display:grid;grid-template-columns:180px 1fr;gap:34px;padding:20px 0"><p style="font-family:'IBM Plex Mono',monospace;font-size:10px;text-transform:uppercase;color:#7C949C;margin:0">Proof strips</p><p style="font-size:15px;line-height:1.65;color:#243942;margin:0">Stack vertically and keep the metric label attached to its number.</p></div>
+        <div class="cg-rule" style="display:grid;grid-template-columns:180px 1fr;gap:34px;padding:20px 0"><p style="font-family:'IBM Plex Mono',monospace;font-size:10px;text-transform:uppercase;color:#7C949C;margin:0">Dot diagrams</p><p style="font-size:15px;line-height:1.65;color:#243942;margin:0">Simplify the relationship or stack nodes. Never shrink labels below the mono token.</p></div>
+
+        <div class="cg-rule" style="display:grid;grid-template-columns:180px 1fr;gap:34px;padding:20px 0"><p style="font-family:'IBM Plex Mono',monospace;font-size:10px;text-transform:uppercase;color:#7C949C;margin:0">Fingerprints + reveals</p><p style="font-size:15px;line-height:1.65;color:#243942;margin:0">Show the resolved fingerprint by default on touch layouts. Dot-to-interface transitions become a static split or the final interface state.</p></div>
+        <div style="display:grid;grid-template-columns:180px 1fr;gap:34px;padding:20px 0"><p style="font-family:'IBM Plex Mono',monospace;font-size:10px;text-transform:uppercase;color:#7C949C;margin:0">Media sequences</p><p style="font-size:15px;line-height:1.65;color:#243942;margin:0">Four-up becomes two-up, then one-up. Preserve frame numbering.</p></div>
+      </div>
+    </div>
+
+
+
+
+
+    <div class="cg-rule" style="padding:48px 0">
+      <p style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:#0891B2;margin:0 0 12px">B6 &middot; Page environments</p>
+      <p style="font-size:15px;line-height:1.7;color:#3D5660;max-width:66ch;margin:0 0 28px">Change the page ground to create pacing instead of inventing a new card style. Paper is default, tint supports evidence, dark marks a thesis or turning point.</p>
+      <div class="cg-environment-grid"><div class="cg-env cg-env-paper"><p class="cg-surface-use">Paper / default</p><h4 style="font-family:Sora,sans-serif;font-size:22px;font-weight:500;margin:18px 0 0">Narrative and product explanation</h4><p class="cg-surface-note">Most of the case study lives here.</p></div><div class="cg-env cg-env-tint"><p class="cg-surface-use">Tint / support</p><h4 style="font-family:Sora,sans-serif;font-size:22px;font-weight:500;margin:18px 0 0">Evidence, research, comparison</h4><p class="cg-surface-note">A quiet change of plane without adding a dark section.</p></div><div class="cg-env cg-env-dark"><p class="cg-surface-use" style="color:#5EEAD4">Dark / anchor</p><h4 style="font-family:Sora,sans-serif;font-size:22px;font-weight:500;margin:18px 0 0">Reframe, thesis, conclusion</h4><p class="cg-surface-note" style="color:#9BB8C0">Use one or two times per case study.</p></div></div>
+    </div>
+    <div class="cg-rule" style="padding:48px 0">
+      <p style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:#0891B2;margin:0 0 12px">B7 &middot; Ambient glass</p>
+      <p style="font-size:15px;line-height:1.7;color:#3D5660;max-width:66ch;margin:0 0 28px">Glass needs something subtle to refract. A faint ambient cyan field may sit behind a featured card, but it should never become a page-wide gradient.</p>
+      <div class="cg-ambient-wrap"><div class="cg-glass-lift" style="padding:34px;border-radius:14px;max-width:760px;margin:0 auto"><p class="cg-surface-use">Featured glass</p><h4 style="font-family:Sora,sans-serif;font-size:27px;font-weight:500;margin:14px 0 0">Use ambient colour behind project cards, hero evidence, or next-project navigation.</h4><p class="cg-surface-note">The glow stays outside the content layer. Text and UI surfaces keep their normal contrast.</p></div></div>
+    </div>
+    <div style="padding:48px 0">
+      <p style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:#0891B2;margin:0 0 12px">B8 &middot; Accessibility</p>
+      <div class="cg-a11y-grid"><div class="cg-glass-soft cg-a11y-row"><p class="cg-surface-use">Contrast</p><p class="cg-surface-note">Glass, tint, and accent text must preserve readable contrast. Do not use muted colour for essential copy.</p></div><div class="cg-glass-soft cg-a11y-row"><p class="cg-surface-use">State</p><p class="cg-surface-note">Colour cannot be the only state cue. Pair it with fill, shape, label, or position.</p></div><div class="cg-glass-soft cg-a11y-row"><p class="cg-surface-use">Motion</p><p class="cg-surface-note">Respect reduced motion and provide a meaningful static end state.</p></div><div class="cg-glass-soft cg-a11y-row"><p class="cg-surface-use">Diagrams</p><p class="cg-surface-note">Every diagram needs nearby prose or a caption that explains the relationship it represents.</p></div></div>
+    </div>
+  </section>
+
+  <section id="dots" style="max-width:1180px;margin:0 auto;padding:88px 40px 0">
+    <div class="cg-section-rule" style="display:flex;align-items:baseline;gap:20px;padding-bottom:28px;">
+      <span style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:0.14em;color:#0891B2">C</span>
+      <h2 style="font-family:Sora,sans-serif;font-weight:500;font-size:34px;letter-spacing:-0.03em;margin:0">Dot language</h2>
+      <span style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:0.1em;text-transform:uppercase;color:#7C949C;margin-left:auto">Structure, state, and transformation</span>
+    </div>
+
+
+    <div class="cg-rule" style="padding:44px 0 52px">
+      <p style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:0.12em;text-transform:uppercase;color:#0891B2;margin:0 0 12px">C1 &middot; Dot grammar</p>
+      <h3 style="font-family:Sora,sans-serif;font-weight:500;font-size:28px;line-height:1.2;letter-spacing:-0.025em;margin:0;max-width:26ch">Every dot has to say something.</h3>
+      <p style="font-size:15px;line-height:1.7;color:#3D5660;max-width:66ch;margin:14px 0 30px">Use the dot only when it communicates <strong style="color:#0C171C;font-weight:500">quantity, grouping, connection, state, or change</strong>. If it does none of those, it is decoration and should disappear.</p>
+      <div class="cg-dot-rule-grid">
+        <div class="cg-dot-meaning"><div style="display:grid;grid-template-columns:repeat(4,6px);gap:6px;width:max-content;margin-bottom:22px"><span class="cg-fp-dot"></span><span class="cg-fp-dot"></span><span class="cg-fp-dot"></span><span class="cg-fp-dot"></span><span class="cg-fp-dot"></span><span class="cg-fp-dot"></span><span class="cg-fp-dot"></span><span class="cg-fp-dot"></span></div><p style="font-family:'IBM Plex Mono',monospace;font-size:10px;text-transform:uppercase;color:#155E75;margin:0">Quantity</p><p style="font-size:13.5px;line-height:1.55;color:#7C949C;margin:7px 0 0">How much, how many, or how dense.</p></div>
+        <div class="cg-dot-meaning"><div style="display:flex;gap:16px;margin-bottom:22px"><div style="display:grid;grid-template-columns:repeat(2,6px);gap:5px"><span class="cg-fp-dot"></span><span class="cg-fp-dot"></span><span class="cg-fp-dot"></span><span class="cg-fp-dot"></span></div><div style="display:grid;grid-template-columns:repeat(2,6px);gap:5px"><span class="cg-fp-dot muted"></span><span class="cg-fp-dot muted"></span><span class="cg-fp-dot muted"></span><span class="cg-fp-dot muted"></span></div></div><p style="font-family:'IBM Plex Mono',monospace;font-size:10px;text-transform:uppercase;color:#155E75;margin:0">Grouping</p><p style="font-size:13.5px;line-height:1.55;color:#7C949C;margin:7px 0 0">Which things belong together.</p></div>
+        <div class="cg-dot-meaning"><div style="display:flex;align-items:center;gap:5px;margin:8px 0 28px"><span class="cg-fp-dot"></span><span class="cg-fp-dot soft" style="width:4px;height:4px"></span><span class="cg-fp-dot soft" style="width:4px;height:4px"></span><span class="cg-fp-dot soft" style="width:4px;height:4px"></span><span class="cg-fp-dot"></span></div><p style="font-family:'IBM Plex Mono',monospace;font-size:10px;text-transform:uppercase;color:#155E75;margin:0">Connection</p><p style="font-size:13.5px;line-height:1.55;color:#7C949C;margin:7px 0 0">How elements influence or lead to one another.</p></div>
+        <div class="cg-dot-meaning"><div style="display:flex;gap:7px;align-items:center;margin:8px 0 28px"><span class="cg-fp-dot muted"></span><span class="cg-fp-dot" style="width:10px;height:10px;box-shadow:0 0 0 4px rgba(8,145,178,.14)"></span><span class="cg-fp-dot soft"></span></div><p style="font-family:'IBM Plex Mono',monospace;font-size:10px;text-transform:uppercase;color:#155E75;margin:0">State</p><p style="font-size:13.5px;line-height:1.55;color:#7C949C;margin:7px 0 0">Current, upcoming, active, or resolved.</p></div>
+        <div class="cg-dot-meaning"><div style="display:flex;align-items:center;gap:8px;margin:6px 0 25px"><div style="display:grid;grid-template-columns:repeat(2,5px);gap:4px"><span class="cg-fp-dot muted"></span><span class="cg-fp-dot muted"></span><span class="cg-fp-dot muted"></span><span class="cg-fp-dot muted"></span></div><span style="font-size:14px;color:#0891B2">&rarr;</span><div style="display:flex;gap:4px"><span class="cg-fp-dot"></span><span class="cg-fp-dot"></span><span class="cg-fp-dot"></span><span class="cg-fp-dot"></span></div></div><p style="font-family:'IBM Plex Mono',monospace;font-size:10px;text-transform:uppercase;color:#155E75;margin:0">Change</p><p style="font-size:13.5px;line-height:1.55;color:#7C949C;margin:7px 0 0">The before-to-after transformation.</p></div>
+      </div>
+    </div>
+
+    <!-- CONVERGE -->
+    <div class="cg-rule" style="padding:56px 0;">
+      <div style="display:flex;align-items:baseline;gap:16px;flex-wrap:wrap;margin-bottom:36px">
+        <span style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:#0891B2">Converge</span>
+        <h3 style="font-family:Sora,sans-serif;font-weight:500;font-size:22px;letter-spacing:-0.025em;margin:0">Five tools → one platform</h3>
+        <span style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;color:#7C949C;margin-left:auto">Portfolio Management Platform</span>
+      </div>
+      <div style="background:rgba(255,255,255,0.55);backdrop-filter:blur(10px) saturate(120%);border:1px solid rgba(255,255,255,0.8);border-radius:14px;padding:48px;box-shadow:0 16px 40px rgba(8,51,68,0.1),inset 0 1px 0 rgba(255,255,255,0.9)">
+        <div style="display:grid;grid-template-columns:1fr 80px 1fr;gap:32px;align-items:center">
+          <div style="display:flex;flex-direction:column;gap:18px">
+            <sc-for list="{{ convergeGroups }}" as="g" hint-placeholder-count="5">
+              <div style="display:flex;align-items:center;gap:14px">
+                <div style="display:grid;grid-template-columns:repeat(2,7px);gap:5px">
+                  <sc-for list="{{ g.dots }}" as="d" hint-placeholder-count="4">
+                    <span style="width:7px;height:7px;border-radius:50%;background:#9DBAC2;display:block"></span>
+                  </sc-for>
+                </div>
+                <span style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:#7C949C">{{ g.label }}</span>
+              </div>
+            </sc-for>
+          </div>
+          <div style="display:flex;align-items:center;justify-content:center;gap:5px">
+            <span style="width:4px;height:4px;border-radius:50%;background:#B7D4DB"></span>
+            <span style="width:4px;height:4px;border-radius:50%;background:#9DBAC2"></span>
+            <span style="width:4px;height:4px;border-radius:50%;background:#0891B2"></span>
+            <span style="color:#0891B2;font-size:14px;margin-left:2px">→</span>
+          </div>
+          <div>
+            <div style="display:grid;grid-template-columns:repeat(6,7px);gap:6px;width:max-content">
+              <sc-for list="{{ dots24 }}" as="d" hint-placeholder-count="24">
+                <span style="width:7px;height:7px;border-radius:50%;background:#0891B2;display:block"></span>
+              </sc-for>
+            </div>
+            <p style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:#155E75;margin:16px 0 0">One connected platform · 6 modules</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CONNECT -->
+    <div class="cg-rule" style="padding:56px 0;">
+      <div style="display:flex;align-items:baseline;gap:16px;flex-wrap:wrap;margin-bottom:36px">
+        <span style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:#0891B2">Connect</span>
+        <h3 style="font-family:Sora,sans-serif;font-weight:500;font-size:22px;letter-spacing:-0.025em;margin:0">Stages joined into one lifecycle</h3>
+        <span style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;color:#7C949C;margin-left:auto">API Lifecycle Platform</span>
+      </div>
+      <div style="background:rgba(255,255,255,0.55);backdrop-filter:blur(10px) saturate(120%);border:1px solid rgba(255,255,255,0.8);border-radius:14px;padding:48px;box-shadow:0 16px 40px rgba(8,51,68,0.1),inset 0 1px 0 rgba(255,255,255,0.9)">
+        <div style="display:flex;align-items:center;justify-content:space-between;gap:0">
+          <sc-for list="{{ connectNodes }}" as="n" hint-placeholder-count="3">
+            <div style="display:flex;align-items:center;flex:1">
+              <div style="display:flex;flex-direction:column;align-items:center;gap:14px">
+                <div style="display:grid;grid-template-columns:repeat(3,7px);gap:6px">
+                  <sc-for list="{{ n.dots }}" as="d" hint-placeholder-count="9">
+                    <span style="width:7px;height:7px;border-radius:50%;background:#0891B2;display:block"></span>
+                  </sc-for>
+                </div>
+                <span style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:#3D5660;white-space:nowrap">{{ n.label }}</span>
+              </div>
+              <sc-if value="{{ n.link }}" hint-placeholder-val="{{ true }}">
+                <div style="flex:1;height:7px;margin:0 20px 26px;background-image:radial-gradient(#9DBAC2 2px, transparent 2px);background-size:11px 7px;background-repeat:repeat-x;background-position:center"></div>
+              </sc-if>
+            </div>
+          </sc-for>
+        </div>
+      </div>
+    </div>
+
+    <!-- TRANSLATE -->
+    <div class="cg-rule" style="padding:56px 0;">
+      <div style="display:flex;align-items:baseline;gap:16px;flex-wrap:wrap;margin-bottom:36px">
+        <span style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:#0891B2">Translate</span>
+        <h3 style="font-family:Sora,sans-serif;font-weight:500;font-size:22px;letter-spacing:-0.025em;margin:0">Noisy signals → ranked actions</h3>
+        <span style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;color:#7C949C;margin-left:auto">Dependency Health Platform</span>
+      </div>
+      <div style="background:rgba(255,255,255,0.55);backdrop-filter:blur(10px) saturate(120%);border:1px solid rgba(255,255,255,0.8);border-radius:14px;padding:48px;box-shadow:0 16px 40px rgba(8,51,68,0.1),inset 0 1px 0 rgba(255,255,255,0.9)">
+        <div style="display:grid;grid-template-columns:1fr 80px 1fr;gap:32px;align-items:center">
+          <div>
+            <div style="display:grid;grid-template-columns:repeat(12,7px);gap:6px;width:max-content">
+              <sc-for list="{{ noise }}" as="d" hint-placeholder-count="60">
+                <span style="width:7px;height:7px;border-radius:50%;background:#9DBAC2;display:block;opacity:{{ d.o }}"></span>
+              </sc-for>
+            </div>
+            <p style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:#7C949C;margin:16px 0 0">Raw dependency signals</p>
+          </div>
+          <div style="display:flex;align-items:center;justify-content:center">
+            <span style="color:#0891B2;font-size:14px">→</span>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:14px">
+            <sc-for list="{{ ranked }}" as="r" hint-placeholder-count="3">
+              <div style="display:flex;align-items:center;gap:14px">
+                <span style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:#3D5660;width:88px">{{ r.label }}</span>
+                <div style="display:flex;gap:6px">
+                  <sc-for list="{{ r.dots }}" as="d" hint-placeholder-count="6">
+                    <span style="width:7px;height:7px;border-radius:50%;background:#0891B2;display:block"></span>
+                  </sc-for>
+                </div>
+              </div>
+            </sc-for>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- RESOLVE -->
+    <div class="cg-rule" style="padding:56px 0;">
+      <div style="display:flex;align-items:baseline;gap:16px;flex-wrap:wrap;margin-bottom:36px">
+        <span style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:#0891B2">Resolve</span>
+        <h3 style="font-family:Sora,sans-serif;font-weight:500;font-size:22px;letter-spacing:-0.025em;margin:0">One path forks into two outcomes</h3>
+        <span style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;color:#7C949C;margin-left:auto">Store Support Platform</span>
+      </div>
+      <div style="background:rgba(255,255,255,0.55);backdrop-filter:blur(10px) saturate(120%);border:1px solid rgba(255,255,255,0.8);border-radius:14px;padding:48px;box-shadow:0 16px 40px rgba(8,51,68,0.1),inset 0 1px 0 rgba(255,255,255,0.9)">
+        <div style="display:flex;align-items:center;gap:24px">
+          <div style="display:flex;flex-direction:column;gap:14px">
+            <span style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:#3D5660">Issue</span>
+            <div style="display:flex;gap:6px;align-items:center">
+              <sc-for list="{{ dots6 }}" as="d" hint-placeholder-count="6">
+                <span style="width:7px;height:7px;border-radius:50%;background:#9DBAC2;display:block"></span>
+              </sc-for>
+              <span style="width:11px;height:11px;border-radius:50%;background:#0891B2;display:block;box-shadow:0 0 0 4px rgba(6,182,212,0.2);margin-left:2px"></span>
+            </div>
+          </div>
+          <span style="color:#0891B2;font-size:14px">→</span>
+          <div style="display:flex;flex-direction:column;gap:22px;flex:1">
+            <div style="display:flex;align-items:center;gap:14px">
+              <div style="display:flex;gap:6px">
+                <sc-for list="{{ dots8 }}" as="d" hint-placeholder-count="8">
+                  <span style="width:7px;height:7px;border-radius:50%;background:#0891B2;display:block"></span>
+                </sc-for>
+              </div>
+              <span style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:#155E75">Self-resolved</span>
+            </div>
+            <div style="display:flex;align-items:center;gap:14px">
+              <div style="display:flex;gap:6px">
+                <sc-for list="{{ dots3 }}" as="d" hint-placeholder-count="3">
+                  <span style="width:7px;height:7px;border-radius:50%;background:#C3DDE3;display:block"></span>
+                </sc-for>
+              </div>
+              <span style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:#7C949C">Escalated with context</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ORGANISE -->
+    <div style="padding:56px 0">
+      <div style="display:flex;align-items:baseline;gap:16px;flex-wrap:wrap;margin-bottom:36px">
+        <span style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:#0891B2">Organise</span>
+        <h3 style="font-family:Sora,sans-serif;font-weight:500;font-size:22px;letter-spacing:-0.025em;margin:0">A flat field becomes a hierarchy</h3>
+        <span style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;color:#7C949C;margin-left:auto">Supply Chain Operations Platform</span>
+      </div>
+      <div style="background:rgba(255,255,255,0.55);backdrop-filter:blur(10px) saturate(120%);border:1px solid rgba(255,255,255,0.8);border-radius:14px;padding:48px;box-shadow:0 16px 40px rgba(8,51,68,0.1),inset 0 1px 0 rgba(255,255,255,0.9)">
+        <div style="display:grid;grid-template-columns:1fr 80px 1.2fr;gap:32px;align-items:center">
+          <div>
+            <div style="display:grid;grid-template-columns:repeat(13,7px);gap:5px;width:max-content">
+              <sc-for list="{{ flat }}" as="d" hint-placeholder-count="52">
+                <span style="width:7px;height:7px;border-radius:50%;background:#9DBAC2;display:block"></span>
+              </sc-for>
+            </div>
+            <p style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:#7C949C;margin:16px 0 0">139 modules, flat</p>
+          </div>
+          <div style="display:flex;align-items:center;justify-content:center">
+            <span style="color:#0891B2;font-size:14px">→</span>
+          </div>
+          <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:16px">
+            <sc-for list="{{ bins }}" as="b" hint-placeholder-count="4">
+              <div style="border:1px solid rgba(21,94,117,0.16);border-radius:4px;padding:14px">
+                <div style="display:grid;grid-template-columns:repeat(4,7px);gap:5px">
+                  <sc-for list="{{ b.dots }}" as="d" hint-placeholder-count="12">
+                    <span style="width:7px;height:7px;border-radius:50%;background:#0891B2;display:block"></span>
+                  </sc-for>
+                </div>
+                <p style="font-family:'IBM Plex Mono',monospace;font-size:9.5px;letter-spacing:0.1em;text-transform:uppercase;color:#3D5660;margin:12px 0 0">{{ b.label }}</p>
+              </div>
+            </sc-for>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div style="padding:52px 0">
+      <p style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:0.12em;text-transform:uppercase;color:#0891B2;margin:0 0 12px">C6 &middot; Project fingerprints</p>
+      <p style="font-size:15px;line-height:1.7;color:#3D5660;max-width:66ch;margin:0 0 30px">Each case study gets one tiny transformation diagram derived from its core argument. It can appear on project cards, chapter openers, or next-project navigation. Hover shows the resolved state; it is never used as a decorative logo.</p>
+      <div class="cg-fingerprint-grid">
+        <div class="cg-fingerprint-card cg-hover-lift">
+          <div class="cg-fp-stage"><div class="cg-fp-state cg-fp-before" style="gap:9px"><div style="display:grid;grid-template-columns:repeat(2,6px);gap:4px"><span class="cg-fp-dot muted"></span><span class="cg-fp-dot muted"></span><span class="cg-fp-dot muted"></span><span class="cg-fp-dot muted"></span></div><div style="display:grid;grid-template-columns:repeat(2,6px);gap:4px"><span class="cg-fp-dot muted"></span><span class="cg-fp-dot muted"></span><span class="cg-fp-dot muted"></span><span class="cg-fp-dot muted"></span></div><div style="display:grid;grid-template-columns:repeat(2,6px);gap:4px"><span class="cg-fp-dot muted"></span><span class="cg-fp-dot muted"></span><span class="cg-fp-dot muted"></span><span class="cg-fp-dot muted"></span></div></div><div class="cg-fp-state cg-fp-after"><div style="display:grid;grid-template-columns:repeat(4,6px);gap:5px"><span class="cg-fp-dot"></span><span class="cg-fp-dot"></span><span class="cg-fp-dot"></span><span class="cg-fp-dot"></span><span class="cg-fp-dot"></span><span class="cg-fp-dot"></span><span class="cg-fp-dot"></span><span class="cg-fp-dot"></span><span class="cg-fp-dot"></span><span class="cg-fp-dot"></span><span class="cg-fp-dot"></span><span class="cg-fp-dot"></span></div></div></div>
+          <p style="font-family:'IBM Plex Mono',monospace;font-size:9.5px;text-transform:uppercase;color:#0891B2;margin:0">Converge</p><p style="font-family:Sora,sans-serif;font-size:15px;font-weight:500;line-height:1.3;margin:7px 0 0">Portfolio management</p>
+        </div>
+        <div class="cg-fingerprint-card cg-hover-lift">
+          <div class="cg-fp-stage"><div class="cg-fp-state cg-fp-before" style="gap:18px"><div style="display:grid;grid-template-columns:repeat(3,5px);gap:4px"><span class="cg-fp-dot muted"></span><span class="cg-fp-dot muted"></span><span class="cg-fp-dot muted"></span><span class="cg-fp-dot muted"></span><span class="cg-fp-dot muted"></span><span class="cg-fp-dot muted"></span></div><div style="display:grid;grid-template-columns:repeat(3,5px);gap:4px"><span class="cg-fp-dot muted"></span><span class="cg-fp-dot muted"></span><span class="cg-fp-dot muted"></span><span class="cg-fp-dot muted"></span><span class="cg-fp-dot muted"></span><span class="cg-fp-dot muted"></span></div><div style="display:grid;grid-template-columns:repeat(3,5px);gap:4px"><span class="cg-fp-dot muted"></span><span class="cg-fp-dot muted"></span><span class="cg-fp-dot muted"></span><span class="cg-fp-dot muted"></span><span class="cg-fp-dot muted"></span><span class="cg-fp-dot muted"></span></div></div><div class="cg-fp-state cg-fp-after" style="gap:7px"><div style="display:grid;grid-template-columns:repeat(2,5px);gap:4px"><span class="cg-fp-dot"></span><span class="cg-fp-dot"></span><span class="cg-fp-dot"></span><span class="cg-fp-dot"></span></div><span class="cg-fp-dot soft" style="width:4px;height:4px"></span><span class="cg-fp-dot soft" style="width:4px;height:4px"></span><span class="cg-fp-dot soft" style="width:4px;height:4px"></span><div style="display:grid;grid-template-columns:repeat(2,5px);gap:4px"><span class="cg-fp-dot"></span><span class="cg-fp-dot"></span><span class="cg-fp-dot"></span><span class="cg-fp-dot"></span></div><span class="cg-fp-dot soft" style="width:4px;height:4px"></span><span class="cg-fp-dot soft" style="width:4px;height:4px"></span><span class="cg-fp-dot soft" style="width:4px;height:4px"></span><div style="display:grid;grid-template-columns:repeat(2,5px);gap:4px"><span class="cg-fp-dot"></span><span class="cg-fp-dot"></span><span class="cg-fp-dot"></span><span class="cg-fp-dot"></span></div></div></div>
+          <p style="font-family:'IBM Plex Mono',monospace;font-size:9.5px;text-transform:uppercase;color:#0891B2;margin:0">Connect</p><p style="font-family:Sora,sans-serif;font-size:15px;font-weight:500;line-height:1.3;margin:7px 0 0">API lifecycle</p>
+        </div>
+        <div class="cg-fingerprint-card cg-hover-lift">
+          <div class="cg-fp-stage"><div class="cg-fp-state cg-fp-before"><div style="width:90px;height:62px;background-image:radial-gradient(#9DBAC2 2.2px,transparent 2.2px);background-size:12px 12px;opacity:.82"></div></div><div class="cg-fp-state cg-fp-after"><div style="display:flex;flex-direction:column;gap:8px;align-items:flex-start"><div style="display:flex;gap:5px"><span class="cg-fp-dot"></span><span class="cg-fp-dot"></span><span class="cg-fp-dot"></span><span class="cg-fp-dot"></span><span class="cg-fp-dot"></span><span class="cg-fp-dot"></span><span class="cg-fp-dot"></span></div><div style="display:flex;gap:5px"><span class="cg-fp-dot"></span><span class="cg-fp-dot"></span><span class="cg-fp-dot"></span><span class="cg-fp-dot"></span></div><div style="display:flex;gap:5px"><span class="cg-fp-dot"></span><span class="cg-fp-dot"></span></div></div></div></div>
+          <p style="font-family:'IBM Plex Mono',monospace;font-size:9.5px;text-transform:uppercase;color:#0891B2;margin:0">Translate</p><p style="font-family:Sora,sans-serif;font-size:15px;font-weight:500;line-height:1.3;margin:7px 0 0">Dependency health</p>
+        </div>
+        <div class="cg-fingerprint-card cg-hover-lift">
+          <div class="cg-fp-stage"><div class="cg-fp-state cg-fp-before"><div style="display:flex;gap:5px"><span class="cg-fp-dot muted"></span><span class="cg-fp-dot muted"></span><span class="cg-fp-dot muted"></span><span class="cg-fp-dot muted"></span><span class="cg-fp-dot muted"></span><span class="cg-fp-dot muted"></span><span class="cg-fp-dot"></span></div></div><div class="cg-fp-state cg-fp-after" style="gap:14px"><div style="display:flex;gap:5px"><span class="cg-fp-dot"></span><span class="cg-fp-dot"></span><span class="cg-fp-dot"></span><span class="cg-fp-dot"></span><span class="cg-fp-dot"></span><span class="cg-fp-dot"></span></div><div style="display:flex;gap:5px"><span class="cg-fp-dot soft"></span><span class="cg-fp-dot soft"></span><span class="cg-fp-dot soft"></span></div></div></div>
+          <p style="font-family:'IBM Plex Mono',monospace;font-size:9.5px;text-transform:uppercase;color:#0891B2;margin:0">Resolve</p><p style="font-family:Sora,sans-serif;font-size:15px;font-weight:500;line-height:1.3;margin:7px 0 0">Store support</p>
+        </div>
+        <div class="cg-fingerprint-card cg-hover-lift">
+          <div class="cg-fp-stage"><div class="cg-fp-state cg-fp-before"><div style="width:90px;height:62px;background-image:radial-gradient(#9DBAC2 2.2px,transparent 2.2px);background-size:10px 10px"></div></div><div class="cg-fp-state cg-fp-after" style="gap:6px"><div style="width:28px;height:38px;border:1px solid rgba(8,145,178,.25);background-image:radial-gradient(#0891B2 2px,transparent 2px);background-size:8px 8px"></div><div style="width:28px;height:38px;border:1px solid rgba(8,145,178,.25);background-image:radial-gradient(#0891B2 2px,transparent 2px);background-size:8px 8px"></div><div style="width:28px;height:38px;border:1px solid rgba(8,145,178,.25);background-image:radial-gradient(#0891B2 2px,transparent 2px);background-size:8px 8px"></div></div></div>
+          <p style="font-family:'IBM Plex Mono',monospace;font-size:9.5px;text-transform:uppercase;color:#0891B2;margin:0">Organise</p><p style="font-family:Sora,sans-serif;font-size:15px;font-weight:500;line-height:1.3;margin:7px 0 0">Supply chain operations</p>
+        </div>
+      </div>
+    </div>
+
+
+    <div style="padding:48px 0">
+      <p style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:#0891B2;margin:0 0 12px">C7 &middot; Dot colour states</p>
+      <p style="font-size:15px;line-height:1.7;color:#3D5660;max-width:66ch;margin:0 0 28px">Dots use colour to show state change, not to create a palette. Earlier or inactive information is muted; resolved or active information becomes accent.</p>
+      <div class="cg-proof-chain"><div class="cg-glass-soft" style="padding:26px;border-radius:14px"><p class="cg-surface-use" style="color:#6F8790">Before</p><div style="display:flex;gap:7px;margin-top:18px"><span class="cg-fp-dot muted"></span><span class="cg-fp-dot muted"></span><span class="cg-fp-dot muted"></span><span class="cg-fp-dot muted"></span><span class="cg-fp-dot muted"></span></div></div><span class="cg-arrow">&rarr;</span><div class="cg-glass-soft" style="padding:26px;border-radius:14px"><p class="cg-surface-use">Transition</p><div style="display:flex;gap:7px;margin-top:18px"><span class="cg-fp-dot muted"></span><span class="cg-fp-dot muted"></span><span class="cg-fp-dot"></span><span class="cg-fp-dot"></span><span class="cg-fp-dot"></span></div></div><span class="cg-arrow">&rarr;</span><div class="cg-glass" style="padding:26px;border-radius:14px"><p class="cg-surface-use">Resolved</p><div style="display:flex;gap:7px;margin-top:18px"><span class="cg-fp-dot"></span><span class="cg-fp-dot"></span><span class="cg-fp-dot"></span><span class="cg-fp-dot"></span><span class="cg-fp-dot"></span></div></div></div>
+    </div>
+  </section>
+
+  <section id="typography" style="max-width:1180px;margin:0 auto;padding:56px 40px 0">
+    <div class="cg-section-rule" style="display:flex;align-items:baseline;gap:20px;padding-bottom:28px">
+      <span style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.14em;color:#0891B2">D</span>
+      <h2 style="font-family:Sora,sans-serif;font-weight:500;font-size:34px;letter-spacing:-.03em;margin:0">Typography &amp; emphasis</h2>
+      <span style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:#7C949C;margin-left:auto">Colour highlights the idea; dots stay out of the letters</span>
+    </div>
+    <div class="cg-rule" style="padding:48px 0">
+      <p style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:#0891B2;margin:0 0 12px">D1 &middot; Colour semantics</p>
+      <p style="font-size:15px;line-height:1.7;color:#3D5660;max-width:68ch;margin:0 0 28px">Colour is a reading cue, not a second illustration layer. Use accent on the idea that changes, resolves, or matters most; keep everything else in ink.</p>
+      <div class="cg-colour-semantic">
+        <div class="cg-glass-soft cg-colour-role"><div class="cg-colour-dot" style="background:#0891B2"></div><p class="cg-surface-use">Accent</p><p class="cg-surface-note">Outcome, change, active idea, selected state.</p></div>
+        <div class="cg-glass-soft cg-colour-role"><div class="cg-colour-dot" style="background:#155E75"></div><p class="cg-surface-use" style="color:#155E75">Accent deep</p><p class="cg-surface-note">Links, established structure, persistent emphasis.</p></div>
+        <div class="cg-glass-soft cg-colour-role"><div class="cg-colour-dot" style="background:#7C949C"></div><p class="cg-surface-use" style="color:#6F8790">Muted</p><p class="cg-surface-note">Before-state, inactive context, supporting information.</p></div>
+        <div class="cg-glass-soft cg-colour-role"><div class="cg-colour-dot" style="background:#C3DDE3"></div><p class="cg-surface-use" style="color:#7C949C">Quiet</p><p class="cg-surface-note">Low emphasis, upcoming, secondary structure.</p></div>
+        <div class="cg-colour-role" style="background:#0C1F26;border:1px solid rgba(234,243,245,.12)"><div class="cg-colour-dot" style="background:#5EEAD4"></div><p class="cg-surface-use" style="color:#5EEAD4">Mint</p><p class="cg-surface-note" style="color:#91ADB5">Accent equivalent on dark surfaces only.</p></div>
+      </div>
+    </div>
+    <div class="cg-rule" style="padding:48px 0">
+      <p style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:#0891B2;margin:0 0 12px">D2 &middot; Approved title emphasis</p>
+      <p style="font-size:15px;line-height:1.7;color:#3D5660;max-width:68ch;margin:0 0 28px">Use only one of these patterns in a title. The highlighted words should be the consequence or core idea, not a random noun.</p>
+      <div class="cg-colour-title-grid">
+        <div class="cg-glass cg-colour-title"><p class="cg-surface-use">Single word</p><h4 class="cg-title-example">Turning dependency data into clear <span class="cg-accent-text">actions</span>.</h4><p class="cg-surface-note" style="margin-top:22px">Best for outcome-led chapter headings.</p></div>
+        <div class="cg-glass cg-colour-title"><p class="cg-surface-use">Short phrase</p><h4 class="cg-title-example">Replacing five tools with <span class="cg-accent-text">one connected platform</span>.</h4><p class="cg-surface-note" style="margin-top:22px">Two to four words. Best for transformation headlines.</p></div>
+        <div class="cg-glass cg-colour-title"><p class="cg-surface-use">Before &rarr; after</p><h4 class="cg-title-example"><span class="cg-muted-text">From fragmented tools</span> to <span class="cg-accent-text">one connected platform</span>.</h4><p class="cg-surface-note" style="margin-top:22px">Use when the title itself contains a clear change.</p></div>
+      </div>
+      <div class="cg-title-rule" style="margin-top:22px"><p style="font-family:Sora,sans-serif;font-size:19px;line-height:1.45;margin:0"><strong style="font-weight:500">Rule:</strong> highlight one idea, usually 1–4 words. Do not highlight multiple unrelated words, and do not add dots around coloured text.</p></div>
+    </div>
+    <div style="padding:48px 0">
+      <p style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:#0891B2;margin:0 0 12px">D3 &middot; Hierarchy</p>
+      <div class="cg-grid-2">
+        <div><p style="font-family:'IBM Plex Mono',monospace;font-size:10px;text-transform:uppercase;color:#7C949C;margin:0 0 18px">Hero</p><p style="font-family:Sora,sans-serif;font-size:46px;line-height:1.05;font-weight:600;letter-spacing:-.04em;margin:0">A clear system for <span class="cg-accent-text">complex work</span>.</p></div>
+        <div style="display:flex;flex-direction:column;gap:26px"><div><p style="font-family:'IBM Plex Mono',monospace;font-size:10px;text-transform:uppercase;color:#7C949C;margin:0 0 10px">Chapter</p><p style="font-family:Sora,sans-serif;font-size:31px;line-height:1.15;font-weight:500;letter-spacing:-.03em;margin:0">Navigation was not the real problem.</p></div><div><p style="font-family:'IBM Plex Mono',monospace;font-size:10px;text-transform:uppercase;color:#7C949C;margin:0 0 10px">Eyebrow</p><p style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:#0891B2;margin:0">03 / The reframe</p></div><div><p style="font-size:17px;line-height:1.75;color:#243942;margin:0;max-width:52ch">Body copy stays calm. The subject matter is complex enough; prose and typography do not need extra theatre.</p></div></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="narrative" style="max-width:1180px;margin:0 auto;padding:56px 40px 0">
+    <div class="cg-section-rule" style="display:flex;align-items:baseline;gap:20px;padding-bottom:28px;">
+      <span style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:0.14em;color:#0891B2">E</span>
+      <h2 style="font-family:Sora,sans-serif;font-weight:500;font-size:34px;letter-spacing:-0.03em;margin:0">Narrative components</h2>
+      <span style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:0.1em;text-transform:uppercase;color:#7C949C;margin-left:auto">Tension, decisions, chapters, and reflection</span>
+    </div>
+
+    <div class="cg-rule" style="padding:48px 0">
+      <p style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:#0891B2;margin:0 0 12px">E1 &middot; Tension / reframe</p>
+      <p style="font-size:15px;line-height:1.7;color:#3D5660;max-width:66ch;margin:0 0 28px">Use once when the project argument changes. It should reveal the deeper problem, not merely restate the previous section.</p>
+      <div class="cg-reframe-block"><p style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:#5EEAD4;margin:0">The reframe</p><h3 style="font-family:Sora,sans-serif;font-size:40px;line-height:1.1;font-weight:500;letter-spacing:-.03em;margin:20px 0 0;max-width:19ch">Navigation was not the real problem.</h3><p style="font-size:16px;line-height:1.7;color:#A9C3CA;max-width:55ch;margin:20px 0 0">People knew tools existed. The harder question was which tool matched the task in front of them.</p></div>
+    </div>
+    <div class="cg-rule" style="padding:48px 0">
+      <p style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:#0891B2;margin:0 0 12px">E2 &middot; Before / after model</p>
+      <p style="font-size:15px;line-height:1.7;color:#3D5660;max-width:66ch;margin:0 0 28px">Compare mental models or system structures, not only screenshots. Muted is the earlier state; accent belongs to the resolved state.</p>
+      <div class="cg-beforeafter-system"><div class="cg-glass-soft cg-state-card"><p class="cg-surface-use" style="color:#6F8790">Before</p><h4 style="font-family:Sora,sans-serif;font-size:25px;font-weight:500;margin:12px 0 0;color:#526B74">Find a module</h4><p class="cg-surface-note">Search a flat catalogue and remember internal names.</p><div class="cg-state-list"><span class="cg-state-line" style="width:86%"></span><span class="cg-state-line" style="width:68%"></span><span class="cg-state-line" style="width:92%"></span><span class="cg-state-line" style="width:57%"></span></div></div><span class="cg-arrow" style="align-self:center">&rarr;</span><div class="cg-glass cg-state-card"><p class="cg-surface-use">After</p><h4 style="font-family:Sora,sans-serif;font-size:25px;font-weight:500;margin:12px 0 0"><span class="cg-accent-text">Start from the job</span></h4><p class="cg-surface-note">Navigate through a hierarchy aligned to operational tasks.</p><div class="cg-state-list"><span class="cg-state-line" style="width:86%;background:#B8E4E9"></span><span class="cg-state-line" style="width:52%;background:#CBE9EC"></span><span class="cg-state-line" style="width:70%;background:#D5ECEE"></span></div></div></div>
+    </div>
+    <div class="cg-rule" style="padding:48px 0">
+      <p style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:#0891B2;margin:0 0 12px">E3 &middot; Decision record</p>
+      <p style="font-size:15px;line-height:1.7;color:#3D5660;max-width:66ch;margin:0 0 28px">Show judgment instead of a wall of explorations. Compare the tradeoff, state the decision, and connect it to what shipped.</p>
+      <div class="cg-decision-record"><div class="cg-glass-soft cg-decision-option"><p class="cg-surface-use" style="color:#7C949C">Option A</p><h4 style="font-family:Sora,sans-serif;font-size:23px;font-weight:500;margin:12px 0 0">Top navigation</h4><p class="cg-surface-note">Familiar, but degraded as categories and module count increased.</p></div><div class="cg-glass cg-decision-option chosen"><span class="cg-decision-badge">Chosen</span><h4 style="font-family:Sora,sans-serif;font-size:23px;font-weight:500;margin:12px 0 0">Left navigation</h4><p class="cg-surface-note">Supported deeper grouping, persistent context, and faster scanning.</p></div></div>
+    </div>
+    <div class="cg-rule" style="padding:48px 0">
+      <p style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:#0891B2;margin:0 0 12px">E4 &middot; Reflection</p>
+      <div class="cg-glass-soft cg-reflection"><p style="font-family:Sora,sans-serif;font-size:28px;line-height:1.3;letter-spacing:-.025em;margin:0;max-width:31ch">The new structure solved discovery, but it also exposed how much migration itself shapes the experience.</p><div class="cg-grid-2" style="margin-top:28px"><div><p class="cg-surface-use">What held</p><p class="cg-surface-note">Task-oriented grouping tested clearly across different user groups.</p></div><div><p class="cg-surface-use" style="color:#6F8790">Still unresolved</p><p class="cg-surface-note">Adoption and migration need as much design attention as the destination state.</p></div></div></div>
+    </div>
+
+
+    <div class="cg-rule" style="padding:48px 0;">
+      <p style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:0.12em;text-transform:uppercase;color:#0891B2;margin:0 0 24px">S1 · Numbered section header</p>
+      <div style="display:flex;align-items:baseline;gap:24px">
+        <span style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:0.14em;color:#0891B2">01</span>
+        <h2 style="font-family:Sora,sans-serif;font-weight:500;font-size:44px;line-height:1.1;letter-spacing:-0.03em;margin:0;max-width:22ch">The section title sits on a baseline with its number.</h2>
+      </div>
+    </div>
+
+    <div class="cg-rule" style="padding:48px 0;">
+      <p style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:0.12em;text-transform:uppercase;color:#0891B2;margin:0 0 24px">S1b · Dotted rule</p>
+      <p style="font-size:15px;line-height:1.7;color:#3D5660;max-width:56ch;margin:0 0 28px">Every section divider is a single row of dots on the same 22px pitch as the page grid, so rules and background are the same system.</p>
+      <div class="cg-rule cg-rule-top" style="height:4px;margin-bottom:32px"></div>
+    </div>
+
+    <div class="cg-rule" style="padding:48px 0">
+      <p style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:0.12em;text-transform:uppercase;color:#0891B2;margin:0 0 24px">S2 · Proof strip</p>
+      <div class="cg-glass" style="display:grid;grid-template-columns:repeat(3,1fr);gap:0;border-radius:14px;overflow:hidden">
+        <sc-for list="{{ proof }}" as="m" hint-placeholder-count="3">
+          <sc-if value="{{ m.first }}" hint-placeholder-val="{{ true }}">
+            <div style="padding:30px 28px 30px 0">
+              <div style="display:grid;grid-template-columns:repeat(5,4px);gap:3px;width:max-content;margin-bottom:22px">
+                <sc-for list="{{ m.icon }}" as="d" hint-placeholder-count="25">
+                  <span style="width:4px;height:4px;border-radius:50%;background:#0891B2;display:block;opacity:{{ d.o }}"></span>
+                </sc-for>
+              </div>
+              <div style="font-family:Sora,sans-serif;font-size:32px;font-weight:500;letter-spacing:-0.03em;color:#155E75">{{ m.value }}</div>
+              <div style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:0.1em;text-transform:uppercase;color:#3D5660;margin-top:8px">{{ m.label }}</div>
+            </div>
+          </sc-if>
+          <sc-if value="{{ m.rest }}" hint-placeholder-val="{{ false }}">
+            <div style="padding:30px 28px;border-left:1px solid rgba(21,94,117,.10)">
+              <div style="display:grid;grid-template-columns:repeat(5,4px);gap:3px;width:max-content;margin-bottom:22px">
+                <sc-for list="{{ m.icon }}" as="d" hint-placeholder-count="25">
+                  <span style="width:4px;height:4px;border-radius:50%;background:#0891B2;display:block;opacity:{{ d.o }}"></span>
+                </sc-for>
+              </div>
+              <div style="font-family:Sora,sans-serif;font-size:32px;font-weight:500;letter-spacing:-0.03em;color:#155E75">{{ m.value }}</div>
+              <div style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:0.1em;text-transform:uppercase;color:#3D5660;margin-top:8px">{{ m.label }}</div>
+            </div>
+          </sc-if>
+        </sc-for>
+      </div>
+    </div>
+
+    <div class="cg-rule" style="padding:48px 0;">
+      <p style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:0.12em;text-transform:uppercase;color:#0891B2;margin:0 0 12px">S2b · Dot marks</p>
+      <p style="font-size:15px;line-height:1.7;color:#3D5660;max-width:60ch;margin:0 0 32px">Eight 5×5 glyphs on the same dot unit. One per metric, chosen for what the number measures — never decorative, and never more than one per stat.</p>
+      <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:32px 24px">
+        <sc-for list="{{ markSet }}" as="g" hint-placeholder-count="8">
+          <div>
+            <div style="display:grid;grid-template-columns:repeat(5,6px);gap:4px;width:max-content;margin-bottom:16px">
+              <sc-for list="{{ g.dots }}" as="d" hint-placeholder-count="25">
+                <span style="width:6px;height:6px;border-radius:50%;background:#0891B2;display:block;opacity:{{ d.o }}"></span>
+              </sc-for>
+            </div>
+            <p style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:0.12em;text-transform:uppercase;color:#0C171C;margin:0">{{ g.name }}</p>
+            <p style="font-size:13.5px;line-height:1.55;color:#7C949C;margin:6px 0 0;max-width:22ch">{{ g.note }}</p>
+          </div>
+        </sc-for>
+      </div>
+    </div>
+
+    <div class="cg-rule" style="padding:48px 0">
+      <p style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:0.12em;text-transform:uppercase;color:#0891B2;margin:0 0 24px">S3 · Media frame</p>
+      <div style="border:1px solid rgba(21,94,117,0.16);border-radius:14px;overflow:hidden;background:#fff;box-shadow:0 18px 44px rgba(8,51,68,0.09);max-width:620px">
+        <div style="display:flex;align-items:center;gap:10px;padding:11px 14px;border-bottom:1px solid rgba(21,94,117,0.12);background:#F1F7F9">
+          <span style="display:flex;gap:6px">
+            <span style="width:9px;height:9px;border-radius:50%;background:#D5E8EC"></span>
+            <span style="width:9px;height:9px;border-radius:50%;background:#D5E8EC"></span>
+            <span style="width:9px;height:9px;border-radius:50%;background:#D5E8EC"></span>
+          </span>
+          <span style="flex:1;background:#fff;border:1px solid rgba(21,94,117,0.12);border-radius:6px;padding:4px 10px;font-family:'IBM Plex Mono',monospace;font-size:10px;color:#7C949C">product / route</span>
+        </div>
+        <div style="aspect-ratio:16/10;background:repeating-linear-gradient(135deg,#F4F9FA 0 8px,#EAF3F5 8px 16px);display:flex;align-items:center;justify-content:center">
+          <span style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:#7C949C">Product UI goes here</span>
+        </div>
+      </div>
+      <p style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:0.06em;color:#7C949C;margin:12px 0 0">Interface reconstructed with representative data to protect internal information.</p>
+    </div>
+
+    <div class="cg-rule" style="padding:48px 0;">
+      <p style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:0.12em;text-transform:uppercase;color:#0891B2;margin:0 0 24px">S4 · Sticky-title narrative</p>
+      <div style="display:grid;grid-template-columns:1fr 1.4fr;gap:64px;align-items:start">
+        <h3 style="font-family:Sora,sans-serif;font-weight:500;font-size:32px;line-height:1.16;letter-spacing:-0.025em;margin:0;max-width:16ch">Chapter title holds the left column</h3>
+        <div>
+          <p style="font-size:18px;line-height:1.75;color:#243942;max-width:62ch;margin:0">Body copy runs in the wider right column at 18px on a 1.75 leading, capped at 62 characters so the measure stays readable at full width.</p>
+          <p style="font-size:18px;line-height:1.75;color:#243942;max-width:62ch;margin:18px 0 0">On long chapters the title sticks to the viewport while the body scrolls past it.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="cg-rule" style="padding:48px 0;">
+      <p style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:0.12em;text-transform:uppercase;color:#0891B2;margin:0 0 24px">S5 · Dark anchor block</p>
+      <div style="background:#0C1F26;color:#EAF3F5;border-radius:4px;padding:56px 48px">
+        <h3 style="font-family:Sora,sans-serif;font-weight:500;font-size:36px;line-height:1.12;letter-spacing:-0.03em;margin:0;max-width:20ch">One dark block per page, where the argument lands.</h3>
+        <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:1px;background:rgba(234,243,245,0.16);border:1px solid rgba(234,243,245,0.16);border-radius:2px;overflow:hidden;margin-top:36px">
+          <sc-for list="{{ questions }}" as="q" hint-placeholder-count="4">
+            <div style="background:#0C1F26;padding:28px 26px;display:flex;gap:18px;align-items:baseline">
+              <span style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:0.14em;color:#5EEAD4">{{ q.num }}</span>
+              <p style="font-family:Sora,sans-serif;font-weight:400;font-size:22px;line-height:1.3;letter-spacing:-0.025em;margin:0">{{ q.text }}</p>
+            </div>
+          </sc-for>
+        </div>
+      </div>
+    </div>
+
+    <div class="cg-rule" style="padding:48px 0;">
+      <p style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:0.12em;text-transform:uppercase;color:#0891B2;margin:0 0 24px">S6 · Editorial numbered rows</p>
+      <sc-for list="{{ principles }}" as="p" hint-placeholder-count="3">
+        <div class="cg-rule cg-rule-top" style="display:grid;grid-template-columns:120px 1fr 1.1fr;gap:48px;align-items:start;padding:36px 0;">
+          <div style="display:flex;gap:12px;padding-top:6px">
+            <sc-for list="{{ p.digits }}" as="dg" hint-placeholder-count="2">
+              <div style="display:grid;grid-template-columns:repeat(4,7px);gap:5px;width:max-content">
+                <sc-for list="{{ dg.dots }}" as="d" hint-placeholder-count="28">
+                  <span style="width:7px;height:7px;border-radius:50%;background:#5E8792;display:block;opacity:{{ d.o }}"></span>
+                </sc-for>
+              </div>
+            </sc-for>
+          </div>
+          <h3 style="font-family:Sora,sans-serif;font-weight:500;font-size:26px;line-height:1.2;letter-spacing:-0.025em;margin:0">{{ p.title }}</h3>
+          <p style="font-size:17px;line-height:1.75;color:#243942;margin:0;max-width:50ch">{{ p.detail }}</p>
+        </div>
+      </sc-for>
+    </div>
+
+    <div class="cg-rule" style="padding:48px 0;">
+      <p style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:0.12em;text-transform:uppercase;color:#0891B2;margin:0 0 24px">S7 · Pull statement</p>
+      <p style="font-family:Sora,sans-serif;font-weight:400;font-size:26px;line-height:1.4;letter-spacing:-0.025em;color:#155E75;margin:0;padding-left:24px;border-left:2px solid #06B6D4;max-width:46ch">The architecture mattered more than any single module.</p>
+    </div>
+
+    <div class="cg-rule" style="padding:48px 0;">
+      <p style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:0.12em;text-transform:uppercase;color:#0891B2;margin:0 0 24px">S8 · Spec list</p>
+      <dl style="margin:0;max-width:480px">
+        <sc-for list="{{ facts }}" as="f" hint-placeholder-count="3">
+          <div class="cg-rule" style="display:grid;grid-template-columns:110px 1fr;gap:24px;padding:18px 0;align-items:baseline">
+            <dt style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:0.12em;text-transform:uppercase;color:#7C949C">{{ f.label }}</dt>
+            <dd style="font-size:16px;line-height:1.5;margin:0">{{ f.value }}</dd>
+          </div>
+        </sc-for>
+      </dl>
+    </div>
+
+    <div class="cg-rule" style="padding:48px 0;">
+      <p style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:0.12em;text-transform:uppercase;color:#0891B2;margin:0 0 24px">S9 · Next-project nav</p>
+      <a href="#" class="cg-glass-lift cg-hover-lift" style="display:flex;align-items:center;justify-content:space-between;gap:32px;padding:32px;border-radius:14px;color:inherit">
+        <div>
+          <p style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:0.16em;text-transform:uppercase;color:#3D5660;margin:0 0 12px">Next · <span style="color:#0891B2">02</span> / API Lifecycle Platform</p>
+          <h3 style="font-family:Sora,sans-serif;font-weight:500;font-size:28px;line-height:1.2;letter-spacing:-0.025em;margin:0;max-width:24ch">Creating one platform for engineers to discover, design, test, and govern APIs.</h3>
+        </div>
+        <span style="font-family:Sora,sans-serif;font-size:32px;color:#0891B2">→</span>
+      </a>
+    </div>
+
+    <div class="cg-rule" style="padding:48px 0">
+      <p style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:0.12em;text-transform:uppercase;color:#0891B2;margin:0 0 12px">S11 · Full-bleed hero</p>
+      <p style="font-size:15px;line-height:1.7;color:#3D5660;max-width:56ch;margin:0 0 28px">Case-study opener. Product media runs edge to edge; label, headline, and the meta row sit on a scrim above it. The dot field overlays the image so the hero stays inside the system.</p>
+      <div style="position:relative;border-radius:4px;overflow:hidden;min-height:420px;display:flex;align-items:flex-end;background:#0C1F26">
+        <div style="position:absolute;inset:0;background:repeating-linear-gradient(135deg,#123039 0 10px,#0F2A32 10px 20px)"></div>
+        <div style="position:absolute;inset:0;background-image:radial-gradient(rgba(94,234,212,0.16) 1.15px,transparent 1.15px);background-size:22px 22px"></div>
+        <div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(6,17,21,0.94) 0%,rgba(6,17,21,0.72) 38%,rgba(6,17,21,0.22) 100%)"></div>
+        <div style="position:relative;padding:48px;width:100%">
+          <p style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:0.16em;text-transform:uppercase;color:#8FB3BC;margin:0 0 20px"><span style="color:#5EEAD4">01</span> / Portfolio Management Platform</p>
+          <h3 style="font-family:Sora,sans-serif;font-weight:600;font-size:48px;line-height:1.04;letter-spacing:-0.035em;margin:0;max-width:17ch;color:#EAF3F5">Replacing five portfolio tools with one connected platform</h3>
+          <div style="display:flex;flex-wrap:wrap;gap:40px;margin-top:36px;padding-top:24px;border-top:1px solid rgba(234,243,245,.18)">
+            <sc-for list="{{ heroMeta }}" as="m" hint-placeholder-count="4">
+              <div>
+                <p style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:0.12em;text-transform:uppercase;color:#7C99A3;margin:0">{{ m.label }}</p>
+                <p style="font-size:15px;line-height:1.5;color:#EAF3F5;margin:6px 0 0">{{ m.value }}</p>
+              </div>
+            </sc-for>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="cg-rule" style="padding:48px 0">
+      <p style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:0.12em;text-transform:uppercase;color:#0891B2;margin:0 0 12px">S12 · Alternating text / preview</p>
+      <p style="font-size:15px;line-height:1.7;color:#3D5660;max-width:60ch;margin:0 0 28px"><strong style="color:#0C171C;font-weight:500">Rule:</strong> the first row puts text left, media right. Every consecutive row flips. Odd rows read text-first, even rows media-first, so a run of chapters never falls into a column.</p>
+      <sc-for list="{{ mediaRows }}" as="r" hint-placeholder-count="2">
+        <div style="padding:32px 0">
+          <sc-if value="{{ r.flip }}" hint-placeholder-val="{{ false }}">
+            <div style="display:grid;grid-template-columns:1.15fr 1fr;gap:64px;align-items:center">
+              <div style="border:1px solid rgba(21,94,117,0.16);border-radius:14px;overflow:hidden;background:#fff;box-shadow:0 18px 44px rgba(8,51,68,0.09)">
+                <div style="display:flex;align-items:center;gap:10px;padding:11px 14px;background:#F1F7F9">
+                  <span style="display:flex;gap:6px">
+                    <span style="width:9px;height:9px;border-radius:50%;background:#D5E8EC"></span>
+                    <span style="width:9px;height:9px;border-radius:50%;background:#D5E8EC"></span>
+                    <span style="width:9px;height:9px;border-radius:50%;background:#D5E8EC"></span>
+                  </span>
+                  <span style="flex:1;background:#fff;border:1px solid rgba(21,94,117,0.12);border-radius:6px;padding:4px 10px;font-family:'IBM Plex Mono',monospace;font-size:10px;color:#7C949C">{{ r.url }}</span>
+                </div>
+                <div style="aspect-ratio:16/10;background:repeating-linear-gradient(135deg,#F4F9FA 0 8px,#EAF3F5 8px 16px);display:flex;align-items:center;justify-content:center">
+                  <span style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:#7C949C">{{ r.media }}</span>
+                </div>
+              </div>
+              <div>
+                <p style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:0.12em;text-transform:uppercase;color:#0891B2;margin:0 0 14px">{{ r.eyebrow }} · media left</p>
+                <h3 style="font-family:Sora,sans-serif;font-weight:500;font-size:28px;line-height:1.18;letter-spacing:-0.025em;margin:0;max-width:20ch">{{ r.title }}</h3>
+                <p style="font-size:17px;line-height:1.75;color:#243942;max-width:48ch;margin:16px 0 0">{{ r.body }}</p>
+              </div>
+            </div>
+          </sc-if>
+          <sc-if value="{{ r.normal }}" hint-placeholder-val="{{ true }}">
+            <div style="display:grid;grid-template-columns:1fr 1.15fr;gap:64px;align-items:center">
+              <div>
+                <p style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:0.12em;text-transform:uppercase;color:#0891B2;margin:0 0 14px">{{ r.eyebrow }} · text left</p>
+                <h3 style="font-family:Sora,sans-serif;font-weight:500;font-size:28px;line-height:1.18;letter-spacing:-0.025em;margin:0;max-width:20ch">{{ r.title }}</h3>
+                <p style="font-size:17px;line-height:1.75;color:#243942;max-width:48ch;margin:16px 0 0">{{ r.body }}</p>
+              </div>
+              <div style="border:1px solid rgba(21,94,117,0.16);border-radius:14px;overflow:hidden;background:#fff;box-shadow:0 18px 44px rgba(8,51,68,0.09)">
+                <div style="display:flex;align-items:center;gap:10px;padding:11px 14px;background:#F1F7F9">
+                  <span style="display:flex;gap:6px">
+                    <span style="width:9px;height:9px;border-radius:50%;background:#D5E8EC"></span>
+                    <span style="width:9px;height:9px;border-radius:50%;background:#D5E8EC"></span>
+                    <span style="width:9px;height:9px;border-radius:50%;background:#D5E8EC"></span>
+                  </span>
+                  <span style="flex:1;background:#fff;border:1px solid rgba(21,94,117,0.12);border-radius:6px;padding:4px 10px;font-family:'IBM Plex Mono',monospace;font-size:10px;color:#7C949C">{{ r.url }}</span>
+                </div>
+                <div style="aspect-ratio:16/10;background:repeating-linear-gradient(135deg,#F4F9FA 0 8px,#EAF3F5 8px 16px);display:flex;align-items:center;justify-content:center">
+                  <span style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:#7C949C">{{ r.media }}</span>
+                </div>
+              </div>
+            </div>
+          </sc-if>
+        </div>
+      </sc-for>
+    </div>
+
+    <div class="cg-rule" style="padding:48px 0">
+      <p style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:0.12em;text-transform:uppercase;color:#0891B2;margin:0 0 12px">S13 · Full-bleed media anchor</p>
+      <p style="font-size:15px;line-height:1.7;color:#3D5660;max-width:60ch;margin:0 0 28px">The S5 anchor block, but the dark ground is replaced by media. Use it once per case study, for the one screen that carries the argument. Caption sits below on the scrim, never over the interface.</p>
+      <div style="position:relative;border-radius:4px;overflow:hidden;background:#0C1F26;min-height:460px;display:flex;flex-direction:column;justify-content:flex-end">
+        <div style="position:absolute;inset:0;background:repeating-linear-gradient(135deg,#123039 0 10px,#0F2A32 10px 20px)"></div>
+        <div style="position:absolute;inset:0;background-image:radial-gradient(rgba(94,234,212,0.14) 1.15px,transparent 1.15px);background-size:22px 22px"></div>
+        <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center">
+          <span style="font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:0.14em;text-transform:uppercase;color:#4E7A87">Full-bleed product still or loop</span>
+        </div>
+        <div style="position:relative;padding:40px 48px;background:linear-gradient(to top,rgba(6,17,21,0.95),rgba(6,17,21,0))">
+          <p style="font-family:Sora,sans-serif;font-weight:500;font-size:26px;line-height:1.3;letter-spacing:-0.025em;color:#EAF3F5;margin:0;max-width:32ch">The three-job model, as it appears to someone opening the platform for the first time.</p>
+          <p style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:0.06em;color:#7C99A3;margin:14px 0 0">Interface reconstructed with representative data to protect internal information.</p>
+        </div>
+      </div>
+    </div>
+
+    <div style="padding:48px 0">
+      <p style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:0.12em;text-transform:uppercase;color:#0891B2;margin:0 0 24px">S10 · Closing CTA</p>
+      <div style="background:#F1F7F9;border:1px solid rgba(21,94,117,0.14);border-radius:4px;padding:64px 48px">
+        <h2 style="font-family:Sora,sans-serif;font-weight:500;font-size:52px;line-height:1.06;letter-spacing:-0.035em;margin:0;max-width:16ch">Have a complicated product problem?</h2>
+        <div style="display:flex;flex-wrap:wrap;gap:12px;margin-top:36px">
+          <a href="mailto:mithraj14@gmail.com" style="font-size:15px;font-weight:600;color:#fff;background:linear-gradient(135deg,#155E75,#0891B2);padding:15px 28px;border-radius:10px;box-shadow:0 12px 30px rgba(8,145,178,0.26)" style-hover="box-shadow:0 16px 36px rgba(8,145,178,0.34)">Say hi →</a>
+          <a href="Work.dc.html" style="font-size:15px;font-weight:500;color:#0C171C;background:#fff;border:1px solid rgba(21,94,117,0.18);padding:15px 28px;border-radius:10px" style-hover="border-color:rgba(6,182,212,0.5)">See all work</a>
+        </div>
+      </div>
+    </div>
+
+  </section>
+
+  <section id="media" style="max-width:1180px;margin:0 auto;padding:56px 40px 0">
+    <div class="cg-section-rule" style="display:flex;align-items:baseline;gap:20px;padding-bottom:28px">
+      <span style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:0.14em;color:#0891B2">F</span>
+      <h2 style="font-family:Sora,sans-serif;font-weight:500;font-size:34px;letter-spacing:-0.03em;margin:0">Product media</h2>
+      <span style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:0.1em;text-transform:uppercase;color:#7C949C;margin-left:auto">Frame the design argument, not a gallery</span>
+    </div>
+
+    <div class="cg-rule" style="padding:48px 0">
+      <p style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:0.12em;text-transform:uppercase;color:#0891B2;margin:0 0 12px">F1 &middot; Media pair</p>
+      <p style="font-size:15px;line-height:1.7;color:#3D5660;max-width:62ch;margin:0 0 28px">Use when the value is in the comparison: earlier versus reframed, concept A versus B, or two related surfaces that make more sense together.</p>
+      <div class="cg-media-pair">
+        <div>
+          <div class="cg-frame">
+            <div class="cg-framebar"><span style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:#7C949C">Earlier structure</span></div>
+            <div class="cg-framebody" style="padding:26px">
+              <div style="display:grid;grid-template-columns:80px 1fr;gap:12px;height:100%">
+                <div style="background:#DCECEF;border-radius:8px"></div>
+                <div style="display:flex;flex-direction:column;gap:10px"><span style="height:24px;background:#DCECEF;border-radius:6px"></span><span style="height:54px;background:#E8F2F4;border-radius:8px"></span><span style="height:54px;background:#E8F2F4;border-radius:8px"></span></div>
+              </div>
+            </div>
+          </div>
+          <p style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:#7C949C;margin:11px 0 0">01 / What was difficult</p>
+        </div>
+        <div>
+          <div class="cg-frame">
+            <div class="cg-framebar"><span style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:#155E75">Reframed structure</span></div>
+            <div class="cg-framebody" style="padding:26px">
+              <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:12px"><span style="height:116px;background:#CBEAF0;border-radius:10px"></span><span style="height:116px;background:#DCECEF;border-radius:10px"></span><span style="height:116px;background:#DCECEF;border-radius:10px"></span></div>
+            </div>
+          </div>
+          <p style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:#155E75;margin:11px 0 0">02 / What changed</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="cg-rule" style="padding:48px 0">
+      <p style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:0.12em;text-transform:uppercase;color:#0891B2;margin:0 0 12px">F2 &middot; Mobile sequence</p>
+      <p style="font-size:15px;line-height:1.7;color:#3D5660;max-width:62ch;margin:0 0 28px">Three to five frames show a task without turning the case study into a screen dump. Each frame gets one job and one caption.</p>
+      <div class="cg-mobile-seq">
+        <div><div class="cg-phone"><div class="cg-phone-screen"><div style="height:20px;width:55%;background:#A9D2DB;border-radius:5px"></div><div style="height:78px;background:#fff;border-radius:9px;margin-top:18px"></div><div style="height:42px;background:#fff;border-radius:9px;margin-top:10px"></div></div></div><p style="font-family:'IBM Plex Mono',monospace;font-size:9.5px;color:#3D5660;margin:10px 0 0">01 &middot; Find</p></div>
+        <div><div class="cg-phone"><div class="cg-phone-screen"><div style="height:34px;background:#fff;border-radius:8px"></div><div style="display:grid;grid-template-columns:repeat(2,1fr);gap:8px;margin-top:12px"><span style="height:72px;background:#fff;border-radius:9px"></span><span style="height:72px;background:#fff;border-radius:9px"></span><span style="height:72px;background:#fff;border-radius:9px"></span><span style="height:72px;background:#fff;border-radius:9px"></span></div></div></div><p style="font-family:'IBM Plex Mono',monospace;font-size:9.5px;color:#3D5660;margin:10px 0 0">02 &middot; Compare</p></div>
+        <div><div class="cg-phone"><div class="cg-phone-screen"><div style="height:96px;background:#CBEAF0;border-radius:10px"></div><div style="height:12px;width:80%;background:#A9D2DB;border-radius:4px;margin-top:14px"></div><div style="height:12px;width:60%;background:#C7DDE2;border-radius:4px;margin-top:7px"></div><div style="height:40px;background:#0891B2;border-radius:9px;margin-top:24px"></div></div></div><p style="font-family:'IBM Plex Mono',monospace;font-size:9.5px;color:#3D5660;margin:10px 0 0">03 &middot; Act</p></div>
+        <div><div class="cg-phone"><div class="cg-phone-screen"><div style="width:44px;height:44px;border-radius:50%;background:#0891B2;margin:30px auto 0"></div><div style="height:12px;width:70%;background:#A9D2DB;border-radius:4px;margin:18px auto 0"></div><div style="height:12px;width:52%;background:#C7DDE2;border-radius:4px;margin:7px auto 0"></div></div></div><p style="font-family:'IBM Plex Mono',monospace;font-size:9.5px;color:#3D5660;margin:10px 0 0">04 &middot; Confirm</p></div>
+      </div>
+    </div>
+
+    <div class="cg-rule" style="padding:48px 0">
+      <p style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:0.12em;text-transform:uppercase;color:#0891B2;margin:0 0 12px">F3 &middot; Product motion</p>
+      <p style="font-size:15px;line-height:1.7;color:#3D5660;max-width:62ch;margin:0 0 28px">Use motion only when timing, state change, or interaction is part of the argument. The poster frame should still explain what the viewer is about to see.</p>
+      <div style="position:relative;min-height:360px;border-radius:14px;overflow:hidden;background:#0C1F26;display:flex;align-items:center;justify-content:center">
+        <div style="position:absolute;inset:0;background-image:radial-gradient(rgba(94,234,212,.15) 1.15px,transparent 1.15px);background-size:22px 22px"></div>
+        <div style="position:relative;text-align:center">
+          <div style="width:68px;height:68px;border-radius:50%;border:1px solid rgba(234,243,245,.28);display:flex;align-items:center;justify-content:center;margin:0 auto;color:#5EEAD4;font-size:24px;padding-left:4px">&#9654;</div>
+          <p style="font-family:Sora,sans-serif;font-size:22px;color:#EAF3F5;margin:20px 0 0">A short loop demonstrates the state change.</p>
+          <p style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:#7C99A3;margin:10px 0 0">6-12 seconds &middot; muted &middot; loop only when useful</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="cg-rule" style="padding:48px 0">
+      <p style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:0.12em;text-transform:uppercase;color:#0891B2;margin:0 0 12px">F4 &middot; Annotated interface</p>
+      <p style="font-size:15px;line-height:1.7;color:#3D5660;max-width:62ch;margin:0 0 28px">The interface carries the evidence; callouts explain only the decisions a reader cannot infer by looking. Keep to three or four.</p>
+      <div class="cg-annotated">
+        <div class="cg-frame">
+          <div class="cg-framebar"><span style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:#7C949C">product / overview</span></div>
+          <div class="cg-framebody" style="padding:24px;min-height:360px">
+            <div style="display:grid;grid-template-columns:160px 1fr;gap:18px;height:100%">
+              <div style="background:#DCECEF;border-radius:10px"></div>
+              <div><div style="height:34px;background:#fff;border-radius:8px"></div><div style="display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin-top:14px"><span style="height:100px;background:#fff;border-radius:10px"></span><span style="height:100px;background:#fff;border-radius:10px"></span></div><div style="height:126px;background:#fff;border-radius:10px;margin-top:12px"></div></div>
+            </div>
+            <span class="cg-callout-dot" style="left:132px;top:76px">1</span>
+            <span class="cg-callout-dot" style="right:80px;top:126px">2</span>
+            <span class="cg-callout-dot" style="right:196px;bottom:64px">3</span>
+          </div>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:0">
+          <div class="cg-rule" style="padding:0 0 22px"><p style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:#0891B2;margin:0 0 7px">01</p><p style="font-size:15px;line-height:1.6;color:#243942;margin:0">Navigation mirrors the task model rather than the underlying organisation structure.</p></div>
+          <div class="cg-rule" style="padding:22px 0"><p style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:#0891B2;margin:0 0 7px">02</p><p style="font-size:15px;line-height:1.6;color:#243942;margin:0">Primary status stays visible before the reader opens a detail view.</p></div>
+          <div style="padding:22px 0 0"><p style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:#0891B2;margin:0 0 7px">03</p><p style="font-size:15px;line-height:1.6;color:#243942;margin:0">Contextual actions appear where the decision is made, not in a separate utility area.</p></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="cg-rule" style="padding:48px 0">
+      <p style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:0.12em;text-transform:uppercase;color:#0891B2;margin:0 0 12px">F5 &middot; Decision comparison</p>
+      <p style="font-size:15px;line-height:1.7;color:#3D5660;max-width:62ch;margin:0 0 28px">Show alternatives when the trade-off reveals judgment. The chosen direction gets the stronger outline; the rejected option is still described fairly.</p>
+      <div class="cg-decision">
+        <div style="border:1px solid rgba(21,94,117,.14);border-radius:14px;padding:28px;background:rgba(255,255,255,.5)">
+          <p style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:#7C949C;margin:0">Explored &middot; A</p>
+          <h3 style="font-family:Sora,sans-serif;font-size:23px;font-weight:500;letter-spacing:-.02em;margin:14px 0 0">Expose every module up front</h3>
+          <div style="height:126px;background:#E5F0F2;border-radius:10px;margin-top:22px"></div>
+          <p style="font-size:15px;line-height:1.65;color:#3D5660;margin:18px 0 0">Fast for experts, but the density made orientation harder for people entering through unfamiliar tasks.</p>
+        </div>
+        <div style="border:1px solid rgba(8,145,178,.52);box-shadow:0 14px 34px rgba(8,145,178,.1);border-radius:14px;padding:28px;background:#fff">
+          <p style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:#0891B2;margin:0">Chosen &middot; B</p>
+          <h3 style="font-family:Sora,sans-serif;font-size:23px;font-weight:500;letter-spacing:-.02em;margin:14px 0 0">Group around the work people came to do</h3>
+          <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:22px"><span style="height:126px;background:#CBEAF0;border-radius:10px"></span><span style="height:126px;background:#E5F0F2;border-radius:10px"></span><span style="height:126px;background:#E5F0F2;border-radius:10px"></span></div>
+          <p style="font-size:15px;line-height:1.65;color:#243942;margin:18px 0 0"><strong style="font-weight:500;color:#155E75">Why:</strong> the structure gave new and returning users the same stable entry points without hiding expert paths.</p>
+        </div>
+      </div>
+    </div>
+
+    <div style="padding:48px 0">
+      <p style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:0.12em;text-transform:uppercase;color:#0891B2;margin:0 0 12px">F6 &middot; System bridge</p>
+      <p style="font-size:15px;line-height:1.7;color:#3D5660;max-width:62ch;margin:0 0 28px">Use when the case study needs to zoom out from a screen into the wider service or system. Four levels are enough to show the change in altitude.</p>
+      <div style="background:rgba(255,255,255,.55);border:1px solid rgba(255,255,255,.8);border-radius:14px;padding:36px;box-shadow:0 16px 40px rgba(8,51,68,.08)">
+        <div class="cg-flow">
+          <div style="border:1px solid rgba(21,94,117,.16);border-radius:10px;padding:22px;text-align:center"><div style="display:grid;grid-template-columns:repeat(3,7px);gap:5px;width:max-content;margin:0 auto 14px"><span style="width:7px;height:7px;border-radius:50%;background:#0891B2"></span><span style="width:7px;height:7px;border-radius:50%;background:#0891B2"></span><span style="width:7px;height:7px;border-radius:50%;background:#0891B2"></span><span style="width:7px;height:7px;border-radius:50%;background:#0891B2"></span><span style="width:7px;height:7px;border-radius:50%;background:#0891B2"></span><span style="width:7px;height:7px;border-radius:50%;background:#0891B2"></span></div><span style="font-family:'IBM Plex Mono',monospace;font-size:10px;text-transform:uppercase;color:#3D5660">Interface</span></div>
+          <span class="cg-arrow">&rarr;</span>
+          <div style="border:1px solid rgba(21,94,117,.16);border-radius:10px;padding:22px;text-align:center"><div style="height:7px;background-image:radial-gradient(#0891B2 2px,transparent 2px);background-size:11px 7px;margin-bottom:14px"></div><span style="font-family:'IBM Plex Mono',monospace;font-size:10px;text-transform:uppercase;color:#3D5660">Journey</span></div>
+          <span class="cg-arrow">&rarr;</span>
+          <div style="border:1px solid rgba(21,94,117,.16);border-radius:10px;padding:22px;text-align:center"><div style="display:flex;gap:5px;justify-content:center;margin-bottom:14px"><span style="width:7px;height:7px;border-radius:50%;background:#0891B2"></span><span style="width:7px;height:7px;border-radius:50%;background:#9DBAC2"></span><span style="width:7px;height:7px;border-radius:50%;background:#0891B2"></span><span style="width:7px;height:7px;border-radius:50%;background:#9DBAC2"></span></div><span style="font-family:'IBM Plex Mono',monospace;font-size:10px;text-transform:uppercase;color:#3D5660">Workflow</span></div>
+          <span class="cg-arrow">&rarr;</span>
+          <div style="border:1px solid rgba(8,145,178,.3);border-radius:10px;padding:22px;text-align:center;background:#F1F7F9"><div style="display:grid;grid-template-columns:repeat(4,7px);gap:5px;width:max-content;margin:0 auto 14px"><span style="width:7px;height:7px;border-radius:50%;background:#0891B2"></span><span style="width:7px;height:7px;border-radius:50%;background:#0891B2"></span><span style="width:7px;height:7px;border-radius:50%;background:#0891B2"></span><span style="width:7px;height:7px;border-radius:50%;background:#0891B2"></span><span style="width:7px;height:7px;border-radius:50%;background:#0891B2"></span><span style="width:7px;height:7px;border-radius:50%;background:#0891B2"></span><span style="width:7px;height:7px;border-radius:50%;background:#0891B2"></span><span style="width:7px;height:7px;border-radius:50%;background:#0891B2"></span></div><span style="font-family:'IBM Plex Mono',monospace;font-size:10px;text-transform:uppercase;color:#155E75">System</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="cg-rule" style="padding:48px 0">
+      <p style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:0.12em;text-transform:uppercase;color:#0891B2;margin:0 0 12px">F7 &middot; Dot annotation language</p>
+      <p style="font-size:15px;line-height:1.7;color:#3D5660;max-width:66ch;margin:0 0 30px">Use dot states instead of generic numbered pins. The mark tells the reader what kind of thing is being explained before they read the note.</p>
+      <div class="cg-dot-annotation-layout">
+        <div class="cg-frame">
+          <div class="cg-framebar"><span style="display:flex;gap:6px"><span style="width:8px;height:8px;border-radius:50%;background:#D5E8EC"></span><span style="width:8px;height:8px;border-radius:50%;background:#D5E8EC"></span><span style="width:8px;height:8px;border-radius:50%;background:#D5E8EC"></span></span><span style="flex:1;background:#fff;border:1px solid rgba(21,94,117,.12);border-radius:6px;padding:4px 10px;font-family:'IBM Plex Mono',monospace;font-size:9.5px;color:#7C949C">platform / overview</span></div>
+          <div style="position:relative;min-height:360px;background:#F7FBFC;padding:24px">
+            <div style="display:grid;grid-template-columns:110px 1fr;gap:18px;height:312px"><div style="border-radius:8px;background:#E6F1F3;padding:14px"><div style="height:8px;width:54px;background:#BFD8DE;border-radius:4px;margin-bottom:18px"></div><div style="height:6px;width:72px;background:#CFE2E6;border-radius:4px;margin-bottom:9px"></div><div style="height:6px;width:58px;background:#CFE2E6;border-radius:4px;margin-bottom:9px"></div><div style="height:6px;width:66px;background:#CFE2E6;border-radius:4px"></div></div><div><div style="height:42px;border-radius:8px;background:#EAF3F5;margin-bottom:16px"></div><div style="display:grid;grid-template-columns:1.2fr .8fr;gap:14px"><div style="height:116px;border-radius:8px;background:#fff;border:1px solid rgba(21,94,117,.1)"></div><div style="height:116px;border-radius:8px;background:#DDECEF"></div><div style="height:118px;border-radius:8px;background:#EDF5F6"></div><div style="height:118px;border-radius:8px;background:#fff;border:1px solid rgba(21,94,117,.1)"></div></div></div></div>
+            <span class="cg-dot-marker cg-dot-marker-fill" style="left:47%;top:38%"></span>
+            <span class="cg-dot-marker cg-dot-marker-ring" style="left:79%;top:55%"></span>
+            <span class="cg-dot-marker cg-dot-marker-system" style="left:58%;top:78%"><span></span><span></span><span></span></span>
+          </div>
+        </div>
+        <div>
+          <div class="cg-rule" style="display:grid;grid-template-columns:40px 1fr;gap:14px;padding:0 0 22px"><span style="width:16px;height:16px;border-radius:50%;background:#0891B2;box-shadow:0 0 0 5px rgba(8,145,178,.12);margin-top:3px"></span><div><p style="font-family:'IBM Plex Mono',monospace;font-size:10px;text-transform:uppercase;color:#155E75;margin:0">Primary decision</p><p style="font-size:14px;line-height:1.6;color:#3D5660;margin:7px 0 0">A deliberate design choice that changed the experience.</p></div></div>
+          <div class="cg-rule" style="display:grid;grid-template-columns:40px 1fr;gap:14px;padding:22px 0"><span style="width:18px;height:18px;border-radius:50%;border:2px solid #0891B2;background:#fff;margin-top:3px"></span><div><p style="font-family:'IBM Plex Mono',monospace;font-size:10px;text-transform:uppercase;color:#155E75;margin:0">User control</p><p style="font-size:14px;line-height:1.6;color:#3D5660;margin:7px 0 0">An action, choice, or place where the user stays in control.</p></div></div>
+          <div style="display:grid;grid-template-columns:40px 1fr;gap:14px;padding:22px 0"><span style="display:flex;gap:3px;background:#0C1F26;padding:7px 6px;border-radius:999px;width:max-content;margin-top:2px"><span style="width:4px;height:4px;border-radius:50%;background:#5EEAD4"></span><span style="width:4px;height:4px;border-radius:50%;background:#5EEAD4"></span><span style="width:4px;height:4px;border-radius:50%;background:#5EEAD4"></span></span><div><p style="font-family:'IBM Plex Mono',monospace;font-size:10px;text-transform:uppercase;color:#155E75;margin:0">System behaviour</p><p style="font-size:14px;line-height:1.6;color:#3D5660;margin:7px 0 0">Something the platform does, infers, connects, or updates behind the interface.</p></div></div>
+        </div>
+      </div>
+    </div>
+
+    <div style="padding:48px 0">
+      <p style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:0.12em;text-transform:uppercase;color:#0891B2;margin:0 0 12px">F8 &middot; Dot to interface transition</p>
+      <p style="font-size:15px;line-height:1.7;color:#3D5660;max-width:68ch;margin:0 0 30px">Use once when the story moves from an abstract system problem into the product response. Dots begin as the model; the interface resolves underneath. Hover the example to reveal it.</p>
+      <div class="cg-dot-reveal">
+        <div class="cg-dot-reveal-ui">
+          <div style="height:34px;background:#E3EFF1;border-radius:7px;margin-bottom:18px;display:flex;align-items:center;padding:0 12px;gap:7px"><span style="width:7px;height:7px;border-radius:50%;background:#B9D4DA"></span><span style="width:7px;height:7px;border-radius:50%;background:#B9D4DA"></span><span style="width:7px;height:7px;border-radius:50%;background:#B9D4DA"></span></div>
+          <div style="display:grid;grid-template-columns:150px 1fr;gap:18px;height:290px"><div style="background:#E8F2F4;border-radius:9px;padding:18px"><div style="width:76px;height:9px;background:#B9D4DA;border-radius:5px;margin-bottom:26px"></div><div style="width:88px;height:7px;background:#C8DEE3;border-radius:5px;margin-bottom:12px"></div><div style="width:66px;height:7px;background:#C8DEE3;border-radius:5px;margin-bottom:12px"></div><div style="width:82px;height:7px;background:#C8DEE3;border-radius:5px"></div></div><div><div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin-bottom:14px"><div style="height:76px;border-radius:9px;background:#fff;border:1px solid rgba(21,94,117,.1)"></div><div style="height:76px;border-radius:9px;background:#DCECEF"></div><div style="height:76px;border-radius:9px;background:#fff;border:1px solid rgba(21,94,117,.1)"></div></div><div style="height:196px;border-radius:9px;background:#fff;border:1px solid rgba(21,94,117,.1);padding:18px"><div style="height:10px;width:38%;background:#BFD8DE;border-radius:5px;margin-bottom:22px"></div><div style="height:8px;width:84%;background:#E0ECEF;border-radius:4px;margin-bottom:12px"></div><div style="height:8px;width:70%;background:#E0ECEF;border-radius:4px;margin-bottom:12px"></div><div style="height:8px;width:78%;background:#E0ECEF;border-radius:4px"></div></div></div></div>
+        </div>
+        <div class="cg-dot-curtain"></div>
+        <span class="cg-dot-curtain-label">Abstract system &middot; hover to resolve</span>
+      </div>
+      <div class="cg-recipe-flow" style="margin-top:18px"><span class="cg-chip">Abstract dots</span><span class="cg-arrow">&rarr;</span><span class="cg-chip">Structured model</span><span class="cg-arrow">&rarr;</span><span class="cg-chip">Product interface</span></div>
+    </div>
+
+
+    <div class="cg-rule" style="padding:48px 0">
+      <p style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:#0891B2;margin:0 0 12px">F9 &middot; Privacy as a visual system</p>
+      <p style="font-size:15px;line-height:1.7;color:#3D5660;max-width:68ch;margin:0 0 28px">Confidentiality should feel designed, not apologetic. Reconstruct interfaces with representative data, use consistent labels, and turn redaction into a quiet part of the system.</p>
+      <div class="cg-privacy-grid"><div class="cg-redacted-ui"><div style="display:flex;justify-content:space-between;align-items:center"><span class="cg-privacy-label">Representative interface</span><span style="font-family:'IBM Plex Mono',monospace;font-size:9px;color:#7C949C">INTERNAL DATA REMOVED</span></div><div style="display:grid;grid-template-columns:120px 1fr;gap:16px;margin-top:24px"><div class="cg-redact-dots" style="min-height:210px;opacity:.55"></div><div style="display:flex;flex-direction:column;gap:12px"><span style="height:28px;width:55%;background:#D7E8EB;border-radius:6px"></span><span style="height:64px;background:#EFF6F7;border-radius:10px"></span><div style="display:grid;grid-template-columns:1fr 1fr;gap:12px"><span style="height:92px;background:#E6F2F4;border-radius:10px"></span><span class="cg-redact-dots" style="height:92px;opacity:.42"></span></div></div></div></div><div class="cg-glass-soft" style="padding:28px;border-radius:14px"><p class="cg-surface-use">Use consistently</p><ul style="font-size:14px;line-height:1.7;color:#3D5660;padding-left:18px;margin:16px 0 0"><li>Representative names and values</li><li>Dot matrix for redacted detail</li><li>One fixed confidentiality sentence</li><li>No screenshots where reconstruction is safer</li></ul><p style="font-family:'IBM Plex Mono',monospace;font-size:10px;line-height:1.65;color:#155E75;margin:22px 0 0">Interface reconstructed with representative data to protect internal information.</p></div></div>
+    </div>
+  </section>
+
+  <section id="evidence" style="max-width:1180px;margin:0 auto;padding:56px 40px 0">
+    <div class="cg-section-rule" style="display:flex;align-items:baseline;gap:20px;padding-bottom:28px">
+      <span style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:0.14em;color:#0891B2">G</span>
+      <h2 style="font-family:Sora,sans-serif;font-weight:500;font-size:34px;letter-spacing:-0.03em;margin:0">Evidence</h2>
+      <span style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:0.1em;text-transform:uppercase;color:#7C949C;margin-left:auto">Connect scale, change, and outcome</span>
+    </div>
+
+    <div class="cg-rule" style="padding:48px 0">
+      <p style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:0.12em;text-transform:uppercase;color:#0891B2;margin:0 0 12px">G1 &middot; Scale to outcome</p>
+      <p style="font-size:15px;line-height:1.7;color:#3D5660;max-width:62ch;margin:0 0 28px">Use when a metric is only meaningful after the reader sees the structural change that produced it.</p>
+      <div class="cg-proof-chain">
+        <div class="cg-glass" style="padding:28px;border-radius:14px"><p style="font-family:Sora,sans-serif;font-size:34px;font-weight:500;color:#155E75;margin:0">139</p><p style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.09em;text-transform:uppercase;color:#7C949C;margin:8px 0 0">Modules in the field</p></div>
+        <span class="cg-arrow">&rarr;</span>
+        <div class="cg-glass-soft" style="padding:28px;border-radius:14px"><p style="font-family:Sora,sans-serif;font-size:22px;font-weight:500;margin:0">Reorganised around user tasks</p><p style="font-size:14px;line-height:1.6;color:#3D5660;margin:10px 0 0">Hierarchy, navigation, pinning, and clearer entry points.</p></div>
+        <span class="cg-arrow">&rarr;</span>
+        <div style="padding:28px;border-radius:12px;background:#0C1F26;color:#EAF3F5"><p style="font-family:Sora,sans-serif;font-size:34px;font-weight:500;color:#5EEAD4;margin:0">-62%</p><p style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.09em;text-transform:uppercase;color:#8FB3BC;margin:8px 0 0">Time on landing page</p></div>
+      </div>
+    </div>
+
+    <div class="cg-rule" style="padding:48px 0">
+      <p style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:0.12em;text-transform:uppercase;color:#0891B2;margin:0 0 12px">G2 &middot; Before / after metric</p>
+      <p style="font-size:15px;line-height:1.7;color:#3D5660;max-width:62ch;margin:0 0 28px">Use one paired metric when the delta is the story. Keep the base, unit, and time window visible so the claim stands on its own.</p>
+      <div class="cg-grid-3">
+        <div class="cg-glass" style="padding:30px;border-radius:14px"><p style="font-family:'IBM Plex Mono',monospace;font-size:10px;text-transform:uppercase;color:#7C949C;margin:0">Before</p><p style="font-family:Sora,sans-serif;font-size:34px;font-weight:500;margin:12px 0 0">100</p><p style="font-size:14px;color:#3D5660;margin:6px 0 0">Baseline index</p></div>
+        <div class="cg-glass" style="padding:30px;border-radius:14px"><p style="font-family:'IBM Plex Mono',monospace;font-size:10px;text-transform:uppercase;color:#7C949C;margin:0">After</p><p style="font-family:Sora,sans-serif;font-size:34px;font-weight:500;margin:12px 0 0">38</p><p style="font-size:14px;color:#3D5660;margin:6px 0 0">Same measure</p></div>
+        <div style="padding:30px;background:#0C1F26;border-radius:12px;color:#EAF3F5"><p style="font-family:'IBM Plex Mono',monospace;font-size:10px;text-transform:uppercase;color:#8FB3BC;margin:0">Change</p><p style="font-family:Sora,sans-serif;font-size:34px;font-weight:500;color:#5EEAD4;margin:12px 0 0">-62%</p><p style="font-size:14px;color:#A9C3CA;margin:6px 0 0">Measured reduction</p></div>
+      </div>
+    </div>
+
+    <div style="padding:48px 0">
+      <p style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:0.12em;text-transform:uppercase;color:#0891B2;margin:0 0 12px">G3 &middot; Evidence ladder</p>
+      <p style="font-size:15px;line-height:1.7;color:#3D5660;max-width:62ch;margin:0 0 28px">When there is no single headline metric, stack different kinds of proof instead of pretending they are equivalent.</p>
+      <div style="display:grid;grid-template-columns:1fr;gap:10px;max-width:820px">
+        <div class="cg-glass-soft" style="display:grid;grid-template-columns:140px 1fr;gap:24px;padding:20px 22px;border-radius:12px"><span style="font-family:'IBM Plex Mono',monospace;font-size:10px;text-transform:uppercase;color:#7C949C">Qualitative</span><span style="font-size:15px;color:#243942">People could explain the new structure without prompting.</span></div>
+        <div class="cg-glass" style="display:grid;grid-template-columns:140px 1fr;gap:24px;padding:20px 22px;border-radius:12px"><span style="font-family:'IBM Plex Mono',monospace;font-size:10px;text-transform:uppercase;color:#3D5660">Behavioural</span><span style="font-size:15px;color:#243942">More sessions started from pinned or grouped entry points.</span></div>
+        <div class="cg-glass-lift" style="display:grid;grid-template-columns:140px 1fr;gap:24px;padding:20px 22px;border-radius:12px"><span style="font-family:'IBM Plex Mono',monospace;font-size:10px;text-transform:uppercase;color:#155E75">Outcome</span><span style="font-size:15px;color:#155E75">Time spent locating the right module decreased.</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="navigation" style="max-width:1180px;margin:0 auto;padding:56px 40px 0">
+    <div class="cg-section-rule" style="display:flex;align-items:baseline;gap:20px;padding-bottom:28px">
+      <span style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:0.14em;color:#0891B2">H</span>
+      <h2 style="font-family:Sora,sans-serif;font-weight:500;font-size:34px;letter-spacing:-0.03em;margin:0">Navigation &amp; transitions</h2>
+      <span style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:0.1em;text-transform:uppercase;color:#7C949C;margin-left:auto">Control the reading rhythm</span>
+    </div>
+
+    <div class="cg-rule" style="padding:48px 0">
+      <p style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:0.12em;text-transform:uppercase;color:#0891B2;margin:0 0 12px">H1 &middot; Chapter transition</p>
+      <p style="font-size:15px;line-height:1.7;color:#3D5660;max-width:62ch;margin:0 0 28px">Use between major acts, not every section. It resets the pace and tells the reader what changed in the argument.</p>
+      <div style="background:#0C1F26;border-radius:4px;padding:64px 48px;color:#EAF3F5;position:relative;overflow:hidden">
+        <div style="position:absolute;inset:0;background-image:radial-gradient(rgba(94,234,212,.12) 1.15px,transparent 1.15px);background-size:22px 22px"></div>
+        <div style="position:relative">
+          <p style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.15em;text-transform:uppercase;color:#5EEAD4;margin:0">Chapter 03 / Reframe</p>
+          <h3 style="font-family:Sora,sans-serif;font-size:42px;line-height:1.08;font-weight:500;letter-spacing:-.03em;max-width:19ch;margin:20px 0 0">The problem was not navigation. It was the model underneath it.</h3>
+          <p style="font-size:16px;line-height:1.7;color:#A9C3CA;max-width:54ch;margin:22px 0 0">One short setup sentence is enough. The next section should immediately show the consequence of this reframe.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="cg-rule" style="padding:48px 0">
+      <p style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:0.12em;text-transform:uppercase;color:#0891B2;margin:0 0 12px">H2 &middot; Full-width statement</p>
+      <p style="font-size:15px;line-height:1.7;color:#3D5660;max-width:62ch;margin:0 0 28px">A single declarative line between dense sections. It should advance the argument, not summarise the paragraph above it.</p>
+      <div class="cg-rule cg-rule-top" style="padding:54px 0">
+        <p style="font-family:Sora,sans-serif;font-size:36px;line-height:1.25;font-weight:400;letter-spacing:-.03em;color:#155E75;margin:0;max-width:28ch">The architecture changed what the interface needed to do.</p>
+      </div>
+    </div>
+
+    <div style="padding:48px 0">
+      <p style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:0.12em;text-transform:uppercase;color:#0891B2;margin:0 0 12px">H3 &middot; Deep-dive gate</p>
+      <p style="font-size:15px;line-height:1.7;color:#3D5660;max-width:62ch;margin:0 0 28px">Use when the public case study stops for confidentiality but a richer private version exists. Make the extra value specific.</p>
+      <a href="#" class="cg-anchor-link cg-glass-lift cg-hover-lift" style="display:grid;grid-template-columns:1fr auto;gap:28px;align-items:center;border-radius:14px;padding:32px;text-decoration:none">
+        <div>
+          <p style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.13em;text-transform:uppercase;color:#0891B2;margin:0">Private deep dive</p>
+          <h3 style="font-family:Sora,sans-serif;font-size:26px;line-height:1.2;font-weight:500;letter-spacing:-.025em;margin:12px 0 0">See the decisions behind the final system</h3>
+          <p style="font-size:15px;line-height:1.65;color:#3D5660;margin:12px 0 0;max-width:58ch">Includes research artefacts, rejected directions, interaction detail, and reconstructed internal screens.</p>
+        </div>
+        <span style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;color:#155E75;border:1px solid rgba(8,145,178,.28);border-radius:999px;padding:10px 14px;white-space:nowrap">Request access &rarr;</span>
+      </a>
+    </div>
+  </section>
+
+  <section id="recipes" style="max-width:1180px;margin:0 auto;padding:56px 40px 0">
+    <div class="cg-section-rule" style="display:flex;align-items:baseline;gap:20px;padding-bottom:28px">
+      <span style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.14em;color:#0891B2">I</span>
+      <h2 style="font-family:Sora,sans-serif;font-weight:500;font-size:34px;letter-spacing:-.03em;margin:0">Composition recipes</h2>
+      <span style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:#7C949C;margin-left:auto">Preserve rhythm, not a fixed template</span>
+    </div>
+    <div style="padding:48px 0">
+      <p style="font-size:15px;line-height:1.7;color:#3D5660;max-width:68ch;margin:0 0 28px">Components are ingredients. Each chapter should choose a sequence that matches the argument, and consecutive chapters should not repeat the exact same composition.</p>
+      <div class="cg-glass-soft cg-recipe-stack" style="padding:8px 28px;border-radius:14px">
+        <div class="cg-recipe-v6"><p style="font-family:Sora,sans-serif;font-size:18px;font-weight:500;margin:0">Problem</p><div class="cg-recipe-flow"><span class="cg-chip">Eyebrow</span><span class="cg-arrow">&rarr;</span><span class="cg-chip">Declarative heading</span><span class="cg-arrow">&rarr;</span><span class="cg-chip">Narrative</span><span class="cg-arrow">&rarr;</span><span class="cg-chip">Dot diagram</span></div></div>
+        <div class="cg-recipe-v6"><p style="font-family:Sora,sans-serif;font-size:18px;font-weight:500;margin:0">Decision</p><div class="cg-recipe-flow"><span class="cg-chip">Heading</span><span class="cg-arrow">&rarr;</span><span class="cg-chip">Decision record</span><span class="cg-arrow">&rarr;</span><span class="cg-chip">Product media</span></div></div>
+        <div class="cg-recipe-v6"><p style="font-family:Sora,sans-serif;font-size:18px;font-weight:500;margin:0">Reframe</p><div class="cg-recipe-flow"><span class="cg-chip">Dark / tint environment</span><span class="cg-arrow">&rarr;</span><span class="cg-chip">Tension statement</span><span class="cg-arrow">&rarr;</span><span class="cg-chip">Consequence</span></div></div>
+        <div class="cg-recipe-v6"><p style="font-family:Sora,sans-serif;font-size:18px;font-weight:500;margin:0">Evidence</p><div class="cg-recipe-flow"><span class="cg-chip">Outcome chain</span><span class="cg-arrow">&rarr;</span><span class="cg-chip">Proof strip</span><span class="cg-arrow">&rarr;</span><span class="cg-chip">Interface anchor</span></div></div>
+        <div class="cg-recipe-v6"><p style="font-family:Sora,sans-serif;font-size:18px;font-weight:500;margin:0">Reflection</p><div class="cg-recipe-flow"><span class="cg-chip">Pull statement</span><span class="cg-arrow">&rarr;</span><span class="cg-chip">What held</span><span class="cg-arrow">&rarr;</span><span class="cg-chip">Unresolved</span><span class="cg-arrow">&rarr;</span><span class="cg-chip">Next project</span></div></div>
+      </div>
+      <div class="cg-title-rule" style="margin-top:22px"><p style="font-family:Sora,sans-serif;font-size:18px;line-height:1.5;margin:0"><strong style="font-weight:500">Responsive rule:</strong> preserve hierarchy, not geometry. On mobile, the reading order wins over desktop alternation.</p></div>
+    </div>
+  </section>
+
+  <section id="interaction" style="max-width:1180px;margin:0 auto;padding:56px 40px 0">
+    <div class="cg-section-rule" style="display:flex;align-items:baseline;gap:20px;padding-bottom:28px">
+      <span style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.14em;color:#0891B2">J</span>
+      <h2 style="font-family:Sora,sans-serif;font-weight:500;font-size:34px;letter-spacing:-.03em;margin:0">Motion &amp; interaction</h2>
+      <span style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:#7C949C;margin-left:auto">Movement explains change</span>
+    </div>
+    <div class="cg-rule" style="padding:48px 0"><p style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:#0891B2;margin:0 0 12px">J1 &middot; Hover language</p><div class="cg-interaction-grid"><div class="cg-glass cg-hover-demo"><p class="cg-surface-use">Interactive glass</p><h4 style="font-family:Sora,sans-serif;font-size:24px;font-weight:500;margin:14px 0 0">Lift 2–4px, strengthen the edge.</h4><p class="cg-surface-note">No dramatic scale. The interaction should confirm clickability, not perform.</p></div><div class="cg-glass-soft cg-hover-demo"><p class="cg-surface-use">Directional link</p><h4 style="font-family:Sora,sans-serif;font-size:24px;font-weight:500;margin:14px 0 0">Next project <span class="cg-arrow-demo cg-accent-text">&rarr;</span></h4><p class="cg-surface-note">Arrow translates 3–4px. Text shifts from deep teal to accent.</p></div></div></div>
+    <div class="cg-rule" style="padding:48px 0"><p style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:#0891B2;margin:0 0 12px">J2 &middot; Chapter progress</p><p style="font-size:15px;line-height:1.7;color:#3D5660;max-width:65ch;margin:0 0 28px">Dots earn a UI role here: a subtle fixed rail can show chapter progress. Hover or focus reveals the chapter label; mobile collapses it into a compact top indicator.</p><div class="cg-scroll-demo"><div class="cg-glass-soft cg-scroll-rail"><span class="cg-scroll-node done"></span><span class="cg-scroll-node done"></span><span class="cg-scroll-node current"></span><span class="cg-scroll-node"></span><span class="cg-scroll-node"></span></div><div class="cg-glass" style="padding:30px;border-radius:14px"><p class="cg-surface-use">03 / The reframe</p><h4 style="font-family:Sora,sans-serif;font-size:27px;font-weight:500;margin:14px 0 0">The current dot is larger and accent-coloured.</h4><p class="cg-surface-note">Completed chapters use deep teal; upcoming chapters remain hollow and muted. State is also conveyed by fill, not colour alone.</p></div></div></div>
+    <div class="cg-rule" style="padding:48px 0"><p style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:#0891B2;margin:0 0 12px">J3 &middot; Motion timing</p><div class="cg-motion-grid"><div class="cg-glass-soft" style="padding:24px;border-radius:14px"><p class="cg-surface-use">Local state</p><p style="font-family:Sora,sans-serif;font-size:23px;font-weight:500;margin:12px 0 0">150–220ms</p><p class="cg-surface-note">Hover, selection, focus, small expansion.</p></div><div class="cg-glass-soft" style="padding:24px;border-radius:14px"><p class="cg-surface-use">Story reveal</p><p style="font-family:Sora,sans-serif;font-size:23px;font-weight:500;margin:12px 0 0">300–450ms</p><p class="cg-surface-note">Use only when reveal order helps comprehension.</p></div><div class="cg-glass" style="padding:24px;border-radius:14px"><p class="cg-surface-use">Dot transformation</p><p style="font-family:Sora,sans-serif;font-size:23px;font-weight:500;margin:12px 0 0">350–650ms</p><p class="cg-surface-note">Problem state reorganises into the resolved state.</p></div></div></div>
+    <div style="padding:48px 0"><p style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:#0891B2;margin:0 0 12px">J4 &middot; Reduced motion + focus</p><div class="cg-grid-2"><div class="cg-glass-soft" style="padding:26px;border-radius:14px"><p class="cg-surface-use">Reduced motion</p><p class="cg-surface-note">Remove translation, autoplay, and transitional dot choreography. Preserve the final state and all information.</p></div><div class="cg-glass-soft" style="padding:26px;border-radius:14px"><p class="cg-surface-use">Keyboard / touch</p><p class="cg-surface-note">Every hover affordance needs an equivalent focus or tap state. Never hide required meaning behind hover alone.</p></div></div></div>
+  </section>
+
+  <section id="copy" style="max-width:1180px;margin:0 auto;padding:56px 40px 0">
+    <div class="cg-section-rule" style="display:flex;align-items:baseline;gap:20px;padding-bottom:28px">
+      <span style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:0.14em;color:#0891B2">K</span>
+      <h2 style="font-family:Sora,sans-serif;font-weight:500;font-size:34px;letter-spacing:-0.03em;margin:0">Copy guide</h2>
+      <span style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:0.1em;text-transform:uppercase;color:#7C949C;margin-left:auto">Plain language, precise ownership, credible claims</span>
+    </div>
+
+    <div class="cg-rule" style="padding:48px 0">
+      <p style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:0.12em;text-transform:uppercase;color:#0891B2;margin:0 0 32px">F1 · Voice</p>
+      <sc-for list="{{ voice }}" as="v" hint-placeholder-count="5">
+        <div class="cg-rule cg-rule-top" style="display:grid;grid-template-columns:1fr 1.1fr;gap:48px;align-items:start;padding:32px 0">
+          <h3 style="font-family:Sora,sans-serif;font-weight:500;font-size:24px;line-height:1.2;letter-spacing:-0.025em;margin:0;max-width:20ch">{{ v.rule }}</h3>
+          <p style="font-size:17px;line-height:1.75;color:#243942;margin:0;max-width:54ch">{{ v.detail }}</p>
+        </div>
+      </sc-for>
+    </div>
+
+    <div class="cg-rule" style="padding:48px 0">
+      <p style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:0.12em;text-transform:uppercase;color:#0891B2;margin:0 0 12px">F2 · Headline formula</p>
+      <p style="font-size:16px;line-height:1.7;color:#3D5660;max-width:62ch;margin:0 0 32px">Case-study headlines name the transformation, not the product. Present participle, one sentence, no colon, no internal product name.</p>
+      <div style="display:flex;flex-direction:column;gap:0">
+        <sc-for list="{{ headlines }}" as="h" hint-placeholder-count="4">
+          <div class="cg-rule cg-rule-top" style="display:grid;grid-template-columns:130px 1fr;gap:32px;align-items:baseline;padding:22px 0">
+            <span style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:0.12em;text-transform:uppercase;color:#7C949C">{{ h.verb }}</span>
+            <p style="font-family:Sora,sans-serif;font-weight:400;font-size:21px;line-height:1.35;letter-spacing:-0.02em;color:#0C171C;margin:0;max-width:44ch">{{ h.text }}</p>
+          </div>
+        </sc-for>
+      </div>
+    </div>
+
+    <div class="cg-rule" style="padding:48px 0">
+      <p style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:0.12em;text-transform:uppercase;color:#0891B2;margin:0 0 12px">F3 · Ownership ladder</p>
+      <p style="font-size:16px;line-height:1.7;color:#3D5660;max-width:62ch;margin:0 0 32px">Pick the verb that is true. A precise smaller claim reads as more credible than a vague large one, and the distinction is the thing a hiring manager is actually reading for.</p>
+      <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:0 56px">
+        <sc-for list="{{ ownership }}" as="o" hint-placeholder-count="6">
+          <div class="cg-rule cg-rule-top" style="padding:20px 0">
+            <p style="font-family:Sora,sans-serif;font-weight:500;font-size:19px;letter-spacing:-0.02em;margin:0;color:#155E75">{{ o.verb }}</p>
+            <p style="font-size:15px;line-height:1.65;color:#3D5660;margin:8px 0 0;max-width:42ch">{{ o.when }}</p>
+          </div>
+        </sc-for>
+      </div>
+    </div>
+
+    <div class="cg-rule" style="padding:48px 0">
+      <p style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:0.12em;text-transform:uppercase;color:#0891B2;margin:0 0 32px">F4 · Write this, not that</p>
+      <sc-for list="{{ swaps }}" as="s" hint-placeholder-count="5">
+        <div class="cg-rule cg-rule-top" style="display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:start;padding:26px 0">
+          <div>
+            <p style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:0.12em;text-transform:uppercase;color:#0891B2;margin:0 0 10px">Write</p>
+            <p style="font-size:17px;line-height:1.7;color:#0C171C;margin:0;max-width:44ch">{{ s.good }}</p>
+          </div>
+          <div>
+            <p style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:0.12em;text-transform:uppercase;color:#9DBAC2;margin:0 0 10px">Not</p>
+            <p style="font-size:17px;line-height:1.7;color:#9DBAC2;margin:0;max-width:44ch">{{ s.bad }}</p>
+          </div>
+        </div>
+      </sc-for>
+    </div>
+
+    <div class="cg-rule" style="padding:48px 0">
+      <p style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:0.12em;text-transform:uppercase;color:#0891B2;margin:0 0 32px">F5 · Mechanics</p>
+      <dl style="margin:0;display:grid;grid-template-columns:repeat(2,1fr);gap:0 56px">
+        <sc-for list="{{ mechanics }}" as="m" hint-placeholder-count="8">
+          <div class="cg-rule cg-rule-top" style="display:grid;grid-template-columns:130px 1fr;gap:24px;padding:18px 0;align-items:baseline">
+            <dt style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:0.12em;text-transform:uppercase;color:#7C949C">{{ m.label }}</dt>
+            <dd style="font-size:15px;line-height:1.6;margin:0;color:#243942">{{ m.rule }}</dd>
+          </div>
+        </sc-for>
+      </dl>
+    </div>
+
+    <div style="padding:48px 0">
+      <p style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:0.12em;text-transform:uppercase;color:#0891B2;margin:0 0 12px">F6 · Confidentiality line</p>
+      <p style="font-size:16px;line-height:1.7;color:#3D5660;max-width:62ch;margin:0 0 24px">One fixed sentence, used verbatim under any reconstructed screen. Never reworded per project — a consistent line reads as policy, a varied one reads as an excuse.</p>
+      <p style="font-family:'IBM Plex Mono',monospace;font-size:12px;line-height:1.7;letter-spacing:0.04em;color:#155E75;margin:0;padding-left:24px;border-left:2px solid #06B6D4;max-width:56ch">Interface reconstructed with representative data to protect internal information.</p>
+    </div>
+  </section>
+
+  <section id="anti-patterns" style="max-width:1180px;margin:0 auto;padding:56px 40px 0">
+    <div class="cg-section-rule" style="display:flex;align-items:baseline;gap:20px;padding-bottom:28px"><span style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.14em;color:#0891B2">L</span><h2 style="font-family:Sora,sans-serif;font-weight:500;font-size:34px;letter-spacing:-.03em;margin:0">Anti-patterns</h2><span style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:#7C949C;margin-left:auto">What keeps the system from becoming a theme</span></div>
+    <div style="padding:48px 0"><div class="cg-antipattern-grid">
+      <div class="cg-glass-soft cg-antipattern"><div class="cg-x">&times;</div><p class="cg-dont">Do not</p><h4 style="font-family:Sora,sans-serif;font-size:22px;font-weight:500;margin:10px 0 0">Stack glass inside glass.</h4><p class="cg-surface-note">Use one depth level per composition. Inner content becomes flat or solid.</p></div>
+      <div class="cg-glass-soft cg-antipattern"><div class="cg-x">&times;</div><p class="cg-dont">Do not</p><h4 style="font-family:Sora,sans-serif;font-size:22px;font-weight:500;margin:10px 0 0">Highlight several words.</h4><p class="cg-surface-note">One title gets one accent idea. Colour should make the hierarchy clearer, not louder.</p></div>
+      <div class="cg-glass-soft cg-antipattern"><div class="cg-x">&times;</div><p class="cg-dont">Do not</p><h4 style="font-family:Sora,sans-serif;font-size:22px;font-weight:500;margin:10px 0 0">Use dots as confetti.</h4><p class="cg-surface-note">Every dot must communicate quantity, grouping, connection, state, or change.</p></div>
+      <div class="cg-glass-soft cg-antipattern"><div class="cg-x">&times;</div><p class="cg-dont">Do not</p><h4 style="font-family:Sora,sans-serif;font-size:22px;font-weight:500;margin:10px 0 0">Put every screen in browser chrome.</h4><p class="cg-surface-note">Choose frame, crop, sequence, annotation, or one full-width interface anchor based on the argument.</p></div>
+      <div class="cg-glass-soft cg-antipattern"><div class="cg-x">&times;</div><p class="cg-dont">Do not</p><h4 style="font-family:Sora,sans-serif;font-size:22px;font-weight:500;margin:10px 0 0">Show a metric without its base.</h4><p class="cg-surface-note">Include unit, time window, denominator, or enough context for the claim to stand alone.</p></div>
+      <div class="cg-glass-soft cg-antipattern"><div class="cg-x">&times;</div><p class="cg-dont">Do not</p><h4 style="font-family:Sora,sans-serif;font-size:22px;font-weight:500;margin:10px 0 0">Use dark blocks for variety.</h4><p class="cg-surface-note">Dark surfaces mark thesis, reframe, or conclusion. One or two per case study is usually enough.</p></div>
+    </div><div class="cg-title-rule" style="margin-top:24px"><p style="font-family:Sora,sans-serif;font-size:20px;line-height:1.5;margin:0"><strong style="font-weight:500">Final test:</strong> if removing a visual treatment does not remove meaning, hierarchy, or useful depth, remove the treatment.</p></div></div>
+  </section>
+</div>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  renderVals() {
+    const fill = (n) => Array.from({ length: n }, (_, i) => ({ i }));
+    const GLYPH = {
+      "0": "0110100110011001100110010110",
+      "1": "0010011000100010001000100111",
+      "2": "0110100100010010010010001111",
+      "3": "1111001001000010000110010110",
+      "4": "0010011010101010111100100010",
+      "5": "1111100011100001000110010110",
+      "6": "0110100011101001100110010110",
+      "7": "1111000100100010010001000100",
+      "8": "0110100110010110100110010110",
+      "9": "0110100110010111000100010110",
+    };
+    const numeral = (str) => str.split("").map((ch) => ({
+      dots: GLYPH[ch].split("").map((b) => ({ o: b === "1" ? 1 : 0 })),
+    }));
+    const MARK = {
+      field:   "1010101010101010101010101",
+      funnel:  "1111101110001000010000100",
+      modules: "1101111011000001101111011",
+      ramp:    "0000100011000111011111111",
+      ring:    "0111010001100011000101110",
+      bars:    "0000100101001011010110101",
+      layers:  "1111100000111110000011111",
+      drop:    "1111111110111001100010000",
+    };
+    const mark = (n) => MARK[n].split("").map((b) => ({ o: b === "1" ? 1 : 0 }));
+    const noise = Array.from({ length: 60 }, (_, i) => ({
+      o: [0.25, 0.5, 0.9, 0.35, 1, 0.6, 0.2, 0.75][i % 8],
+    }));
+    return {
+      index: [
+        { label: "Principles", href: "#principles" },
+        { label: "Foundations", href: "#foundations" },
+        { label: "Dots", href: "#dots" },
+        { label: "Type + colour", href: "#typography" },
+        { label: "Narrative", href: "#narrative" },
+        { label: "Media", href: "#media" },
+        { label: "Evidence", href: "#evidence" },
+        { label: "Navigation", href: "#navigation" },
+        { label: "Recipes", href: "#recipes" },
+        { label: "Interaction", href: "#interaction" },
+        { label: "Copy", href: "#copy" },
+        { label: "Anti-patterns", href: "#anti-patterns" },
+      ],
+      voice: [
+        { rule: "State what changed, not what you did.", detail: "The reader is assessing judgment, not activity. Lead with the shift in the product or the organisation; your role follows in the metadata and the contributions list, where it can be precise." },
+        { rule: "Let the numbers carry the emphasis.", detail: "Where a figure exists, it does the persuading. No adjective needs to sit next to it. Avoid transformative, seamless, robust, cutting-edge, and anything else that would survive being deleted." },
+        { rule: "Name the constraint before the solution.", detail: "Enterprise work is only impressive once the difficulty is visible. A sentence establishing what was in the way earns the sentence describing what you built." },
+        { rule: "Keep the sentences plain and finish them.", detail: "Full sentences, ordinary words, no fragments used for effect. The subject matter is complicated enough that the prose should not be." },
+        { rule: "Admit what is unresolved.", detail: "Where something is still in progress, still being adopted, or was cut, say so. The reflective ending is the place for it, and it is more convincing than a clean win." },
+      ],
+      headlines: [
+        { verb: "Replacing", text: "Replacing five portfolio tools with one connected platform." },
+        { verb: "Creating", text: "Creating one platform for engineers to discover, design, test, and govern APIs." },
+        { verb: "Turning", text: "Turning dependency compliance data into clear actions developers can take." },
+        { verb: "Helping", text: "Helping operations teams get to the right tool faster." },
+      ],
+      ownership: [
+        { verb: "I led", when: "You set the direction and were accountable for the outcome." },
+        { verb: "I own the UX for", when: "Ongoing, current accountability rather than a finished engagement." },
+        { verb: "I co-led", when: "Shared accountability with a named peer. Say so — it is not a weaker claim." },
+        { verb: "I helped shape", when: "You influenced the direction without owning it end to end." },
+        { verb: "I designed", when: "A specific, bounded surface or flow you made yourself." },
+        { verb: "We", when: "Genuine team decisions. Use it for the decision, not for your own work." },
+      ],
+      swaps: [
+        { good: "Portfolio planning was split across separate systems for people, products, initiatives, approvals, and strategic work.", bad: "Users were facing significant pain points due to a fragmented and disjointed tooling landscape." },
+        { good: "~500 services onboarded.", bad: "Massive adoption across the engineering organisation." },
+        { good: "I co-led the redesign of the information architecture with another designer.", bad: "Spearheaded a complete end-to-end transformation of the platform experience." },
+        { good: "One pilot surfaced details that polished mockups had hidden.", bad: "Through rigorous user-centred research, we uncovered key insights that informed our design decisions." },
+        { good: "Migration is part of the experience.", bad: "Migration? It's part of the experience. Full stop." },
+      ],
+      mechanics: [
+        { label: "Spelling", rule: "British — organised, prioritised, fulfilment, localisation, behaviour." },
+        { label: "Person", rule: "First person singular for your work. \"We\" only for genuine team decisions." },
+        { label: "Tense", rule: "Past for shipped work. Present for products you still own." },
+        { label: "Numbers", rule: "~ for approximations. K and M above a thousand. Percentages always with the base stated." },
+        { label: "Metric runs", rule: "Separated by · with spaces. Three maximum per strip." },
+        { label: "Arrows", rule: "→ for transformation and hierarchy. Never -> in rendered copy." },
+        { label: "Dashes", rule: "Em dash with spaces for asides. One per paragraph at most." },
+        { label: "Product names", rule: "Public label only. Internal names never appear as a primary title." },
+        { label: "Headings", rule: "Make an argument. Never The Problem, The Process, The Solution." },
+        { label: "Sentence case", rule: "Everything except mono labels, which are uppercase with tracking." },
+      ],
+      convergeGroups: [
+        { label: "People", dots: fill(4) },
+        { label: "Products", dots: fill(4) },
+        { label: "Initiatives", dots: fill(4) },
+        { label: "Intake", dots: fill(4) },
+        { label: "Goals", dots: fill(4) },
+      ],
+      connectNodes: [
+        { label: "Marketplace", dots: fill(9), link: true },
+        { label: "Design Studio", dots: fill(9), link: true },
+        { label: "Testing", dots: fill(9), link: false },
+      ],
+      ranked: [
+        { label: "Critical", dots: fill(8) },
+        { label: "Major", dots: fill(5) },
+        { label: "Minor", dots: fill(2) },
+      ],
+      bins: [
+        { label: "Plan", dots: fill(12) },
+        { label: "Source", dots: fill(12) },
+        { label: "Move", dots: fill(12) },
+        { label: "Store", dots: fill(12) },
+      ],
+      noise,
+      flat: fill(52),
+      dots24: fill(24),
+      dots8: fill(8),
+      dots6: fill(6),
+      dots3: fill(3),
+      heroMeta: [
+        { label: "Client", value: "Walmart Global Tech" },
+        { label: "Year", value: "2022–Present" },
+        { label: "Type", value: "Enterprise platform" },
+        { label: "Role", value: "Design lead for the platform" },
+      ],
+      mediaRows: [
+        {
+          normal: true, flip: false, eyebrow: "Row 1", url: "portfolio-platform / modules",
+          title: "Text leads on odd rows.",
+          body: "The narrative column sits left at 1fr, media right at 1.15fr, both vertically centred. Body copy caps at 48 characters so it holds a comfortable measure against the media.",
+          media: "Product UI",
+        },
+        {
+          normal: false, flip: true, eyebrow: "Row 2", url: "portfolio-platform / goals",
+          title: "Media leads on even rows.",
+          body: "The grid inverts to 1.15fr and 1fr. Nothing else changes — same type sizes, same gap, same frame. The alternation alone is enough to keep a long chapter run from reading as a list.",
+          media: "Product UI",
+        },
+      ],
+      proof: [
+        { value: "6K+", label: "monthly users", icon: mark("field"), first: true, rest: false },
+        { value: "5 → 1", label: "platform consolidation", icon: mark("funnel"), first: false, rest: true },
+        { value: "6", label: "connected modules", icon: mark("modules"), first: false, rest: true },
+      ],
+      markSet: [
+        { name: "field", note: "Population — users, accounts, people", dots: mark("field") },
+        { name: "funnel", note: "Consolidation — many into one", dots: mark("funnel") },
+        { name: "modules", note: "Discrete parts — modules, services", dots: mark("modules") },
+        { name: "ramp", note: "Growth — increases, faster, more", dots: mark("ramp") },
+        { name: "ring", note: "Reach — footprint, coverage, scale", dots: mark("ring") },
+        { name: "bars", note: "Volume — searches, sessions, throughput", dots: mark("bars") },
+        { name: "layers", note: "Hierarchy — levels of visibility", dots: mark("layers") },
+        { name: "drop", note: "Reduction — less time, fewer tickets", dots: mark("drop") },
+      ],
+      questions: [
+        { num: "Q1", text: "What should the system understand?" },
+        { num: "Q2", text: "What should it do?" },
+        { num: "Q3", text: "What should people control?" },
+        { num: "Q4", text: "How do we make the result clear?" },
+      ],
+      principles: [
+        { num: "01", digits: numeral("01"), title: "Understand before simplifying.", detail: "Complexity is not always something to remove. First, I want to understand why it exists and which parts actually matter." },
+        { num: "02", digits: numeral("02"), title: "Make ideas tangible early.", detail: "A prototype people can react to usually teaches me more than a long discussion about what might work." },
+        { num: "03", digits: numeral("03"), title: "Stay close to what ships.", detail: "The experience people eventually use matters more than the design file that preceded it." },
+      ],
+      facts: [
+        { label: "Based in", value: "Bengaluru, India" },
+        { label: "Currently", value: "Senior UX Designer · Walmart Global Tech" },
+        { label: "Elsewhere", value: "Resume · LinkedIn · Email" },
+      ],
+      swatches: [
+        { name: "Paper", hex: "#F7FBFC" },
+        { name: "Paper deep", hex: "#F1F7F9" },
+        { name: "Ink", hex: "#0C171C" },
+        { name: "Ink soft", hex: "#243942" },
+        { name: "Muted", hex: "#3D5660" },
+        { name: "Accent", hex: "#0891B2" },
+        { name: "Accent deep", hex: "#155E75" },
+        { name: "Dark ground", hex: "#0C1F26" },
+      ],
+    };
+  }
+}
+
+</script>
+</body>
+</html>

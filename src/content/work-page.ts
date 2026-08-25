@@ -99,6 +99,7 @@ export type EarlierWorkEntry = {
   body: string;
   tags: string[];
   image?: string;
+  /** Case-study slug once the project has a proper write-up; omit until then. */
   slug?: string;
 };
 
@@ -115,34 +116,34 @@ export const earlierWork: EarlierWorkEntry[] = [
     body: "Designing one feedback system across mobile and web.",
     tags: ["BIGBASKET", "Mobile", "Product design"],
     image: "/work/bigbasket-ratings-reviews/Artboard.png",
-    slug: "ratings-reviews",
+    slug: "bigbasket-ratings-reviews",
   },
   {
     org: "Job Discovery & Resume Builder",
     body: "Helping people move from finding a job to being ready to apply.",
     tags: ["HIKE", "Mobile", "Product design"],
     image: "/work/hike-jobs-service/Jobs_Banner.jpg",
-    slug: "job-discovery",
+    slug: "hike-jobs-service",
   },
   {
     org: "Movie Ticket Booking",
     body: "Designing a simpler path from movie intent to payment.",
     tags: ["HIKE", "Mobile", "Product design"],
-    image: "/work/hike-jobs-service/Home.jpg",
-    slug: "movie-tickets",
+    image: "/work/hike-movie-tickets/Screens_JT.png",
+    slug: "hike-movie-tickets",
   },
   {
     org: "Multilingual Mobile Experience",
     body: "Designing a localization system across 8 Indian languages.",
     tags: ["HIKE", "Mobile", "Localization"],
-    image: "/work/hike-jobs-service/On-Boarding.jpg",
-    slug: "multilingual-mobile",
+    image: "/work/total-os/screens.avif",
+    slug: "hike-total-os-localization",
   },
   {
     org: "Smartphone Brand & Digital Experience",
     body: "Building a visual language for a smartphone that changed every month.",
     tags: ["CREO", "Visual design", "Web"],
     image: "/work/creo/banner.jpg",
-    slug: "smartphone-brand",
+    slug: "creo-mark-1",
   },
 ];
