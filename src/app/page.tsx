@@ -113,6 +113,7 @@ export default function HomePage() {
               titleClassName="max-w-[26ch]"
               lede="I'm always interested in thoughtful conversations about platform design, developer experience, and products that need to work at scale."
               dark
+              sticky={false}
             >
               <div className="mt-10 flex flex-wrap gap-3">
                 <a href="mailto:mithraj14@gmail.com" className="button button-primary">

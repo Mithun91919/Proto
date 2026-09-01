@@ -312,58 +312,11 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* Section: A little more */}
-      <section className="mt-24 ds-section-boundary pt-16">
-        <Reveal>
-          <h2 className="display-title display-section text-[var(--ink)]">
-            A little more
-          </h2>
-        </Reveal>
-
-        <div className="mt-12 max-w-[680px] space-y-6 text-[var(--ink-soft)]">
-          <Reveal delay={80}>
-            <div>
-              <p className="eyebrow">Based in</p>
-              <p className="mt-2 text-lg text-[var(--ink)]">Bengaluru, India</p>
-            </div>
-          </Reveal>
-
-          <Reveal delay={120}>
-            <div>
-              <p className="eyebrow">Currently</p>
-              <p className="mt-2 text-lg text-[var(--ink)]">Senior UX Designer · Walmart Global Tech</p>
-            </div>
-          </Reveal>
-
-          <Reveal delay={160}>
-            <div>
-              <p className="eyebrow">Elsewhere</p>
-              <div className="mt-3 flex flex-col gap-2">
-                {/* TODO: Add résumé URL when ready */}
-                {/* <a href="/resume.pdf" target="_blank" rel="noopener noreferrer" className="font-semibold text-[var(--accent-deep)] transition hover:translate-x-1">Résumé</a> */}
-                <a
-                  href="https://linkedin.com/in/mithunrajuk"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="font-semibold text-[var(--accent-deep)] transition hover:translate-x-1"
-                >
-                  LinkedIn
-                </a>
-                <a
-                  href="mailto:mithraj14@gmail.com"
-                  className="font-semibold text-[var(--accent-deep)] transition hover:translate-x-1"
-                >
-                  Email
-                </a>
-              </div>
-            </div>
-          </Reveal>
-        </div>
-      </section>
-
       {/* CTA Section — dark closing card, matching the same treatment used
-          to close /work and the homepage, so the last thing on every main
-          page reads as one consistent sign-off. */}
+          to close /work and the homepage. "A little more" used to be its
+          own section right above this — folded in here instead, since it
+          was really the same closing moment split across two consecutive
+          blocks rather than a distinct part of the page. */}
       <section className="mt-24">
         <Reveal>
           <div className="ds-env-dark rounded-sm p-12 md:p-16">
@@ -374,6 +327,55 @@ export default function AboutPage() {
               <Link href="mailto:mithraj14@gmail.com" className="button button-primary">
                 Say hi →
               </Link>
+            </div>
+
+            <div
+              className="mt-14 grid gap-8 pt-10 sm:grid-cols-3"
+              style={{ borderTop: "1px solid rgba(234, 243, 245, 0.14)" }}
+            >
+              <div>
+                <p className="eyebrow" style={{ color: "var(--ds-mint)" }}>
+                  Based in
+                </p>
+                <p className="mt-2 text-lg" style={{ color: "var(--ds-dark-ink)" }}>
+                  Bengaluru, India
+                </p>
+              </div>
+
+              <div>
+                <p className="eyebrow" style={{ color: "var(--ds-mint)" }}>
+                  Currently
+                </p>
+                <p className="mt-2 text-lg" style={{ color: "var(--ds-dark-ink)" }}>
+                  Senior UX Designer · Walmart Global Tech
+                </p>
+              </div>
+
+              <div>
+                <p className="eyebrow" style={{ color: "var(--ds-mint)" }}>
+                  Elsewhere
+                </p>
+                <div className="mt-3 flex flex-col gap-2">
+                  {/* TODO: Add résumé URL when ready */}
+                  {/* <a href="/resume.pdf" target="_blank" rel="noopener noreferrer" className="font-semibold transition hover:translate-x-1" style={{ color: "var(--ds-mint)" }}>Résumé</a> */}
+                  <a
+                    href="https://linkedin.com/in/mithunrajuk"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="font-semibold transition hover:translate-x-1"
+                    style={{ color: "var(--ds-mint)" }}
+                  >
+                    LinkedIn
+                  </a>
+                  <a
+                    href="mailto:mithraj14@gmail.com"
+                    className="font-semibold transition hover:translate-x-1"
+                    style={{ color: "var(--ds-mint)" }}
+                  >
+                    Email
+                  </a>
+                </div>
+              </div>
             </div>
           </div>
         </Reveal>

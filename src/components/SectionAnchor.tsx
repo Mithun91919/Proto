@@ -12,6 +12,12 @@ type SectionAnchorProps = {
       ink tokens for the dark-safe equivalents used elsewhere in the v6
       dark sections (`ChapterTransition`, `ClosingCTA`). */
   dark?: boolean;
+  /** The sticky-while-scrolling behaviour only makes sense beside a
+      sibling much taller than this column. Inside a short, fixed-height
+      card (no internal scroll) `top-28`'s offset just pushes the content
+      past the card's own bottom edge, where `.ds-env-dark`'s
+      `overflow: hidden` silently clips it — set `false` there. */
+  sticky?: boolean;
 };
 
 /**
@@ -27,9 +33,10 @@ export function SectionAnchor({
   titleClassName = "",
   className = "",
   dark = false,
+  sticky = true,
 }: SectionAnchorProps) {
   return (
-    <div className={`md:sticky md:top-28${className ? ` ${className}` : ""}`}>
+    <div className={`${sticky ? "md:sticky md:top-28" : ""}${className ? ` ${className}` : ""}`}>
       <p className="eyebrow" style={dark ? { color: "var(--ds-mint)" } : undefined}>
         {eyebrow}
       </p>
