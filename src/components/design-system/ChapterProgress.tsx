@@ -55,7 +55,7 @@ export function ChapterProgress({ chapters }: ChapterProgressProps) {
 
   return (
     <nav className={`ds-progress${activeId ? " is-active" : ""}`} aria-label="Chapters">
-      <ol>
+      <ol className="ds-glass-soft ds-scroll-rail">
         {chapters.map((chapter, i) => {
           const state = activeIndex < 0 ? "" : i < activeIndex ? " done" : i === activeIndex ? " current" : "";
           return (
