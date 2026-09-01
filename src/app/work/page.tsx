@@ -99,37 +99,43 @@ export default function WorkPage() {
         <WorkFilters featured={featured} more={more} earlier={earlierWork} />
       </section>
 
-      <section className="work-section ds-section-boundary">
-        <SectionHead
-          eyebrow="Reflection"
-          title="The interfaces changed. The way I think about the work did too."
-        />
+      {/* Dark closing card — the same treatment used to close the
+          homepage and /about, so the last thing on every main page reads
+          as one consistent sign-off. */}
+      <section className="work-section">
+        <div className="ds-env-dark rounded-sm p-10 md:p-16">
+          <SectionHead
+            eyebrow="Reflection"
+            title="The interfaces changed. The way I think about the work did too."
+            dark
+          />
 
-        <Reveal delay={80}>
-          <div className="mt-7 md:mt-8">
-            <div className="grid gap-4 md:grid-cols-2 md:gap-10">
-              <p className="body-text">
-                I started closer to the interface — visual design, interaction,
-                and individual product experiences.
-              </p>
-              <p className="body-text">
-                Over time, my work moved further into the systems underneath: how
-                information is structured, how workflows connect, how products
-                replace established ways of working, and how those decisions
-                survive implementation and real-world use.
-              </p>
-            </div>
+          <Reveal delay={80}>
+            <div className="mt-7 md:mt-8">
+              <div className="grid gap-4 md:grid-cols-2 md:gap-10">
+                <p className="body-text" style={{ color: "var(--ds-dark-muted)" }}>
+                  I started closer to the interface — visual design, interaction,
+                  and individual product experiences.
+                </p>
+                <p className="body-text" style={{ color: "var(--ds-dark-muted)" }}>
+                  Over time, my work moved further into the systems underneath: how
+                  information is structured, how workflows connect, how products
+                  replace established ways of working, and how those decisions
+                  survive implementation and real-world use.
+                </p>
+              </div>
 
-            <div className="mt-8 flex flex-wrap gap-3">
-              <Link href="/about" className="button button-primary">
-                Read my story →
-              </Link>
-              <Link href="/about#contact" className="button button-secondary">
-                Say hi →
-              </Link>
+              <div className="mt-8 flex flex-wrap gap-3">
+                <Link href="/about" className="button button-primary">
+                  Read my story →
+                </Link>
+                <Link href="/about#contact" className="button button-secondary">
+                  Say hi →
+                </Link>
+              </div>
             </div>
-          </div>
-        </Reveal>
+          </Reveal>
+        </div>
       </section>
     </div>
   );

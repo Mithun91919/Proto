@@ -15,17 +15,30 @@ export function SectionHead({
   eyebrow,
   title,
   lede,
+  dark = false,
 }: {
   eyebrow: string;
   title: string;
   lede?: ReactNode;
+  /** Set on a `.ds-env-dark` background — swaps the hardcoded light-mode
+      ink tokens for the dark-safe equivalents used elsewhere in the v6
+      dark sections (`ChapterTransition`, `ClosingCTA`). */
+  dark?: boolean;
 }) {
   return (
     <Reveal>
-      <p className="eyebrow">{eyebrow}</p>
+      <p className="eyebrow" style={dark ? { color: "var(--ds-mint)" } : undefined}>
+        {eyebrow}
+      </p>
       <div className={`section-head mt-3 ${lede ? "section-head-split" : ""}`}>
-        <h2 className="section-head-title display-title display-section text-[var(--ink)]">{title}</h2>
-        {lede ? <p className="lede">{lede}</p> : null}
+        <h2 className={`section-head-title display-title display-section${dark ? "" : " text-[var(--ink)]"}`}>
+          {title}
+        </h2>
+        {lede ? (
+          <p className="lede" style={dark ? { color: "var(--ds-dark-muted)" } : undefined}>
+            {lede}
+          </p>
+        ) : null}
       </div>
     </Reveal>
   );

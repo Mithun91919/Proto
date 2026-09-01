@@ -8,6 +8,10 @@ type SectionAnchorProps = {
   as?: "h1" | "h2";
   titleClassName?: string;
   className?: string;
+  /** Set on a `.ds-env-dark` background — swaps the hardcoded light-mode
+      ink tokens for the dark-safe equivalents used elsewhere in the v6
+      dark sections (`ChapterTransition`, `ClosingCTA`). */
+  dark?: boolean;
 };
 
 /**
@@ -22,18 +26,25 @@ export function SectionAnchor({
   as: Tag = "h2",
   titleClassName = "",
   className = "",
+  dark = false,
 }: SectionAnchorProps) {
   return (
     <div className={`md:sticky md:top-28${className ? ` ${className}` : ""}`}>
-      <p className="eyebrow">{eyebrow}</p>
+      <p className="eyebrow" style={dark ? { color: "var(--ds-mint)" } : undefined}>
+        {eyebrow}
+      </p>
       <Tag
-        className={`display-title display-section mt-4 text-[var(--ink)]${
+        className={`display-title display-section mt-4${dark ? "" : " text-[var(--ink)]"}${
           titleClassName ? ` ${titleClassName}` : ""
         }`}
       >
         {title}
       </Tag>
-      {lede ? <p className="lede mt-6">{lede}</p> : null}
+      {lede ? (
+        <p className="lede mt-6" style={dark ? { color: "var(--ds-dark-muted)" } : undefined}>
+          {lede}
+        </p>
+      ) : null}
       {children}
     </div>
   );

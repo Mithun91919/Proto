@@ -361,16 +361,20 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* CTA Section */}
-      <section className="mt-24 ds-section-boundary pt-16">
+      {/* CTA Section — dark closing card, matching the same treatment used
+          to close /work and the homepage, so the last thing on every main
+          page reads as one consistent sign-off. */}
+      <section className="mt-24">
         <Reveal>
-          <h2 className="display-title display-section max-w-[30ch] text-[var(--ink)]">
-            Have a complicated product problem?
-          </h2>
-          <div className="mt-8">
-            <Link href="mailto:mithraj14@gmail.com" className="button button-primary">
-              Say hi →
-            </Link>
+          <div className="ds-env-dark rounded-sm p-12 md:p-16">
+            <h2 className="display-title display-section max-w-[30ch]">
+              Have a complicated product problem?
+            </h2>
+            <div className="mt-8">
+              <Link href="mailto:mithraj14@gmail.com" className="button button-primary">
+                Say hi →
+              </Link>
+            </div>
           </div>
         </Reveal>
       </section>

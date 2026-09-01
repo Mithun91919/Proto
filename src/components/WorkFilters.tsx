@@ -131,9 +131,9 @@ export function WorkFilters({ featured, more, earlier }: WorkFiltersProps) {
         </p>
       ) : (
         <>
-          {featuredVisible.length > 0 ? (
+          {featuredVisible.length > 0 || moreVisible.length > 0 ? (
             <div className="mt-12 flex flex-col gap-16 md:mt-14 md:gap-24">
-              {featuredVisible.map((project, index) => (
+              {[...featuredVisible, ...moreVisible].map((project, index) => (
                 <Reveal key={project.slug} delay={index * 70}>
                   <WorkEntry project={project} reverse={index % 2 === 1} />
                 </Reveal>
@@ -141,32 +141,22 @@ export function WorkFilters({ featured, more, earlier }: WorkFiltersProps) {
             </div>
           ) : null}
 
-          {moreVisible.length > 0 || earlierVisible.length > 0 ? (
+          {earlierVisible.length > 0 ? (
             <div className="ds-section-boundary-minor mt-12 pt-7 md:mt-16 md:pt-8">
-              <p className="eyebrow">More work</p>
+              <p className="eyebrow">Earlier work</p>
               <p className="body-text mt-2 max-w-[52ch]">
-                Documented projects without the full case-study treatment.
+                Consumer product and brand work from before the enterprise projects.
               </p>
               <WorkCardGrid
-                items={[
-                  ...moreVisible.map((project) => ({
-                    id: project.slug,
-                    number: project.number,
-                    org: project.label,
-                    body: project.summary,
-                    tags: project.tags,
-                    slug: hasCaseStudyPage(project.slug) ? project.slug : undefined,
-                  })),
-                  ...earlierVisible.map((entry, index) => ({
-                    id: `${entry.org}-${index}`,
-                    number: entry.number,
-                    org: entry.org,
-                    body: entry.body,
-                    tags: entry.tags,
-                    image: entry.image,
-                    slug: hasCaseStudyPage(entry.slug) ? entry.slug : undefined,
-                  })),
-                ]}
+                items={earlierVisible.map((entry, index) => ({
+                  id: `${entry.org}-${index}`,
+                  number: entry.number,
+                  org: entry.org,
+                  body: entry.body,
+                  tags: entry.tags,
+                  image: entry.image,
+                  slug: hasCaseStudyPage(entry.slug) ? entry.slug : undefined,
+                }))}
               />
             </div>
           ) : null}

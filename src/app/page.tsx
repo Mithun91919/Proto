@@ -101,14 +101,18 @@ export default function HomePage() {
         </Reveal>
       </section>
 
-      <section id="contact" className="ds-section-boundary">
-        <div className="mx-auto grid w-full max-w-[80rem] gap-12 px-5 py-20 md:grid-cols-[1fr_30rem] md:items-stretch md:gap-14 md:px-8 md:py-28">
-          <Reveal>
+      {/* Dark closing card — the same treatment used to close /work and
+          /about, so the last thing on every main page reads as one
+          consistent sign-off. */}
+      <section id="contact" className="mx-auto w-full max-w-[80rem] px-5 py-16 md:px-8 md:py-24">
+        <Reveal>
+          <div className="ds-env-dark grid gap-12 rounded-sm p-10 md:grid-cols-[1fr_28rem] md:items-stretch md:gap-14 md:p-16">
             <SectionAnchor
               eyebrow="Say Hi"
               title="Working on a product with a lot of moving parts?"
               titleClassName="max-w-[26ch]"
               lede="I'm always interested in thoughtful conversations about platform design, developer experience, and products that need to work at scale."
+              dark
             >
               <div className="mt-10 flex flex-wrap gap-3">
                 <a href="mailto:mithraj14@gmail.com" className="button button-primary">
@@ -127,17 +131,17 @@ export default function HomePage() {
                 </Link>
               </div>
             </SectionAnchor>
-          </Reveal>
 
-          <Reveal delay={120} className="contact-wordmark-slot">
-            <DotText
-              className="contact-wordmark"
-              aspect={2.4}
-              pitch={4}
-              text="Say Hi"
-            />
-          </Reveal>
-        </div>
+            <div className="contact-wordmark-slot">
+              <DotText
+                className="contact-wordmark"
+                aspect={2.4}
+                pitch={4}
+                text="Say Hi"
+              />
+            </div>
+          </div>
+        </Reveal>
       </section>
     </>
   );
