@@ -5,7 +5,14 @@ import { HeroPortrait } from "@/components/HeroPortrait";
 import { Reveal } from "@/components/Reveal";
 import { SectionAnchor } from "@/components/SectionAnchor";
 import { SectionHead } from "@/components/SectionHead";
+import { ChapterProgress } from "@/components/design-system/ChapterProgress";
 import { getFeaturedProjects, getRangeProjects } from "@/content/projects";
+
+const CHAPTERS = [
+  { id: "work", label: "Work" },
+  { id: "more-work", label: "Where to next" },
+  { id: "contact", label: "Contact" },
+];
 import { careerStages, earlierWork } from "@/content/work-page";
 import { collectFilterOptions } from "@/content/work-filters";
 
@@ -18,6 +25,8 @@ export default function HomePage() {
 
   return (
     <>
+      <ChapterProgress chapters={CHAPTERS} />
+
       <section className="hero-stage">
         <div className="relative z-[1] mx-auto grid w-full max-w-[80rem] gap-12 px-5 pb-16 pt-14 md:grid-cols-[1fr_24rem] md:items-center md:gap-16 md:px-8 md:pb-24 md:pt-20">
           <div className="hero-in">

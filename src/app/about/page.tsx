@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { HeroPortrait } from "@/components/HeroPortrait";
 import { Reveal } from "@/components/Reveal";
+import { ChapterProgress } from "@/components/design-system/ChapterProgress";
 
 export const metadata: Metadata = {
   title: "About",
@@ -9,9 +10,18 @@ export const metadata: Metadata = {
     "Mithun Raju — product designer focusing on systems, complex workflows, and making ideas tangible.",
 };
 
+const CHAPTERS = [
+  { id: "interface", label: "The interface" },
+  { id: "approach", label: "The approach" },
+  { id: "principles", label: "Principles" },
+  { id: "contact", label: "Contact" },
+];
+
 export default function AboutPage() {
   return (
     <div className="mx-auto w-full max-w-[80rem] px-5 pb-16 pt-6 md:px-8 md:pb-24 md:pt-10">
+      <ChapterProgress chapters={CHAPTERS} />
+
       {/* Hero Section */}
       <div className="page-hero hero-in">
         <HeroPortrait
@@ -43,7 +53,7 @@ export default function AboutPage() {
       </div>
 
       {/* Section: I started with the interface */}
-      <section className="mt-24 ds-section-boundary pt-16">
+      <section id="interface" className="mt-24 ds-section-boundary pt-16">
         <Reveal>
           <h2 className="display-title display-section text-[var(--ink)]">
             I started with the interface. The questions kept getting bigger.
@@ -164,7 +174,7 @@ export default function AboutPage() {
       </section>
 
       {/* Section: Making complex things understandable */}
-      <section className="mt-24 ds-section-boundary pt-16">
+      <section id="approach" className="mt-24 ds-section-boundary pt-16">
         <Reveal>
           <h2 className="display-title display-section text-[var(--ink)]">
             I like making complex things understandable — and tangible.
@@ -243,7 +253,7 @@ export default function AboutPage() {
       </section>
 
       {/* Section: Three Principles */}
-      <section className="mt-24 ds-section-boundary pt-16">
+      <section id="principles" className="mt-24 ds-section-boundary pt-16">
         <Reveal>
           <h2 className="display-title display-section text-[var(--ink)]">
             A few principles I keep coming back to.
@@ -317,7 +327,7 @@ export default function AboutPage() {
           own section right above this — folded in here instead, since it
           was really the same closing moment split across two consecutive
           blocks rather than a distinct part of the page. */}
-      <section className="mt-24">
+      <section id="contact" className="mt-24">
         <Reveal>
           <div className="ds-env-dark rounded-sm p-12 md:p-16">
             <h2 className="display-title display-section max-w-[30ch]">

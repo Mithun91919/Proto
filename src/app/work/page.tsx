@@ -4,6 +4,7 @@ import { DotText } from "@/components/DotText";
 import { Reveal } from "@/components/Reveal";
 import { SectionHead } from "@/components/SectionHead";
 import { WorkFilters } from "@/components/WorkFilters";
+import { ChapterProgress } from "@/components/design-system/ChapterProgress";
 import { getFeaturedProjects, getRangeProjects } from "@/content/projects";
 import {
   careerStages,
@@ -17,12 +18,20 @@ export const metadata: Metadata = {
     "Products, platforms, and systems shaped across consumer experiences, enterprise software, and developer products — and how the work moved from interfaces to systems.",
 };
 
+const CHAPTERS = [
+  { id: "path", label: "Path" },
+  { id: "selected", label: "Selected work" },
+  { id: "reflection", label: "Reflection" },
+];
+
 export default function WorkPage() {
   const featured = getFeaturedProjects();
   const more = getRangeProjects();
 
   return (
     <div className="work-page ds-scope mx-auto w-full max-w-[80rem] px-5 py-16 md:px-8 md:py-24">
+      <ChapterProgress chapters={CHAPTERS} />
+
       <div className="page-hero hero-in">
         <div style={{ position: "absolute", right: "2rem", top: "35%", transform: "translateY(-50%)", zIndex: 0, transition: "none", width: "180px", height: "180px", animation: "timeline-stage-reveal 0.4s ease-out both" }}>
           <DotText
@@ -102,7 +111,7 @@ export default function WorkPage() {
       {/* Dark closing card — the same treatment used to close the
           homepage and /about, so the last thing on every main page reads
           as one consistent sign-off. */}
-      <section className="work-section">
+      <section id="reflection" className="work-section">
         <div className="ds-env-dark rounded-sm p-10 md:p-16">
           <SectionHead
             eyebrow="Reflection"

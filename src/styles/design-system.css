@@ -938,14 +938,25 @@
 }
 
 .ds-progress-item {
+  position: relative;
   display: flex;
   align-items: center;
-  gap: 0.7rem;
   text-decoration: none;
 }
 
-/* The label stays out of the way until the reader asks for it. */
+/* Positioned out of flow, not just hidden with opacity — an invisible
+   label still sized its own row in the flex layout, so every row was as
+   wide as its own text and `align-items: center` centered each one
+   independently against that width. The rail's dots ended up staggered
+   sideways instead of aligned in one line, and the whole pill grew to
+   the width of its longest label even though nothing but a dot was ever
+   visible at rest. Taking the label fully out of flow fixes both: every
+   row is exactly as wide as its dot, and the label only ever overlaps
+   content on hover rather than pushing on it. */
 .ds-progress-label {
+  position: absolute;
+  left: calc(100% + 0.7rem);
+  top: 50%;
   font-family: var(--font-mono), ui-monospace, monospace;
   font-size: 0.62rem;
   letter-spacing: 0.1em;
@@ -953,7 +964,8 @@
   white-space: nowrap;
   color: var(--muted);
   opacity: 0;
-  transform: translateX(-4px);
+  pointer-events: none;
+  transform: translate(-4px, -50%);
   transition:
     opacity var(--duration-fast) ease,
     transform var(--duration-fast) ease;
@@ -962,7 +974,7 @@
 .ds-progress-item:hover .ds-progress-label,
 .ds-progress-item:focus-visible .ds-progress-label {
   opacity: 1;
-  transform: translateX(0);
+  transform: translate(0, -50%);
 }
 
 @media (prefers-reduced-motion: reduce) {
