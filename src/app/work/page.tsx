@@ -1,11 +1,10 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import type { ReactNode } from "react";
 import { DotText } from "@/components/DotText";
 import { Reveal } from "@/components/Reveal";
-import { WorkEntry } from "@/components/WorkEntry";
-import { Carousel } from "@/components/Carousel";
-import { getFeaturedProjects, getProject, getRangeProjects } from "@/content/projects";
+import { SectionHead } from "@/components/SectionHead";
+import { WorkFilters } from "@/components/WorkFilters";
+import { getFeaturedProjects, getRangeProjects } from "@/content/projects";
 import {
   careerStages,
   currentStage,
@@ -18,35 +17,12 @@ export const metadata: Metadata = {
     "Products, platforms, and systems shaped across consumer experiences, enterprise software, and developer products — and how the work moved from interfaces to systems.",
 };
 
-/** One header shape for every section, so the page keeps a single rhythm. */
-function SectionHead({
-  eyebrow,
-  title,
-  lede,
-}: {
-  eyebrow: string;
-  title: string;
-  lede?: ReactNode;
-}) {
-  return (
-    <Reveal>
-      <p className="eyebrow">{eyebrow}</p>
-      <div className={`section-head mt-3 ${lede ? "section-head-split" : ""}`}>
-        <h2 className="section-head-title display-title display-section text-[var(--ink)]">
-          {title}
-        </h2>
-        {lede ? <p className="lede">{lede}</p> : null}
-      </div>
-    </Reveal>
-  );
-}
-
 export default function WorkPage() {
   const featured = getFeaturedProjects();
   const more = getRangeProjects();
 
   return (
-    <div className="work-page mx-auto w-full max-w-[80rem] px-5 py-16 md:px-8 md:py-24">
+    <div className="work-page ds-scope mx-auto w-full max-w-[80rem] px-5 py-16 md:px-8 md:py-24">
       <div className="page-hero hero-in">
         <div style={{ position: "absolute", right: "2rem", top: "35%", transform: "translateY(-50%)", zIndex: 0, transition: "none", width: "180px", height: "180px", animation: "timeline-stage-reveal 0.4s ease-out both" }}>
           <DotText
@@ -65,7 +41,7 @@ export default function WorkPage() {
         </p>
       </div>
 
-      <section id="path" className="work-section dot-rule">
+      <section id="path" className="work-section ds-section-boundary">
         <SectionHead
           eyebrow="Path"
           title="How the work evolved"
@@ -113,60 +89,17 @@ export default function WorkPage() {
         </Reveal>
       </section>
 
-      <section id="selected" className="work-section dot-rule">
-        <SectionHead eyebrow="Case studies" title="Selected work" />
-
-        <div className="mt-8 flex flex-col gap-12 md:mt-10 md:gap-16">
-          {featured.map((project, index) => (
-            <Reveal key={project.slug} delay={index * 70}>
-              <WorkEntry project={project} layout="split" flush={index === 0} />
-            </Reveal>
-          ))}
-        </div>
-
-        {more.length > 0 ? (
-          <div className="dot-rule mt-12 pt-7 md:mt-16 md:pt-8">
-            <p className="eyebrow">Additional work</p>
-            <p className="body-text mt-2 max-w-[52ch]">
-              Documented projects without the full case-study treatment.
-            </p>
-            <div className="mt-7 flex flex-col gap-12 md:mt-8">
-              {more.map((project, index) => (
-                <Reveal key={project.slug} delay={index * 70}>
-                  <WorkEntry
-                    project={project}
-                    layout="stacked"
-                    emphasis="quiet"
-                    flush={index === 0}
-                  />
-                </Reveal>
-              ))}
-            </div>
-          </div>
-        ) : null}
-      </section>
-
-      <section id="archive" className="work-section dot-rule">
+      <section id="selected" className="work-section ds-section-boundary">
         <SectionHead
-          eyebrow="Archive"
-          title="Earlier product work"
+          eyebrow="Case studies"
+          title="Selected work"
+          lede="Filter by domain or by the type of work — every project on this page, not a curated sample."
         />
 
-        <Carousel
-          items={earlierWork.map((entry, index) => ({
-            id: `${entry.org}-${index}`,
-            org: entry.org,
-            body: entry.body,
-            tags: entry.tags,
-            image: entry.image,
-            // Only link once the project has a full entry in projects.ts —
-            // otherwise /work/[slug] 404s even though the slug looks valid.
-            slug: entry.slug && getProject(entry.slug) ? entry.slug : undefined,
-          }))}
-        />
+        <WorkFilters featured={featured} more={more} earlier={earlierWork} />
       </section>
 
-      <section className="work-section dot-rule">
+      <section className="work-section ds-section-boundary">
         <SectionHead
           eyebrow="Reflection"
           title="The interfaces changed. The way I think about the work did too."

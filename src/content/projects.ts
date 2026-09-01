@@ -251,13 +251,14 @@ export const projects: Project[] = [
     number: "05",
     label: "Supply Chain Operations Platform",
     title:
-      "Reorganising 300+ operational tools around how people actually find and use them.",
+      "Reorganising 139 operational modules around how people actually find and use them.",
     summary:
       "As the platform expanded, hundreds of operational modules became increasingly difficult to discover. I co-led the information architecture and navigation redesign, evaluating competing navigation models with users across multiple markets.",
-    outcome: "255K+ monthly users · 300+ modules",
+    outcome: "~1M monthly unique visitors · 139 modules",
     metrics: [
-      { value: "255K+", label: "monthly users" },
-      { value: "300+", label: "modules" },
+      { value: "~1M", label: "monthly unique visitors" },
+      { value: "139", label: "operational modules" },
+      { value: "62%", label: "less time spent on the landing page" },
     ],
     org: "Walmart Global Tech",
     domain: "Enterprise platforms",

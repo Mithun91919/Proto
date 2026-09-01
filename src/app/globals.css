@@ -797,6 +797,48 @@ a {
   color: var(--ink-soft);
 }
 
+/* The /work filter chips — same footprint as .tag, but a real toggle
+   control rather than a label, so it needs a hover/active/focus state a
+   static tag never does. */
+.work-filter-chip {
+  display: inline-flex;
+  align-items: center;
+  border-radius: 0.4rem;
+  border: 1px solid color-mix(in oklab, var(--cyan-800) 16%, transparent);
+  background: color-mix(in oklab, var(--paper) 86%, var(--cyan-50));
+  padding: 0.35rem 0.75rem;
+  font-size: 0.8rem;
+  line-height: 1.35;
+  color: var(--ink-soft);
+  cursor: pointer;
+  transition:
+    border-color 150ms ease,
+    background-color 150ms ease,
+    color 150ms ease;
+}
+
+.work-filter-chip:hover {
+  border-color: color-mix(in oklab, var(--accent-deep) 40%, transparent);
+  color: var(--ink);
+}
+
+.work-filter-chip:focus-visible {
+  outline: 2px solid var(--accent-deep);
+  outline-offset: 2px;
+}
+
+.work-filter-chip.is-active {
+  border-color: var(--accent-deep);
+  background: var(--accent-deep);
+  color: var(--paper);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .work-filter-chip {
+    transition: none;
+  }
+}
+
 /* Proof points on one line, for the quieter supporting projects. */
 .metric-line {
   font-family: var(--font-display), ui-sans-serif, system-ui, sans-serif;
@@ -1007,51 +1049,22 @@ a {
   }
 }
 
-/* Project rows. Source order is number → title → media → copy, which is the
-   reading order on mobile; grid areas move the media beside the copy on md+. */
-.work-entry {
-  scroll-margin-top: 5rem;
-  position: relative;
-}
-
-.work-entry.glass-panel {
-  padding: 2rem;
-  margin-top: 1.5rem;
-  margin-bottom: 0;
-}
-
-.work-entry.glass-panel::before {
-  display: none;
-}
-
-.work-entry:hover::before {
-  background-image: radial-gradient(
-    circle,
-    color-mix(in oklab, var(--card-accent) 70%, transparent)
-      var(--rule-dot-size),
-    transparent var(--rule-dot-size)
-  );
-}
-
-.work-entry-grid {
-  margin-top: 1.5rem;
-  display: grid;
-  gap: 2rem;
+/* A subtle zoom on the row/card's own clip when the whole thing is hovered —
+   kept from the previous layout; `.work-entry` and `.featured-card` are
+   still the wrapper class names in the current markup. */
+.work-entry:hover .project-hero-video,
+.featured-card:hover .project-hero-video {
+  scale: 1.012;
 }
 
 .work-entry .project-hero-video,
-.work-entry .media-slot {
+.featured-card .project-hero-video {
   transition: scale 500ms cubic-bezier(0.22, 1, 0.36, 1);
-}
-
-.work-entry:hover .project-hero-video,
-.work-entry:hover .media-slot {
-  scale: 1.012;
 }
 
 @media (prefers-reduced-motion: reduce) {
   .work-entry:hover .project-hero-video,
-  .work-entry:hover .media-slot {
+  .featured-card:hover .project-hero-video {
     scale: 1;
   }
 }
@@ -1076,87 +1089,6 @@ a {
   font-size: 0.9rem;
   line-height: 1.5;
   color: var(--muted);
-}
-
-@media (min-width: 768px) {
-  .work-entry.glass-panel {
-    padding: 2.5rem;
-  }
-
-  .work-entry-grid {
-    margin-top: 2rem;
-    column-gap: 3rem;
-    row-gap: 2rem;
-  }
-
-  .work-entry.glass-panel .work-entry-grid {
-    margin-top: 0;
-  }
-
-  /* Tablet keeps the editorial split but holds the media back a little. */
-  .work-entry-split .work-entry-grid {
-    grid-template-columns: 0.95fr 1.05fr;
-    grid-template-areas:
-      "title media"
-      "body media";
-    align-items: start;
-  }
-
-  .work-entry-stacked .work-entry-grid {
-    grid-template-columns: 0.9fr 1.1fr;
-    grid-template-areas:
-      "title body"
-      "media media";
-  }
-
-  /* No clip to show, so the title and copy split the width between them. */
-  .work-entry-text .work-entry-grid {
-    grid-template-columns: 0.9fr 1.1fr;
-    grid-template-areas: "title body";
-    align-items: start;
-  }
-
-  .work-entry-title {
-    grid-area: title;
-  }
-
-  .work-entry-media {
-    grid-area: media;
-  }
-
-  .work-entry-body {
-    grid-area: body;
-  }
-
-  .work-entry-split .media-slot {
-    aspect-ratio: 16 / 10;
-    min-height: 0;
-  }
-
-  .work-entry-stacked .media-slot {
-    min-height: 8.5rem;
-  }
-}
-
-@media (min-width: 1024px) {
-  .work-entry-split .work-entry-grid {
-    grid-template-columns: 0.82fr 1.18fr;
-  }
-}
-
-/* Work entries read as flat editorial rows, separated by a dotted rule — the
-   project clip carries the visual weight a card used to. */
-.featured-card {
-  scroll-margin-top: 5rem;
-}
-
-.featured-card:hover::before {
-  background-image: radial-gradient(
-    circle,
-    color-mix(in oklab, var(--card-accent) 70%, transparent)
-      var(--rule-dot-size),
-    transparent var(--rule-dot-size)
-  );
 }
 
 .nav-link {
@@ -1196,9 +1128,14 @@ a {
   will-change: opacity, transform;
 }
 
+/* `none`, not `translateY(0)`. Any transform other than `none` makes this
+   element the backdrop root for its descendants, so a `backdrop-filter`
+   inside it has an empty backdrop to sample and the glass renders invisible.
+   Settling to `none` releases that; the entrance still animates, since a
+   transform transition interpolates to the identity matrix either way. */
 .reveal.is-visible {
   opacity: 1;
-  transform: translateY(0);
+  transform: none;
 }
 
 /* Release the promoted layer once the entrance has run. Leaving will-change on
@@ -1219,9 +1156,10 @@ a {
   will-change: opacity, transform;
 }
 
+/* Same backdrop-root release as `.reveal.is-visible` above. */
 .reveal-scale.is-visible {
   opacity: 1;
-  transform: translateY(0) scale(1);
+  transform: none;
 }
 
 @keyframes orb-drift {
@@ -1602,10 +1540,6 @@ a {
     0 4px 20px rgb(0 0 0 / 0.45);
 }
 
-.featured-card .project-hero {
-  align-self: start;
-}
-
 /* ── Case-study v2: per-section dot-grid density ──────────────────────────
    Each section can opt into "visible" / "subtle" / "hidden" via a CSS var
    set inline by SectionShell. Reuses the exact tokens the body's own static
@@ -1652,6 +1586,9 @@ a {
    phone recordings with wide screenshot composites, and sizing everything
    to a fixed height lets each item's own aspect ratio decide its width —
    the natural way a horizontal filmstrip handles mixed orientations. */
+/* Deliberately NOT centred: `justify-content: center` on a scrolling flex row
+   pushes overflow past the scroll origin into negative scrollLeft, which no
+   browser can reach — it silently makes the first item unreachable. */
 .cs-carousel {
   display: flex;
   align-items: flex-start;

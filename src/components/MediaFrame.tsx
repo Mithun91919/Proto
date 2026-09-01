@@ -11,7 +11,7 @@ export function MediaFrame({ children, src, alt, caption }: MediaFrameProps) {
   // If it's just text content (children), render as placeholder
   if (!src && children) {
     return (
-      <figure className="texture-card glass-panel mt-10 overflow-hidden">
+      <figure className="texture-card ds-solid-media mt-10 overflow-hidden">
         <div className="flex items-center justify-between border-b border-[var(--line)] px-4 py-3">
           <span className="eyebrow">Visual placeholder</span>
           <span className="eyebrow">Reconstructed</span>

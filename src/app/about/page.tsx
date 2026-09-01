@@ -43,7 +43,7 @@ export default function AboutPage() {
       </div>
 
       {/* Section: I started with the interface */}
-      <section className="mt-24 border-t border-[var(--line)] pt-16">
+      <section className="mt-24 ds-section-boundary pt-16">
         <Reveal>
           <h2 className="display-title display-section text-[var(--ink)]">
             I started with the interface. The questions kept getting bigger.
@@ -164,7 +164,7 @@ export default function AboutPage() {
       </section>
 
       {/* Section: Making complex things understandable */}
-      <section className="mt-24 border-t border-[var(--line)] pt-16">
+      <section className="mt-24 ds-section-boundary pt-16">
         <Reveal>
           <h2 className="display-title display-section text-[var(--ink)]">
             I like making complex things understandable — and tangible.
@@ -243,7 +243,7 @@ export default function AboutPage() {
       </section>
 
       {/* Section: Three Principles */}
-      <section className="mt-24 border-t border-[var(--line)] pt-16">
+      <section className="mt-24 ds-section-boundary pt-16">
         <Reveal>
           <h2 className="display-title display-section text-[var(--ink)]">
             A few principles I keep coming back to.
@@ -312,26 +312,8 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* Section: Away from the work */}
-      <section className="mt-24 border-t border-[var(--line)] pt-16">
-        <Reveal>
-          <h2 className="display-title display-section text-[var(--ink)]">
-            Away from the work
-          </h2>
-        </Reveal>
-
-        <div className="mt-12 max-w-[680px]">
-          <Reveal delay={80}>
-            {/* TODO: Add 2–3 sentences about personal interests — what you enjoy, explore, make, photograph, travel for */}
-            <p className="text-[1.05rem] leading-8 text-[var(--ink-soft)] italic opacity-40">
-              [Personal paragraph pending — a few things I spend time on outside of work.]
-            </p>
-          </Reveal>
-        </div>
-      </section>
-
       {/* Section: A little more */}
-      <section className="mt-24 border-t border-[var(--line)] pt-16">
+      <section className="mt-24 ds-section-boundary pt-16">
         <Reveal>
           <h2 className="display-title display-section text-[var(--ink)]">
             A little more
@@ -350,14 +332,6 @@ export default function AboutPage() {
             <div>
               <p className="eyebrow">Currently</p>
               <p className="mt-2 text-lg text-[var(--ink)]">Senior UX Designer · Walmart Global Tech</p>
-            </div>
-          </Reveal>
-
-          <Reveal delay={140}>
-            <div>
-              <p className="eyebrow">Education</p>
-              {/* TODO: Add degree and institution */}
-              <p className="mt-2 text-lg text-[var(--ink)] opacity-40 italic">[Degree] · [Institution]</p>
             </div>
           </Reveal>
 
@@ -388,7 +362,7 @@ export default function AboutPage() {
       </section>
 
       {/* CTA Section */}
-      <section className="mt-24 border-t border-[var(--line)] pt-16">
+      <section className="mt-24 ds-section-boundary pt-16">
         <Reveal>
           <h2 className="display-title display-section max-w-[30ch] text-[var(--ink)]">
             Have a complicated product problem?

@@ -1,5 +1,5 @@
 export const CONFIDENTIALITY_LINE =
-  "Interface reconstructed with representative data to protect internal information.";
+  "Visuals, names, and selected figures are reconstructed or generalised where needed to protect confidential information while preserving the original design problem, decisions, and interaction model.";
 
 /** F9 · Privacy as a visual system — confidentiality feels designed, not apologetic. */
 export function PrivacySystem() {

@@ -63,6 +63,15 @@ export const bbDaily: CaseStudyV2 = {
         "The product had to make repetition feel convenient without making customers feel locked into a routine.",
     },
     {
+      type: "fullWidthMedia",
+      caption: "Documented user feedback from the period",
+      media: {
+        src: "/work/bbdaily/BB_Daily_Milk_Basket%20Copy%204%20(1).jpg",
+        alt: "A collage of user feedback documenting friction points in the existing app experience",
+        aspect: 5034 / 2481,
+      },
+    },
+    {
       type: "editorial",
       eyebrow: "The customer side",
       heading: "We designed around the routine, not a single order",
@@ -108,6 +117,15 @@ export const bbDaily: CaseStudyV2 = {
       ],
     },
     {
+      type: "fullWidthMedia",
+      caption: "Field research: the warehouse and inventory operations behind each delivery",
+      media: {
+        src: "/work/bbdaily/Artboard%20Copy%2011.jpg",
+        alt: "Operations-app screens for tracking bags, crates, and deliveries, overlaid on a warehouse photograph",
+        aspect: 4800 / 2760,
+      },
+    },
+    {
       type: "splitTextMedia",
       ratio: "5/7",
       mediaSide: "right",
@@ -120,6 +138,7 @@ export const bbDaily: CaseStudyV2 = {
       media: {
         src: "/work/bbdaily/BB_Daily_Milk_Basket%20Copy%2011.jpg",
         alt: "Operations app shipment-receiving flow, showing milk shipment intake and confirmation",
+        aspect: 4581 / 2340,
       },
     },
     {
@@ -130,6 +149,7 @@ export const bbDaily: CaseStudyV2 = {
           media: {
             src: "/work/bbdaily/BB_Daily_Milk_Basket%20Copy%2010.jpg",
             alt: "Logging in as a customer experience executive",
+            aspect: 4581 / 2340,
           },
           label: "Login",
         },
@@ -137,6 +157,7 @@ export const bbDaily: CaseStudyV2 = {
           media: {
             src: "/work/bbdaily/BB_Daily_Milk_Basket%20Copy%2012.jpg",
             alt: "Completing a delivery at a specific address",
+            aspect: 4581 / 2340,
           },
           label: "Deliver",
         },
@@ -144,6 +165,7 @@ export const bbDaily: CaseStudyV2 = {
           media: {
             src: "/work/bbdaily/BB_Daily_Milk_Basket%20Copy%2013.jpg",
             alt: "Tracking daily and monthly earnings",
+            aspect: 4581 / 2340,
           },
           label: "Track earnings",
         },

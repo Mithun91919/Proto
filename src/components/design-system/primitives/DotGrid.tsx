@@ -1,3 +1,5 @@
+import type { CSSProperties } from "react";
+
 export type DotVariant = "default" | "muted" | "quiet" | "state";
 
 type DotGridProps = {
@@ -41,7 +43,12 @@ export function DotGrid({ cols, dots, size = 7, gap = 5, variant = "default", cl
         <span
           key={index}
           className={VARIANT_CLASS[variant]}
-          style={{ width: size, height: size, opacity }}
+          // `--dot-i` is unused by default — a consumer opts a grid into a
+          // staggered entrance (see `.ds-compact-mark`) by keying an
+          // animation-delay off it. Setting it here, once, means any dot
+          // pattern in the system can pick up that motion without every
+          // caller wiring its own index.
+          style={{ width: size, height: size, opacity, "--dot-i": index } as CSSProperties}
         />
       ))}
     </div>

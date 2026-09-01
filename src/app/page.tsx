@@ -4,12 +4,17 @@ import { FeaturedWorkCard } from "@/components/FeaturedWorkCard";
 import { HeroPortrait } from "@/components/HeroPortrait";
 import { Reveal } from "@/components/Reveal";
 import { SectionAnchor } from "@/components/SectionAnchor";
-import { ProofStrip } from "@/components/design-system/ProofStrip";
-import { ScopeProgression } from "@/components/design-system/ScopeProgression";
-import { getFeaturedProjects } from "@/content/projects";
+import { SectionHead } from "@/components/SectionHead";
+import { getFeaturedProjects, getRangeProjects } from "@/content/projects";
+import { careerStages, earlierWork } from "@/content/work-page";
+import { collectFilterOptions } from "@/content/work-filters";
 
 export default function HomePage() {
   const featured = getFeaturedProjects();
+  const more = getRangeProjects();
+  const totalCaseStudies = featured.length + more.length + earlierWork.length;
+  const { domains } = collectFilterOptions(featured, more, earlierWork);
+  const yearsActive = new Date().getFullYear() - Number(careerStages[0].year);
 
   return (
     <>
@@ -23,7 +28,7 @@ export default function HomePage() {
               </span>
             </h1>
             <p className="lede mt-8">
-              I design across consumer products, enterprise platforms, and AI-assisted workflows - making complex systems easier to understand, use, and scale.
+              I design across consumer products, enterprise platforms, and AI-assisted workflows — making complex systems easier to understand, use, and scale.
             </p>
             <div className="mt-10 flex flex-wrap gap-3">
               <span className="tag">PRODUCT DESIGN</span>
@@ -48,116 +53,55 @@ export default function HomePage() {
         id="work"
         className="mx-auto w-full max-w-[80rem] px-5 py-16 md:px-8 md:py-24"
       >
-        <Reveal>
-          <h2 className="display-title display-section text-[var(--ink)]">
-            Selected work
-          </h2>
-          <p className="lede mt-4 max-w-[60ch]">
-            A selection of products where I worked across product strategy, interaction, systems thinking, research, and implementation.
-          </p>
-        </Reveal>
+        <SectionHead
+          eyebrow="Case studies"
+          title="Selected work"
+          lede="Product strategy, interaction, systems thinking, research, and implementation."
+        />
 
-        <div className="mt-12 flex flex-col gap-14 md:gap-20">
+        {/* A grid, not a one-per-row stack — the media-forward card (picked
+            after comparing six layouts at /work/layout-options) is built
+            for scanning several at once, and a single column left most of
+            the width empty on anything wider than a phone. */}
+        <div className="ds-scope mt-12 grid grid-cols-1 gap-8 sm:grid-cols-2">
           {featured.map((project, index) => (
-            <Reveal key={project.slug} delay={index * 70}>
+            <Reveal key={project.slug} delay={index * 70} className="h-full">
               <FeaturedWorkCard project={project} />
             </Reveal>
           ))}
         </div>
       </section>
 
+      {/* Was a Supply Chain Operations spotlight — a single project singled
+          out on the homepage for no reason a visitor could tell, and
+          already properly covered on /work. Then briefly a pair of cards
+          mirroring the featured-work grid above, which just made this
+          section look like more of the same instead of a clear next step.
+          A single line of text and two plain links reads as the actual
+          fork in the road it is. */}
       <section
         id="more-work"
-        className="mx-auto w-full max-w-[70rem] px-5 py-16 md:px-8 md:py-24 border-t border-[var(--line)]"
+        className="mx-auto w-full max-w-[70rem] px-5 py-16 md:px-8 md:py-24 ds-section-boundary"
       >
-        <Reveal>
-          <p className="eyebrow">More work</p>
-          <h2 className="display-title display-section text-[var(--ink)] mt-3">
-            Supply Chain Operations Platform
-          </h2>
-        </Reveal>
+        <SectionHead
+          eyebrow="Where to next"
+          title="See more, or see how it got here."
+          lede={`${totalCaseStudies} case studies across ${domains.length} domains, or the ${yearsActive} years of practice that got me here — whichever you want first.`}
+        />
 
-        <div className="mt-8">
-          <Reveal delay={60}>
-            <h3 className="display-title display-sub max-w-[50ch] text-[var(--ink)]">
-              Helping operations teams get to the right tool faster.
-            </h3>
-            <p className="body-text mt-4 max-w-[60ch]">
-              I co-led the redesign of the information architecture, navigation, and landing experience for a global operations platform with 139 modules.
-            </p>
-          </Reveal>
-
-          <Reveal delay={80} className="ds-scope mt-8">
-            <ProofStrip
-              items={[
-                { value: "1M+", label: "monthly unique visitors", glyph: "field" },
-                { value: "139", label: "modules", glyph: "modules" },
-                { value: "-62%", label: "time on the landing page", glyph: "drop" },
-              ]}
-            />
-          </Reveal>
-
-          <Reveal delay={100}>
-            <Link href="/work/supply-chain-operations" className="button button-secondary mt-8">
-              View case study →
+        <Reveal delay={80}>
+          <div className="mt-8 flex flex-wrap gap-3">
+            <Link href="/work" className="button button-primary">
+              Explore the work →
             </Link>
-          </Reveal>
-        </div>
-
-        <Reveal delay={100}>
-          <div className="dot-rule mt-12 pt-8 md:mt-16 md:pt-10">
-            <p className="body-text max-w-[46ch]">
-              The full body of work, and the path from mobile products into platforms and developer tools.
-            </p>
-            <Link href="/work" className="button button-secondary mt-6">
-              See all work →
+            <Link href="/about" className="button button-secondary">
+              Read my story →
             </Link>
           </div>
         </Reveal>
       </section>
 
-      <section
-        id="approach"
-        className="border-y border-[var(--line)] bg-[color-mix(in_oklab,var(--paper)_82%,var(--cyan-50))]"
-      >
-        <div className="mx-auto w-full max-w-[80rem] px-5 py-20 md:px-8 md:py-28">
-          <Reveal>
-            <SectionAnchor
-              eyebrow="How I work"
-              title="I started with the interface. The questions kept getting bigger."
-            />
-          </Reveal>
-
-          <div className="mt-12">
-            <Reveal delay={60}>
-              <p className="body-text max-w-[60ch]">
-                My work has moved from visual and consumer product design into commerce, enterprise platforms, developer products, and the systems behind them.
-              </p>
-            </Reveal>
-
-            <Reveal delay={100}>
-              <p className="body-text mt-6 max-w-[60ch]">
-                I like finding structure inside complicated workflows, making ideas tangible early, and staying close to what eventually ships.
-              </p>
-            </Reveal>
-
-            <Reveal delay={140} className="ds-scope">
-              <div className="mt-9">
-                <ScopeProgression />
-              </div>
-            </Reveal>
-
-            <Reveal delay={180}>
-              <Link href="/about" className="button button-primary mt-8">
-                More about me →
-              </Link>
-            </Reveal>
-          </div>
-        </div>
-      </section>
-
-
-      <section id="contact" className="border-t border-[var(--line)]">
+      <section id="contact" className="ds-section-boundary">
         <div className="mx-auto grid w-full max-w-[80rem] gap-12 px-5 py-20 md:grid-cols-[1fr_30rem] md:items-stretch md:gap-14 md:px-8 md:py-28">
           <Reveal>
             <SectionAnchor

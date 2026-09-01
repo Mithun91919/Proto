@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import { HeroPortrait } from "@/components/HeroPortrait";
 import { DotText } from "@/components/DotText";
 import { SectionHeader, SubLabel } from "@/components/design-system/primitives/SectionHeader";
-import { Divider } from "@/components/design-system/primitives/Divider";
 import { GlassPanel } from "@/components/design-system/primitives/GlassPanel";
 import { DotGrid } from "@/components/design-system/primitives/DotGrid";
 import { PrincipleCard } from "@/components/design-system/PrincipleCard";
@@ -23,7 +22,8 @@ import { BeforeAfterModel } from "@/components/design-system/BeforeAfterModel";
 import { DecisionRecord } from "@/components/design-system/DecisionRecord";
 import { ReflectionBlock } from "@/components/design-system/ReflectionBlock";
 import { ProofStrip } from "@/components/design-system/ProofStrip";
-import { MetricGlyph } from "@/components/design-system/MetricGlyph";
+import { MetricGlyph, CompactMetricGlyph } from "@/components/design-system/MetricGlyph";
+import { CompactNumeral } from "@/components/design-system/CompactNumeral";
 import { MediaFrameChrome } from "@/components/design-system/MediaFrameChrome";
 import { ChapterTransition } from "@/components/design-system/ChapterTransition";
 import { FullWidthStatement } from "@/components/design-system/FullWidthStatement";
@@ -50,6 +50,10 @@ import { DotToInterfaceTransition } from "@/components/design-system/DotToInterf
 import { BeforeAfterMetric } from "@/components/design-system/BeforeAfterMetric";
 import { DottedRule } from "@/components/design-system/DottedRule";
 import { HoverLanguageDemo, ChapterProgressDemo, MotionTimingGrid, ReducedMotionFocusGrid } from "@/components/design-system/Interaction";
+import { ArtboardFigure } from "@/components/design-system/ArtboardFigure";
+import { ArtboardCarousel } from "@/components/design-system/ArtboardCarousel";
+import { ClipFigure } from "@/components/design-system/ClipFigure";
+import { SceneBanner } from "@/components/design-system/SceneBanner";
 import { StickyTitleNarrative } from "@/components/design-system/StickyTitleNarrative";
 import { EditorialNumberedRows } from "@/components/design-system/EditorialNumberedRow";
 import { SpecList } from "@/components/design-system/SpecList";
@@ -78,6 +82,7 @@ const NAV = [
   { label: "Interaction", href: "#interaction" },
   { label: "Copy", href: "#copy" },
   { label: "Anti-patterns", href: "#anti-patterns" },
+  { label: "Case-study media", href: "#case-study-media" },
 ];
 
 const SWATCHES = [
@@ -391,16 +396,11 @@ export default function ComponentsPage() {
           </div>
         </div>
 
-        <Divider variant="minor" />
-        <div className="py-11"><ConvergeShape /></div>
-        <Divider variant="minor" />
-        <div className="py-11"><ConnectShape /></div>
-        <Divider variant="minor" />
-        <div className="py-11"><TranslateShape /></div>
-        <Divider variant="minor" />
-        <div className="py-11"><ResolveShape /></div>
-        <Divider variant="minor" />
-        <div className="py-11"><OrganiseShape /></div>
+        <div className="ds-rule py-11"><ConvergeShape /></div>
+        <div className="ds-rule py-11"><ConnectShape /></div>
+        <div className="ds-rule py-11"><TranslateShape /></div>
+        <div className="ds-rule py-11"><ResolveShape /></div>
+        <div className="ds-rule py-11"><OrganiseShape /></div>
 
         <div className="py-11">
           <SubLabel code="C6 · Project fingerprints" />
@@ -514,6 +514,85 @@ export default function ComponentsPage() {
             general-purpose decoration. Respects <code className="font-mono text-[0.85em]">prefers-reduced-motion</code> automatically
             by freezing on the settled frame.
           </p>
+        </div>
+
+        <div className="ds-rule py-11">
+          <SubLabel code="C9 · Compact dot marks" />
+          <h3 className="display-title max-w-[30ch]" style={{ fontSize: "1.7rem" }}>
+            A meaning that shrinks has to be redrawn, not resized.
+          </h3>
+          <p className="mt-3 max-w-[68ch] text-[0.95rem] leading-7" style={{ color: "var(--ink-soft)" }}>
+            <code className="font-mono text-[0.85em]">MetricGlyph</code>&apos;s 5×5 bitmap reads clearly above a
+            display-scale number in a <code className="font-mono text-[0.85em]">ProofStrip</code> — that&apos;s the
+            only place it was designed to run. Shrunk to sit beside a small value/label pair, the pattern collapses
+            into noise nobody can actually read, and a row of identical dots standing in for it reads as an ellipsis,
+            not an icon — both quietly drop the C1 rule this whole language rests on. These are separate,
+            purpose-drawn fonts at a resolution built to stay legible small: a 3×3 metric mark (
+            <code className="font-mono text-[0.85em]">CompactMetricGlyph</code>) and a 3×5 digit (
+            <code className="font-mono text-[0.85em]">CompactNumeral</code>), not a smaller draw of the bigger ones.
+          </p>
+
+          <div className="mt-8 grid grid-cols-2 gap-3.5 sm:grid-cols-4">
+            {(Object.keys(METRIC_MARK_MEANINGS) as MetricMarkName[]).map((name) => (
+              <div
+                key={name}
+                className="rounded-xl p-5"
+                style={{ background: "var(--ds-glass-soft-fill)", border: "1px solid var(--ds-glass-soft-border)" }}
+              >
+                <CompactMetricGlyph name={name} />
+                <p className="ds-eyebrow mt-4" style={{ color: "var(--ds-accent-deep)" }}>
+                  {name}
+                </p>
+                <p className="ds-note">{METRIC_MARK_MEANINGS[name]}</p>
+              </div>
+            ))}
+          </div>
+
+          <p className="mt-8 max-w-[68ch] text-[0.85rem] leading-6" style={{ color: "var(--muted)" }}>
+            <code className="font-mono text-[0.8em]">modules</code> is drawn as one adjoined 2×2 block, not four
+            separate corners — an earlier pass scattered it into isolated dots, which visually said
+            &quot;disconnected&quot; directly under labels like &quot;6 connected modules.&quot; The shape has to
+            agree with the word next to it, not just belong to the same family of shapes.
+          </p>
+
+          <div className="mt-10 flex flex-wrap items-end gap-8">
+            <div>
+              <p className="ds-eyebrow mb-3">CompactNumeral</p>
+              <CompactNumeral value="06" />
+            </div>
+            <p className="max-w-[42ch] text-[0.85rem] leading-6" style={{ color: "var(--muted)" }}>
+              A row number as a small lead-in mark, not an S6 display numeral — that font is a 28-dot glyph, and 28
+              dots stay 28 dots no matter how small each one is drawn.
+            </p>
+          </div>
+
+          <p className="mt-8 max-w-[68ch] text-[0.95rem] leading-7" style={{ color: "var(--ink-soft)" }}>
+            Both marks carry a micro-animation that ships with the component rather than depending on a caller to
+            add it: dots light up in sequence on entrance — riding the <code className="font-mono text-[0.85em]">Reveal</code> wrapper&apos;s{" "}
+            <code className="font-mono text-[0.85em]">is-visible</code> class the same way{" "}
+            <code className="font-mono text-[0.85em]">DotFlow</code>&apos;s chain does, so it needs no observer of
+            its own and cannot fire off-screen — and lift slightly on hover when the enclosing link is hovered, the
+            same &quot;the whole row is one clickable thing&quot; cue a project clip&apos;s hover-zoom already gives
+            elsewhere. Both are pure CSS keyed off <code className="font-mono text-[0.85em]">.ds-compact-mark</code>,
+            and both fall away entirely under <code className="font-mono text-[0.85em]">prefers-reduced-motion</code>.
+          </p>
+
+          <div className="mt-8 overflow-x-auto">
+            <dl className="grid min-w-[480px] grid-cols-[150px_1fr] gap-x-6 gap-y-0">
+              {[
+                { prop: "size, gap (px)", detail: "Whole pixels only. A fractional value on a circular dot rounds inconsistently per dot when the browser rasterizes, which reads as uneven dot sizes even though the CSS value is identical for all of them." },
+                { prop: "CompactMetricGlyph defaults", detail: "size 6, gap 4 — tuned to sit beside a ~1.3rem value/0.75rem label pair without towering over it." },
+                { prop: "CompactNumeral defaults", detail: "size 5 (3×5 font) — a lead-in mark, deliberately smaller than the title that follows it." },
+                { prop: "--dot-i", detail: "Set once per dot by DotGrid itself. Unused unless a wrapper opts in — .ds-compact-mark is what turns it into the entrance stagger." },
+                { prop: "--group-offset", detail: "Inherited custom property. Lets a multi-part mark (CompactNumeral's digits) continue one cascade across parts instead of each digit restarting at zero." },
+              ].map((row, index) => (
+                <div key={row.prop} className={`col-span-2 grid grid-cols-subgrid items-baseline gap-x-6 ${index > 0 ? "ds-rule" : ""}`} style={{ paddingTop: index > 0 ? "0.9rem" : 0, paddingBottom: "0.9rem" }}>
+                  <dt className="ds-eyebrow">{row.prop}</dt>
+                  <dd className="text-sm leading-6" style={{ color: "var(--ink-soft)" }}>{row.detail}</dd>
+                </div>
+              ))}
+            </dl>
+          </div>
         </div>
       </section>
 
@@ -927,6 +1006,102 @@ export default function ComponentsPage() {
               meaning, hierarchy, or useful depth, remove the treatment.
             </p>
           </div>
+        </div>
+      </section>
+
+      {/* M — Case-study media, demoed against real files */}
+      <section id="case-study-media" className="mx-auto max-w-[70rem] px-5 pt-14 md:px-8">
+        <SectionHeader
+          letter="M"
+          title="Case-study media"
+          subtitle="Three treatments, one per real asset shape"
+        />
+
+        <div className="py-11">
+          <p className="max-w-[68ch] text-[0.95rem] leading-7" style={{ color: "var(--ink-soft)" }}>
+            Every example below renders a <strong style={{ color: "var(--ink)", fontWeight: 500 }}>real
+            project file</strong>, not a placeholder. Exported artboards arrive already composed — several
+            screens, their layout, and usually a baked-in title, all in one canvas — so a pattern that looks
+            correct against a grey rectangle can still break against the actual asset. If one of these
+            misbehaves, it has to be visible here before a page uses it.
+          </p>
+        </div>
+
+        <div className="ds-rule py-11">
+          <SubLabel code="M1 · Artboard figure" />
+          <p className="mb-7 max-w-[68ch] text-[0.95rem] leading-7" style={{ color: "var(--ink-soft)" }}>
+            Wide pre-composed evidence (~1.74–2.13). Breaks out of the reading column, keeps the file&apos;s own
+            ratio, and carries no scrim or overlaid label — the artboard&apos;s title is already in the image.
+          </p>
+          <ArtboardFigure
+            src="/work/bbdaily/BB_Daily_Milk_Basket%20Copy%2011.jpg"
+            width={4581}
+            height={2340}
+            alt="Operations app shipment-receiving flow: milk shipment intake, reconciliation, and completion"
+            caption="bb daily operations app · shipment receiving"
+          />
+        </div>
+
+        <div className="ds-rule py-11">
+          <SubLabel code="M2 · Clip figure" />
+          <p className="mb-7 max-w-[68ch] text-[0.95rem] leading-7" style={{ color: "var(--ink-soft)" }}>
+            A portrait screen recording (~0.54), sized by height rather than width. Stretching a phone clip to
+            a full-bleed container renders it thousands of pixels tall.
+          </p>
+          <ClipFigure
+            mov="/work/bbdaily/Screen%20Recording%202020-03-13%20at%204.46.55%20PM.mov"
+            alt="Starting a recurring order in the bb daily customer app"
+            caption="bb daily customer app · starting a recurring order"
+          />
+        </div>
+
+        <div className="ds-rule py-11">
+          <SubLabel code="M2b · Artboard carousel" />
+          <p className="mb-7 max-w-[68ch] text-[0.95rem] leading-7" style={{ color: "var(--ink-soft)" }}>
+            Several artboards in one slot, paged by dots rather than scrolled sideways. One slide occupies the
+            slot at a time, so every artboard still renders whole — and there is no scroll origin to strand an
+            item outside reachable range, which is what a horizontally-scrolling filmstrip did here before.
+          </p>
+          <ArtboardCarousel
+            label="bb daily operations app workflows"
+            slides={[
+              {
+                src: "/work/bbdaily/BB_Daily_Milk_Basket%20Copy%2010.jpg",
+                width: 4581,
+                height: 2340,
+                alt: "Operations app login: welcome, OTP entry, and signing in as a customer experience executive",
+                caption: "Signing in",
+              },
+              {
+                src: "/work/bbdaily/BB_Daily_Milk_Basket%20Copy%2012.jpg",
+                width: 4581,
+                height: 2340,
+                alt: "Operations app deliveries: delivery count, bag-ID search, and per-flat order detail",
+                caption: "Delivering",
+              },
+              {
+                src: "/work/bbdaily/BB_Daily_Milk_Basket%20Copy%2013.jpg",
+                width: 4581,
+                height: 2340,
+                alt: "Operations app payments: today's earnings, monthly earnings, and a per-day breakdown",
+                caption: "Payments",
+              },
+            ]}
+          />
+        </div>
+
+        <div className="py-11">
+          <SubLabel code="M3 · Scene banner" />
+          <p className="mb-7 max-w-[68ch] text-[0.95rem] leading-7" style={{ color: "var(--ink-soft)" }}>
+            An atmospheric composite — the one media role where cropping is correct, because nothing in the
+            frame is meant to be read. Anything a reader needs to study belongs in M1 instead.
+          </p>
+          <SceneBanner
+            src="/work/bbdaily/Artboard%20Copy%2011.jpg"
+            alt="Operations-app cards for tracking bags, crates, and deliveries, over a warehouse photograph"
+            eyebrow="Behind every subscription"
+            headline="Every subscription created work in the physical world."
+          />
         </div>
       </section>
     </div>

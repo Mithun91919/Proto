@@ -203,6 +203,58 @@
   background-size: 8px 5px;
 }
 
+/* ── Section boundary (B4 major/minor divider, applied as a top edge on a
+   real page's own top-level section — a drop-in swap for a plain
+   `border-t`/legacy `.dot-rule`, so no spacing/padding needs to change at
+   the call site). Major: between top-level chapters/sections. Minor:
+   between related sub-groups within one section. ──────────────────────── */
+.ds-section-boundary,
+.ds-section-boundary-minor {
+  position: relative;
+}
+
+.ds-section-boundary::before,
+.ds-section-boundary-minor::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  height: 1px;
+}
+
+.ds-section-boundary::before {
+  left: 54px;
+  right: 0;
+  background: linear-gradient(90deg, color-mix(in oklab, var(--ds-accent) 28%, transparent), color-mix(in oklab, var(--ds-accent-deep) 6%, transparent) 75%, transparent);
+}
+
+.ds-section-boundary::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: -2px;
+  width: 42px;
+  height: 5px;
+  background-image: radial-gradient(circle, var(--ds-accent) 1.55px, transparent 1.7px);
+  background-size: 9px 5px;
+}
+
+.ds-section-boundary-minor::before {
+  left: 30px;
+  right: 38%;
+  background: linear-gradient(90deg, color-mix(in oklab, var(--ds-accent-deep) 16%, transparent), transparent);
+}
+
+.ds-section-boundary-minor::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: -2px;
+  width: 24px;
+  height: 5px;
+  background-image: radial-gradient(circle, var(--ds-dot-muted) 1.35px, transparent 1.5px);
+  background-size: 8px 5px;
+}
+
 /* ── S1b · Dotted rule — a full row of dots on the page's 22px pitch ─── */
 .ds-dotted-rule {
   height: 4px;
@@ -588,6 +640,1164 @@
 
 .ds-media-ground > * {
   position: relative;
+}
+
+/* ── Case-study media (M) ────────────────────────────────────────────────
+   Three treatments, one per real asset shape. The shared rule: the file's
+   own dimensions decide the box. Nothing here sets `aspect-ratio` on an
+   evidence image, so a wrong number can't silently crop it. */
+
+/* Escapes whatever reading column contains it, out to a wide bound. An
+   artboard holds several screens inside one file, so column width is the
+   difference between readable evidence and a strip of thumbnails. The
+   viewport gutter stays clear of the scrollbar so this never introduces a
+   horizontal scroll. */
+.ds-artboard,
+.ds-scene-banner {
+  position: relative;
+  width: min(calc(100vw - 3rem), 1800px);
+  margin-left: 50%;
+  transform: translateX(-50%);
+}
+
+.ds-artboard {
+  margin-block: 0;
+}
+
+/* A tall artboard holds a centred column instead of the wide break-out —
+   at full width a portrait canvas becomes a single 2000px-tall scroll. */
+.ds-artboard-portrait {
+  width: min(100%, var(--artboard-max, 40rem));
+  margin-inline: auto;
+  transform: none;
+}
+
+/* No aspect-ratio, no object-fit — intrinsic ratio only. */
+.ds-artboard-img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: var(--radius-lg);
+}
+
+.ds-media-caption {
+  margin-top: 0.9rem;
+  font-size: 0.85rem;
+  line-height: 1.5;
+  color: var(--muted);
+  text-wrap: pretty;
+}
+
+/* ── Pull statement: a scroll break on the tint plane (B6) ───────────── */
+/* The S5 dark anchor block, run edge to edge. B6 reserves dark for a
+   reframe, thesis, or conclusion — which is exactly what a pull statement
+   is. Rendered as a direct child of the article, so `width: 100%` is already
+   the full viewport: no `100vw` (which counts the scrollbar) and no
+   break-out transform. */
+.ds-pull {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  background: var(--ds-dark);
+}
+
+/* The page's dot field carries through the dark block, so it reads as the
+   same surface rather than an unrelated slab. */
+.ds-pull::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(
+    color-mix(in oklab, var(--ds-mint) 12%, transparent) 1.15px,
+    transparent 1.15px
+  );
+  background-size: 22px 22px;
+  pointer-events: none;
+}
+
+/* Aligned to the page column so the statement lines up with the prose
+   above and below it, not the raw viewport edge. */
+.ds-pull-inner {
+  position: relative;
+  max-width: 85rem;
+  margin: 0 auto;
+  padding: clamp(3rem, 7vw, 5.5rem) 1.25rem;
+}
+
+@media (min-width: 768px) {
+  .ds-pull-inner {
+    padding-inline: 2rem;
+  }
+}
+
+/* The B4 boundary marker — dots doing their sanctioned job at a break,
+   rather than sitting around the text as ornament. */
+.ds-pull-dots {
+  display: block;
+  width: 42px;
+  height: 5px;
+  margin-bottom: 1.75rem;
+  background-image: radial-gradient(circle, var(--ds-mint) 1.55px, transparent 1.7px);
+  background-size: 9px 5px;
+}
+
+.ds-pull-eyebrow {
+  margin-bottom: 1.1rem;
+  color: var(--ds-mint);
+}
+
+/* Statement left, its figure right. */
+.ds-pull-body {
+  display: grid;
+  gap: 3rem;
+  align-items: center;
+}
+
+@media (min-width: 900px) {
+  .ds-pull-body {
+    grid-template-columns: 1fr auto;
+    gap: 4rem;
+  }
+}
+
+.ds-pull-mark {
+  display: flex;
+  justify-content: flex-start;
+}
+
+/* A standing cadence whose last beat is open — regular, but not locked. */
+.ds-pull-rhythm {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 1.1rem;
+}
+
+.ds-pull-rail {
+  position: absolute;
+  left: 5px;
+  right: 5px;
+  height: 1px;
+  background: color-mix(in oklab, var(--ds-mint) 30%, transparent);
+}
+
+.ds-pull-beat {
+  position: relative;
+  width: 11px;
+  height: 11px;
+  border-radius: 50%;
+  background: var(--ds-mint);
+}
+
+.ds-pull-beat.is-open {
+  background: transparent;
+  border: 1.5px solid color-mix(in oklab, var(--ds-mint) 70%, transparent);
+}
+
+/* Two clusters joined across a gap. */
+.ds-pull-connection {
+  display: flex;
+  align-items: center;
+}
+
+.ds-pull-cluster {
+  display: grid;
+  grid-template-columns: repeat(2, 11px);
+  gap: 8px;
+}
+
+.ds-pull-bridge {
+  width: 3.25rem;
+  height: 3px;
+  margin-inline: 0.9rem;
+  background-image: radial-gradient(circle, var(--ds-mint) 1.4px, transparent 1.55px);
+  background-size: 9px 3px;
+}
+
+/* One contributor, many readers. Asymmetric on purpose: the sentence is not
+   about two matched groups, it is about one experience feeding a decision
+   downstream. Quantity carries it, not colour (B8). */
+.ds-pull-exchange {
+  display: flex;
+  align-items: center;
+}
+
+.ds-pull-one {
+  width: 15px;
+  height: 15px;
+  flex: 0 0 auto;
+  border-radius: 50%;
+  background: var(--ds-mint);
+  box-shadow: 0 0 0 5px color-mix(in oklab, var(--ds-mint) 16%, transparent);
+}
+
+.ds-pull-many {
+  display: grid;
+  grid-template-columns: repeat(3, 10px);
+  gap: 8px;
+}
+
+.ds-pull-many > span {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: color-mix(in oklab, var(--ds-mint) 78%, transparent);
+}
+
+/* The joins carry the weight, the steps are drawn open — the inverse of the
+   usual emphasis, for a claim about what happens between steps. */
+.ds-pull-seam {
+  display: flex;
+  align-items: center;
+}
+
+.ds-pull-seam-step {
+  display: flex;
+  align-items: center;
+}
+
+.ds-pull-seam-node {
+  width: 12px;
+  height: 12px;
+  flex: 0 0 auto;
+  border-radius: 50%;
+  box-shadow: inset 0 0 0 1.5px color-mix(in oklab, var(--ds-mint) 45%, transparent);
+}
+
+.ds-pull-seam-join {
+  width: 1.6rem;
+  height: 5px;
+  margin-inline: 0.4rem;
+  border-radius: 999px;
+  background: var(--ds-mint);
+}
+
+.ds-pull-text {
+  margin: 0;
+  max-width: 26ch;
+  font-family: var(--font-display), ui-sans-serif, system-ui, sans-serif;
+  font-size: clamp(1.7rem, 3.3vw, 2.75rem);
+  line-height: 1.14;
+  letter-spacing: -0.03em;
+  color: var(--ds-dark-ink);
+  text-wrap: pretty;
+}
+
+/* ── J2 chapter progress rail ────────────────────────────────────────────
+   Hidden below lg: the guide asks for a compact top indicator on small
+   screens, and a half-height rail crowding a phone is worse than none. */
+.ds-progress {
+  display: none;
+}
+
+/* 1500px, not 1180: the reading column maxes out at 85rem, so below this the
+   rail would sit on top of the content rather than beside it. */
+@media (min-width: 1500px) {
+  .ds-progress {
+    position: fixed;
+    top: 50%;
+    left: 1.75rem;
+    z-index: 20;
+    display: block;
+    transform: translateY(-50%);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity var(--duration-med) ease;
+  }
+
+  /* Only once a chapter is actually in view — during the hero there is no
+     position to report, and a rail of blank dots is just noise. */
+  .ds-progress.is-active {
+    opacity: 1;
+    pointer-events: auto;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ds-progress {
+    transition: none;
+  }
+}
+
+.ds-progress ol {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.ds-progress-item {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  text-decoration: none;
+}
+
+/* The label stays out of the way until the reader asks for it. */
+.ds-progress-label {
+  font-family: var(--font-mono), ui-monospace, monospace;
+  font-size: 0.62rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  color: var(--muted);
+  opacity: 0;
+  transform: translateX(-4px);
+  transition:
+    opacity var(--duration-fast) ease,
+    transform var(--duration-fast) ease;
+}
+
+.ds-progress-item:hover .ds-progress-label,
+.ds-progress-item:focus-visible .ds-progress-label {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ds-progress-label {
+    transition: none;
+    transform: none;
+  }
+}
+
+/* ── E1 reframe mark: flat surface reading → the structure underneath ─── */
+.ds-reframe {
+  display: grid;
+  gap: 2.5rem;
+  align-items: center;
+}
+
+@media (min-width: 768px) {
+  .ds-reframe {
+    grid-template-columns: 1fr auto;
+    gap: 3.5rem;
+  }
+}
+
+.ds-reframe-mark {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.85rem;
+}
+
+.ds-reframe-flat {
+  display: grid;
+  grid-template-columns: repeat(6, 9px);
+  gap: 7px;
+}
+
+.ds-reframe-grouped {
+  display: flex;
+  gap: 0.9rem;
+}
+
+.ds-reframe-group {
+  display: grid;
+  grid-template-columns: repeat(2, 9px);
+  gap: 7px;
+  padding: 7px;
+  border-radius: 8px;
+  border: 1px solid color-mix(in oklab, var(--ds-mint) 26%, transparent);
+}
+
+.ds-reframe-dot {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: color-mix(in oklab, var(--ds-dark-muted) 55%, transparent);
+}
+
+.ds-reframe-dot.is-on {
+  background: var(--ds-mint);
+}
+
+.ds-reframe-arrow {
+  font-size: 0.9rem;
+  line-height: 1;
+  color: color-mix(in oklab, var(--ds-mint) 60%, transparent);
+}
+
+/* ── Dot flow: stages of a chain, connected (C1 "connection") ─────────── */
+.ds-dotflow {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  row-gap: 2rem;
+}
+
+.ds-dotflow-stage {
+  display: flex;
+  min-width: 0;
+  flex: 1 1 9rem;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.ds-dotflow-rail {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+/* The step number, drawn in the same dot unit as the S6 numbered rows. */
+.ds-dotflow-numeral {
+  display: flex;
+  flex: 0 0 auto;
+  gap: 3px;
+}
+
+.ds-dotflow-link {
+  height: 3px;
+  flex: 1 1 auto;
+  min-width: 1.5rem;
+  background-image: radial-gradient(circle, var(--ds-dot-muted) 1.35px, transparent 1.5px);
+  background-size: 8px 3px;
+  transition:
+    background-color 220ms ease,
+    background-image 220ms ease;
+}
+
+/* ── Entrance ────────────────────────────────────────────────────────────
+   Rides the Reveal wrapper rather than owning an observer, so the stagger
+   cannot run while the figure is off-screen. Without a Reveal ancestor the
+   chain simply renders finished. */
+.reveal.is-visible .ds-dotflow-stage {
+  animation: ds-flow-step-in 460ms cubic-bezier(0.2, 0.7, 0.3, 1) backwards;
+  animation-delay: calc(var(--i, 0) * 110ms);
+}
+
+/* The link carries two independent animations on two different properties
+   (transform for the entrance draw-in, background for the sweep below), so
+   neither interrupts the other — this is a comma-separated longhand list,
+   not one animation replacing another. */
+.reveal.is-visible .ds-dotflow-link {
+  transform-origin: left center;
+  animation-name: ds-flow-link-in, ds-flow-sweep-link;
+  animation-duration: 380ms, 7s;
+  animation-timing-function: ease-out, ease-in-out;
+  animation-delay:
+    calc(var(--i, 0) * 110ms + 180ms),
+    calc((var(--i, 0) + 0.5) * (7s / var(--n, 5)) + 700ms);
+  animation-iteration-count: 1, infinite;
+  animation-fill-mode: backwards, none;
+}
+
+@keyframes ds-flow-step-in {
+  from {
+    opacity: 0;
+    transform: translateY(7px);
+  }
+}
+
+@keyframes ds-flow-link-in {
+  from {
+    transform: scaleX(0);
+  }
+}
+
+/* ── Sweep ───────────────────────────────────────────────────────────────
+   Replaces a hover-triggered scrub: once the chain has settled in from its
+   entrance, one highlight travels it left to right on a loop — a numeral,
+   then its outgoing connector, then the next numeral — rather than only
+   showing the path taken when a pointer happens to find it. `--n` (set once
+   on the root by DotFlow) divides one shared cycle evenly across however
+   many stages a given usage has, so the timing holds regardless of count.
+   The 700ms base delay lets the entrance finish before the loop starts. */
+.reveal.is-visible .ds-dotflow-numeral {
+  animation: ds-flow-sweep-node 7s ease-in-out infinite;
+  animation-delay: calc(var(--i, 0) * (7s / var(--n, 5)) + 700ms);
+}
+
+@keyframes ds-flow-sweep-node {
+  0%,
+  20%,
+  100% {
+    transform: scale(1);
+    filter: brightness(1);
+  }
+  8% {
+    transform: scale(1.16);
+    filter: brightness(1.4);
+  }
+}
+
+@keyframes ds-flow-sweep-link {
+  0%,
+  20%,
+  100% {
+    background-image: radial-gradient(circle, var(--ds-dot-muted) 1.35px, transparent 1.5px);
+    background-color: transparent;
+  }
+  8% {
+    background-image: none;
+    background-color: var(--ds-accent);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal.is-visible .ds-dotflow-stage,
+  .reveal.is-visible .ds-dotflow-link,
+  .reveal.is-visible .ds-dotflow-numeral {
+    animation: none;
+  }
+
+  .ds-dotflow-stage,
+  .ds-dotflow-link {
+    transition: none;
+  }
+}
+
+.ds-dotflow-label {
+  max-width: 13ch;
+  font-family: var(--font-mono), ui-monospace, monospace;
+  font-size: 0.66rem;
+  letter-spacing: 0.1em;
+  line-height: 1.5;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+}
+
+/* The wrapper every in-chapter figure sits in, so spacing is one decision
+   rather than a margin re-typed per page. */
+.ds-cs-figure {
+  margin: 3.5rem 0 0;
+}
+
+.ds-cs-figure.has-rule {
+  border-top: 1px solid var(--line);
+  padding-top: 2.5rem;
+}
+
+.ds-cs-figure-label {
+  margin-bottom: 2rem;
+}
+
+/* No banner asset yet: the dark ground plus the page dot field, so the page
+   still opens on a deliberate band rather than on body copy. */
+.ds-scene-banner-empty {
+  background-color: var(--ds-dark);
+  background-image: radial-gradient(
+    color-mix(in oklab, var(--ds-mint) 12%, transparent) 1.15px,
+    transparent 1.15px
+  );
+  background-size: 22px 22px;
+}
+
+.ds-scene-banner-empty .ds-scene-banner-scrim {
+  display: none;
+}
+
+.ds-scene-banner-pending {
+  position: absolute;
+  right: 1.5rem;
+  bottom: 1.25rem;
+  margin: 0;
+  font-family: var(--font-mono), ui-monospace, monospace;
+  font-size: 0.62rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: color-mix(in oklab, var(--ds-mint) 62%, transparent);
+}
+
+/* ── F4 · Hotspots layered on an existing figure ─────────────────────────
+   The note opens against its dot, so the screen and its explanation are in
+   one glance. Placement comes from each hotspot's own coordinates, so a
+   panel never needs measuring and never leaves the frame. */
+.ds-artboard-frame {
+  position: relative;
+  line-height: 0;
+}
+
+.ds-hotspots {
+  position: absolute;
+  inset: 0;
+  line-height: normal;
+}
+
+.ds-hotspot {
+  position: absolute;
+  z-index: 1;
+}
+
+.ds-hotspot.is-open {
+  z-index: 3;
+}
+
+.ds-hotspot-dot {
+  position: absolute;
+  top: 0;
+  left: 0;
+  transform: translate(-50%, -50%);
+  cursor: pointer;
+  border: 0;
+  padding: 0;
+  transition:
+    transform 180ms ease,
+    box-shadow 180ms ease,
+    opacity 180ms ease;
+}
+
+/* Once one is open the rest step back, so the open note is not competing
+   with three other markers. */
+.ds-hotspots.has-open .ds-hotspot:not(.is-open) .ds-hotspot-dot {
+  opacity: 0.4;
+}
+
+.ds-hotspot.is-open .ds-hotspot-dot {
+  transform: translate(-50%, -50%) scale(1.18);
+  box-shadow: 0 0 0 8px color-mix(in oklab, var(--ds-accent) 24%, transparent);
+}
+
+.ds-hotspot-dot:focus-visible {
+  outline: 2px solid var(--ds-accent-deep);
+  outline-offset: 3px;
+}
+
+
+/* The dots pulse until the reader engages. A callout nobody notices explains
+   nothing, so this is a discoverability cue for a real control rather than
+   ornament — it stops on hover, stops for good once anything has been
+   opened, and never starts under reduced motion. */
+@keyframes ds-hotspot-pulse {
+  0% {
+    box-shadow: 0 0 0 0 color-mix(in oklab, var(--ds-accent) 45%, transparent);
+  }
+  70% {
+    box-shadow: 0 0 0 13px color-mix(in oklab, var(--ds-accent) 0%, transparent);
+  }
+  100% {
+    box-shadow: 0 0 0 0 color-mix(in oklab, var(--ds-accent) 0%, transparent);
+  }
+}
+
+.ds-hotspot-dot {
+  animation: ds-hotspot-pulse 2.6s ease-out infinite;
+  animation-delay: calc(var(--i, 0) * 320ms);
+}
+
+.ds-hotspots.has-open .ds-hotspot-dot,
+.ds-hotspot-dot:hover,
+.ds-hotspot-dot:focus-visible {
+  animation: none;
+}
+
+.ds-hotspot-pop {
+  position: absolute;
+  display: flex;
+  width: max-content;
+  max-width: min(17rem, 42vw);
+  flex-direction: column;
+  gap: 0.4rem;
+  border: 1px solid color-mix(in oklab, var(--ds-mint) 22%, transparent);
+  border-radius: 12px;
+  background: var(--ds-dark);
+  padding: 0.9rem 1.05rem;
+  box-shadow: 0 18px 40px -16px rgb(6 22 28 / 55%);
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(4px);
+  transition:
+    opacity 180ms ease,
+    transform 180ms ease,
+    visibility 180ms;
+}
+
+.ds-hotspot.is-open .ds-hotspot-pop {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+/* Horizontal side: a dot past the middle opens back toward the frame. */
+.ds-hotspot[data-side="right"] .ds-hotspot-pop {
+  left: 1.35rem;
+}
+
+.ds-hotspot[data-side="left"] .ds-hotspot-pop {
+  right: 1.35rem;
+}
+
+/* Vertical side: a dot low in the frame opens upward. */
+.ds-hotspot[data-vert="down"] .ds-hotspot-pop {
+  top: -0.5rem;
+}
+
+.ds-hotspot[data-vert="up"] .ds-hotspot-pop {
+  bottom: -0.5rem;
+}
+
+.ds-hotspot-title {
+  font-size: 0.86rem;
+  font-weight: 500;
+  line-height: 1.4;
+  color: var(--ds-mint);
+}
+
+.ds-hotspot-detail {
+  font-size: 0.8rem;
+  line-height: 1.55;
+  color: var(--ds-dark-ink);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ds-hotspot-dot,
+  .ds-hotspot-pop {
+    transition: none;
+  }
+
+  .ds-hotspot-dot {
+    animation: none;
+  }
+
+  .ds-hotspot-pop {
+    transform: none;
+  }
+}
+
+/* ── Compact dot marks — micro-animation (CompactMetricGlyph, CompactNumeral)
+   ─────────────────────────────────────────────────────────────────────────
+   Two behaviours, both tied to something real rather than run on their own:
+
+   - Entrance: dots light up in sequence rather than appearing all at once,
+     riding the `Reveal` wrapper's `is-visible` class the same way DotFlow's
+     chain does — no observer of its own, and it cannot fire off-screen.
+   - Hover lift: the lit dots lift slightly when the enclosing link is
+     hovered, the same "the whole row is one clickable thing" cue the
+     project-hero clip's hover-zoom already gives elsewhere on a card.
+
+   `--dot-i` (set once per dot by DotGrid) drives the stagger; an optional
+   inherited `--group-offset` lets a multi-part mark (CompactNumeral's
+   digits) continue the cascade across parts instead of each one restarting
+   at zero. */
+.ds-compact-mark {
+  display: inline-flex;
+}
+
+.reveal.is-visible .ds-compact-mark .ds-dot {
+  animation: ds-mark-dot-in 380ms cubic-bezier(0.2, 0.7, 0.3, 1) backwards;
+  animation-delay: calc((var(--dot-i, 0) + var(--group-offset, 0)) * 16ms);
+}
+
+@keyframes ds-mark-dot-in {
+  from {
+    opacity: 0;
+    transform: scale(0.35);
+  }
+}
+
+.ds-compact-mark .ds-dot {
+  transition: transform 200ms ease;
+}
+
+a:hover .ds-compact-mark .ds-dot {
+  transform: scale(1.15);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal.is-visible .ds-compact-mark .ds-dot {
+    animation: none;
+  }
+
+  .ds-compact-mark .ds-dot {
+    transition: none;
+  }
+
+  a:hover .ds-compact-mark .ds-dot {
+    transform: none;
+  }
+}
+
+/* ── Media inside a card that already clips its own corners ─────────────
+   `.project-hero` and `.ds-placeholder` each draw their own border, radius,
+   and shadow — correct when media sits directly on the page, wrong once a
+   second rounded container already clips around it: two different radii
+   nested produced a visible double edge. This drops the inner frame so the
+   outer container is the only thing drawing the corner. */
+.ds-media-flush .project-hero {
+  border: 0;
+  border-radius: 0;
+  box-shadow: none;
+}
+
+.ds-media-flush .ds-placeholder {
+  border: 0;
+  border-radius: 0;
+}
+
+/* ── Media placeholder ───────────────────────────────────────────────────
+   Reads as a note, never as content. The dashed bound and mono type keep it
+   unmistakably unfinished at a glance. */
+.ds-placeholder {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+  border: 1px dashed color-mix(in oklab, var(--ds-accent) 38%, transparent);
+  border-radius: 14px;
+  background-color: color-mix(in oklab, var(--ds-accent) 3%, transparent);
+  background-image: radial-gradient(
+    color-mix(in oklab, var(--ds-accent) 20%, transparent) 1.1px,
+    transparent 1.2px
+  );
+  background-size: 16px 16px;
+  padding: 1.5rem;
+}
+
+.ds-placeholder-inner {
+  max-width: 44ch;
+  text-align: center;
+}
+
+.ds-placeholder-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin: 0;
+  font-family: var(--font-mono), ui-monospace, monospace;
+  font-size: 0.64rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--ds-accent);
+}
+
+.ds-placeholder-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--ds-accent);
+}
+
+.ds-placeholder-needs {
+  margin: 0.9rem 0 0;
+  font-size: 0.95rem;
+  line-height: 1.5;
+  color: var(--ink-soft);
+  text-wrap: pretty;
+}
+
+.ds-placeholder-source {
+  margin: 0.65rem 0 0;
+  font-family: var(--font-mono), ui-monospace, monospace;
+  font-size: 0.66rem;
+  letter-spacing: 0.08em;
+  color: var(--muted);
+}
+
+/* ── S12 alternating rows ────────────────────────────────────────────────
+   Stacks below md — reading order wins over the desktop left/right
+   alternation (B5b). */
+.ds-alt-row {
+  display: grid;
+  grid-template-columns: 1fr;
+}
+
+@media (min-width: 768px) {
+  .ds-alt-row {
+    grid-template-columns: var(--alt-cols, 1fr 1.15fr);
+  }
+}
+
+/* ── Cadence track: rhythm told in dots, not placeholder bars ─────────── */
+.ds-cadence {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-top: 1.75rem;
+  padding-top: 0.5rem;
+}
+
+.ds-cadence-slot {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.ds-cadence-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  border: 1.5px solid color-mix(in oklab, var(--ds-dot-muted) 60%, transparent);
+  background: transparent;
+}
+
+.ds-cadence-dot.is-on {
+  background: var(--ds-dot-muted);
+  border-color: var(--ds-dot-muted);
+}
+
+.ds-cadence-accent .ds-cadence-dot.is-on {
+  background: var(--ds-accent);
+  border-color: var(--ds-accent);
+  box-shadow: 0 0 0 3px color-mix(in oklab, var(--ds-accent) 16%, transparent);
+}
+
+/* The connecting hairline is what makes the after state read as a standing
+   rhythm rather than another scatter. */
+.ds-cadence-line {
+  position: absolute;
+  left: 5px;
+  right: 5px;
+  top: calc(0.5rem + 5px);
+  height: 1px;
+  background: color-mix(in oklab, var(--ds-accent) 32%, transparent);
+}
+
+.ds-cadence-day {
+  font-family: var(--font-mono), ui-monospace, monospace;
+  font-size: 0.6rem;
+  letter-spacing: 0.08em;
+  color: var(--muted);
+}
+
+.ds-cadence-note {
+  margin-top: 1rem;
+  font-family: var(--font-mono), ui-monospace, monospace;
+  font-size: 0.64rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+/* Several artboards in one slot, paged by dots rather than scrolled. One
+   slide occupies the slot at a time, so there is no scroll origin — and so
+   no way to strand an item outside reachable scroll range. */
+.ds-artboard-dots {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  margin-top: 1.5rem;
+}
+
+.ds-artboard-dot {
+  width: 9px;
+  height: 9px;
+  padding: 0;
+  border-radius: 50%;
+  border: 1.5px solid var(--ds-dot-muted);
+  background: transparent;
+  cursor: pointer;
+  transition:
+    background var(--duration-fast) ease,
+    border-color var(--duration-fast) ease,
+    box-shadow var(--duration-fast) ease;
+}
+
+.ds-artboard-dot:hover {
+  border-color: var(--ds-accent);
+}
+
+.ds-artboard-dot.is-active {
+  background: var(--ds-accent);
+  border-color: var(--ds-accent);
+  box-shadow: 0 0 0 4px color-mix(in oklab, var(--ds-accent) 18%, transparent);
+}
+
+/* Position is stated in text as well as colour — colour alone can't carry
+   state (B8). */
+.ds-artboard-count {
+  margin-left: 0.6rem;
+  font-family: var(--font-mono), ui-monospace, monospace;
+  font-size: 0.68rem;
+  letter-spacing: 0.1em;
+  color: var(--muted);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ds-artboard-dot {
+    transition: none;
+  }
+}
+
+/* Height-bound, not width-bound: a portrait clip stretched to a full-bleed
+   container renders thousands of pixels tall. */
+.ds-clip {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 0;
+}
+
+.ds-clip-video {
+  display: block;
+  height: min(80vh, 760px);
+  width: auto;
+  max-width: 100%;
+  border-radius: var(--radius-lg);
+  background: var(--ds-dark);
+  /* `contain`, never `cover`. If a poster and its clip ever disagree on
+     ratio this letterboxes — visible and harmless — instead of silently
+     cropping the frame, which is how the old treatment lost 66% of a
+     portrait recording without anyone noticing. */
+  object-fit: contain;
+}
+
+.ds-clip .ds-media-caption {
+  text-align: center;
+}
+
+/* Width-driven, not height-driven. Sizing a clip off `vh` ties it to window
+   height, so it shrinks on a short laptop and can collide with `max-width`,
+   which then letterboxes it via `object-fit`. Setting the width and letting
+   `aspect-ratio` derive the height keeps the frame exact at every viewport
+   and scales with the column rather than the window.
+   At 0.54 ratio this lands the clip ~440–780px tall — large enough to read
+   the interface, which is the whole point of showing it. */
+.ds-clip-beside .ds-clip-video {
+  width: clamp(15rem, 23vw, 23rem);
+  height: auto;
+  max-width: 100%;
+}
+
+/* The one media role where cropping is intended. */
+.ds-scene-banner {
+  overflow: hidden;
+  border-radius: var(--radius-lg);
+  height: clamp(20rem, 52vh, 34rem);
+}
+
+/* Page-opening variant: truly edge to edge, square corners, no gutter, so
+   the image is the top-level item on the page rather than a card inset from
+   it. Overrides the shared break-out rule above. */
+/* `width: 100%`, not `100vw` — `100vw` counts the scrollbar, so it overflows
+   by ~15px and gives the page a horizontal scrollbar. This variant is used on
+   elements that are already full-width children of the article, so it needs
+   no break-out at all. */
+.ds-scene-banner-full {
+  width: 100%;
+  margin-left: 0;
+  transform: none;
+  border-radius: 0;
+  height: clamp(26rem, 74vh, 46rem);
+}
+
+.ds-scene-banner-media {
+  object-fit: cover;
+}
+
+/* Stops well short of opaque: a light composite under a full black ramp
+   becomes a black rectangle with a ghost of an interface in it. */
+.ds-scene-banner-scrim {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to top,
+    rgb(6 17 21 / 0.78) 0%,
+    rgb(6 17 21 / 0.45) 42%,
+    rgb(6 17 21 / 0.08) 100%
+  );
+}
+
+.ds-scene-banner-copy {
+  position: absolute;
+  inset: auto 0 0 0;
+  padding: clamp(1.5rem, 4vw, 3rem);
+}
+
+.ds-scene-banner-standfirst {
+  margin: 1.25rem 0 0;
+  max-width: 44ch;
+  font-size: 1.05rem;
+  line-height: 1.6;
+  color: #b9d3da;
+}
+
+/* Scannable facts under the hero headline (S11). */
+.ds-scene-banner-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.25rem 2.75rem;
+  margin: 1.75rem 0 0;
+  padding-top: 1.25rem;
+  border-top: 1px solid rgb(234 243 245 / 0.2);
+  font-size: 0.9rem;
+}
+
+.ds-scene-banner-meta dd {
+  margin-top: 0.35rem;
+}
+
+/* Back nav over the image, aligned to the page's own reading column so it
+   lines up with the content below rather than the raw viewport edge. */
+.ds-scene-banner-top {
+  position: absolute;
+  inset: 0 0 auto 0;
+  padding: clamp(1.25rem, 3vw, 2.25rem) clamp(1.5rem, 4vw, 3rem);
+}
+
+.ds-scene-banner-back {
+  color: var(--ds-dark-ink);
+  text-shadow: 0 1px 12px rgb(6 17 21 / 0.55);
+}
+
+.ds-scene-banner-back:hover {
+  color: var(--ds-mint);
+}
+
+/* Copy and back link share the page's own column, so the hero title lines up
+   with the paragraphs below it instead of sitting against the raw viewport
+   edge. */
+.ds-scene-banner-inner {
+  width: 100%;
+  max-width: 85rem;
+  margin: 0 auto;
+  padding-inline: 1.25rem;
+}
+
+@media (min-width: 768px) {
+  .ds-scene-banner-inner {
+    padding-inline: 2rem;
+  }
+}
+
+/* On a page-opening banner the copy sits on the left and centres vertically,
+   rather than crowding the bottom edge under the product shot. The scrim
+   runs left-to-right to match, keeping the type on the quiet side of the
+   image and off the screens themselves. */
+.ds-scene-banner-full .ds-scene-banner-copy {
+  inset: 0;
+  display: flex;
+  align-items: center;
+  padding: 0;
+  /* This now spans the full banner height (not just a bottom strip), and it
+     paints after .ds-scene-banner-top in DOM order — without this, the
+     empty space above/below the centred text silently swallows every click
+     on the back link sitting underneath it, across the whole hero. Nothing
+     in here is interactive, so pointer-events can just pass through. */
+  pointer-events: none;
+}
+
+.ds-scene-banner-full .ds-scene-banner-copy .ds-scene-banner-inner > * {
+  max-width: 34rem;
+  /* Restores clicks to the copy's own real content — the wrapper above
+     passes pointer-events through, but that shouldn't reach past this
+     block's actual text/links to whatever sits behind the hero image. */
+  pointer-events: auto;
+}
+
+.ds-scene-banner-full .ds-scene-banner-scrim {
+  background:
+    linear-gradient(to right, rgb(6 17 21 / 0.88) 0%, rgb(6 17 21 / 0.62) 38%, rgb(6 17 21 / 0.12) 68%, transparent 100%),
+    linear-gradient(to bottom, rgb(6 17 21 / 0.34) 0%, transparent 18%);
+}
+
+.ds-scene-banner-full .ds-scene-banner-top {
+  padding-inline: 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ds-clip-video {
+    /* Poster frame holds; see ClipFigure's matchMedia guard. */
+    animation: none;
+  }
 }
 
 /* ── Chip / recipe flow (I) ──────────────────────────────────────────── */

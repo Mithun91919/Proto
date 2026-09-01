@@ -95,6 +95,10 @@ export const transformations: Transformation[] = [
 ];
 
 export type EarlierWorkEntry = {
+  /** Sequential index shown in the card badge, matching the numbering the
+      Project records use. bb daily keeps its real Project number (06)
+      rather than a fabricated one, since it is the same project. */
+  number: string;
   org: string;
   body: string;
   tags: string[];
@@ -103,36 +107,42 @@ export type EarlierWorkEntry = {
   slug?: string;
 };
 
+/**
+ * bb daily is deliberately absent here even though it predates the
+ * enterprise work chronologically — it's a full `Project` (number 06,
+ * real metrics, its own case study) already shown once in "Additional
+ * work" above. Listing it again here as a bare card duplicated the same
+ * project back to back with less information the second time. Numbering
+ * below starts at 07 rather than 06 for that reason — 06 stays bb daily's,
+ * just shown in the richer spot.
+ */
 export const earlierWork: EarlierWorkEntry[] = [
   {
-    org: "bb daily",
-    body: "Designing both sides of a recurring delivery service.",
-    tags: ["Mobile", "Operations"],
-    image: "/work/bbdaily/8f79fb_20203531c98e4bd986f2bbf39a470197~mv2.avif",
-    slug: "bb-daily",
-  },
-  {
+    number: "07",
     org: "Ratings & Reviews",
     body: "Designing one feedback system across mobile and web.",
-    tags: ["BIGBASKET", "Mobile", "Product design"],
-    image: "/work/bigbasket-ratings-reviews/Artboard.png",
+    tags: ["BIGBASKET", "Mobile", "Product Design"],
+    image: "/work/bigbasket-ratings-reviews/Artboard Copy 8.jpg",
     slug: "bigbasket-ratings-reviews",
   },
   {
+    number: "08",
     org: "Job Discovery & Resume Builder",
     body: "Helping people move from finding a job to being ready to apply.",
-    tags: ["HIKE", "Mobile", "Product design"],
+    tags: ["HIKE", "Mobile", "Product Design"],
     image: "/work/hike-jobs-service/Jobs_Banner.jpg",
     slug: "hike-jobs-service",
   },
   {
+    number: "09",
     org: "Movie Ticket Booking",
     body: "Designing a simpler path from movie intent to payment.",
-    tags: ["HIKE", "Mobile", "Product design"],
-    image: "/work/hike-movie-tickets/Screens_JT.png",
+    tags: ["HIKE", "Mobile", "Product Design"],
+    image: "/work/hike-movie-tickets/Movie_Banner_2.jpg",
     slug: "hike-movie-tickets",
   },
   {
+    number: "10",
     org: "Multilingual Mobile Experience",
     body: "Designing a localization system across 8 Indian languages.",
     tags: ["HIKE", "Mobile", "Localization"],
@@ -140,9 +150,10 @@ export const earlierWork: EarlierWorkEntry[] = [
     slug: "hike-total-os-localization",
   },
   {
+    number: "11",
     org: "Smartphone Brand & Digital Experience",
     body: "Building a visual language for a smartphone that changed every month.",
-    tags: ["CREO", "Visual design", "Web"],
+    tags: ["CREO", "Visual Design", "Web"],
     image: "/work/creo/banner.jpg",
     slug: "creo-mark-1",
   },
