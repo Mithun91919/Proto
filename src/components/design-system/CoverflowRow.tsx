@@ -12,6 +12,7 @@ export type CoverflowScreen = {
   alt: string;
   route?: string;
   title: string;
+  description: string;
 };
 
 type CoverflowRowProps = {
@@ -28,6 +29,7 @@ type CoverflowRowProps = {
  */
 export function CoverflowRow({ screens, label }: CoverflowRowProps) {
   const [active, setActive] = useState(0);
+  const screen = screens[active];
   const stepBy = (delta: number) => setActive((a) => (a + delta + screens.length) % screens.length);
 
   return (
@@ -85,11 +87,34 @@ export function CoverflowRow({ screens, label }: CoverflowRowProps) {
         })}
       </div>
 
-      <div className="mt-6 flex items-center justify-center gap-4">
-        <PagingArrows onPrev={() => stepBy(-1)} onNext={() => stepBy(1)} label="screen" />
-        <p className="ds-eyebrow" style={{ color: "var(--muted)", margin: 0 }}>
-          {screens[active].title}
+      <div className="mx-auto mt-8 max-w-[34rem] text-center">
+        <p className="ds-eyebrow" style={{ color: "var(--ds-accent)" }}>
+          {screen.route ?? `${active + 1} of ${screens.length}`}
         </p>
+        <h4 className="display-title mt-3" style={{ fontSize: "1.3rem" }}>
+          {screen.title}
+        </h4>
+        <p className="ds-note mt-3">{screen.description}</p>
+
+        <div className="ds-artboard-dots mt-6" style={{ justifyContent: "center" }}>
+          {screens.map((s, i) => (
+            <button
+              key={s.title}
+              type="button"
+              aria-current={active === i}
+              aria-label={`Show ${s.title}`}
+              className={`ds-artboard-dot${active === i ? " is-active" : ""}`}
+              onClick={() => setActive(i)}
+            />
+          ))}
+          <span className="ds-artboard-count" aria-hidden>
+            {active + 1} / {screens.length}
+          </span>
+        </div>
+
+        <div className="mt-4 flex justify-center">
+          <PagingArrows onPrev={() => stepBy(-1)} onNext={() => stepBy(1)} label="screen" />
+        </div>
       </div>
     </div>
   );

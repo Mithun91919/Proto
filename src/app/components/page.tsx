@@ -73,6 +73,7 @@ import { ResponsiveDeviceSwitcher } from "@/components/design-system/ResponsiveD
 import { TimelineScrubber } from "@/components/design-system/TimelineScrubber";
 import { ZoomLens } from "@/components/design-system/ZoomLens";
 import { CoverflowRow } from "@/components/design-system/CoverflowRow";
+import { HeroThumbnailRail } from "@/components/design-system/HeroThumbnailRail";
 
 export const metadata: Metadata = {
   title: "Components",
@@ -1430,12 +1431,32 @@ export default function ComponentsPage() {
           <CoverflowRow
             label="Same six projects as M6, in a row"
             screens={[
-              { src: "/work/clipper/poster.jpg", width: 1600, height: 1046, alt: "Placeholder screen standing in for Portfolio Management Platform", route: "portfolio-platform / people", title: "Portfolio Management Platform" },
-              { src: "/work/clipper/poster.jpg", width: 1600, height: 1046, alt: "Placeholder screen standing in for Ratings & Reviews", route: "bigbasket / reviews", title: "Ratings & Reviews" },
-              { src: "/work/clipper/poster.jpg", width: 1600, height: 1046, alt: "Placeholder screen standing in for bb daily", route: "bb daily / login", title: "bb daily" },
-              { src: "/work/clipper/poster.jpg", width: 1600, height: 1046, alt: "Placeholder screen standing in for Job Discovery & Resume Builder", route: "hike / jobs-onboarding", title: "Job Discovery & Resume Builder" },
-              { src: "/work/clipper/poster.jpg", width: 1600, height: 1046, alt: "Placeholder screen standing in for Movie Ticket Booking", route: "hike / movie-tickets", title: "Movie Ticket Booking" },
-              { src: "/work/clipper/poster.jpg", width: 1600, height: 1046, alt: "Placeholder screen standing in for Multilingual Mobile Experience", route: "hike / total-os", title: "Multilingual Mobile Experience" },
+              { src: "/work/clipper/poster.jpg", width: 1600, height: 1046, alt: "Placeholder screen standing in for Portfolio Management Platform", route: "portfolio-platform / people", title: "Portfolio Management Platform", description: "Replacing five portfolio tools with one connected platform." },
+              { src: "/work/clipper/poster.jpg", width: 1600, height: 1046, alt: "Placeholder screen standing in for Ratings & Reviews", route: "bigbasket / reviews", title: "Ratings & Reviews", description: "Designing one feedback system across mobile and web." },
+              { src: "/work/clipper/poster.jpg", width: 1600, height: 1046, alt: "Placeholder screen standing in for bb daily", route: "bb daily / login", title: "bb daily", description: "Designing both sides of a recurring delivery service." },
+              { src: "/work/clipper/poster.jpg", width: 1600, height: 1046, alt: "Placeholder screen standing in for Job Discovery & Resume Builder", route: "hike / jobs-onboarding", title: "Job Discovery & Resume Builder", description: "Helping people move from finding a job to being ready to apply." },
+              { src: "/work/clipper/poster.jpg", width: 1600, height: 1046, alt: "Placeholder screen standing in for Movie Ticket Booking", route: "hike / movie-tickets", title: "Movie Ticket Booking", description: "Turning booking intent into one continuous transaction." },
+              { src: "/work/clipper/poster.jpg", width: 1600, height: 1046, alt: "Placeholder screen standing in for Multilingual Mobile Experience", route: "hike / total-os", title: "Multilingual Mobile Experience", description: "A localization system across 8 Indian languages." },
+            ]}
+          />
+        </div>
+
+        <div className="py-11">
+          <SubLabel code="M14 · Hero + thumbnail rail" />
+          <p className="mb-7 max-w-[68ch] text-[0.95rem] leading-7" style={{ color: "var(--ink-soft)" }}>
+            The plain, standard gallery pattern — one large screen, small thumbnails to jump between the rest.
+            No fan, no perspective; it doesn&apos;t need one to be legible. Same text panel, dot rail, and
+            arrows as M6 and M13, and the same six projects, so the three read as one family with three shells.
+          </p>
+          <HeroThumbnailRail
+            label="Same six projects as M6 and M13, hero + thumbnails"
+            screens={[
+              { src: "/work/clipper/poster.jpg", width: 1600, height: 1046, alt: "Placeholder screen standing in for Portfolio Management Platform", route: "portfolio-platform / people", title: "Portfolio Management Platform", description: "Replacing five portfolio tools with one connected platform." },
+              { src: "/work/clipper/poster.jpg", width: 1600, height: 1046, alt: "Placeholder screen standing in for Ratings & Reviews", route: "bigbasket / reviews", title: "Ratings & Reviews", description: "Designing one feedback system across mobile and web." },
+              { src: "/work/clipper/poster.jpg", width: 1600, height: 1046, alt: "Placeholder screen standing in for bb daily", route: "bb daily / login", title: "bb daily", description: "Designing both sides of a recurring delivery service." },
+              { src: "/work/clipper/poster.jpg", width: 1600, height: 1046, alt: "Placeholder screen standing in for Job Discovery & Resume Builder", route: "hike / jobs-onboarding", title: "Job Discovery & Resume Builder", description: "Helping people move from finding a job to being ready to apply." },
+              { src: "/work/clipper/poster.jpg", width: 1600, height: 1046, alt: "Placeholder screen standing in for Movie Ticket Booking", route: "hike / movie-tickets", title: "Movie Ticket Booking", description: "Turning booking intent into one continuous transaction." },
+              { src: "/work/clipper/poster.jpg", width: 1600, height: 1046, alt: "Placeholder screen standing in for Multilingual Mobile Experience", route: "hike / total-os", title: "Multilingual Mobile Experience", description: "A localization system across 8 Indian languages." },
             ]}
           />
         </div>
