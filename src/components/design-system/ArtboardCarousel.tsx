@@ -3,6 +3,7 @@
 import { useId, useState } from "react";
 import { ArtboardFigure } from "./ArtboardFigure";
 import type { Hotspot } from "./ImageHotspots";
+import { PagingArrows } from "./PagingArrows";
 
 export type ArtboardSlide = {
   src: string;
@@ -95,6 +96,7 @@ export function ArtboardCarousel({ slides, label }: ArtboardCarouselProps) {
         <span className="ds-artboard-count" aria-hidden>
           {active + 1} / {slides.length}
         </span>
+        <PagingArrows onPrev={() => step(-1)} onNext={() => step(1)} label="slide" />
       </div>
     </div>
   );

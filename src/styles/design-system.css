@@ -498,6 +498,125 @@
   position: relative;
 }
 
+/* `BrowserMockup`'s scrollable mode — a full-page capture held to a fixed
+   viewport height, scrolled in place rather than shrunk to fit or handed
+   off to a recorded video. The hint sits outside the scrolling element
+   (a sibling in `.ds-framebody`, not a child of `.ds-frame-scroll`) so it
+   stays put at the bottom of the frame regardless of scroll position,
+   instead of scrolling away with the content after the first pixel. */
+.ds-frame-scroll {
+  max-height: var(--frame-max-height, 32rem);
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  scrollbar-width: thin;
+}
+
+.ds-frame-scroll-hint {
+  position: absolute;
+  bottom: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 4px 10px;
+  border-radius: 999px;
+  font-family: var(--font-mono), ui-monospace, monospace;
+  font-size: 0.62rem;
+  letter-spacing: 0.06em;
+  color: var(--muted);
+  background: color-mix(in oklab, var(--paper) 88%, transparent);
+  border: 1px solid var(--ds-solid-border);
+  box-shadow: var(--ds-solid-shadow);
+  pointer-events: none;
+  opacity: 1;
+  transition: opacity var(--duration-med) ease;
+}
+
+.ds-framebody:hover .ds-frame-scroll-hint,
+.ds-framebody:focus-within .ds-frame-scroll-hint {
+  opacity: 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ds-frame-scroll-hint {
+    transition: none;
+  }
+}
+
+/* ── Stacked screens (M6) ────────────────────────────────────────────────
+   A fanned deck: one primary frame at front-right, the rest leaning back
+   and to the left like books tipped against a shelf. `--pos` (0 = front)
+   drives offset, rotation, scale, and shadow depth from one number, so
+   the deck reads as one system rather than per-card hand-tuning.
+   `min-height` accepts that a card taller than it will still render in
+   full — `.ds-stack` never clips — just past the nominal box. */
+/* `fullBleed` — the same break-out technique `.ds-artboard`/`.ds-scene-
+   banner` use: centred on the viewport rather than the page's reading
+   column, so a stack of real UI mockups gets real room instead of being
+   squeezed to the column's width. */
+.ds-stack-breakout {
+  width: min(calc(100vw - 3rem), 1800px);
+  margin-left: 50%;
+  transform: translateX(-50%);
+}
+
+.ds-stack {
+  position: relative;
+  min-height: 38rem;
+  padding-left: calc(var(--stack-depth, 4) * 2.5rem);
+}
+
+.ds-stack-card {
+  position: absolute;
+  top: 0;
+  right: 0;
+  display: block;
+  /* Wide enough that a real UI mockup — a dashboard, a settings screen —
+     is actually legible as the primary card, not shrunk to fit a
+     decorative slot. */
+  width: min(60rem, 96%);
+  border: 0;
+  padding: 0;
+  background: none;
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+  transform-origin: bottom right;
+  /* `--pos` is pre-capped at 4 in JS before it reaches here (`Math.min`), so
+     a deck of 8+ screens thickens into a bound stack past four layers back
+     instead of continuing to fan wider with every screen added. */
+  transform: translateX(calc(var(--pos) * -2.5rem)) translateY(calc(var(--pos) * 0.8rem))
+    rotate(calc(var(--pos) * -2.4deg)) scale(calc(1 - var(--pos) * 0.05));
+  filter: saturate(calc(1 - var(--pos) * 0.12)) brightness(calc(1 - var(--pos) * 0.06));
+  transition:
+    transform 460ms cubic-bezier(0.22, 1, 0.36, 1),
+    filter 300ms ease;
+}
+
+.ds-stack-card .ds-frame {
+  box-shadow: 0 calc(10px + var(--pos) * 4px) calc(24px + var(--pos) * 8px) -12px
+    rgb(8 20 26 / calc(0.22 + var(--pos) * 0.03));
+}
+
+.ds-stack-card:not(.is-primary):hover,
+.ds-stack-card:not(.is-primary):focus-visible {
+  transform: translateX(calc(var(--pos) * -2.5rem)) translateY(calc(var(--pos) * 0.8rem - 10px))
+    rotate(calc(var(--pos) * -2.4deg)) scale(calc(1 - var(--pos) * 0.05));
+}
+
+.ds-stack-card.is-primary {
+  cursor: default;
+}
+
+.ds-stack-card:focus-visible {
+  outline: 2px solid var(--ds-accent-deep);
+  outline-offset: 4px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ds-stack-card {
+    transition: none;
+  }
+}
+
 /* ── Fingerprint hover-reveal (C6) ───────────────────────────────────── */
 
 .ds-fp-stage {
@@ -1630,6 +1749,45 @@ a:hover .ds-compact-mark .ds-dot {
   font-size: 0.68rem;
   letter-spacing: 0.1em;
   color: var(--muted);
+}
+
+/* `PagingArrows` — step relative to the current item, the one thing a dot
+   row can't do on its own (each dot only jumps to a specific one). Shared
+   by every `.ds-artboard-dots` row so the pairing reads as one control
+   everywhere it appears, not a different shape per component. */
+.ds-paging-arrows {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  margin-left: 0.75rem;
+}
+
+.ds-paging-arrow {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.85rem;
+  height: 1.85rem;
+  border-radius: 50%;
+  border: 1.5px solid var(--ds-dot-muted);
+  background: transparent;
+  color: var(--muted);
+  font-size: 1rem;
+  line-height: 1;
+  cursor: pointer;
+  transition:
+    border-color 160ms ease,
+    color 160ms ease;
+}
+
+.ds-paging-arrow:hover {
+  border-color: var(--ds-accent);
+  color: var(--ds-accent-deep);
+}
+
+.ds-paging-arrow:focus-visible {
+  outline: 2px solid var(--ds-accent-deep);
+  outline-offset: 2px;
 }
 
 @media (prefers-reduced-motion: reduce) {

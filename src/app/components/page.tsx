@@ -54,6 +54,9 @@ import { ArtboardFigure } from "@/components/design-system/ArtboardFigure";
 import { ArtboardCarousel } from "@/components/design-system/ArtboardCarousel";
 import { ClipFigure } from "@/components/design-system/ClipFigure";
 import { SceneBanner } from "@/components/design-system/SceneBanner";
+import { BrowserMockup } from "@/components/design-system/BrowserMockup";
+import { BrowserFlow } from "@/components/design-system/BrowserFlow";
+import { StackedScreens } from "@/components/design-system/StackedScreens";
 import { StickyTitleNarrative } from "@/components/design-system/StickyTitleNarrative";
 import { EditorialNumberedRows } from "@/components/design-system/EditorialNumberedRow";
 import { SpecList } from "@/components/design-system/SpecList";
@@ -1090,7 +1093,7 @@ export default function ComponentsPage() {
           />
         </div>
 
-        <div className="py-11">
+        <div className="ds-rule py-11">
           <SubLabel code="M3 · Scene banner" />
           <p className="mb-7 max-w-[68ch] text-[0.95rem] leading-7" style={{ color: "var(--ink-soft)" }}>
             An atmospheric composite — the one media role where cropping is correct, because nothing in the
@@ -1101,6 +1104,148 @@ export default function ComponentsPage() {
             alt="Operations-app cards for tracking bags, crates, and deliveries, over a warehouse photograph"
             eyebrow="Behind every subscription"
             headline="Every subscription created work in the physical world."
+          />
+        </div>
+
+        <div className="py-11">
+          <SubLabel code="M4 · Browser mockup" />
+          <p className="mb-7 max-w-[68ch] text-[0.95rem] leading-7" style={{ color: "var(--ink-soft)" }}>
+            The web/desktop counterpart to M1 — real evidence, chrome instead of a caption doing the framing.
+            Static for a single screen; scrollable for a full-page capture too tall to show whole, so the
+            reader scrolls the real page instead of watching a recording of the same scroll.
+          </p>
+          <div className="grid grid-cols-1 gap-11 lg:grid-cols-2">
+            <BrowserMockup
+              route="portfolio-platform / people"
+              src="/work/clipper/poster.jpg"
+              width={1600}
+              height={1046}
+              alt="Portfolio Management Platform — a profile view resolving people, product, and initiative allocations"
+              caption="Portfolio Management Platform · single screen, static"
+            />
+            <BrowserMockup
+              route="creo / mark1"
+              src="/work/creo/screen-2.jpg"
+              width={2880}
+              height={8000}
+              alt="Mark 1 marketing page — full-page capture from hero through footer"
+              caption="Mark 1 marketing site · full-page capture, scrollable"
+              scrollable
+              maxHeight="24rem"
+            />
+          </div>
+        </div>
+
+        <div className="py-11">
+          <SubLabel code="M5 · Browser flow" />
+          <p className="mb-7 max-w-[68ch] text-[0.95rem] leading-7" style={{ color: "var(--ink-soft)" }}>
+            A clickable prototype in place of a recorded walkthrough — click the marker to advance, and the
+            interaction is the demonstration. One real screen standing in for all three steps here, since the
+            point being proven is the click-to-advance mechanic, not a specific flow; a real case study would
+            feed each step its own screen.
+          </p>
+          <BrowserFlow
+            label="Placeholder click-through — mechanic only"
+            steps={[
+              {
+                route: "step 1 of 3",
+                src: "/work/clipper/poster.jpg",
+                width: 1600,
+                height: 1046,
+                alt: "Placeholder screen standing in for step 1 of a three-step flow",
+                hotspots: [{ x: 90, y: 88, label: "Continue — step 2", next: 1 }],
+              },
+              {
+                route: "step 2 of 3",
+                src: "/work/clipper/poster.jpg",
+                width: 1600,
+                height: 1046,
+                alt: "Placeholder screen standing in for step 2 of a three-step flow",
+                hotspots: [{ x: 90, y: 88, label: "Continue — step 3", next: 2 }],
+              },
+              {
+                route: "step 3 of 3",
+                src: "/work/clipper/poster.jpg",
+                width: 1600,
+                height: 1046,
+                alt: "Placeholder screen standing in for step 3 of a three-step flow",
+                hotspots: [{ x: 10, y: 12, label: "Back to step 1", next: 0 }],
+              },
+            ]}
+          />
+        </div>
+
+        <div className="ds-rule py-11">
+          <SubLabel code="M6 · Stacked screens" />
+          <p className="mb-7 max-w-[68ch] text-[0.95rem] leading-7" style={{ color: "var(--ink-soft)" }}>
+            A fanned deck rather than a grid or a carousel — one primary screen at full size, front and to
+            the right, paired with a text panel that follows whichever screen is currently primary. The rest
+            lean back behind it like books tipped against a shelf. Click a card, click its dot, or tab to it
+            and press enter — all three bring it forward. Past the fourth layer back, depth stops increasing
+            and the deck thickens instead of fanning wider, which is what keeps this from sprawling at 8+
+            screens — six shown here to prove that, not three. One real screen stands in for all six; the
+            titles and descriptions are each project&apos;s own, real per-screen exports would replace the
+            image only.
+          </p>
+          <StackedScreens
+            label="Six real projects, one placeholder screen, reorderable"
+            fullBleed
+            screens={[
+              {
+                src: "/work/clipper/poster.jpg",
+                width: 1600,
+                height: 1046,
+                alt: "Placeholder screen standing in for Portfolio Management Platform",
+                route: "portfolio-platform / people",
+                title: "Portfolio Management Platform",
+                description: "Replacing five portfolio tools with one connected platform.",
+              },
+              {
+                src: "/work/clipper/poster.jpg",
+                width: 1600,
+                height: 1046,
+                alt: "Placeholder screen standing in for Ratings & Reviews",
+                route: "bigbasket / reviews",
+                title: "Ratings & Reviews",
+                description: "Designing one feedback system across mobile and web.",
+              },
+              {
+                src: "/work/clipper/poster.jpg",
+                width: 1600,
+                height: 1046,
+                alt: "Placeholder screen standing in for bb daily",
+                route: "bb daily / login",
+                title: "bb daily",
+                description: "Designing both sides of a recurring delivery service.",
+              },
+              {
+                src: "/work/clipper/poster.jpg",
+                width: 1600,
+                height: 1046,
+                alt: "Placeholder screen standing in for Job Discovery & Resume Builder",
+                route: "hike / jobs-onboarding",
+                title: "Job Discovery & Resume Builder",
+                description: "Helping people move from finding a job to being ready to apply.",
+              },
+              {
+                src: "/work/clipper/poster.jpg",
+                width: 1600,
+                height: 1046,
+                alt: "Placeholder screen standing in for Movie Ticket Booking",
+                route: "hike / movie-tickets",
+                title: "Movie Ticket Booking",
+                description: "Turning booking intent into one continuous transaction.",
+              },
+              {
+                src: "/work/clipper/poster.jpg",
+                width: 1600,
+                height: 1046,
+                alt: "Placeholder screen standing in for Multilingual Mobile Experience",
+                route: "hike / total-os",
+                title: "Multilingual Mobile Experience",
+                description: "A localization system across 8 Indian languages.",
+              },
+            ]}
           />
         </div>
       </section>
