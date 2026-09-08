@@ -72,10 +72,7 @@ import { SyncedDualView } from "@/components/design-system/SyncedDualView";
 import { ResponsiveDeviceSwitcher } from "@/components/design-system/ResponsiveDeviceSwitcher";
 import { TimelineScrubber } from "@/components/design-system/TimelineScrubber";
 import { ZoomLens } from "@/components/design-system/ZoomLens";
-import { BookshelfSpines } from "@/components/design-system/BookshelfSpines";
 import { CoverflowRow } from "@/components/design-system/CoverflowRow";
-import { RadialFan } from "@/components/design-system/RadialFan";
-import { CorkboardScatter } from "@/components/design-system/CorkboardScatter";
 
 export const metadata: Metadata = {
   title: "Components",
@@ -1424,25 +1421,7 @@ export default function ComponentsPage() {
         </div>
 
         <div className="ds-rule py-11">
-          <SubLabel code="M13 · Bookshelf spines" />
-          <p className="mb-7 max-w-[68ch] text-[0.95rem] leading-7" style={{ color: "var(--ink-soft)" }}>
-            <code>StackedScreens</code>&apos; fanned deck taken to its literal next step — screens sit closed as
-            narrow labelled spines, the way books actually sit on a shelf. Click a spine and it swings open
-            while the rest compress back. Four different real screens here, not one placeholder repeated.
-          </p>
-          <BookshelfSpines
-            label="Four real screens, one open at a time"
-            screens={[
-              { src: "/work/clipper/poster.jpg", width: 1600, height: 1046, alt: "Portfolio Management Platform dashboard", route: "portfolio-platform / people", title: "Portfolio Management Platform" },
-              { src: "/work/bigbasket-ratings-reviews/Artboard%20Copy%208.jpg", width: 2400, height: 1380, alt: "Ratings & Reviews questionnaire and display", route: "bigbasket / reviews", title: "Ratings & Reviews" },
-              { src: "/work/bbdaily/BB_Daily_Milk_Basket%20Copy%2010.jpg", width: 4581, height: 2340, alt: "bb daily operations app login", route: "bb daily / login", title: "bb daily" },
-              { src: "/work/hike-jobs-service/On-Boarding.jpg", width: 2000, height: 940, alt: "Job Discovery & Resume Builder onboarding", route: "hike / jobs-onboarding", title: "Job Discovery & Resume Builder" },
-            ]}
-          />
-        </div>
-
-        <div className="ds-rule py-11">
-          <SubLabel code="M14 · Coverflow row" />
+          <SubLabel code="M13 · Coverflow row" />
           <p className="mb-7 max-w-[68ch] text-[0.95rem] leading-7" style={{ color: "var(--ink-soft)" }}>
             The same &quot;many real screens, one primary&quot; idea as <code>StackedScreens</code>, laid out
             as a row in perspective instead of a diagonal fan. Same six screens as M6 and the same depth cap
@@ -1457,42 +1436,6 @@ export default function ComponentsPage() {
               { src: "/work/clipper/poster.jpg", width: 1600, height: 1046, alt: "Placeholder screen standing in for Job Discovery & Resume Builder", route: "hike / jobs-onboarding", title: "Job Discovery & Resume Builder" },
               { src: "/work/clipper/poster.jpg", width: 1600, height: 1046, alt: "Placeholder screen standing in for Movie Ticket Booking", route: "hike / movie-tickets", title: "Movie Ticket Booking" },
               { src: "/work/clipper/poster.jpg", width: 1600, height: 1046, alt: "Placeholder screen standing in for Multilingual Mobile Experience", route: "hike / total-os", title: "Multilingual Mobile Experience" },
-            ]}
-          />
-        </div>
-
-        <div className="ds-rule py-11">
-          <SubLabel code="M15 · Radial fan" />
-          <p className="mb-7 max-w-[68ch] text-[0.95rem] leading-7" style={{ color: "var(--ink-soft)" }}>
-            A hand of cards held fanned open, pivoting from one point rather than leaning diagonally — every
-            edge visible at once, at the cost of each card being smaller. Five different real screens here.
-          </p>
-          <RadialFan
-            label="Five real screens, fanned"
-            screens={[
-              { src: "/work/bbdaily/BB_Daily_Milk_Basket%20Copy%2010.jpg", width: 4581, height: 2340, alt: "bb daily operations app login", route: "bb daily / login", title: "bb daily — login" },
-              { src: "/work/bigbasket-ratings-reviews/Artboard%20Copy%208.jpg", width: 2400, height: 1380, alt: "Ratings & Reviews questionnaire and display", route: "bigbasket / reviews", title: "Ratings & Reviews" },
-              { src: "/work/clipper/poster.jpg", width: 1600, height: 1046, alt: "Portfolio Management Platform dashboard", route: "portfolio-platform / people", title: "Portfolio Management Platform" },
-              { src: "/work/bbdaily/BB_Daily_Milk_Basket%20Copy%2012.jpg", width: 4581, height: 2340, alt: "bb daily operations app deliveries", route: "bb daily / deliveries", title: "bb daily — deliveries" },
-              { src: "/work/bbdaily/BB_Daily_Milk_Basket%20Copy%2013.jpg", width: 4581, height: 2340, alt: "bb daily operations app payments", route: "bb daily / payments", title: "bb daily — payments" },
-            ]}
-          />
-        </div>
-
-        <div className="py-11">
-          <SubLabel code="M16 · Corkboard scatter" />
-          <p className="mb-7 max-w-[68ch] text-[0.95rem] leading-7" style={{ color: "var(--ink-soft)" }}>
-            Screens pinned at varied angles like photos tacked to a board — the loosest of this family, reading
-            as a process wall rather than a tidy product shot. Click one to lift it to the front. Fixed
-            positions and rotations per card, not randomised on every render.
-          </p>
-          <CorkboardScatter
-            label="Four real screens, scattered"
-            screens={[
-              { src: "/work/clipper/poster.jpg", width: 1600, height: 1046, alt: "Portfolio Management Platform dashboard", route: "portfolio-platform / people", title: "Portfolio Management Platform", x: 28, y: 34, rotate: -7 },
-              { src: "/work/bigbasket-ratings-reviews/Artboard%20Copy%208.jpg", width: 2400, height: 1380, alt: "Ratings & Reviews questionnaire and display", route: "bigbasket / reviews", title: "Ratings & Reviews", x: 64, y: 26, rotate: 5 },
-              { src: "/work/bbdaily/BB_Daily_Milk_Basket%20Copy%2010.jpg", width: 4581, height: 2340, alt: "bb daily operations app login", route: "bb daily / login", title: "bb daily", x: 42, y: 66, rotate: -4 },
-              { src: "/work/hike-jobs-service/On-Boarding.jpg", width: 2000, height: 940, alt: "Job Discovery & Resume Builder onboarding", route: "hike / jobs-onboarding", title: "Job Discovery & Resume Builder", x: 74, y: 60, rotate: 9 },
             ]}
           />
         </div>

@@ -20,7 +20,7 @@ type CoverflowRowProps = {
 };
 
 /**
- * M14 · Coverflow row — the same "many real screens, one primary" idea as
+ * M13 · Coverflow row — the same "many real screens, one primary" idea as
  * `StackedScreens`, laid out as a horizontal row in perspective instead of
  * a diagonal fan. The centred screen sits flat and full size; neighbours
  * tilt away in 3D and shrink the further they are from centre. Arrows or
