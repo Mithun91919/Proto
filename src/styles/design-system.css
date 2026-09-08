@@ -553,9 +553,15 @@
    column, so a stack of real UI mockups gets real room instead of being
    squeezed to the column's width. */
 .ds-stack-breakout {
-  width: min(calc(100vw - 3rem), 1800px);
+  width: min(calc(100vw - 7rem), 1760px);
   margin-left: 50%;
   transform: translateX(-50%);
+}
+
+@media (max-width: 640px) {
+  .ds-stack-breakout {
+    width: min(calc(100vw - 3rem), 1760px);
+  }
 }
 
 .ds-stack {
