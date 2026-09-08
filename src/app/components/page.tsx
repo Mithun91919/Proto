@@ -66,6 +66,16 @@ import { FullBleedHero } from "@/components/design-system/FullBleedHero";
 import { AlternatingTextMedia } from "@/components/design-system/AlternatingTextMedia";
 import { FullBleedMediaAnchor } from "@/components/design-system/FullBleedMediaAnchor";
 import { METRIC_MARK_MEANINGS, type MetricMarkName } from "@/components/design-system/dotPatterns";
+import { BeforeAfterSlider } from "@/components/design-system/BeforeAfterSlider";
+import { GuidedHotspotTour } from "@/components/design-system/GuidedHotspotTour";
+import { SyncedDualView } from "@/components/design-system/SyncedDualView";
+import { ResponsiveDeviceSwitcher } from "@/components/design-system/ResponsiveDeviceSwitcher";
+import { TimelineScrubber } from "@/components/design-system/TimelineScrubber";
+import { ZoomLens } from "@/components/design-system/ZoomLens";
+import { BookshelfSpines } from "@/components/design-system/BookshelfSpines";
+import { CoverflowRow } from "@/components/design-system/CoverflowRow";
+import { RadialFan } from "@/components/design-system/RadialFan";
+import { CorkboardScatter } from "@/components/design-system/CorkboardScatter";
 
 export const metadata: Metadata = {
   title: "Components",
@@ -1245,6 +1255,244 @@ export default function ComponentsPage() {
                 title: "Multilingual Mobile Experience",
                 description: "A localization system across 8 Indian languages.",
               },
+            ]}
+          />
+        </div>
+
+        <div className="ds-rule py-11">
+          <SubLabel code="M7 · Before/after slider" />
+          <p className="mb-7 max-w-[68ch] text-[0.95rem] leading-7" style={{ color: "var(--ink-soft)" }}>
+            Drag the divider (or tab to it and use the arrow keys) to reveal one real screen over another,
+            instead of asking the reader to compare two images side by side. Two different real bb daily
+            screens here, chosen only because they share the same canvas ratio — proving the drag mechanic
+            works on real files. A true before/after would compare two versions of one screen.
+          </p>
+          <BeforeAfterSlider
+            label="bb daily — two real screens, same ratio"
+            before={{
+              src: "/work/bbdaily/BB_Daily_Milk_Basket%20Copy%2010.jpg",
+              width: 4581,
+              height: 2340,
+              alt: "Operations app login screens",
+            }}
+            after={{
+              src: "/work/bbdaily/BB_Daily_Milk_Basket%20Copy%2012.jpg",
+              width: 4581,
+              height: 2340,
+              alt: "Operations app delivery screens",
+            }}
+          />
+        </div>
+
+        <div className="ds-rule py-11">
+          <SubLabel code="M8 · Guided hotspot tour" />
+          <p className="mb-7 max-w-[68ch] text-[0.95rem] leading-7" style={{ color: "var(--ink-soft)" }}>
+            One dense real screen, several things to point out — but one at a time. <code>ImageHotspots</code>{" "}
+            lets a reader open callouts in any order; this is for when they build on each other and showing
+            all of them at once is noise. Only the active marker is highlighted, the rest sit dimmed until
+            their turn.
+          </p>
+          <GuidedHotspotTour
+            label="Portfolio Management Platform — layout tour"
+            src="/work/clipper/poster.jpg"
+            width={1600}
+            height={1046}
+            alt="Portfolio Management Platform dashboard"
+            stops={[
+              {
+                x: 18,
+                y: 22,
+                title: "Identity stays fixed",
+                body: "The signed-in person's name and role anchor the top-left corner regardless of which module is open underneath.",
+              },
+              {
+                x: 47,
+                y: 45,
+                title: "Related fields are grouped, not listed",
+                body: "Fields that describe the same entity sit inside one bordered group rather than one long flat form.",
+              },
+              {
+                x: 78,
+                y: 45,
+                title: "Status uses colour plus a label",
+                body: "Coloured chips carry a text status alongside the colour, so the state doesn't depend on colour alone.",
+              },
+            ]}
+          />
+        </div>
+
+        <div className="ds-rule py-11">
+          <SubLabel code="M9 · Synced dual view" />
+          <p className="mb-7 max-w-[68ch] text-[0.95rem] leading-7" style={{ color: "var(--ink-soft)" }}>
+            Two roles of one product, side by side, with a marker on each screen and a caption tying them
+            together — for the two-sided products where a single screenshot only ever tells half the story.
+            One placeholder screen standing in for both sides here, to prove the pairing-and-caption mechanic.
+          </p>
+          <SyncedDualView
+            label="Placeholder — customer action to operations consequence"
+            left={{
+              route: "customer / order",
+              src: "/work/clipper/poster.jpg",
+              width: 1600,
+              height: 1046,
+              alt: "Placeholder screen standing in for the customer side",
+              roleLabel: "Customer side",
+            }}
+            right={{
+              route: "ops / fulfilment",
+              src: "/work/clipper/poster.jpg",
+              width: 1600,
+              height: 1046,
+              alt: "Placeholder screen standing in for the operations side",
+              roleLabel: "Operations side",
+            }}
+            links={[
+              { leftX: 30, leftY: 60, rightX: 24, rightY: 30, label: "A customer places a recurring order." },
+              { leftX: 65, leftY: 35, rightX: 70, rightY: 55, label: "The operations app schedules it into the next delivery run." },
+            ]}
+          />
+        </div>
+
+        <div className="ds-rule py-11">
+          <SubLabel code="M10 · Responsive device switcher" />
+          <p className="mb-7 max-w-[68ch] text-[0.95rem] leading-7" style={{ color: "var(--ink-soft)" }}>
+            Tabs swap both the chrome and the screenshot, so responsive craft is something to click through
+            rather than a claim above three static frames. One placeholder screen across all three devices
+            here — a real case study would give each breakpoint its own capture.
+          </p>
+          <ResponsiveDeviceSwitcher
+            label="Placeholder — device chrome switching"
+            shots={{
+              mobile: {
+                src: "/work/clipper/poster.jpg",
+                width: 1600,
+                height: 1046,
+                alt: "Placeholder screen standing in for the mobile breakpoint",
+                route: "mobile",
+              },
+              tablet: {
+                src: "/work/clipper/poster.jpg",
+                width: 1600,
+                height: 1046,
+                alt: "Placeholder screen standing in for the tablet breakpoint",
+                route: "tablet",
+              },
+              desktop: {
+                src: "/work/clipper/poster.jpg",
+                width: 1600,
+                height: 1046,
+                alt: "Placeholder screen standing in for the desktop breakpoint",
+                route: "desktop",
+              },
+            }}
+          />
+        </div>
+
+        <div className="ds-rule py-11">
+          <SubLabel code="M11 · Timeline scrubber" />
+          <p className="mb-7 max-w-[68ch] text-[0.95rem] leading-7" style={{ color: "var(--ink-soft)" }}>
+            A seek bar instead of discrete hotspots (<code>BrowserFlow</code>) or a dot rail (
+            <code>ArtboardCarousel</code>) — dragging the handle scrubs continuously through a flow, closer to
+            dragging through a recording than clicking between fixed points. One placeholder screen across all
+            four steps here, to prove the scrub mechanic on its own.
+          </p>
+          <TimelineScrubber
+            label="Placeholder — four-step scrub"
+            steps={[
+              { route: "step 1 of 4", src: "/work/clipper/poster.jpg", width: 1600, height: 1046, alt: "Placeholder screen for step 1", label: "Start" },
+              { route: "step 2 of 4", src: "/work/clipper/poster.jpg", width: 1600, height: 1046, alt: "Placeholder screen for step 2", label: "Configure" },
+              { route: "step 3 of 4", src: "/work/clipper/poster.jpg", width: 1600, height: 1046, alt: "Placeholder screen for step 3", label: "Review" },
+              { route: "step 4 of 4", src: "/work/clipper/poster.jpg", width: 1600, height: 1046, alt: "Placeholder screen for step 4", label: "Done" },
+            ]}
+          />
+        </div>
+
+        <div className="ds-rule py-11">
+          <SubLabel code="M12 · Zoom lens" />
+          <p className="mb-7 max-w-[68ch] text-[0.95rem] leading-7" style={{ color: "var(--ink-soft)" }}>
+            A hover magnifier for a screen where the real content is fine print — a data table, small labels —
+            legible in the product but not at page width. Reads the original file directly rather than
+            enlarging an already-downscaled copy into visible softness.
+          </p>
+          <ZoomLens
+            src="/work/bigbasket-ratings-reviews/Artboard%20Copy%208.jpg"
+            width={2400}
+            height={1380}
+            alt="Ratings & Reviews — the configurable questionnaire and review display"
+            caption="Ratings & Reviews · hover to magnify"
+          />
+        </div>
+
+        <div className="ds-rule py-11">
+          <SubLabel code="M13 · Bookshelf spines" />
+          <p className="mb-7 max-w-[68ch] text-[0.95rem] leading-7" style={{ color: "var(--ink-soft)" }}>
+            <code>StackedScreens</code>&apos; fanned deck taken to its literal next step — screens sit closed as
+            narrow labelled spines, the way books actually sit on a shelf. Click a spine and it swings open
+            while the rest compress back. Four different real screens here, not one placeholder repeated.
+          </p>
+          <BookshelfSpines
+            label="Four real screens, one open at a time"
+            screens={[
+              { src: "/work/clipper/poster.jpg", width: 1600, height: 1046, alt: "Portfolio Management Platform dashboard", route: "portfolio-platform / people", title: "Portfolio Management Platform" },
+              { src: "/work/bigbasket-ratings-reviews/Artboard%20Copy%208.jpg", width: 2400, height: 1380, alt: "Ratings & Reviews questionnaire and display", route: "bigbasket / reviews", title: "Ratings & Reviews" },
+              { src: "/work/bbdaily/BB_Daily_Milk_Basket%20Copy%2010.jpg", width: 4581, height: 2340, alt: "bb daily operations app login", route: "bb daily / login", title: "bb daily" },
+              { src: "/work/hike-jobs-service/On-Boarding.jpg", width: 2000, height: 940, alt: "Job Discovery & Resume Builder onboarding", route: "hike / jobs-onboarding", title: "Job Discovery & Resume Builder" },
+            ]}
+          />
+        </div>
+
+        <div className="ds-rule py-11">
+          <SubLabel code="M14 · Coverflow row" />
+          <p className="mb-7 max-w-[68ch] text-[0.95rem] leading-7" style={{ color: "var(--ink-soft)" }}>
+            The same &quot;many real screens, one primary&quot; idea as <code>StackedScreens</code>, laid out
+            as a row in perspective instead of a diagonal fan. Same six screens as M6 and the same depth cap
+            past three positions from centre, to prove the cap holds in a second geometry, not just the first.
+          </p>
+          <CoverflowRow
+            label="Same six projects as M6, in a row"
+            screens={[
+              { src: "/work/clipper/poster.jpg", width: 1600, height: 1046, alt: "Placeholder screen standing in for Portfolio Management Platform", route: "portfolio-platform / people", title: "Portfolio Management Platform" },
+              { src: "/work/clipper/poster.jpg", width: 1600, height: 1046, alt: "Placeholder screen standing in for Ratings & Reviews", route: "bigbasket / reviews", title: "Ratings & Reviews" },
+              { src: "/work/clipper/poster.jpg", width: 1600, height: 1046, alt: "Placeholder screen standing in for bb daily", route: "bb daily / login", title: "bb daily" },
+              { src: "/work/clipper/poster.jpg", width: 1600, height: 1046, alt: "Placeholder screen standing in for Job Discovery & Resume Builder", route: "hike / jobs-onboarding", title: "Job Discovery & Resume Builder" },
+              { src: "/work/clipper/poster.jpg", width: 1600, height: 1046, alt: "Placeholder screen standing in for Movie Ticket Booking", route: "hike / movie-tickets", title: "Movie Ticket Booking" },
+              { src: "/work/clipper/poster.jpg", width: 1600, height: 1046, alt: "Placeholder screen standing in for Multilingual Mobile Experience", route: "hike / total-os", title: "Multilingual Mobile Experience" },
+            ]}
+          />
+        </div>
+
+        <div className="ds-rule py-11">
+          <SubLabel code="M15 · Radial fan" />
+          <p className="mb-7 max-w-[68ch] text-[0.95rem] leading-7" style={{ color: "var(--ink-soft)" }}>
+            A hand of cards held fanned open, pivoting from one point rather than leaning diagonally — every
+            edge visible at once, at the cost of each card being smaller. Five different real screens here.
+          </p>
+          <RadialFan
+            label="Five real screens, fanned"
+            screens={[
+              { src: "/work/bbdaily/BB_Daily_Milk_Basket%20Copy%2010.jpg", width: 4581, height: 2340, alt: "bb daily operations app login", route: "bb daily / login", title: "bb daily — login" },
+              { src: "/work/bigbasket-ratings-reviews/Artboard%20Copy%208.jpg", width: 2400, height: 1380, alt: "Ratings & Reviews questionnaire and display", route: "bigbasket / reviews", title: "Ratings & Reviews" },
+              { src: "/work/clipper/poster.jpg", width: 1600, height: 1046, alt: "Portfolio Management Platform dashboard", route: "portfolio-platform / people", title: "Portfolio Management Platform" },
+              { src: "/work/bbdaily/BB_Daily_Milk_Basket%20Copy%2012.jpg", width: 4581, height: 2340, alt: "bb daily operations app deliveries", route: "bb daily / deliveries", title: "bb daily — deliveries" },
+              { src: "/work/bbdaily/BB_Daily_Milk_Basket%20Copy%2013.jpg", width: 4581, height: 2340, alt: "bb daily operations app payments", route: "bb daily / payments", title: "bb daily — payments" },
+            ]}
+          />
+        </div>
+
+        <div className="py-11">
+          <SubLabel code="M16 · Corkboard scatter" />
+          <p className="mb-7 max-w-[68ch] text-[0.95rem] leading-7" style={{ color: "var(--ink-soft)" }}>
+            Screens pinned at varied angles like photos tacked to a board — the loosest of this family, reading
+            as a process wall rather than a tidy product shot. Click one to lift it to the front. Fixed
+            positions and rotations per card, not randomised on every render.
+          </p>
+          <CorkboardScatter
+            label="Four real screens, scattered"
+            screens={[
+              { src: "/work/clipper/poster.jpg", width: 1600, height: 1046, alt: "Portfolio Management Platform dashboard", route: "portfolio-platform / people", title: "Portfolio Management Platform", x: 28, y: 34, rotate: -7 },
+              { src: "/work/bigbasket-ratings-reviews/Artboard%20Copy%208.jpg", width: 2400, height: 1380, alt: "Ratings & Reviews questionnaire and display", route: "bigbasket / reviews", title: "Ratings & Reviews", x: 64, y: 26, rotate: 5 },
+              { src: "/work/bbdaily/BB_Daily_Milk_Basket%20Copy%2010.jpg", width: 4581, height: 2340, alt: "bb daily operations app login", route: "bb daily / login", title: "bb daily", x: 42, y: 66, rotate: -4 },
+              { src: "/work/hike-jobs-service/On-Boarding.jpg", width: 2000, height: 940, alt: "Job Discovery & Resume Builder onboarding", route: "hike / jobs-onboarding", title: "Job Discovery & Resume Builder", x: 74, y: 60, rotate: 9 },
             ]}
           />
         </div>
