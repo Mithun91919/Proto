@@ -65,7 +65,7 @@ export function StackedScreens({ screens, label, fullBleed = false }: StackedScr
 
   return (
     <div
-      className={`grid gap-10 lg:grid-cols-[20rem_1fr] lg:items-center${fullBleed ? " ds-stack-breakout" : ""}`}
+      className={`grid gap-10 lg:grid-cols-[27rem_1fr] lg:items-center${fullBleed ? " ds-stack-breakout" : ""}`}
       role="group"
       aria-label={label}
     >
@@ -76,7 +76,7 @@ export function StackedScreens({ screens, label, fullBleed = false }: StackedScr
         <h4 className="display-title mt-3" style={{ fontSize: "1.5rem" }}>
           {active.title}
         </h4>
-        <p className="ds-note mt-3 max-w-[32ch]">{active.description}</p>
+        <p className="ds-note mt-3 max-w-[40ch]">{active.description}</p>
 
         <div className="ds-artboard-dots" style={{ marginTop: "1.75rem", justifyContent: "flex-start" }}>
           {screens.map((screen, i) => (

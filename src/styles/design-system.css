@@ -567,7 +567,7 @@
 .ds-stack {
   position: relative;
   min-height: 38rem;
-  padding-left: calc(var(--stack-depth, 4) * 2.5rem);
+  padding-left: calc(var(--stack-depth, 4) * 1.5rem);
 }
 
 .ds-stack-card {
