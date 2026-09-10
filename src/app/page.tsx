@@ -6,7 +6,9 @@ import { Reveal } from "@/components/Reveal";
 import { SectionAnchor } from "@/components/SectionAnchor";
 import { SectionHead } from "@/components/SectionHead";
 import { ChapterProgress } from "@/components/design-system/ChapterProgress";
+import { DotGrid } from "@/components/design-system/primitives/DotGrid";
 import { GlassPanel } from "@/components/design-system/primitives/GlassPanel";
+import { bitmapToDots, TOOL_MARKS } from "@/components/design-system/dotPatterns";
 import { getFeaturedProjects, getRangeProjects } from "@/content/projects";
 
 const CHAPTERS = [
@@ -91,7 +93,7 @@ export default function HomePage() {
           fork in the road it is. */}
       <section
         id="more-work"
-        className="mx-auto w-full max-w-[70rem] px-5 py-16 md:px-8 md:py-24 ds-section-boundary"
+        className="mx-auto w-full max-w-[80rem] px-5 py-16 md:px-8 md:py-24 ds-section-boundary"
       >
         <SectionHead
           eyebrow="Where to next"
@@ -102,6 +104,13 @@ export default function HomePage() {
           <Reveal delay={60} className="h-full">
             <Link href="/work" className="group block h-full no-underline">
               <GlassPanel variant="lift" hoverLift className="flex h-full flex-col rounded-2xl p-8">
+                <DotGrid
+                  cols={7}
+                  dots={bitmapToDots(TOOL_MARKS.brush)}
+                  size={5}
+                  gap={3}
+                  className="mb-5"
+                />
                 <p className="eyebrow">Work</p>
                 <h3
                   className="display-title mt-3 text-[var(--ink)] transition-colors duration-300 group-hover:text-[var(--accent-deep)]"
@@ -126,6 +135,13 @@ export default function HomePage() {
           <Reveal delay={100} className="h-full">
             <Link href="/about" className="group block h-full no-underline">
               <GlassPanel variant="lift" hoverLift className="flex h-full flex-col rounded-2xl p-8">
+                <DotGrid
+                  cols={7}
+                  dots={bitmapToDots(TOOL_MARKS.pencil)}
+                  size={5}
+                  gap={3}
+                  className="mb-5"
+                />
                 <p className="eyebrow">About</p>
                 <h3
                   className="display-title mt-3 text-[var(--ink)] transition-colors duration-300 group-hover:text-[var(--accent-deep)]"

@@ -112,6 +112,38 @@ const DIGIT_GLYPHS: Record<string, string> = {
   "9": "0110100110010111000100010110",
 };
 
+/**
+ * 7×7 tool marks for the homepage "Where to next" chooser — one per
+ * destination. Not semantic in the C1 sense (they're object silhouettes,
+ * not quantity/grouping), so they stay off the case-study surfaces; here
+ * they only need to tell two cards apart at a glance.
+ *
+ * `brush` — a solid bristle block at the lower-left with a thin diagonal
+ * handle. `pencil` — an even diagonal taper to a point.
+ */
+export const TOOL_MARKS = {
+  brush: [
+    "0000011",
+    "0000110",
+    "0001100",
+    "0011000",
+    "1110000",
+    "1110000",
+    "1110000",
+  ].join(""),
+  pencil: [
+    "0000011",
+    "0000110",
+    "0001100",
+    "0011000",
+    "0110000",
+    "1100000",
+    "1000000",
+  ].join(""),
+} as const;
+
+export type ToolMarkName = keyof typeof TOOL_MARKS;
+
 const REST_OPACITY = 0.14;
 
 /** Turns a bitmap string into a dot-opacity array for `<DotGrid dots={...} />`. */
