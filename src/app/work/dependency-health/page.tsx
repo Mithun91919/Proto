@@ -180,7 +180,7 @@ export default function DependencyHealthPage() {
             heading="Post-launch feedback became a systems problem"
             body={[
               "After launch, developers had different preferences for how dashboard states should be represented visually.",
-              "Instead of hard-coding alternate colours into individual components, we moved the product toward semantic design tokens and theme-level control. The same meaning could remain consistent while presentation changed across themes.",
+              "Instead of hard-coding alternate colours into individual components, we moved the product towards semantic design tokens and theme-level control. The same meaning could remain consistent while presentation changed across themes.",
               "That turned a local preference request into a more maintainable platform decision.",
             ]}
           />

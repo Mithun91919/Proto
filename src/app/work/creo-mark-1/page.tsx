@@ -56,7 +56,7 @@ export default function CreoMark1Page() {
         href: "/work/hike-total-os-localization",
         number: "10",
         label: "Hike",
-        title: "Building a localization system across 8 Indian languages.",
+        title: "Building a localisation system across 8 Indian languages.",
       }}
     >
       <CaseStudyColumn>

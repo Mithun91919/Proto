@@ -16,15 +16,15 @@ import {
  *
  * Prose verbatim from `projects/hike-total-os-localization/web/*.md`.
  *
- * No assets exist. The localization pipeline the draft describes is a
+ * No assets exist. The localisation pipeline the draft describes is a
  * process, so it reconstructs as a dot chain; the language comparisons need
  * real screens and carry placeholders.
  */
 
 export const metadata: Metadata = {
-  title: "Multilingual Mobile Experience — A localization system across 8 Indian languages",
+  title: "Multilingual Mobile Experience — A localisation system across 8 Indian languages",
   description:
-    "Establishing a repeatable localization process from English copy through translation, review, implementation, and device validation.",
+    "Establishing a repeatable localisation process from English copy through translation, review, implementation, and device validation.",
 };
 
 const PIPELINE = ["English copy", "Language partner", "Internal review", "XML", "Device validation"];
@@ -43,12 +43,12 @@ export default function TotalOsLocalizationPage() {
       chapters={CHAPTERS}
       hero={{
         eyebrow: "Multilingual Mobile Experience · Hike",
-        headline: "Building a localization system across 8 Indian languages.",
+        headline: "Building a localisation system across 8 Indian languages.",
         meta: [
           { label: "Role", value: "Product Research" },
           { label: "Client", value: "Hike" },
           { label: "Year", value: "2017" },
-          { label: "Discipline", value: "Product research · Localization · Mobile" },
+          { label: "Discipline", value: "Product research · Localisation · Mobile" },
         ],
       }}
       next={{
@@ -69,7 +69,7 @@ export default function TotalOsLocalizationPage() {
             note="Four projects, eight languages."
             body={[
               "TOTAL OS included services designed to work without the internet and support users across eight Indian languages.",
-              "My work focused on establishing a repeatable localization process that could move product copy from English through translation, review, implementation, and device-level validation while preserving the intent of the original experience.",
+              "My work focused on establishing a repeatable localisation process that could move product copy from English through translation, review, implementation, and device-level validation while preserving the intent of the original experience.",
             ]}
           />
           <CaseStudyFigure>
@@ -84,7 +84,7 @@ export default function TotalOsLocalizationPage() {
           <CaseStudyChapter
             layout="flow"
             eyebrow="The problem"
-            heading="Localization was more than translation"
+            heading="Localisation was more than translation"
             body={[
               "The challenge was not simply converting English copy into another script. Different languages required us to preserve meaning, clarity, and product intent while accounting for the realities of multiple Indian scripts.",
             ]}
@@ -105,7 +105,7 @@ export default function TotalOsLocalizationPage() {
             eyebrow="The process"
             heading="We created a repeatable path from copy to product"
             body={[
-              "I worked across the localization process with a language service provider and internal language experts, helping establish a framework for translation, proofreading, implementation, and validation across eight languages and four projects.",
+              "I worked across the localisation process with a language service provider and internal language experts, helping establish a framework for translation, proofreading, implementation, and validation across eight languages and four projects.",
             ]}
           />
           <CaseStudyFigure rule label="From English copy to a validated device build">
@@ -118,7 +118,7 @@ export default function TotalOsLocalizationPage() {
             eyebrow="Validation"
             heading="Language decisions were tested in the interface"
             body={[
-              "Localized copy was implemented as XML and evaluated across multiple mobile devices with internal language reviewers.",
+              "Localised copy was implemented as XML and evaluated across multiple mobile devices with internal language reviewers.",
               "That allowed text length, hierarchy, context, and usability to be evaluated in the actual product rather than only inside a translation document.",
             ]}
           />
@@ -137,7 +137,7 @@ export default function TotalOsLocalizationPage() {
             eyebrow="Reflection"
             heading="What stayed with me"
             body={[
-              "Localization changes more than copy. It affects layout, terminology, validation, implementation, and the way teams collaborate to ship a product consistently across languages.",
+              "Localisation changes more than copy. It affects layout, terminology, validation, implementation, and the way teams collaborate to ship a product consistently across languages.",
             ]}
           />
         </CaseStudySection>

@@ -176,7 +176,7 @@ export default function StoreSupportPage() {
             eyebrow="What changed"
             heading="From “which form?” to “what happened?”"
             body={[
-              "During the documented period, the product reached roughly 5,900 daily users across a device footprint of approximately 580,000, with more than 7,000 support searches each week.",
+              "During the documented period, the product reached ~5.9K daily users across a device footprint of ~580K, with 7K+ support searches each week.",
               "Those figures show the scale of the experience and the growing role of search and self-service; they are not presented as proof that every issue was resolved by the redesign.",
             ]}
           />

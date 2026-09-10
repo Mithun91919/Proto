@@ -134,7 +134,7 @@ export default function PortfolioManagementPage() {
               "The six modules became easier to understand when they were grouped around what people were trying to accomplish.",
               "Understand the portfolio: People, Products, and Initiatives created a shared view of who owned what, how work was organised, and where investment was going.",
               "Operate the portfolio: Management and Intake workflows supported the recurring work of maintaining data, requesting changes, reviewing information, and keeping the portfolio current.",
-              "Align the portfolio: Goals connected strategic themes to measurable work so leaders could move from portfolio visibility toward execution and accountability.",
+              "Align the portfolio: Goals connected strategic themes to measurable work so leaders could move from portfolio visibility towards execution and accountability.",
             ]}
           />
           <CaseStudyFigure>
