@@ -114,7 +114,7 @@ export default function SupplyChainOperationsPage() {
         <CaseStudySection id="bottleneck">
           <CaseStudyChapter
             layout="stacked"
-            eyebrow="The problem"
+            eyebrow="A crowded front door"
             heading="The homepage had become a bottleneck"
             body={[
               "The landing page was never meant to be a destination. It was the front door to operational tools people needed to do their jobs.",

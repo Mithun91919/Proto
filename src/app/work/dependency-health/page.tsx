@@ -92,8 +92,8 @@ export default function DependencyHealthPage() {
         <CaseStudySection id="not-data">
           <CaseStudyChapter
             layout="stacked"
-            eyebrow="The problem"
-            heading="The problem was not a lack of data"
+            eyebrow="Debt found too late"
+            heading="A lack of data was never the issue"
             body={[
               "Teams often discovered dependency debt during migrations, breakages, or security work rather than through proactive visibility.",
               "At the same time, exposing every available technical signal would have created a complete but overwhelming dashboard.",

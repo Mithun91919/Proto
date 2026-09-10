@@ -26,7 +26,7 @@ import { getProject } from "@/content/projects";
 export const metadata: Metadata = {
   title: "Store Support Platform — Diagnose and resolve before raising a ticket",
   description:
-    "Redesigning frontline technical support around resolution rather than reporting, for store associates across a ~580,000-device footprint.",
+    "Redesigning frontline technical support around resolution rather than reporting, for store associates across a ~580K-device footprint.",
 };
 
 const OLD_PATH = ["Choose category", "Fill form", "Submit"];
@@ -94,7 +94,7 @@ export default function StoreSupportPage() {
         <CaseStudySection id="tickets">
           <CaseStudyChapter
             layout="stacked"
-            eyebrow="The problem"
+            eyebrow="Straight to a form"
             heading="The product was good at collecting tickets, less good at preventing them"
             body={[
               "The existing experience gave associates a way to report technical problems, but several things made that harder than it needed to be.",
@@ -164,7 +164,7 @@ export default function StoreSupportPage() {
       </CaseStudyColumn>
 
       <div className="mt-16 md:mt-20">
-        <PullStatement eyebrow="The goal" mark="rhythm">
+        <PullStatement eyebrow="What we were after" mark="rhythm">
           Not fewer tickets at any cost. Better help at the right moment.
         </PullStatement>
       </div>

@@ -83,7 +83,7 @@ export default function TotalOsLocalizationPage() {
         <CaseStudySection id="beyond-translation">
           <CaseStudyChapter
             layout="flow"
-            eyebrow="The problem"
+            eyebrow="Not a copy task"
             heading="Localisation was more than translation"
             body={[
               "The challenge was not simply converting English copy into another script. Different languages required us to preserve meaning, clarity, and product intent while accounting for the realities of multiple Indian scripts.",
@@ -93,7 +93,7 @@ export default function TotalOsLocalizationPage() {
       </CaseStudyColumn>
 
       <div className="mt-16 md:mt-20">
-        <PullStatement eyebrow="The goal" mark="exchange">
+        <PullStatement eyebrow="What we were after" mark="exchange">
           To communicate the same intent, not just the same words.
         </PullStatement>
       </div>
@@ -102,7 +102,7 @@ export default function TotalOsLocalizationPage() {
         <CaseStudySection id="pipeline" boundary={false} className="pt-16 md:pt-20">
           <CaseStudyChapter
             layout="stacked"
-            eyebrow="The process"
+            eyebrow="How we worked"
             heading="We created a repeatable path from copy to product"
             body={[
               "I worked across the localisation process with a language service provider and internal language experts, helping establish a framework for translation, proofreading, implementation, and validation across eight languages and four projects.",

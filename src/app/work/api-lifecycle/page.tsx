@@ -101,7 +101,7 @@ export default function ApiLifecyclePage() {
         <CaseStudySection id="fragmented">
           <CaseStudyChapter
             layout="stacked"
-            eyebrow="The problem"
+            eyebrow="Where it fragmented"
             heading="The lifecycle was connected in theory, fragmented in practice"
             body={[
               "An API moves through discovery, contract design, validation, testing, publishing, subscription, governance, and eventually change or deprecation.",
@@ -155,7 +155,7 @@ export default function ApiLifecyclePage() {
       </CaseStudyColumn>
 
       <div className="mt-16 md:mt-20">
-        <PullStatement eyebrow="The goal" mark="rhythm">
+        <PullStatement eyebrow="What we were after" mark="rhythm">
           Not to hide technical complexity, but to reveal the right amount of it for the person doing the work.
         </PullStatement>
       </div>

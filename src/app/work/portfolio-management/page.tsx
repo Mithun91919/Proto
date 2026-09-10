@@ -37,7 +37,7 @@ const DATA_PATH = ["Portfolio data", "Structured product model", "UI / conversat
 
 const CHAPTERS = [
   { id: "overview", label: "Overview" },
-  { id: "problem", label: "The problem" },
+  { id: "problem", label: "Five tools" },
   { id: "three-jobs", label: "Three jobs" },
   { id: "migration", label: "Migration" },
   { id: "pilot", label: "The pilot" },
@@ -102,7 +102,7 @@ export default function PortfolioManagementPage() {
         <CaseStudySection id="problem">
           <CaseStudyChapter
             layout="stacked"
-            eyebrow="The problem"
+            eyebrow="No shared model"
             heading="Five tools had become one organisational problem"
             body={[
               "The original challenge looked like a collection of product problems: duplicated data, different workflows, inconsistent terminology, and teams moving between systems to understand the same portfolio.",
@@ -193,7 +193,7 @@ export default function PortfolioManagementPage() {
             heading="The platform kept moving upstream"
             body={[
               "What began as portfolio visibility gradually expanded into strategic execution.",
-              "The Goals experience introduced a way to connect strategic themes, organisational goals, status, impact, and delivery signals in the same platform. At launch, teams created more than 1,400 goals across 14 strategic themes.",
+              "The Goals experience introduced a way to connect strategic themes, organisational goals, status, impact, and delivery signals in the same platform. At launch, teams created more than 1.4K goals across 14 strategic themes.",
               "More recently, the same platform data is beginning to surface beyond traditional screens through conversational and tool-based experiences. The interaction surface is changing, but the design problem is familiar: structure complex information so someone can understand it and act with confidence.",
             ]}
           />
@@ -207,8 +207,8 @@ export default function PortfolioManagementPage() {
             eyebrow="What changed"
             heading="A clearer model, not simply fewer tools"
             body={[
-              "The platform reached more than 6,000 monthly users, consolidated five legacy systems into one connected product, and established six modules on a shared operating model.",
-              "Documented operational outcomes also included a sustained 50% reduction in support tickets and roughly 800 hours of manual reconciliation reclaimed each week as more portfolio work moved into connected workflows.",
+              "The platform reached more than 6K monthly users, consolidated five legacy systems into one connected product, and established six modules on a shared operating model.",
+              "Documented operational outcomes also included a sustained 50% reduction in support tickets and ~800 hours of manual reconciliation reclaimed each week as more portfolio work moved into connected workflows.",
               "The result was not simply fewer tools. It was a clearer model for how portfolio information could be understood, maintained, and connected to strategic execution.",
             ]}
           />
@@ -217,7 +217,7 @@ export default function PortfolioManagementPage() {
               items={[
                 { value: "50%", label: "fewer support tickets", glyph: "bars" },
                 { value: "~800 hrs", label: "manual reconciliation reclaimed weekly", glyph: "field" },
-                { value: "1,400", label: "goals across 14 strategic themes", glyph: "ring" },
+                { value: "1.4K", label: "goals across 14 strategic themes", glyph: "ring" },
               ]}
             />
           </CaseStudyFigure>
