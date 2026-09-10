@@ -6,7 +6,7 @@ import { Reveal } from "@/components/Reveal";
 import { SectionAnchor } from "@/components/SectionAnchor";
 import { SectionHead } from "@/components/SectionHead";
 import { ChapterProgress } from "@/components/design-system/ChapterProgress";
-import { ProofStrip } from "@/components/design-system/ProofStrip";
+import { GlassPanel } from "@/components/design-system/primitives/GlassPanel";
 import { getFeaturedProjects, getRangeProjects } from "@/content/projects";
 
 const CHAPTERS = [
@@ -96,29 +96,56 @@ export default function HomePage() {
         <SectionHead
           eyebrow="Where to next"
           title="See more, or see how it got here."
-          lede="The whole body of work, or the path that led to it — whichever you want first."
         />
 
-        <Reveal delay={60} className="ds-scope mt-9">
-          <ProofStrip
-            items={[
-              { value: `${totalCaseStudies}`, label: "case studies", glyph: "modules" },
-              { value: `${domains.length}`, label: "domains", glyph: "ring" },
-              { value: `${yearsActive}`, label: "years of practice", glyph: "ramp" },
-            ]}
-          />
-        </Reveal>
+        <div className="ds-scope mt-10 grid gap-6 sm:grid-cols-2">
+          <Reveal delay={60} className="h-full">
+            <Link href="/work" className="group block h-full no-underline">
+              <GlassPanel variant="lift" hoverLift className="flex h-full flex-col rounded-2xl p-8">
+                <p className="eyebrow">Work</p>
+                <h3
+                  className="display-title mt-3 text-[var(--ink)] transition-colors duration-300 group-hover:text-[var(--accent-deep)]"
+                  style={{ fontSize: "1.4rem" }}
+                >
+                  See the full body of work
+                </h3>
+                <p className="body-sm mt-3 flex-1" style={{ color: "var(--ink-soft)" }}>
+                  {totalCaseStudies} case studies across {domains.length} domains — consumer apps to enterprise
+                  platforms.
+                </p>
+                <span
+                  className="ds-arrow mt-6 text-xl transition-transform duration-300 group-hover:translate-x-1"
+                  style={{ color: "var(--accent-deep)" }}
+                >
+                  →
+                </span>
+              </GlassPanel>
+            </Link>
+          </Reveal>
 
-        <Reveal delay={100}>
-          <div className="mt-8 flex flex-wrap gap-3">
-            <Link href="/work" className="button button-primary">
-              Explore the work →
+          <Reveal delay={100} className="h-full">
+            <Link href="/about" className="group block h-full no-underline">
+              <GlassPanel variant="lift" hoverLift className="flex h-full flex-col rounded-2xl p-8">
+                <p className="eyebrow">About</p>
+                <h3
+                  className="display-title mt-3 text-[var(--ink)] transition-colors duration-300 group-hover:text-[var(--accent-deep)]"
+                  style={{ fontSize: "1.4rem" }}
+                >
+                  See how it got here
+                </h3>
+                <p className="body-sm mt-3 flex-1" style={{ color: "var(--ink-soft)" }}>
+                  {yearsActive} years from interface design into systems thinking, and what I believe now.
+                </p>
+                <span
+                  className="ds-arrow mt-6 text-xl transition-transform duration-300 group-hover:translate-x-1"
+                  style={{ color: "var(--accent-deep)" }}
+                >
+                  →
+                </span>
+              </GlassPanel>
             </Link>
-            <Link href="/about" className="button button-secondary">
-              Read my story →
-            </Link>
-          </div>
-        </Reveal>
+          </Reveal>
+        </div>
       </section>
 
       {/* Dark closing card — the same treatment used to close /work and
