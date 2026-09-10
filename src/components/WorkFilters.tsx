@@ -8,8 +8,8 @@ import { hasCaseStudyPage } from "@/content/case-study-routes";
 import {
   collectFilterOptions,
   earlierWorkDomain,
-  projectTypes,
-  type ProjectType,
+  projectCraft,
+  projectPlatforms,
 } from "@/content/work-filters";
 import type { Project, ProjectDomain } from "@/content/projects";
 import type { EarlierWorkEntry } from "@/content/work-page";
@@ -21,100 +21,86 @@ type WorkFiltersProps = {
 };
 
 /**
- * Domain + type filters over the whole work list, so a recruiter can answer
- * "has this person worked on X" directly rather than reading all eleven
- * case studies to find out.
+ * One flat filter bank over the whole work list — sector, platform, and
+ * craft values in a single row of chips rather than three labelled
+ * groups. Each chip you add narrows the set: a project stays visible only
+ * while every active chip matches one of its facets (its domain, one of
+ * its platforms, or one of its craft disciplines). So "Web" + "Research"
+ * means enterprise-or-not web work that involved research; "Web" +
+ * "Mobile" means work that shipped on both.
  *
- * A project matches when its domain is in the active domain set (or no
- * domain filter is active) AND at least one of its tags is in the active
- * type set (or no type filter is active) — AND across the two facets, OR
- * within each one, which is the reading a multi-select filter is supposed
- * to support ("Enterprise platforms" + "Developer tools" together, not
- * only one at a time).
- *
- * Filtering happens client-side over data already on the page — there is
- * no fetch, so toggling a chip is instant and works with JS disabled
- * skipped entirely (every project still renders, just unfiltered).
+ * Filtering happens client-side over data already on the page — no fetch,
+ * so toggling is instant, and with JS disabled every project still
+ * renders, just unfiltered.
  */
 export function WorkFilters({ featured, more, earlier }: WorkFiltersProps) {
-  const { domains: domainOptions, types: typeOptions } = useMemo(
+  const { domains, platforms, crafts } = useMemo(
     () => collectFilterOptions(featured, more, earlier),
     [featured, more, earlier],
   );
 
-  const [activeDomains, setActiveDomains] = useState<Set<ProjectDomain>>(new Set());
-  const [activeTypes, setActiveTypes] = useState<Set<ProjectType>>(new Set());
+  // Sector → platform → craft, so the row still reads in a sensible order
+  // even without headers.
+  const allTags = useMemo(
+    () => [...domains, ...platforms, ...crafts],
+    [domains, platforms, crafts],
+  );
+
+  const [active, setActive] = useState<Set<string>>(new Set());
+
+  const facetsOf = (domain: ProjectDomain, slug: string | undefined) =>
+    new Set<string>([
+      domain,
+      ...(slug ? projectPlatforms(slug) : []),
+      ...(slug ? projectCraft(slug) : []),
+    ]);
 
   const matches = (domain: ProjectDomain, slug: string | undefined) => {
-    const domainOk = activeDomains.size === 0 || activeDomains.has(domain);
-    const typeOk =
-      activeTypes.size === 0 || (slug ? projectTypes(slug).some((t) => activeTypes.has(t)) : false);
-    return domainOk && typeOk;
+    if (active.size === 0) return true;
+    const facets = facetsOf(domain, slug);
+    for (const tag of active) if (!facets.has(tag)) return false;
+    return true;
   };
 
-  const toggle = <T,>(set: Set<T>, setSet: (s: Set<T>) => void, value: T) => {
-    const next = new Set(set);
+  const toggle = (value: string) => {
+    const next = new Set(active);
     if (next.has(value)) next.delete(value);
     else next.add(value);
-    setSet(next);
+    setActive(next);
   };
 
   const featuredVisible = featured.filter((p) => matches(p.domain, p.slug));
   const moreVisible = more.filter((p) => matches(p.domain, p.slug));
   const earlierVisible = earlier.filter((e) => matches(earlierWorkDomain(e.slug), e.slug));
 
-  const hasActiveFilter = activeDomains.size > 0 || activeTypes.size > 0;
   const totalVisible = featuredVisible.length + moreVisible.length + earlierVisible.length;
 
   return (
     <>
       <div className="mt-8 md:mt-10">
-        <div className="flex flex-col gap-5">
-          <div>
-            <p className="ds-eyebrow mb-3">Domain</p>
-            <div className="flex flex-wrap gap-2">
-              {domainOptions.map((d) => (
-                <button
-                  key={d}
-                  type="button"
-                  aria-pressed={activeDomains.has(d)}
-                  onClick={() => toggle(activeDomains, setActiveDomains, d)}
-                  className={`work-filter-chip${activeDomains.has(d) ? " is-active" : ""}`}
-                >
-                  {d}
-                </button>
-              ))}
-            </div>
+        <div className="flex flex-col gap-4">
+          <div className="flex flex-wrap gap-2">
+            {allTags.map((tag) => (
+              <button
+                key={tag}
+                type="button"
+                aria-pressed={active.has(tag)}
+                onClick={() => toggle(tag)}
+                className={`work-filter-chip${active.has(tag) ? " is-active" : ""}`}
+              >
+                {tag}
+              </button>
+            ))}
           </div>
 
-          <div>
-            <p className="ds-eyebrow mb-3">Type</p>
-            <div className="flex flex-wrap gap-2">
-              {typeOptions.map((t) => (
-                <button
-                  key={t}
-                  type="button"
-                  aria-pressed={activeTypes.has(t)}
-                  onClick={() => toggle(activeTypes, setActiveTypes, t)}
-                  className={`work-filter-chip${activeTypes.has(t) ? " is-active" : ""}`}
-                >
-                  {t}
-                </button>
-              ))}
-            </div>
-          </div>
-
-          {hasActiveFilter ? (
+          {active.size > 0 ? (
             <div className="flex items-center gap-4">
               <p className="body-sm" style={{ color: "var(--ink-soft)" }}>
                 {totalVisible} of {featured.length + more.length + earlier.length} projects
               </p>
               <button
                 type="button"
-                onClick={() => {
-                  setActiveDomains(new Set());
-                  setActiveTypes(new Set());
-                }}
+                onClick={() => setActive(new Set())}
                 className="body-sm font-medium underline"
                 style={{ color: "var(--accent-deep)" }}
               >

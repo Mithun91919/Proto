@@ -49,6 +49,7 @@ export default function DependencyHealthPage() {
 
   return (
     <CaseStudyShell
+      slug="dependency-health"
       chapters={CHAPTERS}
       hero={{
         eyebrow: "Dependency Health Platform · Walmart Global Tech",

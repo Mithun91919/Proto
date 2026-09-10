@@ -44,6 +44,7 @@ export default function RatingsReviewsPage() {
 
   return (
     <CaseStudyShell
+      slug="bigbasket-ratings-reviews"
       chapters={CHAPTERS}
       hero={{
         src: "/work/bigbasket-ratings-reviews/Artboard%20Copy%208.jpg",

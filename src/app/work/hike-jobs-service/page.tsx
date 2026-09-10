@@ -41,6 +41,7 @@ const CHAPTERS = [
 export default function HikeJobsServicePage() {
   return (
     <CaseStudyShell
+      slug="hike-jobs-service"
       chapters={CHAPTERS}
       hero={{
         src: "/work/hike-jobs-service/Jobs_Banner.jpg",

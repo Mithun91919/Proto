@@ -52,6 +52,7 @@ export default function StoreSupportPage() {
 
   return (
     <CaseStudyShell
+      slug="store-support"
       chapters={CHAPTERS}
       hero={{
         eyebrow: "Store Support Platform · Walmart Global Tech",

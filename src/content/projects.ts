@@ -1,10 +1,10 @@
 export type ProjectTier = "featured" | "range";
 export type ProjectDomain =
-  | "Enterprise platforms"
+  | "Enterprise"
   | "Developer tools"
-  | "AI and agentic products"
-  | "Consumer and mobile"
-  | "Research and experimentation";
+  | "Consumer"
+  | "Commerce"
+  | "Frontline ops";
 
 export type SystemMapStep = {
   label: string;
@@ -76,7 +76,7 @@ export const projects: Project[] = [
       { value: "6", label: "connected modules" },
     ],
     org: "Walmart Global Tech",
-    domain: "Enterprise platforms",
+    domain: "Enterprise",
     ownership: "End-to-end design owner",
     timeframe: "2022–Present",
     role: "UX Designer → Senior UX Designer",
@@ -221,7 +221,7 @@ export const projects: Project[] = [
       { value: "7K+", label: "weekly searches" },
     ],
     org: "Walmart Global Tech",
-    domain: "Consumer and mobile",
+    domain: "Frontline ops",
     ownership: "End-to-end design owner",
     timeframe: "2020–2021",
     role: "User Experience Designer",
@@ -262,7 +262,7 @@ export const projects: Project[] = [
       { value: "62%", label: "less time spent on the landing page" },
     ],
     org: "Walmart Global Tech",
-    domain: "Enterprise platforms",
+    domain: "Enterprise",
     ownership: "Co-led with another designer",
     timeframe: "2021–2022",
     role: "User Experience Designer",
@@ -311,7 +311,7 @@ export const projects: Project[] = [
       { value: "120K", label: "average daily deliveries" },
     ],
     org: "bigbasket",
-    domain: "Consumer and mobile",
+    domain: "Commerce",
     ownership: "Product designer, dual-track design",
     timeframe: "2019–2020",
     role: "Product Designer",

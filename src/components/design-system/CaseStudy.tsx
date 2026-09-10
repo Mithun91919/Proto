@@ -1,6 +1,12 @@
 import Link from "next/link";
 import type { ReactNode } from "react";
 import { Reveal } from "@/components/Reveal";
+import { getProject } from "@/content/projects";
+import {
+  earlierWorkDomain,
+  projectCraft,
+  projectPlatforms,
+} from "@/content/work-filters";
 import { SceneBanner } from "./SceneBanner";
 import { NextProjectNav } from "./NextProjectNav";
 import { ChapterProgress, type ChapterRef } from "./ChapterProgress";
@@ -41,20 +47,39 @@ export function CaseStudyShell({
   hero,
   next,
   chapters = [],
+  slug,
   children,
 }: {
   hero: HeroProps;
   next: NextProps;
   /** Ids must match the `id` on each `CaseStudySection`. */
   chapters?: ChapterRef[];
+  /** Drives the sector / platform / craft rows in the hero meta, from the
+      same source as the /work filters. */
+  slug?: string;
   children: ReactNode;
 }) {
+  // Append the three classification axes to whatever meta the page passed,
+  // so every case study carries the same lens the /work list filters by.
+  // Domain comes from the project record, or the earlier-work lookup for
+  // the pre-enterprise projects that aren't in `projects`.
+  const axisMeta: { label: string; value: string }[] = [];
+  if (slug) {
+    const domain = getProject(slug)?.domain ?? earlierWorkDomain(slug);
+    const platforms = projectPlatforms(slug);
+    const craft = projectCraft(slug);
+    axisMeta.push({ label: "Sector", value: domain });
+    if (platforms.length) axisMeta.push({ label: "Platform", value: platforms.join(" · ") });
+    if (craft.length) axisMeta.push({ label: "Craft", value: craft.join(" · ") });
+  }
+  const heroWithAxes: HeroProps = { ...hero, meta: [...hero.meta, ...axisMeta] };
+
   return (
     <article className="ds-scope">
       {chapters.length > 0 ? <ChapterProgress chapters={chapters} /> : null}
       {/* The image is the top-level item on the page — edge to edge, square
           corners, with the back link over it rather than pushing it down. */}
-      <SceneBanner fullBleed {...hero}>
+      <SceneBanner fullBleed {...heroWithAxes}>
         <Link
           href="/work"
           className="ds-scene-banner-back inline-flex text-sm font-medium transition hover:translate-x-[-2px]"

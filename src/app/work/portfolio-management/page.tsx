@@ -50,6 +50,7 @@ export default function PortfolioManagementPage() {
 
   return (
     <CaseStudyShell
+      slug="portfolio-management"
       chapters={CHAPTERS}
       hero={{
         eyebrow: "Portfolio Management Platform · Walmart Global Tech",

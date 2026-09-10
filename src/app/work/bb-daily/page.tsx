@@ -56,6 +56,7 @@ export default function BbDailyPage() {
 
   return (
     <CaseStudyShell
+      slug="bb-daily"
       chapters={CHAPTERS}
       hero={{
         src: "/work/bbdaily/8f79fb_20203531c98e4bd986f2bbf39a470197~mv2.avif",

@@ -41,19 +41,20 @@ export default function WorkPage() {
             decorative
           />
         </div>
-        <p className="eyebrow">Portfolio</p>
+        <p className="eyebrow">Portfolio · 2015–present</p>
         <h1 className="display-title display-hero mt-4 max-w-[40ch] text-[var(--ink)]">
-          The problems got bigger. My role moved further upstream.
+          11 years of product design, <span className="ds-muted-text">from consumer apps</span> to{" "}
+          <span className="ds-accent-text">enterprise platforms</span>.
         </h1>
         <p className="lede mt-6" style={{ maxWidth: "84ch" }}>
-          I&apos;ve worked across digital experiences, consumer products, commerce, enterprise software, and developer platforms. Over time, my work has moved from individual interfaces towards the workflows, information, and systems behind them.
+          Consumer, commerce, enterprise, and developer products — at CREO, Hike, bigbasket, and Walmart Global Tech. The through-line is complexity: large systems, fragmented tools, and dense information, redesigned into products people can actually use. The work has moved from individual screens to the workflows and architecture behind them.
         </p>
       </div>
 
       <section id="path" className="work-section ds-section-boundary">
         <SectionHead
           eyebrow="Path"
-          title="How the work evolved"
+          title="From screens to systems, one company at a time"
         />
 
         <Reveal delay={80}>
@@ -102,7 +103,7 @@ export default function WorkPage() {
         <SectionHead
           eyebrow="Case studies"
           title="Selected work"
-          lede="Filter by domain or by the type of work — every project on this page, not a curated sample."
+          lede="Filter by sector, platform, or the kind of work — every project on this page, not a curated sample."
         />
 
         <WorkFilters featured={featured} more={more} earlier={earlierWork} />

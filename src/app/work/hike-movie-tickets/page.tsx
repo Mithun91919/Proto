@@ -49,6 +49,7 @@ const CHAPTERS = [
 export default function MovieTicketsPage() {
   return (
     <CaseStudyShell
+      slug="hike-movie-tickets"
       chapters={CHAPTERS}
       hero={{
         src: "/work/hike-movie-tickets/Movie_Banner_2.jpg",

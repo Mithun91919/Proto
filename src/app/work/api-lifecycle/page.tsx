@@ -49,6 +49,7 @@ export default function ApiLifecyclePage() {
 
   return (
     <CaseStudyShell
+      slug="api-lifecycle"
       chapters={CHAPTERS}
       hero={{
         eyebrow: "API Lifecycle Platform · Walmart Global Tech",

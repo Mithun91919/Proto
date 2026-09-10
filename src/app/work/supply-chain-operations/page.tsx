@@ -48,6 +48,7 @@ export default function SupplyChainOperationsPage() {
 
   return (
     <CaseStudyShell
+      slug="supply-chain-operations"
       chapters={CHAPTERS}
       hero={{
         eyebrow: "Supply Chain Operations Platform · Walmart Global Tech",

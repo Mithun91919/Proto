@@ -39,6 +39,7 @@ const CHAPTERS = [
 export default function CreoMark1Page() {
   return (
     <CaseStudyShell
+      slug="creo-mark-1"
       chapters={CHAPTERS}
       hero={{
         src: "/work/creo/banner.jpg",

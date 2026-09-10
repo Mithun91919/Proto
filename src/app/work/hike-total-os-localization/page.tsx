@@ -40,6 +40,7 @@ const CHAPTERS = [
 export default function TotalOsLocalizationPage() {
   return (
     <CaseStudyShell
+      slug="hike-total-os-localization"
       chapters={CHAPTERS}
       hero={{
         eyebrow: "Multilingual Mobile Experience · Hike",
