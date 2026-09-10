@@ -2564,12 +2564,9 @@ a:hover .ds-compact-mark .ds-dot {
   .ds-grid-2,
   .ds-grid-3,
   .ds-grid-4,
-  .ds-media-pair,
-  .ds-decision-record,
   .ds-a11y-grid,
   .ds-environment-grid,
   .ds-interaction-grid,
-  .ds-motion-grid,
   .ds-antipattern-grid {
     grid-template-columns: 1fr !important;
   }

@@ -28,10 +28,7 @@ import { MediaFrameChrome } from "@/components/design-system/MediaFrameChrome";
 import { ChapterTransition } from "@/components/design-system/ChapterTransition";
 import { FullWidthStatement } from "@/components/design-system/FullWidthStatement";
 import { DeepDiveGate } from "@/components/design-system/DeepDiveGate";
-import { MediaPair } from "@/components/design-system/MediaPair";
-import { MobileSequence } from "@/components/design-system/MobileSequence";
 import { AnnotatedInterface } from "@/components/design-system/AnnotatedInterface";
-import { DecisionComparison } from "@/components/design-system/DecisionComparison";
 import { SystemBridge } from "@/components/design-system/SystemBridge";
 import { DotAnnotationLegend } from "@/components/design-system/DotAnnotationLegend";
 import { PrivacySystem, CONFIDENTIALITY_LINE } from "@/components/design-system/PrivacySystem";
@@ -45,7 +42,6 @@ import { AmbientGlassDemo } from "@/components/design-system/AmbientGlassDemo";
 import { AccessibilityChecklist } from "@/components/design-system/AccessibilityChecklist";
 import { ColourSemantics } from "@/components/design-system/ColourSemantics";
 import { TypeHierarchy } from "@/components/design-system/TypeHierarchy";
-import { ProductMotionPlaceholder } from "@/components/design-system/ProductMotionPlaceholder";
 import { DotToInterfaceTransition } from "@/components/design-system/DotToInterfaceTransition";
 import { BeforeAfterMetric } from "@/components/design-system/BeforeAfterMetric";
 import { DottedRule } from "@/components/design-system/DottedRule";
@@ -783,28 +779,7 @@ export default function ComponentsPage() {
         <SectionHeader letter="F" title="Product media" subtitle="Frame the design argument, not a gallery" />
 
         <div className="ds-rule py-11">
-          <SubLabel code="F1 · Media pair" />
-          <MediaPair
-            a={{ label: "Earlier structure", caption: "01 / What was difficult" }}
-            b={{ label: "Reframed structure", caption: "02 / What changed", tone: "accent" }}
-          />
-        </div>
-
-        <div className="ds-rule py-11">
-          <SubLabel code="F2 · Mobile sequence" />
-          <MobileSequence steps={[{ label: "Find" }, { label: "Compare" }, { label: "Act" }, { label: "Confirm" }]} />
-        </div>
-
-        <div className="ds-rule py-11">
-          <SubLabel code="F3 · Product motion" />
-          <p className="mb-7 max-w-[62ch] text-[0.95rem] leading-7" style={{ color: "var(--ink-soft)" }}>
-            Use motion only when timing, state change, or interaction is part of the argument. The poster frame should still explain what the viewer is about to see.
-          </p>
-          <ProductMotionPlaceholder />
-        </div>
-
-        <div className="ds-rule py-11">
-          <SubLabel code="F4 · Annotated interface" />
+          <SubLabel code="F1 · Annotated interface" />
           <AnnotatedInterface
             callouts={[
               { number: 1, note: "Navigation mirrors the task model rather than the underlying organisation structure.", top: "76px", left: "132px" },
@@ -815,25 +790,17 @@ export default function ComponentsPage() {
         </div>
 
         <div className="ds-rule py-11">
-          <SubLabel code="F5 · Decision comparison" />
-          <DecisionComparison
-            explored={{ title: "Expose every module up front", body: "Fast for experts, but the density made orientation harder for people entering through unfamiliar tasks." }}
-            chosen={{ title: "Group around the work people came to do", body: "the structure gave new and returning users the same stable entry points without hiding expert paths." }}
-          />
-        </div>
-
-        <div className="ds-rule py-11">
-          <SubLabel code="F6 · System bridge" />
+          <SubLabel code="F2 · System bridge" />
           <SystemBridge />
         </div>
 
         <div className="ds-rule py-11">
-          <SubLabel code="F7 · Dot annotation language" />
+          <SubLabel code="F3 · Dot annotation language" />
           <DotAnnotationLegend />
         </div>
 
         <div className="ds-rule py-11">
-          <SubLabel code="F8 · Dot to interface transition" />
+          <SubLabel code="F4 · Dot to interface transition" />
           <p className="mb-7 max-w-[68ch] text-[0.95rem] leading-7" style={{ color: "var(--ink-soft)" }}>
             Use once when the story moves from an abstract system problem into the product response. Dots begin as the model; the interface resolves underneath. Hover the example to reveal it.
           </p>
@@ -841,7 +808,7 @@ export default function ComponentsPage() {
         </div>
 
         <div className="py-11">
-          <SubLabel code="F9 · Privacy as a visual system" />
+          <SubLabel code="F5 · Privacy as a visual system" />
           <PrivacySystem />
         </div>
       </section>
