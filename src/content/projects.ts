@@ -255,9 +255,9 @@ export const projects: Project[] = [
       "Reorganising 139 operational modules around how people actually find and use them.",
     summary:
       "As the platform expanded, hundreds of operational modules became increasingly difficult to discover. I co-led the information architecture and navigation redesign, evaluating competing navigation models with users across multiple markets.",
-    outcome: "~1M monthly unique visitors · 139 modules",
+    outcome: "~985K monthly unique visitors · 139 modules",
     metrics: [
-      { value: "~1M", label: "monthly unique visitors" },
+      { value: "~985K", label: "monthly unique visitors" },
       { value: "139", label: "operational modules" },
       { value: "62%", label: "less time spent on the landing page" },
     ],
@@ -274,8 +274,10 @@ export const projects: Project[] = [
     contentPath:
       "projects/supply-chain-operations/web/supply-chain-operations-web.md",
     media: {
-      poster: "/work/supply-chain-operations/new-dashboard.png",
-      aspect: 2560 / 1576,
+      mp4: "/work/supply-chain-operations/hero.mp4",
+      webm: "/work/supply-chain-operations/hero.webm",
+      poster: "/work/supply-chain-operations/hero-poster.jpg",
+      aspect: 1600 / 926,
     },
     systemMap: [
       {
