@@ -139,7 +139,7 @@ export default function SupplyChainOperationsPage() {
         <ReframeBlock
           bleed
           eyebrow="Structure"
-          heading="The new structure took nearly a dozen teams to agree."
+          heading="The new structure took nearly a dozen teams to agree"
           body="We worked through the platform with close to a dozen category teams to agree what every module did and where it belonged, then took the proposed structure through several rounds of leadership approval before it could ship. That information architecture became the foundation for every navigation decision that followed."
         />
       </div>
@@ -162,7 +162,7 @@ export default function SupplyChainOperationsPage() {
             <DecisionRecord
               optionA={{
                 title: "Top navigation",
-                body: "The familiar option, but the platform's depth left little room as categories and module count grew.",
+                body: "The familiar option, but the platform’s depth left little room as categories and module count grew.",
               }}
               chosen={{
                 title: "Persistent left navigation",
@@ -226,7 +226,7 @@ export default function SupplyChainOperationsPage() {
                   x: 50,
                   y: 7,
                   title: "Search",
-                  detail: "A direct route for people who already know the module they want and don't need to browse at all.",
+                  detail: "A direct route for people who already know the module they want and don’t need to browse at all.",
                 },
                 {
                   x: 16,

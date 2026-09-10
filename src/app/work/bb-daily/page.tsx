@@ -273,7 +273,7 @@ export default function BbDailyPage() {
             heading="One operations app supported different jobs"
             body={[
               "The operational product brought those workflows into one Android application.",
-              "Instead of making every role navigate the same interface, the experience changed according to the person's responsibilities after login. Each role could focus on the information and actions relevant to its part of the process while contributing to the same operational record.",
+              "Instead of making every role navigate the same interface, the experience changed according to the person’s responsibilities after login. Each role could focus on the information and actions relevant to its part of the process while contributing to the same operational record.",
               "The app supported receiving and shipment creation, inventory movement, delivery execution, and payment tracking for delivery executives.",
             ]}
           />
@@ -288,7 +288,7 @@ export default function BbDailyPage() {
                     width: 4581,
                     height: 2340,
                     alt: "Operations app login: welcome screen, OTP entry, and signing in as a customer experience executive",
-                    caption: "Signing in — the app resolves which role's workspace to open",
+                    caption: "Signing in — the app resolves which role’s workspace to open",
                     hotspots: [
                       {
                         x: 25.9,

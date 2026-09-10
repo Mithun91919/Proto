@@ -26,7 +26,7 @@ import { getProject } from "@/content/projects";
 export const metadata: Metadata = {
   title: "Ratings & Reviews — Designing one feedback system across mobile and web",
   description:
-    "A cross-platform ratings and reviews experience for beauty products across bigbasket's Android, iOS, web, and mobile-web experiences.",
+    "A cross-platform ratings and reviews experience for beauty products across bigbasket’s Android, iOS, web, and mobile-web experiences.",
 };
 
 const CHAPTERS = [
@@ -79,7 +79,7 @@ export default function RatingsReviewsPage() {
             note="Android, iOS, web, and mobile web."
             body={[
               "A star rating is quick to give, but it does not always explain enough to help another shopper make a decision.",
-              "I worked on a cross-platform ratings and reviews experience for beauty products across bigbasket's Android, iOS, web, and mobile-web experiences.",
+              "I worked on a cross-platform ratings and reviews experience for beauty products across bigbasket’s Android, iOS, web, and mobile-web experiences.",
             ]}
           />
         </CaseStudySection>
@@ -113,7 +113,7 @@ export default function RatingsReviewsPage() {
                 width={2316}
                 height={2610}
                 alt="A product rating screen with configurable attribute questions layered over it: a star-rated texture question and a multi-select effects question"
-                caption="A configurable questionnaire — the questions change with the product, the pattern doesn't"
+                caption="A configurable questionnaire — the questions change with the product, the pattern doesn’t"
                 hotspots={[
                   {
                     x: 33.5,
@@ -125,7 +125,7 @@ export default function RatingsReviewsPage() {
                   {
                     x: 28.2,
                     y: 38.5,
-                    title: "Asked in the product's own terms",
+                    title: "Asked in the product’s own terms",
                     detail:
                       "Texture is a question that only makes sense for this category. The questionnaire is configurable so each product can ask what matters to it.",
                   },

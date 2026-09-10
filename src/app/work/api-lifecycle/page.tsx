@@ -186,7 +186,7 @@ export default function ApiLifecyclePage() {
             body={[
               "A developer platform does not become useful simply because it ships.",
               "Across more than 60 engineering sessions, we demonstrated the product, observed where teams struggled, answered workflow questions, and used that feedback to refine terminology, interactions, and guidance.",
-              "This mattered especially for Design Studio, where teams using the redesigned experience measured roughly a 40% reduction in API contract design time.",
+              "This mattered especially for Design Studio, where teams using the redesigned experience measured a ~40% reduction in API contract design time.",
             ]}
           />
           <CaseStudyFigure rule label="The adoption loop">
@@ -215,7 +215,7 @@ export default function ApiLifecyclePage() {
             eyebrow="What changed"
             heading="Fewer translations between tools"
             body={[
-              "The platform established a connected API lifecycle across discovery, contract design, and testing, with roughly 500 services onboarded during the documented period.",
+              "The platform established a connected API lifecycle across discovery, contract design, and testing, with ~500 services onboarded during the documented period.",
               "The strongest outcome was not feature count. It was reducing the number of times engineers had to translate context between disconnected tools while giving different levels of expertise a workable path through the same lifecycle.",
             ]}
           />
