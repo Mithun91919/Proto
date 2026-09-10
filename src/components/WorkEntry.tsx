@@ -3,6 +3,7 @@ import type { CSSProperties } from "react";
 import { ProjectMedia } from "@/components/ProjectMedia";
 import { CompactNumeral } from "@/components/design-system/CompactNumeral";
 import { MetricRow } from "@/components/design-system/MetricRow";
+import { projectTypes } from "@/content/work-filters";
 import type { Project } from "@/content/projects";
 
 type WorkEntryProps = {
@@ -29,6 +30,10 @@ type WorkEntryProps = {
  * `md` up and swaps side via `reverse`.
  */
 export function WorkEntry({ project, reverse = false, emphasis = "full" }: WorkEntryProps) {
+  // The same domain + type facets the /work filters expose, shown on the
+  // row itself so the classification is legible without toggling a chip.
+  const facets = [project.domain, ...projectTypes(project.slug)];
+
   return (
     <Link
       href={`/work/${project.slug}`}
@@ -47,9 +52,14 @@ export function WorkEntry({ project, reverse = false, emphasis = "full" }: WorkE
       >
         <div>
           {emphasis === "full" ? <CompactNumeral value={project.number} /> : null}
+          {facets.length > 0 ? (
+            <p className={`eyebrow ${emphasis === "full" ? "mt-3" : ""}`}>
+              {facets.join("  ·  ")}
+            </p>
+          ) : null}
           <h3
             className={`display-title text-[var(--ink)] transition-colors duration-300 group-hover:text-[var(--accent-deep)] ${
-              emphasis === "full" ? "mt-4" : ""
+              facets.length > 0 ? "mt-2" : emphasis === "full" ? "mt-4" : ""
             }`}
             style={{ fontSize: "1.9rem" }}
           >

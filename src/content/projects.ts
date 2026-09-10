@@ -214,11 +214,11 @@ export const projects: Project[] = [
     summary:
       "I redesigned the self-service support experience around clearer classification, guided troubleshooting, search, location context, and better escalation information.",
     outcome:
-      "~5,900 daily users · ~580K-device footprint · 7,000+ weekly searches",
+      "~5.9K daily users · ~580K-device footprint · 7K+ weekly searches",
     metrics: [
-      { value: "~5,900", label: "daily users" },
+      { value: "~5.9K", label: "daily users" },
       { value: "~580K", label: "device footprint" },
-      { value: "7,000+", label: "weekly searches" },
+      { value: "7K+", label: "weekly searches" },
     ],
     org: "Walmart Global Tech",
     domain: "Consumer and mobile",
