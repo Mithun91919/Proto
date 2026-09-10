@@ -95,7 +95,7 @@ export default function HomePage() {
       >
         <SectionHead
           eyebrow="Where to next"
-          title="See more, or see how it got here."
+          title="Every project, and the path to it."
         />
 
         <div className="ds-scope mt-10 grid gap-6 sm:grid-cols-2">
@@ -107,11 +107,11 @@ export default function HomePage() {
                   className="display-title mt-3 text-[var(--ink)] transition-colors duration-300 group-hover:text-[var(--accent-deep)]"
                   style={{ fontSize: "1.4rem" }}
                 >
-                  See the full body of work
+                  All the case studies
                 </h3>
                 <p className="body-sm mt-3 flex-1" style={{ color: "var(--ink-soft)" }}>
-                  {totalCaseStudies} case studies across {domains.length} domains — consumer apps to enterprise
-                  platforms.
+                  {totalCaseStudies} case studies across {domains.length} domains, from consumer apps to
+                  enterprise platforms.
                 </p>
                 <span
                   className="ds-arrow mt-6 text-xl transition-transform duration-300 group-hover:translate-x-1"
@@ -131,10 +131,10 @@ export default function HomePage() {
                   className="display-title mt-3 text-[var(--ink)] transition-colors duration-300 group-hover:text-[var(--accent-deep)]"
                   style={{ fontSize: "1.4rem" }}
                 >
-                  See how it got here
+                  How I got here
                 </h3>
                 <p className="body-sm mt-3 flex-1" style={{ color: "var(--ink-soft)" }}>
-                  {yearsActive} years from interface design into systems thinking, and what I believe now.
+                  {yearsActive} years, from designing screens to designing the systems behind them.
                 </p>
                 <span
                   className="ds-arrow mt-6 text-xl transition-transform duration-300 group-hover:translate-x-1"
@@ -157,9 +157,9 @@ export default function HomePage() {
             <div className="grid gap-12 md:grid-cols-[1fr_28rem] md:items-stretch md:gap-14">
               <SectionAnchor
               eyebrow="Say Hi"
-              title="Working on a product with a lot of moving parts?"
+              title="Working on a complex product?"
               titleClassName="max-w-[26ch]"
-              lede="I'm always interested in thoughtful conversations about platform design, developer experience, and products that need to work at scale."
+              lede="I'm always up for a conversation about platform design, developer experience, and products that need to work at scale."
               dark
               sticky={false}
             >
