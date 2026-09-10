@@ -45,7 +45,7 @@ export function BeforeAfterSlider({ before, after, label }: BeforeAfterSliderPro
         sizes="(max-width: 900px) 100vw, 900px"
         className="ds-baslider-img"
       />
-      <div className="ds-baslider-after" style={{ clipPath: `inset(0 ${100 - pos}% 0 0)` }}>
+      <div className="ds-baslider-after" style={{ clipPath: `inset(0 0 0 ${pos}%)` }}>
         <Image
           src={after.src}
           alt={after.alt}

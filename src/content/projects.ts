@@ -16,9 +16,10 @@ export type ProjectMetric = {
   label: string;
 };
 
-/** Looping product clip shown at the top of the project's card. */
+/** Looping product clip — or, with no `mp4`, a still key screen — shown at
+    the top of the project's card. */
 export type ProjectMedia = {
-  mp4: string;
+  mp4?: string;
   webm?: string;
   poster: string;
   aspect?: number;
@@ -272,6 +273,10 @@ export const projects: Project[] = [
     accentSoft: "#cffafe",
     contentPath:
       "projects/supply-chain-operations/web/supply-chain-operations-web.md",
+    media: {
+      poster: "/work/supply-chain-operations/new-dashboard.png",
+      aspect: 2560 / 1576,
+    },
     systemMap: [
       {
         label: "Before",

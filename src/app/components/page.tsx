@@ -648,6 +648,17 @@ export default function ComponentsPage() {
         <div className="ds-rule py-11">
           <SubLabel code="E1 · Tension / reframe" />
           <ReframeBlock heading="Navigation was not the real problem." body="People knew tools existed. The harder question was which tool matched the task in front of them." />
+          <p className="mb-4 mt-9 max-w-[64ch] text-[0.95rem] leading-7" style={{ color: "var(--ink-soft)" }}>
+            <code>bleed</code> and an <code>eyebrow</code> override turn it into a scroll breaker on the same
+            full-bleed <code>.ds-pull</code> band as <code>PullStatement</code>. It only reaches the viewport
+            edges when placed as a top-level page child — here it fills the demo column.
+          </p>
+          <ReframeBlock
+            bleed
+            eyebrow="Structure"
+            heading="The new structure took nearly a dozen teams to agree."
+            body="Talked through the platform with close to a dozen category teams, then several rounds of leadership approval before it could ship."
+          />
         </div>
 
         <div className="ds-rule py-11">

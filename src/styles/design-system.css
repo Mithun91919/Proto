@@ -1532,32 +1532,33 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 0.85rem;
+  gap: 1.02rem;
 }
 
 .ds-reframe-flat {
   display: grid;
-  grid-template-columns: repeat(6, 9px);
-  gap: 7px;
+  grid-template-columns: repeat(6, 11px);
+  gap: 8px;
 }
 
 .ds-reframe-grouped {
   display: flex;
-  gap: 0.9rem;
+  gap: 1.08rem;
 }
 
 .ds-reframe-group {
   display: grid;
-  grid-template-columns: repeat(2, 9px);
-  gap: 7px;
-  padding: 7px;
-  border-radius: 8px;
+  grid-template-columns: repeat(2, 11px);
+  gap: 8px;
+  padding: 8px;
+  border-radius: 9px;
   border: 1px solid color-mix(in oklab, var(--ds-mint) 26%, transparent);
+  transform-origin: center;
 }
 
 .ds-reframe-dot {
-  width: 9px;
-  height: 9px;
+  width: 11px;
+  height: 11px;
   border-radius: 50%;
   background: color-mix(in oklab, var(--ds-dark-muted) 55%, transparent);
 }
@@ -1567,9 +1568,66 @@
 }
 
 .ds-reframe-arrow {
-  font-size: 0.9rem;
+  font-size: 1.08rem;
   line-height: 1;
   color: color-mix(in oklab, var(--ds-mint) 60%, transparent);
+}
+
+/* The loop performs the reframe: loose dots settling into groups, one
+   cluster after the next, then releasing and starting over. Motion, not
+   decoration — reduced-motion holds the finished, grouped state. */
+@keyframes ds-reframe-settle {
+  0%,
+  8% {
+    opacity: 0.28;
+    transform: scale(0.82);
+  }
+  20%,
+  64% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  82%,
+  100% {
+    opacity: 0.28;
+    transform: scale(0.82);
+  }
+}
+
+@keyframes ds-reframe-arrow-cycle {
+  0%,
+  100% {
+    opacity: 0.32;
+    transform: translateY(-2px);
+  }
+  30%,
+  60% {
+    opacity: 1;
+    transform: translateY(1px);
+  }
+}
+
+.ds-reframe-group {
+  animation: ds-reframe-settle 4.4s ease-in-out infinite;
+}
+
+.ds-reframe-group:nth-child(2) {
+  animation-delay: 0.4s;
+}
+
+.ds-reframe-group:nth-child(3) {
+  animation-delay: 0.8s;
+}
+
+.ds-reframe-arrow {
+  animation: ds-reframe-arrow-cycle 4.4s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ds-reframe-group,
+  .ds-reframe-arrow {
+    animation: none;
+  }
 }
 
 /* ── Dot flow: stages of a chain, connected (C1 "connection") ─────────── */
@@ -2381,6 +2439,102 @@ a:hover .ds-compact-mark .ds-dot {
 
 .ds-scene-banner-full .ds-scene-banner-top {
   padding-inline: 0;
+}
+
+/* ── Reconstructed hero figure ──────────────────────────────────────────
+   Redesigned screens on the dark dot ground in place of a photo composite,
+   for NDA projects. Same ground as the pending state; the scrim is kept
+   (unlike `-empty`) so the headline still holds the left. */
+.ds-scene-banner-has-figure {
+  background-color: var(--ds-dark);
+  background-image: radial-gradient(
+    color-mix(in oklab, var(--ds-mint) 12%, transparent) 1.15px,
+    transparent 1.15px
+  );
+  background-size: 22px 22px;
+}
+
+.ds-scene-banner-figure {
+  position: absolute;
+  inset: 0;
+}
+
+/* Screens sit on the right and bleed off the right/bottom edges, the way the
+   real marketing composites do — the copy keeps the left of the band. The
+   band's own `overflow: hidden` clips the bleed. */
+.ds-scene-figure {
+  position: absolute;
+  inset: 0 0 0 auto;
+  width: min(64%, 60rem);
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  pointer-events: none;
+}
+
+.ds-scene-figure-pending {
+  padding: 0 clamp(1rem, 4vw, 4rem) 1.25rem 0;
+}
+
+.ds-scene-figure-stack {
+  position: relative;
+  width: 48rem;
+  max-width: 100%;
+  /* Bleed off the right; a light bleed off the bottom keeps it anchored
+     without sinking the screens into the base of the band. */
+  margin-right: -2.5rem;
+  margin-bottom: -1.25rem;
+}
+
+.ds-scene-figure-shot {
+  display: block;
+  height: auto;
+  border-radius: var(--radius-lg);
+  border: 1px solid rgb(234 243 245 / 0.14);
+  box-shadow: 0 30px 60px -22px rgb(6 17 21 / 0.7);
+}
+
+.ds-scene-figure-shot.is-lead {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+}
+
+/* The second screen leans out from behind on the left, into the scrim, so it
+   reads as depth rather than a second thing to look at. */
+.ds-scene-figure-shot.is-behind {
+  position: absolute;
+  left: -14%;
+  bottom: 22%;
+  z-index: 1;
+  width: 60%;
+  opacity: 0.5;
+  transform: rotate(-6deg);
+}
+
+/* Provenance label, level with the "All Work" breadcrumb on the other side —
+   on the clear dark corner, above the screens. */
+.ds-scene-figure-note {
+  position: absolute;
+  top: clamp(1.35rem, 3vw, 2.35rem);
+  right: clamp(1.5rem, 4vw, 3rem);
+  z-index: 3;
+  margin: 0;
+  font-family: var(--font-mono), ui-monospace, monospace;
+  font-size: 0.62rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: color-mix(in oklab, var(--ds-mint) 62%, transparent);
+}
+
+/* Narrow band: the headline needs the whole width. A ghosted screen behind
+   the copy muddies it and reads as a glitch, so the figure drops out and the
+   hero is copy-only — same as every other case study on mobile. */
+@media (max-width: 860px) {
+  .ds-scene-banner-figure,
+  .ds-scene-figure-note {
+    display: none;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {

@@ -28,6 +28,11 @@ type HeroProps = {
   eyebrow: string;
   headline: string;
   meta: { label: string; value: string }[];
+  /**
+   * Reconstructed screens on the dark ground when there's no photo composite
+   * to show (NDA work). Pass a `SceneBannerFigure`; ignored if `src` is set.
+   */
+  figure?: ReactNode;
 };
 
 type NextProps = { href: string; number: string; label: string; title: string };
@@ -64,14 +69,6 @@ export function CaseStudyShell({
         <section className="mt-20 pt-4 md:mt-24 md:pb-24">
           <Reveal>
             <NextProjectNav {...next} />
-            <p className="mt-8">
-              <Link
-                href="/work"
-                className="text-sm font-medium text-[var(--muted)] transition hover:translate-x-1 hover:text-[var(--ink)]"
-              >
-                See all work →
-              </Link>
-            </p>
           </Reveal>
         </section>
       </CaseStudyColumn>

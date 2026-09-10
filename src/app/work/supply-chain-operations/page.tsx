@@ -1,8 +1,13 @@
 import type { Metadata } from "next";
-import { DotFlow } from "@/components/design-system/DotFlow";
-import { MediaPlaceholder } from "@/components/design-system/MediaPlaceholder";
+import { BeforeAfterSlider } from "@/components/design-system/BeforeAfterSlider";
+import { BrowserMockup } from "@/components/design-system/BrowserMockup";
+import { DecisionRecord } from "@/components/design-system/DecisionRecord";
+import { GuidedHotspotTour } from "@/components/design-system/GuidedHotspotTour";
 import { ProofStrip } from "@/components/design-system/ProofStrip";
+import { ReframeBlock } from "@/components/design-system/ReframeBlock";
 import { PullStatement } from "@/components/design-system/PullStatement";
+import { SceneBannerFigure } from "@/components/design-system/SceneBannerFigure";
+import { ZoomLens } from "@/components/design-system/ZoomLens";
 import {
   CaseStudyChapter,
   CaseStudyColumn,
@@ -29,9 +34,6 @@ export const metadata: Metadata = {
     "Redesigning the information architecture, navigation, and landing experience for a platform fronting 139 operational modules.",
 };
 
-const HIERARCHY = ["Category", "Module", "Sub-module"];
-const FAST_PATHS = ["Pins", "Recent modules", "Search"];
-
 const CHAPTERS = [
   { id: "overview", label: "Overview" },
   { id: "bottleneck", label: "The bottleneck" },
@@ -56,6 +58,26 @@ export default function SupplyChainOperationsPage() {
           { label: "Year", value: "2021–2022" },
           { label: "Discipline", value: "Enterprise operations · Platform UX" },
         ],
+        // Redesigned landing page + navigation, rebuilt with placeholder data.
+        figure: (
+          <SceneBannerFigure
+            note="Reconstructed · placeholder data"
+            screens={[
+              {
+                src: "/work/supply-chain-operations/new-dashboard.png",
+                width: 2560,
+                height: 1576,
+                alt: "Redesigned platform dashboard: grouped module categories, pinned tools, and recent modules.",
+              },
+              {
+                src: "/work/supply-chain-operations/new-navigation.png",
+                width: 2560,
+                height: 1940,
+                alt: "Persistent left navigation with the reorganised category hierarchy.",
+              },
+            ]}
+          />
+        ),
       }}
       next={
         onward
@@ -81,16 +103,10 @@ export default function SupplyChainOperationsPage() {
           <CaseStudyFigure>
             <ProofStrip
               items={[
-                { value: "~1M", label: "monthly unique visitors", glyph: "field" },
+                { value: "~985K", label: "monthly unique visitors", glyph: "field" },
                 { value: "139", label: "operational modules", glyph: "bars" },
                 { value: "62%", label: "less time spent on the landing page", glyph: "ring" },
               ]}
-            />
-          </CaseStudyFigure>
-          <CaseStudyFigure>
-            <MediaPlaceholder
-              needs="A hero showing the redesigned landing page and navigation, reconstructed with representative categories and modules."
-              source="Draft beat: MEDIA — HERO"
             />
           </CaseStudyFigure>
         </CaseStudySection>
@@ -107,38 +123,30 @@ export default function SupplyChainOperationsPage() {
             ]}
           />
           <CaseStudyFigure>
-            <MediaPlaceholder
-              kind="diagram"
-              ratio={16 / 9}
-              needs="A public-safe before state: the growing module collection with weak hierarchy. Representative categories and modules, not original screens."
-              source="Draft beat: VISUAL — BEFORE STATE"
+            <ZoomLens
+              src="/work/supply-chain-operations/old-dashboard.png"
+              width={1914}
+              height={1242}
+              alt="The earlier landing page: a long, flat grid of module tiles with little grouping."
+              caption="The homepage before the redesign — one flat collection of modules, the same starting point for everyone. Hover to read the tiles. Reconstructed with placeholder data."
             />
           </CaseStudyFigure>
         </CaseStudySection>
 
-        <CaseStudySection id="structure">
-          <CaseStudyChapter
-            eyebrow="Structure"
-            heading="We reorganised the platform before redesigning the navigation"
-            body={[
-              "We worked with users and teams across the platform to understand what modules did, where they belonged, and how people thought about them in everyday work.",
-              "Instead of treating the homepage as one large catalogue, related capabilities were grouped into a clearer hierarchy.",
-              "That information architecture became the foundation for every navigation decision that followed.",
-            ]}
-          />
-          <CaseStudyFigure rule label="From a flat collection to a hierarchy">
-            <DotFlow stages={HIERARCHY} />
-          </CaseStudyFigure>
-        </CaseStudySection>
       </CaseStudyColumn>
 
-      <div className="mt-16 md:mt-20">
-        <PullStatement eyebrow="What it came down to" mark="connection">
-          The problem was not where to put the menu. It was creating a structure people could understand.
-        </PullStatement>
+      <div id="structure" className="mt-16 md:mt-20">
+        <ReframeBlock
+          bleed
+          eyebrow="Structure"
+          heading="The new structure took nearly a dozen teams to agree."
+          body="We worked through the platform with close to a dozen category teams to agree what every module did and where it belonged, then took the proposed structure through several rounds of leadership approval before it could ship. That information architecture became the foundation for every navigation decision that followed."
+        />
       </div>
 
       <CaseStudyColumn>
+        {/* No boundary rule — the full-bleed `#structure` band above is
+            already the break. */}
         <CaseStudySection id="navigation" boundary={false} className="pt-16 md:pt-20">
           <CaseStudyChapter
             layout="stacked"
@@ -147,16 +155,48 @@ export default function SupplyChainOperationsPage() {
             body={[
               "With the new structure in place, we explored two directions: a top-navigation model and a persistent left-navigation model.",
               "Rather than choosing internally, we evaluated both concepts through moderated sessions with users representing different operational groups and markets.",
-              "The left-navigation model consistently made more sense for the depth of the platform. It gave categories room to grow, supported longer module names, stayed available as users moved through the product, and could collapse when more workspace was needed.",
               "Feedback on the alternative still improved the final design, including how controls such as market selection were consolidated into the navigation.",
             ]}
           />
-          <CaseStudyFigure>
-            <MediaPlaceholder
-              kind="diagram"
-              ratio={16 / 9}
-              needs="The two navigation concepts side by side — top navigation and persistent left navigation — and the direction chosen after testing."
-              source="Draft beat: VISUAL — TOP ↔ LEFT NAVIGATION"
+          <CaseStudyFigure label="Two directions, tested">
+            <DecisionRecord
+              optionA={{
+                title: "Top navigation",
+                body: "The familiar option, but the platform's depth left little room as categories and module count grew.",
+              }}
+              chosen={{
+                title: "Persistent left navigation",
+                body: "Gave categories room to grow, supported longer module names, stayed available as users moved through the product, and could collapse when more workspace was needed.",
+              }}
+            />
+          </CaseStudyFigure>
+          <CaseStudyFigure label="The direction chosen">
+            <GuidedHotspotTour
+              label="Persistent left navigation — a walk through what it buys"
+              src="/work/supply-chain-operations/new-navigation.png"
+              width={2560}
+              height={1940}
+              alt="The redesigned platform with a persistent left navigation carrying the category hierarchy."
+              stops={[
+                {
+                  x: 8,
+                  y: 30,
+                  title: "Categories, not a catalogue",
+                  body: "The reorganised hierarchy lives in the rail, so related modules sit together instead of being scattered across one long page.",
+                },
+                {
+                  x: 30,
+                  y: 26,
+                  title: "Room for real module names",
+                  body: "A vertical rail carries longer labels and a second level of nesting without truncating — the flyout opens the group in place.",
+                },
+                {
+                  x: 72,
+                  y: 42,
+                  title: "It stays as you work",
+                  body: "Navigation is persistent across the platform rather than a homepage-only menu, and collapses when a module needs the full width.",
+                },
+              ]}
             />
           </CaseStudyFigure>
         </CaseStudySection>
@@ -171,15 +211,36 @@ export default function SupplyChainOperationsPage() {
               "The redesigned experience introduced three faster paths: pins for frequently used modules, recent modules for returning to ongoing work without setup, and search for users who already knew what they needed.",
             ]}
           />
-          {/* A set of parallel routes, so no connector implying an order. */}
-          <CaseStudyFigure rule label="Three faster routes back in">
-            <DotFlow stages={FAST_PATHS} />
-          </CaseStudyFigure>
+          {/* Three parallel routes, marked on the real screen rather than
+              drawn as a numbered flow — they have no order. */}
           <CaseStudyFigure>
-            <MediaPlaceholder
-              kind="video"
-              needs="A short loop moving through the three routes: search, then pin, then returning via recents."
-              source="Draft beat: MEDIA — SEARCH → PIN → RECENT"
+            <BrowserMockup
+              route="nexuso / home"
+              src="/work/supply-chain-operations/new-dashboard.png"
+              width={2560}
+              height={1576}
+              alt="The redesigned landing page with pinned modules, a recent-modules row, and search."
+              caption="Three faster routes back into a small working set: pins, recent modules, and search. Reconstructed with placeholder data."
+              hotspots={[
+                {
+                  x: 50,
+                  y: 7,
+                  title: "Search",
+                  detail: "A direct route for people who already know the module they want and don't need to browse at all.",
+                },
+                {
+                  x: 16,
+                  y: 40,
+                  title: "Recent modules",
+                  detail: "Returning to ongoing work without setup — the platform remembers where you last were.",
+                },
+                {
+                  x: 16,
+                  y: 72,
+                  title: "Pinned modules",
+                  detail: "A saved set of frequently used tools, so the small working set most people rely on is always one click away.",
+                },
+              ]}
             />
           </CaseStudyFigure>
         </CaseStudySection>
@@ -191,10 +252,39 @@ export default function SupplyChainOperationsPage() {
             heading="The best outcome was people leaving the homepage faster"
             body={[
               "In many digital products, more time spent can look like engagement. Here, the opposite was true.",
-              "The purpose of the landing page was to route people into operational work as quickly as possible. After the new information architecture, navigation, search, and personalisation were introduced, time spent on the landing page fell by 62%.",
+              "The purpose of the landing page was to route people into operational work as quickly as possible. Where a visit to it had run 10 to 30 minutes, that time fell by 62% after the new information architecture, navigation, search, and personalisation were introduced.",
               "The redesign gave the platform a scalable structure for new modules, persistent navigation across the experience, direct search, and personal routes back into frequently used tools. More importantly, the homepage became what it was supposed to be: a way through the platform, not a place users had to spend time figuring out.",
             ]}
           />
+          <CaseStudyFigure>
+            <ProofStrip
+              items={[
+                { value: "62%", label: "less time spent on the landing page", glyph: "drop" },
+                { value: "10–30 min", label: "a visit to it used to take", glyph: "ring" },
+                { value: "~39%", label: "of platform visits now route through it", glyph: "funnel" },
+              ]}
+            />
+          </CaseStudyFigure>
+          <CaseStudyFigure label="The landing page — before and after">
+            <BeforeAfterSlider
+              label="The platform landing page, before and after the redesign"
+              before={{
+                src: "/work/supply-chain-operations/old-dashboard.png",
+                width: 1914,
+                height: 1242,
+                alt: "Before: a long, flat grid of module tiles with little grouping.",
+              }}
+              after={{
+                src: "/work/supply-chain-operations/new-dashboard-cmp.png",
+                width: 2560,
+                height: 1661,
+                alt: "After: grouped categories, pinned and recent modules, and search.",
+              }}
+            />
+            <p className="ds-media-caption">
+              Drag the divider to compare. Reconstructed with placeholder data.
+            </p>
+          </CaseStudyFigure>
         </CaseStudySection>
       </CaseStudyColumn>
 

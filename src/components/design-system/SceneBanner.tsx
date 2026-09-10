@@ -20,6 +20,14 @@ type SceneBannerProps = {
   /** One supporting line under the headline — a gear-shift, not a paragraph. */
   standfirst?: string;
   meta?: { label: string; value: string }[];
+  /**
+   * A reconstructed arrangement of product screens, rendered on the dark dot
+   * ground in place of a photo composite — for NDA work where the real
+   * interface can't be shown but the redesign can be rebuilt with placeholder
+   * data. Ignored when `src` is set (a real photo always wins). See
+   * `SceneBannerFigure`.
+   */
+  figure?: ReactNode;
   children?: ReactNode;
   /**
    * Page-opening treatment: edge to edge with square corners, so the image is
@@ -49,21 +57,25 @@ export function SceneBanner({
   headline,
   standfirst,
   meta,
+  figure,
   children,
   fullBleed,
 }: SceneBannerProps) {
   const hasOverlay = Boolean(eyebrow || headline || standfirst || meta?.length || children);
+  const hasFigure = Boolean(figure) && !src;
 
   return (
     <div
       className={`ds-scene-banner${fullBleed ? " ds-scene-banner-full" : ""}${
-        src ? "" : " ds-scene-banner-empty"
+        src ? "" : hasFigure ? " ds-scene-banner-has-figure" : " ds-scene-banner-empty"
       }`}
     >
       {/* A full-bleed banner opens the page, so it's the LCP element — load it
           eagerly rather than lazily. */}
       {src ? (
         <Image src={src} alt={alt} fill sizes="100vw" priority={fullBleed} className="ds-scene-banner-media" />
+      ) : hasFigure ? (
+        <div className="ds-scene-banner-figure">{figure}</div>
       ) : (
         <p className="ds-scene-banner-pending">Hero image pending</p>
       )}
