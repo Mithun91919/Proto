@@ -326,7 +326,7 @@ export const projects: Project[] = [
       },
       {
         label: "Intervention",
-        detail: "Connected experience for customer orders and operations fulfillment",
+        detail: "Connected experience for customer orders and operations fulfilment",
       },
       {
         label: "After",

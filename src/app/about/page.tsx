@@ -46,7 +46,7 @@ export default function AboutPage() {
               I started my career in visual and interaction design, then moved through consumer products, commerce, and enterprise platforms as the problems I worked on became larger and more interconnected.
             </p>
             <p className="mt-4 text-lg leading-8 text-[var(--ink-soft)]">
-              Today, I work at the intersection of product design, technology, and systems thinking — turning complex workflows and fragmented tools into products that feel clear and useful.
+              Today, I work mostly on enterprise platforms and AI-assisted workflows — turning complex, fragmented tools into products that feel clear and useful.
             </p>
           </div>
         </Reveal>
@@ -331,7 +331,7 @@ export default function AboutPage() {
         <Reveal>
           <div className="ds-env-dark rounded-sm p-12 md:p-16">
             <h2 className="display-title display-section max-w-[30ch]">
-              Have a complicated product problem?
+              Working on a complex product?
             </h2>
             <div className="mt-8">
               <Link href="mailto:mithraj14@gmail.com" className="button button-primary">

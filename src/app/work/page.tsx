@@ -46,7 +46,7 @@ export default function WorkPage() {
           The problems got bigger. My role moved further upstream.
         </h1>
         <p className="lede mt-6" style={{ maxWidth: "84ch" }}>
-          I&apos;ve worked across digital experiences, consumer products, commerce, enterprise software, and developer platforms. Over time, my work has moved from individual interfaces toward the workflows, information, and systems behind them.
+          I&apos;ve worked across digital experiences, consumer products, commerce, enterprise software, and developer platforms. Over time, my work has moved from individual interfaces towards the workflows, information, and systems behind them.
         </p>
       </div>
 

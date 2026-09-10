@@ -52,11 +52,11 @@ export const careerStages: CareerStage[] = [
   },
 ];
 
-/** The open end of the rail: the shift from interface design to AI behavior. */
+/** The open end of the rail: the shift from interface design to AI behaviour. */
 export const currentStage = {
   year: "Today",
-  stage: "From interfaces to AI behavior",
-  body: "As products become more intelligent, my role has expanded from designing screens to shaping the workflows, interactions, and system behavior behind them — including AI-assisted and conversational experiences.",
+  stage: "From interfaces to AI behaviour",
+  body: "As products get more intelligent, my role has widened from designing screens to shaping the workflows, interactions, and system behaviour behind them — including AI-assisted and conversational experiences.",
 };
 
 export type Transformation = {
@@ -144,8 +144,8 @@ export const earlierWork: EarlierWorkEntry[] = [
   {
     number: "10",
     org: "Multilingual Mobile Experience",
-    body: "Designing a localization system across 8 Indian languages.",
-    tags: ["HIKE", "Mobile", "Localization"],
+    body: "Designing a localisation system across 8 Indian languages.",
+    tags: ["HIKE", "Mobile", "Localisation"],
     image: "/work/total-os/screens.avif",
     slug: "hike-total-os-localization",
   },

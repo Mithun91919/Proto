@@ -39,14 +39,14 @@ export type ProjectType =
   | "Product Design"
   | "Systems & Platform Design"
   | "Research"
-  | "Localization"
+  | "Localisation"
   | "Visual & Brand Design";
 
 export const ALL_TYPES: ProjectType[] = [
   "Product Design",
   "Systems & Platform Design",
   "Research",
-  "Localization",
+  "Localisation",
   "Visual & Brand Design",
 ];
 
@@ -66,7 +66,7 @@ const PROJECT_TYPES: Record<string, ProjectType[]> = {
   "hike-movie-tickets": ["Product Design"],
   // Distinct enough from either bucket to name on its own rather than
   // fold in and lose what actually makes it different.
-  "hike-total-os-localization": ["Localization"],
+  "hike-total-os-localization": ["Localisation"],
   "creo-mark-1": ["Visual & Brand Design"],
 };
 
