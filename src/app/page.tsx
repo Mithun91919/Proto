@@ -6,6 +6,7 @@ import { Reveal } from "@/components/Reveal";
 import { SectionAnchor } from "@/components/SectionAnchor";
 import { SectionHead } from "@/components/SectionHead";
 import { ChapterProgress } from "@/components/design-system/ChapterProgress";
+import { ProofStrip } from "@/components/design-system/ProofStrip";
 import { getFeaturedProjects, getRangeProjects } from "@/content/projects";
 
 const CHAPTERS = [
@@ -95,10 +96,20 @@ export default function HomePage() {
         <SectionHead
           eyebrow="Where to next"
           title="See more, or see how it got here."
-          lede={`${totalCaseStudies} case studies across ${domains.length} domains, or the ${yearsActive} years of practice that got me here — whichever you want first.`}
+          lede="The whole body of work, or the path that led to it — whichever you want first."
         />
 
-        <Reveal delay={80}>
+        <Reveal delay={60} className="ds-scope mt-9">
+          <ProofStrip
+            items={[
+              { value: `${totalCaseStudies}`, label: "case studies", glyph: "modules" },
+              { value: `${domains.length}`, label: "domains", glyph: "ring" },
+              { value: `${yearsActive}`, label: "years of practice", glyph: "ramp" },
+            ]}
+          />
+        </Reveal>
+
+        <Reveal delay={100}>
           <div className="mt-8 flex flex-wrap gap-3">
             <Link href="/work" className="button button-primary">
               Explore the work →
@@ -113,10 +124,11 @@ export default function HomePage() {
       {/* Dark closing card — the same treatment used to close /work and
           /about, so the last thing on every main page reads as one
           consistent sign-off. */}
-      <section id="contact" className="mx-auto w-full max-w-[80rem] px-5 py-16 md:px-8 md:py-24">
-        <Reveal>
-          <div className="ds-env-dark grid gap-12 rounded-sm p-10 md:grid-cols-[1fr_28rem] md:items-stretch md:gap-14 md:p-16">
-            <SectionAnchor
+      <section id="contact" className="ds-pull">
+        <div className="ds-pull-inner" style={{ color: "var(--ds-dark-ink)" }}>
+          <Reveal>
+            <div className="grid gap-12 md:grid-cols-[1fr_28rem] md:items-stretch md:gap-14">
+              <SectionAnchor
               eyebrow="Say Hi"
               title="Working on a product with a lot of moving parts?"
               titleClassName="max-w-[26ch]"
@@ -142,16 +154,17 @@ export default function HomePage() {
               </div>
             </SectionAnchor>
 
-            <div className="contact-wordmark-slot">
-              <DotText
-                className="contact-wordmark"
-                aspect={2.4}
-                pitch={4}
-                text="Say Hi"
-              />
+              <div className="contact-wordmark-slot">
+                <DotText
+                  className="contact-wordmark"
+                  aspect={2.4}
+                  pitch={4}
+                  text="Say Hi"
+                />
+              </div>
             </div>
-          </div>
-        </Reveal>
+          </Reveal>
+        </div>
       </section>
     </>
   );

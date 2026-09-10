@@ -1,46 +1,3 @@
-// A 7×6 dot-bitmap heart — two lobes and a point, so it still reads as a
-// heart at this size. Same spirit as the metric glyphs: the "dots" in the
-// credit line made literal. Lit cells use currentColor to track the text.
-const HEART_COLS = 7;
-const HEART = [
-  0, 1, 1, 0, 1, 1, 0,
-  1, 1, 1, 1, 1, 1, 1,
-  1, 1, 1, 1, 1, 1, 1,
-  0, 1, 1, 1, 1, 1, 0,
-  0, 0, 1, 1, 1, 0, 0,
-  0, 0, 0, 1, 0, 0, 0,
-];
-
-function DotHeart() {
-  const dot = 2;
-  const gap = 1;
-  return (
-    <span
-      role="img"
-      aria-label="love"
-      style={{
-        display: "inline-grid",
-        gridTemplateColumns: `repeat(${HEART_COLS}, ${dot}px)`,
-        gap: `${gap}px`,
-        verticalAlign: "middle",
-        margin: "0 0.7ch",
-      }}
-    >
-      {HEART.map((on, i) => (
-        <span
-          key={i}
-          style={{
-            width: dot,
-            height: dot,
-            borderRadius: "50%",
-            background: on ? "currentColor" : "transparent",
-          }}
-        />
-      ))}
-    </span>
-  );
-}
-
 export function SiteFooter() {
   return (
     <footer className="ds-pull mt-auto">
@@ -50,7 +7,19 @@ export function SiteFooter() {
       >
         <p>© {new Date().getFullYear()} Mithun Raju</p>
         <p className="font-[family-name:var(--font-mono)] text-[0.72rem] uppercase tracking-[0.14em]">
-          Built with dots<DotHeart />Claude
+          Built with{" "}
+          <span role="img" aria-label="love" style={{ margin: "0 0.15ch" }}>
+            ♥
+          </span>{" "}
+          with{" "}
+          <a
+            href="https://claude.ai"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="underline underline-offset-2 transition-opacity hover:opacity-70"
+          >
+            Claude.ai
+          </a>
         </p>
       </div>
     </footer>
