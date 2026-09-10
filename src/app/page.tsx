@@ -8,7 +8,7 @@ import { SectionHead } from "@/components/SectionHead";
 import { ChapterProgress } from "@/components/design-system/ChapterProgress";
 import { DotGrid } from "@/components/design-system/primitives/DotGrid";
 import { GlassPanel } from "@/components/design-system/primitives/GlassPanel";
-import { bitmapToDots, TOOL_MARKS } from "@/components/design-system/dotPatterns";
+import { bitmapToDots, METRIC_MARKS } from "@/components/design-system/dotPatterns";
 import { getFeaturedProjects, getRangeProjects } from "@/content/projects";
 
 const CHAPTERS = [
@@ -104,9 +104,10 @@ export default function HomePage() {
           <Reveal delay={60} className="h-full">
             <Link href="/work" className="group block h-full no-underline">
               <GlassPanel variant="lift" hoverLift className="flex h-full flex-col rounded-2xl p-8">
+                {/* `modules` — discrete parts: every project, side by side. */}
                 <DotGrid
-                  cols={7}
-                  dots={bitmapToDots(TOOL_MARKS.brush)}
+                  cols={5}
+                  dots={bitmapToDots(METRIC_MARKS.modules)}
                   size={5}
                   gap={3}
                   className="mb-5"
@@ -135,9 +136,10 @@ export default function HomePage() {
           <Reveal delay={100} className="h-full">
             <Link href="/about" className="group block h-full no-underline">
               <GlassPanel variant="lift" hoverLift className="flex h-full flex-col rounded-2xl p-8">
+                {/* `ramp` — a rising stair: a path built up over time. */}
                 <DotGrid
-                  cols={7}
-                  dots={bitmapToDots(TOOL_MARKS.pencil)}
+                  cols={5}
+                  dots={bitmapToDots(METRIC_MARKS.ramp)}
                   size={5}
                   gap={3}
                   className="mb-5"
