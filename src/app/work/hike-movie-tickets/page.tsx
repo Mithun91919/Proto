@@ -30,7 +30,7 @@ import {
  */
 
 export const metadata: Metadata = {
-  title: "Movie Ticket Booking — Turning booking intent into one continuous transaction",
+  title: "Movie Ticket Booking — Turning intent into one continuous transaction",
   description:
     "An aggregator ticketing experience inside Hike Messenger, connecting cinema ticketing services with Hike Wallet payments.",
 };
@@ -55,7 +55,7 @@ export default function MovieTicketsPage() {
         src: "/work/hike-movie-tickets/Movie_Banner_2.jpg",
         alt: "The Hike movie ticketing experience over a wall of film posters: a browse screen listing showings in Bengaluru beside a booked ticket with its QR code",
         eyebrow: "Movie Ticket Booking · Hike",
-        headline: "Turning booking intent into one continuous transaction.",
+        headline: "Movie Ticket Booking: turning intent into one continuous transaction.",
         meta: [
           { label: "Role", value: "Product Design" },
           { label: "Client", value: "Hike" },
@@ -67,7 +67,7 @@ export default function MovieTicketsPage() {
         href: "/work/bigbasket-ratings-reviews",
         number: "07",
         label: "bigbasket",
-        title: "Designing one feedback system across mobile and web.",
+        title: "Ratings & Reviews: one feedback system across mobile and web.",
       }}
     >
       <CaseStudyColumn>

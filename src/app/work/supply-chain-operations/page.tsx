@@ -29,7 +29,7 @@ import { getProject } from "@/content/projects";
  */
 
 export const metadata: Metadata = {
-  title: "Supply Chain Operations Platform — Helping operations teams get to the right tool faster",
+  title: "Supply Chain Operations Platform — 139 tools behind one front door",
   description:
     "Redesigning the information architecture, navigation, and landing experience for a platform fronting 139 operational modules.",
 };
@@ -52,7 +52,7 @@ export default function SupplyChainOperationsPage() {
       chapters={CHAPTERS}
       hero={{
         eyebrow: "Supply Chain Operations Platform · Walmart Global Tech",
-        headline: "Helping operations teams get to the right tool faster.",
+        headline: "Supply Chain Operations Platform: 139 tools behind one front door.",
         meta: [
           { label: "Role", value: "UX Designer · co-led" },
           { label: "Client", value: "Walmart Global Tech" },

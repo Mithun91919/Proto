@@ -120,7 +120,7 @@ export const earlierWork: EarlierWorkEntry[] = [
   {
     number: "07",
     org: "Ratings & Reviews",
-    body: "Designing one feedback system across mobile and web.",
+    body: "One feedback system across mobile and web.",
     tags: ["BIGBASKET", "Mobile", "Product Design"],
     image: "/work/bigbasket-ratings-reviews/Artboard Copy 8.jpg",
     slug: "bigbasket-ratings-reviews",
@@ -128,7 +128,7 @@ export const earlierWork: EarlierWorkEntry[] = [
   {
     number: "08",
     org: "Job Discovery & Resume Builder",
-    body: "Helping people move from finding a job to being ready to apply.",
+    body: "From finding a job to being ready to apply.",
     tags: ["HIKE", "Mobile", "Product Design"],
     image: "/work/hike-jobs-service/Jobs_Banner.jpg",
     slug: "hike-jobs-service",
@@ -136,7 +136,7 @@ export const earlierWork: EarlierWorkEntry[] = [
   {
     number: "09",
     org: "Movie Ticket Booking",
-    body: "Designing a simpler path from movie intent to payment.",
+    body: "A simpler path from movie intent to payment.",
     tags: ["HIKE", "Mobile", "Product Design"],
     image: "/work/hike-movie-tickets/Movie_Banner_2.jpg",
     slug: "hike-movie-tickets",
@@ -144,7 +144,7 @@ export const earlierWork: EarlierWorkEntry[] = [
   {
     number: "10",
     org: "Multilingual Mobile Experience",
-    body: "Designing a localisation system across 8 Indian languages.",
+    body: "One localisation system across 8 Indian languages.",
     tags: ["HIKE", "Mobile", "Localisation"],
     image: "/work/total-os/screens.avif",
     slug: "hike-total-os-localization",
@@ -152,7 +152,7 @@ export const earlierWork: EarlierWorkEntry[] = [
   {
     number: "11",
     org: "Smartphone Brand & Digital Experience",
-    body: "Building a visual language for a smartphone that changed every month.",
+    body: "A visual language for a smartphone that changed every month.",
     tags: ["CREO", "Visual Design", "Web"],
     image: "/work/creo/banner.jpg",
     slug: "creo-mark-1",

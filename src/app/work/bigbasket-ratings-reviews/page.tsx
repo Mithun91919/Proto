@@ -24,7 +24,7 @@ import { getProject } from "@/content/projects";
  */
 
 export const metadata: Metadata = {
-  title: "Ratings & Reviews — Designing one feedback system across mobile and web",
+  title: "Ratings & Reviews — One feedback system across mobile and web",
   description:
     "A cross-platform ratings and reviews experience for beauty products across bigbasket’s Android, iOS, web, and mobile-web experiences.",
 };
@@ -50,7 +50,7 @@ export default function RatingsReviewsPage() {
         src: "/work/bigbasket-ratings-reviews/Artboard%20Copy%208.jpg",
         alt: "The ratings and reviews experience on web and mobile: a browser review form beside a phone rating screen",
         eyebrow: "Ratings & Reviews · bigbasket",
-        headline: "Designing one feedback system across mobile and web.",
+        headline: "Ratings & Reviews: one feedback system across mobile and web.",
         meta: [
           { label: "Role", value: "UX Design" },
           { label: "Client", value: "bigbasket" },

@@ -37,7 +37,7 @@ import { getProject } from "@/content/projects";
  */
 
 export const metadata: Metadata = {
-  title: "FixIt — One app for everything that breaks in a store",
+  title: "FixIt — One app for everything that breaks in a Walmart store",
   description:
     "Redesigning frontline support so store associates can fix an issue themselves instead of raising a ticket — facilities and technology, on a phone, across a ~580K-device footprint.",
 };

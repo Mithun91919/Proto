@@ -26,7 +26,7 @@ import { getProject } from "@/content/projects";
  */
 
 export const metadata: Metadata = {
-  title: "Portfolio Management Platform — Replacing five portfolio tools with one connected platform",
+  title: "Portfolio Management Platform — One system instead of five",
   description:
     "A 0-to-1 enterprise platform that consolidated five disconnected portfolio systems into one connected product.",
 };
@@ -54,7 +54,7 @@ export default function PortfolioManagementPage() {
       chapters={CHAPTERS}
       hero={{
         eyebrow: "Portfolio Management Platform · Walmart Global Tech",
-        headline: "Replacing five portfolio tools with one connected platform.",
+        headline: "Portfolio Management Platform: one system instead of five.",
         meta: [
           { label: "Role", value: "UX Designer → Senior UX Designer" },
           { label: "Client", value: "Walmart Global Tech" },

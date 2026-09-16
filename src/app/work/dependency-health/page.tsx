@@ -24,7 +24,7 @@ import { getProject } from "@/content/projects";
  */
 
 export const metadata: Metadata = {
-  title: "Dependency Health Platform — Turning compliance data into clear actions",
+  title: "Dependency Health Platform — Turning compliance data into clear action",
   description:
     "A dependency-health platform translating technical signals into repository health, organisation visibility, and guided remediation.",
 };
@@ -53,7 +53,7 @@ export default function DependencyHealthPage() {
       chapters={CHAPTERS}
       hero={{
         eyebrow: "Dependency Health Platform · Walmart Global Tech",
-        headline: "Turning dependency compliance data into clear actions developers can take.",
+        headline: "Dependency Health Platform: turning compliance data into clear action.",
         meta: [
           { label: "Role", value: "Senior UX Designer" },
           { label: "Client", value: "Walmart Global Tech" },

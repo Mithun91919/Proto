@@ -45,7 +45,7 @@ export default function CreoMark1Page() {
         src: "/work/creo/banner.jpg",
         alt: "Mark 1 campaign imagery: the phone shown against the brand's high-contrast visual language",
         eyebrow: "Smartphone Brand & Digital Experience · CREO",
-        headline: "Building a visual language for a smartphone that changed every month.",
+        headline: "Mark 1: a visual language for a smartphone that changed every month.",
         meta: [
           { label: "Role", value: "Visual Design" },
           { label: "Client", value: "CREO" },
@@ -57,7 +57,7 @@ export default function CreoMark1Page() {
         href: "/work/hike-total-os-localization",
         number: "10",
         label: "Hike",
-        title: "Building a localisation system across 8 Indian languages.",
+        title: "Multilingual Mobile Experience: one localisation system across 8 Indian languages.",
       }}
     >
       <CaseStudyColumn>

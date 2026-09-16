@@ -47,7 +47,7 @@ export default function HikeJobsServicePage() {
         src: "/work/hike-jobs-service/Jobs_Banner.jpg",
         alt: "The Jobs Service experience: job listings and the resume builder shown on phone screens",
         eyebrow: "Job Discovery & Resume Builder · Hike",
-        headline: "Helping people move from finding a job to being ready to apply.",
+        headline: "Job Discovery & Resume Builder: from finding a job to being ready to apply.",
         meta: [
           { label: "Role", value: "Product Design" },
           { label: "Client", value: "Hike" },
@@ -59,7 +59,7 @@ export default function HikeJobsServicePage() {
         href: "/work/hike-movie-tickets",
         number: "09",
         label: "Hike",
-        title: "Turning booking intent into one continuous transaction.",
+        title: "Movie Ticket Booking: turning intent into one continuous transaction.",
       }}
     >
       <CaseStudyColumn>

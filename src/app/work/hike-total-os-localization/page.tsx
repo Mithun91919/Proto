@@ -44,7 +44,7 @@ export default function TotalOsLocalizationPage() {
       chapters={CHAPTERS}
       hero={{
         eyebrow: "Multilingual Mobile Experience · Hike",
-        headline: "Building a localisation system across 8 Indian languages.",
+        headline: "Multilingual Mobile Experience: one localisation system across 8 Indian languages.",
         meta: [
           { label: "Role", value: "Product Research" },
           { label: "Client", value: "Hike" },
@@ -56,7 +56,7 @@ export default function TotalOsLocalizationPage() {
         href: "/work/hike-jobs-service",
         number: "08",
         label: "Hike",
-        title: "Helping people move from finding a job to being ready to apply.",
+        title: "Job Discovery & Resume Builder: from finding a job to being ready to apply.",
       }}
     >
       <CaseStudyColumn>

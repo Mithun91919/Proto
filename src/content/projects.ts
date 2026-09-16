@@ -64,7 +64,7 @@ export const projects: Project[] = [
     slug: "portfolio-management",
     number: "01",
     label: "Portfolio Management Platform",
-    title: "Replacing five portfolio tools with one connected platform.",
+    title: "Portfolio Management Platform: one system instead of five.",
     internalName: "Clipper",
     summary:
       "Portfolio planning was split across separate systems for people, products, initiatives, approvals, and strategic work. I led the experience from the initial platform architecture through staged rollout, migration, and adoption.",
@@ -113,7 +113,7 @@ export const projects: Project[] = [
     number: "02",
     label: "API Lifecycle Platform",
     title:
-      "Creating one platform for engineers to discover, design, test, and govern APIs.",
+      "API Lifecycle Platform: one place to discover, design, test, and govern APIs.",
     internalName: "API Lifecycle Manager",
     summary:
       "API development was spread across disconnected documentation, design, testing, and subscription workflows. I helped define and design a platform built around three core experiences: Marketplace, Design Studio, and Testing.",
@@ -157,7 +157,7 @@ export const projects: Project[] = [
     number: "03",
     label: "Dependency Health Platform",
     title:
-      "Turning dependency compliance data into clear actions developers can take.",
+      "Dependency Health Platform: turning compliance data into clear action.",
     internalName: "Dependency Management",
     summary:
       "The backend could provide dozens of technical signals. The UX challenge was deciding what mattered to developers, engineering leaders, and platform teams — and translating it into status, diagnosis, and guided remediation.",
@@ -206,7 +206,7 @@ export const projects: Project[] = [
     number: "04",
     label: "Store Support Platform",
     title:
-      "Redesigning IT support so store associates can diagnose and resolve issues before raising a ticket.",
+      "One app for everything that breaks in a Walmart store.",
     internalName: "FixIt",
     summary:
       "I redesigned the self-service support experience around clearer classification, guided troubleshooting, search, location context, and better escalation information.",
@@ -249,7 +249,7 @@ export const projects: Project[] = [
     number: "05",
     label: "Supply Chain Operations Platform",
     title:
-      "Reorganising 139 operational modules around how people actually find and use them.",
+      "Supply Chain Operations Platform: 139 tools behind one front door.",
     summary:
       "As the platform expanded, hundreds of operational modules became increasingly difficult to discover. I co-led the information architecture and navigation redesign, evaluating competing navigation models with users across multiple markets.",
     outcome: "~985K monthly unique visitors · 139 modules",
@@ -296,7 +296,7 @@ export const projects: Project[] = [
     slug: "bb-daily",
     number: "06",
     label: "bb daily",
-    title: "Designing both sides of a recurring delivery service.",
+    title: "bb daily: both sides of a recurring delivery service.",
     internalName: "bb daily",
     summary:
       "bb daily was a recurring delivery service for grocery e-commerce. I designed both the customer subscription experience and the Android operations product managing procurement, inventory, shipments, and early-morning delivery logistics.",

@@ -30,7 +30,7 @@ import { getAdjacentProjects, projects } from "@/content/projects";
  */
 
 export const metadata: Metadata = {
-  title: "bb daily — Designing both sides of a recurring delivery service",
+  title: "bb daily — Both sides of a recurring delivery service",
   description:
     "bb daily was a subscription service for everyday essentials. I worked across both the customer experience and the Android operations product behind each delivery.",
 };
@@ -62,7 +62,7 @@ export default function BbDailyPage() {
         src: "/work/bbdaily/8f79fb_20203531c98e4bd986f2bbf39a470197~mv2.avif",
         alt: "bb daily customer app and operations app as two sides of one service",
         eyebrow: "bb daily · bigbasket",
-        headline: "Designing both sides of a recurring delivery service.",
+        headline: "bb daily: both sides of a recurring delivery service.",
         meta: [
           { label: "Role", value: "Research & UX Design" },
           { label: "Client", value: "bigbasket" },

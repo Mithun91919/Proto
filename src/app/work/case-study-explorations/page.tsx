@@ -27,6 +27,11 @@ export const metadata: Metadata = {
 
 const HERO_IMG = "/work/store-support/hero-composite.png";
 
+/** Store Support's own accent from projects.ts — reused here rather than
+    a fresh pick, so the poster ties back to that project's real colour
+    identity instead of an arbitrary brand hue. */
+const PROJECT_ACCENT = "#4A3428";
+
 const HEADLINE = "One app for everything that breaks in a Walmart store.";
 
 const STATEMENT = (
@@ -146,6 +151,50 @@ function FullBleedHero() {
   );
 }
 
+/** A brand-poster hero — solid colour field, a dot-field texture, bold
+    type, corner-anchored labels. Reuses the exact radial-gradient dot
+    texture technique `.ds-scene-banner-empty` already uses for a
+    photo-less hero band, just scaled up and tinted white-on-colour
+    instead of mint-on-dark, plus the project's own accent as the field
+    instead of `--ds-dark` — a scaled reference to the reference image
+    (a Firefox campaign poster: solid colour, a scattered geometric dot
+    pattern, bold type bottom-left, wordmark top-right, URL bottom-right). */
+function PosterHero() {
+  return (
+    <div className="ds-pull" style={{ background: PROJECT_ACCENT }}>
+      <div
+        className="ds-pull-inner"
+        style={{
+          backgroundImage: "radial-gradient(color-mix(in oklab, white 24%, transparent) 1.8px, transparent 2px)",
+          backgroundSize: "26px 26px",
+        }}
+      >
+        <div className="flex items-center justify-between">
+          <p className="font-mono text-[0.72rem] uppercase tracking-[0.16em]" style={{ color: "rgba(255,255,255,0.9)" }}>
+            FixIt
+          </p>
+          <p className="font-mono text-[0.68rem] uppercase tracking-[0.14em]" style={{ color: "rgba(255,255,255,0.65)" }}>
+            Walmart Global Tech
+          </p>
+        </div>
+        <h3
+          className="display-title mt-14 max-w-[16ch]"
+          style={{ color: "#fff", fontSize: "clamp(2.3rem, 5.6vw, 4.1rem)", lineHeight: 1.03 }}
+        >
+          {HEADLINE}
+        </h3>
+        <div
+          className="mt-14 flex flex-wrap items-center justify-between gap-4 border-t pt-6 font-mono text-[0.68rem] uppercase tracking-[0.1em]"
+          style={{ borderColor: "rgba(255,255,255,0.2)", color: "rgba(255,255,255,0.65)" }}
+        >
+          <span>UX Designer · 2020–2021 · Frontline ops</span>
+          <span>fixit.walmart</span>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 /** Reasoning and scale as one card, not two separate blocks — modelled on
     how Ramotion's own case studies pair an "About" paragraph with a
     plain fact column (Length / Products / Team) rather than folding
@@ -214,7 +263,7 @@ export default function CaseStudyExplorationsPage() {
       <header className="mx-auto w-full max-w-[85rem] px-5 pt-14 md:px-8">
         <p className="eyebrow">Internal · not linked</p>
         <h1 className="display-title mt-4 max-w-[30ch]" style={{ fontSize: "2.4rem", lineHeight: 1.08 }}>
-          Six ways to open the same case study.
+          Seven ways to open the same case study.
         </h1>
         <p className="mt-6 max-w-[68ch] text-lg leading-8" style={{ color: "var(--ink-soft)" }}>
           Same headline, same statement, same body prose, same hero image throughout — only the composition
@@ -329,6 +378,18 @@ export default function CaseStudyExplorationsPage() {
             ))}
           </div>
         </div>
+      </section>
+
+      {/* ── 7 · Poster hero ───────────────────────────────────────────────── */}
+      <section className="pt-28 pb-8">
+        <div className="mx-auto w-full max-w-[85rem] px-5 md:px-8">
+          <VariationLabel
+            code="7"
+            name="Poster hero"
+            note="A reference brought in from outside the design system — a Firefox campaign poster: solid brand colour, a scattered dot texture, bold type anchored to a corner, wordmark and URL as small corner labels. Rebuilt here with Store Support's own accent as the colour field and the site's existing dot-field texture (already used for a photo-less hero) rather than a new pattern."
+          />
+        </div>
+        <PosterHero />
       </section>
     </div>
   );

@@ -24,7 +24,7 @@ import { getProject } from "@/content/projects";
  */
 
 export const metadata: Metadata = {
-  title: "API Lifecycle Platform — One platform to discover, design, test, and govern APIs",
+  title: "API Lifecycle Platform — One place to discover, design, test, and govern APIs",
   description:
     "A connected developer platform organised around three jobs: Marketplace, Design Studio, and Testing.",
 };
@@ -53,7 +53,7 @@ export default function ApiLifecyclePage() {
       chapters={CHAPTERS}
       hero={{
         eyebrow: "API Lifecycle Platform · Walmart Global Tech",
-        headline: "Creating one platform for engineers to discover, design, test, and govern APIs.",
+        headline: "API Lifecycle Platform: one place to discover, design, test, and govern APIs.",
         meta: [
           { label: "Role", value: "UX Designer → Senior UX Designer" },
           { label: "Client", value: "Walmart Global Tech" },
