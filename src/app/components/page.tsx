@@ -76,20 +76,51 @@ export const metadata: Metadata = {
   description: "Reference page for the v6 design system — glass surfaces, dot language, and case-study components.",
 };
 
-const NAV = [
-  { label: "Principles", href: "#principles" },
-  { label: "Foundations", href: "#foundations" },
-  { label: "Dots", href: "#dots" },
-  { label: "Type + colour", href: "#typography" },
-  { label: "Narrative", href: "#narrative" },
-  { label: "Media", href: "#media" },
-  { label: "Evidence", href: "#evidence" },
-  { label: "Navigation", href: "#navigation" },
-  { label: "Recipes", href: "#recipes" },
-  { label: "Interaction", href: "#interaction" },
-  { label: "Copy", href: "#copy" },
-  { label: "Anti-patterns", href: "#anti-patterns" },
-  { label: "Case-study media", href: "#case-study-media" },
+/**
+ * Thirteen flat chips gave no sense of which sections were related, and
+ * none of them said what lived inside — so finding a known component
+ * meant opening sections until one hit. Four families, and each chip
+ * carries its code range, because the codes are how these are referred
+ * to everywhere else (a case study asks for M7, not "media").
+ *
+ * The ranges are deliberately honest about the taxonomy: section letters
+ * and code prefixes are two different systems that disagree. Narrative
+ * (E) holds S1-S8, and Navigation (H) is entirely S-codes. Until the
+ * S-codes get a section of their own, saying so here is what makes them
+ * findable.
+ */
+const NAV_GROUPS = [
+  {
+    group: "Language",
+    items: [
+      { label: "Principles", href: "#principles" },
+      { label: "Foundations", href: "#foundations", codes: "B1–B8" },
+      { label: "Dot language", href: "#dots", codes: "C1–C9" },
+      { label: "Type + colour", href: "#typography", codes: "D1–D3" },
+    ],
+  },
+  {
+    group: "Components",
+    items: [
+      { label: "Narrative", href: "#narrative", codes: "E1–E4 · S1–S8" },
+      { label: "Product media", href: "#media", codes: "F1–F5" },
+      { label: "Evidence", href: "#evidence", codes: "G1–G3" },
+      { label: "Navigation & closing", href: "#navigation", codes: "S9–S13" },
+      { label: "Motion", href: "#interaction", codes: "J1–J4" },
+    ],
+  },
+  {
+    group: "Case-study media",
+    items: [{ label: "All media components", href: "#case-study-media", codes: "M1–M14" }],
+  },
+  {
+    group: "Using the system",
+    items: [
+      { label: "Composition recipes", href: "#recipes" },
+      { label: "Copy guide", href: "#copy" },
+      { label: "Anti-patterns", href: "#anti-patterns" },
+    ],
+  },
 ];
 
 const SWATCHES = [
@@ -165,16 +196,40 @@ export default function ComponentsPage() {
           Typography tells the story. Colour directs attention. Dots explain the system. Glass creates depth.
           Everything else exists to make those four roles work together.
         </p>
-        <div className="mt-8 flex flex-wrap gap-2.5">
-          {NAV.map((item) => (
-            <a
-              key={item.href}
-              href={item.href}
-              className="rounded-md border px-3.5 py-2 font-mono text-[0.65rem] uppercase tracking-[0.1em] transition-colors"
-              style={{ color: "var(--ink-soft)", borderColor: "var(--ds-solid-border)", background: "var(--ds-solid-bg)" }}
+        <div className="mt-9 flex flex-col gap-4">
+          {NAV_GROUPS.map((group) => (
+            <div
+              key={group.group}
+              className="grid gap-2.5 sm:grid-cols-[10rem_1fr] sm:items-baseline sm:gap-6"
             >
-              {item.label}
-            </a>
+              <p
+                className="font-mono text-[0.6rem] uppercase tracking-[0.14em]"
+                style={{ color: "var(--muted)" }}
+              >
+                {group.group}
+              </p>
+              <div className="flex flex-wrap gap-2.5">
+                {group.items.map((item) => (
+                  <a
+                    key={item.href}
+                    href={item.href}
+                    className="rounded-md border px-3.5 py-2 font-mono text-[0.65rem] uppercase tracking-[0.1em] transition-colors"
+                    style={{
+                      color: "var(--ink-soft)",
+                      borderColor: "var(--ds-solid-border)",
+                      background: "var(--ds-solid-bg)",
+                    }}
+                  >
+                    {item.label}
+                    {"codes" in item && item.codes ? (
+                      <span className="ml-2 tracking-[0.06em]" style={{ color: "var(--muted)" }}>
+                        {item.codes}
+                      </span>
+                    ) : null}
+                  </a>
+                ))}
+              </div>
+            </div>
           ))}
         </div>
       </header>
