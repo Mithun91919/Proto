@@ -211,7 +211,7 @@ export default function StoreSupportPage() {
                   variant="beside"
                   mp4="/work/store-support/scan-asset-tag.mp4"
                   poster="/work/store-support/scan-asset-tag-poster.jpg"
-                  width={720}
+                  width={704}
                   height={1432}
                   alt="The submit journey: choosing a category, then a Resolution step labelled Step 1 of 2 with numbered instructions and the question “Did the above resolve your issue?”, and only then Step 2 of 2 collecting photos and contact details."
                   caption="Step 1 of 2 is the fix. The ticket is step 2, and only if the fix did not hold."
@@ -222,13 +222,13 @@ export default function StoreSupportPage() {
               eyebrow: "Show, don’t tell",
               title: "When the fix is physical, the instructions are photographs",
               body:
-                "Software and process fixes stay written. Where the repair is something you do with your hands, the guidance becomes photographic — the refrigeration case, the shelf, the display reading its own alarm state — so the associate matches a picture to what is in front of them instead of translating a sentence into a piece of equipment.",
+                "A software fix gets numbered steps beside a drawing of the screen to look for. Where the repair is physical, the guidance turns photographic instead — the refrigeration case, the shelf, the display reading its own alarm state — so the associate matches a picture to what is in front of them rather than translating a sentence into a piece of equipment.",
               media: (
                 <ClipFigure
                   variant="beside"
                   mp4="/work/store-support/refrigeration-alarms.mp4"
                   poster="/work/store-support/refrigeration-alarms-poster.jpg"
-                  width={720}
+                  width={716}
                   height={1432}
                   alt="A refrigeration alarm opening into photographic troubleshooting steps showing the case and its temperature display, then into a dispatched work order showing the assigned technician."
                   caption="An alarm, the steps to clear it, and — where it cannot be cleared — an automated work order with the technician already dispatched."
@@ -268,7 +268,7 @@ export default function StoreSupportPage() {
                   variant="beside"
                   mp4="/work/store-support/work-orders.mp4"
                   poster="/work/store-support/work-orders-poster.jpg"
-                  width={720}
+                  width={704}
                   height={1432}
                   alt="A work order opened from the list — trade, equipment, problem code, and status — then notes added with attached photographs, and an escalate screen offering to recall the technician, escalate through the help desk, or call facilities."
                   caption="Tracking a work order, adding photographs to it, and the routes out when a repair does not hold."
@@ -285,7 +285,7 @@ export default function StoreSupportPage() {
                   variant="beside"
                   mp4="/work/store-support/rate-work-orders.mp4"
                   poster="/work/store-support/rate-work-orders-poster.jpg"
-                  width={720}
+                  width={704}
                   height={1432}
                   alt="The work-order calendar showing scheduled jobs by day, then the rating screen — stars, a yes/no question on whether the work was complete to specification, and a comments field."
                   caption="Scheduled work by day, and feedback that asks more than a star rating."
