@@ -27,7 +27,7 @@ export const metadata: Metadata = {
 
 const HERO_IMG = "/work/store-support/hero-composite.png";
 
-const HEADLINE = "One app for everything that breaks in a store — and a way to fix it before raising a ticket.";
+const HEADLINE = "One app for everything that breaks in a Walmart store.";
 
 const STATEMENT = (
   <>
@@ -122,6 +122,71 @@ function WhyWhatHowPanel() {
   );
 }
 
+function FullBleedHero() {
+  return (
+    <div className="ds-pull">
+      <div className="ds-pull-inner">
+        <span className="ds-pull-dots" aria-hidden />
+        <p className="ds-eyebrow ds-pull-eyebrow">FixIt · Store Support Platform · Walmart Global Tech</p>
+        <h3
+          className="display-title max-w-[24ch]"
+          style={{ color: "var(--ds-dark-ink)", fontSize: "clamp(2rem, 4.2vw, 3.1rem)", lineHeight: 1.08 }}
+        >
+          {HEADLINE}
+        </h3>
+        <div className="mt-8 flex flex-wrap gap-x-8 gap-y-3 font-mono text-[0.68rem] uppercase tracking-[0.1em]" style={{ color: "var(--ds-dark-muted)" }}>
+          <span>Role · UX Designer</span>
+          <span>Year · 2020–2021</span>
+          <span>Sector · Frontline ops</span>
+        </div>
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img src={HERO_IMG} alt="" className="mt-10 w-full rounded-xl" style={{ maxWidth: "60rem" }} />
+      </div>
+    </div>
+  );
+}
+
+/** Reasoning and scale as one card, not two separate blocks — modelled on
+    how Ramotion's own case studies pair an "About" paragraph with a
+    plain fact column (Length / Products / Team) rather than folding
+    everything into one dense mixed panel: Why/What/How stacked on the
+    left reads as prose-weight reasoning, the metrics on the right read
+    as a plain fact list, and a single vertical rule is the only thing
+    joining them. */
+function WhyWhatHowAndMetrics() {
+  return (
+    <div className="rounded-2xl p-8 md:p-12" style={{ border: "1px solid var(--ds-solid-border)", background: "var(--ds-solid-bg)" }}>
+      <div className="grid grid-cols-1 gap-10 md:grid-cols-[1.3fr_auto_0.8fr] md:gap-12">
+        <dl className="space-y-7">
+          {WHY_WHAT_HOW.map((row) => (
+            <div key={row.label}>
+              <dt className="ds-eyebrow">{row.label}</dt>
+              <dd className="body-text m-0 mt-2">{row.detail}</dd>
+            </div>
+          ))}
+        </dl>
+
+        <div aria-hidden className="hidden md:block" style={{ width: 1, background: "var(--ds-solid-border)" }} />
+
+        <dl className="space-y-6">
+          {[
+            { value: "~5.9K", label: "daily users" },
+            { value: "~580K", label: "device footprint" },
+            { value: "7K+", label: "weekly searches" },
+          ].map((m) => (
+            <div key={m.label}>
+              <dt className="display-title" style={{ fontSize: "1.7rem", color: "var(--accent-deep)" }}>
+                {m.value}
+              </dt>
+              <dd className="ds-eyebrow m-0 mt-1">{m.label}</dd>
+            </div>
+          ))}
+        </dl>
+      </div>
+    </div>
+  );
+}
+
 function OverviewGrid({ panel }: { panel: React.ReactNode }) {
   return (
     <div className="mt-9 grid grid-cols-1 items-start gap-8 md:grid-cols-[0.85fr_1.15fr] md:gap-16">
@@ -149,7 +214,7 @@ export default function CaseStudyExplorationsPage() {
       <header className="mx-auto w-full max-w-[85rem] px-5 pt-14 md:px-8">
         <p className="eyebrow">Internal · not linked</p>
         <h1 className="display-title mt-4 max-w-[30ch]" style={{ fontSize: "2.4rem", lineHeight: 1.08 }}>
-          Four ways to open the same case study.
+          Six ways to open the same case study.
         </h1>
         <p className="mt-6 max-w-[68ch] text-lg leading-8" style={{ color: "var(--ink-soft)" }}>
           Same headline, same statement, same body prose, same hero image throughout — only the composition
@@ -242,6 +307,28 @@ export default function CaseStudyExplorationsPage() {
           The floor doesn&apos;t think in support categories. It thinks in problems — a department, a
           device, a person to call.
         </PullStatement>
+      </section>
+
+      {/* ── 6 · Full-bleed hero, evidence as one section ─────────────────── */}
+      <section className="pt-28">
+        <div className="mx-auto w-full max-w-[85rem] px-5 md:px-8">
+          <VariationLabel
+            code="6"
+            name="Full-bleed hero, evidence as one section"
+            note="Hero runs to the viewport edges instead of sitting in a rounded card. Below it, Why/What/How and the metrics share one card — reasoning on the left at prose weight, scale on the right as a plain fact column, one rule between them — closer to how Ramotion pairs an About paragraph with a Length/Products/Team fact list than to stacking two separate blocks."
+          />
+        </div>
+        <FullBleedHero />
+        <div className="mx-auto mt-12 w-full max-w-[85rem] px-5 md:px-8">
+          <WhyWhatHowAndMetrics />
+          <div className="mt-10 max-w-[70rem] space-y-5">
+            {BODY.map((p) => (
+              <p key={p} className="body-text">
+                {p}
+              </p>
+            ))}
+          </div>
+        </div>
       </section>
     </div>
   );
