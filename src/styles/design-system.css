@@ -2500,6 +2500,14 @@ a:hover .ds-compact-mark .ds-dot {
   width: 100%;
 }
 
+/* A pre-composed hero brings its own screen edges and shadows; the panel
+   chrome would draw a second frame around the whole arrangement. */
+.ds-scene-figure-shot.is-bare {
+  border: none;
+  border-radius: 0;
+  box-shadow: none;
+}
+
 /* The second screen leans out from behind on the left, into the scrim, so it
    reads as depth rather than a second thing to look at. */
 .ds-scene-figure-shot.is-behind {

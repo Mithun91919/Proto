@@ -18,6 +18,13 @@ type SceneBannerFigureProps = {
   screens?: HeroScreen[];
   /** Mono footnote, e.g. "Reconstructed · placeholder data". */
   note?: string;
+  /**
+   * Drops the frame chrome. A pre-composed hero — several screens already
+   * arranged on a transparent ground — carries its own edges and shadows,
+   * so the panel border would outline the whole composite as one card.
+   * Only meaningful with a single lead screen.
+   */
+  bare?: boolean;
 };
 
 /**
@@ -30,7 +37,7 @@ type SceneBannerFigureProps = {
  * angle for depth. Everything bleeds off the right and bottom edges the way
  * the real composites do, leaving the left of the band to the headline.
  */
-export function SceneBannerFigure({ screens = [], note }: SceneBannerFigureProps) {
+export function SceneBannerFigure({ screens = [], note, bare = false }: SceneBannerFigureProps) {
   if (screens.length === 0) {
     return (
       <div className="ds-scene-figure ds-scene-figure-pending">
@@ -55,7 +62,7 @@ export function SceneBannerFigure({ screens = [], note }: SceneBannerFigureProps
           />
         ) : null}
         <Image
-          className="ds-scene-figure-shot is-lead"
+          className={`ds-scene-figure-shot is-lead${bare ? " is-bare" : ""}`}
           src={lead.src}
           width={lead.width}
           height={lead.height}
