@@ -97,14 +97,15 @@ export default function StoreSupportPage() {
           <CaseStudyOverview
             statement={
               <>
-                Anything can break. <span className="text-[var(--accent-deep)]">One place to fix it</span>.
+                The product collected tickets.{" "}
+                <span className="text-[var(--accent-deep)]">It did not prevent them</span>.
               </>
             }
-            note="Facilities and technology, in the same place."
+            note="Frontline support for store associates — facilities and technology."
             body={[
-              "A freezer drifting out of temperature in frozen foods. A forklift down in the back room. A handheld that will not scan at the register, or a pharmacy system that will not log in.",
-              "Those are different trades answered by different teams, and to the associate who found them they are the same event: something in the store stopped working, and the shift is still running. FixIt puts all of it behind one front door — equipment and technology, alarms and tickets, reporting and repair.",
-              "None of it is the job someone came to do. It is an interruption to that job, which is the constraint the whole experience is built around: fast, clear, and forgiving of a person working under time pressure.",
+              "A freezer drifting out of temperature in frozen foods. A forklift down in the back room. A handheld that will not scan at the register, or a pharmacy system that will not log in. Different trades, different teams — and to the associate who found them, the same event: something stopped working and the shift is still running.",
+              "Support was built around reporting it: choose a category, fill a form, submit. Troubleshooting was thin, search was a dead end, and the form arrived before anyone had tried the obvious fix — so the shortest path through the product led straight to a ticket.",
+              "FixIt puts all of it behind one front door — equipment and technology, alarms and tickets — and puts the fix in front of the form.",
             ]}
           />
         </CaseStudySection>
