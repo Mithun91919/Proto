@@ -2500,6 +2500,13 @@ a:hover .ds-compact-mark .ds-dot {
   width: 100%;
 }
 
+/* A composite is built to sit on the floor of the band and run off it, so
+   it anchors to the bottom rather than centring — centring floats it and
+   strands band above and below. Landscape single shots still centre. */
+.ds-scene-figure.is-composite {
+  align-items: flex-end;
+}
+
 /* A pre-composed hero brings its own screen edges and shadows; the panel
    chrome would draw a second frame around the whole arrangement. */
 .ds-scene-figure-shot.is-bare {

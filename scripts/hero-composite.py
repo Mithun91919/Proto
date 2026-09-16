@@ -20,11 +20,11 @@ from PIL import Image, ImageDraw, ImageFilter
 SRC = "public/work/store-support"
 OUT = f"{SRC}/hero-composite.png"
 S = 1.5                       # render scale over the 1600x926 design space
-# 1600x1333 (~1.2). The band is ~686px tall and the stack is a fixed 48rem
-# (768px) wide, so a wider canvas centres short and strands dead band under
-# it. At this ratio the composite nearly fills the band's height, and the
-# stack's own -2.5rem right margin clips the right-hand phone into a bleed.
-W, H = int(1600*S), int(1333*S)
+# 1600x1459 (~1.1). The stack is a fixed 48rem (768px) wide, so this lands
+# ~700px tall against a ~686px band — the figure is bottom-anchored (see
+# .ds-scene-figure.is-composite), so the canvas floor is the band floor and
+# the phones below run off it.
+W, H = int(1600*S), int(1459*S)
 PHONE_AR = 720/1432           # match the device ratio used in the clips
 
 def phone(path, out_h, opacity=1.0, radius_frac=0.055):
@@ -72,17 +72,20 @@ canvas = Image.new("RGBA", (W, H), (0, 0, 0, 0))
 
 # x, y and height in the 1600x926 design space. Lead sits forward and bleeds
 # off the bottom; the flanking two recede and are dimmed.
-# Nothing bleeds off the canvas bottom: the band centres this image, so a
-# phone cut at the canvas edge reads as cut in mid-air rather than running
-# off the band. Horizontal bleed is left to the CSS.
+# Every phone runs off the canvas bottom. With the figure bottom-anchored
+# that edge is the band's own edge, so they read as standing on the floor of
+# the band rather than floating in it. The right-hand phone also passes the
+# canvas edge, which the stack's -2.5rem right margin carries into a bleed.
 layout = [
-    (f"{SRC}/submit-issue.png",          90, 200, 1010, 0.45),
-    (f"{SRC}/refrigeration-alarms.png", 1085, 200, 1010, 0.45),
-    (f"{SRC}/home.png",                  550,  70, 1200, 1.00),
+    (f"{SRC}/submit-issue.png",           60, 400, 1100, 0.45),
+    (f"{SRC}/refrigeration-alarms.png", 1060, 400, 1100, 0.45),
+    (f"{SRC}/home.png",                  530, 230, 1300, 1.00),
 ]
 for path, x, y, h, op in layout:
     img, pad = phone(path, int(h*S), opacity=op)
-    canvas.alpha_composite(img, (int(x*S)-pad, int(y*S)-pad))
+    layer = Image.new("RGBA", (W, H), (0, 0, 0, 0))
+    layer.paste(img, (int(x*S)-pad, int(y*S)-pad))
+    canvas = Image.alpha_composite(canvas, layer)
 
 canvas.save(OUT)
 print("wrote", OUT, canvas.size)

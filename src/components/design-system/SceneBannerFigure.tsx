@@ -49,7 +49,7 @@ export function SceneBannerFigure({ screens = [], note, bare = false }: SceneBan
   const [lead, behind] = screens;
 
   return (
-    <div className="ds-scene-figure">
+    <div className={`ds-scene-figure${bare ? " is-composite" : ""}`}>
       <div className="ds-scene-figure-stack">
         {behind ? (
           <Image
