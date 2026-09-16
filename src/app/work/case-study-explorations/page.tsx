@@ -263,14 +263,52 @@ export default function CaseStudyExplorationsPage() {
       <header className="mx-auto w-full max-w-[85rem] px-5 pt-14 md:px-8">
         <p className="eyebrow">Internal · not linked</p>
         <h1 className="display-title mt-4 max-w-[30ch]" style={{ fontSize: "2.4rem", lineHeight: 1.08 }}>
-          Seven ways to open the same case study.
+          One recommendation, then the comparisons behind it.
         </h1>
         <p className="mt-6 max-w-[68ch] text-lg leading-8" style={{ color: "var(--ink-soft)" }}>
-          Same headline, same statement, same body prose, same hero image throughout — only the composition
-          changes. Grounded in what the UXfolio benchmark research says a strong open does: state the
-          problem before the solution, make the reasoning visible, and let a skimmer triage fast.
+          The picture below is the actual answer — full-bleed, poster-referenced, Why/What/How and the
+          metrics sharing one card. Everything under &quot;The comparisons&quot; is the working that got here,
+          kept for reference, not seven equal options to choose between.
         </p>
       </header>
+
+      {/* ── Recommended ─────────────────────────────────────────────────── */}
+      <section className="pt-14">
+        <div className="mx-auto w-full max-w-[85rem] px-5 md:px-8">
+          <div className="mb-8 flex flex-wrap items-baseline gap-4">
+            <span
+              className="rounded-md px-2.5 py-1 font-mono text-[0.62rem] uppercase tracking-[0.12em]"
+              style={{ color: "#fff", background: "var(--accent-deep)" }}
+            >
+              Recommended
+            </span>
+            <p className="body-sm max-w-[58ch]" style={{ color: "var(--ink-soft)" }}>
+              Full-bleed poster hero (built from the Firefox reference, on Store Support&apos;s own accent) —
+              headline stated plainly, product and client as corner labels, no sidebar. Directly under it,
+              reasoning and scale share one card at equal visual weight — Ramotion&apos;s prose-plus-fact-list
+              split, not a strip of metrics bolted onto a Why/What/How sidebar.
+            </p>
+          </div>
+        </div>
+        <PosterHero />
+        <div className="mx-auto mt-12 w-full max-w-[85rem] px-5 md:px-8">
+          <WhyWhatHowAndMetrics />
+          <div className="mt-10 max-w-[70rem] space-y-5">
+            {BODY.map((p) => (
+              <p key={p} className="body-text">
+                {p}
+              </p>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <div className="mx-auto mt-28 w-full max-w-[85rem] px-5 md:px-8">
+        <p className="eyebrow">The comparisons</p>
+        <h2 className="display-title mt-4 max-w-[40ch]" style={{ fontSize: "1.6rem" }}>
+          Six ways this got tested — kept for reference, not for picking from again.
+        </h2>
+      </div>
 
       {/* ── 1 · Shipped baseline ────────────────────────────────────────── */}
       <section className="mx-auto w-full max-w-[70rem] px-5 pt-20 md:px-8">
@@ -363,8 +401,8 @@ export default function CaseStudyExplorationsPage() {
         <div className="mx-auto w-full max-w-[85rem] px-5 md:px-8">
           <VariationLabel
             code="6"
-            name="Full-bleed hero, evidence as one section"
-            note="Hero runs to the viewport edges instead of sitting in a rounded card. Below it, Why/What/How and the metrics share one card — reasoning on the left at prose weight, scale on the right as a plain fact column, one rule between them — closer to how Ramotion pairs an About paragraph with a Length/Products/Team fact list than to stacking two separate blocks."
+            name="Full-bleed hero, dark ground"
+            note="The same evidence card as the recommendation above, but on the site's standard dark full-bleed band instead of the project's own accent colour and dot texture — the step right before bringing the poster reference in. Kept to show why the colour field reads stronger than the default dark."
           />
         </div>
         <FullBleedHero />
@@ -378,18 +416,6 @@ export default function CaseStudyExplorationsPage() {
             ))}
           </div>
         </div>
-      </section>
-
-      {/* ── 7 · Poster hero ───────────────────────────────────────────────── */}
-      <section className="pt-28 pb-8">
-        <div className="mx-auto w-full max-w-[85rem] px-5 md:px-8">
-          <VariationLabel
-            code="7"
-            name="Poster hero"
-            note="A reference brought in from outside the design system — a Firefox campaign poster: solid brand colour, a scattered dot texture, bold type anchored to a corner, wordmark and URL as small corner labels. Rebuilt here with Store Support's own accent as the colour field and the site's existing dot-field texture (already used for a photo-less hero) rather than a new pattern."
-          />
-        </div>
-        <PosterHero />
       </section>
     </div>
   );
