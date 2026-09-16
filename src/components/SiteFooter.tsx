@@ -11,7 +11,7 @@ export function SiteFooter() {
           <span role="img" aria-label="love" style={{ margin: "0 0.15ch" }}>
             ♥
           </span>{" "}
-          with{" "}
+          using{" "}
           <a
             href="https://claude.ai"
             target="_blank"

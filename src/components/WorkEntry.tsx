@@ -30,10 +30,11 @@ type WorkEntryProps = {
  * `md` up and swaps side via `reverse`.
  */
 export function WorkEntry({ project, reverse = false, emphasis = "full" }: WorkEntryProps) {
-  // Sector + surface, matching two of the /work filter axes, so the
-  // classification is legible on the row without toggling a chip. The
-  // fuller craft breakdown lives in the filter and the case study.
-  const facets = [project.domain, ...projectPlatforms(project.slug)];
+  // Org first, then sector + surface. The org is the credibility signal a
+  // scanner needs before opening the case study, and it matches how the
+  // earlier-work cards already lead with the company; sector and surface
+  // then place the work. The fuller craft breakdown lives in the case study.
+  const facets = [project.org, project.domain, ...projectPlatforms(project.slug)];
 
   return (
     <Link

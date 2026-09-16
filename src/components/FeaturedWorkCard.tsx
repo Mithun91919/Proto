@@ -6,6 +6,7 @@ import { GlassPanel } from "@/components/design-system/primitives/GlassPanel";
 import type { SystemShape } from "@/components/design-system/FeaturedGlyph";
 import type { MetricMarkName } from "@/components/design-system/dotPatterns";
 import type { Project } from "@/content/projects";
+import { orgLogo } from "@/content/work-page";
 
 /**
  * Which of the five system shapes (see design-system C · Dot language) a
@@ -56,6 +57,8 @@ export function metricGlyph(slug: string, index: number): MetricMarkName {
  * still holds one row height with a single clean corner radius.
  */
 export function FeaturedWorkCard({ project }: { project: Project }) {
+  const logo = orgLogo(project.org);
+
   return (
     <Link
       href={`/work/${project.slug}`}
@@ -76,8 +79,26 @@ export function FeaturedWorkCard({ project }: { project: Project }) {
           >
             {project.number} · {project.label}
           </span>
+          <span
+            className="absolute bottom-4 right-4 rounded-full px-3 py-1 font-mono text-[0.62rem] uppercase tracking-[0.12em]"
+            style={{ background: "var(--ds-dark)", color: "var(--ds-mint)" }}
+          >
+            {project.timeframe}
+          </span>
         </div>
         <div className="flex flex-1 flex-col p-7">
+          {/* Provenance above the title, where it gets read first — who the
+              work was for is the credibility signal a scanner needs before
+              the headline. Same wordmark the career timeline uses. */}
+          <div className="mb-3 flex items-center gap-2">
+            {logo ? (
+              // eslint-disable-next-line @next/next/no-img-element
+              <img className="timeline-logo" src={logo} alt="" style={{ height: "1rem" }} />
+            ) : null}
+            <span className="font-mono text-[0.62rem] uppercase tracking-[0.14em] text-[var(--muted)]">
+              {project.org}
+            </span>
+          </div>
           <h3
             className="display-title text-[var(--ink)] transition-colors duration-300 group-hover:text-[var(--accent-deep)]"
             style={{ fontSize: "1.6rem" }}

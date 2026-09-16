@@ -31,7 +31,7 @@ export default function HomePage() {
       <ChapterProgress chapters={CHAPTERS} />
 
       <section className="hero-stage">
-        <div className="relative z-[1] mx-auto grid w-full max-w-[80rem] gap-12 px-5 pb-16 pt-14 md:grid-cols-[1fr_24rem] md:items-center md:gap-16 md:px-8 md:pb-24 md:pt-20">
+        <div className="relative z-[1] mx-auto grid w-full max-w-[80rem] gap-12 px-5 pb-12 pt-14 md:grid-cols-[1fr_24rem] md:items-center md:gap-16 md:px-8 md:pb-16 md:pt-20">
           <div className="hero-in">
             <h1 className="display-title display-name mt-6 text-[var(--ink)]">
               Mithun Raju.
@@ -39,22 +39,14 @@ export default function HomePage() {
                 Product designer turning complexity into <span className="text-[var(--accent-deep)]">connected products</span>.
               </span>
             </h1>
+            {/* One line, not three. The tagline above already states the
+                "complexity → connected systems" position; this adds only
+                what it doesn't — the domains and where the work happens.
+                Benchmarked against the UXfolio-featured portfolios, whose
+                heroes run a single line before the first project. */}
             <p className="lede mt-8">
-              I design across consumer products, enterprise platforms, and AI-assisted workflows — making complex systems easier to understand, use, and scale.
+              Consumer products, enterprise platforms, and AI-assisted workflows — currently at Walmart Global Tech.
             </p>
-            <div className="mt-10 flex flex-wrap gap-3">
-              <span className="tag">PRODUCT DESIGN</span>
-              <span className="tag">SYSTEMS</span>
-              <span className="tag">PROTOTYPING</span>
-            </div>
-            <div className="mt-10 flex flex-wrap gap-3">
-              <a href="#work" className="button button-primary">
-                Selected work ↓
-              </a>
-              <Link href="/about" className="button button-secondary">
-                About me
-              </Link>
-            </div>
           </div>
 
           <HeroPortrait />

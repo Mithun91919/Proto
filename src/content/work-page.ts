@@ -158,3 +158,20 @@ export const earlierWork: EarlierWorkEntry[] = [
     slug: "creo-mark-1",
   },
 ];
+
+/**
+ * Org → wordmark, reusing the same assets the career timeline renders.
+ * Cards lead with the company because that provenance is the credibility
+ * signal a scanner needs before opening a case study; the mark carries it
+ * faster than the name alone.
+ */
+const ORG_LOGOS: Record<string, string> = {
+  "Walmart Global Tech": "/orgs/walmart.svg",
+  bigbasket: "/orgs/bigbasket.svg",
+  Hike: "/orgs/hike.svg",
+  CREO: "/orgs/creo.png",
+};
+
+export function orgLogo(org: string): string | undefined {
+  return ORG_LOGOS[org];
+}

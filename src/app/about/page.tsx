@@ -67,25 +67,19 @@ export default function AboutPage() {
           <div className="flex-1 space-y-6 text-[1.05rem] leading-8 text-[var(--ink-soft)]">
             <Reveal delay={80}>
               <p>
-                Early in my career, I was focused on the details of the interface — typography, composition, interaction, and how something felt to use.
+                Early on, the work was the interface itself — typography, composition, interaction, and how something felt to use.
               </p>
             </Reveal>
 
-            <Reveal delay={120}>
+            <Reveal delay={140}>
               <p>
-                Consumer products pushed me to think beyond individual screens and into journeys, behaviour, and product decisions.
-              </p>
-            </Reveal>
-
-            <Reveal delay={160}>
-              <p>
-                Commerce introduced another layer: customer experiences were connected to delivery, fulfilment, and the people operating on the other side of the product.
+                Consumer and commerce products pushed past individual screens into journeys, behaviour, and the delivery and fulfilment operations on the other side of them.
               </p>
             </Reveal>
 
             <Reveal delay={200}>
               <p>
-                Enterprise software expanded that thinking again. Products were now connected to workflows, data, permissions, other tools, and entire organisations.
+                Enterprise software expanded that again: products now sat inside workflows, data, permissions, other tools, and whole organisations.
               </p>
             </Reveal>
 
@@ -366,8 +360,13 @@ export default function AboutPage() {
                   Elsewhere
                 </p>
                 <div className="mt-3 flex flex-col gap-2">
-                  {/* TODO: Add résumé URL when ready */}
-                  {/* <a href="/resume.pdf" target="_blank" rel="noopener noreferrer" className="font-semibold transition hover:translate-x-1" style={{ color: "var(--ds-mint)" }}>Résumé</a> */}
+                  <Link
+                    href="/resume"
+                    className="font-semibold transition hover:translate-x-1"
+                    style={{ color: "var(--ds-mint)" }}
+                  >
+                    Resume
+                  </Link>
                   <a
                     href="https://linkedin.com/in/mithunrajuk"
                     target="_blank"

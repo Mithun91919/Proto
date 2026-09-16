@@ -3,8 +3,10 @@ import Link from "next/link";
 import { DotText } from "@/components/DotText";
 import { Reveal } from "@/components/Reveal";
 import { SectionHead } from "@/components/SectionHead";
-import { WorkFilters } from "@/components/WorkFilters";
+import { WorkEntry } from "@/components/WorkEntry";
+import { WorkCardGrid } from "@/components/WorkCardGrid";
 import { ChapterProgress } from "@/components/design-system/ChapterProgress";
+import { hasCaseStudyPage } from "@/content/case-study-routes";
 import { getFeaturedProjects, getRangeProjects } from "@/content/projects";
 import {
   careerStages,
@@ -103,10 +105,34 @@ export default function WorkPage() {
         <SectionHead
           eyebrow="Case studies"
           title="Selected work"
-          lede="Filter by sector, platform, or the kind of work — every project on this page, not a curated sample."
+          lede="Every project on this page, not a curated sample — consumer, commerce, enterprise, and developer work."
         />
 
-        <WorkFilters featured={featured} more={more} earlier={earlierWork} />
+        <div className="mt-12 flex flex-col gap-16 md:mt-14 md:gap-24">
+          {[...featured, ...more].map((project, index) => (
+            <Reveal key={project.slug} delay={index * 70}>
+              <WorkEntry project={project} reverse={index % 2 === 1} />
+            </Reveal>
+          ))}
+        </div>
+
+        <div className="ds-section-boundary-minor mt-12 pt-7 md:mt-16 md:pt-8">
+          <p className="eyebrow">Earlier work</p>
+          <p className="body-text mt-2 max-w-[52ch]">
+            Consumer product and brand work from before the enterprise projects.
+          </p>
+          <WorkCardGrid
+            items={earlierWork.map((entry, index) => ({
+              id: `${entry.org}-${index}`,
+              number: entry.number,
+              org: entry.org,
+              body: entry.body,
+              tags: entry.tags,
+              image: entry.image,
+              slug: hasCaseStudyPage(entry.slug) ? entry.slug : undefined,
+            }))}
+          />
+        </div>
       </section>
 
       {/* Dark closing card — the same treatment used to close the
