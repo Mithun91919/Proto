@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { DotGrid } from "@/components/design-system/primitives/DotGrid";
 import { GlassPanel } from "@/components/design-system/primitives/GlassPanel";
 import { FeaturedGlyph } from "@/components/design-system/FeaturedGlyph";
+import { DotFlow } from "@/components/design-system/DotFlow";
 
 /**
  * Internal comparison — three ways to open a case study, on real FixIt
@@ -92,7 +93,7 @@ function Frame({
   panel: React.ReactNode;
 }) {
   return (
-    <section className="ds-section-boundary pt-14 md:pt-20">
+    <section className="ds-section-boundary mx-auto w-full max-w-[85rem] px-5 pt-14 md:px-8 md:pt-20">
       <div className="mb-10 flex flex-wrap items-baseline gap-4">
         <span
           className="rounded-md border px-2.5 py-1 font-mono text-[0.62rem] uppercase tracking-[0.12em]"
@@ -124,8 +125,8 @@ function Frame({
 
 export default function SummaryOptionsPage() {
   return (
-    <div className="ds-scope mx-auto w-full max-w-[85rem] px-5 pb-32 md:px-8">
-      <header className="pt-14">
+    <div className="ds-scope pb-32">
+      <header className="mx-auto w-full max-w-[85rem] px-5 pt-14 md:px-8">
         <p className="eyebrow">Internal · not linked</p>
         <h1 className="display-title mt-4 max-w-[24ch]" style={{ fontSize: "2.6rem", lineHeight: 1.06 }}>
           Three ways to open a case study.
@@ -218,6 +219,155 @@ export default function SummaryOptionsPage() {
           </>
         }
       />
+
+      {/* ══ Round two — the panel treatments above all failed the same way:
+             small, quiet, and in a 0.85fr column. These take the full
+             measure instead. ══════════════════════════════════════════ */}
+      <div className="mx-auto w-full max-w-[85rem] px-5 pt-24 md:px-8 md:pt-32">
+        <p className="eyebrow">Round two</p>
+        <h2 className="display-title mt-4 max-w-[26ch]" style={{ fontSize: "2rem", lineHeight: 1.1 }}>
+          Same job, at full scale.
+        </h2>
+        <p className="mt-5 max-w-[60ch] text-lg leading-8" style={{ color: "var(--ink-soft)" }}>
+          A summary that has to compete with a hero cannot be a sidebar. These replace the overview block
+          rather than sitting inside it.
+        </p>
+      </div>
+
+      {/* ── D ─────────────────────────────────────────────────────────── */}
+      <div className="mx-auto w-full max-w-[85rem] px-5 pb-6 pt-16 md:px-8">
+        <div className="flex flex-wrap items-baseline gap-4">
+          <span
+            className="rounded-md border px-2.5 py-1 font-mono text-[0.62rem] uppercase tracking-[0.12em]"
+            style={{ color: "var(--ink-soft)", borderColor: "var(--ds-solid-border)", background: "var(--ds-solid-bg)" }}
+          >
+            D
+          </span>
+          <h2 className="display-title text-[var(--ink)]" style={{ fontSize: "1.35rem" }}>
+            Two paths, full-bleed
+          </h2>
+          <p className="body-sm max-w-[54ch]" style={{ color: "var(--ink-soft)" }}>
+            What the approved draft actually asks for: “Open with a before-and-after comparison of the
+            original ticket flow and the redesigned experience.” The whole argument in one screen.
+          </p>
+        </div>
+      </div>
+      <div className="ds-pull">
+        <div className="ds-pull-inner" style={{ color: "var(--ds-dark-ink)" }}>
+          <span className="ds-pull-dots" aria-hidden />
+          <p className="ds-eyebrow ds-pull-eyebrow">FixIt · Walmart Global Tech</p>
+          <h3 className="display-title max-w-[20ch]" style={{ fontSize: "clamp(2rem, 4vw, 3.1rem)", lineHeight: 1.06 }}>
+            Reporting a fault used to cost more than fixing it.
+          </h3>
+          <div className="mt-12 grid gap-10 lg:grid-cols-2 lg:gap-16">
+            <div>
+              <p className="ds-eyebrow mb-5" style={{ color: "var(--ds-dark-muted)" }}>
+                Before
+              </p>
+              <DotFlow stages={["Find a manager", "Find a desktop", "Fill a form", "Wait"]} />
+            </div>
+            <div>
+              <p className="ds-eyebrow mb-5" style={{ color: "var(--ds-mint)" }}>
+                After
+              </p>
+              <DotFlow stages={["Open FixIt", "What happened?", "Try the fix", "Back to work"]} />
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* ── E ─────────────────────────────────────────────────────────── */}
+      <div className="mx-auto w-full max-w-[85rem] px-5 pb-8 pt-24 md:px-8">
+        <div className="flex flex-wrap items-baseline gap-4">
+          <span
+            className="rounded-md border px-2.5 py-1 font-mono text-[0.62rem] uppercase tracking-[0.12em]"
+            style={{ color: "var(--ink-soft)", borderColor: "var(--ds-solid-border)", background: "var(--ds-solid-bg)" }}
+          >
+            E
+          </span>
+          <h2 className="display-title text-[var(--ink)]" style={{ fontSize: "1.35rem" }}>
+            Converge diagram
+          </h2>
+          <p className="body-sm max-w-[54ch]" style={{ color: "var(--ink-soft)" }}>
+            The dot language at the size it was built for — C · DotSystemDiagram, not a 5px mark. Shows “one
+            app for anything that breaks” instead of asserting it.
+          </p>
+        </div>
+
+        <div className="ds-glass mt-8 rounded-2xl p-9">
+          <div className="grid items-center gap-8 md:grid-cols-[1fr_80px_1fr]">
+            <div className="flex flex-col gap-4">
+              {["Refrigeration", "Forklifts & boilers", "Handhelds & registers", "Store network", "Pharmacy systems"].map(
+                (label) => (
+                  <div key={label} className="flex items-center gap-3.5">
+                    <DotGrid cols={2} size={7} gap={5} dots={Array(4).fill(1)} variant="muted" />
+                    <span className="font-mono text-[0.62rem] uppercase tracking-[0.1em]" style={{ color: "var(--muted)" }}>
+                      {label}
+                    </span>
+                  </div>
+                ),
+              )}
+            </div>
+            <span className="ds-arrow hidden justify-self-center text-2xl md:block" style={{ color: "var(--accent-deep)" }}>
+              →
+            </span>
+            <div>
+              <DotGrid cols={4} size={7} gap={5} dots={Array(16).fill(1)} />
+              <p className="display-title mt-5" style={{ fontSize: "1.5rem" }}>
+                One front door
+              </p>
+              <p className="ds-note mt-2 max-w-[34ch]">
+                Five trades and five support queues, behind a single app on the floor — with the fix offered
+                before the form.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* ── F ─────────────────────────────────────────────────────────── */}
+      <div className="mx-auto w-full max-w-[85rem] px-5 pb-6 pt-24 md:px-8">
+        <div className="flex flex-wrap items-baseline gap-4">
+          <span
+            className="rounded-md border px-2.5 py-1 font-mono text-[0.62rem] uppercase tracking-[0.12em]"
+            style={{ color: "var(--ink-soft)", borderColor: "var(--ds-solid-border)", background: "var(--ds-solid-bg)" }}
+          >
+            F
+          </span>
+          <h2 className="display-title text-[var(--ink)]" style={{ fontSize: "1.35rem" }}>
+            System Map, poster scale
+          </h2>
+          <p className="body-sm max-w-[54ch]" style={{ color: "var(--ink-soft)" }}>
+            Option A’s three beats, given the full width and dots large enough to read as meaning rather
+            than texture.
+          </p>
+        </div>
+      </div>
+      <div className="ds-pull">
+        <div className="ds-pull-inner" style={{ color: "var(--ds-dark-ink)" }}>
+          <span className="ds-pull-dots" aria-hidden />
+          <p className="ds-eyebrow ds-pull-eyebrow">The system map</p>
+          <div className="mt-2 grid gap-12 md:grid-cols-3 md:gap-10">
+            {SYSTEM_MAP.map((step, i) => (
+              <div key={step.label}>
+                <DotGrid cols={3} dots={step.dots} size={11} gap={7} />
+                <p
+                  className="ds-eyebrow mt-7"
+                  style={{ color: i === 2 ? "var(--ds-mint)" : "var(--ds-dark-muted)" }}
+                >
+                  {step.label}
+                </p>
+                <p
+                  className="display-title mt-3 max-w-[22ch]"
+                  style={{ fontSize: "1.3rem", lineHeight: 1.3, fontWeight: 400 }}
+                >
+                  {step.detail}
+                </p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
     </div>
   );
 }

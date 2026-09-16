@@ -1770,6 +1770,15 @@
   color: var(--ink-soft);
 }
 
+/* DotFlow was only ever used on the light ground, so its label kept the
+   light-ground ink. On a dark band that is #243942 on #0c1f26 — a contrast
+   failure, not just a dim label. The dots themselves use the accent and
+   carry over fine. */
+.ds-pull .ds-dotflow-label,
+.ds-env-dark .ds-dotflow-label {
+  color: var(--ds-dark-muted);
+}
+
 /* The wrapper every in-chapter figure sits in, so spacing is one decision
    rather than a margin re-typed per page. */
 .ds-cs-figure {
