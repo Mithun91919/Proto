@@ -97,13 +97,13 @@ export default function StoreSupportPage() {
           <CaseStudyOverview
             statement={
               <>
-                One app for <span className="text-[var(--accent-deep)]">anything that breaks</span>.
+                Anything can break. <span className="text-[var(--accent-deep)]">One place to fix it</span>.
               </>
             }
             note="Facilities and technology, in the same place."
             body={[
               "A freezer drifting out of temperature in frozen foods. A forklift down in the back room. A handheld that will not scan at the register, or a pharmacy system that will not log in.",
-              "Those are four different trades answered by four different teams, and to the associate who found them they are the same event: something in the store stopped working, and the shift is still running. FixIt puts all of it behind one front door — equipment and technology, alarms and tickets, reporting and repair.",
+              "Those are different trades answered by different teams, and to the associate who found them they are the same event: something in the store stopped working, and the shift is still running. FixIt puts all of it behind one front door — equipment and technology, alarms and tickets, reporting and repair.",
               "None of it is the job someone came to do. It is an interruption to that job, which is the constraint the whole experience is built around: fast, clear, and forgiving of a person working under time pressure.",
             ]}
           />
