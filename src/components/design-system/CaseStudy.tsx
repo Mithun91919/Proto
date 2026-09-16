@@ -268,11 +268,19 @@ export function CaseStudySection({
 export function CaseStudyOverview({
   statement,
   note,
+  whyWhatHow,
   body,
 }: {
   /** Use a `<span className="text-[var(--accent-deep)]">` for the one emphasis. */
   statement: ReactNode;
   note?: string;
+  /** Why the work mattered, what shipped, how it got there — three short
+      rows under the statement instead of (not alongside) `note`, for a
+      project whose overview needs to earn its scroll rather than just
+      set the scene. Compared against a plain note, a system-map diagram,
+      and a compact synopsis at `/work/summary-options` before landing
+      here as the most legible sidebar. */
+  whyWhatHow?: { label: string; detail: string }[];
   body: string[];
 }) {
   return (
@@ -289,7 +297,21 @@ export function CaseStudyOverview({
           >
             {statement}
           </p>
-          {note ? (
+          {whyWhatHow?.length ? (
+            <dl className="mt-7">
+              {whyWhatHow.map((row, i) => (
+                <div
+                  key={row.label}
+                  className={`grid grid-cols-[3.5rem_1fr] items-baseline gap-5 py-4 ${i > 0 ? "ds-rule" : ""}`}
+                >
+                  <dt className="ds-eyebrow">{row.label}</dt>
+                  <dd className="body-sm m-0" style={{ color: "var(--ink-soft)" }}>
+                    {row.detail}
+                  </dd>
+                </div>
+              ))}
+            </dl>
+          ) : note ? (
             <p className="body-sm mt-5" style={{ maxWidth: "32ch" }}>
               {note}
             </p>

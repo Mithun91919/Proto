@@ -101,7 +101,23 @@ export default function StoreSupportPage() {
                 <span className="text-[var(--accent-deep)]">It did not prevent them</span>.
               </>
             }
-            note="Frontline support for store associates — facilities and technology."
+            whyWhatHow={[
+              {
+                label: "Why",
+                detail:
+                  "Store associates lost shift time to broken equipment and devices they could not report from the floor.",
+              },
+              {
+                label: "What",
+                detail:
+                  "One app spanning facilities and technology, with self-resolution ahead of ticket creation.",
+              },
+              {
+                label: "How",
+                detail:
+                  "Card sorting for the taxonomy, guided troubleshooting as step one of two, and a tracked work-order loop.",
+              },
+            ]}
             body={[
               "A freezer drifting out of temperature in frozen foods. A forklift down in the back room. A handheld that will not scan at the register, or a pharmacy system that will not log in. Different trades, different teams — and to the associate who found them, the same event: something stopped working and the shift is still running.",
               "Support was built around reporting it: choose a category, fill a form, submit. Troubleshooting was thin, search was a dead end, and the form arrived before anyone had tried the obvious fix — so the shortest path through the product led straight to a ticket.",
