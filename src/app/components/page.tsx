@@ -58,7 +58,8 @@ import { EditorialNumberedRows } from "@/components/design-system/EditorialNumbe
 import { SpecList } from "@/components/design-system/SpecList";
 import { NextProjectNav } from "@/components/design-system/NextProjectNav";
 import { ClosingCTA } from "@/components/design-system/ClosingCTA";
-import { FullBleedHero } from "@/components/design-system/FullBleedHero";
+import { CaseStudyHero } from "@/components/design-system/CaseStudyHero";
+import { CaseStudyEvidence } from "@/components/design-system/CaseStudyEvidence";
 import { AlternatingTextMedia } from "@/components/design-system/AlternatingTextMedia";
 import { FullBleedMediaAnchor } from "@/components/design-system/FullBleedMediaAnchor";
 import { METRIC_MARK_MEANINGS, type MetricMarkName } from "@/components/design-system/dotPatterns";
@@ -846,15 +847,35 @@ export default function ComponentsPage() {
         <SectionHeader letter="H" title="Navigation & closing" subtitle="Case-study openers, chapter transitions, and the exit" />
 
         <div className="ds-rule py-11">
-          <SubLabel code="S11 · Full-bleed hero" />
-          <FullBleedHero
-            number="02"
-            label="API Lifecycle Platform"
-            headline="One platform for engineers to discover, design, test, and govern APIs."
+          <SubLabel code="S11 · Case-study opener" />
+          <p className="mb-7 max-w-[68ch] text-[0.95rem] leading-7" style={{ color: "var(--ink-soft)" }}>
+            What every case study opens with. The copy sits on the dark band and the art takes its own
+            column beside it, running down to the band&apos;s floor; the evidence card then overlaps that
+            floor so the two read as one unit rather than a band followed by a paragraph. Pass no art and
+            the copy takes the full width — there is no pending placeholder. Beats are optional: with only
+            metrics the card is the figures alone, and with neither it does not render.
+          </p>
+          <p className="mb-7 max-w-[68ch] text-[0.95rem] leading-7" style={{ color: "var(--ds-dot-muted)" }}>
+            Narrower here than in a real case study — <code>.ds-pull</code> only reaches the viewport edge
+            as a direct child of the article, and this sits inside the reference column.
+          </p>
+          <CaseStudyHero
+            headline="API Lifecycle Platform: one place to discover, design, test, and govern APIs."
+            standfirst="The internal platform Walmart engineers open when they need a service — to find one, agree its contract, test it, and keep it governed."
             meta={[
-              { label: "Role", value: "Product designer" },
-              { label: "Timeline", value: "8 months" },
-              { label: "Outcome", value: "~500 services onboarded" },
+              { label: "Role", value: "Senior UX Designer" },
+              { label: "Client", value: "Walmart Global Tech" },
+              { label: "Year", value: "2022–Present" },
+              { label: "Platform", value: "Web" },
+              { label: "Craft", value: "Research · UX · UI" },
+            ]}
+          />
+          <CaseStudyEvidence
+            slug="api-lifecycle"
+            metrics={[
+              { value: "~500", label: "services onboarded" },
+              { value: "~40%", label: "faster contract design" },
+              { value: "60+", label: "teams" },
             ]}
           />
         </div>

@@ -8,6 +8,7 @@ import {
   projectPlatforms,
 } from "@/content/work-filters";
 import { CaseStudyHero } from "./CaseStudyHero";
+import { CaseStudyEvidence, type EvidenceBeat } from "./CaseStudyEvidence";
 import { NextProjectNav } from "./NextProjectNav";
 import { ChapterProgress, type ChapterRef } from "./ChapterProgress";
 
@@ -50,15 +51,23 @@ export function CaseStudyShell({
   next,
   chapters = [],
   slug,
+  evidence,
+  evidenceCaveat,
   children,
 }: {
   hero: HeroProps;
   next: NextProps;
   /** Ids must match the `id` on each `CaseStudySection`. */
   chapters?: ChapterRef[];
-  /** Drives the sector / platform / craft rows in the hero meta, from the
-      same source as the /work filters. */
+  /** Drives the platform / craft rows in the hero meta, and the metrics
+      in the evidence card, from the same source as the /work filters. */
   slug?: string;
+  /** Problem / Task / What I did for the card under the hero. Omit and the
+      card falls back to metrics alone, or is skipped entirely. */
+  evidence?: EvidenceBeat[];
+  /** Caption under the card's figures where they are scale rather than
+      proof of an outcome. */
+  evidenceCaveat?: string;
   children: ReactNode;
 }) {
   // Append the three classification axes to whatever meta the page passed,
@@ -87,6 +96,13 @@ export function CaseStudyShell({
           ← All Work
         </Link>
       </CaseStudyHero>
+
+      <CaseStudyEvidence
+        slug={slug}
+        beats={evidence}
+        metrics={slug ? getProject(slug)?.metrics : undefined}
+        caveat={evidenceCaveat}
+      />
 
       {children}
 
