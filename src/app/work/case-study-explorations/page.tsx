@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { MetricGlyph } from "@/components/design-system/MetricGlyph";
 import { ProofStrip } from "@/components/design-system/ProofStrip";
 import { PullStatement } from "@/components/design-system/PullStatement";
 
@@ -108,25 +109,82 @@ function WhyWhatHowPanel() {
   );
 }
 
-function FullBleedHero() {
+/**
+ * `split` puts the screens beside the copy instead of under it, and adds
+ * bottom room for an overlapping evidence card. Opt-in: options 1-4 call
+ * this bare and keep the stacked arrangement they were written against.
+ *
+ * D2 applies on the dark ground too — one emphasis per title, and it has
+ * to be the mint, since `--accent-deep` is the light-ground ink and goes
+ * muddy here.
+ */
+function FullBleedHero({ split = false, overlapRoom = false }: { split?: boolean; overlapRoom?: boolean }) {
+  const meta = ["Role · UX Designer", "Year · 2020–2021", "Sector · Frontline ops"];
+
+  const copy = (
+    <div>
+      <span className="ds-pull-dots" aria-hidden />
+      <p className="ds-eyebrow ds-pull-eyebrow">FixIt · Store Support Platform · Walmart Global Tech</p>
+      <h3
+        className={`display-title ${split ? "max-w-[15ch]" : "max-w-[24ch]"}`}
+        style={{
+          color: "var(--ds-dark-ink)",
+          fontSize: split ? "clamp(2rem, 3.4vw, 2.9rem)" : "clamp(2rem, 4.2vw, 3.1rem)",
+          lineHeight: 1.06,
+          letterSpacing: "-0.015em",
+        }}
+      >
+        {split ? (
+          <>
+            One app for <span style={{ color: "var(--ds-mint)" }}>everything that breaks</span> in a Walmart
+            store.
+          </>
+        ) : (
+          HEADLINE
+        )}
+      </h3>
+      {/* Dot separators rather than a gap alone, so the row reads as one
+          line of provenance instead of three loose fragments. */}
+      <div
+        className="mt-9 flex flex-wrap items-center gap-x-4 gap-y-3 font-mono text-[0.68rem] uppercase tracking-[0.12em]"
+        style={{ color: "var(--ds-dark-muted)" }}
+      >
+        {meta.map((m, i) => (
+          <span key={m} className="flex items-center gap-4">
+            {i > 0 ? (
+              <span aria-hidden className="inline-block h-1 w-1 rounded-full" style={{ background: "var(--ds-mint)", opacity: 0.55 }} />
+            ) : null}
+            {m}
+          </span>
+        ))}
+      </div>
+    </div>
+  );
+
+  const shot = (
+    // eslint-disable-next-line @next/next/no-img-element
+    <img
+      src={HERO_IMG}
+      alt=""
+      className={split ? "w-full" : "mt-10 w-full rounded-xl"}
+      style={split ? { maxWidth: "34rem", marginInline: "auto" } : { maxWidth: "60rem" }}
+    />
+  );
+
   return (
     <div className="ds-pull">
-      <div className="ds-pull-inner">
-        <span className="ds-pull-dots" aria-hidden />
-        <p className="ds-eyebrow ds-pull-eyebrow">FixIt · Store Support Platform · Walmart Global Tech</p>
-        <h3
-          className="display-title max-w-[24ch]"
-          style={{ color: "var(--ds-dark-ink)", fontSize: "clamp(2rem, 4.2vw, 3.1rem)", lineHeight: 1.08 }}
-        >
-          {HEADLINE}
-        </h3>
-        <div className="mt-8 flex flex-wrap gap-x-8 gap-y-3 font-mono text-[0.68rem] uppercase tracking-[0.1em]" style={{ color: "var(--ds-dark-muted)" }}>
-          <span>Role · UX Designer</span>
-          <span>Year · 2020–2021</span>
-          <span>Sector · Frontline ops</span>
-        </div>
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img src={HERO_IMG} alt="" className="mt-10 w-full rounded-xl" style={{ maxWidth: "60rem" }} />
+      <div className="ds-pull-inner" style={overlapRoom ? { paddingBottom: "clamp(5rem, 9vw, 8rem)" } : undefined}>
+        {split ? (
+          <div className="grid items-center gap-10 lg:grid-cols-[1fr_0.85fr] lg:gap-16">
+            {copy}
+            {shot}
+          </div>
+        ) : (
+          <>
+            {copy}
+            {shot}
+          </>
+        )}
       </div>
     </div>
   );
@@ -183,32 +241,74 @@ function PosterHero() {
     left reads as prose-weight reasoning, the metrics on the right read
     as a plain fact list, and a single vertical rule is the only thing
     joining them. */
-function WhyWhatHowAndMetrics() {
+/**
+ * Glyphs are the S2b semantic marks, read off METRIC_MARK_MEANINGS rather
+ * than picked for looks: population, reach, volume. That is also the
+ * mapping PROJECT_METRIC_GLYPHS already stores for store-support.
+ */
+const METRICS = [
+  { value: "~5.9K", label: "daily users", glyph: "field" },
+  { value: "~580K", label: "device footprint", glyph: "ring" },
+  { value: "7K+", label: "weekly searches", glyph: "bars" },
+] as const;
+
+function WhyWhatHowAndMetrics({ glyphs = false, overlap = false }: { glyphs?: boolean; overlap?: boolean }) {
   return (
-    <div className="rounded-2xl p-8 md:p-12" style={{ border: "1px solid var(--ds-solid-border)", background: "var(--ds-solid-bg)" }}>
+    <div
+      className={`rounded-2xl p-8 md:p-12 ${overlap ? "relative z-[1]" : ""}`}
+      style={{
+        border: "1px solid var(--ds-solid-border)",
+        // Opaque, not the translucent token: it has to sit over the dark
+        // band without the band bleeding through and greying the text.
+        background: overlap ? "var(--paper)" : "var(--ds-solid-bg)",
+        boxShadow: overlap ? "0 28px 60px -32px rgb(6 17 21 / 0.55)" : undefined,
+        // ~10% of the card's height at desktop; clamped so it stays a
+        // deliberate overlap rather than swallowing the band on wide
+        // screens or vanishing on narrow ones.
+        marginTop: overlap ? "clamp(-3rem, -3.3vw, -1.75rem)" : undefined,
+      }}
+    >
       <div className="grid grid-cols-1 gap-10 md:grid-cols-[1.3fr_auto_0.8fr] md:gap-12">
         <dl className="space-y-7">
           {WHY_WHAT_HOW.map((row) => (
             <div key={row.label}>
-              <dt className="ds-eyebrow">{row.label}</dt>
-              <dd className="body-text m-0 mt-2">{row.detail}</dd>
+              {/* The label carries the accent so the three beats scan as a
+                  set before any of them is read. */}
+              <dt className="ds-eyebrow" style={glyphs ? { color: "var(--accent-deep)" } : undefined}>
+                {row.label}
+              </dt>
+              <dd
+                className="body-text m-0 mt-2"
+                style={glyphs ? { maxWidth: "46ch", color: "var(--ink-soft)" } : undefined}
+              >
+                {row.detail}
+              </dd>
             </div>
           ))}
         </dl>
 
         <div aria-hidden className="hidden md:block" style={{ width: 1, background: "var(--ds-solid-border)" }} />
 
-        <dl className="space-y-6">
-          {[
-            { value: "~5.9K", label: "daily users" },
-            { value: "~580K", label: "device footprint" },
-            { value: "7K+", label: "weekly searches" },
-          ].map((m) => (
+        <dl className={glyphs ? "space-y-7" : "space-y-6"}>
+          {METRICS.map((m) => (
             <div key={m.label}>
-              <dt className="display-title" style={{ fontSize: "1.7rem", color: "var(--accent-deep)" }}>
+              {glyphs ? (
+                <div className="mb-3" aria-hidden>
+                  <MetricGlyph name={m.glyph} size={5} gap={3} />
+                </div>
+              ) : null}
+              <dt
+                className="display-title"
+                style={{
+                  fontSize: glyphs ? "1.9rem" : "1.7rem",
+                  lineHeight: 1,
+                  letterSpacing: "-0.01em",
+                  color: "var(--accent-deep)",
+                }}
+              >
                 {m.value}
               </dt>
-              <dd className="ds-eyebrow m-0 mt-1">{m.label}</dd>
+              <dd className="ds-eyebrow m-0 mt-2">{m.label}</dd>
             </div>
           ))}
         </dl>
@@ -404,9 +504,9 @@ export default function CaseStudyExplorationsPage() {
             note="The same evidence card as the recommendation above, but on the site's standard dark full-bleed band instead of the project's own accent colour and dot texture — the step right before bringing the poster reference in. Kept to show why the colour field reads stronger than the default dark."
           />
         </div>
-        <FullBleedHero />
-        <div className="mx-auto mt-12 w-full max-w-[85rem] px-5 md:px-8">
-          <WhyWhatHowAndMetrics />
+        <FullBleedHero split overlapRoom />
+        <div className="mx-auto w-full max-w-[85rem] px-5 md:px-8">
+          <WhyWhatHowAndMetrics glyphs overlap />
           <div className="mt-10 max-w-[70rem] space-y-5">
             {BODY.map((p) => (
               <p key={p} className="body-text">
