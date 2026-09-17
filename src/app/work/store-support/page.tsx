@@ -10,7 +10,6 @@ import {
   CaseStudyChapter,
   CaseStudyColumn,
   CaseStudyFigure,
-  CaseStudyOverview,
   CaseStudySection,
   CaseStudyShell,
 } from "@/components/design-system/CaseStudy";
@@ -45,7 +44,6 @@ const OLD_PATH = ["Find a manager", "Fill a form", "Wait"];
 const NEW_PATH = ["What happened?", "Try the fix", "Back to work"];
 
 const CHAPTERS = [
-  { id: "overview", label: "One app" },
   { id: "mobile", label: "On the floor" },
   { id: "report", label: "Ways in" },
   { id: "fixit", label: "FixIt" },
@@ -60,6 +58,40 @@ export default function StoreSupportPage() {
   return (
     <CaseStudyShell
       slug="store-support"
+      evidenceCaveat="Scale of the experience during the documented period — not a resolution claim."
+      evidence={[
+        {
+          label: "Problem",
+          lead: (
+            <>
+              Reporting a fault meant finding{" "}
+              <span className="ds-accent-deep-text">a manager and a desktop</span>.
+            </>
+          ),
+          detail:
+            "An associate who found a cooler failing could not report it from the floor. There was little troubleshooting guidance, search returned an unstructured list with no next step, and the form came before anyone had tried the obvious fix.",
+        },
+        {
+          label: "Task",
+          lead: (
+            <>
+              Redesign frontline support across <span className="ds-accent-deep-text">mobile and web</span>.
+            </>
+          ),
+          detail:
+            "One experience covering both the building and the technology inside it, for associates supporting ~580K devices and for the central support teams receiving their tickets.",
+        },
+        {
+          label: "What I did",
+          lead: (
+            <>
+              I put guided resolution <span className="ds-accent-deep-text">before the ticket form</span>.
+            </>
+          ),
+          detail:
+            "I rebuilt the issue taxonomy from card sorts with associates, made resolution step one of two in the submit flow, and gave work orders a loop they could track, annotate and escalate.",
+        },
+      ]}
       chapters={CHAPTERS}
       hero={{
         headline: "One app for everything that breaks in a store — and a way to fix it before raising a ticket.",
@@ -75,6 +107,8 @@ export default function StoreSupportPage() {
         src: "/work/store-support/hero-composite.png",
         width: 2400,
         height: 2188,
+        standfirst:
+          "A cooler, a forklift, a handheld, the store network — associates report and fix it here, mid-shift and on the floor. Built for them, for new starters still learning the store, and for the central support desks receiving what they send.",
         alt: "Three FixIt screens: the home screen with refrigeration alarms, the work-order calendar and submitted issues; the submit-an-issue screen with its five categories; and the refrigeration alarms list.",
         figureNote: "Reconstructed · placeholder data",
       }}
@@ -84,41 +118,6 @@ export default function StoreSupportPage() {
           : { href: "/work", number: "—", label: "All work", title: "See the rest of the work." }
       }
     >
-      <CaseStudyColumn>
-        <CaseStudySection id="overview" boundary={false} className="pt-14 md:pt-20">
-          <CaseStudyOverview
-            statement={
-              <>
-                The product collected tickets.{" "}
-                <span className="text-[var(--accent-deep)]">It did not prevent them</span>.
-              </>
-            }
-            whyWhatHow={[
-              {
-                label: "Why",
-                detail:
-                  "Store associates lost shift time to broken equipment and devices they could not report from the floor.",
-              },
-              {
-                label: "What",
-                detail:
-                  "One app spanning facilities and technology, with self-resolution ahead of ticket creation.",
-              },
-              {
-                label: "How",
-                detail:
-                  "Card sorting for the taxonomy, guided troubleshooting as step one of two, and a tracked work-order loop.",
-              },
-            ]}
-            body={[
-              "A freezer drifting out of temperature in frozen foods. A forklift down in the back room. A handheld that will not scan at the register, or a pharmacy system that will not log in. Different trades, different teams — and to the associate who found them, the same event: something stopped working and the shift is still running.",
-              "Support was built around reporting it: choose a category, fill a form, submit. Troubleshooting was thin, search was a dead end, and the form arrived before anyone had tried the obvious fix — so the shortest path through the product led straight to a ticket.",
-              "FixIt puts all of it behind one front door — equipment and technology, alarms and tickets — and puts the fix in front of the form.",
-            ]}
-          />
-        </CaseStudySection>
-      </CaseStudyColumn>
-
       {/* Beat two: the surface change that makes the rest possible. */}
       <div id="mobile" className="mt-14 md:mt-20">
         <ReframeBlock

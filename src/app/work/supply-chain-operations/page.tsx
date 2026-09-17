@@ -11,7 +11,6 @@ import {
   CaseStudyChapter,
   CaseStudyColumn,
   CaseStudyFigure,
-  CaseStudyOverview,
   CaseStudySection,
   CaseStudyShell,
 } from "@/components/design-system/CaseStudy";
@@ -34,7 +33,6 @@ export const metadata: Metadata = {
 };
 
 const CHAPTERS = [
-  { id: "overview", label: "Overview" },
   { id: "bottleneck", label: "The bottleneck" },
   { id: "structure", label: "Structure" },
   { id: "navigation", label: "Navigation" },
@@ -48,6 +46,40 @@ export default function SupplyChainOperationsPage() {
   return (
     <CaseStudyShell
       slug="supply-chain-operations"
+      evidenceCaveat="Less time on the landing page was the goal here — it is a route into the work, not a place to hold people."
+      evidence={[
+        {
+          label: "Problem",
+          lead: (
+            <>
+              Finding a tool meant <span className="ds-accent-deep-text">remembering where it lived</span>.
+            </>
+          ),
+          detail:
+            "Capability had been added over time without structure around it. Related modules were hard to identify, everyone started from the same view, frequently used tools could not be saved, and people who already knew what they wanted still had no fast route to it.",
+        },
+        {
+          label: "Task",
+          lead: (
+            <>
+              Redesign the architecture, navigation and{" "}
+              <span className="ds-accent-deep-text">landing experience</span>.
+            </>
+          ),
+          detail:
+            "Co-led with another designer across 139 modules serving Walmart.com, Online Grocery and international markets, against one goal: less time finding a tool, more time using it.",
+        },
+        {
+          label: "What I did",
+          lead: (
+            <>
+              I fixed the structure <span className="ds-accent-deep-text">before the navigation</span>.
+            </>
+          ),
+          detail:
+            "We regrouped the platform into Category → Module → Sub-module with users and platform teams, put two navigation directions in front of users, then added pins, recent modules and search so the small working set most people rely on is a short trip away.",
+        },
+      ]}
       chapters={CHAPTERS}
       hero={{
         headline: "Supply Chain Operations Platform: 139 tools behind one front door.",
@@ -65,6 +97,8 @@ export default function SupplyChainOperationsPage() {
         src: "/work/supply-chain-operations/new-dashboard.png",
         width: 2560,
         height: 1576,
+        standfirst:
+          "The entry point to 139 operational modules used across Walmart.com, Online Grocery and international markets. Operations teams open it to get to a tool, not to spend time in it.",
         alt: "Redesigned platform dashboard: grouped module categories, pinned tools, and recent modules.",
         figureNote: "Reconstructed · placeholder data",
       }}
@@ -75,32 +109,7 @@ export default function SupplyChainOperationsPage() {
       }
     >
       <CaseStudyColumn>
-        <CaseStudySection id="overview" boundary={false} className="pt-14 md:pt-20">
-          <CaseStudyOverview
-            statement={
-              <>
-                A front door, <span className="text-[var(--accent-deep)]">not a destination</span>.
-              </>
-            }
-            note="139 operational modules behind one entry point."
-            body={[
-              "A global supply-chain platform had become the entry point to 139 operational modules used across Walmart.com, Online Grocery, and international markets.",
-              "As the platform grew, its homepage became harder to navigate. Finding the right tool meant scanning a large collection of modules, remembering where something lived, or relying on prior knowledge.",
-              "I co-led the redesign of the platform’s information architecture, navigation, and landing experience with one goal: help people spend less time finding a tool and more time using it.",
-            ]}
-          />
-          <CaseStudyFigure>
-            <ProofStrip
-              items={[
-                { value: "~985K", label: "monthly unique visitors", glyph: "field" },
-                { value: "139", label: "operational modules", glyph: "bars" },
-                { value: "62%", label: "less time spent on the landing page", glyph: "ring" },
-              ]}
-            />
-          </CaseStudyFigure>
-        </CaseStudySection>
-
-        <CaseStudySection id="bottleneck">
+        <CaseStudySection id="bottleneck" boundary={false} className="pt-14 md:pt-20">
           <CaseStudyChapter
             layout="stacked"
             eyebrow="A crowded front door"
