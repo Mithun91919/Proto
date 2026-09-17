@@ -147,7 +147,7 @@ export default function DependencyHealthPage() {
         <CaseStudySection id="decision-model" boundary={false} className="pt-16 md:pt-20">
           <CaseStudyChapter
             eyebrow="The model"
-            heading="We turned technical signals into a decision model"
+            heading="I turned technical signals into a decision model"
             body={[
               "The highest-leverage design work happened before the dashboard.",
               "I mapped signals such as the approved library baseline, Java version, feature-library freshness, conflicts, and version drift against two questions: who needs this, and what decision does it help them make?",

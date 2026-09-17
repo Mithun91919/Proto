@@ -138,6 +138,7 @@ const MECHANICS = [
   { label: "Arrows", rule: "→ for transformation and hierarchy. Never -> in rendered copy." },
   { label: "Product names", rule: "Public label only. Internal names never appear as a primary title." },
   { label: "Headings", rule: "Make an argument. Never The Problem, The Process, The Solution." },
+  { label: "Directness", rule: "Say who did what. A hidden subject or a softened claim is evasion, not modesty." },
 ];
 
 const ANTI_PATTERNS = [

@@ -138,7 +138,7 @@ export default function StoreSupportPage() {
         <CaseStudySection id="report" boundary={false} className="pt-16 md:pt-20">
           <CaseStudyChapter
             eyebrow="Ways in"
-            heading="We reorganised support around how people describe problems"
+            heading="I reorganised support around how people describe problems"
             body={[
               "The old structure reflected the support organisation more than the mental model of someone standing in a store trying to fix something, so anyone who had not already learned it had to guess where their issue belonged.",
               "I ran card-sorting sessions with associates using common issue types, asking them to group and label the problems and explain their reasoning. What came back grouped the floor by where a problem lives — a department, a device, broken equipment, the network, a person or a process — rather than by which team would receive the ticket.",
