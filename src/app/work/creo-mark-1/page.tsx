@@ -76,12 +76,16 @@ export default function CreoMark1Page() {
         alt: "Mark 1 campaign imagery: the phone shown against the brand's high-contrast visual language",
         standfirst:
           "Mark 1 was a smartphone running FUEL OS, with new software features shipping every month. This was the visual language built to communicate them.",
-        headline: "Mark 1: a visual language for a smartphone that changed every month.",
+        headline: (
+          <>
+            Mark 1: a visual language for a smartphone that <span style={{ color: "var(--ds-mint)" }}>changed every month</span>.
+          </>
+        ),
         meta: [
           { label: "Role", value: "Visual Design" },
           { label: "Client", value: "CREO" },
           { label: "Year", value: "2016" },
-          { label: "Discipline", value: "Visual design · Web + brand" },
+          { label: "Discipline", value: "Visual design · Brand" },
         ],
       }}
       next={{

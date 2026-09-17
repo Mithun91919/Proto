@@ -93,14 +93,18 @@ export default function BbDailyPage() {
         alt: "bb daily customer app and operations app as two sides of one service",
         standfirst:
           "A bigbasket subscription for everyday essentials — milk, dairy, bakery, fruit and vegetables — arriving on a recurring schedule, and the operations app that made each delivery happen.",
-        headline: "bb daily: both sides of a recurring delivery service.",
+        headline: (
+          <>
+            bb daily: <span style={{ color: "var(--ds-mint)" }}>both sides</span> of a recurring delivery service.
+          </>
+        ),
         meta: [
           { label: "Role", value: "Research & UX Design" },
           { label: "Client", value: "bigbasket" },
           { label: "Year", value: "2019–2020" },
           {
             label: "Discipline",
-            value: "Consumer commerce · Operations UX · Mobile",
+            value: "Consumer commerce · Operations UX",
           },
         ],
       }}

@@ -81,12 +81,16 @@ export default function RatingsReviewsPage() {
         alt: "The ratings and reviews experience on web and mobile: a browser review form beside a phone rating screen",
         standfirst:
           "Ratings and reviews for beauty products across bigbasket's Android, iOS, web and mobile-web experiences.",
-        headline: "Ratings & Reviews: one feedback system across mobile and web.",
+        headline: (
+          <>
+            Ratings & Reviews: <span style={{ color: "var(--ds-mint)" }}>one feedback system</span> across mobile and web.
+          </>
+        ),
         meta: [
           { label: "Role", value: "UX Design" },
           { label: "Client", value: "bigbasket" },
           { label: "Year", value: "2019" },
-          { label: "Discipline", value: "Consumer commerce · Cross-platform UX" },
+          { label: "Discipline", value: "Consumer commerce · UX" },
         ],
       }}
       next={

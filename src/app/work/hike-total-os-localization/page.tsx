@@ -76,12 +76,16 @@ export default function TotalOsLocalizationPage() {
       hero={{
         standfirst:
           "TOTAL OS ran without the internet and shipped in eight Indian languages. This was the process that moved product copy into all of them without losing what it meant.",
-        headline: "Multilingual Mobile Experience: one localisation system across 8 Indian languages.",
+        headline: (
+          <>
+            Multilingual Mobile Experience: one localisation system across <span style={{ color: "var(--ds-mint)" }}>8 Indian languages</span>.
+          </>
+        ),
         meta: [
           { label: "Role", value: "Product Research" },
           { label: "Client", value: "Hike" },
           { label: "Year", value: "2017" },
-          { label: "Discipline", value: "Product research · Localisation · Mobile" },
+          { label: "Discipline", value: "Product research · Localisation" },
         ],
       }}
       next={{

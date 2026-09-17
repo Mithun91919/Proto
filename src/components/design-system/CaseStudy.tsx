@@ -35,7 +35,7 @@ type HeroProps = {
   /** True pixel dimensions, so the art reserves its box before it loads. */
   width?: number;
   height?: number;
-  headline: string;
+  headline: ReactNode;
   /** One line saying what the product is and who opens it. */
   standfirst?: string;
   meta: { label: string; value: string }[];

@@ -206,7 +206,7 @@ export const projects: Project[] = [
     number: "04",
     label: "Store Support Platform",
     title:
-      "One app for everything that breaks in a Walmart store.",
+      "FixIt: the app store associates use when something breaks.",
     internalName: "FixIt",
     summary:
       "I redesigned the self-service support experience around clearer classification, guided troubleshooting, search, location context, and better escalation information.",

@@ -87,7 +87,11 @@ export default function PortfolioManagementPage() {
       hero={{
         standfirst:
           "The enterprise platform that replaced fragmented portfolio planning — people, products, initiatives, intake and goals — with one connected system of record.",
-        headline: "Portfolio Management Platform: one system instead of five.",
+        headline: (
+          <>
+            Portfolio Management Platform: <span style={{ color: "var(--ds-mint)" }}>one system instead of five</span>.
+          </>
+        ),
         meta: [
           { label: "Role", value: "UX Designer → Senior UX Designer" },
           { label: "Client", value: "Walmart Global Tech" },

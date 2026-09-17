@@ -82,7 +82,11 @@ export default function SupplyChainOperationsPage() {
       ]}
       chapters={CHAPTERS}
       hero={{
-        headline: "Supply Chain Operations Platform: 139 tools behind one front door.",
+        headline: (
+          <>
+            Supply Chain Operations Platform: 139 tools behind <span style={{ color: "var(--ds-mint)" }}>one front door</span>.
+          </>
+        ),
         meta: [
           { label: "Role", value: "UX Designer · co-led" },
           { label: "Client", value: "Walmart Global Tech" },

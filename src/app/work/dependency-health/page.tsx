@@ -86,7 +86,11 @@ export default function DependencyHealthPage() {
       hero={{
         standfirst:
           "The platform Walmart developers and engineering leaders open to see which dependencies in a repository need attention, why they matter, and what to do next.",
-        headline: "Dependency Health Platform: turning compliance data into clear action.",
+        headline: (
+          <>
+            Dependency Health Platform: turning compliance data into <span style={{ color: "var(--ds-mint)" }}>clear action</span>.
+          </>
+        ),
         meta: [
           { label: "Role", value: "Senior UX Designer" },
           { label: "Client", value: "Walmart Global Tech" },

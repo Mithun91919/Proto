@@ -35,7 +35,7 @@ import { getProject } from "@/content/projects";
  */
 
 export const metadata: Metadata = {
-  title: "FixIt — One app for everything that breaks in a Walmart store",
+  title: "FixIt — the app store associates use when something breaks",
   description:
     "Redesigning frontline support so store associates can fix an issue themselves instead of raising a ticket — facilities and technology, on a phone, across a ~580K-device footprint.",
 };
@@ -94,12 +94,16 @@ export default function StoreSupportPage() {
       ]}
       chapters={CHAPTERS}
       hero={{
-        headline: "One app for everything that breaks in a store — and a way to fix it before raising a ticket.",
+        headline: (
+          <>
+            FixIt: the app store associates use <span style={{ color: "var(--ds-mint)" }}>when something breaks</span>.
+          </>
+        ),
         meta: [
           { label: "Role", value: "UX Designer" },
           { label: "Client", value: "Walmart Global Tech" },
           { label: "Year", value: "2020–2021" },
-          { label: "Discipline", value: "Frontline operations · Mobile product" },
+          { label: "Discipline", value: "Frontline operations" },
         ],
         // height was 1389 here against a 2188px file — stale since the
         // composite was rebuilt taller, so the reserved box was the wrong

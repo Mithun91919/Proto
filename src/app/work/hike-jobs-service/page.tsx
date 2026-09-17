@@ -79,12 +79,16 @@ export default function HikeJobsServicePage() {
         alt: "The Jobs Service experience: job listings and the resume builder shown on phone screens",
         standfirst:
           "An aggregator inside TOTAL OS that helped people discover relevant jobs, then get ready to apply — with a resume builder in the same product.",
-        headline: "Job Discovery & Resume Builder: from finding a job to being ready to apply.",
+        headline: (
+          <>
+            Job Discovery & Resume Builder: from finding a job to <span style={{ color: "var(--ds-mint)" }}>being ready to apply</span>.
+          </>
+        ),
         meta: [
           { label: "Role", value: "Product Design" },
           { label: "Client", value: "Hike" },
           { label: "Year", value: "2017" },
-          { label: "Discipline", value: "Consumer mobile · Product design" },
+          { label: "Discipline", value: "Consumer product design" },
         ],
       }}
       next={{

@@ -48,7 +48,7 @@ const PROJECT_PLATFORMS: Record<string, ProjectPlatform[]> = {
   "api-lifecycle": ["Web"],
   "dependency-health": ["Web"],
   "supply-chain-operations": ["Web"],
-  "store-support": ["Mobile"],
+  "store-support": ["Mobile", "Web"],
   "bb-daily": ["Mobile"],
   "bigbasket-ratings-reviews": ["Web", "Mobile"],
   "hike-jobs-service": ["Mobile"],

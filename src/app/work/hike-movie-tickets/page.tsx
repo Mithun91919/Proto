@@ -86,12 +86,16 @@ export default function MovieTicketsPage() {
         alt: "The Hike movie ticketing experience over a wall of film posters: a browse screen listing showings in Bengaluru beside a booked ticket with its QR code",
         standfirst:
           "Cinema ticketing inside Hike Messenger, connected to Hike Wallet so choosing a seat and paying for it happened in one place.",
-        headline: "Movie Ticket Booking: turning intent into one continuous transaction.",
+        headline: (
+          <>
+            Movie Ticket Booking: turning intent into <span style={{ color: "var(--ds-mint)" }}>one continuous transaction</span>.
+          </>
+        ),
         meta: [
           { label: "Role", value: "Product Design" },
           { label: "Client", value: "Hike" },
           { label: "Year", value: "2018" },
-          { label: "Discipline", value: "Consumer mobile · Product design" },
+          { label: "Discipline", value: "Consumer product design" },
         ],
       }}
       next={{

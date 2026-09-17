@@ -85,7 +85,11 @@ export default function ApiLifecyclePage() {
       hero={{
         standfirst:
           "The internal platform Walmart engineers use to find a service, agree its contract, test it, and keep it governed — three jobs that used to live in three different tools.",
-        headline: "API Lifecycle Platform: one place to discover, design, test, and govern APIs.",
+        headline: (
+          <>
+            API Lifecycle Platform: <span style={{ color: "var(--ds-mint)" }}>one place</span> to discover, design, test, and govern APIs.
+          </>
+        ),
         meta: [
           { label: "Role", value: "UX Designer → Senior UX Designer" },
           { label: "Client", value: "Walmart Global Tech" },
