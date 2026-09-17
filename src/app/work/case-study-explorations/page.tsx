@@ -151,7 +151,7 @@ function Hero() {
                   letterSpacing: "-0.015em",
                 }}
               >
-                FixIt — the app <span style={{ color: "var(--ds-mint)" }}>store associates</span> use when
+                The app a <span style={{ color: "var(--ds-mint)" }}>store associate</span> opens when
                 something breaks.
               </h2>
               {/* Standfirst — what it is, who opens it, and the condition

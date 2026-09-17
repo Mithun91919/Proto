@@ -16,7 +16,7 @@ import {
 import { getProject } from "@/content/projects";
 
 /**
- * FixIt — the store associate app, on the locked case-study template.
+ * Store associate app — Walmart Global Tech, on the locked case-study template.
  *
  * Prose from `projects/fixit/web/fixit-web.md` (the path `projects.ts`
  * points at). Three things the draft predates, all read off the shipped
@@ -35,7 +35,7 @@ import { getProject } from "@/content/projects";
  */
 
 export const metadata: Metadata = {
-  title: "FixIt — the app store associates use when something breaks",
+  title: "Store associate app — what a store associate opens when something breaks",
   description:
     "Redesigning frontline support so store associates can fix an issue themselves instead of raising a ticket — facilities and technology, on a phone, across a ~580K-device footprint.",
 };
@@ -46,7 +46,7 @@ const NEW_PATH = ["What happened?", "Try the fix", "Back to work"];
 const CHAPTERS = [
   { id: "mobile", label: "On the floor" },
   { id: "report", label: "Ways in" },
-  { id: "fixit", label: "FixIt" },
+  { id: "fixit", label: "Fix it first" },
   { id: "loop", label: "The loop" },
   { id: "system", label: "The migration" },
   { id: "outcomes", label: "What changed" },
@@ -96,7 +96,8 @@ export default function StoreSupportPage() {
       hero={{
         headline: (
           <>
-            FixIt: the app store associates use <span style={{ color: "var(--ds-mint)" }}>when something breaks</span>.
+            The app a store associate opens{" "}
+            <span style={{ color: "var(--ds-mint)" }}>when something breaks</span>.
           </>
         ),
         meta: [
@@ -113,7 +114,7 @@ export default function StoreSupportPage() {
         height: 2188,
         standfirst:
           "A cooler, a forklift, a handheld, the network — reported and fixed mid-shift, on the floor. Built for the people who find the fault, for new starters still learning their way around, and for the support desks receiving what they send.",
-        alt: "Three FixIt screens: the home screen with refrigeration alarms, the work-order calendar and submitted issues; the submit-an-issue screen with its five categories; and the refrigeration alarms list.",
+        alt: "Three screens from the app: the home screen with refrigeration alarms, the work-order calendar and submitted issues; the submit-an-issue screen with its five categories; and the refrigeration alarms list.",
         figureNote: "Reconstructed · placeholder data",
       }}
       next={
