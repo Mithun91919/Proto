@@ -1573,6 +1573,16 @@
   color: color-mix(in oklab, var(--ds-mint) 60%, transparent);
 }
 
+/* `.ds-pull-inner`'s top padding is tuned for a mid-page breaker, where
+   the band needs air above the statement. The hero opens the page and
+   already carries a back link and the dot marker above its headline —
+   at 5.5rem that stacked up to ~185px of nothing before the first word.
+   Scoped here rather than changed on `.ds-pull-inner`, which the reframe
+   bands, pull statements and the footer all share. */
+.ds-cs-hero > .ds-pull-inner {
+  padding-top: clamp(2rem, 3.6vw, 3rem);
+}
+
 /* Two more reframe marks. Same grammar as the flat -> grouped one, each
    drawing the change its own section actually makes, so the mark is not
    the same picture under three different headings. */

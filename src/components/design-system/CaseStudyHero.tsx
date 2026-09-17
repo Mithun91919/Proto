@@ -101,7 +101,7 @@ export function CaseStudyHero({
 
   if (backdrop) {
     return (
-      <div className="ds-pull ds-cs-hero-backdrop">
+      <div className="ds-pull ds-cs-hero ds-cs-hero-backdrop">
         <Image
           className="ds-cs-hero-art"
           src={src as string}
@@ -112,7 +112,7 @@ export function CaseStudyHero({
         />
         <span className="ds-cs-hero-scrim" aria-hidden />
         <div className="ds-pull-inner relative w-full">
-          {children ? <div className="mb-10">{children}</div> : null}
+          {children ? <div className="mb-7">{children}</div> : null}
           <div className="max-w-[46rem]">{copy}</div>
           {figureNote ? (
             <p
@@ -128,9 +128,9 @@ export function CaseStudyHero({
   }
 
   return (
-    <div className="ds-pull">
+    <div className="ds-pull ds-cs-hero">
       <div className="ds-pull-inner" style={hasArt ? { paddingBottom: FLOOR } : undefined}>
-        {children ? <div className="mb-10">{children}</div> : null}
+        {children ? <div className="mb-7">{children}</div> : null}
 
         {hasArt ? (
           <div className="grid items-stretch gap-10 lg:grid-cols-[0.82fr_1.4fr] lg:gap-12">
