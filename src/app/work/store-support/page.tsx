@@ -126,6 +126,7 @@ export default function StoreSupportPage() {
       <div id="mobile" className="mt-14 md:mt-20">
         <ReframeBlock
           bleed
+          mark="distribute"
           eyebrow="The reframe"
           heading="Support used to start at the manager’s desk"
           body="Raising an issue meant finding a manager and finding a computer — so the person who discovered the problem was rarely the person who reported it. Detail was lost in the retelling, and the report waited for someone to be free. Putting support on a phone puts it in the hands of whoever is standing in front of the broken thing, at the moment they find it."
@@ -294,6 +295,7 @@ export default function StoreSupportPage() {
       <div id="system" className="mt-16 md:mt-20">
         <ReframeBlock
           bleed
+          mark="rebase"
           eyebrow="The migration"
           heading="The redesign was also a migration"
           body="The product ran on a third-party UI library while the organisation was introducing its own enterprise design system. Rather than treat the redesign and the migration as two projects, I rebuilt the areas I touched on the new system — so the product belonged to the ecosystem associates already used, on a more accessible component foundation, instead of paying down more design debt later."

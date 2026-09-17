@@ -3,11 +3,8 @@ type ReframeBlockProps = {
   /** Supporting context. Optional in `bleed` mode, where a terse statement
       often stands on its own like `PullStatement`. */
   body?: string;
-  /**
-   * Overrides the "The reframe" label. The flat→grouped mark also reads as
-   * "a loose collection became a structure", so a structure / IA beat can
-   * borrow this block with its own eyebrow — the mark still means something.
-   */
+  /** Overrides the "The reframe" label. Pair it with `mark`, so the
+      picture matches the beat rather than the block. */
   eyebrow?: string;
   /**
    * Edge-to-edge on the dark ground instead of a contained card — the same
@@ -17,29 +14,85 @@ type ReframeBlockProps = {
    * band to reach the viewport edges.
    */
   bleed?: boolean;
+  /**
+   * Which change the mark draws. A reframe block is not always the same
+   * reframe, and one fixed picture under three different headings is
+   * ornament — the thing C1 rules out.
+   *
+   * - `group`      a loose collection became a structure (IA, taxonomy)
+   * - `distribute` one shared point became many hands (a surface moving)
+   * - `rebase`     the same product on a different foundation (migration)
+   */
+  mark?: "group" | "distribute" | "rebase";
 };
 
 /**
- * The mark for a reframe: the surface reading of the problem (a flat,
- * undifferentiated row) giving way to the structure underneath it (the same
- * dots, now grouped).
+ * The change a reframe asserts, drawn in the dot grammar — C1's "change"
+ * meaning rather than an ornament filling the right side of the block.
  *
- * This is the "change" meaning from the dot grammar (C1) — the one thing a
- * reframe actually asserts — rather than an ornament placed to fill the right
- * side of the block.
+ * There are three because there were three different reframes on the site
+ * all drawing the same picture: a surface moving off one desk, a migration
+ * onto a new foundation, and an actual regrouping. Only the last was what
+ * the flat→grouped mark says.
  */
-function ReframeMark() {
-  const surface = Array.from({ length: 12 });
+function ReframeMark({ variant }: { variant: "group" | "distribute" | "rebase" }) {
+  if (variant === "distribute") {
+    return (
+      <div className="ds-reframe-mark" aria-hidden>
+        <div className="ds-reframe-one">
+          <span className="ds-reframe-dot is-on" />
+        </div>
+        <span className="ds-reframe-arrow">↓</span>
+        <div className="ds-reframe-flat">
+          {Array.from({ length: 12 }).map((_, i) => (
+            <span key={i} className="ds-reframe-dot is-on" />
+          ))}
+        </div>
+      </div>
+    );
+  }
+
+  if (variant === "rebase") {
+    return (
+      <div className="ds-reframe-mark" aria-hidden>
+        <div className="ds-reframe-stack">
+          <div className="ds-reframe-flat">
+            {Array.from({ length: 6 }).map((_, i) => (
+              <span key={i} className="ds-reframe-dot is-on" />
+            ))}
+          </div>
+          <div className="ds-reframe-flat">
+            {Array.from({ length: 6 }).map((_, i) => (
+              <span key={i} className="ds-reframe-dot is-base" />
+            ))}
+          </div>
+        </div>
+        <span className="ds-reframe-arrow">↓</span>
+        <div className="ds-reframe-stack">
+          <div className="ds-reframe-flat">
+            {Array.from({ length: 6 }).map((_, i) => (
+              <span key={i} className="ds-reframe-dot is-on" />
+            ))}
+          </div>
+          <div className="ds-reframe-flat">
+            {Array.from({ length: 6 }).map((_, i) => (
+              <span key={i} className="ds-reframe-dot is-newbase" />
+            ))}
+          </div>
+        </div>
+      </div>
+    );
+  }
+
   const groups = [
     [1, 1, 1],
     [1, 1],
     [1, 1, 1, 1],
   ];
-
   return (
     <div className="ds-reframe-mark" aria-hidden>
       <div className="ds-reframe-flat">
-        {surface.map((_, i) => (
+        {Array.from({ length: 12 }).map((_, i) => (
           <span key={i} className="ds-reframe-dot" />
         ))}
       </div>
@@ -58,7 +111,13 @@ function ReframeMark() {
 }
 
 /** E1 · Tension / reframe — use once, when the project argument itself changes. */
-export function ReframeBlock({ heading, body, eyebrow = "The reframe", bleed = false }: ReframeBlockProps) {
+export function ReframeBlock({
+  heading,
+  body,
+  eyebrow = "The reframe",
+  bleed = false,
+  mark = "group",
+}: ReframeBlockProps) {
   // Bleed shares `PullStatement`'s exact chrome — the B4 dot marker, the
   // `.ds-pull-eyebrow`, `.ds-pull-text` typography, `.ds-pull-mark` slot —
   // so a reframe breaker and a closing statement read as the same kind of
@@ -84,7 +143,7 @@ export function ReframeBlock({ heading, body, eyebrow = "The reframe", bleed = f
             {/* Extra right room: the cluster mark wants more breathing space
                 near the band edge than `.ds-pull-inner`'s 2rem gives it. */}
             <div className="ds-pull-mark" style={{ paddingRight: "clamp(0px, 4vw, 3rem)" }}>
-              <ReframeMark />
+              <ReframeMark variant={mark} />
             </div>
           </div>
         </div>
@@ -110,7 +169,7 @@ export function ReframeBlock({ heading, body, eyebrow = "The reframe", bleed = f
           </p>
         ) : null}
       </div>
-      <ReframeMark />
+      <ReframeMark variant={mark} />
     </div>
   );
 }

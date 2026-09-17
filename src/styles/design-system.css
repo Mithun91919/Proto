@@ -1573,6 +1573,31 @@
   color: color-mix(in oklab, var(--ds-mint) 60%, transparent);
 }
 
+/* Two more reframe marks. Same grammar as the flat -> grouped one, each
+   drawing the change its own section actually makes, so the mark is not
+   the same picture under three different headings. */
+
+/* One shared point becoming many hands. */
+.ds-reframe-one {
+  display: flex;
+  justify-content: center;
+}
+
+/* Same dots, different foundation. */
+.ds-reframe-stack {
+  display: grid;
+  gap: 7px;
+  justify-items: center;
+}
+
+.ds-reframe-dot.is-base {
+  background: color-mix(in oklab, var(--ds-dark-muted) 30%, transparent);
+}
+
+.ds-reframe-dot.is-newbase {
+  background: color-mix(in oklab, var(--ds-mint) 50%, transparent);
+}
+
 /* The loop performs the reframe: loose dots settling into groups, one
    cluster after the next, then releasing and starting over. Motion, not
    decoration — reduced-motion holds the finished, grouped state. */
