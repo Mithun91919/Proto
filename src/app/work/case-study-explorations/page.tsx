@@ -35,6 +35,24 @@ export const metadata: Metadata = {
 const HERO_IMG = "/work/store-support/hero-composite.png";
 const HERO_FLOOR = "clamp(5rem, 9vw, 8rem)";
 
+/**
+ * The live case study's hero meta, verbatim — the four rows the page
+ * passes plus the three classification axes `CaseStudyShell` appends
+ * from `projects.ts` and `work-filters.ts`. Dropped in here unedited so
+ * the two formats can be compared side by side and the rows worth
+ * keeping picked off; several duplicate what the eyebrow, standfirst and
+ * compact meta already say.
+ */
+const LIVE_META = [
+  { label: "Role", value: "UX Designer" },
+  { label: "Client", value: "Walmart Global Tech" },
+  { label: "Year", value: "2020–2021" },
+  { label: "Discipline", value: "Frontline operations · Mobile product" },
+  { label: "Sector", value: "Frontline ops" },
+  { label: "Platform", value: "Mobile" },
+  { label: "Craft", value: "Research · UX · UI" },
+];
+
 /** `lead` is the claim, `detail` the evidence. Reading only the three
     leads should still tell the story. */
 const BEATS = [
@@ -153,6 +171,21 @@ function Hero() {
                 Picked the product up mid-flight from the previous designer, working with product,
                 engineering and the associates themselves.
               </p>
+
+              {/* The live hero's meta block, exactly as `SceneBanner`
+                  renders it — same `dl`, same classes, same colours — so
+                  this is a like-for-like comparison against the compact
+                  row above rather than a restyled version of it. */}
+              <dl className="ds-scene-banner-meta">
+                {LIVE_META.map((item) => (
+                  <div key={item.label}>
+                    <dt className="ds-eyebrow" style={{ color: "#8fb3bc" }}>
+                      {item.label}
+                    </dt>
+                    <dd style={{ margin: 0, color: "var(--ds-dark-ink)" }}>{item.value}</dd>
+                  </div>
+                ))}
+              </dl>
             </div>
           </div>
           <div className="flex items-end justify-center" style={{ marginBottom: `calc(${HERO_FLOOR} * -1)` }}>
