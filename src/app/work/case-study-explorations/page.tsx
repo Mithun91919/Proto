@@ -1,260 +1,61 @@
 import type { Metadata } from "next";
 import { MetricGlyph } from "@/components/design-system/MetricGlyph";
-import { ProofStrip } from "@/components/design-system/ProofStrip";
-import { PullStatement } from "@/components/design-system/PullStatement";
 
 /**
- * Internal comparison — one recommendation, then every full-bleed opening
- * (hero through overview) tested to get there, for Store Support.
+ * Internal working draft of the Store Support case-study intro.
  *
- * Every hero is full-bleed now, not just the later options — `.ds-pull`
- * (the site's own full-bleed mechanism) only breaks out to the viewport
- * edge as a direct section child, so each section here puts its label
- * text in a contained wrapper, the hero as a bare sibling, then a second
- * contained wrapper for whatever follows. Nesting a `.ds-pull` inside a
- * `max-w` div (the mistake in an earlier pass here) just makes it 100%
- * of that div, not the viewport.
+ * Was a six-way comparison plus a recommendation; the direction is
+ * settled, so the losing five and the poster variant are gone (they are
+ * in git history if a decision needs re-reading). What is left is the
+ * one arrangement being refined: a full-bleed dark hero with the screens
+ * beside the copy and running to the band floor, and an evidence card
+ * overlapping that floor by ~10%.
  *
- * Every leaf component (`FullBleedHero`, `PosterHero`, `WhyWhatHowPanel`,
- * `WhyWhatHowAndMetrics`, `QuickFacts`) is independent — none renders
- * another, and none renders a section, so there is no recursion risk
- * like the deleted summary-options page had. `<img>` (not next/image)
- * throughout, so this stays a layout comparison rather than
- * re-triggering image optimisation for every copy of the hero.
+ * `.ds-pull` only reaches the viewport edge as a direct section child,
+ * so the label sits in a contained wrapper, the hero is a bare sibling,
+ * and a second contained wrapper holds everything after it. Nesting a
+ * `.ds-pull` inside a `max-w` div just makes it 100% of that div.
  *
- * Not linked from anywhere and noindexed. Delete once a direction is
- * picked.
+ * `<img>`, not next/image: this is a layout draft, and there is no
+ * reason to push the hero through image optimisation for it.
+ *
+ * Not linked from anywhere and noindexed.
  */
 
 export const metadata: Metadata = {
-  title: "Intro variations — internal comparison",
+  title: "Case-study intro — working draft",
   robots: { index: false, follow: false },
 };
 
 const HERO_IMG = "/work/store-support/hero-composite.png";
 
-/** Store Support's own accent from projects.ts — reused here rather than
-    a fresh pick, so the poster ties back to that project's real colour
-    identity instead of an arbitrary brand hue. */
-const PROJECT_ACCENT = "#4A3428";
-
-const HEADLINE = "One app for everything that breaks in a Walmart store.";
-
-const STATEMENT = (
-  <>
-    The product collected tickets. <span style={{ color: "var(--accent-deep)" }}>It did not prevent them</span>.
-  </>
-);
-
-const BODY = [
-  "A freezer drifting out of temperature in frozen foods. A forklift down in the back room. A handheld that will not scan at the register, or a pharmacy system that will not log in. Different trades, different teams — and to the associate who found them, the same event: something stopped working and the shift is still running.",
-  "Support was built around reporting it: choose a category, fill a form, submit. Troubleshooting was thin, search was a dead end, and the form arrived before anyone had tried the obvious fix — so the shortest path through the product led straight to a ticket.",
-  "FixIt puts all of it behind one front door — equipment and technology, alarms and tickets — and puts the fix in front of the form.",
-];
-
-const WHY_WHAT_HOW = [
-  { label: "Why", detail: "Store associates lost shift time to broken equipment and devices they could not report from the floor." },
-  { label: "What", detail: "One app spanning facilities and technology, with self-resolution ahead of ticket creation." },
-  { label: "How", detail: "Card sorting for the taxonomy, guided troubleshooting as step one of two, and a tracked work-order loop." },
-];
-
-function VariationLabel({ code, name, note }: { code: string; name: string; note: string }) {
-  return (
-    <div className="mb-8 flex flex-wrap items-baseline gap-4">
-      <span
-        className="rounded-md border px-2.5 py-1 font-mono text-[0.62rem] uppercase tracking-[0.12em]"
-        style={{ color: "var(--ink-soft)", borderColor: "var(--ds-solid-border)", background: "var(--ds-solid-bg)" }}
-      >
-        {code}
-      </span>
-      <h2 className="display-title text-[var(--ink)]" style={{ fontSize: "1.35rem" }}>
-        {name}
-      </h2>
-      <p className="body-sm max-w-[58ch]" style={{ color: "var(--ink-soft)" }}>
-        {note}
-      </p>
-    </div>
-  );
-}
-
-function QuickFacts() {
-  return (
-    <div
-      className="mb-4 flex flex-wrap items-center gap-x-6 gap-y-2 rounded-lg px-6 py-4 font-mono text-[0.72rem] uppercase tracking-[0.1em]"
-      style={{ background: "var(--ds-solid-bg)", border: "1px solid var(--ds-solid-border)", color: "var(--ink-soft)" }}
-    >
-      <span>UX Designer</span>
-      <span aria-hidden style={{ opacity: 0.4 }}>·</span>
-      <span>Walmart Global Tech</span>
-      <span aria-hidden style={{ opacity: 0.4 }}>·</span>
-      <span>2020–2021</span>
-      <span aria-hidden style={{ opacity: 0.4 }}>·</span>
-      <span style={{ color: "var(--accent-deep)" }}>~580K devices, one app</span>
-    </div>
-  );
-}
-
-function WhyWhatHowPanel() {
-  return (
-    <dl className="mt-7">
-      {WHY_WHAT_HOW.map((row, i) => (
-        <div key={row.label} className={`grid grid-cols-[3.5rem_1fr] items-baseline gap-5 py-4 ${i > 0 ? "ds-rule" : ""}`}>
-          <dt className="ds-eyebrow">{row.label}</dt>
-          <dd className="body-sm m-0" style={{ color: "var(--ink-soft)" }}>
-            {row.detail}
-          </dd>
-        </div>
-      ))}
-    </dl>
-  );
-}
-
 /**
- * `split` puts the screens beside the copy instead of under it, and adds
- * bottom room for an overlapping evidence card. Opt-in: options 1-4 call
- * this bare and keep the stacked arrangement they were written against.
+ * Three beats, each with one job, because the earlier copy had them
+ * blurred — "What" was describing the solution, which left the task
+ * unstated and made "How" carry both the method and the result.
  *
- * D2 applies on the dark ground too — one emphasis per title, and it has
- * to be the mint, since `--accent-deep` is the light-ground ink and goes
- * muddy here.
+ *   Why  — the problem, stated as the associate experienced it
+ *   What — the task: what the work actually had to deliver
+ *   How  — what I did, ending on what it changed
  */
-function FullBleedHero({ split = false, overlapRoom = false }: { split?: boolean; overlapRoom?: boolean }) {
-  // Split mode gives width to the screens, so the meta drops its label
-  // prefixes and keeps the values — the same compact form PosterHero on
-  // this page already uses. With the prefixes it wrapped, stranding a
-  // separator dot at the head of the second line.
-  const meta = split
-    ? ["UX Designer", "2020–2021", "Frontline ops"]
-    : ["Role · UX Designer", "Year · 2020–2021", "Sector · Frontline ops"];
+const WHY_WHAT_HOW = [
+  {
+    label: "Why",
+    detail:
+      "When something broke mid-shift, reporting it meant finding a manager and a desktop. Troubleshooting was thin and search was a dead end, so the shortest path through the product was a form — and a ticket got raised before anyone had tried the obvious fix.",
+  },
+  {
+    label: "What",
+    detail:
+      "Redesign frontline support end to end: one mobile experience covering both halves of the floor — facilities and technology — for associates across a ~580K-device footprint.",
+  },
+  {
+    label: "How",
+    detail:
+      "Rebuilt the taxonomy from card sorting with associates, moved guided resolution ahead of the ticket as step one of two, and closed the loop with work orders they could track, annotate and escalate. A ticket became the fallback rather than the first move.",
+  },
+];
 
-  const copy = (
-    <div>
-      <span className="ds-pull-dots" aria-hidden />
-      <p className="ds-eyebrow ds-pull-eyebrow">FixIt · Store Support Platform · Walmart Global Tech</p>
-      <h3
-        className={`display-title ${split ? "max-w-[15ch]" : "max-w-[24ch]"}`}
-        style={{
-          color: "var(--ds-dark-ink)",
-          fontSize: split ? "clamp(2rem, 3.4vw, 2.9rem)" : "clamp(2rem, 4.2vw, 3.1rem)",
-          lineHeight: 1.06,
-          letterSpacing: "-0.015em",
-        }}
-      >
-        {split ? (
-          <>
-            One app for <span style={{ color: "var(--ds-mint)" }}>everything that breaks</span> in a Walmart
-            store.
-          </>
-        ) : (
-          HEADLINE
-        )}
-      </h3>
-      {/* Dot separators rather than a gap alone, so the row reads as one
-          line of provenance instead of three loose fragments. */}
-      <div
-        /* 0.62rem, not 0.68: the media column took width off this one, and
-           at the larger size the row wrapped and left a separator dot
-           orphaned at the start of the second line. */
-        className="mt-9 flex flex-wrap items-center gap-x-4 gap-y-3 font-mono text-[0.62rem] uppercase tracking-[0.1em]"
-        style={{ color: "var(--ds-dark-muted)" }}
-      >
-        {meta.map((m, i) => (
-          <span key={m} className="flex items-center gap-4">
-            {i > 0 ? (
-              <span aria-hidden className="inline-block h-1 w-1 rounded-full" style={{ background: "var(--ds-mint)", opacity: 0.55 }} />
-            ) : null}
-            {m}
-          </span>
-        ))}
-      </div>
-    </div>
-  );
-
-  const shot = (
-    // eslint-disable-next-line @next/next/no-img-element
-    <img
-      src={HERO_IMG}
-      alt=""
-      className={split ? "w-full" : "mt-10 w-full rounded-xl"}
-      style={split ? { maxWidth: "52rem", marginInline: "auto" } : { maxWidth: "60rem" }}
-    />
-  );
-
-  return (
-    <div className="ds-pull">
-      <div className="ds-pull-inner" style={overlapRoom ? { paddingBottom: "clamp(5rem, 9vw, 8rem)" } : undefined}>
-        {split ? (
-          <div className="grid items-stretch gap-10 lg:grid-cols-[0.82fr_1.4fr] lg:gap-12">
-            <div className="flex items-center">{copy}</div>
-            <div
-              className="flex items-end justify-center"
-              style={overlapRoom ? { marginBottom: "calc(clamp(5rem, 9vw, 8rem) * -1)" } : undefined}
-            >
-              {shot}
-            </div>
-          </div>
-        ) : (
-          <>
-            {copy}
-            {shot}
-          </>
-        )}
-      </div>
-    </div>
-  );
-}
-
-/** A brand-poster hero — solid colour field, a dot-field texture, bold
-    type, corner-anchored labels. Reuses the exact radial-gradient dot
-    texture technique `.ds-scene-banner-empty` already uses for a
-    photo-less hero band, just scaled up and tinted white-on-colour
-    instead of mint-on-dark, plus the project's own accent as the field
-    instead of `--ds-dark` — a scaled reference to the reference image
-    (a Firefox campaign poster: solid colour, a scattered geometric dot
-    pattern, bold type bottom-left, wordmark top-right, URL bottom-right). */
-function PosterHero() {
-  return (
-    <div className="ds-pull" style={{ background: PROJECT_ACCENT }}>
-      <div
-        className="ds-pull-inner"
-        style={{
-          backgroundImage: "radial-gradient(color-mix(in oklab, white 24%, transparent) 1.8px, transparent 2px)",
-          backgroundSize: "26px 26px",
-        }}
-      >
-        <div className="flex items-center justify-between">
-          <p className="font-mono text-[0.72rem] uppercase tracking-[0.16em]" style={{ color: "rgba(255,255,255,0.9)" }}>
-            FixIt
-          </p>
-          <p className="font-mono text-[0.68rem] uppercase tracking-[0.14em]" style={{ color: "rgba(255,255,255,0.65)" }}>
-            Walmart Global Tech
-          </p>
-        </div>
-        <h3
-          className="display-title mt-14 max-w-[16ch]"
-          style={{ color: "#fff", fontSize: "clamp(2.3rem, 5.6vw, 4.1rem)", lineHeight: 1.03 }}
-        >
-          {HEADLINE}
-        </h3>
-        <div
-          className="mt-14 flex flex-wrap items-center justify-between gap-4 border-t pt-6 font-mono text-[0.68rem] uppercase tracking-[0.1em]"
-          style={{ borderColor: "rgba(255,255,255,0.2)", color: "rgba(255,255,255,0.65)" }}
-        >
-          <span>UX Designer · 2020–2021 · Frontline ops</span>
-          <span>fixit.walmart</span>
-        </div>
-      </div>
-    </div>
-  );
-}
-
-/** Reasoning and scale as one card, not two separate blocks — modelled on
-    how Ramotion's own case studies pair an "About" paragraph with a
-    plain fact column (Length / Products / Team) rather than folding
-    everything into one dense mixed panel: Why/What/How stacked on the
-    left reads as prose-weight reasoning, the metrics on the right read
-    as a plain fact list, and a single vertical rule is the only thing
-    joining them. */
 /**
  * Glyphs are the S2b semantic marks, read off METRIC_MARK_MEANINGS rather
  * than picked for looks: population, reach, volume. That is also the
@@ -266,35 +67,107 @@ const METRICS = [
   { value: "7K+", label: "weekly searches", glyph: "bars" },
 ] as const;
 
-function WhyWhatHowAndMetrics({ glyphs = false, overlap = false }: { glyphs?: boolean; overlap?: boolean }) {
+const BODY = [
+  "A freezer drifting out of temperature in frozen foods. A forklift down in the back room. A handheld that will not scan at the register, or a pharmacy system that will not log in. Different trades, different teams — and to the associate who found them, the same event: something stopped working and the shift is still running.",
+  "FixIt puts all of it behind one front door — equipment and technology, alarms and tickets — and puts the fix in front of the form.",
+];
+
+/** The band's bottom padding, and the negative margin that cancels it for
+    the screens. One value, so they cannot drift apart. */
+const HERO_FLOOR = "clamp(5rem, 9vw, 8rem)";
+
+function Hero() {
+  const meta = ["UX Designer", "2020–2021", "Frontline ops"];
+
+  return (
+    <div className="ds-pull">
+      <div className="ds-pull-inner" style={{ paddingBottom: HERO_FLOOR }}>
+        <div className="grid items-stretch gap-10 lg:grid-cols-[0.82fr_1.4fr] lg:gap-12">
+          <div className="flex items-center">
+            <div>
+              <span className="ds-pull-dots" aria-hidden />
+              <p className="ds-eyebrow ds-pull-eyebrow">FixIt · Store Support Platform · Walmart Global Tech</p>
+              {/* D2 applies on the dark ground too — one emphasis per
+                  title, and it has to be the mint: --accent-deep is the
+                  light-ground ink and goes muddy here. */}
+              <h2
+                className="display-title max-w-[15ch]"
+                style={{
+                  color: "var(--ds-dark-ink)",
+                  fontSize: "clamp(2rem, 3.4vw, 2.9rem)",
+                  lineHeight: 1.06,
+                  letterSpacing: "-0.015em",
+                }}
+              >
+                One app for <span style={{ color: "var(--ds-mint)" }}>everything that breaks</span> in a
+                Walmart store.
+              </h2>
+              {/* Values without their label prefixes — with them the row
+                  wrapped and stranded a separator dot at the head of the
+                  second line. */}
+              <div
+                className="mt-9 flex flex-wrap items-center gap-x-4 gap-y-3 font-mono text-[0.62rem] uppercase tracking-[0.1em]"
+                style={{ color: "var(--ds-dark-muted)" }}
+              >
+                {meta.map((m, i) => (
+                  <span key={m} className="flex items-center gap-4">
+                    {i > 0 ? (
+                      <span
+                        aria-hidden
+                        className="inline-block h-1 w-1 rounded-full"
+                        style={{ background: "var(--ds-mint)", opacity: 0.55 }}
+                      />
+                    ) : null}
+                    {m}
+                  </span>
+                ))}
+              </div>
+            </div>
+          </div>
+
+          {/* Bottom-aligned and pulled past the band's padding so the
+              screens reach the floor; .ds-pull's overflow:hidden clips
+              the bleed. The padding is there to protect the copy, not to
+              hold the image up. */}
+          <div className="flex items-end justify-center" style={{ marginBottom: `calc(${HERO_FLOOR} * -1)` }}>
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img src={HERO_IMG} alt="" className="w-full" style={{ maxWidth: "52rem", marginInline: "auto" }} />
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+/** Reasoning and scale at equal weight in one card, joined by a single
+    rule — rather than a strip of metrics bolted onto a Why/What/How
+    sidebar. Overlaps the hero band by ~10% of its own height. */
+function EvidenceCard() {
   return (
     <div
-      className={`rounded-2xl p-8 md:p-12 ${overlap ? "relative z-[1]" : ""}`}
+      className="relative z-[1] rounded-2xl p-8 md:p-12"
       style={{
         border: "1px solid var(--ds-solid-border)",
-        // Opaque, not the translucent token: it has to sit over the dark
-        // band without the band bleeding through and greying the text.
-        background: overlap ? "var(--paper)" : "var(--ds-solid-bg)",
-        boxShadow: overlap ? "0 28px 60px -32px rgb(6 17 21 / 0.55)" : undefined,
-        // ~10% of the card's height at desktop; clamped so it stays a
-        // deliberate overlap rather than swallowing the band on wide
-        // screens or vanishing on narrow ones.
-        marginTop: overlap ? "clamp(-3rem, -3.3vw, -1.75rem)" : undefined,
+        // Opaque, not the translucent surface token: it sits over the
+        // dark band, which would otherwise bleed through and grey the text.
+        background: "var(--paper)",
+        boxShadow: "0 28px 60px -32px rgb(6 17 21 / 0.55)",
+        // ~10% of the card's own height. Retuned after the three beats
+        // grew: a fixed pull does not track content, so this is measured
+        // against the current card (~620px at desktop), not guessed.
+        marginTop: "clamp(-4.5rem, -4.65vw, -2.5rem)",
       }}
     >
-      <div className="grid grid-cols-1 gap-10 md:grid-cols-[1.3fr_auto_0.8fr] md:gap-12">
-        <dl className="space-y-7">
+      <div className="grid grid-cols-1 gap-10 md:grid-cols-[1.35fr_auto_0.75fr] md:gap-12">
+        <dl className="space-y-8">
           {WHY_WHAT_HOW.map((row) => (
             <div key={row.label}>
-              {/* The label carries the accent so the three beats scan as a
-                  set before any of them is read. */}
-              <dt className="ds-eyebrow" style={glyphs ? { color: "var(--accent-deep)" } : undefined}>
+              {/* Accent on the label so the three beats scan as a set
+                  before any one of them is read. */}
+              <dt className="ds-eyebrow" style={{ color: "var(--accent-deep)" }}>
                 {row.label}
               </dt>
-              <dd
-                className="body-text m-0 mt-2"
-                style={glyphs ? { maxWidth: "46ch", color: "var(--ink-soft)" } : undefined}
-              >
+              <dd className="body-text m-0 mt-2.5" style={{ maxWidth: "52ch", color: "var(--ink-soft)" }}>
                 {row.detail}
               </dd>
             </div>
@@ -303,18 +176,16 @@ function WhyWhatHowAndMetrics({ glyphs = false, overlap = false }: { glyphs?: bo
 
         <div aria-hidden className="hidden md:block" style={{ width: 1, background: "var(--ds-solid-border)" }} />
 
-        <dl className={glyphs ? "space-y-7" : "space-y-6"}>
+        <dl className="space-y-8">
           {METRICS.map((m) => (
             <div key={m.label}>
-              {glyphs ? (
-                <div className="mb-3" aria-hidden>
-                  <MetricGlyph name={m.glyph} size={5} gap={3} />
-                </div>
-              ) : null}
+              <div className="mb-3" aria-hidden>
+                <MetricGlyph name={m.glyph} size={5} gap={3} />
+              </div>
               <dt
                 className="display-title"
                 style={{
-                  fontSize: glyphs ? "1.9rem" : "1.7rem",
+                  fontSize: "1.9rem",
                   lineHeight: 1,
                   letterSpacing: "-0.01em",
                   color: "var(--accent-deep)",
@@ -327,201 +198,35 @@ function WhyWhatHowAndMetrics({ glyphs = false, overlap = false }: { glyphs?: bo
           ))}
         </dl>
       </div>
+      {/* The figures are scale, not proof the redesign resolved anything —
+          the web draft has no approved post-launch resolution data. */}
+      <p className="ds-note mt-10 border-t pt-5" style={{ borderColor: "var(--ds-solid-border)" }}>
+        Scale of the experience during the documented period — not a resolution claim.
+      </p>
     </div>
   );
 }
 
-function OverviewGrid({ panel }: { panel: React.ReactNode }) {
-  return (
-    <div className="mt-9 grid grid-cols-1 items-start gap-8 md:grid-cols-[0.85fr_1.15fr] md:gap-16">
-      <div>
-        <p className="eyebrow">Overview</p>
-        <p className="display-title mt-4 max-w-[16ch] text-[var(--ink)]" style={{ fontSize: "clamp(1.5rem, 2vw, 2.1rem)", lineHeight: 1.14 }}>
-          {STATEMENT}
-        </p>
-        {panel}
-      </div>
-      <div className="space-y-5">
-        {BODY.map((p) => (
-          <p key={p} className="body-text">
-            {p}
-          </p>
-        ))}
-      </div>
-    </div>
-  );
-}
-
-export default function CaseStudyExplorationsPage() {
+export default function CaseStudyIntroDraftPage() {
   return (
     <div className="ds-scope pb-32">
       <header className="mx-auto w-full max-w-[85rem] px-5 pt-14 md:px-8">
         <p className="eyebrow">Internal · not linked</p>
-        <h1 className="display-title mt-4 max-w-[30ch]" style={{ fontSize: "2.4rem", lineHeight: 1.08 }}>
-          One recommendation, then the comparisons behind it.
+        <h1 className="display-title mt-4 max-w-[26ch]" style={{ fontSize: "2.4rem", lineHeight: 1.08 }}>
+          The case-study intro, being refined.
         </h1>
-        <p className="mt-6 max-w-[68ch] text-lg leading-8" style={{ color: "var(--ink-soft)" }}>
-          The picture below is the actual answer — full-bleed, poster-referenced, Why/What/How and the
-          metrics sharing one card. Everything under &quot;The comparisons&quot; is the working that got here,
-          kept for reference, not seven equal options to choose between.
+        <p className="mt-6 max-w-[66ch] text-lg leading-8" style={{ color: "var(--ink-soft)" }}>
+          One arrangement now, not six. Why states the problem, What states the task, How states what I did
+          and what it changed — the three were blurred before, with What describing the solution and How
+          carrying both method and result.
         </p>
       </header>
 
-      {/* ── Recommended ─────────────────────────────────────────────────── */}
       <section className="pt-14">
+        <Hero />
         <div className="mx-auto w-full max-w-[85rem] px-5 md:px-8">
-          <div className="mb-8 flex flex-wrap items-baseline gap-4">
-            <span
-              className="rounded-md px-2.5 py-1 font-mono text-[0.62rem] uppercase tracking-[0.12em]"
-              style={{ color: "#fff", background: "var(--accent-deep)" }}
-            >
-              Recommended
-            </span>
-            <p className="body-sm max-w-[58ch]" style={{ color: "var(--ink-soft)" }}>
-              Full-bleed poster hero (built from the Firefox reference, on Store Support&apos;s own accent) —
-              headline stated plainly, product and client as corner labels, no sidebar. Directly under it,
-              reasoning and scale share one card at equal visual weight — Ramotion&apos;s prose-plus-fact-list
-              split, not a strip of metrics bolted onto a Why/What/How sidebar.
-            </p>
-          </div>
-        </div>
-        <PosterHero />
-        <div className="mx-auto mt-12 w-full max-w-[85rem] px-5 md:px-8">
-          <WhyWhatHowAndMetrics />
-          <div className="mt-10 max-w-[70rem] space-y-5">
-            {BODY.map((p) => (
-              <p key={p} className="body-text">
-                {p}
-              </p>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <div className="mx-auto mt-28 w-full max-w-[85rem] px-5 md:px-8">
-        <p className="eyebrow">The comparisons</p>
-        <h2 className="display-title mt-4 max-w-[40ch]" style={{ fontSize: "1.6rem" }}>
-          Six ways this got tested — kept for reference, not for picking from again.
-        </h2>
-      </div>
-
-      {/* ── 1 · Shipped baseline ────────────────────────────────────────── */}
-      <section className="pt-20">
-        <div className="mx-auto w-full max-w-[85rem] px-5 md:px-8">
-          <VariationLabel
-            code="1"
-            name="Shipped baseline"
-            note="Hero, then the statement with Why/What/How underneath. What's live on Store Support today — full-bleed here too, so it's a fair comparison against the rest."
-          />
-        </div>
-        <FullBleedHero />
-        <div className="mx-auto w-full max-w-[70rem] px-5 md:px-8">
-          <OverviewGrid panel={<WhyWhatHowPanel />} />
-        </div>
-      </section>
-
-      {/* ── 2 · Scale first ─────────────────────────────────────────────── */}
-      <section className="pt-24">
-        <div className="mx-auto w-full max-w-[85rem] px-5 md:px-8">
-          <VariationLabel
-            code="2"
-            name="Scale first"
-            note="Same as the baseline, with the ProofStrip inserted between the hero and the overview — the size of the problem lands before the argument does."
-          />
-        </div>
-        <FullBleedHero />
-        <div className="mx-auto w-full max-w-[70rem] px-5 md:px-8">
-          <div className="mt-8">
-            <ProofStrip
-              items={[
-                { value: "~5.9K", label: "daily users", glyph: "field" },
-                { value: "~580K", label: "device footprint", glyph: "bars" },
-                { value: "7K+", label: "weekly searches", glyph: "ring" },
-              ]}
-            />
-          </div>
-          <OverviewGrid panel={<WhyWhatHowPanel />} />
-        </div>
-      </section>
-
-      {/* ── 3 · Insight-led ─────────────────────────────────────────────── */}
-      <section className="pt-24">
-        <div className="mx-auto w-full max-w-[85rem] px-5 md:px-8">
-          <VariationLabel
-            code="3"
-            name="Insight-led"
-            note="Drops Why/What/How for a single named insight, placed where a reader has just finished the statement — the research's “what insight revealed the problem” framing, made visible instead of implied."
-          />
-        </div>
-        <FullBleedHero />
-        <div className="mx-auto w-full max-w-[70rem] px-5 md:px-8">
-          <OverviewGrid
-            panel={
-              <div className="mt-7">
-                <p className="ds-eyebrow">What the card sort found</p>
-                <p className="body-sm mt-2" style={{ color: "var(--ink-soft)" }}>
-                  The floor doesn&apos;t think in support categories. It thinks in problems — a department, a
-                  device, a person to call.
-                </p>
-              </div>
-            }
-          />
-        </div>
-      </section>
-
-      {/* ── 4 · Triage first ────────────────────────────────────────────── */}
-      <section className="pt-24">
-        <div className="mx-auto w-full max-w-[85rem] px-5 md:px-8">
-          <VariationLabel
-            code="4"
-            name="Triage first"
-            note="A one-line quick-facts strip ahead of everything, then the full-bleed hero, then scale, then the baseline overview — every signal a three-second skim needs, in order, before the reader decides to keep going."
-          />
-          <QuickFacts />
-        </div>
-        <FullBleedHero />
-        <div className="mx-auto w-full max-w-[70rem] px-5 md:px-8 md:pb-4">
-          <div className="mt-8">
-            <ProofStrip
-              items={[
-                { value: "~5.9K", label: "daily users", glyph: "field" },
-                { value: "~580K", label: "device footprint", glyph: "bars" },
-                { value: "7K+", label: "weekly searches", glyph: "ring" },
-              ]}
-            />
-          </div>
-          <OverviewGrid panel={<WhyWhatHowPanel />} />
-        </div>
-      </section>
-
-      {/* ── 5 · Insight, spoken ─────────────────────────────────────────── */}
-      <section className="pt-28">
-        <div className="mx-auto w-full max-w-[85rem] px-5 md:px-8">
-          <VariationLabel
-            code="5"
-            name="Insight, full-bleed"
-            note="Same insight as option 3, given a full-width dark moment instead of sitting in the sidebar — for comparison against how loud that reasoning should be. (This one was already full-bleed — the other four weren't, which is the gap this pass closes.)"
-          />
-        </div>
-        <PullStatement eyebrow="What the card sort found" mark="connection">
-          The floor doesn&apos;t think in support categories. It thinks in problems — a department, a
-          device, a person to call.
-        </PullStatement>
-      </section>
-
-      {/* ── 6 · Full-bleed hero, evidence as one section ─────────────────── */}
-      <section className="pt-28">
-        <div className="mx-auto w-full max-w-[85rem] px-5 md:px-8">
-          <VariationLabel
-            code="6"
-            name="Full-bleed hero, dark ground"
-            note="The same evidence card as the recommendation above, but on the site's standard dark full-bleed band instead of the project's own accent colour and dot texture — the step right before bringing the poster reference in. Kept to show why the colour field reads stronger than the default dark."
-          />
-        </div>
-        <FullBleedHero split overlapRoom />
-        <div className="mx-auto w-full max-w-[85rem] px-5 md:px-8">
-          <WhyWhatHowAndMetrics glyphs overlap />
-          <div className="mt-10 max-w-[70rem] space-y-5">
+          <EvidenceCard />
+          <div className="mt-12 max-w-[70rem] space-y-5">
             {BODY.map((p) => (
               <p key={p} className="body-text">
                 {p}
