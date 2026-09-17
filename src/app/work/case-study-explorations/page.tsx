@@ -36,20 +36,25 @@ const HERO_IMG = "/work/store-support/hero-composite.png";
 const HERO_FLOOR = "clamp(5rem, 9vw, 8rem)";
 
 /**
- * The live case study's hero meta, verbatim — the four rows the page
- * passes plus the three classification axes `CaseStudyShell` appends
- * from `projects.ts` and `work-filters.ts`. Dropped in here unedited so
- * the two formats can be compared side by side and the rows worth
- * keeping picked off; several duplicate what the eyebrow, standfirst and
- * compact meta already say.
+ * Chosen from the live hero's seven rows. Client is gone — the eyebrow
+ * already named Walmart Global Tech — and Sector is gone because
+ * Discipline said the same thing one word longer.
+ *
+ * Two values edited rather than taken verbatim, both fixing a
+ * contradiction the two blocks only exposed once they sat together:
+ *
+ * - Discipline drops "· Mobile product". With Platform as its own row
+ *   that was the same fact twice, and the two disagreed.
+ * - Platform reads "Mobile & web", not the "Mobile" work-filters.ts
+ *   stores. The approved focus covers the web dashboard redesign and
+ *   the design-system migration, so mobile alone understates it — the
+ *   filter data is still wrong, and fixing it is a site-wide edit.
  */
-const LIVE_META = [
+const HERO_META = [
   { label: "Role", value: "UX Designer" },
-  { label: "Client", value: "Walmart Global Tech" },
   { label: "Year", value: "2020–2021" },
-  { label: "Discipline", value: "Frontline operations · Mobile product" },
-  { label: "Sector", value: "Frontline ops" },
-  { label: "Platform", value: "Mobile" },
+  { label: "Discipline", value: "Frontline operations" },
+  { label: "Platform", value: "Mobile & web" },
   { label: "Craft", value: "Research · UX · UI" },
 ];
 
@@ -120,7 +125,6 @@ const BEAT_MARKS: Record<string, number[]> = {
 };
 
 function Hero() {
-  const meta = ["UX Designer", "Mobile & web", "2020–2021"];
   return (
     <div className="ds-pull">
       <div className="ds-pull-inner" style={{ paddingBottom: HERO_FLOOR }}>
@@ -128,7 +132,6 @@ function Hero() {
           <div className="flex items-center">
             <div>
               <span className="ds-pull-dots" aria-hidden />
-              <p className="ds-eyebrow ds-pull-eyebrow">Store Support Platform · Walmart Global Tech</p>
               <h2
                 className="display-title max-w-[18ch]"
                 style={{
@@ -150,34 +153,11 @@ function Hero() {
                 to get back to the job. Designed for them, for new starters still learning the store, and
                 for the support desks receiving what they send.
               </p>
-              <div
-                className="mt-8 flex flex-wrap items-center gap-x-4 gap-y-3 font-mono text-[0.62rem] uppercase tracking-[0.1em]"
-                style={{ color: "var(--ds-dark-muted)" }}
-              >
-                {meta.map((m, i) => (
-                  <span key={m} className="flex items-center gap-4">
-                    {i > 0 ? (
-                      <span
-                        aria-hidden
-                        className="inline-block h-1 w-1 rounded-full"
-                        style={{ background: "var(--ds-mint)", opacity: 0.55 }}
-                      />
-                    ) : null}
-                    {m}
-                  </span>
-                ))}
-              </div>
-              <p className="mt-5 max-w-[44ch] text-[0.88rem] leading-6" style={{ color: "var(--ds-dark-muted)" }}>
-                Picked the product up mid-flight from the previous designer, working with product,
-                engineering and the associates themselves.
-              </p>
-
-              {/* The live hero's meta block, exactly as `SceneBanner`
-                  renders it — same `dl`, same classes, same colours — so
-                  this is a like-for-like comparison against the compact
-                  row above rather than a restyled version of it. */}
+              {/* `SceneBanner`'s own meta markup — same `dl`, same
+                  classes, same colours — so the draft hero and the live
+                  one stay a single format rather than two. */}
               <dl className="ds-scene-banner-meta">
-                {LIVE_META.map((item) => (
+                {HERO_META.map((item) => (
                   <div key={item.label}>
                     <dt className="ds-eyebrow" style={{ color: "#8fb3bc" }}>
                       {item.label}
