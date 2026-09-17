@@ -119,7 +119,13 @@ function WhyWhatHowPanel() {
  * muddy here.
  */
 function FullBleedHero({ split = false, overlapRoom = false }: { split?: boolean; overlapRoom?: boolean }) {
-  const meta = ["Role · UX Designer", "Year · 2020–2021", "Sector · Frontline ops"];
+  // Split mode gives width to the screens, so the meta drops its label
+  // prefixes and keeps the values — the same compact form PosterHero on
+  // this page already uses. With the prefixes it wrapped, stranding a
+  // separator dot at the head of the second line.
+  const meta = split
+    ? ["UX Designer", "2020–2021", "Frontline ops"]
+    : ["Role · UX Designer", "Year · 2020–2021", "Sector · Frontline ops"];
 
   const copy = (
     <div>
@@ -146,7 +152,10 @@ function FullBleedHero({ split = false, overlapRoom = false }: { split?: boolean
       {/* Dot separators rather than a gap alone, so the row reads as one
           line of provenance instead of three loose fragments. */}
       <div
-        className="mt-9 flex flex-wrap items-center gap-x-4 gap-y-3 font-mono text-[0.68rem] uppercase tracking-[0.12em]"
+        /* 0.62rem, not 0.68: the media column took width off this one, and
+           at the larger size the row wrapped and left a separator dot
+           orphaned at the start of the second line. */
+        className="mt-9 flex flex-wrap items-center gap-x-4 gap-y-3 font-mono text-[0.62rem] uppercase tracking-[0.1em]"
         style={{ color: "var(--ds-dark-muted)" }}
       >
         {meta.map((m, i) => (
@@ -167,7 +176,7 @@ function FullBleedHero({ split = false, overlapRoom = false }: { split?: boolean
       src={HERO_IMG}
       alt=""
       className={split ? "w-full" : "mt-10 w-full rounded-xl"}
-      style={split ? { maxWidth: "34rem", marginInline: "auto" } : { maxWidth: "60rem" }}
+      style={split ? { maxWidth: "52rem", marginInline: "auto" } : { maxWidth: "60rem" }}
     />
   );
 
@@ -175,9 +184,14 @@ function FullBleedHero({ split = false, overlapRoom = false }: { split?: boolean
     <div className="ds-pull">
       <div className="ds-pull-inner" style={overlapRoom ? { paddingBottom: "clamp(5rem, 9vw, 8rem)" } : undefined}>
         {split ? (
-          <div className="grid items-center gap-10 lg:grid-cols-[1fr_0.85fr] lg:gap-16">
-            {copy}
-            {shot}
+          <div className="grid items-stretch gap-10 lg:grid-cols-[0.82fr_1.4fr] lg:gap-12">
+            <div className="flex items-center">{copy}</div>
+            <div
+              className="flex items-end justify-center"
+              style={overlapRoom ? { marginBottom: "calc(clamp(5rem, 9vw, 8rem) * -1)" } : undefined}
+            >
+              {shot}
+            </div>
           </div>
         ) : (
           <>
