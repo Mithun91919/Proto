@@ -134,7 +134,14 @@ export function CaseStudyHero({
 
         {hasArt ? (
           <div className="grid items-stretch gap-10 lg:grid-cols-[0.82fr_1.4fr] lg:gap-12">
-            <div className="flex items-center">{copy}</div>
+            {/* Top-aligned, not centred. The row is sized by the art's
+                margin box, which is taller than the copy, so centring
+                split the difference into ~36px of dead space above the
+                dot marker and the same again below the meta. Aligning to
+                the top starts the copy on the art's own top line; the
+                slack that is left sits under the meta, where the evidence
+                card overlaps it. */}
+            <div className="flex items-start">{copy}</div>
             <div
               className="relative flex items-end justify-center"
               style={{ marginBottom: `calc(${FLOOR} * -1)` }}
