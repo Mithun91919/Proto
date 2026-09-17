@@ -2,7 +2,6 @@ import Image from "next/image";
 import type { ReactNode } from "react";
 
 export type CaseStudyHeroProps = {
-  eyebrow: string;
   headline: ReactNode;
   /** One line under the headline saying what the product is and who opens
       it — the thing a reader who has never heard of it needs first. */
@@ -44,7 +43,6 @@ export type CaseStudyHeroProps = {
 const FLOOR = "clamp(5rem, 9vw, 8rem)";
 
 export function CaseStudyHero({
-  eyebrow,
   headline,
   standfirst,
   meta,
@@ -60,7 +58,6 @@ export function CaseStudyHero({
   const copy = (
     <div>
       <span className="ds-pull-dots" aria-hidden />
-      <p className="ds-eyebrow ds-pull-eyebrow">{eyebrow}</p>
       <h1
         className={`display-title ${hasArt ? "max-w-[18ch]" : "max-w-[24ch]"}`}
         style={{

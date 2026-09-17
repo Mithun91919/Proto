@@ -44,7 +44,6 @@ export default function CreoMark1Page() {
       hero={{
         src: "/work/creo/banner.jpg",
         alt: "Mark 1 campaign imagery: the phone shown against the brand's high-contrast visual language",
-        eyebrow: "Smartphone Brand & Digital Experience · CREO",
         headline: "Mark 1: a visual language for a smartphone that changed every month.",
         meta: [
           { label: "Role", value: "Visual Design" },

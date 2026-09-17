@@ -52,7 +52,6 @@ export default function DependencyHealthPage() {
       slug="dependency-health"
       chapters={CHAPTERS}
       hero={{
-        eyebrow: "Dependency Health Platform · Walmart Global Tech",
         headline: "Dependency Health Platform: turning compliance data into clear action.",
         meta: [
           { label: "Role", value: "Senior UX Designer" },

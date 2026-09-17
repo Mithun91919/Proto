@@ -50,7 +50,6 @@ export default function SupplyChainOperationsPage() {
       slug="supply-chain-operations"
       chapters={CHAPTERS}
       hero={{
-        eyebrow: "Supply Chain Operations Platform · Walmart Global Tech",
         headline: "Supply Chain Operations Platform: 139 tools behind one front door.",
         meta: [
           { label: "Role", value: "UX Designer · co-led" },

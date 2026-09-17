@@ -35,7 +35,6 @@ type HeroProps = {
   /** True pixel dimensions, so the art reserves its box before it loads. */
   width?: number;
   height?: number;
-  eyebrow: string;
   headline: string;
   /** One line saying what the product is and who opens it. */
   standfirst?: string;
@@ -68,10 +67,8 @@ export function CaseStudyShell({
   // the pre-enterprise projects that aren't in `projects`.
   const axisMeta: { label: string; value: string }[] = [];
   if (slug) {
-    const domain = getProject(slug)?.domain ?? earlierWorkDomain(slug);
     const platforms = projectPlatforms(slug);
     const craft = projectCraft(slug);
-    axisMeta.push({ label: "Sector", value: domain });
     if (platforms.length) axisMeta.push({ label: "Platform", value: platforms.join(" · ") });
     if (craft.length) axisMeta.push({ label: "Craft", value: craft.join(" · ") });
   }

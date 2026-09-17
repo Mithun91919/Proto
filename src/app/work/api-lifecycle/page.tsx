@@ -52,7 +52,6 @@ export default function ApiLifecyclePage() {
       slug="api-lifecycle"
       chapters={CHAPTERS}
       hero={{
-        eyebrow: "API Lifecycle Platform · Walmart Global Tech",
         headline: "API Lifecycle Platform: one place to discover, design, test, and govern APIs.",
         meta: [
           { label: "Role", value: "UX Designer → Senior UX Designer" },

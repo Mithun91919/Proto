@@ -53,7 +53,6 @@ export default function PortfolioManagementPage() {
       slug="portfolio-management"
       chapters={CHAPTERS}
       hero={{
-        eyebrow: "Portfolio Management Platform · Walmart Global Tech",
         headline: "Portfolio Management Platform: one system instead of five.",
         meta: [
           { label: "Role", value: "UX Designer → Senior UX Designer" },

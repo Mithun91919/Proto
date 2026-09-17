@@ -54,7 +54,6 @@ export default function MovieTicketsPage() {
       hero={{
         src: "/work/hike-movie-tickets/Movie_Banner_2.jpg",
         alt: "The Hike movie ticketing experience over a wall of film posters: a browse screen listing showings in Bengaluru beside a booked ticket with its QR code",
-        eyebrow: "Movie Ticket Booking · Hike",
         headline: "Movie Ticket Booking: turning intent into one continuous transaction.",
         meta: [
           { label: "Role", value: "Product Design" },

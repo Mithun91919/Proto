@@ -49,7 +49,6 @@ export default function RatingsReviewsPage() {
       hero={{
         src: "/work/bigbasket-ratings-reviews/Artboard%20Copy%208.jpg",
         alt: "The ratings and reviews experience on web and mobile: a browser review form beside a phone rating screen",
-        eyebrow: "Ratings & Reviews · bigbasket",
         headline: "Ratings & Reviews: one feedback system across mobile and web.",
         meta: [
           { label: "Role", value: "UX Design" },

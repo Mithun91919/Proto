@@ -62,7 +62,6 @@ export default function StoreSupportPage() {
       slug="store-support"
       chapters={CHAPTERS}
       hero={{
-        eyebrow: "FixIt · Store Support Platform · Walmart Global Tech",
         headline: "One app for everything that breaks in a store — and a way to fix it before raising a ticket.",
         meta: [
           { label: "Role", value: "UX Designer" },

@@ -43,7 +43,6 @@ export default function TotalOsLocalizationPage() {
       slug="hike-total-os-localization"
       chapters={CHAPTERS}
       hero={{
-        eyebrow: "Multilingual Mobile Experience · Hike",
         headline: "Multilingual Mobile Experience: one localisation system across 8 Indian languages.",
         meta: [
           { label: "Role", value: "Product Research" },

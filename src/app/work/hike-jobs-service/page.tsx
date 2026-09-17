@@ -46,7 +46,6 @@ export default function HikeJobsServicePage() {
       hero={{
         src: "/work/hike-jobs-service/Jobs_Banner.jpg",
         alt: "The Jobs Service experience: job listings and the resume builder shown on phone screens",
-        eyebrow: "Job Discovery & Resume Builder · Hike",
         headline: "Job Discovery & Resume Builder: from finding a job to being ready to apply.",
         meta: [
           { label: "Role", value: "Product Design" },
