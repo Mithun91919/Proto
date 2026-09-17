@@ -88,13 +88,18 @@ export function CoverflowRow({ screens, label }: CoverflowRowProps) {
       </div>
 
       <div className="mx-auto mt-8 max-w-[34rem] text-center">
-        <p className="ds-eyebrow" style={{ color: "var(--ds-accent)" }}>
-          {screen.route ?? `${active + 1} of ${screens.length}`}
-        </p>
-        <h4 className="display-title mt-3" style={{ fontSize: "1.3rem" }}>
-          {screen.title}
-        </h4>
-        <p className="ds-note mt-3">{screen.description}</p>
+        {/* Keyed on `active` so the caption re-enters with the frame instead of
+            hard-cutting under it. The controls below stay outside the key —
+            remounting them on every click would drop keyboard focus. */}
+        <div key={active} className="ds-swap">
+          <p className="ds-eyebrow" style={{ color: "var(--ds-accent)" }}>
+            {screen.route ?? `${active + 1} of ${screens.length}`}
+          </p>
+          <h4 className="display-title mt-3" style={{ fontSize: "1.3rem" }}>
+            {screen.title}
+          </h4>
+          <p className="ds-note mt-3">{screen.description}</p>
+        </div>
 
         <div className="ds-artboard-dots mt-6" style={{ justifyContent: "center" }}>
           {screens.map((s, i) => (

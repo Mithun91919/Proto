@@ -82,14 +82,15 @@ export const metadata: Metadata = {
  * section without saying which mattered, and grouping them into families
  * only added a second row of labels to read. These are the five things
  * someone actually arrives looking for; the A-M headers carry the rest
- * once you are in the right part of the page.
+ * once you are in the right part of the page. They stay in document order,
+ * so working down the row always moves down the page.
  */
 const NAV = [
   { label: "Principles", href: "#principles" },
   { label: "Foundations", href: "#foundations" },
   { label: "Components", href: "#narrative" },
-  { label: "Case-study media", href: "#case-study-media" },
   { label: "Recipes", href: "#recipes" },
+  { label: "Case-study media", href: "#case-study-media" },
 ];
 
 const SWATCHES = [
@@ -180,7 +181,7 @@ export default function ComponentsPage() {
       </header>
 
       {/* A — Principles */}
-      <section id="principles" className="mx-auto max-w-[70rem] px-5 pt-20 md:px-8">
+      <section id="principles" className="mx-auto max-w-[70rem] px-5 pt-20 scroll-mt-28 md:px-8">
         <SectionHeader letter="A" title="Principles" subtitle="One job per visual layer" />
         <div className="ds-rule py-11">
           <h3 className="display-title max-w-[25ch]" style={{ fontSize: "1.9rem", lineHeight: 1.2 }}>
@@ -221,7 +222,7 @@ export default function ComponentsPage() {
       </section>
 
       {/* B — Foundations */}
-      <section id="foundations" className="mx-auto max-w-[70rem] px-5 pt-14 md:px-8">
+      <section id="foundations" className="mx-auto max-w-[70rem] px-5 pt-14 scroll-mt-28 md:px-8">
         <SectionHeader letter="B" title="Foundations" />
         <div className="grid grid-cols-1 gap-12 py-11 md:grid-cols-2">
           <div>
@@ -356,7 +357,7 @@ export default function ComponentsPage() {
       </section>
 
       {/* C — Dot language */}
-      <section id="dots" className="mx-auto max-w-[70rem] px-5 pt-16 md:px-8">
+      <section id="dots" className="mx-auto max-w-[70rem] px-5 pt-16 scroll-mt-28 md:px-8">
         <SectionHeader letter="C" title="Dot language" subtitle="Structure, state, and transformation" />
 
         <div className="ds-rule py-11">
@@ -604,7 +605,7 @@ export default function ComponentsPage() {
       </section>
 
       {/* D — Typography & emphasis */}
-      <section id="typography" className="mx-auto max-w-[70rem] px-5 pt-14 md:px-8">
+      <section id="typography" className="mx-auto max-w-[70rem] px-5 pt-14 scroll-mt-28 md:px-8">
         <SectionHeader letter="D" title="Typography & emphasis" subtitle="Colour highlights the idea; dots stay out of the letters" />
         <div className="ds-rule py-11">
           <SubLabel code="D1 · Colour semantics" />
@@ -638,7 +639,7 @@ export default function ComponentsPage() {
       </section>
 
       {/* E — Narrative components */}
-      <section id="narrative" className="mx-auto max-w-[70rem] px-5 pt-14 md:px-8">
+      <section id="narrative" className="mx-auto max-w-[70rem] px-5 pt-14 scroll-mt-28 md:px-8">
         <SectionHeader letter="E" title="Narrative components" subtitle="Tension, decisions, chapters, and reflection" />
 
         <div className="ds-rule py-11">
@@ -775,7 +776,7 @@ export default function ComponentsPage() {
       </section>
 
       {/* F — Product media */}
-      <section id="media" className="mx-auto max-w-[70rem] px-5 pt-14 md:px-8">
+      <section id="media" className="mx-auto max-w-[70rem] px-5 pt-14 scroll-mt-28 md:px-8">
         <SectionHeader letter="F" title="Product media" subtitle="Frame the design argument, not a gallery" />
 
         <div className="ds-rule py-11">
@@ -814,7 +815,7 @@ export default function ComponentsPage() {
       </section>
 
       {/* G — Evidence */}
-      <section id="evidence" className="mx-auto max-w-[70rem] px-5 pt-14 md:px-8">
+      <section id="evidence" className="mx-auto max-w-[70rem] px-5 pt-14 scroll-mt-28 md:px-8">
         <SectionHeader letter="G" title="Evidence" subtitle="Connect scale, change, and outcome" />
         <div className="ds-rule py-11">
           <SubLabel code="G1 · Scale to outcome" />
@@ -843,7 +844,7 @@ export default function ComponentsPage() {
       </section>
 
       {/* H — Navigation & closing */}
-      <section id="navigation" className="mx-auto max-w-[70rem] px-5 pt-14 md:px-8">
+      <section id="navigation" className="mx-auto max-w-[70rem] px-5 pt-14 scroll-mt-28 md:px-8">
         <SectionHeader letter="H" title="Navigation & closing" subtitle="Case-study openers, chapter transitions, and the exit" />
 
         <div className="ds-rule py-11">
@@ -911,7 +912,7 @@ export default function ComponentsPage() {
       </section>
 
       {/* I — Composition recipes */}
-      <section id="recipes" className="mx-auto max-w-[70rem] px-5 pt-14 md:px-8">
+      <section id="recipes" className="mx-auto max-w-[70rem] px-5 pt-14 scroll-mt-28 md:px-8">
         <SectionHeader letter="I" title="Composition recipes" subtitle="Preserve rhythm, not a fixed template" />
         <div className="py-11">
           <p className="mb-7 max-w-[68ch] text-[0.95rem] leading-7" style={{ color: "var(--ink-soft)" }}>
@@ -923,7 +924,7 @@ export default function ComponentsPage() {
       </section>
 
       {/* J — Motion & interaction */}
-      <section id="interaction" className="mx-auto max-w-[70rem] px-5 pt-14 md:px-8">
+      <section id="interaction" className="mx-auto max-w-[70rem] px-5 pt-14 scroll-mt-28 md:px-8">
         <SectionHeader letter="J" title="Motion & interaction" subtitle="Movement explains change" />
 
         <div className="ds-rule py-11">
@@ -951,7 +952,7 @@ export default function ComponentsPage() {
       </section>
 
       {/* K — Copy guide */}
-      <section id="copy" className="mx-auto max-w-[70rem] px-5 pt-14 md:px-8">
+      <section id="copy" className="mx-auto max-w-[70rem] px-5 pt-14 scroll-mt-28 md:px-8">
         <SectionHeader letter="K" title="Copy guide" subtitle="Plain language, precise ownership, credible claims" />
 
         <div className="ds-rule py-11">
@@ -1001,7 +1002,7 @@ export default function ComponentsPage() {
       </section>
 
       {/* L — Anti-patterns */}
-      <section id="anti-patterns" className="mx-auto max-w-[70rem] px-5 pt-14 md:px-8">
+      <section id="anti-patterns" className="mx-auto max-w-[70rem] px-5 pt-14 scroll-mt-28 md:px-8">
         <SectionHeader letter="L" title="Anti-patterns" subtitle="What keeps the system from becoming a theme" />
         <div className="py-11">
           <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
@@ -1019,7 +1020,7 @@ export default function ComponentsPage() {
       </section>
 
       {/* M — Case-study media, demoed against real files */}
-      <section id="case-study-media" className="mx-auto max-w-[70rem] px-5 pt-14 md:px-8">
+      <section id="case-study-media" className="mx-auto max-w-[70rem] px-5 pt-14 scroll-mt-28 md:px-8">
         <SectionHeader
           letter="M"
           title="Case-study media"

@@ -943,6 +943,10 @@
   position: relative;
   height: 24rem;
   perspective: 1400px;
+  /* The row is a carousel: neighbours are meant to run off its edges, not off
+     the page. Without this the 13rem step pushed the far screens past the
+     viewport and the whole page scrolled sideways (worst at 768-1024). */
+  overflow: clip;
 }
 
 .ds-coverflow-item {
@@ -983,6 +987,40 @@
 @media (prefers-reduced-motion: reduce) {
   .ds-coverflow-item {
     transition: none;
+  }
+}
+
+/* The 13rem step is a fixed distance, so on a phone the neighbours are clipped
+   away entirely. Tightening the step keeps them visible as context. */
+@media (max-width: 767px) {
+  .ds-coverflow-item {
+    transform: translateX(calc(-50% + var(--offset) * 4.5rem)) scale(calc(1 - var(--abs) * 0.12))
+      rotateY(calc(var(--offset) * -30deg));
+  }
+}
+
+/* ── Screen swap ──────────────────────────────────────────────────────
+   When a viewer picks a different screen, the frame moves at 460ms but the
+   caption under it used to hard-cut — half the component animating and half
+   snapping. Short enough to read as the same gesture, not its own event. */
+.ds-swap {
+  animation: ds-swap-in 160ms cubic-bezier(0.2, 0.7, 0.3, 1);
+}
+
+@keyframes ds-swap-in {
+  from {
+    opacity: 0;
+    transform: translateY(3px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ds-swap {
+    animation: none;
   }
 }
 
@@ -2146,6 +2184,12 @@ a:hover .ds-compact-mark .ds-dot {
 .ds-alt-row {
   display: grid;
   grid-template-columns: 1fr;
+}
+
+/* Grid items default to min-width:auto, so even the single stacked column
+   refused to shrink past its content and the row spilled its container. */
+.ds-alt-row > * {
+  min-width: 0;
 }
 
 @media (min-width: 768px) {

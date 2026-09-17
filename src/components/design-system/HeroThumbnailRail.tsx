@@ -41,13 +41,18 @@ export function HeroThumbnailRail({ screens, label }: HeroThumbnailRailProps) {
   return (
     <div className="grid gap-10 lg:grid-cols-[27rem_1fr] lg:items-center" role="group" aria-label={label}>
       <div>
-        <p className="ds-eyebrow" style={{ color: "var(--ds-accent)" }}>
-          {screen.route ?? `${active + 1} of ${screens.length}`}
-        </p>
-        <h4 className="display-title mt-3" style={{ fontSize: "1.5rem" }}>
-          {screen.title}
-        </h4>
-        <p className="ds-note mt-3 max-w-[40ch]">{screen.description}</p>
+        {/* Keyed on `active` so the caption re-enters with the frame. The
+            controls below stay outside the key — remounting them on every
+            click would drop keyboard focus. */}
+        <div key={active} className="ds-swap">
+          <p className="ds-eyebrow" style={{ color: "var(--ds-accent)" }}>
+            {screen.route ?? `${active + 1} of ${screens.length}`}
+          </p>
+          <h4 className="display-title mt-3" style={{ fontSize: "1.5rem" }}>
+            {screen.title}
+          </h4>
+          <p className="ds-note mt-3 max-w-[40ch]">{screen.description}</p>
+        </div>
 
         <div className="ds-artboard-dots" style={{ marginTop: "1.75rem", justifyContent: "flex-start" }}>
           {screens.map((s, i) => (
@@ -67,7 +72,9 @@ export function HeroThumbnailRail({ screens, label }: HeroThumbnailRailProps) {
         </div>
       </div>
 
-      <div>
+      {/* Grid items default to min-width:auto, so the thumbnail rail sized to
+          its full content instead of scrolling, and pushed the page wider. */}
+      <div className="min-w-0">
         <div className="ds-frame">
           {screen.route ? (
             <div className="ds-framebar">
@@ -84,7 +91,7 @@ export function HeroThumbnailRail({ screens, label }: HeroThumbnailRailProps) {
               </span>
             </div>
           ) : null}
-          <div className="ds-framebody">
+          <div key={screen.src} className="ds-framebody ds-swap">
             <Image
               key={screen.src}
               src={screen.src}

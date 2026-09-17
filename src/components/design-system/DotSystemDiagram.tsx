@@ -32,7 +32,7 @@ export function ConvergeShape() {
   const groups = ["People", "Products", "Initiatives", "Intake", "Goals"];
   return (
     <ShapeCard name="Converge" title="Five tools → one platform" project="Portfolio Management Platform">
-      <div className="grid grid-cols-[1fr_80px_1fr] items-center gap-8">
+      <div className="grid grid-cols-1 items-center gap-6 md:grid-cols-[1fr_80px_1fr] md:gap-8">
         <div className="flex flex-col gap-4">
           {groups.map((g) => (
             <div key={g} className="flex items-center gap-3.5">
@@ -100,7 +100,7 @@ export function TranslateShape() {
   ];
   return (
     <ShapeCard name="Translate" title="Noisy signals → ranked actions" project="Dependency Health Platform">
-      <div className="grid grid-cols-[1fr_80px_1fr] items-center gap-8">
+      <div className="grid grid-cols-1 items-center gap-6 md:grid-cols-[1fr_80px_1fr] md:gap-8">
         <div>
           <DotGrid cols={12} size={7} gap={5} dots={[0.25, 0.5, 0.9, 0.35, 1, 0.6, 0.2, 0.75].concat(Array(52).fill(0.5)).slice(0, 60)} variant="muted" />
           <p className="mt-4 font-mono text-[0.6rem] uppercase" style={{ color: "var(--muted)" }}>
@@ -127,7 +127,7 @@ export function TranslateShape() {
 export function ResolveShape() {
   return (
     <ShapeCard name="Resolve" title="One path forks into two outcomes" project="Store associate app">
-      <div className="flex items-center gap-6">
+      <div className="flex flex-col items-start gap-5 sm:flex-row sm:items-center sm:gap-6">
         <div className="flex flex-col gap-3.5">
           <span className="font-mono text-[0.6rem] uppercase" style={{ color: "var(--ink-soft)" }}>
             Issue
@@ -162,7 +162,7 @@ export function OrganiseShape() {
   const bins = ["Plan", "Source", "Move", "Store"];
   return (
     <ShapeCard name="Organise" title="A flat field becomes a hierarchy" project="Supply Chain Operations Platform">
-      <div className="grid grid-cols-[1fr_80px_1.2fr] items-center gap-8">
+      <div className="grid grid-cols-1 items-center gap-6 md:grid-cols-[1fr_80px_1.2fr] md:gap-8">
         <div>
           <DotGrid cols={13} size={7} gap={5} dots={Array(52).fill(1)} variant="muted" />
           <p className="mt-4 font-mono text-[0.6rem] uppercase" style={{ color: "var(--muted)" }}>

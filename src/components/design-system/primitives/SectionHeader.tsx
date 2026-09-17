@@ -8,14 +8,16 @@ type SectionHeaderProps = {
 /** The lettered top-level section header (A · Principles, B · Foundations, …). */
 export function SectionHeader({ letter, title, subtitle, id }: SectionHeaderProps) {
   return (
-    <div id={id} className="ds-section-rule flex items-baseline gap-5 pb-7">
+    <div id={id} className="ds-section-rule flex flex-wrap items-baseline gap-x-5 gap-y-2 pb-7">
       <span className="ds-eyebrow" style={{ color: "var(--ds-accent)", fontSize: "0.7rem" }}>
         {letter}
       </span>
       <h2 className="display-title" style={{ fontSize: "2.1rem", letterSpacing: "-0.03em", margin: 0 }}>
         {title}
       </h2>
-      {subtitle ? <span className="ds-eyebrow ml-auto">{subtitle}</span> : null}
+      {/* Below sm the descriptor takes its own full-width line; from sm it goes
+          back to sitting right-aligned on the title's line. */}
+      {subtitle ? <span className="ds-eyebrow w-full sm:ml-auto sm:w-auto">{subtitle}</span> : null}
     </div>
   );
 }

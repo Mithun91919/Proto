@@ -4,7 +4,7 @@ import { DotGrid } from "./primitives/DotGrid";
 /** C7 · Dot colour states — colour shows state change, not a palette. Earlier/inactive is muted; resolved/active becomes accent. */
 export function DotColourStates() {
   return (
-    <div className="grid grid-cols-[1fr_auto_1fr_auto_1fr] items-center gap-4">
+    <div className="grid grid-cols-1 items-center gap-4 sm:grid-cols-[1fr_auto_1fr_auto_1fr]">
       <GlassPanel variant="soft" className="rounded-2xl p-[1.625rem]">
         <p className="ds-eyebrow" style={{ color: "var(--muted)" }}>
           Before
