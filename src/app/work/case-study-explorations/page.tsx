@@ -10,8 +10,8 @@ import { MetricGlyph } from "@/components/design-system/MetricGlyph";
  *
  * - The card was two unrelated blocks stacked in a plain box. The
  *   metrics now sit in their own tinted band running the full width of
- *   the card, so it reads as two deliberate zones rather than a list
- *   that happens to precede some columns.
+ *   the card — as its footer, so the argument leads and the figures
+ *   close it as evidence rather than opening as a claim.
  * - Problem / Task / What I did is a sequence, but three equal columns
  *   made it a set. They are numbered now and chained by a dotted rule —
  *   the site's own Before → Intervention → After motif, drawn in the dot
@@ -85,7 +85,7 @@ function Hero() {
           <div className="flex items-center">
             <div>
               <span className="ds-pull-dots" aria-hidden />
-              <p className="ds-eyebrow ds-pull-eyebrow">FixIt · Store Support Platform · Walmart Global Tech</p>
+              <p className="ds-eyebrow ds-pull-eyebrow">Store Support Platform · Walmart Global Tech</p>
               <h2
                 className="display-title max-w-[18ch]"
                 style={{
@@ -95,7 +95,8 @@ function Hero() {
                   letterSpacing: "-0.015em",
                 }}
               >
-                One app for <span style={{ color: "var(--ds-mint)" }}>everything that breaks</span>.
+                FixIt — One app for{" "}
+                <span style={{ color: "var(--ds-mint)" }}>everything that breaks</span>.
               </h2>
               {/* Standfirst — what it is, who opens it, and the condition
                   they are in when they do. The highest-value line here
@@ -147,42 +148,7 @@ function EvidenceCard() {
         marginTop: "clamp(-3.5rem, -3.6vw, -2rem)",
       }}
     >
-      {/* Zone one — scale. Tinted so the card reads as two deliberate
-          parts; `overflow-hidden` on the shell lets this run edge to
-          edge without fighting the border radius. */}
-      <div
-        className="px-8 py-7 md:px-12 md:py-8"
-        style={{
-          background: "color-mix(in oklab, var(--ds-accent) 7%, var(--paper))",
-          borderBottom: "1px solid var(--ds-solid-border)",
-        }}
-      >
-        <div className="grid grid-cols-1 gap-7 sm:grid-cols-3">
-          {METRICS.map((m) => (
-            <div key={m.label} className="flex items-center gap-4">
-              <span aria-hidden>
-                <MetricGlyph name={m.glyph} size={5} gap={3} />
-              </span>
-              <span>
-                <span
-                  className="display-title block"
-                  style={{ fontSize: "1.6rem", lineHeight: 1, letterSpacing: "-0.01em", color: "var(--accent-deep)" }}
-                >
-                  {m.value}
-                </span>
-                <span className="ds-eyebrow mt-1.5 block">{m.label}</span>
-              </span>
-            </div>
-          ))}
-        </div>
-        {/* Belongs to the figures, so it sits with them rather than
-            floating between the two zones. */}
-        <p className="ds-note mt-5">
-          Scale of the experience during the documented period — not a resolution claim.
-        </p>
-      </div>
-
-      {/* Zone two — the argument, as a numbered chain. */}
+      {/* The argument, as a numbered chain. */}
       <div className="grid grid-cols-1 gap-10 p-8 md:grid-cols-3 md:gap-10 md:p-12">
         {BEATS.map((b, i) => (
           <div key={b.label}>
@@ -209,6 +175,41 @@ function EvidenceCard() {
           </div>
         ))}
       </div>
+
+      {/* Scale, as the card's footer. Tinted so the card reads as two
+          deliberate parts; `overflow-hidden` on the shell lets this run
+          edge to edge without fighting the border radius. */}
+      <div
+        className="px-8 py-7 md:px-12 md:py-8"
+        style={{
+          background: "color-mix(in oklab, var(--ds-accent) 7%, var(--paper))",
+          borderTop: "1px solid var(--ds-solid-border)",
+        }}
+      >
+        <div className="grid grid-cols-1 gap-7 sm:grid-cols-3">
+          {METRICS.map((m) => (
+            <div key={m.label} className="flex items-center gap-4">
+              <span aria-hidden>
+                <MetricGlyph name={m.glyph} size={5} gap={3} />
+              </span>
+              <span>
+                <span
+                  className="display-title block"
+                  style={{ fontSize: "1.6rem", lineHeight: 1, letterSpacing: "-0.01em", color: "var(--accent-deep)" }}
+                >
+                  {m.value}
+                </span>
+                <span className="ds-eyebrow mt-1.5 block">{m.label}</span>
+              </span>
+            </div>
+          ))}
+        </div>
+        {/* Belongs to the figures, so it sits with them rather than
+            floating between the two zones. */}
+        <p className="ds-note mt-5">
+          Scale of the experience during the documented period — not a resolution claim.
+        </p>
+      </div>
     </div>
   );
 }
@@ -222,8 +223,9 @@ export default function CaseStudyIntroPage() {
           The case-study intro.
         </h1>
         <p className="mt-6 max-w-[68ch] text-lg leading-8" style={{ color: "var(--ink-soft)" }}>
-          Scale lands first, then the argument as a numbered chain — Problem, Task, What I did. The other
-          two layouts are gone; this is the one being refined.
+          The argument leads as a numbered chain — Problem, Task, What I did — with scale closing the card
+          as evidence rather than opening it as a claim. The other two layouts are gone; this is the one
+          being refined.
         </p>
       </header>
 
