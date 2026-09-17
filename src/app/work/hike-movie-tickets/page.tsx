@@ -7,7 +7,6 @@ import {
   CaseStudyChapter,
   CaseStudyColumn,
   CaseStudyFigure,
-  CaseStudyOverview,
   CaseStudySection,
   CaseStudyShell,
 } from "@/components/design-system/CaseStudy";
@@ -39,7 +38,6 @@ export const metadata: Metadata = {
 const BOOKING_FLOW = ["Movie in mind", "Theatre", "Showtime", "Seats", "Payment"];
 
 const CHAPTERS = [
-  { id: "overview", label: "Overview" },
   { id: "intent", label: "Arriving ready" },
   { id: "one-flow", label: "One flow" },
   { id: "wallet", label: "Wallet" },
@@ -50,10 +48,44 @@ export default function MovieTicketsPage() {
   return (
     <CaseStudyShell
       slug="hike-movie-tickets"
+      evidence={[
+        {
+          label: "Problem",
+          lead: (
+            <>
+              Most people arrived <span className="ds-accent-deep-text">already knowing the film</span>.
+            </>
+          ),
+          detail:
+            "A survey with 15 participants found the decision was usually made before the app opened. Nearby theatres, preferred seats, trust and available offers then decided where the booking completed.",
+        },
+        {
+          label: "Task",
+          lead: (
+            <>
+              Close the gap between <span className="ds-accent-deep-text">intent and purchase</span>.
+            </>
+          ),
+          detail:
+            "Less about encouraging browsing, more about removing friction between the moment someone decides and the moment they pay.",
+        },
+        {
+          label: "What I did",
+          lead: (
+            <>
+              I made booking <span className="ds-accent-deep-text">one continuous transaction</span>.
+            </>
+          ),
+          detail:
+            "Showtime, seat and wallet payment in a single flow, rather than a hand-off between a ticketing service and a payment one.",
+        },
+      ]}
       chapters={CHAPTERS}
       hero={{
         src: "/work/hike-movie-tickets/Movie_Banner_2.jpg",
         alt: "The Hike movie ticketing experience over a wall of film posters: a browse screen listing showings in Bengaluru beside a booked ticket with its QR code",
+        standfirst:
+          "Cinema ticketing inside Hike Messenger, connected to Hike Wallet so choosing a seat and paying for it happened in one place.",
         headline: "Movie Ticket Booking: turning intent into one continuous transaction.",
         meta: [
           { label: "Role", value: "Product Design" },
@@ -70,19 +102,6 @@ export default function MovieTicketsPage() {
       }}
     >
       <CaseStudyColumn>
-        <CaseStudySection id="overview" boundary={false} className="pt-14 md:pt-20">
-          <CaseStudyOverview
-            statement={
-              <>
-                Intent to ticket, <span className="text-[var(--accent-deep)]">without a hand-off</span>.
-              </>
-            }
-            note="Ticketing, seat selection, and wallet payment inside one app."
-            body={[
-              "Movie Tickets was an aggregator experience inside Hike Messenger that connected cinema ticketing services with Hike Wallet payments.",
-            ]}
-          />
-        </CaseStudySection>
 
         <CaseStudySection id="intent">
           <CaseStudyChapter

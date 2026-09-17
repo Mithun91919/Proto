@@ -1,13 +1,11 @@
 import type { Metadata } from "next";
 import { DotFlow } from "@/components/design-system/DotFlow";
 import { MediaPlaceholder } from "@/components/design-system/MediaPlaceholder";
-import { ProofStrip } from "@/components/design-system/ProofStrip";
 import { PullStatement } from "@/components/design-system/PullStatement";
 import {
   CaseStudyChapter,
   CaseStudyColumn,
   CaseStudyFigure,
-  CaseStudyOverview,
   CaseStudySection,
   CaseStudyShell,
 } from "@/components/design-system/CaseStudy";
@@ -50,8 +48,43 @@ export default function ApiLifecyclePage() {
   return (
     <CaseStudyShell
       slug="api-lifecycle"
+      evidenceCaveat="The ~40% is measured for teams using the redesigned Studio; the other two figures are scale."
+      evidence={[
+        {
+          label: "Problem",
+          lead: (
+            <>
+              An API lifecycle running through <span className="ds-accent-deep-text">tools that did not connect</span>.
+            </>
+          ),
+          detail:
+            "Engineers discovered services in one place, designed contracts in another, tested through separate utilities, and met governance late. When each stage lives in a different product, the engineer has to reconstruct the lifecycle themselves.",
+        },
+        {
+          label: "Task",
+          lead: (
+            <>
+              Build one product model for <span className="ds-accent-deep-text">the whole lifecycle</span>.
+            </>
+          ),
+          detail:
+            "Not another API tool. One platform organised around three jobs — Marketplace, Design Studio and Testing — that still supports specialists who need deeper control.",
+        },
+        {
+          label: "What I did",
+          lead: (
+            <>
+              I joined at inception and <span className="ds-accent-deep-text">shaped the product model</span>.
+            </>
+          ),
+          detail:
+            "UX Designer through to Senior, design lead across the product's evolution, with 60+ engineering adoption sessions run as the three pillars took shape.",
+        },
+      ]}
       chapters={CHAPTERS}
       hero={{
+        standfirst:
+          "The internal platform Walmart engineers use to find a service, agree its contract, test it, and keep it governed — three jobs that used to live in three different tools.",
         headline: "API Lifecycle Platform: one place to discover, design, test, and govern APIs.",
         meta: [
           { label: "Role", value: "UX Designer → Senior UX Designer" },
@@ -68,27 +101,6 @@ export default function ApiLifecyclePage() {
     >
       <CaseStudyColumn>
         <CaseStudySection id="overview" boundary={false} className="pt-14 md:pt-20">
-          <CaseStudyOverview
-            statement={
-              <>
-                One lifecycle, <span className="text-[var(--accent-deep)]">three connected pillars</span>.
-              </>
-            }
-            note="Marketplace, Design Studio, and Testing."
-            body={[
-              "API work was spread across different tools and handoffs. Engineers could discover services in one place, design contracts somewhere else, test through separate utilities, and encounter governance later in the lifecycle.",
-              "I joined the product at its inception and helped shape it into a connected platform organised around three core jobs: Marketplace, Design Studio, and Testing.",
-            ]}
-          />
-          <CaseStudyFigure>
-            <ProofStrip
-              items={[
-                { value: "~500", label: "services onboarded", glyph: "field" },
-                { value: "~40%", label: "faster contract design in the redesigned Studio", glyph: "bars" },
-                { value: "60+", label: "engineering adoption sessions", glyph: "ring" },
-              ]}
-            />
-          </CaseStudyFigure>
           <CaseStudyFigure>
             <MediaPlaceholder
               kind="image"

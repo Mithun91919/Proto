@@ -6,7 +6,6 @@ import { PullStatement } from "@/components/design-system/PullStatement";
 import {
   CaseStudyChapter,
   CaseStudyColumn,
-  CaseStudyOverview,
   CaseStudySection,
   CaseStudyShell,
 } from "@/components/design-system/CaseStudy";
@@ -30,7 +29,6 @@ export const metadata: Metadata = {
 };
 
 const CHAPTERS = [
-  { id: "overview", label: "Overview" },
   { id: "one-model", label: "One model" },
   { id: "beyond-stars", label: "Beyond stars" },
   { id: "next-shopper", label: "The next shopper" },
@@ -45,10 +43,44 @@ export default function RatingsReviewsPage() {
   return (
     <CaseStudyShell
       slug="bigbasket-ratings-reviews"
+      evidence={[
+        {
+          label: "Problem",
+          lead: (
+            <>
+              A star rating is quick to give and <span className="ds-accent-deep-text">hard to act on</span>.
+            </>
+          ),
+          detail:
+            "It rarely explains enough to help the next shopper decide.",
+        },
+        {
+          label: "Task",
+          lead: (
+            <>
+              Design one feedback system for <span className="ds-accent-deep-text">every surface</span>.
+            </>
+          ),
+          detail:
+            "Consistent whether a customer is rating a product on mobile or reading reviews on the web.",
+        },
+        {
+          label: "What I did",
+          lead: (
+            <>
+              I worked the system across <span className="ds-accent-deep-text">four surfaces at once</span>.
+            </>
+          ),
+          detail:
+            "We defined reusable patterns for collecting ratings, writing reviews and presenting review information, rather than designing each platform independently.",
+        },
+      ]}
       chapters={CHAPTERS}
       hero={{
         src: "/work/bigbasket-ratings-reviews/Artboard%20Copy%208.jpg",
         alt: "The ratings and reviews experience on web and mobile: a browser review form beside a phone rating screen",
+        standfirst:
+          "Ratings and reviews for beauty products across bigbasket's Android, iOS, web and mobile-web experiences.",
         headline: "Ratings & Reviews: one feedback system across mobile and web.",
         meta: [
           { label: "Role", value: "UX Design" },
@@ -69,20 +101,6 @@ export default function RatingsReviewsPage() {
       }
     >
       <CaseStudyColumn>
-        <CaseStudySection id="overview" boundary={false} className="pt-14 md:pt-20">
-          <CaseStudyOverview
-            statement={
-              <>
-                One feedback system, <span className="text-[var(--accent-deep)]">every surface</span>.
-              </>
-            }
-            note="Android, iOS, web, and mobile web."
-            body={[
-              "A star rating is quick to give, but it does not always explain enough to help another shopper make a decision.",
-              "I worked on a cross-platform ratings and reviews experience for beauty products across bigbasket’s Android, iOS, web, and mobile-web experiences.",
-            ]}
-          />
-        </CaseStudySection>
 
         <CaseStudySection id="one-model">
           <CaseStudyChapter

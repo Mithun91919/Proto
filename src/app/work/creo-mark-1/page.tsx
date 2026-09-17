@@ -6,7 +6,6 @@ import {
   CaseStudyChapter,
   CaseStudyColumn,
   CaseStudyFigure,
-  CaseStudyOverview,
   CaseStudySection,
   CaseStudyShell,
 } from "@/components/design-system/CaseStudy";
@@ -29,7 +28,6 @@ export const metadata: Metadata = {
 };
 
 const CHAPTERS = [
-  { id: "overview", label: "Overview" },
   { id: "product-centre", label: "The product" },
   { id: "monthly", label: "Monthly change" },
   { id: "surfaces", label: "Surfaces" },
@@ -40,10 +38,44 @@ export default function CreoMark1Page() {
   return (
     <CaseStudyShell
       slug="creo-mark-1"
+      evidence={[
+        {
+          label: "Problem",
+          lead: (
+            <>
+              The product changed <span className="ds-accent-deep-text">every month</span>.
+            </>
+          ),
+          detail:
+            "New software features arrived on a monthly cadence, and each needed communicating without the brand fragmenting into a run of one-off campaigns.",
+        },
+        {
+          label: "Task",
+          lead: (
+            <>
+              Build one visual language across <span className="ds-accent-deep-text">every touchpoint</span>.
+            </>
+          ),
+          detail:
+            "Web, social, email and marketing, consistent enough to absorb a monthly change of subject.",
+        },
+        {
+          label: "What I did",
+          lead: (
+            <>
+              I kept <span className="ds-accent-deep-text">the product at the centre</span>.
+            </>
+          ),
+          detail:
+            "Large product imagery, high-contrast typography and a fixed set of supporting brand elements, so the phone and its evolving software stayed the dominant element wherever it appeared.",
+        },
+      ]}
       chapters={CHAPTERS}
       hero={{
         src: "/work/creo/banner.jpg",
         alt: "Mark 1 campaign imagery: the phone shown against the brand's high-contrast visual language",
+        standfirst:
+          "Mark 1 was a smartphone running FUEL OS, with new software features shipping every month. This was the visual language built to communicate them.",
         headline: "Mark 1: a visual language for a smartphone that changed every month.",
         meta: [
           { label: "Role", value: "Visual Design" },
@@ -60,21 +92,6 @@ export default function CreoMark1Page() {
       }}
     >
       <CaseStudyColumn>
-        <CaseStudySection id="overview" boundary={false} className="pt-14 md:pt-20">
-          <CaseStudyOverview
-            statement={
-              <>
-                A system that changed monthly{" "}
-                <span className="text-[var(--accent-deep)]">without losing itself</span>.
-              </>
-            }
-            note="Mark 1, powered by FUEL OS."
-            body={[
-              "Mark 1 was a smartphone powered by FUEL OS, with new software features introduced through monthly updates.",
-              "I worked across visual design, web, social, email, and marketing to create a consistent language for communicating those updates while keeping the product itself at the centre of the story.",
-            ]}
-          />
-        </CaseStudySection>
 
         <CaseStudySection id="product-centre">
           <CaseStudyChapter

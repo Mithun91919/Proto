@@ -5,14 +5,12 @@ import { ArtboardCarousel } from "@/components/design-system/ArtboardCarousel";
 import { ClipFigure } from "@/components/design-system/ClipFigure";
 import { DotCadence } from "@/components/design-system/DotCadence";
 import { DotFlow } from "@/components/design-system/DotFlow";
-import { ProofStrip } from "@/components/design-system/ProofStrip";
 import { PullStatement } from "@/components/design-system/PullStatement";
 import { SceneBanner } from "@/components/design-system/SceneBanner";
 import {
   CaseStudyChapter,
   CaseStudyColumn,
   CaseStudyFigure,
-  CaseStudyOverview,
   CaseStudySection,
   CaseStudyShell,
 } from "@/components/design-system/CaseStudy";
@@ -38,7 +36,6 @@ export const metadata: Metadata = {
 const FLOW = ["Customer subscription", "Procurement", "Inventory", "Shipment", "Delivery"];
 
 const CHAPTERS = [
-  { id: "overview", label: "Overview" },
   { id: "product-model", label: "The product model" },
   { id: "customer-side", label: "The customer side" },
   { id: "operations", label: "The operations side" },
@@ -57,10 +54,45 @@ export default function BbDailyPage() {
   return (
     <CaseStudyShell
       slug="bb-daily"
+      evidenceCaveat="Scale from the documented product period — not outcomes caused by the design work."
+      evidence={[
+        {
+          label: "Problem",
+          lead: (
+            <>
+              Recurring groceries are <span className="ds-accent-deep-text">not a checkout problem</span>.
+            </>
+          ),
+          detail:
+            "The customer promise was simple: choose what you need and have it arrive. Behind it sat procurement, inventory, packing, shipment creation and an early-morning delivery window that all had to stay coordinated.",
+        },
+        {
+          label: "Task",
+          lead: (
+            <>
+              Design <span className="ds-accent-deep-text">both sides</span> of one service.
+            </>
+          ),
+          detail:
+            "The Android and iOS customer experience, and an Android operations product used to coordinate the work behind each delivery.",
+        },
+        {
+          label: "What I did",
+          lead: (
+            <>
+              I worked the customer app and <span className="ds-accent-deep-text">the operations app</span> together.
+            </>
+          ),
+          detail:
+            "Research and UX across both, so the promise made on the customer side matched the work the operations side had to coordinate.",
+        },
+      ]}
       chapters={CHAPTERS}
       hero={{
         src: "/work/bbdaily/8f79fb_20203531c98e4bd986f2bbf39a470197~mv2.avif",
         alt: "bb daily customer app and operations app as two sides of one service",
+        standfirst:
+          "A bigbasket subscription for everyday essentials — milk, dairy, bakery, fruit and vegetables — arriving on a recurring schedule, and the operations app that made each delivery happen.",
         headline: "bb daily: both sides of a recurring delivery service.",
         meta: [
           { label: "Role", value: "Research & UX Design" },
@@ -80,40 +112,6 @@ export default function BbDailyPage() {
       }}
     >
       <CaseStudyColumn>
-        <CaseStudySection id="overview" boundary={false} className="pt-14 md:pt-20">
-          <CaseStudyOverview
-            statement={
-              <>
-                A subscription service for{" "}
-                <span className="text-[var(--accent-deep)]">everyday essentials</span>.
-              </>
-            }
-            note="Milk, dairy, bakery, fruits, vegetables, and other frequently purchased products."
-            body={[
-              "The customer experience looked simple: choose what you need and have it arrive on a recurring schedule. Behind that promise was a tightly coordinated operation involving procurement, inventory, packing, shipment creation, and early-morning delivery.",
-              "I worked across both sides of the service — the Android and iOS customer experience and an Android operations product used to coordinate the work behind each delivery.",
-            ]}
-          />
-          <Reveal delay={80}>
-            <div className="mt-12">
-              <ProofStrip
-                items={[
-                  { value: "10+", label: "cities", glyph: "ring" },
-                  { value: "1.5M+", label: "users", glyph: "field" },
-                  {
-                    value: "120K",
-                    label: "average daily deliveries",
-                    glyph: "bars",
-                  },
-                ]}
-              />
-              <p className="mt-4 text-sm leading-6" style={{ color: "var(--muted)" }}>
-                Scale figures from the documented product period; they are not presented as outcomes caused by
-                the design work.
-              </p>
-            </div>
-          </Reveal>
-        </CaseStudySection>
 
         <CaseStudySection id="product-model">
           <CaseStudyChapter

@@ -3,7 +3,6 @@ import type { ReactNode } from "react";
 import { Reveal } from "@/components/Reveal";
 import { getProject } from "@/content/projects";
 import {
-  earlierWorkDomain,
   projectCraft,
   projectPlatforms,
 } from "@/content/work-filters";

@@ -8,7 +8,6 @@ import {
   CaseStudyChapter,
   CaseStudyColumn,
   CaseStudyFigure,
-  CaseStudyOverview,
   CaseStudySection,
   CaseStudyShell,
 } from "@/components/design-system/CaseStudy";
@@ -51,8 +50,43 @@ export default function PortfolioManagementPage() {
   return (
     <CaseStudyShell
       slug="portfolio-management"
+      evidenceCaveat="Scale during the documented period."
+      evidence={[
+        {
+          label: "Problem",
+          lead: (
+            <>
+              Leaders <span className="ds-accent-deep-text">reconciled conflicting data</span> before they could decide.
+            </>
+          ),
+          detail:
+            "Product data lived in one tool, people and allocation data in another, strategic initiatives somewhere else, with spreadsheets and approval processes in between.",
+        },
+        {
+          label: "Task",
+          lead: (
+            <>
+              Replace the fragments with <span className="ds-accent-deep-text">one operating model</span>.
+            </>
+          ),
+          detail:
+            "A six-module platform that can be understood through three jobs: understand the portfolio, operate it, and align it to strategy.",
+        },
+        {
+          label: "What I did",
+          lead: (
+            <>
+              I joined <span className="ds-accent-deep-text">at inception</span> and stayed through migration.
+            </>
+          ),
+          detail:
+            "UX Designer through to Senior, from the first whiteboarding sessions to multiple module launches, legacy-tool migrations and the strategic goal-management experience.",
+        },
+      ]}
       chapters={CHAPTERS}
       hero={{
+        standfirst:
+          "The enterprise platform that replaced fragmented portfolio planning — people, products, initiatives, intake and goals — with one connected system of record.",
         headline: "Portfolio Management Platform: one system instead of five.",
         meta: [
           { label: "Role", value: "UX Designer → Senior UX Designer" },
@@ -69,27 +103,6 @@ export default function PortfolioManagementPage() {
     >
       <CaseStudyColumn>
         <CaseStudySection id="overview" boundary={false} className="pt-14 md:pt-20">
-          <CaseStudyOverview
-            statement={
-              <>
-                Five systems, <span className="text-[var(--accent-deep)]">one operating model</span>.
-              </>
-            }
-            note="Design lead for the platform."
-            body={[
-              "Portfolio planning had grown across several disconnected systems. People, products, initiatives, intake, management workflows, and strategic goals lived in different places, which meant teams spent time reconciling information before they could use it.",
-              "I helped shape a 0-to-1 platform that brought those workflows into one connected product and then evolved it over multiple years as legacy systems were migrated and retired.",
-            ]}
-          />
-          <CaseStudyFigure>
-            <ProofStrip
-              items={[
-                { value: "6K+", label: "monthly users", glyph: "field" },
-                { value: "5 → 1", label: "platform consolidation", glyph: "ring" },
-                { value: "6", label: "connected modules", glyph: "bars" },
-              ]}
-            />
-          </CaseStudyFigure>
           <CaseStudyFigure>
             <MediaPlaceholder
               kind="video"

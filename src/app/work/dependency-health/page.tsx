@@ -7,7 +7,6 @@ import {
   CaseStudyChapter,
   CaseStudyColumn,
   CaseStudyFigure,
-  CaseStudyOverview,
   CaseStudySection,
   CaseStudyShell,
 } from "@/components/design-system/CaseStudy";
@@ -50,8 +49,43 @@ export default function DependencyHealthPage() {
   return (
     <CaseStudyShell
       slug="dependency-health"
+      evidenceCaveat="Pilot scale on the initial major version — the platform is still in progress."
+      evidence={[
+        {
+          label: "Problem",
+          lead: (
+            <>
+              The data existed. <span className="ds-accent-deep-text">The decisions did not</span>.
+            </>
+          ),
+          detail:
+            "Teams found dependency debt during migrations, breakages or security work rather than ahead of it. Exposing every available signal would have produced a dashboard that was complete and unusable.",
+        },
+        {
+          label: "Task",
+          lead: (
+            <>
+              Turn compliance signals into <span className="ds-accent-deep-text">actions a developer can take</span>.
+            </>
+          ),
+          detail:
+            "Translate standard-library versions, Java versions, security signals, conflicts and version drift into repository health, organisation-level visibility and guided remediation.",
+        },
+        {
+          label: "What I did",
+          lead: (
+            <>
+              I own the UX <span className="ds-accent-deep-text">end to end</span>.
+            </>
+          ),
+          detail:
+            "Framed the product as Repository to Pillar to Organisation, ran a 148-repository pilot on the initial major version, and built self-service onboarding and remediation.",
+        },
+      ]}
       chapters={CHAPTERS}
       hero={{
+        standfirst:
+          "The platform Walmart developers and engineering leaders open to see which dependencies in a repository need attention, why they matter, and what to do next.",
         headline: "Dependency Health Platform: turning compliance data into clear action.",
         meta: [
           { label: "Role", value: "Senior UX Designer" },
@@ -68,19 +102,6 @@ export default function DependencyHealthPage() {
     >
       <CaseStudyColumn>
         <CaseStudySection id="overview" boundary={false} className="pt-14 md:pt-20">
-          <CaseStudyOverview
-            statement={
-              <>
-                The data existed. <span className="text-[var(--accent-deep)]">The decisions did not</span>.
-              </>
-            }
-            note="End-to-end UX owner."
-            body={[
-              "Large Java application ecosystems generate a lot of dependency data: standard-library versions, Java versions, security signals, conflicts, version drift, onboarding state, and technical debt.",
-              "The data existed. The harder problem was helping developers and engineering leaders understand what mattered, why it mattered, and what to do next.",
-              "I own the UX for a dependency-health platform that translates those technical signals into repository health, organisation-level visibility, and guided remediation.",
-            ]}
-          />
           <CaseStudyFigure>
             <MediaPlaceholder
               needs="A hero showing the arc the product supports: repository health, then diagnosis, then action."

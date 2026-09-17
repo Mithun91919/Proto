@@ -7,7 +7,6 @@ import {
   CaseStudyChapter,
   CaseStudyColumn,
   CaseStudyFigure,
-  CaseStudyOverview,
   CaseStudySection,
   CaseStudyShell,
 } from "@/components/design-system/CaseStudy";
@@ -42,10 +41,44 @@ export default function HikeJobsServicePage() {
   return (
     <CaseStudyShell
       slug="hike-jobs-service"
+      evidence={[
+        {
+          label: "Problem",
+          lead: (
+            <>
+              Finding a job is only <span className="ds-accent-deep-text">half of applying</span>.
+            </>
+          ),
+          detail:
+            "A generic feed surfaced opportunities without knowing what someone wanted, and the step after discovery — actually being ready to apply — sat outside the product.",
+        },
+        {
+          label: "Task",
+          lead: (
+            <>
+              Take someone from discovery to <span className="ds-accent-deep-text">ready to apply</span>.
+            </>
+          ),
+          detail:
+            "Personalised suggestions for finding work, and a built-in resume builder for the step that follows.",
+        },
+        {
+          label: "What I did",
+          lead: (
+            <>
+              I started the product with <span className="ds-accent-deep-text">intent, not a feed</span>.
+            </>
+          ),
+          detail:
+            "Onboarding collected preferences so recommendations could be relevant, then search, categories and keywords gave people different ways in depending on how specific they already were.",
+        },
+      ]}
       chapters={CHAPTERS}
       hero={{
         src: "/work/hike-jobs-service/Jobs_Banner.jpg",
         alt: "The Jobs Service experience: job listings and the resume builder shown on phone screens",
+        standfirst:
+          "An aggregator inside TOTAL OS that helped people discover relevant jobs, then get ready to apply — with a resume builder in the same product.",
         headline: "Job Discovery & Resume Builder: from finding a job to being ready to apply.",
         meta: [
           { label: "Role", value: "Product Design" },
@@ -63,17 +96,6 @@ export default function HikeJobsServicePage() {
     >
       <CaseStudyColumn>
         <CaseStudySection id="overview" boundary={false} className="pt-14 md:pt-20">
-          <CaseStudyOverview
-            statement={
-              <>
-                Discovery that <span className="text-[var(--accent-deep)]">leads somewhere</span>.
-              </>
-            }
-            note="An aggregator experience for TOTAL OS."
-            body={[
-              "The Jobs Service was an aggregator experience for TOTAL OS designed to help people discover relevant opportunities through personalised suggestions and support the next step with a built-in resume builder.",
-            ]}
-          />
           <CaseStudyFigure rule label="From preferences to application">
             <DotFlow stages={JOURNEY} />
           </CaseStudyFigure>

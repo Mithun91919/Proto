@@ -135,7 +135,7 @@ export const projects: Project[] = [
     accent: "#0e7490",
     accentSoft: "#a5f3fc",
     contentPath:
-      "projects/api-lifecycle-manager/web/api-lifecycle-manager-web.md",
+      "projects/api-lifecycle-manager/web/api-lifecycle-web.md",
     systemMap: [
       {
         label: "Before",
@@ -317,7 +317,7 @@ export const projects: Project[] = [
     reconstructed: true,
     accent: "#059669",
     accentSoft: "#d1fae5",
-    contentPath: "projects/bbdaily/web/bbdaily-web.md",
+    contentPath: "projects/bb-daily/web/bb-daily-web.md",
     systemMap: [
       {
         label: "Before",

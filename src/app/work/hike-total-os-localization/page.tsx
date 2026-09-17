@@ -6,7 +6,6 @@ import {
   CaseStudyChapter,
   CaseStudyColumn,
   CaseStudyFigure,
-  CaseStudyOverview,
   CaseStudySection,
   CaseStudyShell,
 } from "@/components/design-system/CaseStudy";
@@ -41,8 +40,42 @@ export default function TotalOsLocalizationPage() {
   return (
     <CaseStudyShell
       slug="hike-total-os-localization"
+      evidence={[
+        {
+          label: "Problem",
+          lead: (
+            <>
+              Translation is <span className="ds-accent-deep-text">not localisation</span>.
+            </>
+          ),
+          detail:
+            "Eight scripts, each with its own demands on meaning, clarity and layout. Converting English word for word would have preserved the words and lost the intent.",
+        },
+        {
+          label: "Task",
+          lead: (
+            <>
+              Build a repeatable process across <span className="ds-accent-deep-text">eight languages</span>.
+            </>
+          ),
+          detail:
+            "From English source copy through translation, review, implementation and device-level validation.",
+        },
+        {
+          label: "What I did",
+          lead: (
+            <>
+              I ran the research and <span className="ds-accent-deep-text">the process itself</span>.
+            </>
+          ),
+          detail:
+            "Established the path each string took and validated it on device, so the same intent survived the trip rather than only the same words.",
+        },
+      ]}
       chapters={CHAPTERS}
       hero={{
+        standfirst:
+          "TOTAL OS ran without the internet and shipped in eight Indian languages. This was the process that moved product copy into all of them without losing what it meant.",
         headline: "Multilingual Mobile Experience: one localisation system across 8 Indian languages.",
         meta: [
           { label: "Role", value: "Product Research" },
@@ -60,18 +93,6 @@ export default function TotalOsLocalizationPage() {
     >
       <CaseStudyColumn>
         <CaseStudySection id="overview" boundary={false} className="pt-14 md:pt-20">
-          <CaseStudyOverview
-            statement={
-              <>
-                Eight languages, <span className="text-[var(--accent-deep)]">one intent</span>.
-              </>
-            }
-            note="Four projects, eight languages."
-            body={[
-              "TOTAL OS included services designed to work without the internet and support users across eight Indian languages.",
-              "My work focused on establishing a repeatable localisation process that could move product copy from English through translation, review, implementation, and device-level validation while preserving the intent of the original experience.",
-            ]}
-          />
           <CaseStudyFigure>
             <MediaPlaceholder
               needs="The same product screen shown across several of the eight languages, as the page hero."
