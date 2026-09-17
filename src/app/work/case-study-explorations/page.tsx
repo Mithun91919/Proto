@@ -151,7 +151,7 @@ function Hero() {
                   letterSpacing: "-0.015em",
                 }}
               >
-                Store associate app: one place for{" "}
+                Store associate app: fix{" "}
                 <span style={{ color: "var(--ds-mint)" }}>everything that breaks</span>.
               </h2>
               {/* Standfirst — what it is, who opens it, and the condition

@@ -35,7 +35,7 @@ import { getProject } from "@/content/projects";
  */
 
 export const metadata: Metadata = {
-  title: "Store associate app — one place for everything that breaks",
+  title: "Store associate app — fix everything that breaks",
   description:
     "Redesigning frontline support so store associates can fix an issue themselves instead of raising a ticket — facilities and technology, on a phone, across a ~580K-device footprint.",
 };
@@ -96,7 +96,7 @@ export default function StoreSupportPage() {
       hero={{
         headline: (
           <>
-            Store associate app: one place for{" "}
+            Store associate app: fix{" "}
             <span style={{ color: "var(--ds-mint)" }}>everything that breaks</span>.
           </>
         ),
