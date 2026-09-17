@@ -78,7 +78,7 @@ export const metadata: Metadata = {
 };
 
 /**
- * Five landmarks, not one chip per section. Thirteen chips listed every
+ * A short row of landmarks, not one chip per section. Thirteen chips listed every
  * section without saying which mattered, and grouping them into families
  * only added a second row of labels to read. These are the five things
  * someone actually arrives looking for; the A-M headers carry the rest
@@ -90,6 +90,7 @@ const NAV = [
   { label: "Foundations", href: "#foundations" },
   { label: "Components", href: "#narrative" },
   { label: "Recipes", href: "#recipes" },
+  { label: "Motion", href: "#interaction" },
   { label: "Case-study media", href: "#case-study-media" },
 ];
 
@@ -364,7 +365,7 @@ export default function ComponentsPage() {
           <SubLabel code="C1 · Dot grammar" />
           <h3 className="display-title max-w-[26ch]" style={{ fontSize: "1.7rem" }}>Every dot has to say something.</h3>
           <p className="mt-3 max-w-[66ch] text-[0.95rem] leading-7" style={{ color: "var(--ink-soft)" }}>
-            Use the dot only when it communicates <strong style={{ color: "var(--ink)", fontWeight: 500 }}>quantity, grouping, connection, state, or change</strong>. If it does none of those, it is decoration and should disappear.
+            Use the dot only when it communicates <strong style={{ color: "var(--ink)", fontWeight: 500 }}>quantity, grouping, connection, state, or change</strong>. The page grid is the exception: it is the ground the system sits on, not a mark made in it. Anything else that does none of those is decoration and should disappear.
           </p>
           <div className="mt-7 grid grid-cols-2 gap-3 sm:grid-cols-5">
             <DotMeaning demo={<DotGrid cols={4} size={6} gap={6} dots={Array(8).fill(1)} />} label="Quantity" note="How much, how many, or how dense." />
