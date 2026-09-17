@@ -249,7 +249,7 @@ export const projects: Project[] = [
     number: "05",
     label: "Supply Chain Operations Platform",
     title:
-      "Supply Chain Operations Platform: 139 tools behind one front door.",
+      "Supply Chain Operations Platform: getting to the right tool faster.",
     summary:
       "As the platform expanded, hundreds of operational modules became increasingly difficult to discover. I co-led the information architecture and navigation redesign, evaluating competing navigation models with users across multiple markets.",
     outcome: "~985K monthly unique visitors · 139 modules",

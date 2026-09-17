@@ -27,7 +27,7 @@ import { getProject } from "@/content/projects";
  */
 
 export const metadata: Metadata = {
-  title: "Supply Chain Operations Platform — 139 tools behind one front door",
+  title: "Supply Chain Operations Platform — getting to the right tool faster",
   description:
     "Redesigning the information architecture, navigation, and landing experience for a platform fronting 139 operational modules.",
 };
@@ -84,7 +84,8 @@ export default function SupplyChainOperationsPage() {
       hero={{
         headline: (
           <>
-            Supply Chain Operations Platform: 139 tools behind <span style={{ color: "var(--ds-mint)" }}>one front door</span>.
+            Supply Chain Operations Platform: getting to{" "}
+            <span style={{ color: "var(--ds-mint)" }}>the right tool faster</span>.
           </>
         ),
         meta: [
