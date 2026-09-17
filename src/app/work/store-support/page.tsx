@@ -16,7 +16,7 @@ import {
 import { getProject } from "@/content/projects";
 
 /**
- * FixIt — Store Support Platform, on the locked case-study template.
+ * FixIt — the store associate app, on the locked case-study template.
  *
  * Prose from `projects/fixit/web/fixit-web.md` (the path `projects.ts`
  * points at). Three things the draft predates, all read off the shipped

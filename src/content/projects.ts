@@ -204,10 +204,13 @@ export const projects: Project[] = [
   {
     slug: "store-support",
     number: "04",
-    label: "Store Support Platform",
+    // FixIt is the public name, so it is not an internalName and the
+    // copy guide's "public label only" rule is satisfied by using it.
+    // The label describes what the thing is, since "Store Support
+    // Platform" was the internal-sounding half of the pair.
+    label: "Store associate app",
     title:
       "FixIt: the app store associates use when something breaks.",
-    internalName: "FixIt",
     summary:
       "I redesigned the self-service support experience around clearer classification, guided troubleshooting, search, location context, and better escalation information.",
     outcome:

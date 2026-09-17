@@ -126,7 +126,7 @@ export function TranslateShape() {
 /** C · Resolve — one path forks into two outcomes. */
 export function ResolveShape() {
   return (
-    <ShapeCard name="Resolve" title="One path forks into two outcomes" project="Store Support Platform">
+    <ShapeCard name="Resolve" title="One path forks into two outcomes" project="FixIt">
       <div className="flex items-center gap-6">
         <div className="flex flex-col gap-3.5">
           <span className="font-mono text-[0.6rem] uppercase" style={{ color: "var(--ink-soft)" }}>
