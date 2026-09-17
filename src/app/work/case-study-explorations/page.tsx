@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { MetricGlyph } from "@/components/design-system/MetricGlyph";
+import { DotGrid } from "@/components/design-system/primitives/DotGrid";
 
 /**
  * Working draft of the Store Support case-study intro. Layout B won the
@@ -78,18 +79,30 @@ const METRICS = [
   { value: "7K+", label: "searches a week", glyph: "bars" },
 ] as const;
 
-/** B4's boundary marker, in its light-ground form — the same dot bar
-    `.ds-pull-dots` draws on the dark band. Marks the head of each beat
-    without a numeral competing with the label beneath it. */
-const DOT_BAR: React.CSSProperties = {
-  width: 42,
-  height: 5,
-  backgroundImage: "radial-gradient(circle, var(--ds-accent) 1.55px, transparent 1.7px)",
-  backgroundSize: "9px 5px",
+/**
+ * The mark above each beat, per C1: a dot earns its place through
+ * quantity, grouping, connection, state or change — and three identical
+ * bars earned none of it.
+ *
+ * These read left to right as the state of the system at that beat, which
+ * is the site's own Before → Intervention → After motif drawn rather
+ * than asserted:
+ *
+ *   Problem     gaps — disconnected, nothing joining up
+ *   Task        converging — pulling toward one centre, not there yet
+ *   What I did  continuous — one unbroken run
+ *
+ * Rendered through DotGrid, the system's single dot renderer, rather
+ * than a hand-rolled gradient.
+ */
+const BEAT_MARKS: Record<string, number[]> = {
+  Problem: [1, 0.14, 1, 0.14, 1],
+  Task: [0.4, 0.7, 1, 0.7, 0.4],
+  "What I did": [1, 1, 1, 1, 1],
 };
 
 function Hero() {
-  const meta = ["UX Designer", "Mobile app", "2020–2021"];
+  const meta = ["UX Designer", "Mobile & web", "2020–2021"];
   return (
     <div className="ds-pull">
       <div className="ds-pull-inner" style={{ paddingBottom: HERO_FLOOR }}>
@@ -116,7 +129,8 @@ function Hero() {
               <p className="mt-6 max-w-[42ch] text-base leading-7" style={{ color: "var(--ds-dark-muted)" }}>
                 The app Walmart store associates open when something in the store stops working — a cooler,
                 a forklift, a handheld, the network. Used mid-shift, on the floor, by someone who just wants
-                to get back to the job.
+                to get back to the job. Designed for them, for new starters still learning the store, and
+                for the support desks receiving what they send.
               </p>
               <div
                 className="mt-8 flex flex-wrap items-center gap-x-4 gap-y-3 font-mono text-[0.62rem] uppercase tracking-[0.1em]"
@@ -135,6 +149,10 @@ function Hero() {
                   </span>
                 ))}
               </div>
+              <p className="mt-5 max-w-[44ch] text-[0.88rem] leading-6" style={{ color: "var(--ds-dark-muted)" }}>
+                Picked the product up mid-flight from the previous designer, working with product,
+                engineering and the associates themselves.
+              </p>
             </div>
           </div>
           <div className="flex items-end justify-center" style={{ marginBottom: `calc(${HERO_FLOOR} * -1)` }}>
@@ -164,7 +182,9 @@ function EvidenceCard() {
       <div className="grid grid-cols-1 gap-10 p-8 md:grid-cols-3 md:gap-10 md:p-12">
         {BEATS.map((b, i) => (
           <div key={b.label}>
-            <span aria-hidden className="block" style={DOT_BAR} />
+            <span aria-hidden className="block">
+              <DotGrid cols={5} dots={BEAT_MARKS[b.label]} size={5} gap={4} />
+            </span>
             <p
               className="font-mono uppercase"
               style={{
