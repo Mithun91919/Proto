@@ -1,84 +1,72 @@
 import type { Metadata } from "next";
+import { CompactNumeral } from "@/components/design-system/CompactNumeral";
 import { MetricGlyph } from "@/components/design-system/MetricGlyph";
 
 /**
  * Internal working draft of the Store Support case-study intro.
  *
- * Was a six-way comparison plus a recommendation; the direction is
- * settled, so the losing five and the poster variant are gone (they are
- * in git history if a decision needs re-reading). What is left is the
- * one arrangement being refined: a full-bleed dark hero with the screens
- * beside the copy and running to the band floor, and an evidence card
- * overlapping that floor by ~10%.
+ * The hero is settled. What is being chosen here is the evidence card
+ * under it — three layouts of identical copy, so the comparison is about
+ * the design and nothing else.
  *
- * `.ds-pull` only reaches the viewport edge as a direct section child,
- * so the label sits in a contained wrapper, the hero is a bare sibling,
- * and a second contained wrapper holds everything after it. Nesting a
- * `.ds-pull` inside a `max-w` div just makes it 100% of that div.
+ * What was wrong with the previous card: three paragraphs of near-equal
+ * length at one weight and one colour, inside a plain rounded box. No
+ * entry point, nothing scannable, 622px tall for three ideas. The copy
+ * now leads each beat with a short declarative line and demotes the
+ * supporting sentence, so the three lead lines alone carry the argument.
  *
- * `<img>`, not next/image: this is a layout draft, and there is no
- * reason to push the hero through image optimisation for it.
+ * `.ds-pull` only reaches the viewport edge as a direct section child, so
+ * each section puts label text in a contained wrapper and the hero as a
+ * bare sibling. Every component below is a leaf — none renders another —
+ * which is the rule that got broken last time and hung the dev server.
  *
  * Not linked from anywhere and noindexed.
  */
 
 export const metadata: Metadata = {
-  title: "Case-study intro — working draft",
+  title: "Intro card — three layouts",
   robots: { index: false, follow: false },
 };
 
 const HERO_IMG = "/work/store-support/hero-composite.png";
+const HERO_FLOOR = "clamp(5rem, 9vw, 8rem)";
 
 /**
- * Three beats, each with one job, because the earlier copy had them
- * blurred — "What" was describing the solution, which left the task
- * unstated and made "How" carry both the method and the result.
- *
- *   Why  — the problem, stated as the associate experienced it
- *   What — the task: what the work actually had to deliver
- *   How  — what I did, ending on what it changed
+ * Why = the problem, What = the task, How = what I did and what changed.
+ * `lead` is the claim; `detail` is the evidence for it. Reading only the
+ * three leads should still tell the story.
  */
-const WHY_WHAT_HOW = [
+const BEATS = [
   {
     label: "Why",
+    lead: "Reporting a fault cost more than fixing it.",
     detail:
-      "When something broke mid-shift, reporting it meant finding a manager and a desktop. Troubleshooting was thin and search was a dead end, so the shortest path through the product was a form — and a ticket got raised before anyone had tried the obvious fix.",
+      "It meant finding a manager and finding a desktop. Troubleshooting was thin, search dead-ended, and the form arrived before anyone had tried the obvious fix.",
   },
   {
     label: "What",
+    lead: "Redesign frontline support, end to end.",
     detail:
-      "Redesign frontline support end to end: one mobile experience covering both halves of the floor — facilities and technology — for associates across a ~580K-device footprint.",
+      "One mobile experience across both halves of the floor — facilities and technology — for associates working ~580K devices.",
   },
   {
     label: "How",
+    lead: "Put the fix in front of the form.",
     detail:
-      "Rebuilt the taxonomy from card sorting with associates, moved guided resolution ahead of the ticket as step one of two, and closed the loop with work orders they could track, annotate and escalate. A ticket became the fallback rather than the first move.",
+      "Taxonomy rebuilt from card sorting with associates. Guided resolution as step one of two. Work orders they can track, annotate and escalate — so a ticket became the fallback, not the first move.",
   },
 ];
 
-/**
- * Glyphs are the S2b semantic marks, read off METRIC_MARK_MEANINGS rather
- * than picked for looks: population, reach, volume. That is also the
- * mapping PROJECT_METRIC_GLYPHS already stores for store-support.
- */
 const METRICS = [
   { value: "~5.9K", label: "daily users", glyph: "field" },
   { value: "~580K", label: "device footprint", glyph: "ring" },
   { value: "7K+", label: "weekly searches", glyph: "bars" },
 ] as const;
 
-const BODY = [
-  "A freezer drifting out of temperature in frozen foods. A forklift down in the back room. A handheld that will not scan at the register, or a pharmacy system that will not log in. Different trades, different teams — and to the associate who found them, the same event: something stopped working and the shift is still running.",
-  "FixIt puts all of it behind one front door — equipment and technology, alarms and tickets — and puts the fix in front of the form.",
-];
-
-/** The band's bottom padding, and the negative margin that cancels it for
-    the screens. One value, so they cannot drift apart. */
-const HERO_FLOOR = "clamp(5rem, 9vw, 8rem)";
+const CAVEAT = "Scale of the experience during the documented period — not a resolution claim.";
 
 function Hero() {
   const meta = ["UX Designer", "2020–2021", "Frontline ops"];
-
   return (
     <div className="ds-pull">
       <div className="ds-pull-inner" style={{ paddingBottom: HERO_FLOOR }}>
@@ -87,9 +75,6 @@ function Hero() {
             <div>
               <span className="ds-pull-dots" aria-hidden />
               <p className="ds-eyebrow ds-pull-eyebrow">FixIt · Store Support Platform · Walmart Global Tech</p>
-              {/* D2 applies on the dark ground too — one emphasis per
-                  title, and it has to be the mint: --accent-deep is the
-                  light-ground ink and goes muddy here. */}
               <h2
                 className="display-title max-w-[15ch]"
                 style={{
@@ -102,9 +87,6 @@ function Hero() {
                 One app for <span style={{ color: "var(--ds-mint)" }}>everything that breaks</span> in a
                 Walmart store.
               </h2>
-              {/* Values without their label prefixes — with them the row
-                  wrapped and stranded a separator dot at the head of the
-                  second line. */}
               <div
                 className="mt-9 flex flex-wrap items-center gap-x-4 gap-y-3 font-mono text-[0.62rem] uppercase tracking-[0.1em]"
                 style={{ color: "var(--ds-dark-muted)" }}
@@ -124,11 +106,6 @@ function Hero() {
               </div>
             </div>
           </div>
-
-          {/* Bottom-aligned and pulled past the band's padding so the
-              screens reach the floor; .ds-pull's overflow:hidden clips
-              the bleed. The padding is there to protect the copy, not to
-              hold the image up. */}
           <div className="flex items-end justify-center" style={{ marginBottom: `calc(${HERO_FLOOR} * -1)` }}>
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img src={HERO_IMG} alt="" className="w-full" style={{ maxWidth: "52rem", marginInline: "auto" }} />
@@ -139,42 +116,148 @@ function Hero() {
   );
 }
 
-/** Reasoning and scale at equal weight in one card, joined by a single
-    rule — rather than a strip of metrics bolted onto a Why/What/How
-    sidebar. Overlaps the hero band by ~10% of its own height. */
-function EvidenceCard() {
+const CARD_SHELL: React.CSSProperties = {
+  border: "1px solid var(--ds-solid-border)",
+  background: "var(--paper)",
+  boxShadow: "0 28px 60px -32px rgb(6 17 21 / 0.55)",
+};
+
+/** A · Editorial rows. The beats run full width as numbered rows (S6's
+    dot numeral), lead line at display scale, detail demoted beneath.
+    Metrics become a footer strip rather than a side column, so the
+    reasoning gets the whole measure. */
+function CardEditorial({ pull }: { pull: string }) {
+  return (
+    <div className="relative z-[1] rounded-2xl p-8 md:p-12" style={{ ...CARD_SHELL, marginTop: pull }}>
+      <div className="flex flex-col">
+        {BEATS.map((b, i) => (
+          <div
+            key={b.label}
+            className={`grid grid-cols-1 gap-4 py-7 md:grid-cols-[4.5rem_0.95fr_1.05fr] md:gap-10 ${i > 0 ? "ds-rule" : ""}`}
+          >
+            <div className="flex items-start gap-3 pt-1">
+              <CompactNumeral value={`0${i + 1}`} />
+            </div>
+            <div>
+              <p className="ds-eyebrow" style={{ color: "var(--accent-deep)" }}>
+                {b.label}
+              </p>
+              <p className="display-title mt-2.5" style={{ fontSize: "1.3rem", lineHeight: 1.25 }}>
+                {b.lead}
+              </p>
+            </div>
+            <p className="body-sm m-0 md:pt-8" style={{ color: "var(--ink-soft)" }}>
+              {b.detail}
+            </p>
+          </div>
+        ))}
+      </div>
+
+      <div className="ds-rule mt-4 grid grid-cols-1 gap-8 pt-9 sm:grid-cols-3">
+        {METRICS.map((m) => (
+          <div key={m.label} className="flex items-center gap-4">
+            <span aria-hidden>
+              <MetricGlyph name={m.glyph} size={5} gap={3} />
+            </span>
+            <span>
+              <span
+                className="display-title block"
+                style={{ fontSize: "1.55rem", lineHeight: 1, color: "var(--accent-deep)" }}
+              >
+                {m.value}
+              </span>
+              <span className="ds-eyebrow mt-1.5 block">{m.label}</span>
+            </span>
+          </div>
+        ))}
+      </div>
+      <p className="ds-note mt-7">{CAVEAT}</p>
+    </div>
+  );
+}
+
+/** B · Three columns. Scale lands first as a strip across the top, then
+    the beats sit side by side so they read as parallel rather than as a
+    stack of paragraphs. The most compact of the three. */
+function CardColumns({ pull }: { pull: string }) {
+  return (
+    <div className="relative z-[1] rounded-2xl p-8 md:p-12" style={{ ...CARD_SHELL, marginTop: pull }}>
+      <div className="grid grid-cols-1 gap-8 sm:grid-cols-3">
+        {METRICS.map((m) => (
+          <div key={m.label} className="flex items-center gap-4">
+            <span aria-hidden>
+              <MetricGlyph name={m.glyph} size={5} gap={3} />
+            </span>
+            <span>
+              <span
+                className="display-title block"
+                style={{ fontSize: "1.55rem", lineHeight: 1, color: "var(--accent-deep)" }}
+              >
+                {m.value}
+              </span>
+              <span className="ds-eyebrow mt-1.5 block">{m.label}</span>
+            </span>
+          </div>
+        ))}
+      </div>
+      <p className="ds-note mt-5">{CAVEAT}</p>
+
+      <div className="ds-rule mt-10 grid grid-cols-1 gap-10 pt-10 md:grid-cols-3 md:gap-12">
+        {BEATS.map((b) => (
+          <div key={b.label}>
+            <p className="ds-eyebrow" style={{ color: "var(--accent-deep)" }}>
+              {b.label}
+            </p>
+            <p className="display-title mt-3" style={{ fontSize: "1.25rem", lineHeight: 1.28 }}>
+              {b.lead}
+            </p>
+            <p className="body-sm mt-3.5" style={{ color: "var(--ink-soft)" }}>
+              {b.detail}
+            </p>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+/** C · Dark continuation. The card carries the hero's ground down instead
+    of interrupting it — one dark block from headline to evidence, the
+    light page resuming only at the body copy. Leads in mint. */
+function CardDark({ pull }: { pull: string }) {
   return (
     <div
       className="relative z-[1] rounded-2xl p-8 md:p-12"
       style={{
-        border: "1px solid var(--ds-solid-border)",
-        // Opaque, not the translucent surface token: it sits over the
-        // dark band, which would otherwise bleed through and grey the text.
-        background: "var(--paper)",
-        boxShadow: "0 28px 60px -32px rgb(6 17 21 / 0.55)",
-        // ~10% of the card's own height. Retuned after the three beats
-        // grew: a fixed pull does not track content, so this is measured
-        // against the current card (~620px at desktop), not guessed.
-        marginTop: "clamp(-4.5rem, -4.65vw, -2.5rem)",
+        marginTop: pull,
+        background: "var(--ds-dark)",
+        border: "1px solid rgb(234 243 245 / 0.12)",
+        boxShadow: "0 28px 60px -32px rgb(6 17 21 / 0.8)",
       }}
     >
-      <div className="grid grid-cols-1 gap-10 md:grid-cols-[1.35fr_auto_0.75fr] md:gap-12">
+      <div className="grid grid-cols-1 gap-10 md:grid-cols-[1.35fr_auto_0.75fr] md:gap-14">
         <dl className="space-y-8">
-          {WHY_WHAT_HOW.map((row) => (
-            <div key={row.label}>
-              {/* Accent on the label so the three beats scan as a set
-                  before any one of them is read. */}
-              <dt className="ds-eyebrow" style={{ color: "var(--accent-deep)" }}>
-                {row.label}
+          {BEATS.map((b) => (
+            <div key={b.label}>
+              <dt className="ds-eyebrow" style={{ color: "var(--ds-mint)" }}>
+                {b.label}
               </dt>
-              <dd className="body-text m-0 mt-2.5" style={{ maxWidth: "52ch", color: "var(--ink-soft)" }}>
-                {row.detail}
+              <dd className="m-0">
+                <span
+                  className="display-title mt-2.5 block"
+                  style={{ fontSize: "1.3rem", lineHeight: 1.25, color: "var(--ds-dark-ink)" }}
+                >
+                  {b.lead}
+                </span>
+                <span className="body-sm mt-2.5 block" style={{ color: "var(--ds-dark-muted)" }}>
+                  {b.detail}
+                </span>
               </dd>
             </div>
           ))}
         </dl>
 
-        <div aria-hidden className="hidden md:block" style={{ width: 1, background: "var(--ds-solid-border)" }} />
+        <div aria-hidden className="hidden md:block" style={{ width: 1, background: "rgb(234 243 245 / 0.12)" }} />
 
         <dl className="space-y-8">
           {METRICS.map((m) => (
@@ -184,55 +267,106 @@ function EvidenceCard() {
               </div>
               <dt
                 className="display-title"
-                style={{
-                  fontSize: "1.9rem",
-                  lineHeight: 1,
-                  letterSpacing: "-0.01em",
-                  color: "var(--accent-deep)",
-                }}
+                style={{ fontSize: "1.9rem", lineHeight: 1, letterSpacing: "-0.01em", color: "var(--ds-mint)" }}
               >
                 {m.value}
               </dt>
-              <dd className="ds-eyebrow m-0 mt-2">{m.label}</dd>
+              <dd className="ds-eyebrow m-0 mt-2" style={{ color: "var(--ds-dark-muted)" }}>
+                {m.label}
+              </dd>
             </div>
           ))}
         </dl>
       </div>
-      {/* The figures are scale, not proof the redesign resolved anything —
-          the web draft has no approved post-launch resolution data. */}
-      <p className="ds-note mt-10 border-t pt-5" style={{ borderColor: "var(--ds-solid-border)" }}>
-        Scale of the experience during the documented period — not a resolution claim.
+      <p
+        className="mt-10 border-t pt-5 font-mono text-[0.62rem] uppercase tracking-[0.1em]"
+        style={{ borderColor: "rgb(234 243 245 / 0.12)", color: "var(--ds-dark-muted)" }}
+      >
+        {CAVEAT}
       </p>
     </div>
   );
 }
 
-export default function CaseStudyIntroDraftPage() {
+function Label({ code, name, note }: { code: string; name: string; note: string }) {
+  return (
+    <div className="mb-8 flex flex-wrap items-baseline gap-4">
+      <span
+        className="rounded-md border px-2.5 py-1 font-mono text-[0.62rem] uppercase tracking-[0.12em]"
+        style={{ color: "var(--ink-soft)", borderColor: "var(--ds-solid-border)", background: "var(--ds-solid-bg)" }}
+      >
+        {code}
+      </span>
+      <h2 className="display-title text-[var(--ink)]" style={{ fontSize: "1.35rem" }}>
+        {name}
+      </h2>
+      <p className="body-sm max-w-[58ch]" style={{ color: "var(--ink-soft)" }}>
+        {note}
+      </p>
+    </div>
+  );
+}
+
+/* Each card is a different height, so the pull that reads as ~10% of it
+   is different too. Measured per layout rather than shared. */
+const PULL_A = "clamp(-4.75rem, -5.1vw, -2.75rem)";
+const PULL_B = "clamp(-3.25rem, -3.3vw, -1.75rem)";
+const PULL_C = "clamp(-4.25rem, -4.4vw, -2.5rem)";
+
+export default function IntroCardVariationsPage() {
   return (
     <div className="ds-scope pb-32">
       <header className="mx-auto w-full max-w-[85rem] px-5 pt-14 md:px-8">
         <p className="eyebrow">Internal · not linked</p>
-        <h1 className="display-title mt-4 max-w-[26ch]" style={{ fontSize: "2.4rem", lineHeight: 1.08 }}>
-          The case-study intro, being refined.
+        <h1 className="display-title mt-4 max-w-[28ch]" style={{ fontSize: "2.4rem", lineHeight: 1.08 }}>
+          Three layouts for the evidence card.
         </h1>
-        <p className="mt-6 max-w-[66ch] text-lg leading-8" style={{ color: "var(--ink-soft)" }}>
-          One arrangement now, not six. Why states the problem, What states the task, How states what I did
-          and what it changed — the three were blurred before, with What describing the solution and How
-          carrying both method and result.
+        <p className="mt-6 max-w-[68ch] text-lg leading-8" style={{ color: "var(--ink-soft)" }}>
+          Same hero, same copy in all three — only the card changes. The copy itself is rewritten either
+          way: each beat now opens with a short claim and demotes the supporting sentence, so the three lead
+          lines alone carry the argument.
         </p>
       </header>
 
       <section className="pt-14">
+        <div className="mx-auto w-full max-w-[85rem] px-5 md:px-8">
+          <Label
+            code="A"
+            name="Editorial rows"
+            note="Numbered rows across the full measure — claim on the left, evidence on the right, scale as a footer strip. The most editorial, and the only one where the three beats read as a sequence."
+          />
+        </div>
         <Hero />
         <div className="mx-auto w-full max-w-[85rem] px-5 md:px-8">
-          <EvidenceCard />
-          <div className="mt-12 max-w-[70rem] space-y-5">
-            {BODY.map((p) => (
-              <p key={p} className="body-text">
-                {p}
-              </p>
-            ))}
-          </div>
+          <CardEditorial pull={PULL_A} />
+        </div>
+      </section>
+
+      <section className="pt-28">
+        <div className="mx-auto w-full max-w-[85rem] px-5 md:px-8">
+          <Label
+            code="B"
+            name="Scale first, then three columns"
+            note="Metrics land as a strip across the top, then the beats sit side by side as parallel ideas rather than a stack. The most compact — roughly half the height of the old card."
+          />
+        </div>
+        <Hero />
+        <div className="mx-auto w-full max-w-[85rem] px-5 md:px-8">
+          <CardColumns pull={PULL_B} />
+        </div>
+      </section>
+
+      <section className="pt-28">
+        <div className="mx-auto w-full max-w-[85rem] px-5 md:px-8">
+          <Label
+            code="C"
+            name="Dark continuation"
+            note="The card carries the hero's ground down rather than interrupting it — one dark block from headline to evidence, with the light page resuming at the body copy. Strongest as a single opening moment; the heaviest on the eye."
+          />
+        </div>
+        <Hero />
+        <div className="mx-auto w-full max-w-[85rem] px-5 md:px-8">
+          <CardDark pull={PULL_C} />
         </div>
       </section>
     </div>
