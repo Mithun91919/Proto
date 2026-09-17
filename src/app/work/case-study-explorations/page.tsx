@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import { CompactNumeral } from "@/components/design-system/CompactNumeral";
 import { MetricGlyph } from "@/components/design-system/MetricGlyph";
 
 /**
@@ -40,19 +39,31 @@ const HERO_FLOOR = "clamp(5rem, 9vw, 8rem)";
 const BEATS = [
   {
     label: "Problem",
-    lead: "Reporting a fault cost more than fixing it.",
+    lead: (
+      <>
+        Reporting a fault <span className="ds-accent-deep-text">cost more than fixing it</span>.
+      </>
+    ),
     detail:
       "An associate who found a cooler failing had to track down a manager with a desktop. Troubleshooting was thin, search dead-ended, and the form arrived before anyone had tried the obvious fix.",
   },
   {
     label: "Task",
-    lead: "Redesign frontline support, end to end.",
+    lead: (
+      <>
+        Redesign frontline support, <span className="ds-accent-deep-text">end to end</span>.
+      </>
+    ),
     detail:
       "One mobile experience covering both halves of the floor — the building and the technology inside it — for associates supporting ~580K devices, and for the support teams receiving what they send.",
   },
   {
     label: "What I did",
-    lead: "Put the fix in front of the form.",
+    lead: (
+      <>
+        Put the fix <span className="ds-accent-deep-text">in front of the form</span>.
+      </>
+    ),
     detail:
       "Rebuilt the taxonomy from card sorting with associates, made guided resolution step one of two, and gave work orders a loop they could track, annotate and escalate — so a ticket became the fallback, not the first move.",
   },
@@ -67,12 +78,13 @@ const METRICS = [
   { value: "7K+", label: "searches a week", glyph: "bars" },
 ] as const;
 
-/** The chain between beats, drawn in the dot language rather than as a
-    plain rule — the same radial-gradient technique `.ds-pull-dots` uses,
-    on the light ground and running horizontally. */
-const DOT_CHAIN: React.CSSProperties = {
+/** B4's boundary marker, in its light-ground form — the same dot bar
+    `.ds-pull-dots` draws on the dark band. Marks the head of each beat
+    without a numeral competing with the label beneath it. */
+const DOT_BAR: React.CSSProperties = {
+  width: 42,
   height: 5,
-  backgroundImage: "radial-gradient(circle, var(--ds-dot-muted) 1.4px, transparent 1.6px)",
+  backgroundImage: "radial-gradient(circle, var(--ds-accent) 1.55px, transparent 1.7px)",
   backgroundSize: "9px 5px",
 };
 
@@ -145,25 +157,23 @@ function EvidenceCard() {
         // dark band, which would otherwise grey the text through it.
         background: "var(--paper)",
         boxShadow: "0 28px 60px -32px rgb(6 17 21 / 0.55)",
-        marginTop: "clamp(-3.5rem, -3.6vw, -2rem)",
+        marginTop: "clamp(-3.25rem, -3.4vw, -1.9rem)",
       }}
     >
       {/* The argument, as a numbered chain. */}
       <div className="grid grid-cols-1 gap-10 p-8 md:grid-cols-3 md:gap-10 md:p-12">
         {BEATS.map((b, i) => (
           <div key={b.label}>
-            <div className="flex items-center gap-4">
-              {/* size 7, not the 5 default: at 5 the 3x5 glyph reads as
-                  texture rather than a number — the same failure the
-                  small metric marks had. */}
-              <CompactNumeral value={`0${i + 1}`} size={7} />
-              {/* The chain stops at the last beat — a trailing rule would
-                  imply a fourth step. Hidden when the columns stack. */}
-              {i < BEATS.length - 1 ? (
-                <span aria-hidden className="hidden flex-1 md:block" style={DOT_CHAIN} />
-              ) : null}
-            </div>
-            <p className="ds-eyebrow mt-5" style={{ color: "var(--accent-deep)" }}>
+            <span aria-hidden className="block" style={DOT_BAR} />
+            <p
+              className="font-mono uppercase"
+              style={{
+                marginTop: "1.35rem",
+                fontSize: "0.72rem",
+                letterSpacing: "0.16em",
+                color: "var(--accent-deep)",
+              }}
+            >
               {b.label}
             </p>
             <p className="display-title mt-2.5" style={{ fontSize: "1.35rem", lineHeight: 1.24 }}>
