@@ -6,7 +6,6 @@ import { GuidedHotspotTour } from "@/components/design-system/GuidedHotspotTour"
 import { ProofStrip } from "@/components/design-system/ProofStrip";
 import { ReframeBlock } from "@/components/design-system/ReframeBlock";
 import { PullStatement } from "@/components/design-system/PullStatement";
-import { SceneBannerFigure } from "@/components/design-system/SceneBannerFigure";
 import { ZoomLens } from "@/components/design-system/ZoomLens";
 import {
   CaseStudyChapter,
@@ -60,25 +59,15 @@ export default function SupplyChainOperationsPage() {
           { label: "Discipline", value: "Enterprise operations · Platform UX" },
         ],
         // Redesigned landing page + navigation, rebuilt with placeholder data.
-        figure: (
-          <SceneBannerFigure
-            note="Reconstructed · placeholder data"
-            screens={[
-              {
-                src: "/work/supply-chain-operations/new-dashboard.png",
-                width: 2560,
-                height: 1576,
-                alt: "Redesigned platform dashboard: grouped module categories, pinned tools, and recent modules.",
-              },
-              {
-                src: "/work/supply-chain-operations/new-navigation.png",
-                width: 2560,
-                height: 1940,
-                alt: "Persistent left navigation with the reorganised category hierarchy.",
-              },
-            ]}
-          />
-        ),
+        // Redesigned landing page, rebuilt with placeholder data. The
+        // second screen the old SceneBannerFigure ghosted in behind this
+        // one is dropped: the new hero gives the art a real column rather
+        // than an absolutely-positioned stack.
+        src: "/work/supply-chain-operations/new-dashboard.png",
+        width: 2560,
+        height: 1576,
+        alt: "Redesigned platform dashboard: grouped module categories, pinned tools, and recent modules.",
+        figureNote: "Reconstructed · placeholder data",
       }}
       next={
         onward

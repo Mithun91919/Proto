@@ -202,7 +202,7 @@ function EvidenceCard() {
     >
       {/* The argument, as a numbered chain. */}
       <div className="grid grid-cols-1 gap-10 p-8 md:grid-cols-3 md:gap-10 md:p-12">
-        {BEATS.map((b, i) => (
+        {BEATS.map((b) => (
           <div key={b.label}>
             <span aria-hidden className="block">
               <DotGrid cols={5} dots={BEAT_MARKS[b.label]} size={5} gap={4} />

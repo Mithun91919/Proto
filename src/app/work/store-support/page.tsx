@@ -6,7 +6,6 @@ import { DotFlow } from "@/components/design-system/DotFlow";
 import { ProofStrip } from "@/components/design-system/ProofStrip";
 import { PullStatement } from "@/components/design-system/PullStatement";
 import { ReframeBlock } from "@/components/design-system/ReframeBlock";
-import { SceneBannerFigure } from "@/components/design-system/SceneBannerFigure";
 import {
   CaseStudyChapter,
   CaseStudyColumn,
@@ -71,20 +70,14 @@ export default function StoreSupportPage() {
           { label: "Year", value: "2020–2021" },
           { label: "Discipline", value: "Frontline operations · Mobile product" },
         ],
-        figure: (
-          <SceneBannerFigure
-            bare
-            note="Reconstructed · placeholder data"
-            screens={[
-              {
-                src: "/work/store-support/hero-composite.png",
-                width: 2400,
-                height: 1389,
-                alt: "Three FixIt screens: the home screen with refrigeration alarms, the work-order calendar and submitted issues; the submit-an-issue screen with its five categories; and the refrigeration alarms list.",
-              },
-            ]}
-          />
-        ),
+        // height was 1389 here against a 2188px file — stale since the
+        // composite was rebuilt taller, so the reserved box was the wrong
+        // shape until the image loaded.
+        src: "/work/store-support/hero-composite.png",
+        width: 2400,
+        height: 2188,
+        alt: "Three FixIt screens: the home screen with refrigeration alarms, the work-order calendar and submitted issues; the submit-an-issue screen with its five categories; and the refrigeration alarms list.",
+        figureNote: "Reconstructed · placeholder data",
       }}
       next={
         onward

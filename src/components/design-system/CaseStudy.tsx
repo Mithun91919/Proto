@@ -7,7 +7,7 @@ import {
   projectCraft,
   projectPlatforms,
 } from "@/content/work-filters";
-import { SceneBanner } from "./SceneBanner";
+import { CaseStudyHero } from "./CaseStudyHero";
 import { NextProjectNav } from "./NextProjectNav";
 import { ChapterProgress, type ChapterRef } from "./ChapterProgress";
 
@@ -28,17 +28,20 @@ import { ChapterProgress, type ChapterRef } from "./ChapterProgress";
  */
 
 type HeroProps = {
-  /** Omit while the banner asset is still missing — the band self-flags. */
+  /** Hero art. Omit and the copy takes the band's full width — there is
+      no placeholder state to render. */
   src?: string;
   alt?: string;
+  /** True pixel dimensions, so the art reserves its box before it loads. */
+  width?: number;
+  height?: number;
   eyebrow: string;
   headline: string;
+  /** One line saying what the product is and who opens it. */
+  standfirst?: string;
   meta: { label: string; value: string }[];
-  /**
-   * Reconstructed screens on the dark ground when there's no photo composite
-   * to show (NDA work). Pass a `SceneBannerFigure`; ignored if `src` is set.
-   */
-  figure?: ReactNode;
+  /** Mono footnote over the art for a reconstructed visual, per CLAUDE.md. */
+  figureNote?: string;
 };
 
 type NextProps = { href: string; number: string; label: string; title: string };
@@ -77,16 +80,16 @@ export function CaseStudyShell({
   return (
     <article className="ds-scope">
       {chapters.length > 0 ? <ChapterProgress chapters={chapters} /> : null}
-      {/* The image is the top-level item on the page — edge to edge, square
-          corners, with the back link over it rather than pushing it down. */}
-      <SceneBanner fullBleed {...heroWithAxes}>
+      {/* The band is the top-level item on the page, with the back link
+          over it rather than pushing it down. */}
+      <CaseStudyHero {...heroWithAxes}>
         <Link
           href="/work"
           className="ds-scene-banner-back inline-flex text-sm font-medium transition hover:translate-x-[-2px]"
         >
           ← All Work
         </Link>
-      </SceneBanner>
+      </CaseStudyHero>
 
       {children}
 
