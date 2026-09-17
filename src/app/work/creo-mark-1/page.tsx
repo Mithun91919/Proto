@@ -72,6 +72,7 @@ export default function CreoMark1Page() {
       ]}
       chapters={CHAPTERS}
       hero={{
+        artMode: "backdrop" as const,
         src: "/work/creo/banner.jpg",
         alt: "Mark 1 campaign imagery: the phone shown against the brand's high-contrast visual language",
         standfirst:

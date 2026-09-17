@@ -75,6 +75,7 @@ export default function HikeJobsServicePage() {
       ]}
       chapters={CHAPTERS}
       hero={{
+        artMode: "backdrop" as const,
         src: "/work/hike-jobs-service/Jobs_Banner.jpg",
         alt: "The Jobs Service experience: job listings and the resume builder shown on phone screens",
         standfirst:

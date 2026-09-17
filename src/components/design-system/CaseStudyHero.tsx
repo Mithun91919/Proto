@@ -13,6 +13,14 @@ export type CaseStudyHeroProps = {
   alt?: string;
   width?: number;
   height?: number;
+  /**
+   * How the art behaves. `panel` gives it its own column, bottom-aligned
+   * to the band floor — right for a product screenshot, which has to be
+   * read. `backdrop` lets it fill the band with the copy over it — right
+   * for campaign art, which is atmosphere rather than something to study,
+   * and which these projects composed with a dark copy area already in it.
+   */
+  artMode?: "panel" | "backdrop";
   /** Mono footnote over the art, e.g. "Reconstructed · placeholder data".
       Required by CLAUDE.md wherever the visual is a rebuild rather than a
       screenshot of the live product. */
@@ -51,9 +59,11 @@ export function CaseStudyHero({
   width,
   height,
   figureNote,
+  artMode = "panel",
   children,
 }: CaseStudyHeroProps) {
   const hasArt = Boolean(src);
+  const backdrop = hasArt && artMode === "backdrop";
 
   const copy = (
     <div>
@@ -88,6 +98,34 @@ export function CaseStudyHero({
       ) : null}
     </div>
   );
+
+  if (backdrop) {
+    return (
+      <div className="ds-pull ds-cs-hero-backdrop">
+        <Image
+          className="ds-cs-hero-art"
+          src={src as string}
+          alt={alt}
+          fill
+          priority
+          sizes="100vw"
+        />
+        <span className="ds-cs-hero-scrim" aria-hidden />
+        <div className="ds-pull-inner relative w-full">
+          {children ? <div className="mb-10">{children}</div> : null}
+          <div className="max-w-[46rem]">{copy}</div>
+          {figureNote ? (
+            <p
+              className="absolute right-0 top-0 font-mono text-[0.62rem] uppercase tracking-[0.16em]"
+              style={{ color: "color-mix(in oklab, var(--ds-mint) 62%, transparent)" }}
+            >
+              {figureNote}
+            </p>
+          ) : null}
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="ds-pull">

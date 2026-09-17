@@ -2516,6 +2516,58 @@ a:hover .ds-compact-mark .ds-dot {
   align-items: flex-end;
 }
 
+/* Backdrop hero (06-11): campaign art that was composed as a full-bleed
+   background, with its subject right and dark negative space left —
+   exactly where this hero puts its copy. Given a floor so the art has
+   room even when the copy is short. */
+.ds-cs-hero-backdrop {
+  min-height: clamp(22rem, 54vh, 34rem);
+  display: flex;
+  align-items: center;
+}
+
+.ds-cs-hero-art {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Left-weighted, not the flat overlay `.ds-scene-banner-scrim` uses for
+   copy at the bottom. These assets are already near-black on the left by
+   design, so an even wash would flatten the gradient that makes them
+   work; this only darkens what the type sits on. The second layer is a
+   light foot, so the evidence card overlaps onto something grounded. */
+.ds-cs-hero-scrim {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(
+      to right,
+      rgb(6 17 21 / 0.9) 0%,
+      rgb(6 17 21 / 0.74) 32%,
+      rgb(6 17 21 / 0.24) 62%,
+      rgb(6 17 21 / 0.06) 100%
+    ),
+    linear-gradient(to top, rgb(6 17 21 / 0.5) 0%, rgb(6 17 21 / 0.06) 42%, transparent 100%);
+}
+
+/* At phone width there is no left column for the horizontal gradient to
+   protect — the copy spans the full band, so it sits over whatever the
+   art happens to be doing there. Swap to a heavy near-flat wash: the art
+   stays present as texture, the type stays readable. */
+@media (max-width: 860px) {
+  .ds-cs-hero-scrim {
+    background: linear-gradient(
+      to top,
+      rgb(6 17 21 / 0.93) 0%,
+      rgb(6 17 21 / 0.86) 55%,
+      rgb(6 17 21 / 0.76) 100%
+    );
+  }
+}
+
 /* A pre-composed hero brings its own screen edges and shadows; the panel
    chrome would draw a second frame around the whole arrangement. */
 .ds-scene-figure-shot.is-bare {

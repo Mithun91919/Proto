@@ -77,6 +77,7 @@ export default function RatingsReviewsPage() {
       ]}
       chapters={CHAPTERS}
       hero={{
+        artMode: "backdrop" as const,
         src: "/work/bigbasket-ratings-reviews/Artboard%20Copy%208.jpg",
         alt: "The ratings and reviews experience on web and mobile: a browser review form beside a phone rating screen",
         standfirst:

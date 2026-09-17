@@ -89,6 +89,7 @@ export default function BbDailyPage() {
       ]}
       chapters={CHAPTERS}
       hero={{
+        artMode: "backdrop" as const,
         src: "/work/bbdaily/8f79fb_20203531c98e4bd986f2bbf39a470197~mv2.avif",
         alt: "bb daily customer app and operations app as two sides of one service",
         standfirst:

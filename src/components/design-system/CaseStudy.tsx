@@ -39,6 +39,8 @@ type HeroProps = {
   /** One line saying what the product is and who opens it. */
   standfirst?: string;
   meta: { label: string; value: string }[];
+  /** `backdrop` for campaign art built to run full-bleed behind copy. */
+  artMode?: "panel" | "backdrop";
   /** Mono footnote over the art for a reconstructed visual, per CLAUDE.md. */
   figureNote?: string;
 };
