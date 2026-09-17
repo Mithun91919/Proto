@@ -209,7 +209,7 @@ export const projects: Project[] = [
     // adds nothing a reader outside Walmart can use.
     label: "Store associate app",
     title:
-      "The app a store associate opens when something breaks.",
+      "Store associate app: one place for everything that breaks.",
     summary:
       "I redesigned the self-service support experience around clearer classification, guided troubleshooting, search, location context, and better escalation information.",
     outcome:

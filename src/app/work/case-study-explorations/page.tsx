@@ -151,8 +151,8 @@ function Hero() {
                   letterSpacing: "-0.015em",
                 }}
               >
-                The app a <span style={{ color: "var(--ds-mint)" }}>store associate</span> opens when
-                something breaks.
+                Store associate app: one place for{" "}
+                <span style={{ color: "var(--ds-mint)" }}>everything that breaks</span>.
               </h2>
               {/* Standfirst — what it is, who opens it, and the condition
                   they are in when they do. The highest-value line here
