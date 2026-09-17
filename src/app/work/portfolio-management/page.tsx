@@ -179,7 +179,7 @@ export default function PortfolioManagementPage() {
             heading="We designed the bridge, not only the destination"
             body={[
               "A replacement platform could not ask thousands of users to abandon established workflows overnight.",
-              "The migration therefore happened in stages. New modules were introduced while legacy systems were still active, data and workflows were reconciled, and older tools were retired only when the replacement path was ready.",
+              "So we staged it. We introduced new modules while the legacy systems were still running, reconciled the data and workflows behind them, and retired an old tool only once its replacement was ready.",
               "That made migration part of the product design problem: users needed to understand where work had moved, what had changed, and which system was now authoritative.",
             ]}
           />
