@@ -60,36 +60,46 @@ const HERO_META = [
 
 /** `lead` is the claim, `detail` the evidence. Reading only the three
     leads should still tell the story. */
+/**
+ * Rewritten against the copy guide (K). Its "write this, not that"
+ * examples are plain and enumerative — "Portfolio planning was split
+ * across separate systems for people, products, initiatives..." — and
+ * these were aphorisms: a ratio claim ("cost more than fixing it"), an
+ * imperative ("put the fix in front of the form"), and filler ("end to
+ * end"). Every lead now states the fact and takes its emphasis from a
+ * real noun, and "What I did" uses the first person the guide asks for.
+ */
 const BEATS = [
   {
     label: "Problem",
     lead: (
       <>
-        Reporting a fault <span className="ds-accent-deep-text">cost more than fixing it</span>.
+        Reporting a fault meant finding{" "}
+        <span className="ds-accent-deep-text">a manager and a desktop</span>.
       </>
     ),
     detail:
-      "An associate who found a cooler failing had to track down a manager with a desktop. Troubleshooting was thin, search dead-ended, and the form arrived before anyone had tried the obvious fix.",
+      "An associate who found a cooler failing could not report it from the floor. There was little troubleshooting guidance, search returned an unstructured list with no next step, and the form came before anyone had tried the obvious fix.",
   },
   {
     label: "Task",
     lead: (
       <>
-        Redesign frontline support, <span className="ds-accent-deep-text">end to end</span>.
+        Redesign frontline support across <span className="ds-accent-deep-text">mobile and web</span>.
       </>
     ),
     detail:
-      "One mobile experience covering both halves of the floor — the building and the technology inside it — for associates supporting ~580K devices, and for the support teams receiving what they send.",
+      "One experience covering both the building and the technology inside it, for associates supporting ~580K devices and for the central support teams receiving their tickets.",
   },
   {
     label: "What I did",
     lead: (
       <>
-        Put the fix <span className="ds-accent-deep-text">in front of the form</span>.
+        I put guided resolution <span className="ds-accent-deep-text">before the ticket form</span>.
       </>
     ),
     detail:
-      "Rebuilt the taxonomy from card sorting with associates, made guided resolution step one of two, and gave work orders a loop they could track, annotate and escalate — so a ticket became the fallback, not the first move.",
+      "I rebuilt the issue taxonomy from card sorts with associates, made resolution step one of two in the submit flow, and gave work orders a loop they could track, annotate and escalate.",
   },
 ];
 
@@ -141,17 +151,16 @@ function Hero() {
                   letterSpacing: "-0.015em",
                 }}
               >
-                FixIt — One app for{" "}
-                <span style={{ color: "var(--ds-mint)" }}>everything that breaks</span>.
+                FixIt — the app <span style={{ color: "var(--ds-mint)" }}>store associates</span> use when
+                something breaks.
               </h2>
               {/* Standfirst — what it is, who opens it, and the condition
                   they are in when they do. The highest-value line here
                   for someone who has never heard of the product. */}
               <p className="mt-6 max-w-[42ch] text-base leading-7" style={{ color: "var(--ds-dark-muted)" }}>
-                The app Walmart store associates open when something in the store stops working — a cooler,
-                a forklift, a handheld, the network. Used mid-shift, on the floor, by someone who just wants
-                to get back to the job. Designed for them, for new starters still learning the store, and
-                for the support desks receiving what they send.
+                A cooler, a forklift, a handheld, the store network — associates report and fix it here,
+                mid-shift and on the floor. Built for them, for new starters still learning the store, and
+                for the central support desks receiving what they send.
               </p>
               {/* `SceneBanner`'s own meta markup — same `dl`, same
                   classes, same colours — so the draft hero and the live
