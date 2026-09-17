@@ -67,7 +67,7 @@ export default function SupplyChainOperationsPage() {
             </>
           ),
           detail:
-            "Co-led with another designer across 139 modules serving Walmart.com, Online Grocery and international markets, against one goal: less time finding a tool, more time using it.",
+            "I co-led this with another designer across 139 modules serving Walmart.com, Online Grocery and international markets, against one goal: less time finding a tool, more time using it.",
         },
         {
           label: "What I did",

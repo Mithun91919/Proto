@@ -112,7 +112,7 @@ export default function StoreSupportPage() {
         width: 2400,
         height: 2188,
         standfirst:
-          "A cooler, a forklift, a handheld, the store network — associates report and fix it here, mid-shift and on the floor. Built for them, for new starters still learning the store, and for the central support desks receiving what they send.",
+          "A cooler, a forklift, a handheld, the network — reported and fixed mid-shift, on the floor. Built for the people who find the fault, for new starters still learning their way around, and for the support desks receiving what they send.",
         alt: "Three FixIt screens: the home screen with refrigeration alarms, the work-order calendar and submitted issues; the submit-an-issue screen with its five categories; and the refrigeration alarms list.",
         figureNote: "Reconstructed · placeholder data",
       }}

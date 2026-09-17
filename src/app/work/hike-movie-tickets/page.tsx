@@ -67,7 +67,7 @@ export default function MovieTicketsPage() {
             </>
           ),
           detail:
-            "Less about encouraging browsing, more about removing friction between the moment someone decides and the moment they pay.",
+            "The design problem was less about encouraging browsing and more about removing friction between the moment someone decides and the moment they pay.",
         },
         {
           label: "What I did",
@@ -77,7 +77,7 @@ export default function MovieTicketsPage() {
             </>
           ),
           detail:
-            "Showtime, seat and wallet payment in a single flow, rather than a hand-off between a ticketing service and a payment one.",
+            "I put showtime, seat and wallet payment in a single flow, rather than handing off between a ticketing service and a payment one.",
         },
       ]}
       chapters={CHAPTERS}

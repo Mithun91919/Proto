@@ -52,7 +52,7 @@ export default function RatingsReviewsPage() {
             </>
           ),
           detail:
-            "It rarely explains enough to help the next shopper decide.",
+            "The score arrives without the reason behind it, and the reason is the part the next shopper actually needs before buying.",
         },
         {
           label: "Task",
@@ -62,7 +62,7 @@ export default function RatingsReviewsPage() {
             </>
           ),
           detail:
-            "Consistent whether a customer is rating a product on mobile or reading reviews on the web.",
+            "The experience had to read the same whether someone was rating a product on their phone or reading reviews on the web.",
         },
         {
           label: "What I did",
@@ -72,7 +72,7 @@ export default function RatingsReviewsPage() {
             </>
           ),
           detail:
-            "We defined reusable patterns for collecting ratings, writing reviews and presenting review information, rather than designing each platform independently.",
+            "We defined reusable patterns for collecting a rating, writing a review and presenting what others had written, rather than designing each platform on its own.",
         },
       ]}
       chapters={CHAPTERS}
@@ -81,7 +81,7 @@ export default function RatingsReviewsPage() {
         src: "/work/bigbasket-ratings-reviews/Artboard%20Copy%208.jpg",
         alt: "The ratings and reviews experience on web and mobile: a browser review form beside a phone rating screen",
         standfirst:
-          "Ratings and reviews for beauty products across bigbasket's Android, iOS, web and mobile-web experiences.",
+          "Beauty shoppers on bigbasket rate products and read reviews on four surfaces: Android, iOS, web and mobile web.",
         headline: (
           <>
             Ratings & Reviews: <span style={{ color: "var(--ds-mint)" }}>one feedback system</span> across mobile and web.

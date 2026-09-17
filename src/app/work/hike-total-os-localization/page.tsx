@@ -59,7 +59,7 @@ export default function TotalOsLocalizationPage() {
             </>
           ),
           detail:
-            "From English source copy through translation, review, implementation and device-level validation.",
+            "A repeatable path had to exist from English source copy through translation, review, implementation and validation on the handset itself.",
         },
         {
           label: "What I did",
@@ -69,13 +69,13 @@ export default function TotalOsLocalizationPage() {
             </>
           ),
           detail:
-            "Established the path each string took and validated it on device, so the same intent survived the trip rather than only the same words.",
+            "I established the path each string took and checked it on device, so the intent survived the trip rather than only the words.",
         },
       ]}
       chapters={CHAPTERS}
       hero={{
         standfirst:
-          "TOTAL OS ran without the internet and shipped in eight Indian languages. This was the process that moved product copy into all of them without losing what it meant.",
+          "TOTAL OS was built to run without a connection, for people across India reading in their own script. Every string had to survive translation, review, build and a real handset before it counted as done.",
         headline: (
           <>
             Multilingual Mobile Experience: one localisation system across <span style={{ color: "var(--ds-mint)" }}>8 Indian languages</span>.

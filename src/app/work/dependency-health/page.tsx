@@ -69,7 +69,7 @@ export default function DependencyHealthPage() {
             </>
           ),
           detail:
-            "Translate standard-library versions, Java versions, security signals, conflicts and version drift into repository health, organisation-level visibility and guided remediation.",
+            "Technical signals — standard-library versions, Java versions, security findings, conflicts, version drift — had to become repository health, organisation-level visibility and guided remediation.",
         },
         {
           label: "What I did",
@@ -79,7 +79,7 @@ export default function DependencyHealthPage() {
             </>
           ),
           detail:
-            "Framed the product as Repository to Pillar to Organisation, ran a 148-repository pilot on the initial major version, and built self-service onboarding and remediation.",
+            "I framed the product as Repository → Pillar → Organisation, ran a 148-repository pilot on the initial major version, and built self-service onboarding and remediation.",
         },
       ]}
       chapters={CHAPTERS}

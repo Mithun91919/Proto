@@ -68,7 +68,7 @@ export default function ApiLifecyclePage() {
             </>
           ),
           detail:
-            "Not another API tool. One platform organised around three jobs — Marketplace, Design Studio and Testing — that still supports specialists who need deeper control.",
+            "The brief was not another API tool: one platform organised around three jobs — Marketplace, Design Studio and Testing — that still gives specialists the deeper control they need.",
         },
         {
           label: "What I did",
@@ -78,7 +78,7 @@ export default function ApiLifecyclePage() {
             </>
           ),
           detail:
-            "UX Designer through to Senior, design lead across the product's evolution, with 60+ engineering adoption sessions run as the three pillars took shape.",
+            "I ran 60+ adoption sessions with engineering teams as the three pillars took shape, and led design through the product's growth from UX Designer to Senior.",
         },
       ]}
       chapters={CHAPTERS}

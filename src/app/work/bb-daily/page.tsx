@@ -74,7 +74,7 @@ export default function BbDailyPage() {
             </>
           ),
           detail:
-            "The Android and iOS customer experience, and an Android operations product used to coordinate the work behind each delivery.",
+            "The work covered both halves: the Android and iOS customer experience, and an Android operations product the teams used to coordinate the work behind each delivery.",
         },
         {
           label: "What I did",
@@ -84,7 +84,7 @@ export default function BbDailyPage() {
             </>
           ),
           detail:
-            "Research and UX across both, so the promise made on the customer side matched the work the operations side had to coordinate.",
+            "I ran research and UX across both sides, so the promise made in the customer app matched what the operations app actually had to coordinate.",
         },
       ]}
       chapters={CHAPTERS}

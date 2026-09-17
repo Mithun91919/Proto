@@ -47,7 +47,7 @@ export default function CreoMark1Page() {
             </>
           ),
           detail:
-            "New software features arrived on a monthly cadence, and each needed communicating without the brand fragmenting into a run of one-off campaigns.",
+            "Announcing each release on its own terms would have left the brand as a run of unrelated campaigns with nothing holding them together.",
         },
         {
           label: "Task",
@@ -57,7 +57,7 @@ export default function CreoMark1Page() {
             </>
           ),
           detail:
-            "Web, social, email and marketing, consistent enough to absorb a monthly change of subject.",
+            "One visual system had to carry every channel and still absorb a change of subject each month.",
         },
         {
           label: "What I did",
@@ -67,7 +67,7 @@ export default function CreoMark1Page() {
             </>
           ),
           detail:
-            "Large product imagery, high-contrast typography and a fixed set of supporting brand elements, so the phone and its evolving software stayed the dominant element wherever it appeared.",
+            "Large product imagery, high-contrast typography and a fixed set of supporting elements kept the phone and its software the dominant thing wherever it appeared.",
         },
       ]}
       chapters={CHAPTERS}
@@ -76,7 +76,7 @@ export default function CreoMark1Page() {
         src: "/work/creo/banner.jpg",
         alt: "Mark 1 campaign imagery: the phone shown against the brand's high-contrast visual language",
         standfirst:
-          "Mark 1 was a smartphone running FUEL OS, with new software features shipping every month. This was the visual language built to communicate them.",
+          "CREO shipped new FUEL OS features to Mark 1 owners release after release, each one needing to be announced across web, social, email and campaign work.",
         headline: (
           <>
             Mark 1: a visual language for a smartphone that <span style={{ color: "var(--ds-mint)" }}>changed every month</span>.

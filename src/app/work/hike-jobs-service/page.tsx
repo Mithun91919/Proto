@@ -60,7 +60,7 @@ export default function HikeJobsServicePage() {
             </>
           ),
           detail:
-            "Personalised suggestions for finding work, and a built-in resume builder for the step that follows.",
+            "The product had to carry someone from a set of suggestions worth reading through to an application they were ready to send.",
         },
         {
           label: "What I did",
@@ -79,7 +79,7 @@ export default function HikeJobsServicePage() {
         src: "/work/hike-jobs-service/Jobs_Banner.jpg",
         alt: "The Jobs Service experience: job listings and the resume builder shown on phone screens",
         standfirst:
-          "An aggregator inside TOTAL OS that helped people discover relevant jobs, then get ready to apply — with a resume builder in the same product.",
+          "A jobs aggregator built into TOTAL OS, Hike's Android platform — for people who needed both the opportunity and something to send with it.",
         headline: (
           <>
             Job Discovery & Resume Builder: from finding a job to <span style={{ color: "var(--ds-mint)" }}>being ready to apply</span>.

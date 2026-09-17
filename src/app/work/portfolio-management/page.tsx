@@ -70,7 +70,7 @@ export default function PortfolioManagementPage() {
             </>
           ),
           detail:
-            "A six-module platform that can be understood through three jobs: understand the portfolio, operate it, and align it to strategy.",
+            "Six modules had to read as one platform, understood through three jobs: understand the portfolio, operate it, and align it to strategy.",
         },
         {
           label: "What I did",
@@ -80,13 +80,13 @@ export default function PortfolioManagementPage() {
             </>
           ),
           detail:
-            "UX Designer through to Senior, from the first whiteboarding sessions to multiple module launches, legacy-tool migrations and the strategic goal-management experience.",
+            "I worked it from the first whiteboarding sessions through multiple module launches, the legacy-tool migrations and the strategic goal-management experience, moving from UX Designer to Senior as it grew.",
         },
       ]}
       chapters={CHAPTERS}
       hero={{
         standfirst:
-          "The enterprise platform that replaced fragmented portfolio planning — people, products, initiatives, intake and goals — with one connected system of record.",
+          "Where Walmart's product organisation plans people, products, initiatives, intake and goals — work that used to sit in five separate places.",
         headline: (
           <>
             Portfolio Management Platform: <span style={{ color: "var(--ds-mint)" }}>one system instead of five</span>.
