@@ -36,37 +36,49 @@ const HERO_FLOOR = "clamp(5rem, 9vw, 8rem)";
  * `lead` is the claim; `detail` is the evidence for it. Reading only the
  * three leads should still tell the story.
  */
+/**
+ * Problem / Task / What I did — "Why/What/How" made a reader work out
+ * which beat was which, and "What" kept reading as "what was built".
+ *
+ * `lead` is the claim, `detail` the evidence. Reading only the three
+ * leads should still tell the story. Details name a concrete object
+ * where they can (a cooler, a forklift): a stranger has no picture of a
+ * Walmart back room, and abstractions like "an operational tool" leave
+ * them without one.
+ */
 const BEATS = [
   {
-    label: "Why",
+    label: "Problem",
     lead: "Reporting a fault cost more than fixing it.",
     detail:
-      "It meant finding a manager and finding a desktop. Troubleshooting was thin, search dead-ended, and the form arrived before anyone had tried the obvious fix.",
+      "An associate who found a cooler failing had to track down a manager with a desktop. Troubleshooting was thin, search dead-ended, and the form arrived before anyone had tried the obvious fix.",
   },
   {
-    label: "What",
+    label: "Task",
     lead: "Redesign frontline support, end to end.",
     detail:
-      "One mobile experience across both halves of the floor — facilities and technology — for associates working ~580K devices.",
+      "One mobile experience covering both halves of the floor — the building and the technology inside it — for associates supporting ~580K devices, and for the support teams receiving what they send.",
   },
   {
-    label: "How",
+    label: "What I did",
     lead: "Put the fix in front of the form.",
     detail:
-      "Taxonomy rebuilt from card sorting with associates. Guided resolution as step one of two. Work orders they can track, annotate and escalate — so a ticket became the fallback, not the first move.",
+      "Rebuilt the taxonomy from card sorting with associates, made guided resolution step one of two, and gave work orders a loop they could track, annotate and escalate — so a ticket became the fallback, not the first move.",
   },
 ];
 
 const METRICS = [
   { value: "~5.9K", label: "daily users", glyph: "field" },
-  { value: "~580K", label: "device footprint", glyph: "ring" },
-  { value: "7K+", label: "weekly searches", glyph: "bars" },
+  { value: "~580K", label: "devices supported", glyph: "ring" },
+  { value: "7K+", label: "searches a week", glyph: "bars" },
 ] as const;
 
 const CAVEAT = "Scale of the experience during the documented period — not a resolution claim.";
 
 function Hero() {
-  const meta = ["UX Designer", "2020–2021", "Frontline ops"];
+  // "Frontline ops" is internal vocabulary; platform is what a
+  // stranger actually wants to know here.
+  const meta = ["UX Designer", "Mobile app", "2020–2021"];
   return (
     <div className="ds-pull">
       <div className="ds-pull-inner" style={{ paddingBottom: HERO_FLOOR }}>
@@ -76,7 +88,12 @@ function Hero() {
               <span className="ds-pull-dots" aria-hidden />
               <p className="ds-eyebrow ds-pull-eyebrow">FixIt · Store Support Platform · Walmart Global Tech</p>
               <h2
-                className="display-title max-w-[15ch]"
+                /* "...in a Walmart store" is gone: the eyebrow already
+                   names Walmart and the standfirst names the associates,
+                   so it was the third mention in four lines — and at this
+                   column width it pushed the headline to four ragged
+                   lines with "everything" stranded alone. */
+                className="display-title max-w-[18ch]"
                 style={{
                   color: "var(--ds-dark-ink)",
                   fontSize: "clamp(2rem, 3.4vw, 2.9rem)",
@@ -84,11 +101,21 @@ function Hero() {
                   letterSpacing: "-0.015em",
                 }}
               >
-                One app for <span style={{ color: "var(--ds-mint)" }}>everything that breaks</span> in a
-                Walmart store.
+                One app for <span style={{ color: "var(--ds-mint)" }}>everything that breaks</span>.
               </h2>
+              {/* Standfirst. The single highest-value line for a cold
+                  reader: what it is, who opens it, and the condition
+                  they are in when they do. */}
+              <p
+                className="mt-6 max-w-[42ch] text-base leading-7"
+                style={{ color: "var(--ds-dark-muted)" }}
+              >
+                The app Walmart store associates open when something in the store stops working — a cooler,
+                a forklift, a handheld, the network. Used mid-shift, on the floor, by someone who just wants
+                to get back to the job.
+              </p>
               <div
-                className="mt-9 flex flex-wrap items-center gap-x-4 gap-y-3 font-mono text-[0.62rem] uppercase tracking-[0.1em]"
+                className="mt-8 flex flex-wrap items-center gap-x-4 gap-y-3 font-mono text-[0.62rem] uppercase tracking-[0.1em]"
                 style={{ color: "var(--ds-dark-muted)" }}
               >
                 {meta.map((m, i) => (
@@ -322,9 +349,11 @@ export default function IntroCardVariationsPage() {
           Three layouts for the evidence card.
         </h1>
         <p className="mt-6 max-w-[68ch] text-lg leading-8" style={{ color: "var(--ink-soft)" }}>
-          Same hero, same copy in all three — only the card changes. The copy itself is rewritten either
-          way: each beat now opens with a short claim and demotes the supporting sentence, so the three lead
-          lines alone carry the argument.
+          Same hero, same copy in all three — only the card changes. Read cold, the intro had a gap before
+          any of these layouts could help: nothing said what FixIt is or who opens it, so a first-time
+          reader met &quot;reporting a fault&quot; with no idea who was reporting, from where, or on what. The
+          hero now carries that line, the beats are Problem / Task / What I did, and each opens with a
+          claim so the three leads alone tell the story.
         </p>
       </header>
 
