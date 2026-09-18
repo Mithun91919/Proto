@@ -75,7 +75,7 @@ export default function StoreSupportPage() {
           label: "Task",
           lead: (
             <>
-              Redesign frontline support across <span className="ds-accent-deep-text">mobile and web</span>.
+              Redesign frontline support <span className="ds-accent-deep-text">for a phone on the floor</span>.
             </>
           ),
           detail:
