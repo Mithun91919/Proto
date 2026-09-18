@@ -97,7 +97,12 @@ export function CaseStudyHero({
           // Reduced only on the hero that carries art, matching its headline.
           // The art-less variant keeps both at full size — it has the whole
           // band to fill and nothing beside it.
-          className={`mt-6 max-w-[46ch] ${hasArt ? "text-[0.85rem] leading-[1.75]" : "text-base leading-7"}`}
+          //
+          // 0.94rem, not the 0.85rem this started at: below 14.4px the
+          // standfirst ranked under the meta values on both size and
+          // contrast, so the client and the year out-ranked the sentence
+          // that says what the product is.
+          className={`mt-6 max-w-[46ch] ${hasArt ? "text-[0.94rem] leading-[1.7]" : "text-base leading-7"}`}
           style={{ color: "var(--ds-dark-muted)" }}
         >
           {standfirst}
