@@ -103,7 +103,6 @@ export default function StoreSupportPage() {
           { label: "Client", value: "Walmart Global Tech" },
           { label: "Year", value: "2020–2021" },
           { label: "Discipline", value: "Frontline operations" },
-          { label: "Design system", value: "Living Design" },
         ],
         // height was 1389 here against a 2188px file — stale since the
         // composite was rebuilt taller, so the reserved box was the wrong
@@ -114,7 +113,7 @@ export default function StoreSupportPage() {
         standfirst:
           "A cooler, a forklift, a handheld, the network — reported and fixed mid-shift, on the floor. Built for the people who find the fault, for new starters still learning their way around, and for the support desks receiving what they send.",
         alt: "Three screens from the app: the home screen with refrigeration alarms, the work-order calendar and submitted issues; the submit-an-issue screen with its five categories; and the refrigeration alarms list.",
-        figureNote: "The interface is as it shipped. I have replaced the data and some product names, because the work is internal.",
+        figureNote: "The interface is as it shipped, built on Living Design — Walmart's design system. I have replaced the data and some product names, because the work is internal.",
       }}
       next={
         onward

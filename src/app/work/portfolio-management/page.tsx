@@ -93,13 +93,12 @@ export default function PortfolioManagementPage() {
             Portfolio Management Platform: <span style={{ color: "var(--ds-mint)" }}>one system instead of five</span>.
           </>
         ),
-        figureNote: "The interface is as it shipped. I have replaced the data and some product names, because the work is internal.",
+        figureNote: "The interface is as it shipped, built on Living Design — Walmart's design system. I have replaced the data and some product names, because the work is internal.",
         meta: [
           { label: "Role", value: "UX Designer → Senior UX Designer" },
           { label: "Client", value: "Walmart Global Tech" },
           { label: "Year", value: "2022–Present" },
           { label: "Discipline", value: "Enterprise platform · Product design" },
-          { label: "Design system", value: "Living Design" },
         ],
       }}
       next={

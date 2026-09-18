@@ -93,7 +93,6 @@ export default function SupplyChainOperationsPage() {
           { label: "Client", value: "Walmart Global Tech" },
           { label: "Year", value: "2021–2022" },
           { label: "Discipline", value: "Enterprise operations · Platform UX" },
-          { label: "Design system", value: "Living Design" },
         ],
         // Redesigned landing page + navigation, rebuilt with placeholder data.
         // Three shipped screens rather than one: the platform's argument is
@@ -130,7 +129,7 @@ export default function SupplyChainOperationsPage() {
         standfirst:
           "The entry point to 139 operational modules used across Walmart.com, Online Grocery and international markets. Operations teams open it to get to a tool, not to spend time in it.",
         alt: "Redesigned platform dashboard: grouped module categories, pinned tools, and recent modules.",
-        figureNote: "The interface is as it shipped. I have replaced the data and some product names, because the work is internal.",
+        figureNote: "The interface is as it shipped, built on Living Design — Walmart's design system. I have replaced the data and some product names, because the work is internal.",
       }}
       next={
         onward
