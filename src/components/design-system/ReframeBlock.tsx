@@ -133,7 +133,7 @@ export function ReframeBlock({
               <h3 className="ds-pull-text">{heading}</h3>
               {body ? (
                 <p
-                  className="mt-5 max-w-[46ch] text-base leading-7"
+                  className="mt-5 max-w-[60ch] text-base leading-7"
                   style={{ color: "var(--ds-dark-muted)" }}
                 >
                   {body}
