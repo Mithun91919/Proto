@@ -170,8 +170,12 @@ export function CaseStudyHero({
                 width={width ?? 2400}
                 height={height ?? 1380}
                 priority
-                sizes="(max-width: 1024px) 92vw, 52vw"
-                style={{ width: "100%", height: "auto", maxWidth: "52rem" }}
+                sizes="(max-width: 1024px) 78vw, 44vw"
+                /* 85%, not a smaller max-width: the column is narrower than
+                   the old 52rem cap at most widths, so the cap was not the
+                   binding constraint and lowering it would have done nothing
+                   until the viewport got very wide. */
+                style={{ width: "85%", height: "auto", maxWidth: "44.2rem" }}
               />
             </div>
           </div>
