@@ -228,8 +228,8 @@ export default function StoreSupportPage() {
             eyebrow="The loop"
             heading="And when it does need a person, the associate keeps hold of it"
             body={[
-              "Self-service only earns trust if the fallback is good. Everything after the ticket is built so the person who raised it can still see it, add to it, and push on it.",
-              "That extends to what travels with the report. The map went to aisle-level selection, so a location reads as somewhere a technician can walk to rather than a store number.",
+              "Self-service only earns trust if the fallback is good. Everything after the ticket is built so the person who raised it can still see it, add to it and chase it.",
+              "The same applies to what travels with the report. Location moved to aisle-level selection, so a technician is sent somewhere they can walk to rather than a store number — the handover is worth acting on before anyone has to ask a follow-up question.",
             ]}
           />
         </CaseStudySection>
@@ -244,7 +244,7 @@ export default function StoreSupportPage() {
           rows={[
             {
               eyebrow: "Track and escalate",
-              title: "A work order you can follow, annotate and push on",
+              title: "A work order you can follow, add to and chase",
               body:
                 "A raised issue becomes a work order carrying its trade, equipment, problem code and status — and for an alarm it can be raised automatically, with priority and affected units already attached. The associate can see it scheduled and who is coming, add photographs and notes as things change, and when a repair does not hold there is a named way back: recall the technician, escalate through the help desk, or call facilities — rather than a second ticket that loses the first one’s history.",
               media: (
