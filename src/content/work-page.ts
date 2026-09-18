@@ -56,7 +56,7 @@ export const careerStages: CareerStage[] = [
 export const currentStage = {
   year: "Today",
   stage: "From interfaces to AI behaviour",
-  body: "As products get more intelligent, my role has widened from designing screens to shaping the workflows, interactions, and system behaviour behind them — including AI-assisted and conversational experiences.",
+  body: "As products get more intelligent, my role has widened from designing screens to shaping the workflows, interactions, and system behaviour behind them. Two of the projects I am on now are AI-assisted; both are still in flight, which is why neither is a case study here yet.",
 };
 
 export type Transformation = {
