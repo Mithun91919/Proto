@@ -46,18 +46,21 @@ export function HeroScreenStack({ screens, label }: HeroScreenStackProps) {
   const bringToFront = (i: number) =>
     setOrder((prev) => (prev[0] === i ? prev : [i, ...prev.filter((p) => p !== i)]));
   const deck = order.map((i) => capped[i]);
-  // One ratio for the whole deck, taken from the screen that leads. Fanning
-  // three different shapes was the mistake in the first pass: a 1.32 screen
-  // behind a 1.62 one hung 76px below it, which reads as misalignment rather
-  // than depth. The layout sizes the cards; the images crop into them.
-  const ratio = deck[0] ? deck[0].width / deck[0].height : 16 / 10;
+  // Ratio comes from the authored first screen, never from whichever card is
+  // currently in front. Reading it off the front made the whole deck resize
+  // on every click — an 85px jump in the opener.
+  const stableRatio = capped[0] ? capped[0].width / capped[0].height : 16 / 10;
+  // All cards carry the same chrome or none: a bar on one card and not the
+  // next made that card ~60px taller than its neighbours.
+  const anyRoute = capped.some((s) => s.route);
+
 
   return (
     <div
       className="ds-hero-stack"
       role="group"
       aria-label={label}
-      style={{ "--stack-depth": deck.length - 1, "--deck-ratio": ratio } as CSSProperties}
+      style={{ "--stack-depth": deck.length - 1, "--deck-ratio": stableRatio } as CSSProperties}
     >
       {deck.map((screen, i) => (
         <button
@@ -72,7 +75,7 @@ export function HeroScreenStack({ screens, label }: HeroScreenStackProps) {
           aria-current={i === 0 || undefined}
         >
           <div className="ds-frame">
-            {screen.route ? (
+            {anyRoute ? (
               <div className="ds-framebar">
                 <span className="flex gap-1.5" aria-hidden>
                   <span className="block h-2 w-2 rounded-full" style={{ background: "var(--color-surface-2)" }} />
@@ -83,7 +86,7 @@ export function HeroScreenStack({ screens, label }: HeroScreenStackProps) {
                   className="flex-1 truncate rounded-md border px-2.5 py-1 font-mono text-[0.6rem]"
                   style={{ borderColor: "var(--ds-solid-border)", background: "var(--ds-solid-bg)", color: "var(--muted)" }}
                 >
-                  {screen.route}
+                  {screen.route ?? "\u00a0"}
                 </span>
               </div>
             ) : null}
