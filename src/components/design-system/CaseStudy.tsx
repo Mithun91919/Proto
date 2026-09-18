@@ -145,11 +145,14 @@ export function CaseStudyChapter({
   eyebrow,
   heading,
   body,
+  footnote,
   layout = "split",
 }: {
   eyebrow?: string;
   heading: string;
   body: string[];
+  /** Small note under the body — the source or limit of a figure stated above. */
+  footnote?: string;
   layout?: ChapterLayout;
 }) {
   const head = (
@@ -171,6 +174,7 @@ export function CaseStudyChapter({
               </p>
             ))}
           </div>
+          {footnote ? <p className="ds-note mt-6 max-w-[60ch]">{footnote}</p> : null}
         </div>
       </Reveal>
     );
@@ -189,6 +193,7 @@ export function CaseStudyChapter({
             </p>
           ))}
         </div>
+        {footnote ? <p className="ds-note mt-6 max-w-[60ch]">{footnote}</p> : null}
       </Reveal>
     );
   }
@@ -203,6 +208,7 @@ export function CaseStudyChapter({
               {paragraph}
             </p>
           ))}
+          {footnote ? <p className="ds-note pt-1">{footnote}</p> : null}
         </div>
       </div>
     </Reveal>

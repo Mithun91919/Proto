@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import { caseStudyRobots } from "@/content/seo";
 import { AlternatingTextMedia } from "@/components/design-system/AlternatingTextMedia";
-import { ArtboardFigure } from "@/components/design-system/ArtboardFigure";
 import { ClipFigure } from "@/components/design-system/ClipFigure";
 import { BeforeAfterModel } from "@/components/design-system/BeforeAfterModel";
 import { PullStatement } from "@/components/design-system/PullStatement";
@@ -43,7 +42,7 @@ export const metadata: Metadata = {
 
 const CHAPTERS = [
   { id: "mobile", label: "On the floor" },
-  { id: "report", label: "Ways in" },
+  { id: "report", label: "What the data said" },
   { id: "fixit", label: "Fix it first" },
   { id: "loop", label: "The loop" },
   { id: "system", label: "The migration" },
@@ -135,46 +134,15 @@ export default function StoreSupportPage() {
       <CaseStudyColumn>
         <CaseStudySection id="report" boundary={false} className="pt-16 md:pt-20">
           <CaseStudyChapter
-            eyebrow="The first screen"
-            heading="I put the whole job on the page an associate opens"
+            eyebrow="What the data said"
+            heading="Two in five tickets did not need a technician"
             body={[
-              "The home screen opens on what is already happening in the building: refrigeration alarms carrying a count of new ones, the work-order calendar, and the repairs waiting to be rated. Below those sit the issues this associate has raised — facilities work orders and technology tickets kept apart, because they go to different teams and resolve at different speeds — and the devices the store is running.",
-              "Every block is a route rather than a summary. The alarm count opens the alarms, the calendar opens the schedule, each list opens in full, and Submit issue stays within reach the whole way down. Nothing on the screen is only there to be read.",
+              "I sat with store associates and managers and went through the ticket record with them. Around 40% of what was raised could have been resolved by the person who raised it* — a setting, a reset, a step someone already knew if they had been told it.",
+              "Every one of those became a technician visit the company paid for. And because reporting ran on a desktop, away from the fault, what was documented was thin: a report written from memory, minutes or hours after the thing was seen.",
+              "So the product answers with a fix before it answers with a form. A Fix it button on the alarm opens the steps to clear it; only if those do not hold does a ticket exist at all.",
             ]}
+            footnote="* Reviewed with store and support teams during discovery. It describes the tickets that existed before the redesign, not an effect of it."
           />
-          <CaseStudyFigure>
-            <ArtboardFigure
-              layout="portrait"
-              portraitMax="17rem"
-              src="/work/store-support/home.png"
-              width={824}
-              height={2522}
-              alt="The home screen: a greeting, a refrigeration alarms card with four new, the work-order calendar, four work orders awaiting a rating, then the associate’s own submitted work orders and technology tickets, the store’s devices, and a Submit issue button."
-              caption="Alarms, schedule, ratings, the issues this associate raised, the store’s devices — and submit always in reach."
-            />
-          </CaseStudyFigure>
-
-          <CaseStudyChapter
-            eyebrow="Ways in"
-            heading="Reporting starts where the associate already is"
-            body={[
-              "The old structure reflected the support organisation rather than the mental model of someone standing in a store trying to fix something, so anyone who had not already learned it had to guess where their issue belonged. There are three ways in now.",
-              "The first is the categories. I ran card-sorting sessions with associates using common issue types, asking them to group and label the problems and explain their reasoning. What came back sorted problems by where they occur — a department or area, a device, broken equipment, the network, and people or process, five in all — rather than by which team would receive the ticket.",
-              "The second is the scanner. Equipment carries an asset tag, so pointing the phone at the cooler opens the request against the right asset, with its type, location and history already attached. It removes the least useful part of reporting a fault: describing the object you are already standing in front of.",
-              "The third is search, which is a route rather than an afterthought. Results are separated by type, how-to guidance can appear directly in the flow, and the query carries forward into a request instead of making someone start again.",
-            ]}
-          />
-          <CaseStudyFigure>
-            <ArtboardFigure
-              layout="portrait"
-              portraitMax="21rem"
-              src="/work/store-support/submit-issue.png"
-              width={824}
-              height={1462}
-              alt="The submit-an-issue screen: a search field reading “Search by name or scan an asset tag”, five category cards — store department or area, digital tools and store devices, maintenance and repair, wireless and store network, personnel and training — and a Scan asset tag button."
-              caption="The five categories in the associate’s own language, each with an example underneath, and the scanner in the search field itself."
-            />
-          </CaseStudyFigure>
         </CaseStudySection>
 
         <CaseStudySection id="fixit">
@@ -216,27 +184,10 @@ export default function StoreSupportPage() {
           align="start"
           rows={[
             {
-              eyebrow: "Step 1 of 2",
-              title: "Try the fix before you file anything",
+              eyebrow: "Fix it",
+              title: "The alarm carries its own way out",
               body:
-                "Choose what happened and the product answers with the resolution rather than a form — short, numbered, and ending in a question it is willing to lose: did that resolve your issue? Answering yes closes the journey there.",
-              media: (
-                <ClipFigure
-                  variant="beside"
-                  mp4="/work/store-support/scan-asset-tag.mp4"
-                  poster="/work/store-support/scan-asset-tag-poster.jpg"
-                  width={704}
-                  height={1432}
-                  alt="The submit journey: choosing a category, then a Resolution step labelled Step 1 of 2 with numbered instructions and the question “Did the above resolve your issue?”, and only then Step 2 of 2 collecting photos and contact details."
-                  caption="Step 1 of 2 is the fix. The ticket is step 2, and only if the fix did not hold."
-                />
-              ),
-            },
-            {
-              eyebrow: "Show, don’t tell",
-              title: "When the fix is physical, the instructions are photographs",
-              body:
-                "A software fix gets numbered steps beside a drawing of the screen to look for. Where the repair is physical, the guidance turns photographic instead — the refrigeration case, the shelf, the display reading its own alarm state — so the associate matches a picture to what is in front of them rather than translating a sentence into a piece of equipment.",
+                "An associate opens the refrigeration alarm and the next control is Fix it, not Report. It answers with the steps to clear that alarm — photographic where the repair is physical, so the associate matches a picture to the case in front of them rather than translating a sentence into a piece of equipment. Where the steps cannot clear it, the work order is raised automatically with the technician already dispatched.",
               media: (
                 <ClipFigure
                   variant="beside"
@@ -245,7 +196,24 @@ export default function StoreSupportPage() {
                   width={716}
                   height={1432}
                   alt="A refrigeration alarm opening into photographic troubleshooting steps showing the case and its temperature display, then into a dispatched work order showing the assigned technician."
-                  caption="An alarm, the steps to clear it, and — where it cannot be cleared — an automated work order with the technician already dispatched."
+                  caption="The alarm, the Fix it steps, and — where they cannot clear it — a work order raised with the technician already dispatched."
+                />
+              ),
+            },
+            {
+              eyebrow: "Step 2 of 2",
+              title: "The ticket only exists if the fix did not hold",
+              body:
+                "Where an associate starts from scratch rather than from an alarm, the same order applies: say what happened, get the resolution, and answer one question — did that resolve your issue? Yes ends it. No opens step two, which collects the photographs and contacts, and carries the failed attempt with it so the technician arrives knowing what has already been tried. The five categories it starts from came out of card sorts I ran with associates afterwards, grouping problems by where they occur rather than by which team receives them.",
+              media: (
+                <ClipFigure
+                  variant="beside"
+                  mp4="/work/store-support/submit-resolution.mp4"
+                  poster="/work/store-support/submit-resolution-poster.jpg"
+                  width={704}
+                  height={1432}
+                  alt="The submit flow: a problem-details form giving way to a Resolution step labelled 1 of 2 with numbered instructions and the question “Did the above resolve your issue?”, then Step 2 of 2 collecting photographs and contact details."
+                  caption="Step 1 is the fix. Step 2 is the ticket, and only if the fix did not hold."
                 />
               ),
             },
