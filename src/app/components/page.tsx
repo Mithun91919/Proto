@@ -135,6 +135,7 @@ const MECHANICS = [
   { label: "Person", rule: "First person singular for your work. “We” only for genuine team decisions." },
   { label: "Tense", rule: "Past for shipped work. Present for products you still own." },
   { label: "Numbers", rule: "~ for approximations. K and M above a thousand." },
+  { label: "Outcomes", rule: "No number is not no outcome. Say what changed and who stopped having to do something. Never invent a metric to fill the gap." },
   { label: "Arrows", rule: "→ for transformation and hierarchy. Never -> in rendered copy." },
   { label: "Product names", rule: "Public label only. Internal names never appear as a primary title." },
   { label: "Headings", rule: "Make an argument. Never The Problem, The Process, The Solution." },

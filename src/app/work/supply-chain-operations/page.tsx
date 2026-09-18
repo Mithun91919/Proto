@@ -255,7 +255,7 @@ export default function SupplyChainOperationsPage() {
             heading="The best outcome was people leaving the homepage faster"
             body={[
               "In many digital products, more time spent can look like engagement. Here, the opposite was true.",
-              "The purpose of the landing page was to route people into operational work as quickly as possible. Where a visit to it had run 10 to 30 minutes, that time fell by 62% after the new information architecture, navigation, search, and personalisation were introduced.",
+              "The purpose of the landing page was to route people into operational work as quickly as possible. Where a visit to it had run 10 to 30 minutes, that time fell by 62% after we introduced the new information architecture, navigation, search and personalisation.",
               "The redesign gave the platform a scalable structure for new modules, persistent navigation across the experience, direct search, and personal routes back into frequently used tools. More importantly, the homepage became what it was supposed to be: a way through the platform, not a place users had to spend time figuring out.",
             ]}
           />
