@@ -4,7 +4,6 @@ import { AlternatingTextMedia } from "@/components/design-system/AlternatingText
 import { ArtboardFigure } from "@/components/design-system/ArtboardFigure";
 import { ClipFigure } from "@/components/design-system/ClipFigure";
 import { DotFlow } from "@/components/design-system/DotFlow";
-import { ProofStrip } from "@/components/design-system/ProofStrip";
 import { PullStatement } from "@/components/design-system/PullStatement";
 import { ReframeBlock } from "@/components/design-system/ReframeBlock";
 import {
@@ -59,10 +58,7 @@ export default function StoreSupportPage() {
   return (
     <CaseStudyShell
       slug="store-support"
-      // The figures are the subject of "What changed", with the paragraph
-      // that says what they do and do not prove. Repeating them up here put
-      // ~580K on the page four times and the caveat twice.
-      evidenceMetrics={false}
+      evidenceCaveat="Scale of the experience during the documented period — not a resolution claim."
       evidence={[
         {
           label: "Problem",
@@ -314,19 +310,10 @@ export default function StoreSupportPage() {
             eyebrow="What changed"
             heading="From “which form?” to “what happened?”"
             body={[
-              "The figures below are the scale the experience reached during the documented period, and the growing role of search and self-service in it.",
-              "They are not presented as proof that the redesign resolved issues — ticket volume, resolution time, and store downtime would be the right measures, and I would rather leave them out than claim them without approved post-launch data.",
+              "The scale at the top of this page is what the experience reached during the documented period, and the growing role of search and self-service in it. It is not what the redesign achieved.",
+              "Ticket volume, resolution time and store downtime would be the right measures, and I would rather leave them out than claim them without approved post-launch data.",
             ]}
           />
-          <CaseStudyFigure rule label="Scale of the experience — not a resolution claim">
-            <ProofStrip
-              items={[
-                { value: "~5.9K", label: "daily users", glyph: "field" },
-                { value: "~580K", label: "device footprint", glyph: "bars" },
-                { value: "7K+", label: "weekly support searches", glyph: "ring" },
-              ]}
-            />
-          </CaseStudyFigure>
         </CaseStudySection>
       </CaseStudyColumn>
 
