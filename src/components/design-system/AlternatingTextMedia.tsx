@@ -95,10 +95,15 @@ export function AlternatingTextMedia({
 
         // A tall portrait clip takes only the width it needs, so the text keeps
         // the flexible column instead of both being forced to half the row.
+        //
+        // Capped rather than `1fr`: at full width the text ran to 879px and
+        // pushed the clip hard against the far edge of the row, half a screen
+        // from the paragraph it illustrates. 40rem holds a comfortable measure
+        // and lets the pair sit together, with the slack falling outside them.
         const columns = portrait
           ? mediaFirst
-            ? "auto 1fr"
-            : "1fr auto"
+            ? "auto minmax(0, 40rem)"
+            : "minmax(0, 40rem) auto"
           : mediaFirst
             ? "1.15fr 1fr"
             : "1fr 1.15fr";
@@ -112,7 +117,7 @@ export function AlternatingTextMedia({
                columns on mobile instead of stacking. */
             className={`ds-alt-row gap-10 md:gap-16 ${
               align === "start" ? "items-start" : "items-center"
-            } ${portrait ? "" : "py-9"}`}
+            } ${portrait ? "md:justify-start" : "py-9"}`}
             style={{ "--alt-cols": columns } as CSSProperties}
           >
             {mediaFirst ? (

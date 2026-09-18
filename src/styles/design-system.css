@@ -2472,10 +2472,17 @@ a:hover .ds-compact-mark .ds-dot {
    and scales with the column rather than the window.
    At 0.54 ratio this lands the clip ~440–780px tall — large enough to read
    the interface, which is the whole point of showing it. */
-.ds-clip-beside .ds-clip-video {
+/* The figure takes the clip's width, not the caption's. `.ds-clip` centres
+   both in a column, so an unconstrained caption used to decide how wide the
+   whole figure was — which put four clips at four different positions down a
+   page, according to how much had been written under each. */
+.ds-clip-beside {
   width: clamp(15rem, 23vw, 23rem);
+}
+
+.ds-clip-beside .ds-clip-video {
+  width: 100%;
   height: auto;
-  max-width: 100%;
 }
 
 /* The one media role where cropping is intended. */
