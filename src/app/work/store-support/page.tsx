@@ -115,7 +115,7 @@ export default function StoreSupportPage() {
         standfirst:
           "A cooler, a forklift, a handheld, the network — reported and fixed mid-shift, on the floor. Built for the people who find the fault, for new starters still learning their way around, and for the support desks receiving what they send.",
         alt: "Three screens from the app: the home screen with refrigeration alarms, the work-order calendar and submitted issues; the submit-an-issue screen with its five categories; and the refrigeration alarms list.",
-        figureNote: "Reconstructed · placeholder data",
+        figureNote: "UI as shipped. Mock data, some names changed — internal work.",
       }}
       next={
         onward
@@ -154,7 +154,7 @@ export default function StoreSupportPage() {
               width={824}
               height={1462}
               alt="The submit-an-issue screen: a search field reading “Search by name or scan an asset tag”, five category cards — store department or area, digital tools and store devices, maintenance and repair, wireless and store network, personnel and training — and a Scan asset tag button."
-              caption="Five starting points in the associate’s own language, each with an example underneath, and the scanner always within reach. Reconstructed with placeholder data."
+              caption="Five starting points in the associate’s own language, each with an example underneath, and the scanner always within reach. UI as shipped; mock data and some names changed."
             />
           </CaseStudyFigure>
         </CaseStudySection>

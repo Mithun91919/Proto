@@ -90,6 +90,7 @@ export default function ApiLifecyclePage() {
             API Lifecycle Platform: <span style={{ color: "var(--ds-mint)" }}>one place</span> to discover, design, test, and govern APIs.
           </>
         ),
+        figureNote: "UI as shipped. Mock data, some names changed — internal work.",
         meta: [
           { label: "Role", value: "UX Designer → Senior UX Designer" },
           { label: "Client", value: "Walmart Global Tech" },

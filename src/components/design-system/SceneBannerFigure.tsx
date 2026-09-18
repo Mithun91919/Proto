@@ -16,7 +16,7 @@ type SceneBannerFigureProps = {
    * the page ships honestly until the assets land.
    */
   screens?: HeroScreen[];
-  /** Mono footnote, e.g. "Reconstructed · placeholder data". */
+  /** Mono footnote, e.g. "UI as shipped. Mock data, some names changed — internal work." */
   note?: string;
   /**
    * Drops the frame chrome. A pre-composed hero — several screens already

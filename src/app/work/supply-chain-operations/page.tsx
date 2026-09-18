@@ -105,7 +105,7 @@ export default function SupplyChainOperationsPage() {
         standfirst:
           "The entry point to 139 operational modules used across Walmart.com, Online Grocery and international markets. Operations teams open it to get to a tool, not to spend time in it.",
         alt: "Redesigned platform dashboard: grouped module categories, pinned tools, and recent modules.",
-        figureNote: "Reconstructed · placeholder data",
+        figureNote: "UI as shipped. Mock data, some names changed — internal work.",
       }}
       next={
         onward
@@ -131,7 +131,7 @@ export default function SupplyChainOperationsPage() {
               width={1914}
               height={1242}
               alt="The earlier landing page: a long, flat grid of module tiles with little grouping."
-              caption="The homepage before the redesign — one flat collection of modules, the same starting point for everyone. Hover to read the tiles. Reconstructed with placeholder data."
+              caption="The homepage before the redesign — one flat collection of modules, the same starting point for everyone. Hover to read the tiles. UI as shipped; mock data and some names changed."
             />
           </CaseStudyFigure>
         </CaseStudySection>
@@ -223,7 +223,7 @@ export default function SupplyChainOperationsPage() {
               width={2560}
               height={1576}
               alt="The redesigned landing page with pinned modules, a recent-modules row, and search."
-              caption="Three faster routes back into a small working set: pins, recent modules, and search. Reconstructed with placeholder data."
+              caption="Three faster routes back into a small working set: pins, recent modules, and search. UI as shipped; mock data and some names changed."
               hotspots={[
                 {
                   x: 50,
@@ -285,7 +285,7 @@ export default function SupplyChainOperationsPage() {
               }}
             />
             <p className="ds-media-caption">
-              Drag the divider to compare. Reconstructed with placeholder data.
+              Drag the divider to compare. UI as shipped; mock data and some names changed.
             </p>
           </CaseStudyFigure>
         </CaseStudySection>

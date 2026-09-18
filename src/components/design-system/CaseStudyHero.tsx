@@ -21,9 +21,10 @@ export type CaseStudyHeroProps = {
    * and which these projects composed with a dark copy area already in it.
    */
   artMode?: "panel" | "backdrop";
-  /** Mono footnote over the art, e.g. "Reconstructed · placeholder data".
-      Required by CLAUDE.md wherever the visual is a rebuild rather than a
-      screenshot of the live product. */
+  /** Mono footnote over the art, e.g. "UI as shipped. Mock data, some names
+      changed — internal work." Required on any case study whose client work
+      is internal: it says what is real (the interface) and what was altered
+      to show it (the data, some product names). */
   figureNote?: string;
   /** The back link, placed above everything. */
   children?: ReactNode;
@@ -166,7 +167,20 @@ export function CaseStudyHero({
             </div>
           </div>
         ) : (
-          copy
+          <>
+            {copy}
+            {/* With no art there is nothing to overlay, but the note is a
+                disclosure about the page's media, not about the hero image —
+                so it still has to appear. It sat unrendered here before. */}
+            {figureNote ? (
+              <p
+                className="mt-9 font-mono text-[0.62rem] uppercase tracking-[0.16em]"
+                style={{ color: "color-mix(in oklab, var(--ds-mint) 62%, transparent)" }}
+              >
+                {figureNote}
+              </p>
+            ) : null}
+          </>
         )}
       </div>
     </div>

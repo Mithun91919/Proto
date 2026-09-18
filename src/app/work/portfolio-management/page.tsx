@@ -92,6 +92,7 @@ export default function PortfolioManagementPage() {
             Portfolio Management Platform: <span style={{ color: "var(--ds-mint)" }}>one system instead of five</span>.
           </>
         ),
+        figureNote: "UI as shipped. Mock data, some names changed — internal work.",
         meta: [
           { label: "Role", value: "UX Designer → Senior UX Designer" },
           { label: "Client", value: "Walmart Global Tech" },
