@@ -3,6 +3,7 @@ import Link from "next/link";
 import { HeroPortrait } from "@/components/HeroPortrait";
 import { Reveal } from "@/components/Reveal";
 import { ChapterProgress } from "@/components/design-system/ChapterProgress";
+import { MediaPlaceholder } from "@/components/design-system/MediaPlaceholder";
 
 export const metadata: Metadata = {
   title: "About",
@@ -14,6 +15,7 @@ const CHAPTERS = [
   { id: "interface", label: "The interface" },
   { id: "approach", label: "The approach" },
   { id: "principles", label: "Principles" },
+  { id: "away", label: "Away from work" },
   { id: "contact", label: "Contact" },
 ];
 
@@ -314,6 +316,66 @@ export default function AboutPage() {
           </Reveal>
 
         </div>
+      </section>
+
+      {/* Section: Away from work.
+          
+          Framed around the reels rather than around travelling, on purpose.
+          "When I am not working I travel" is the commonest line in a design
+          portfolio and says nothing; someone whose response to an unfamiliar
+          place is to explain it to people is doing the same thing this page
+          already claims — making things understandable — in another medium.
+          That is the only reason this section earns a place on a portfolio.
+
+          PENDING, all of it needs Mithun:
+            - 3 frames (stills, or pulled from the reels) + the places
+            - the Instagram handle for the link below
+            - what the reels actually explain, so the copy can stop hedging.
+              The body below is written to be true without knowing; it will
+              be better once it can name the subject. */}
+      <section id="away" className="mt-24 ds-section-boundary pt-16">
+        <Reveal>
+          <h2 className="display-title display-section max-w-[24ch] text-[var(--ink)]">
+            Away from the laptop, I am still explaining things.
+          </h2>
+        </Reveal>
+
+        <div className="mt-8 max-w-[62ch] space-y-5">
+          <Reveal delay={80}>
+            <p>
+              I travel, and I make short videos about the places I end up in — what is
+              there, how it works, and what is worth knowing before you go.
+            </p>
+          </Reveal>
+          <Reveal delay={140}>
+            <p>
+              It is the same instinct as the work on this page in a different medium:
+              take something unfamiliar, find the part that matters, and make it land
+              in the time someone is willing to give it. A reel is a harder brief than
+              a case study — thirty seconds, no scrolling back.
+            </p>
+          </Reveal>
+        </div>
+
+        <Reveal delay={200}>
+          <div className="mt-12 grid grid-cols-1 gap-6 sm:grid-cols-3">
+            <MediaPlaceholder
+              ratio={4 / 5}
+              needs="A frame from a reel, with the place named in the caption."
+              source="Mithun — Instagram"
+            />
+            <MediaPlaceholder
+              ratio={4 / 5}
+              needs="A second place. Somewhere the explaining had a subject — history, geology, how to get there."
+              source="Mithun — Instagram"
+            />
+            <MediaPlaceholder
+              ratio={4 / 5}
+              needs="A third. Ideally one that looks nothing like the other two."
+              source="Mithun — Instagram"
+            />
+          </div>
+        </Reveal>
       </section>
 
       {/* CTA Section — dark closing card, matching the same treatment used
