@@ -101,8 +101,25 @@ export function CaseStudyHero({
           caps it had the position of a kicker and read as a caveat on the
           work; under the meta it reads as one more fact about it. */}
       {figureNote ? (
-        <p className="mt-7 max-w-[46ch] text-[0.8rem] leading-6" style={{ color: "#6f929c" }}>
-          {figureNote}
+        <p
+          className="mt-7 flex max-w-[56ch] items-start gap-2.5 text-[0.8rem] leading-6"
+          style={{ color: "#6f929c" }}
+        >
+          <svg
+            className="mt-[4px] shrink-0"
+            width="13"
+            height="13"
+            viewBox="0 0 16 16"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="1.3"
+            aria-hidden
+          >
+            <circle cx="8" cy="8" r="6.6" />
+            <path d="M8 7.3v4.1" strokeLinecap="round" />
+            <circle cx="8" cy="4.8" r="0.8" fill="currentColor" stroke="none" />
+          </svg>
+          <span>{figureNote}</span>
         </p>
       ) : null}
     </div>

@@ -115,7 +115,7 @@ export default function StoreSupportPage() {
         standfirst:
           "A cooler, a forklift, a handheld, the network — reported and fixed mid-shift, on the floor. Built for the people who find the fault, for new starters still learning their way around, and for the support desks receiving what they send.",
         alt: "Three screens from the app: the home screen with refrigeration alarms, the work-order calendar and submitted issues; the submit-an-issue screen with its five categories; and the refrigeration alarms list.",
-        figureNote: "UI as shipped. Mock data, some names changed — internal work.",
+        figureNote: "The interface is as it shipped. I have replaced the data and some product names, because the work is internal.",
       }}
       next={
         onward

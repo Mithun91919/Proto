@@ -105,7 +105,7 @@ export default function SupplyChainOperationsPage() {
         standfirst:
           "The entry point to 139 operational modules used across Walmart.com, Online Grocery and international markets. Operations teams open it to get to a tool, not to spend time in it.",
         alt: "Redesigned platform dashboard: grouped module categories, pinned tools, and recent modules.",
-        figureNote: "UI as shipped. Mock data, some names changed — internal work.",
+        figureNote: "The interface is as it shipped. I have replaced the data and some product names, because the work is internal.",
       }}
       next={
         onward

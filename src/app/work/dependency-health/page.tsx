@@ -91,7 +91,7 @@ export default function DependencyHealthPage() {
             Dependency Health Platform: turning compliance data into <span style={{ color: "var(--ds-mint)" }}>clear action</span>.
           </>
         ),
-        figureNote: "UI as shipped. Mock data, some names changed — internal work.",
+        figureNote: "The interface is as it shipped. I have replaced the data and some product names, because the work is internal.",
         meta: [
           { label: "Role", value: "Senior UX Designer" },
           { label: "Client", value: "Walmart Global Tech" },
