@@ -1024,6 +1024,34 @@
   }
 }
 
+/* ── Hero screen stack ────────────────────────────────────────────────
+   The opener's fanned deck. Same grammar as `.ds-stack-card` but shallower:
+   that one fans inside a full-bleed breakout with room to spare, this one
+   sits in a hero column beside the copy, so the offsets are roughly half.
+
+   The front card stays in flow and gives the container its height — no
+   min-height to keep in sync with whatever the art turns out to be. */
+.ds-hero-stack {
+  position: relative;
+  padding-left: calc(var(--stack-depth, 3) * 1.15rem);
+  padding-top: calc(var(--stack-depth, 3) * 0.4rem);
+}
+
+.ds-hero-stack-card {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 100%;
+  transform-origin: bottom right;
+  transform: translateX(calc(var(--pos) * -1.35rem)) translateY(calc(var(--pos) * 0.5rem))
+    rotate(calc(var(--pos) * -1.5deg)) scale(calc(1 - var(--pos) * 0.035));
+  filter: saturate(calc(1 - var(--pos) * 0.14)) brightness(calc(1 - var(--pos) * 0.05));
+}
+
+.ds-hero-stack-card.is-primary {
+  position: relative;
+}
+
 /* ── Hero + thumbnail rail (M14) ─────────────────────────────────────── */
 
 .ds-rail {

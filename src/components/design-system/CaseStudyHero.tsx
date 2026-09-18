@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { HeroScreenStack, type HeroStackScreen } from "./HeroScreenStack";
 import type { ReactNode } from "react";
 
 export type CaseStudyHeroProps = {
@@ -26,6 +27,10 @@ export type CaseStudyHeroProps = {
       is internal: it says what is real (the interface) and what was altered
       to show it (the data, some product names). */
   figureNote?: string;
+  /** A fanned deck instead of one screen. Only for openers that have several
+      real screens — the perspective is earned by quantity, not applied as
+      styling to a single mock. Ignored in `backdrop` mode. */
+  stack?: HeroStackScreen[];
   /** The back link, placed above everything. */
   children?: ReactNode;
 };
@@ -60,16 +65,18 @@ export function CaseStudyHero({
   width,
   height,
   figureNote,
+  stack,
   artMode = "panel",
   children,
 }: CaseStudyHeroProps) {
-  const hasArt = Boolean(src);
-  const backdrop = hasArt && artMode === "backdrop";
+  const hasStack = Boolean(stack?.length) && artMode !== "backdrop";
+  const hasArt = Boolean(src) || hasStack;
+  const backdrop = Boolean(src) && artMode === "backdrop";
   // A phone composite stands on the band's floor; a desktop mock should not.
   // Pinned to the bottom, a 1.62:1 dashboard left 350px of the column empty
   // above it, because the column is sized for artwork that is nearly square.
   // The artefact's own proportions decide it — they are already declared.
-  const wideArt = (width ?? 2400) / (height ?? 1380) >= 1.2;
+  const wideArt = hasStack || (width ?? 2400) / (height ?? 1380) >= 1.2;
 
   const copy = (
     <div>
@@ -172,19 +179,25 @@ export function CaseStudyHero({
               // and the pull would drag it below the optical middle.
               style={wideArt ? undefined : { marginBottom: `calc(${FLOOR} * -1)` }}
             >
-              <Image
-                src={src as string}
-                alt={alt}
-                width={width ?? 2400}
-                height={height ?? 1380}
-                priority
-                sizes="(max-width: 1024px) 78vw, 44vw"
-                /* 85%, not a smaller max-width: the column is narrower than
-                   the old 52rem cap at most widths, so the cap was not the
-                   binding constraint and lowering it would have done nothing
-                   until the viewport got very wide. */
-                style={{ width: "85%", height: "auto", maxWidth: "44.2rem" }}
-              />
+              {hasStack ? (
+                <div style={{ width: "92%", maxWidth: "46rem" }}>
+                  <HeroScreenStack screens={stack as HeroStackScreen[]} label={alt} />
+                </div>
+              ) : (
+                <Image
+                  src={src as string}
+                  alt={alt}
+                  width={width ?? 2400}
+                  height={height ?? 1380}
+                  priority
+                  sizes="(max-width: 1024px) 78vw, 44vw"
+                  /* 85%, not a smaller max-width: the column is narrower than
+                     the old 52rem cap at most widths, so the cap was not the
+                     binding constraint and lowering it would have done nothing
+                     until the viewport got very wide. */
+                  style={{ width: "85%", height: "auto", maxWidth: "44.2rem" }}
+                />
+              )}
             </div>
           </div>
         ) : (

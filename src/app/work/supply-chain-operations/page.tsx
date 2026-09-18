@@ -95,13 +95,21 @@ export default function SupplyChainOperationsPage() {
           { label: "Discipline", value: "Enterprise operations · Platform UX" },
         ],
         // Redesigned landing page + navigation, rebuilt with placeholder data.
-        // Redesigned landing page, rebuilt with placeholder data. The
-        // second screen the old SceneBannerFigure ghosted in behind this
-        // one is dropped: the new hero gives the art a real column rather
-        // than an absolutely-positioned stack.
-        src: "/work/supply-chain-operations/new-dashboard.png",
-        width: 2560,
-        height: 1576,
+        // Three shipped screens rather than one: the platform's argument is
+        // that 139 modules reach you through a landing page, a navigation
+        // and a sign-in, so the deck says "several real screens, this one
+        // leads". The legacy dashboard stays out — it is the before state,
+        // and it has its own comparison further down.
+        stack: [
+          {
+            src: "/work/supply-chain-operations/new-dashboard.png",
+            width: 2560,
+            height: 1576,
+            route: "supply-chain / home",
+          },
+          { src: "/work/supply-chain-operations/new-navigation.png", width: 2560, height: 1940 },
+          { src: "/work/supply-chain-operations/new-login.png", width: 2560, height: 1612 },
+        ],
         standfirst:
           "The entry point to 139 operational modules used across Walmart.com, Online Grocery and international markets. Operations teams open it to get to a tool, not to spend time in it.",
         alt: "Redesigned platform dashboard: grouped module categories, pinned tools, and recent modules.",

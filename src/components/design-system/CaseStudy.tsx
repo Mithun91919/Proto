@@ -1,4 +1,5 @@
 import Link from "next/link";
+import type { HeroStackScreen } from "./HeroScreenStack";
 import type { ReactNode } from "react";
 import { Reveal } from "@/components/Reveal";
 import { getProject } from "@/content/projects";
@@ -41,8 +42,11 @@ type HeroProps = {
   meta: { label: string; value: string }[];
   /** `backdrop` for campaign art built to run full-bleed behind copy. */
   artMode?: "panel" | "backdrop";
-  /** Mono footnote over the art for a reconstructed visual, per CLAUDE.md. */
+  /** Footnote under the meta, saying what in the visual is real. */
   figureNote?: string;
+  /** A fanned deck instead of one screen, for openers with several real
+      screens. See `HeroScreenStack`. */
+  stack?: HeroStackScreen[];
 };
 
 type NextProps = { href: string; number: string; label: string; title: string };
