@@ -229,6 +229,14 @@ export const projects: Project[] = [
     reconstructed: true,
     accent: "#4A3428",
     accentSoft: "#EDE4DC",
+    // A still, not a clip: every recording of this app is a portrait phone
+    // capture (~0.49) and would sit badly in a landscape row. The composite
+    // is the only asset that reads across, at its true ratio so the three
+    // screens are not cropped.
+    media: {
+      poster: "/work/store-support/hero-composite.png",
+      aspect: 2400 / 2188,
+    },
     contentPath: "projects/fixit/web/fixit-web.md",
     systemMap: [
       {
