@@ -46,7 +46,7 @@ export default function AboutPage() {
               I started my career in visual and interaction design, then moved through consumer products, commerce, and enterprise platforms as the problems I worked on became larger and more interconnected.
             </p>
             <p className="mt-4 text-lg leading-8 text-[var(--ink-soft)]">
-              Today, I work mostly on enterprise platforms and AI-assisted workflows — turning complex, fragmented tools into products that feel clear and useful.
+              Today, I work mostly on enterprise platforms and AI-assisted workflows — turning fragmented tools into products people can get through quickly.
             </p>
           </div>
         </Reveal>
@@ -232,13 +232,13 @@ export default function AboutPage() {
 
             <Reveal delay={160}>
               <p>
-                I like finding the structure underneath that complexity and making ideas tangible early — through flows, prototypes, information models, or functional experiences that people can actually react to.
+                I like finding the structure underneath all that and making ideas tangible early — through flows, prototypes, information models, or functional experiences that people can actually react to.
               </p>
             </Reveal>
 
             <Reveal delay={200}>
               <p>
-                As products evolve beyond traditional screens into automation and AI-assisted interactions, the surface may change, but the core design questions remain the same.
+                As products move past screens into automation and AI-assisted interactions, the surface changes but the questions do not: what is this for, who is accountable when it is wrong, and how does someone see what it did on their behalf.
               </p>
             </Reveal>
           </div>

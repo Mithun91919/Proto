@@ -36,14 +36,20 @@ export default function HomePage() {
             <h1 className="display-title display-name mt-6 text-[var(--ink)]">
               Mithun Raju.
               <span className="display-name-sub mt-3 block text-[var(--ink-soft)] md:mt-4">
-                Product designer turning complexity into <span className="text-[var(--accent-deep)]">connected products</span>.
+                Product designer turning scattered tools into <span className="text-[var(--accent-deep)]">one place to work</span>.
               </span>
             </h1>
-            {/* One line, not three. The tagline above already states the
-                "complexity → connected systems" position; this adds only
-                what it doesn't — the domains and where the work happens.
-                Benchmarked against the UXfolio-featured portfolios, whose
-                heroes run a single line before the first project. */}
+            {/* One line, not three. The tagline above states the position —
+                scattered tools into one place — and this adds only what it
+                does not: the domains and where the work happens.
+
+                "Turning complexity into connected products" was the least
+                concrete sentence on the site, sitting where the most people
+                read it, while the case-study headlines under it were the
+                most concrete ("one system instead of five", "fix everything
+                that breaks"). The nouns are the actual work now: five
+                portfolio systems became one, three API tools became one
+                platform, 139 modules got a route through them. */}
             <p className="lede mt-8">
               Consumer products, enterprise platforms, and AI-assisted workflows — currently at Walmart Global Tech.
             </p>

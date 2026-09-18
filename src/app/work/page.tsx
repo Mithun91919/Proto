@@ -50,7 +50,7 @@ export default function WorkPage() {
           <span className="ds-accent-text">enterprise platforms</span>.
         </h1>
         <p className="lede mt-6" style={{ maxWidth: "84ch" }}>
-          Consumer, commerce, enterprise, and developer products — at CREO, Hike, bigbasket, and Walmart Global Tech. The through-line is complexity: large systems, fragmented tools, and dense information, redesigned into products people can actually use. The work has moved from individual screens to the workflows and architecture behind them.
+          Consumer, commerce, enterprise, and developer products — at CREO, Hike, bigbasket, and Walmart Global Tech. The through-line is the same throughout: large systems, fragmented tools, and dense information, redesigned into products people can actually use. The work has moved from individual screens to the workflows and architecture behind them.
         </p>
       </div>
 
