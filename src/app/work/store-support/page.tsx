@@ -160,14 +160,14 @@ export default function StoreSupportPage() {
           <CaseStudyFigure rule label="The shortest path, before and after">
             <BeforeAfterModel
               before={{
-                heading: "Find a manager, then a desktop",
-                body: "The person who discovered the fault was rarely the one who reported it, and nothing was recorded until both a manager and a computer were free.",
-                lineWidths: [100, 88, 76],
+                heading: "Every issue became a ticket",
+                body: "Find a manager, find a desktop, describe the fault from memory, and wait for someone to be sent. Nothing else was on offer, whether or not the fix was something the associate could have done.",
+                stages: ["Issue", "Raise a ticket", "Wait"],
               }}
               after={{
-                heading: "Say what happened, try the fix",
-                body: "The resolution comes before the form. If it works the journey ends there and no ticket is created; if it does not, the ticket carries the failed attempt with it.",
-                lineWidths: [82, 54, 26],
+                heading: "The ticket is what is left over",
+                body: "The steps to clear it come first, and answering yes ends the journey. A ticket is raised only where they did not hold — and it carries the failed attempt with it.",
+                stages: ["Issue", "Fix it", "Back to work"],
               }}
             />
           </CaseStudyFigure>
