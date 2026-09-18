@@ -3,7 +3,7 @@ import { caseStudyRobots } from "@/content/seo";
 import { AlternatingTextMedia } from "@/components/design-system/AlternatingTextMedia";
 import { ArtboardFigure } from "@/components/design-system/ArtboardFigure";
 import { ClipFigure } from "@/components/design-system/ClipFigure";
-import { DotFlow } from "@/components/design-system/DotFlow";
+import { BeforeAfterModel } from "@/components/design-system/BeforeAfterModel";
 import { PullStatement } from "@/components/design-system/PullStatement";
 import { ReframeBlock } from "@/components/design-system/ReframeBlock";
 import {
@@ -40,8 +40,6 @@ export const metadata: Metadata = {
     "Redesigning frontline support so store associates can fix an issue themselves instead of raising a ticket — facilities and technology, on a phone, across a ~580K-device footprint.",  robots: caseStudyRobots,
 };
 
-const OLD_PATH = ["Find a manager", "Fill a form", "Wait"];
-const NEW_PATH = ["What happened?", "Try the fix", "Back to work"];
 
 const CHAPTERS = [
   { id: "mobile", label: "On the floor" },
@@ -192,21 +190,18 @@ export default function StoreSupportPage() {
             ]}
           />
           <CaseStudyFigure rule label="The shortest path, before and after">
-            {/* Two flows in one figure need to say which is which — DotFlow
-                takes only stages, so the labels sit here rather than in the
-                shared component. */}
-            <div className="flex flex-col gap-9">
-              <div>
-                <p className="ds-eyebrow mb-3">Before</p>
-                <DotFlow stages={OLD_PATH} />
-              </div>
-              <div>
-                <p className="ds-eyebrow mb-3" style={{ color: "var(--accent-deep)" }}>
-                  After
-                </p>
-                <DotFlow stages={NEW_PATH} />
-              </div>
-            </div>
+            <BeforeAfterModel
+              before={{
+                heading: "Find a manager, then a desktop",
+                body: "The person who discovered the fault was rarely the one who reported it, and nothing was recorded until both a manager and a computer were free.",
+                lineWidths: [100, 88, 76],
+              }}
+              after={{
+                heading: "Say what happened, try the fix",
+                body: "The resolution comes before the form. If it works the journey ends there and no ticket is created; if it does not, the ticket carries the failed attempt with it.",
+                lineWidths: [82, 54, 26],
+              }}
+            />
           </CaseStudyFigure>
         </CaseStudySection>
       </CaseStudyColumn>
@@ -216,6 +211,7 @@ export default function StoreSupportPage() {
           flexible column. */}
       <div className="mx-auto w-full max-w-[85rem] px-5 md:px-8 mt-14 md:mt-16">
         <AlternatingTextMedia
+          numbered
           mediaShape="portrait"
           align="start"
           rows={[
@@ -273,6 +269,8 @@ export default function StoreSupportPage() {
 
       <div className="mx-auto w-full max-w-[85rem] px-5 md:px-8 mt-10 md:mt-12">
         <AlternatingTextMedia
+          numbered
+          startIndex={2}
           mediaShape="portrait"
           align="start"
           rows={[

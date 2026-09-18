@@ -30,6 +30,11 @@ type AlternatingTextMediaProps = {
    */
   numbered?: boolean;
   /**
+   * First number, when one sequence is split across more than one block by a
+   * chapter in between. Store support runs 01-02, a chapter, then 03-04.
+   */
+  startIndex?: number;
+  /**
    * `preview` sizes columns for a landscape browser mockup. `portrait` gives
    * the text the flexible column and lets a tall phone clip take only the
    * width it needs, so it isn't stretched to half the page.
@@ -43,6 +48,7 @@ type AlternatingTextMediaProps = {
 export function AlternatingTextMedia({
   rows,
   numbered = false,
+  startIndex = 0,
   mediaShape = "preview",
   align = "center",
 }: AlternatingTextMediaProps) {
@@ -57,7 +63,7 @@ export function AlternatingTextMedia({
           <div className={portrait ? "md:pt-4" : undefined}>
             {numbered ? (
               <div className="mb-6 flex gap-3" aria-hidden>
-                {String(index + 1)
+                {String(startIndex + index + 1)
                   .padStart(2, "0")
                   .split("")
                   .map((digit, i) => (
