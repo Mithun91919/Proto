@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { caseStudyRobots } from "@/content/seo";
 import { DotFlow } from "@/components/design-system/DotFlow";
 import { MediaPlaceholder } from "@/components/design-system/MediaPlaceholder";
 import { PullStatement } from "@/components/design-system/PullStatement";
@@ -23,7 +24,7 @@ import {
 export const metadata: Metadata = {
   title: "Multilingual Mobile Experience — A localisation system across 8 Indian languages",
   description:
-    "Establishing a repeatable localisation process from English copy through translation, review, implementation, and device validation.",
+    "Establishing a repeatable localisation process from English copy through translation, review, implementation, and device validation.",  robots: caseStudyRobots,
 };
 
 const PIPELINE = ["English copy", "Language partner", "Internal review", "XML", "Device validation"];

@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { caseStudyRobots } from "@/content/seo";
 import { Reveal } from "@/components/Reveal";
 import { ArtboardFigure } from "@/components/design-system/ArtboardFigure";
 import { DotFlow } from "@/components/design-system/DotFlow";
@@ -31,7 +32,7 @@ import {
 export const metadata: Metadata = {
   title: "Movie Ticket Booking — Turning intent into one continuous transaction",
   description:
-    "An aggregator ticketing experience inside Hike Messenger, connecting cinema ticketing services with Hike Wallet payments.",
+    "An aggregator ticketing experience inside Hike Messenger, connecting cinema ticketing services with Hike Wallet payments.",  robots: caseStudyRobots,
 };
 
 /** The journey the draft names, in the order it names it. */

@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { caseStudyRobots } from "@/content/seo";
 import { BeforeAfterModel } from "@/components/design-system/BeforeAfterModel";
 import { DotFlow } from "@/components/design-system/DotFlow";
 import { MediaPlaceholder } from "@/components/design-system/MediaPlaceholder";
@@ -27,7 +28,7 @@ import { getProject } from "@/content/projects";
 export const metadata: Metadata = {
   title: "Portfolio Management Platform — One system instead of five",
   description:
-    "A 0-to-1 enterprise platform that consolidated five disconnected portfolio systems into one connected product.",
+    "A 0-to-1 enterprise platform that consolidated five disconnected portfolio systems into one connected product.",  robots: caseStudyRobots,
 };
 
 const MIGRATION = ["Legacy systems", "New modules alongside", "Reconcile data", "Retire legacy"];

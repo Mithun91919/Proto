@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { caseStudyRobots } from "@/content/seo";
 import { ArtboardFigure } from "@/components/design-system/ArtboardFigure";
 import { MediaPlaceholder } from "@/components/design-system/MediaPlaceholder";
 import { PullStatement } from "@/components/design-system/PullStatement";
@@ -24,7 +25,7 @@ import {
 export const metadata: Metadata = {
   title: "Smartphone Brand & Digital Experience — A visual language for a phone that changed monthly",
   description:
-    "Visual design across web, social, email, and marketing for Mark 1, a smartphone whose software shipped new features every month.",
+    "Visual design across web, social, email, and marketing for Mark 1, a smartphone whose software shipped new features every month.",  robots: caseStudyRobots,
 };
 
 const CHAPTERS = [

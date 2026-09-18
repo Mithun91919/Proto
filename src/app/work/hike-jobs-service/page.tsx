@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { caseStudyRobots } from "@/content/seo";
 import { ArtboardFigure } from "@/components/design-system/ArtboardFigure";
 import { DotFlow } from "@/components/design-system/DotFlow";
 import { MediaPlaceholder } from "@/components/design-system/MediaPlaceholder";
@@ -24,7 +25,7 @@ import {
 export const metadata: Metadata = {
   title: "Job Discovery & Resume Builder — From finding a job to being ready to apply",
   description:
-    "An aggregator job-discovery experience for TOTAL OS, with personalised recommendations and a built-in resume builder.",
+    "An aggregator job-discovery experience for TOTAL OS, with personalised recommendations and a built-in resume builder.",  robots: caseStudyRobots,
 };
 
 const JOURNEY = ["Preferences", "Discover", "Save", "Build resume", "Apply"];

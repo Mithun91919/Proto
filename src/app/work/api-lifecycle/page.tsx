@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { caseStudyRobots } from "@/content/seo";
 import { DotFlow } from "@/components/design-system/DotFlow";
 import { MediaPlaceholder } from "@/components/design-system/MediaPlaceholder";
 import { PullStatement } from "@/components/design-system/PullStatement";
@@ -24,7 +25,7 @@ import { getProject } from "@/content/projects";
 export const metadata: Metadata = {
   title: "API Lifecycle Platform — One place to discover, design, test, and govern APIs",
   description:
-    "A connected developer platform organised around three jobs: Marketplace, Design Studio, and Testing.",
+    "A connected developer platform organised around three jobs: Marketplace, Design Studio, and Testing.",  robots: caseStudyRobots,
 };
 
 const LIFECYCLE = ["Discovery", "Contract design", "Validation", "Testing", "Publishing", "Governance"];

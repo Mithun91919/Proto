@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { caseStudyRobots } from "@/content/seo";
 import { AlternatingTextMedia } from "@/components/design-system/AlternatingTextMedia";
 import { ArtboardFigure } from "@/components/design-system/ArtboardFigure";
 import { ClipFigure } from "@/components/design-system/ClipFigure";
@@ -37,7 +38,7 @@ import { getProject } from "@/content/projects";
 export const metadata: Metadata = {
   title: "Store associate app — fix everything that breaks",
   description:
-    "Redesigning frontline support so store associates can fix an issue themselves instead of raising a ticket — facilities and technology, on a phone, across a ~580K-device footprint.",
+    "Redesigning frontline support so store associates can fix an issue themselves instead of raising a ticket — facilities and technology, on a phone, across a ~580K-device footprint.",  robots: caseStudyRobots,
 };
 
 const OLD_PATH = ["Find a manager", "Fill a form", "Wait"];

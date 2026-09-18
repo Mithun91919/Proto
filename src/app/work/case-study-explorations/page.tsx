@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { caseStudyRobots } from "@/content/seo";
 import { MetricGlyph } from "@/components/design-system/MetricGlyph";
 import { DotGrid } from "@/components/design-system/primitives/DotGrid";
 
@@ -29,7 +30,7 @@ import { DotGrid } from "@/components/design-system/primitives/DotGrid";
 
 export const metadata: Metadata = {
   title: "Case-study intro — working draft",
-  robots: { index: false, follow: false },
+  robots: caseStudyRobots,
 };
 
 const HERO_IMG = "/work/store-support/hero-composite.png";

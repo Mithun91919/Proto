@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { caseStudyRobots } from "@/content/seo";
 import { Reveal } from "@/components/Reveal";
 import { AlternatingTextMedia } from "@/components/design-system/AlternatingTextMedia";
 import { ArtboardCarousel } from "@/components/design-system/ArtboardCarousel";
@@ -30,7 +31,7 @@ import { getAdjacentProjects, projects } from "@/content/projects";
 export const metadata: Metadata = {
   title: "bb daily — Both sides of a recurring delivery service",
   description:
-    "bb daily was a subscription service for everyday essentials. I worked across both the customer experience and the Android operations product behind each delivery.",
+    "bb daily was a subscription service for everyday essentials. I worked across both the customer experience and the Android operations product behind each delivery.",  robots: caseStudyRobots,
 };
 
 const FLOW = ["Customer subscription", "Procurement", "Inventory", "Shipment", "Delivery"];

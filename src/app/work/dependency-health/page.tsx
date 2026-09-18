@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { caseStudyRobots } from "@/content/seo";
 import { DotFlow } from "@/components/design-system/DotFlow";
 import { MediaPlaceholder } from "@/components/design-system/MediaPlaceholder";
 import { ProofStrip } from "@/components/design-system/ProofStrip";
@@ -25,7 +26,7 @@ import { getProject } from "@/content/projects";
 export const metadata: Metadata = {
   title: "Dependency Health Platform — Turning compliance data into clear action",
   description:
-    "A dependency-health platform translating technical signals into repository health, organisation visibility, and guided remediation.",
+    "A dependency-health platform translating technical signals into repository health, organisation visibility, and guided remediation.",  robots: caseStudyRobots,
 };
 
 const DECISION_MODEL = ["Summary for orientation", "Diagnosis for understanding", "Action for resolution"];

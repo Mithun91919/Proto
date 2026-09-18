@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { caseStudyRobots } from "@/content/seo";
 import { BeforeAfterSlider } from "@/components/design-system/BeforeAfterSlider";
 import { BrowserMockup } from "@/components/design-system/BrowserMockup";
 import { DecisionRecord } from "@/components/design-system/DecisionRecord";
@@ -29,7 +30,7 @@ import { getProject } from "@/content/projects";
 export const metadata: Metadata = {
   title: "Supply Chain Operations Platform — getting to the right tool faster",
   description:
-    "Redesigning the information architecture, navigation, and landing experience for a platform fronting 139 operational modules.",
+    "Redesigning the information architecture, navigation, and landing experience for a platform fronting 139 operational modules.",  robots: caseStudyRobots,
 };
 
 const CHAPTERS = [

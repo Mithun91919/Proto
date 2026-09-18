@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { caseStudyRobots } from "@/content/seo";
 import { Reveal } from "@/components/Reveal";
 import { ArtboardFigure } from "@/components/design-system/ArtboardFigure";
 import { ClipFigure } from "@/components/design-system/ClipFigure";
@@ -25,7 +26,7 @@ import { getProject } from "@/content/projects";
 export const metadata: Metadata = {
   title: "Ratings & Reviews — One feedback system across mobile and web",
   description:
-    "A cross-platform ratings and reviews experience for beauty products across bigbasket’s Android, iOS, web, and mobile-web experiences.",
+    "A cross-platform ratings and reviews experience for beauty products across bigbasket’s Android, iOS, web, and mobile-web experiences.",  robots: caseStudyRobots,
 };
 
 const CHAPTERS = [
