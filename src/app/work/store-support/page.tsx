@@ -138,7 +138,7 @@ export default function StoreSupportPage() {
             heading="Two in five tickets did not need a technician"
             body={[
               "I sat with store associates and managers and went through the ticket record with them. Around 40% of what was raised could have been resolved by the person who raised it* — a setting, a reset, a step someone already knew if they had been told it.",
-              "Every one of those became a technician visit the company paid for. And because reporting ran on a desktop, away from the fault, what was documented was thin: a report written from memory, minutes or hours after the thing was seen.",
+              "Every one of those became a technician visit the company paid for. And because reporting ran on a desktop, away from the fault, people documented less: a report written from memory, minutes or hours after the thing was seen.",
               "So the product answers with a fix before it answers with a form. A Fix it button on the alarm opens the steps to clear it; only if those do not hold does a ticket exist at all.",
             ]}
             footnote="* Reviewed with store and support teams during discovery. It describes the tickets that existed before the redesign, not an effect of it."
@@ -228,7 +228,7 @@ export default function StoreSupportPage() {
             eyebrow="The loop"
             heading="And when it does need a person, the associate keeps hold of it"
             body={[
-              "Self-service only earns trust if the fallback is good. Everything after the ticket is built so the person who raised it can still see it, add to it and chase it.",
+              "Self-service only earns trust if the fallback is good. I built everything after the ticket so the person who raised it can still see it, add to it and chase it.",
               "The same applies to what travels with the report. Location moved to aisle-level selection, so a technician is sent somewhere they can walk to rather than a store number — the handover is worth acting on before anyone has to ask a follow-up question.",
             ]}
           />
