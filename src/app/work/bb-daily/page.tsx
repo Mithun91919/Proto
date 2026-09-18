@@ -184,10 +184,12 @@ export default function BbDailyPage() {
                     media: (
                       <ClipFigure
                         variant="beside"
-                        width={982}
-                        height={1830}
-                        mov="/work/bbdaily/Screen%20Recording%202020-03-13%20at%203.43.15%20PM.mov"
+                        width={704}
+                        height={1322}
+                        mp4="/work/bbdaily/home-experience.mp4"
+                        poster="/work/bbdaily/home-experience-poster.jpg"
                         alt="The bb daily customer home: search, offers, everyday essentials, and popular products with subscribe actions"
+                        caption="The deal of the day, then everyday essentials and rewards — a returning customer's routine is never more than a scroll from the top."
                       />
                     ),
                   },
@@ -197,10 +199,12 @@ export default function BbDailyPage() {
                     media: (
                       <ClipFigure
                         variant="beside"
-                        width={982}
-                        height={1806}
-                        mov="/work/bbdaily/Screen%20Recording%202020-03-13%20at%204.46.55%20PM.mov"
+                        width={704}
+                        height={1294}
+                        mp4="/work/bbdaily/recurring-order.mp4"
+                        poster="/work/bbdaily/recurring-order-poster.jpg"
                         alt="Starting a recurring order: choosing a product, picking a schedule, and subscribing"
+                        caption="One product, then the schedule: daily, alternate days, weekly or chosen days, with the first delivery set before anything is confirmed."
                       />
                     ),
                   },
@@ -210,10 +214,12 @@ export default function BbDailyPage() {
                     media: (
                       <ClipFigure
                         variant="beside"
-                        width={982}
-                        height={1886}
-                        mov="/work/bbdaily/Screen%20Recording%202020-03-13%20at%206.37.25%20PM.mov"
+                        width={704}
+                        height={1352}
+                        mp4="/work/bbdaily/upcoming-deliveries.mp4"
+                        poster="/work/bbdaily/upcoming-deliveries-poster.jpg"
                         alt="Reviewing orders by date, showing an upcoming delivery and its running total"
+                        caption="Deliveries grouped by date, each with what is coming and what it costs, so a change lands on one day rather than the whole subscription."
                       />
                     ),
                   },
