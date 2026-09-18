@@ -297,6 +297,7 @@ export default function StoreSupportPage() {
             eyebrow="What changed"
             heading="From “which form?” to “what happened?”"
             body={[
+              "The question the product asks first is different. An associate who finds a cooler failing no longer goes looking for a manager, or a desktop, or the words to describe from memory something they are standing in front of. They say what happened and get the steps back, and where those work nobody is dispatched at all.",
               "The scale at the top of this page is what the experience reached during the documented period, and the growing role of search and self-service in it. It is not what the redesign achieved.",
               "Ticket volume, resolution time and store downtime would be the right measures, and I would rather leave them out than claim them without approved post-launch data.",
             ]}
