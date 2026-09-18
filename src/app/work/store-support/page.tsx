@@ -287,18 +287,19 @@ export default function StoreSupportPage() {
             supporting point at the volume of the argument. */}
         <CaseStudySection id="system" boundary={false} className="pt-16 md:pt-20">
           <CaseStudyChapter
-            layout="flow"
+            layout="stacked"
             eyebrow="The migration"
             heading="The redesign was also a migration"
             body={[
-              "The product ran on a third-party UI library while the organisation was introducing its own enterprise design system. Rather than treat the redesign and the migration as two projects, I rebuilt the areas I touched on the new system — so the product belonged to the ecosystem associates already used, on a more accessible component foundation, instead of paying down more design debt later.",
+              "The product ran on a third-party UI library while the organisation was introducing its own enterprise design system.",
+              "Rather than treat the redesign and the migration as two projects, I rebuilt the areas I touched on the new system — so the product belonged to the ecosystem associates already used, on a more accessible component foundation, instead of paying down more design debt later.",
             ]}
           />
         </CaseStudySection>
 
         <CaseStudySection id="outcomes" boundary={false} className="pt-16 md:pt-20">
           <CaseStudyChapter
-            layout="flow"
+            layout="stacked"
             eyebrow="What changed"
             heading="From “which form?” to “what happened?”"
             body={[
