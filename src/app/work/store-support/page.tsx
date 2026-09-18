@@ -280,17 +280,22 @@ export default function StoreSupportPage() {
         />
       </div>
 
-      <div id="system" className="mt-16 md:mt-20">
-        <ReframeBlock
-          bleed
-          mark="rebase"
-          eyebrow="The migration"
-          heading="The redesign was also a migration"
-          body="The product ran on a third-party UI library while the organisation was introducing its own enterprise design system. Rather than treat the redesign and the migration as two projects, I rebuilt the areas I touched on the new system — so the product belonged to the ecosystem associates already used, on a more accessible component foundation, instead of paying down more design debt later."
-        />
-      </div>
-
       <CaseStudyColumn>
+        {/* In the column, not a `.ds-pull` band. The bleed treatment is the
+            page's loudest, and it belongs to the reframe and the closing
+            statement; giving a design-system migration the same weight put a
+            supporting point at the volume of the argument. */}
+        <CaseStudySection id="system" boundary={false} className="pt-16 md:pt-20">
+          <CaseStudyChapter
+            layout="flow"
+            eyebrow="The migration"
+            heading="The redesign was also a migration"
+            body={[
+              "The product ran on a third-party UI library while the organisation was introducing its own enterprise design system. Rather than treat the redesign and the migration as two projects, I rebuilt the areas I touched on the new system — so the product belonged to the ecosystem associates already used, on a more accessible component foundation, instead of paying down more design debt later.",
+            ]}
+          />
+        </CaseStudySection>
+
         <CaseStudySection id="outcomes" boundary={false} className="pt-16 md:pt-20">
           <CaseStudyChapter
             layout="flow"
