@@ -105,7 +105,7 @@ export function PullStatement({ children, eyebrow, mark = "none" }: PullStatemen
     <div className="ds-pull">
       <div className="ds-pull-inner">
         <div className="ds-pull-body">
-          <div>
+          <div className="ds-pull-measure">
             <span className="ds-pull-dots" aria-hidden />
             {eyebrow ? <p className="ds-eyebrow ds-pull-eyebrow">{eyebrow}</p> : null}
             <p className="ds-pull-text">{children}</p>

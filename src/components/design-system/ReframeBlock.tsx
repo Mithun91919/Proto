@@ -127,13 +127,13 @@ export function ReframeBlock({
       <div className="ds-pull">
         <div className="ds-pull-inner">
           <div className="ds-pull-body">
-            <div>
+            <div className="ds-pull-measure">
               <span className="ds-pull-dots" aria-hidden />
               <p className="ds-eyebrow ds-pull-eyebrow">{eyebrow}</p>
               <h3 className="ds-pull-text">{heading}</h3>
               {body ? (
                 <p
-                  className="mt-5 max-w-[60ch] text-base leading-7"
+                  className="mt-5 text-base leading-7"
                   style={{ color: "var(--ds-dark-muted)" }}
                 >
                   {body}

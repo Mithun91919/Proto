@@ -1328,6 +1328,14 @@
   }
 }
 
+/* One measure for the whole text block. `ch` is font-relative, so a cap on
+   the heading and a cap on the body can never line up — 30ch at the display
+   size is 978px, 30ch at 16px is 320px. Holding it here makes the two edges
+   match by construction. */
+.ds-pull-measure {
+  max-width: min(100%, 61rem);
+}
+
 .ds-pull-mark {
   display: flex;
   justify-content: flex-start;
@@ -1442,9 +1450,6 @@
 
 .ds-pull-text {
   margin: 0;
-  /* 26ch broke a 43-character heading onto a second line for one orphaned
-     word while the column beside it ran 200px empty. */
-  max-width: 30ch;
   font-family: var(--font-display), ui-sans-serif, system-ui, sans-serif;
   font-size: clamp(1.7rem, 3.3vw, 2.75rem);
   line-height: 1.14;
