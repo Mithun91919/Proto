@@ -154,7 +154,7 @@ export default function StoreSupportPage() {
               width={824}
               height={1462}
               alt="The submit-an-issue screen: a search field reading “Search by name or scan an asset tag”, five category cards — store department or area, digital tools and store devices, maintenance and repair, wireless and store network, personnel and training — and a Scan asset tag button."
-              caption="Five starting points in the associate’s own language, each with an example underneath, and the scanner always within reach. UI as shipped; mock data and some names changed."
+              caption="Five starting points in the associate’s own language, each with an example underneath, and the scanner always within reach."
             />
           </CaseStudyFigure>
         </CaseStudySection>

@@ -97,6 +97,14 @@ export function CaseStudyHero({
           ))}
         </dl>
       ) : null}
+      {/* A disclosure is a footnote. Set across the top of the band in mono
+          caps it had the position of a kicker and read as a caveat on the
+          work; under the meta it reads as one more fact about it. */}
+      {figureNote ? (
+        <p className="mt-7 max-w-[46ch] text-[0.8rem] leading-6" style={{ color: "#6f929c" }}>
+          {figureNote}
+        </p>
+      ) : null}
     </div>
   );
 
@@ -115,14 +123,6 @@ export function CaseStudyHero({
         <div className="ds-pull-inner relative w-full">
           {children ? <div className="mb-7">{children}</div> : null}
           <div className="max-w-[46rem]">{copy}</div>
-          {figureNote ? (
-            <p
-              className="absolute right-0 top-0 font-mono text-[0.62rem] uppercase tracking-[0.16em]"
-              style={{ color: "color-mix(in oklab, var(--ds-mint) 62%, transparent)" }}
-            >
-              {figureNote}
-            </p>
-          ) : null}
         </div>
       </div>
     );
@@ -156,31 +156,10 @@ export function CaseStudyHero({
                 sizes="(max-width: 1024px) 92vw, 52vw"
                 style={{ width: "100%", height: "auto", maxWidth: "52rem" }}
               />
-              {figureNote ? (
-                <p
-                  className="absolute right-0 top-0 font-mono text-[0.62rem] uppercase tracking-[0.16em]"
-                  style={{ color: "color-mix(in oklab, var(--ds-mint) 62%, transparent)" }}
-                >
-                  {figureNote}
-                </p>
-              ) : null}
             </div>
           </div>
         ) : (
-          <>
-            {copy}
-            {/* With no art there is nothing to overlay, but the note is a
-                disclosure about the page's media, not about the hero image —
-                so it still has to appear. It sat unrendered here before. */}
-            {figureNote ? (
-              <p
-                className="mt-9 font-mono text-[0.62rem] uppercase tracking-[0.16em]"
-                style={{ color: "color-mix(in oklab, var(--ds-mint) 62%, transparent)" }}
-              >
-                {figureNote}
-              </p>
-            ) : null}
-          </>
+copy
         )}
       </div>
     </div>
