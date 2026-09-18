@@ -98,6 +98,7 @@ export default function DependencyHealthPage() {
           { label: "Client", value: "Walmart Global Tech" },
           { label: "Year", value: "2025–Present" },
           { label: "Discipline", value: "Developer platform · Product design" },
+          { label: "Design system", value: "Living Design" },
         ],
       }}
       next={

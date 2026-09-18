@@ -97,6 +97,7 @@ export default function ApiLifecyclePage() {
           { label: "Client", value: "Walmart Global Tech" },
           { label: "Year", value: "2022–Present" },
           { label: "Discipline", value: "Developer platform · Product design" },
+          { label: "Design system", value: "Living Design" },
         ],
       }}
       next={

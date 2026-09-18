@@ -93,6 +93,7 @@ export default function SupplyChainOperationsPage() {
           { label: "Client", value: "Walmart Global Tech" },
           { label: "Year", value: "2021–2022" },
           { label: "Discipline", value: "Enterprise operations · Platform UX" },
+          { label: "Design system", value: "Living Design" },
         ],
         // Redesigned landing page + navigation, rebuilt with placeholder data.
         // Three shipped screens rather than one: the platform's argument is

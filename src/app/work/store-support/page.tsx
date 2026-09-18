@@ -103,6 +103,7 @@ export default function StoreSupportPage() {
           { label: "Client", value: "Walmart Global Tech" },
           { label: "Year", value: "2020–2021" },
           { label: "Discipline", value: "Frontline operations" },
+          { label: "Design system", value: "Living Design" },
         ],
         // height was 1389 here against a 2188px file — stale since the
         // composite was rebuilt taller, so the reserved box was the wrong

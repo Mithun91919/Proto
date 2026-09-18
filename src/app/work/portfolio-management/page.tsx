@@ -99,6 +99,7 @@ export default function PortfolioManagementPage() {
           { label: "Client", value: "Walmart Global Tech" },
           { label: "Year", value: "2022–Present" },
           { label: "Discipline", value: "Enterprise platform · Product design" },
+          { label: "Design system", value: "Living Design" },
         ],
       }}
       next={
