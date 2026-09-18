@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { NoteCard } from "@/components/design-system/NoteCard";
 import { caseStudyRobots } from "@/content/seo";
 import { AlternatingTextMedia } from "@/components/design-system/AlternatingTextMedia";
 import { ClipFigure } from "@/components/design-system/ClipFigure";
@@ -292,9 +293,17 @@ export default function StoreSupportPage() {
             heading="The redesign was also a migration"
             body={[
               "The product ran on a third-party UI library while the organisation was introducing its own enterprise design system.",
-              "Rather than treat the redesign and the migration as two projects, I rebuilt the areas I touched on the new system — so the product belonged to the ecosystem associates already used, on a more accessible component foundation, instead of paying down more design debt later.",
+              "Rather than treat the redesign and the migration as two projects, I rebuilt the areas I touched on Living Design — so the product belonged to the ecosystem associates already used, on a more accessible component foundation, instead of paying down more design debt later.",
             ]}
           />
+          <CaseStudyFigure>
+            <NoteCard
+              label="The system"
+              heading="Living Design is Walmart's design system"
+              body="One library across the company's products, so a component fixed once is fixed everywhere and an associate meets the same controls in every tool they open. Rebuilding on it is why this work outlived the redesign."
+              mark="LD"
+            />
+          </CaseStudyFigure>
         </CaseStudySection>
 
         <CaseStudySection id="outcomes" boundary={false} className="pt-16 md:pt-20">

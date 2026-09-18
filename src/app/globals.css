@@ -648,7 +648,7 @@ a {
 
 /* The open end of the rail. Stronger accent framing and a system-node mark
    distinguish the move into AI behavior without introducing a new palette. */
-.timeline-now {
+.ds-note-card {
   position: relative;
   isolation: isolate;
   display: grid;
@@ -658,8 +658,8 @@ a {
 
 /* Surface and dot field ride on their own layers so both open edges can
    dissolve without clipping the copy or the mark. */
-.timeline-now::before,
-.timeline-now::after {
+.ds-note-card::before,
+.ds-note-card::after {
   content: "";
   position: absolute;
   inset: 0;
@@ -672,7 +672,7 @@ a {
   );
 }
 
-.timeline-now::before {
+.ds-note-card::before {
   z-index: -2;
   background: linear-gradient(
     115deg,
@@ -681,7 +681,7 @@ a {
   );
 }
 
-.timeline-now::after {
+.ds-note-card::after {
   z-index: -1;
   opacity: 0.5;
   background-image: radial-gradient(
@@ -694,12 +694,12 @@ a {
     linear-gradient(to right, transparent 45%, black 78%, transparent 99%);
 }
 
-.timeline-now-copy {
+.ds-note-card-copy {
   position: relative;
   z-index: 1;
 }
 
-.timeline-now-title {
+.ds-note-card-title {
   display: flex;
   flex-wrap: wrap;
   gap: 0 0.5rem;
@@ -710,7 +710,7 @@ a {
   text-wrap: pretty;
 }
 
-.timeline-now-title > span:first-child {
+.ds-note-card-title > span:first-child {
   font-family: var(--font-mono), ui-monospace, monospace;
   font-size: 0.72rem;
   font-weight: 600;
@@ -720,11 +720,11 @@ a {
   align-self: center;
 }
 
-.timeline-now-title > span[aria-hidden] {
+.ds-note-card-title > span[aria-hidden] {
   color: var(--accent);
 }
 
-.timeline-now-body {
+.ds-note-card-body {
   max-width: 62ch;
   margin-top: 0.75rem;
   font-size: 1.0625rem;
@@ -735,7 +735,7 @@ a {
 
 /* Same chip treatment as the hero, without the hero's entrance pop — the
    card has its own reveal, so the extra specificity is needed to drop it. */
-.timeline-now .timeline-now-mark {
+.ds-note-card .ds-note-card-mark {
   position: relative;
   justify-self: start;
   margin-top: 1.25rem;
@@ -746,7 +746,7 @@ a {
 }
 
 /* Four-point sparkle — the conventional AI marker, tucked over the corner. */
-.timeline-now-mark::after {
+.ds-note-card-mark.has-sparkle::after {
   content: "";
   position: absolute;
   top: -0.26em;
@@ -760,7 +760,7 @@ a {
 }
 
 @media (min-width: 768px) {
-  .timeline-now {
+  .ds-note-card {
     grid-template-columns: minmax(0, 1fr) auto;
     align-items: center;
     gap: 2rem;
@@ -768,7 +768,7 @@ a {
     padding: 1.8rem 5rem 1.8rem 4rem;
   }
 
-  .timeline-now .timeline-now-mark {
+  .ds-note-card .ds-note-card-mark {
     justify-self: center;
     margin-top: 0;
     font-size: 2.6rem;

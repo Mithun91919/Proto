@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { NoteCard } from "@/components/design-system/NoteCard";
 import Link from "next/link";
 import { DotText } from "@/components/DotText";
 import { Reveal } from "@/components/Reveal";
@@ -87,17 +88,13 @@ export default function WorkPage() {
         </Reveal>
 
         <Reveal delay={140}>
-          <div className="timeline-now">
-            <div className="timeline-now-copy">
-              <h3 className="timeline-now-title display-title">
-                <span>{currentStage.year}</span>
-                <span aria-hidden>—</span>
-                {currentStage.stage}
-              </h3>
-              <p className="timeline-now-body">{currentStage.body}</p>
-            </div>
-            <span className="hero-chip timeline-now-mark display-title">AI</span>
-          </div>
+          <NoteCard
+            label={currentStage.year}
+            heading={currentStage.stage}
+            body={currentStage.body}
+            mark="AI"
+            sparkle
+          />
         </Reveal>
       </section>
 
