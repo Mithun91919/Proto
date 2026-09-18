@@ -48,8 +48,15 @@ export function WorkEntry({ project, reverse = false, emphasis = "full" }: WorkE
       }
     >
       <div
-        className={`grid grid-cols-1 items-center gap-8 md:grid-cols-[1fr_1.2fr] md:gap-14 ${
-          reverse ? "md:[&>*:first-child]:order-2" : ""
+        // `reverse` swaps which side the media sits on. The template has to
+        // swap with it: leaving it at `1fr 1.2fr` put the media in the
+        // narrower column on every reversed row, so it rendered 633px on one
+        // row and 527px on the next while the text took the larger share on
+        // exactly the rows that needed it least.
+        className={`grid grid-cols-1 items-center gap-8 md:gap-14 ${
+          reverse
+            ? "md:grid-cols-[1.2fr_1fr] md:[&>*:first-child]:order-2"
+            : "md:grid-cols-[1fr_1.2fr]"
         }`}
       >
         <div>
