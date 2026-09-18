@@ -14,6 +14,17 @@ export type HeroStackScreen = {
   /** Short name for the control that brings this screen forward, e.g.
       "the sign-in screen". Falls back to its position. */
   name?: string;
+  /**
+   * Where to anchor this screen when the deck's ratio crops it — any
+   * `object-position` value, e.g. `"top"`, `"center"`, `"50% 30%"`.
+   *
+   * Only the leading screen is never cropped, since the deck takes its
+   * ratio. The rest are cropped to match, and `top` is right for a screen
+   * whose content sits high and wrong for one whose subject is centred —
+   * a tall screen can lose a third of its height with no say in which
+   * third. Defaults to `top`.
+   */
+  focus?: string;
   route?: string;
 };
 
@@ -98,7 +109,8 @@ export function HeroScreenStack({ screens, label }: HeroScreenStackProps) {
                 alt={i === 0 ? (screen.alt ?? "") : ""}
                 priority={i === 0}
                 sizes="(max-width: 1024px) 92vw, 46vw"
-                className="block h-full w-full object-cover object-top"
+                className="block h-full w-full object-cover"
+                style={{ objectPosition: screen.focus ?? "top" }}
               />
             </div>
           </div>
