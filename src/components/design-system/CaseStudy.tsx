@@ -58,6 +58,7 @@ export function CaseStudyShell({
   slug,
   evidence,
   evidenceCaveat,
+  evidenceMetrics = true,
   children,
 }: {
   hero: HeroProps;
@@ -73,6 +74,12 @@ export function CaseStudyShell({
   /** Caption under the card's figures where they are scale rather than
       proof of an outcome. */
   evidenceCaveat?: string;
+  /**
+   * Metrics are drawn from `projects.ts` for any slug that has them. Set
+   * false where the same figures are the subject of a later section: stated
+   * twice they stop reading as scale and start reading as insistence.
+   */
+  evidenceMetrics?: boolean;
   children: ReactNode;
 }) {
   // Append the three classification axes to whatever meta the page passed,
@@ -105,7 +112,7 @@ export function CaseStudyShell({
       <CaseStudyEvidence
         slug={slug}
         beats={evidence}
-        metrics={slug ? getProject(slug)?.metrics : undefined}
+        metrics={evidenceMetrics && slug ? getProject(slug)?.metrics : undefined}
         caveat={evidenceCaveat}
       />
 

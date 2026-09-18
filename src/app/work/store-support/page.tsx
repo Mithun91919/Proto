@@ -59,7 +59,10 @@ export default function StoreSupportPage() {
   return (
     <CaseStudyShell
       slug="store-support"
-      evidenceCaveat="Scale of the experience during the documented period — not a resolution claim."
+      // The figures are the subject of "What changed", with the paragraph
+      // that says what they do and do not prove. Repeating them up here put
+      // ~580K on the page four times and the caveat twice.
+      evidenceMetrics={false}
       evidence={[
         {
           label: "Problem",
@@ -163,7 +166,7 @@ export default function StoreSupportPage() {
         <CaseStudySection id="fixit">
           <CaseStudyChapter
             layout="stacked"
-            eyebrow="The idea the product is named after"
+            eyebrow="Resolution first"
             heading="A ticket is the fallback, not the first move"
             body={[
               "The biggest shift was not visual. It was what happened between identifying a problem and submitting a ticket.",
@@ -311,8 +314,8 @@ export default function StoreSupportPage() {
             eyebrow="What changed"
             heading="From “which form?” to “what happened?”"
             body={[
-              "During the documented period, the product reached ~5.9K daily users across a device footprint of ~580K, with 7K+ support searches each week.",
-              "Those figures show the scale of the experience and the growing role of search and self-service. They are not presented as proof that the redesign resolved issues — ticket volume, resolution time, and store downtime would be the right measures, and I would rather leave them out than claim them without approved post-launch data.",
+              "The figures below are the scale the experience reached during the documented period, and the growing role of search and self-service in it.",
+              "They are not presented as proof that the redesign resolved issues — ticket volume, resolution time, and store downtime would be the right measures, and I would rather leave them out than claim them without approved post-launch data.",
             ]}
           />
           <CaseStudyFigure rule label="Scale of the experience — not a resolution claim">
