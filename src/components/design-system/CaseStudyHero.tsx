@@ -85,7 +85,7 @@ export function CaseStudyHero({
         className={`display-title ${hasArt ? "max-w-[18ch]" : "max-w-[24ch]"}`}
         style={{
           color: "var(--ds-dark-ink)",
-          fontSize: hasArt ? "clamp(2rem, 3.4vw, 2.9rem)" : "clamp(2rem, 4.2vw, 3.1rem)",
+          fontSize: hasArt ? "clamp(1.6rem, 2.72vw, 2.32rem)" : "clamp(2rem, 4.2vw, 3.1rem)",
           lineHeight: 1.06,
           letterSpacing: "-0.015em",
         }}
