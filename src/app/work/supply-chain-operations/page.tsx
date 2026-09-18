@@ -7,7 +7,6 @@ import { GuidedHotspotTour } from "@/components/design-system/GuidedHotspotTour"
 import { ProofStrip } from "@/components/design-system/ProofStrip";
 import { ReframeBlock } from "@/components/design-system/ReframeBlock";
 import { PullStatement } from "@/components/design-system/PullStatement";
-import { ZoomLens } from "@/components/design-system/ZoomLens";
 import {
   CaseStudyChapter,
   CaseStudyColumn,
@@ -150,13 +149,44 @@ export default function SupplyChainOperationsPage() {
               "Before changing the interface, we needed to fix the structure underneath it.",
             ]}
           />
-          <CaseStudyFigure>
-            <ZoomLens
+          {/* M8 rather than M12: the point of this screen is four specific
+              failures, not the pleasure of reading small type. A zoom lens
+              magnifies whatever the pointer happens to be over and argues
+              nothing; the tour names each problem in the order the paragraph
+              above makes them. */}
+          <CaseStudyFigure label="The homepage before the redesign">
+            <GuidedHotspotTour
               src="/work/supply-chain-operations/old-dashboard.png"
               width={1914}
               height={1242}
               alt="The earlier landing page: a long, flat grid of module tiles with little grouping."
-              caption="The homepage before the redesign — one flat collection of modules, the same starting point for everyone. Hover to read the tiles."
+              label="Four problems with the old landing page"
+              stops={[
+                {
+                  x: 66,
+                  y: 5,
+                  title: "No fast route for people who knew",
+                  body: "The header carried region, help and settings, and no search. Someone who already knew which module they wanted still had to find it by eye.",
+                },
+                {
+                  x: 45,
+                  y: 27,
+                  title: "Related modules sat beside unrelated ones",
+                  body: "Demand Planning next to Fleet Tracking next to Purchase Orders. The order carried no meaning, so being adjacent told you nothing about what belonged together.",
+                },
+                {
+                  x: 15,
+                  y: 42,
+                  title: "Nothing could be marked as yours",
+                  body: "No pins, no recents, no favourites. A tool opened twenty times a day sat exactly where one opened twice a year sat.",
+                },
+                {
+                  x: 34,
+                  y: 74,
+                  title: "Everyone opened the same page",
+                  body: "The landing page was identical whatever your role, and the space below went unused — it was given to a full inventory rather than to the few modules any one person actually needed.",
+                },
+              ]}
             />
           </CaseStudyFigure>
         </CaseStudySection>
