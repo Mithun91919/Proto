@@ -175,9 +175,9 @@ export default function HomePage() {
             <div className="grid gap-12 md:grid-cols-[1fr_28rem] md:items-stretch md:gap-14">
               <SectionAnchor
               eyebrow="Say Hi"
-              title="Working on a complex product?"
+              title="The work I want more of."
               titleClassName="max-w-[26ch]"
-              lede="I'm always up for a conversation about platform design, developer experience, and products that need to work at scale."
+              lede="Platforms where the hard part is structure rather than surface, dense information that has to end in a decision, and products where an AI does something on a person's behalf and has to answer for it. If you are building one of those, I would like to hear about it."
               dark
               sticky={false}
             >

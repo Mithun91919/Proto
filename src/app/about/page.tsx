@@ -386,9 +386,17 @@ export default function AboutPage() {
       <section id="contact" className="mt-24">
         <Reveal>
           <div className="ds-env-dark rounded-sm p-12 md:p-16">
+            {/* Names the problem rather than asking after the reader's, and
+                does not touch availability: the current employer is three
+                lines below this on the same page. */}
             <h2 className="display-title display-section max-w-[30ch]">
-              Working on a complex product?
+              The work I want more of.
             </h2>
+            <p className="mt-6 max-w-[58ch]" style={{ color: "var(--ds-dark-muted)" }}>
+              Platforms where the hard part is structure rather than surface, dense
+              information that has to end in a decision, and products where an AI does
+              something on a person&apos;s behalf and has to answer for it.
+            </p>
             <div className="mt-8">
               <Link href="mailto:mithraj14@gmail.com" className="button button-primary">
                 Say hi →
