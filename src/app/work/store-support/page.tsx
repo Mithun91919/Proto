@@ -154,7 +154,10 @@ export default function StoreSupportPage() {
               "It reads as an extra step and is the opposite: friction moved to where it pays. The fix gets tried while the person is still standing in front of the fault, and the ticket that does get raised is a better one.",
             ]}
           />
-          <CaseStudyFigure rule label="The shortest path, before and after">
+          {/* No rule and no label: the diagram is this paragraph's own
+              evidence, not a separate beat, and the cards already say Before
+              and After. Both together made one thought read as two sections. */}
+          <CaseStudyFigure>
             <BeforeAfterModel
               before={{
                 heading: "Every issue became a ticket",
