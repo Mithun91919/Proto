@@ -93,7 +93,13 @@ export function CaseStudyHero({
         {headline}
       </h1>
       {standfirst ? (
-        <p className="mt-6 max-w-[46ch] text-base leading-7" style={{ color: "var(--ds-dark-muted)" }}>
+        <p
+          // Reduced only on the hero that carries art, matching its headline.
+          // The art-less variant keeps both at full size — it has the whole
+          // band to fill and nothing beside it.
+          className={`mt-6 max-w-[46ch] ${hasArt ? "text-[0.85rem] leading-[1.75]" : "text-base leading-7"}`}
+          style={{ color: "var(--ds-dark-muted)" }}
+        >
           {standfirst}
         </p>
       ) : null}
