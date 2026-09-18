@@ -180,7 +180,7 @@ export default function BbDailyPage() {
                 rows={[
                   {
                     title: "The home experience",
-                    body: "A first-time customer needed help creating a recurring order. A returning customer was more likely to manage an existing routine or add something to an upcoming delivery. The home experience reflected those different states rather than giving everyone the same starting point.",
+                    body: "A first-time customer needed help creating a recurring order. A returning customer was more likely to be managing an existing routine, or adding something to a delivery already on its way. The home experience reflected those different states rather than giving everyone the same starting point — offers and categories for someone still browsing, and the running subscription close to hand for someone who had already committed to one.",
                     media: (
                       <ClipFigure
                         variant="beside"
@@ -195,7 +195,7 @@ export default function BbDailyPage() {
                   },
                   {
                     title: "Starting a recurring order",
-                    body: "Subscriptions could be scheduled daily, on alternate days, weekly, or on custom dates.",
+                    body: "The product page offers two different commitments side by side: subscribe, or buy once. Choosing to subscribe opens a schedule rather than a checkout — daily, alternate days, weekly, or days picked by hand — and sets the first delivery date before anything is confirmed. A customer sees exactly what they are agreeing to while they are still deciding whether to agree to it.",
                     media: (
                       <ClipFigure
                         variant="beside"
@@ -210,7 +210,7 @@ export default function BbDailyPage() {
                   },
                   {
                     title: "Upcoming deliveries by date",
-                    body: "Customers could also review past and upcoming deliveries by date and add an item to a specific delivery without rebuilding the subscription.",
+                    body: "Deliveries are grouped by the day they arrive, each showing what is coming and what it costs. That grouping matters for a subscription: a customer rarely wants to change the arrangement, they want to change Tuesday. Adding an item to one delivery leaves the recurring order untouched, so a one-off stays a one-off instead of becoming a renegotiation of the routine.",
                     media: (
                       <ClipFigure
                         variant="beside"
