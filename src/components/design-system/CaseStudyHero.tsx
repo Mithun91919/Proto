@@ -65,6 +65,11 @@ export function CaseStudyHero({
 }: CaseStudyHeroProps) {
   const hasArt = Boolean(src);
   const backdrop = hasArt && artMode === "backdrop";
+  // A phone composite stands on the band's floor; a desktop mock should not.
+  // Pinned to the bottom, a 1.62:1 dashboard left 350px of the column empty
+  // above it, because the column is sized for artwork that is nearly square.
+  // The artefact's own proportions decide it — they are already declared.
+  const wideArt = (width ?? 2400) / (height ?? 1380) >= 1.2;
 
   const copy = (
     <div>
@@ -147,7 +152,7 @@ export function CaseStudyHero({
 
   return (
     <div className="ds-pull ds-cs-hero">
-      <div className="ds-pull-inner" style={hasArt ? { paddingBottom: FLOOR } : undefined}>
+      <div className="ds-pull-inner" style={hasArt && !wideArt ? { paddingBottom: FLOOR } : undefined}>
         {children ? <div className="mb-5">{children}</div> : null}
 
         {hasArt ? (
@@ -161,8 +166,11 @@ export function CaseStudyHero({
                 card overlaps it. */}
             <div className="flex items-start">{copy}</div>
             <div
-              className="relative flex items-end justify-center"
-              style={{ marginBottom: `calc(${FLOOR} * -1)` }}
+              className={`relative flex justify-center ${wideArt ? "items-center" : "items-end"}`}
+              // The negative margin exists so floor-standing art can reach
+              // past the band's padding. Centred art has no floor to reach,
+              // and the pull would drag it below the optical middle.
+              style={wideArt ? undefined : { marginBottom: `calc(${FLOOR} * -1)` }}
             >
               <Image
                 src={src as string}
