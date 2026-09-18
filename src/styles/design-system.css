@@ -1625,7 +1625,14 @@
    Scoped here rather than changed on `.ds-pull-inner`, which the reframe
    bands, pull statements and the footer all share. */
 .ds-cs-hero > .ds-pull-inner {
-  padding-top: clamp(2rem, 3.6vw, 3rem);
+  padding-top: clamp(1.25rem, 2.2vw, 2rem);
+}
+
+/* The dot marker is 5px tall and was clearing 28px under it — the same
+   margin it uses in a pull band, where it opens a standalone statement.
+   Here it sits between a back link and the title, so it needs less. */
+.ds-cs-hero .ds-pull-dots {
+  margin-bottom: 1.125rem;
 }
 
 /* Two more reframe marks. Same grammar as the flat -> grouped one, each
