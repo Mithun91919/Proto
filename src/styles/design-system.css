@@ -1035,6 +1035,11 @@
   position: relative;
   padding-left: calc(var(--stack-depth, 3) * 1.15rem);
   padding-top: calc(var(--stack-depth, 3) * 0.4rem);
+  /* Real depth, not just smaller rectangles. The first pass offset the cards
+     in 2D only, so they read as misaligned copies rather than screens sitting
+     behind one another. Same device `.ds-coverflow` uses. */
+  perspective: 2200px;
+  perspective-origin: 70% 50%;
 }
 
 .ds-hero-stack-card {
@@ -1042,10 +1047,12 @@
   top: 0;
   right: 0;
   width: 100%;
+  transform-style: preserve-3d;
   transform-origin: bottom right;
-  transform: translateX(calc(var(--pos) * -1.35rem)) translateY(calc(var(--pos) * 0.5rem))
-    rotate(calc(var(--pos) * -1.5deg)) scale(calc(1 - var(--pos) * 0.035));
-  filter: saturate(calc(1 - var(--pos) * 0.14)) brightness(calc(1 - var(--pos) * 0.05));
+  transform: translateX(calc(var(--pos) * -1.6rem)) translateY(calc(var(--pos) * 0.6rem))
+    translateZ(calc(var(--pos) * -5.5rem)) rotateY(calc(var(--pos) * 1.4deg))
+    rotate(calc(var(--pos) * -1.2deg));
+  filter: saturate(calc(1 - var(--pos) * 0.16)) brightness(calc(1 - var(--pos) * 0.06));
 }
 
 .ds-hero-stack-card.is-primary {

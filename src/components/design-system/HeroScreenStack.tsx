@@ -32,13 +32,18 @@ type HeroScreenStackProps = {
  */
 export function HeroScreenStack({ screens, label }: HeroScreenStackProps) {
   const deck = screens.slice(0, 4);
+  // One ratio for the whole deck, taken from the screen that leads. Fanning
+  // three different shapes was the mistake in the first pass: a 1.32 screen
+  // behind a 1.62 one hung 76px below it, which reads as misalignment rather
+  // than depth. The layout sizes the cards; the images crop into them.
+  const ratio = deck[0] ? deck[0].width / deck[0].height : 16 / 10;
 
   return (
     <div
       className="ds-hero-stack"
       role="img"
       aria-label={label}
-      style={{ "--stack-depth": deck.length - 1 } as CSSProperties}
+      style={{ "--stack-depth": deck.length - 1, "--deck-ratio": ratio } as CSSProperties}
     >
       {deck.map((screen, i) => (
         <div
@@ -63,7 +68,7 @@ export function HeroScreenStack({ screens, label }: HeroScreenStackProps) {
                 </span>
               </div>
             ) : null}
-            <div className="ds-framebody">
+            <div className="ds-framebody" style={{ aspectRatio: "var(--deck-ratio)" }}>
               <Image
                 src={screen.src}
                 width={screen.width}
@@ -71,7 +76,7 @@ export function HeroScreenStack({ screens, label }: HeroScreenStackProps) {
                 alt={i === 0 ? (screen.alt ?? "") : ""}
                 priority={i === 0}
                 sizes="(max-width: 1024px) 92vw, 46vw"
-                className="block h-auto w-full"
+                className="block h-full w-full object-cover object-top"
               />
             </div>
           </div>
