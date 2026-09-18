@@ -137,13 +137,33 @@ export default function StoreSupportPage() {
       <CaseStudyColumn>
         <CaseStudySection id="report" boundary={false} className="pt-16 md:pt-20">
           <CaseStudyChapter
-            eyebrow="Ways in"
-            heading="I reorganised support around how people describe problems"
+            eyebrow="The first screen"
+            heading="I put the whole job on the page an associate opens"
             body={[
-              "The old structure reflected the support organisation more than the mental model of someone standing in a store trying to fix something, so anyone who had not already learned it had to guess where their issue belonged.",
-              "I ran card-sorting sessions with associates using common issue types, asking them to group and label the problems and explain their reasoning. What came back grouped the floor by where a problem lives — a department, a device, broken equipment, the network, a person or a process — rather than by which team would receive the ticket.",
-              "Equipment also carries an asset tag, so the scanner became a way in of its own: point the phone at the cooler and the request opens against the right asset, with its type, location and history already attached. It removes the least useful part of reporting a fault — describing the object you are already standing in front of.",
-              "Search became a third way in rather than an afterthought. Results are separated by type, how-to guidance can appear directly in the flow, and the query carries forward into a request instead of making someone start again.",
+              "The home screen opens on what is already happening in the building: refrigeration alarms carrying a count of new ones, the work-order calendar, and the repairs waiting to be rated. Below those sit the issues this associate has raised — facilities work orders and technology tickets kept apart, because they go to different teams and resolve at different speeds — and the devices the store is running.",
+              "Every block is a route rather than a summary. The alarm count opens the alarms, the calendar opens the schedule, each list opens in full, and Submit issue stays within reach the whole way down. Nothing on the screen is only there to be read.",
+            ]}
+          />
+          <CaseStudyFigure>
+            <ArtboardFigure
+              layout="portrait"
+              portraitMax="17rem"
+              src="/work/store-support/home.png"
+              width={824}
+              height={2522}
+              alt="The home screen: a greeting, a refrigeration alarms card with four new, the work-order calendar, four work orders awaiting a rating, then the associate’s own submitted work orders and technology tickets, the store’s devices, and a Submit issue button."
+              caption="Alarms, schedule, ratings, the issues this associate raised, the store’s devices — and submit always in reach."
+            />
+          </CaseStudyFigure>
+
+          <CaseStudyChapter
+            eyebrow="Ways in"
+            heading="Reporting starts where the associate already is"
+            body={[
+              "The old structure reflected the support organisation rather than the mental model of someone standing in a store trying to fix something, so anyone who had not already learned it had to guess where their issue belonged. There are three ways in now.",
+              "The first is the categories. I ran card-sorting sessions with associates using common issue types, asking them to group and label the problems and explain their reasoning. What came back sorted problems by where they occur — a department or area, a device, broken equipment, the network, and people or process, five in all — rather than by which team would receive the ticket.",
+              "The second is the scanner. Equipment carries an asset tag, so pointing the phone at the cooler opens the request against the right asset, with its type, location and history already attached. It removes the least useful part of reporting a fault: describing the object you are already standing in front of.",
+              "The third is search, which is a route rather than an afterthought. Results are separated by type, how-to guidance can appear directly in the flow, and the query carries forward into a request instead of making someone start again.",
             ]}
           />
           <CaseStudyFigure>
@@ -154,7 +174,7 @@ export default function StoreSupportPage() {
               width={824}
               height={1462}
               alt="The submit-an-issue screen: a search field reading “Search by name or scan an asset tag”, five category cards — store department or area, digital tools and store devices, maintenance and repair, wireless and store network, personnel and training — and a Scan asset tag button."
-              caption="Five starting points in the associate’s own language, each with an example underneath, and the scanner always within reach."
+              caption="The five categories in the associate’s own language, each with an example underneath, and the scanner in the search field itself."
             />
           </CaseStudyFigure>
         </CaseStudySection>
@@ -162,12 +182,13 @@ export default function StoreSupportPage() {
         <CaseStudySection id="fixit">
           <CaseStudyChapter
             layout="stacked"
-            eyebrow="Resolution first"
+            eyebrow="The submit flow"
             heading="A ticket is the fallback, not the first move"
             body={[
-              "The biggest shift was not visual. It was what happened between identifying a problem and submitting a ticket.",
-              "The submit flow runs in two steps, and the numbering is the argument: step one is the resolution, step two is the ticket. The associate gets the likely fix and a plain question — did that resolve it? — before any form appears. If it worked, they go back to the floor and no ticket exists at all. If it did not, step two collects the photos and contacts, and the ticket carries the failed attempt with it.",
-              "The intent was not to add steps. It was to move friction to the right place: a known fix tried early, and a better-quality escalation when a person is genuinely needed.",
+              "The change that mattered sits between identifying a problem and submitting a ticket.",
+              "The flow runs in two steps, and the numbering is the argument: step one is the resolution, step two is the ticket.",
+              "An associate gets the likely fix and a plain question — did that resolve your issue? — before any form appears. If it worked, they go back to the floor and no ticket exists at all. If it did not, step two collects the photos and contacts, and the ticket carries the failed attempt with it.",
+              "That moves friction to the right place: a known fix tried early, and a better-quality escalation when a person is genuinely needed.",
             ]}
           />
           <CaseStudyFigure rule label="The shortest path, before and after">
