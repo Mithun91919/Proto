@@ -1,3 +1,6 @@
+"use client";
+
+import { useState } from "react";
 import Image from "next/image";
 import type { CSSProperties } from "react";
 
@@ -6,8 +9,11 @@ export type HeroStackScreen = {
   /** True pixel dimensions — same discipline as `StackedScreens`. */
   width: number;
   height: number;
-  /** Only the front screen carries alt text; the rest are depth. */
+  /** Describes the screen. Used as the image's alt while it leads. */
   alt?: string;
+  /** Short name for the control that brings this screen forward, e.g.
+      "the sign-in screen". Falls back to its position. */
+  name?: string;
   route?: string;
 };
 
@@ -18,9 +24,13 @@ type HeroScreenStackProps = {
 };
 
 /**
- * The hero's fanned deck — `StackedScreens`' picture without its text panel
- * or its controls, because the hero already has a copy column and a deck in
- * an opener is something to look at rather than operate.
+ * The hero's fanned deck — `StackedScreens`' picture and its click, without
+ * its text panel, dots, count or arrows. The hero already carries a headline,
+ * a standfirst and a six-row meta table; M6's panel would put a second title
+ * beside all of that, describing the same project twice.
+ *
+ * So the card is the whole affordance: click one behind to bring it forward.
+ * Nothing is added to the opener except the looking.
  *
  * It earns the perspective the same way M6 does: by showing that there are
  * several real screens and which one leads. A single screen tilted for style
@@ -31,7 +41,11 @@ type HeroScreenStackProps = {
  * front three read anyway.
  */
 export function HeroScreenStack({ screens, label }: HeroScreenStackProps) {
-  const deck = screens.slice(0, 4);
+  const capped = screens.slice(0, 4);
+  const [order, setOrder] = useState(() => capped.map((_, i) => i));
+  const bringToFront = (i: number) =>
+    setOrder((prev) => (prev[0] === i ? prev : [i, ...prev.filter((p) => p !== i)]));
+  const deck = order.map((i) => capped[i]);
   // One ratio for the whole deck, taken from the screen that leads. Fanning
   // three different shapes was the mistake in the first pass: a 1.32 screen
   // behind a 1.62 one hung 76px below it, which reads as misalignment rather
@@ -41,16 +55,21 @@ export function HeroScreenStack({ screens, label }: HeroScreenStackProps) {
   return (
     <div
       className="ds-hero-stack"
-      role="img"
+      role="group"
       aria-label={label}
       style={{ "--stack-depth": deck.length - 1, "--deck-ratio": ratio } as CSSProperties}
     >
       {deck.map((screen, i) => (
-        <div
+        <button
           key={screen.src}
+          type="button"
           className={`ds-hero-stack-card${i === 0 ? " is-primary" : ""}`}
           style={{ "--pos": i, zIndex: deck.length - i } as CSSProperties}
-          aria-hidden={i > 0}
+          onClick={() => bringToFront(order[i])}
+          // The front screen is already forward, so it is not a control.
+          tabIndex={i === 0 ? -1 : 0}
+          aria-label={i === 0 ? undefined : `Bring ${screen.name ?? `screen ${order[i] + 1}`} to the front`}
+          aria-current={i === 0 || undefined}
         >
           <div className="ds-frame">
             {screen.route ? (
@@ -80,7 +99,7 @@ export function HeroScreenStack({ screens, label }: HeroScreenStackProps) {
               />
             </div>
           </div>
-        </div>
+        </button>
       ))}
     </div>
   );
