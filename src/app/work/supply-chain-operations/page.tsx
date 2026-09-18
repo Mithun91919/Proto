@@ -4,6 +4,7 @@ import { BeforeAfterSlider } from "@/components/design-system/BeforeAfterSlider"
 import { BrowserMockup } from "@/components/design-system/BrowserMockup";
 import { DecisionRecord } from "@/components/design-system/DecisionRecord";
 import { GuidedHotspotTour } from "@/components/design-system/GuidedHotspotTour";
+import { ProofStrip } from "@/components/design-system/ProofStrip";
 import { ReframeBlock } from "@/components/design-system/ReframeBlock";
 import { PullStatement } from "@/components/design-system/PullStatement";
 import {
@@ -304,14 +305,24 @@ export default function SupplyChainOperationsPage() {
 
         <CaseStudySection id="outcomes">
           <CaseStudyChapter
-            layout="flow"
+            layout="stacked"
             eyebrow="What changed"
             heading="The best outcome was people leaving the homepage faster"
             body={[
-              "In many digital products more time spent looks like engagement. Here the opposite was true: the landing page exists to route people into operational work, so a shorter visit is the point. A visit that had run 10 to 30 minutes fell by 62% after we introduced the new information architecture, navigation, search and personalisation, and around 39% of platform visits now start here.",
-              "The homepage became what it was supposed to be — a way through the platform rather than a place to spend time working out where to go.",
+              "In many digital products, more time spent can look like engagement. Here, the opposite was true.",
+              "The purpose of the landing page was to route people into operational work as quickly as possible. Where a visit to it had run 10 to 30 minutes, that time fell by 62% after we introduced the new information architecture, navigation, search and personalisation.",
+              "The redesign gave the platform a scalable structure for new modules, persistent navigation across the experience, direct search, and personal routes back into frequently used tools. More importantly, the homepage became what it was supposed to be: a way through the platform, not a place users had to spend time figuring out.",
             ]}
           />
+          <CaseStudyFigure>
+            <ProofStrip
+              items={[
+                { value: "62%", label: "less time spent on the landing page", glyph: "drop" },
+                { value: "10–30 min", label: "a visit to it used to take", glyph: "ring" },
+                { value: "~39%", label: "of platform visits now route through it", glyph: "funnel" },
+              ]}
+            />
+          </CaseStudyFigure>
           <CaseStudyFigure label="The landing page — before and after">
             <BeforeAfterSlider
               label="The platform landing page, before and after the redesign"
