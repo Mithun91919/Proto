@@ -147,14 +147,11 @@ export default function StoreSupportPage() {
 
         <CaseStudySection id="fixit">
           <CaseStudyChapter
-            layout="stacked"
+            layout="flow"
             eyebrow="The submit flow"
             heading="A ticket is the fallback, not the first move"
             body={[
-              "The change that mattered sits between identifying a problem and submitting a ticket.",
-              "The flow runs in two steps, and the numbering is the argument: step one is the resolution, step two is the ticket.",
-              "An associate gets the likely fix and a plain question — did that resolve your issue? — before any form appears. If it worked, they go back to the floor and no ticket exists at all. If it did not, step two collects the photos and contacts, and the ticket carries the failed attempt with it.",
-              "That moves friction to the right place: a known fix tried early, and a better-quality escalation when a person is genuinely needed.",
+              "It reads as an extra step and is the opposite: friction moved to where it pays. The fix gets tried while the person is still standing in front of the fault, and the ticket that does get raised is a better one.",
             ]}
           />
           <CaseStudyFigure rule label="The shortest path, before and after">
