@@ -58,7 +58,6 @@ export function CaseStudyShell({
   slug,
   evidence,
   evidenceCaveat,
-  className = "",
   children,
 }: {
   hero: HeroProps;
@@ -71,9 +70,6 @@ export function CaseStudyShell({
   /** Problem / Task / What I did for the card under the hero. Omit and the
       card falls back to metrics alone, or is skipped entirely. */
   evidence?: EvidenceBeat[];
-  /** Extra scope class on the article. `ds-read` switches the media
-      primitives to the single centred measure. */
-  className?: string;
   /** Caption under the card's figures where they are scale rather than
       proof of an outcome. */
   evidenceCaveat?: string;
@@ -93,7 +89,7 @@ export function CaseStudyShell({
   const heroWithAxes: HeroProps = { ...hero, meta: [...hero.meta, ...axisMeta] };
 
   return (
-    <article className={`ds-scope ${className}`}>
+    <article className="ds-scope">
       {chapters.length > 0 ? <ChapterProgress chapters={chapters} /> : null}
       {/* The band is the top-level item on the page, with the back link
           over it rather than pushing it down. */}
@@ -127,15 +123,8 @@ export function CaseStudyShell({
 }
 
 /** The page's reading column. Media inside it breaks out on its own. */
-export function CaseStudyColumn({
-  children,
-  className = "max-w-[85rem]",
-}: {
-  children: ReactNode;
-  /** Overrides the container width. `max-w-[46rem]` gives a reading measure. */
-  className?: string;
-}) {
-  return <div className={`mx-auto w-full px-5 md:px-8 ${className}`}>{children}</div>;
+export function CaseStudyColumn({ children }: { children: ReactNode }) {
+  return <div className="mx-auto w-full max-w-[85rem] px-5 md:px-8">{children}</div>;
 }
 
 /**
@@ -150,7 +139,7 @@ export function CaseStudyColumn({
  *                the left column empty for its whole height.
  * - `flow`    — heading and body in one narrow column. For a short coda.
  */
-export type ChapterLayout = "split" | "stacked" | "flow" | "centred";
+export type ChapterLayout = "split" | "stacked" | "flow";
 
 export function CaseStudyChapter({
   eyebrow,
@@ -198,27 +187,6 @@ export function CaseStudyChapter({
         ))}
       </div>
     ) : null;
-
-  // One measure for the whole page: heading and body stacked and centred,
-  // nothing in a side column. Under test on /work/store-support-centred.
-  if (layout === "centred") {
-    return (
-      <Reveal>
-        <div className="mx-auto max-w-[36rem]">
-          <div className="[&>h2]:max-w-[24ch]">{head}</div>
-          <div className="mt-6 space-y-5">
-            {body.map((paragraph) => (
-              <p key={paragraph} className="body-text">
-                {paragraph}
-              </p>
-            ))}
-          </div>
-          {linkRow ? <div className="mt-6">{linkRow}</div> : null}
-          {footnote ? <p className="ds-note mt-6">{footnote}</p> : null}
-        </div>
-      </Reveal>
-    );
-  }
 
   if (layout === "flow") {
     return (
