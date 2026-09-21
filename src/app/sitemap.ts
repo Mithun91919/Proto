@@ -3,7 +3,10 @@ import type { MetadataRoute } from "next";
 const baseUrl = "https://mithunraju.in";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const staticRoutes = ["", "/work", "/about", "/resume"].map((path) => ({
+  // /components is the design system, linked from the footer as a
+  // colophon. It is a real page a reader may want to find, so it belongs
+  // here now that something points at it.
+  const staticRoutes = ["", "/work", "/about", "/resume", "/components"].map((path) => ({
     url: `${baseUrl}${path}`,
     lastModified: new Date(),
   }));

@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 export function SiteFooter() {
   return (
     <footer className="ds-pull mt-auto">
@@ -6,20 +8,35 @@ export function SiteFooter() {
         style={{ color: "var(--ds-dark-muted)" }}
       >
         <p>© {new Date().getFullYear()} Mithun Raju</p>
-        <p className="font-[family-name:var(--font-mono)] text-[0.72rem] uppercase tracking-[0.14em]">
-          Built with{" "}
-          <span role="img" aria-label="love" style={{ margin: "0 0.15ch" }}>
-            ♥
-          </span>{" "}
-          using{" "}
-          <a
-            href="https://claude.ai"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="underline underline-offset-2 transition-opacity hover:opacity-70"
+
+        {/* Colophon. The design system is linked plainly, as a page worth
+            reading — not as evidence of anything. Framing it as proof the
+            site is hand-built would raise a doubt no reader arrived with,
+            and the page argues better on its own terms: it is the one
+            place on the site where the systems thinking is applied to
+            something entirely Mithun's. */}
+        <p className="flex flex-wrap items-center gap-x-5 gap-y-2 font-[family-name:var(--font-mono)] text-[0.72rem] uppercase tracking-[0.14em]">
+          <Link
+            href="/components"
+            className="inline-block py-1 -my-1 underline underline-offset-2 transition-opacity hover:opacity-70"
           >
-            Claude.ai
-          </a>
+            Design system
+          </Link>
+          <span>
+            Built with{" "}
+            <span role="img" aria-label="love" style={{ margin: "0 0.15ch" }}>
+              ♥
+            </span>{" "}
+            using{" "}
+            <a
+              href="https://claude.ai"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-block py-1 -my-1 underline underline-offset-2 transition-opacity hover:opacity-70"
+            >
+              Claude.ai
+            </a>
+          </span>
         </p>
       </div>
     </footer>
