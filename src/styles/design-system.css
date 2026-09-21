@@ -1559,16 +1559,8 @@
     pointer-events: auto;
   }
 
-  /* The reserved gutter. Only on the case-study scope — the rail only
-     ever renders there. Matched on the container width rather than on
-     `.ds-cs-column` alone, because several pages hand-roll the same
-     85rem wrapper around a full-bleed run instead of using the
-     component. */
-  .ds-scope .ds-cs-column,
-  .ds-scope [class*="max-w-[85rem]"],
-  .ds-scope .ds-pull-inner {
-    padding-left: 6.5rem;
-  }
+  /* Gutter handled globally below, not here — the rail renders on the
+     home, about, work and components pages too, not only in .ds-scope. */
 }
 
 /* 1440px, not 1180: the reading column maxes out at 85rem (1360px) with
@@ -1604,6 +1596,28 @@
 @media (prefers-reduced-motion: reduce) {
   .ds-progress {
     transition: none;
+  }
+}
+
+/* ── The rail's reserved gutter ──────────────────────────────────────
+   The rail is `position: fixed` at the left edge, so any content that
+   reaches the viewport edge runs underneath it. Rather than hide the
+   rail whenever that might happen — which is what kept it off every
+   laptop under 1440px — the text containers reserve the space.
+
+   `6.5rem` clears the 38px pill plus its inset. The subtraction backs
+   that off by however much margin the container already has, so a
+   centred 85rem column on a wide screen is not pushed right for a rail
+   it already clears. `max(0px, ...)` keeps the sum from inverting once
+   the viewport is narrower than the container.
+
+   Applies to text wrappers only. Full-bleed bands keep their bleed;
+   it is `.ds-pull-inner` inside them that insets. */
+@media (min-width: 1150px) {
+  .ds-pull-inner,
+  .ds-cs-column,
+  [class*="max-w-[85rem]"] {
+    padding-left: max(2rem, calc(6.5rem - max(0px, (100vw - 85rem) / 2)));
   }
 }
 

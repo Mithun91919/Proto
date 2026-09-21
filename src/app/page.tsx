@@ -176,7 +176,7 @@ export default function HomePage() {
               <SectionAnchor
               eyebrow="Say Hi"
               title="The work I want more of."
-              titleClassName="max-w-[26ch]"
+              measure="max-w-[47rem]"
               lede="Platforms where the hard part is structure rather than surface, dense information that has to end in a decision, and products where an AI does something on a person's behalf and has to answer for it. If you are building one of those, I would like to hear about it."
               dark
               sticky={false}
