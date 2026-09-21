@@ -152,7 +152,9 @@ export default function StoreSupportPage() {
             eyebrow="The submit flow"
             heading="A ticket is the fallback, not the first move"
             body={[
-              "It reads as an extra step and is the opposite: friction moved to where it pays. The fix gets tried while the person is still standing in front of the fault, and the ticket that does get raised is a better one.",
+              "The obvious answer to a slow form in the wrong place is a better form — quicker, on the phone, routed more intelligently. We could have stopped there, and it would have been the cheaper project.",
+              "It would not have touched the finding. A form that takes thirty seconds instead of five minutes still ends in a technician being sent for two in five faults that never needed one. The cost was not the filling in; it was that filling one in was the only thing on offer.",
+              "So the step goes in front of the form, which reads as an extra step and is the opposite: friction moved to where it pays. The fix gets tried while the person is still standing in front of the fault, and the ticket that does get raised is a better one.",
             ]}
           />
           {/* No rule and no label: the diagram is this paragraph's own
@@ -313,6 +315,7 @@ export default function StoreSupportPage() {
             heading="From “which form?” to “what happened?”"
             body={[
               "The question the product asks first is different. An associate who finds a cooler failing no longer goes looking for a manager, or a desktop, or the words to describe from memory something they are standing in front of. They say what happened and get the steps back, and where those work nobody is dispatched at all.",
+              "It is still how the job is done. The product remains in use on the floor.",
               "The scale at the top of this page is what the experience reached during the documented period, and the growing role of search and self-service in it. It is not what the redesign achieved.",
               "Ticket volume, resolution time and store downtime would be the right measures, and I would rather leave them out than claim them without approved post-launch data.",
             ]}
