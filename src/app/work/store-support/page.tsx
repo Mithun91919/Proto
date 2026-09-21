@@ -140,7 +140,7 @@ export default function StoreSupportPage() {
             body={[
               "I sat with store associates and managers and went through the ticket record with them. Around 40% of what was raised could have been resolved by the person who raised it* — a setting, a reset, a step someone already knew if they had been told it.",
               "Every one of those became a technician visit the company paid for. And because reporting ran on a desktop, away from the fault, people documented less: a report written from memory, minutes or hours after the thing was seen.",
-              "So the product answers with a fix before it answers with a form. A Fix it button on the alarm opens the steps to clear it; only if those do not hold does a ticket exist at all.",
+              "So the product offers a fix before it offers a form. Tapping Fix it on an alarm opens the steps to clear it, and a ticket exists only if those steps do not work.",
             ]}
             footnote="* Reviewed with store and support teams during discovery. It describes the tickets that existed before the redesign, not an effect of it."
           />
@@ -152,9 +152,9 @@ export default function StoreSupportPage() {
             eyebrow="The submit flow"
             heading="A ticket is the fallback, not the first move"
             body={[
-              "The obvious answer to a slow form in the wrong place is a better form — quicker, on the phone, routed more intelligently. We could have stopped there, and it would have been the cheaper project.",
-              "It would not have touched the finding. A form that takes thirty seconds instead of five minutes still ends in a technician being sent for two in five faults that never needed one. The cost was not the filling in; it was that filling one in was the only thing on offer.",
-              "So the step goes in front of the form, which reads as an extra step and is the opposite: friction moved to where it pays. The fix gets tried while the person is still standing in front of the fault, and the ticket that does get raised is a better one.",
+              "The cheaper project was to fix the form: make it quicker, put it on the phone, route it better. That was on the table and I argued against it.",
+              "A faster form still sends a technician for two in five faults that never needed one. How long the form took was never the problem. The problem was that the form was the only thing an associate could do.",
+              "So I put the fix first. An associate tries it while standing in front of the fault, and raises a ticket only if it does not work — which makes tickets rarer, and the ones that arrive better.",
             ]}
           />
           {/* No rule and no label: the diagram is this paragraph's own
@@ -232,7 +232,7 @@ export default function StoreSupportPage() {
             heading="And when it does need a person, the associate keeps hold of it"
             body={[
               "Self-service only earns trust if the fallback is good. I built everything after the ticket so the person who raised it can still see it, add to it and chase it.",
-              "The same applies to what travels with the report. Location moved to aisle-level selection, so a technician is sent somewhere they can walk to rather than a store number — the handover is worth acting on before anyone has to ask a follow-up question.",
+              "The same applies to what travels with the report. I moved location down to aisle level, so a technician is sent somewhere they can walk to instead of a store number, and nobody has to ring back to ask where.",
             ]}
           />
         </CaseStudySection>
@@ -249,7 +249,7 @@ export default function StoreSupportPage() {
               eyebrow: "Track and escalate",
               title: "A work order you can follow, add to and chase",
               body:
-                "A raised issue becomes a work order carrying its trade, equipment, problem code and status — and for an alarm it can be raised automatically, with priority and affected units already attached. The associate can see it scheduled and who is coming, add photographs and notes as things change, and when a repair does not hold there is a named way back: recall the technician, escalate through the help desk, or call facilities — rather than a second ticket that loses the first one’s history.",
+                "A raised issue becomes a work order carrying its trade, equipment, problem code and status. For an alarm the system raises it automatically, with priority and affected units already attached. The associate can see it scheduled and who is coming, and add photographs and notes as things change. When a repair does not hold, they have three routes out \u2014 recall the technician, escalate through the help desk, or call facilities \u2014 and none of them opens a second ticket that loses the history of the first.",
               media: (
                 <ClipFigure
                   variant="beside"
@@ -266,7 +266,7 @@ export default function StoreSupportPage() {
               eyebrow: "Rate and close",
               title: "Feedback that asks more than how many stars",
               body:
-                "Scheduled work is laid out by day, so an associate can see what is coming to the store rather than only what they personally raised. After resolution, feedback moved past a star rating to ask whether the work was actually complete and to specification, with room for comments — so the support organisation learns what the fix was worth, not only that it happened.",
+                "Scheduled work is laid out by day, so an associate can see what is coming to the store rather than only what they personally raised. After resolution, feedback moved past a star rating to ask whether the work was actually complete and to specification, with room for comments — so the support teams find out whether a repair actually worked, not just that someone closed it.",
               media: (
                 <ClipFigure
                   variant="beside"
@@ -315,7 +315,7 @@ export default function StoreSupportPage() {
             heading="From “which form?” to “what happened?”"
             body={[
               "The question the product asks first is different. An associate who finds a cooler failing no longer goes looking for a manager, or a desktop, or the words to describe from memory something they are standing in front of. They say what happened and get the steps back, and where those work nobody is dispatched at all.",
-              "It is still how the job is done. The product remains in use on the floor.",
+              "Associates are still using it on the floor.",
               "The scale at the top of this page is what the experience reached during the documented period, and the growing role of search and self-service in it. It is not what the redesign achieved.",
               "Ticket volume, resolution time and store downtime would be the right measures, and I would rather leave them out than claim them without approved post-launch data.",
             ]}
