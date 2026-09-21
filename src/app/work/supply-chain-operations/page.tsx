@@ -145,7 +145,7 @@ export default function SupplyChainOperationsPage() {
             heading="The homepage had become a bottleneck"
             body={[
               "The landing page was never meant to be a destination. It was the front door to operational tools people needed to do their jobs.",
-              "But more capability had been added over time without enough structure around it. Related modules were difficult to identify, everyone started from essentially the same experience, frequently used tools could not be saved, and users who already knew what they wanted still lacked a fast route to it.",
+              "Capability had been added over time without enough structure around it, and the whole cost of that landed on one screen — four problems at once, each of them a different reason someone could not reach their tool.",
               "Before changing the interface, we needed to fix the structure underneath it.",
             ]}
           />
@@ -154,7 +154,7 @@ export default function SupplyChainOperationsPage() {
               magnifies whatever the pointer happens to be over and argues
               nothing; the tour names each problem in the order the paragraph
               above makes them. */}
-          <CaseStudyFigure label="The homepage before the redesign">
+          <CaseStudyFigure label="Four problems with the old landing page">
             <GuidedHotspotTour
               src="/work/supply-chain-operations/old-dashboard.png"
               width={1914}
