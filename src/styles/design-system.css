@@ -2691,8 +2691,11 @@ a:hover .ds-compact-mark .ds-dot {
    background, with its subject right and dark negative space left —
    exactly where this hero puts its copy. Given a floor so the art has
    room even when the copy is short. */
+/* Raised 20% from clamp(22rem, 54vh, 34rem): the phone composites were
+   being cut off at the foot of the band, and `object-fit: cover` means a
+   taller box shows more of the art rather than scaling it up. */
 .ds-cs-hero-backdrop {
-  min-height: clamp(22rem, 54vh, 34rem);
+  min-height: clamp(26.4rem, 64.8vh, 40.8rem);
   display: flex;
   align-items: center;
 }

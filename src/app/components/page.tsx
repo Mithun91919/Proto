@@ -1062,7 +1062,7 @@ export default function ComponentsPage() {
             a full-bleed container renders it thousands of pixels tall.
           </p>
           <ClipFigure
-            mov="/work/bbdaily/Screen%20Recording%202020-03-13%20at%204.46.55%20PM.mov"
+            mp4="/work/bbdaily/recurring-order.mp4"
             alt="Starting a recurring order in the bb daily customer app"
             caption="bb daily customer app · starting a recurring order"
           />

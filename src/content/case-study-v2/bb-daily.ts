@@ -87,7 +87,7 @@ export const bbDaily: CaseStudyV2 = {
       steps: [
         {
           media: {
-            mov: "/work/bbdaily/Screen%20Recording%202020-03-13%20at%204.46.55%20PM.mov",
+            mp4: "/work/bbdaily/recurring-order.mp4",
             poster: "/work/bbdaily/8f79fb_20203531c98e4bd986f2bbf39a470197~mv2.avif",
             alt: "Starting a recurring order in the customer app",
             aspect: 982 / 1806,
@@ -186,7 +186,7 @@ export const bbDaily: CaseStudyV2 = {
       steps: [
         {
           media: {
-            mov: "/work/bbdaily/Screen%20Recording%202020-03-13%20at%206.37.25%20PM.mov",
+            mp4: "/work/bbdaily/orders-list.mp4",
             poster: "/work/bbdaily/8f79fb_20203531c98e4bd986f2bbf39a470197~mv2.avif",
             alt: "Reviewing the delivery route for the morning window",
             aspect: 982 / 1886,
@@ -195,7 +195,7 @@ export const bbDaily: CaseStudyV2 = {
         },
         {
           media: {
-            mov: "/work/bbdaily/Screen%20Recording%202020-03-13%20at%204.11.42%20PM.mov",
+            mp4: "/work/bbdaily/serviceability.mp4",
             poster: "/work/bbdaily/8f79fb_20203531c98e4bd986f2bbf39a470197~mv2.avif",
             alt: "Navigating to a delivery address",
             aspect: 982 / 1698,

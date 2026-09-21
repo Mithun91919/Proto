@@ -244,6 +244,22 @@ export default function BbDailyPage() {
               "So eligibility came first rather than at checkout, and an address outside the rounds got a way to register interest instead of a dead end \u2014 a record of demand where delivery did not yet go.",
             ]}
           />
+          {/* The serviceability recording: nearby societies first, then the
+              apartment / individual-house split the batch model turned on,
+              then submit-request for an address the rounds do not reach. */}
+          <Reveal delay={80}>
+            <div className="mt-12">
+              <ClipFigure
+                variant="beside"
+                width={982}
+                height={1698}
+                mp4="/work/bbdaily/serviceability.mp4"
+                poster="/work/bbdaily/serviceability-poster.jpg"
+                alt="Choosing a serviceable address in the bb daily app: a list of nearby societies, an apartment or individual house choice, then a request form for an unsupported address"
+                caption="Nearby societies come first, then apartment or individual house \u2014 the batch model, showing through the address step. An address outside the rounds gets a request form rather than a refusal."
+              />
+            </div>
+          </Reveal>
         </CaseStudySection>
       </CaseStudyColumn>
 
@@ -472,7 +488,7 @@ export default function BbDailyPage() {
                   {
                     src: "/work/bbdaily/field-paper-slip.jpg",
                     width: 1500,
-                    height: 630,
+                    height: 1200,
                     alt: "A delivery agent kneeling on the ground at night, reading a paper slip beside a crate of milk sachets and a sack",
                     title: "The paper slip",
                     description:
@@ -480,24 +496,24 @@ export default function BbDailyPage() {
                   },
                   {
                     src: "/work/bbdaily/field-dark-store.jpg",
-                    width: 1200,
-                    height: 1376,
+                    width: 1500,
+                    height: 1200,
                     alt: "Stacked dairy crates filled with milk sachets inside a dark store, lit by a single fluorescent tube",
                     title: "The dark store",
                     description: "Crates filled and stacked against the shutter before a round goes out.",
                   },
                   {
                     src: "/work/bbdaily/field-loaded-van.jpg",
-                    width: 1200,
-                    height: 1056,
+                    width: 1500,
+                    height: 1200,
                     alt: "The open back of a delivery van loaded with colour-coded crates stacked in columns",
                     title: "One van, one round",
                     description: "Loaded crate by crate. The crate, not the order, was the unit the delivery model worked in.",
                   },
                   {
                     src: "/work/bbdaily/field-doorstep.jpg",
-                    width: 1200,
-                    height: 1248,
+                    width: 1500,
+                    height: 1200,
                     alt: "An insulated delivery bag hanging on a door handle with a single milk sachet inside",
                     title: "The last doorstep",
                     description: "One insulated bag on one door, holding a single household\u2019s order.",
