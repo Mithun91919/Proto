@@ -44,7 +44,7 @@ const CHAPTERS = [
   { id: "operations", label: "The operations side" },
   { id: "operations-app", label: "The operations app" },
   { id: "delivery-work", label: "In the dark stores" },
-  { id: "reflection", label: "What I believe now" },
+  { id: "changed", label: "What changed" },
 ];
 
 export default function BbDailyPage() {
@@ -300,43 +300,6 @@ export default function BbDailyPage() {
                 label="Operations app workflows"
                 slides={[
                   {
-                    src: "/work/bbdaily/BB_Daily_Milk_Basket%20Copy%2010.jpg",
-                    width: 4581,
-                    height: 2340,
-                    alt: "Operations app login: welcome screen, OTP entry, and signing in as a customer experience executive",
-                    caption: "Signing in — the app resolves which role’s workspace to open",
-                    hotspots: [
-                      {
-                        x: 25.9,
-                        y: 54.9,
-                        title: "A password is not always the fastest way in",
-                        detail:
-                          "An OTP route sits beside the password field, because a shared handset at 4am is a different sign-in problem from a desk login.",
-                      },
-                      {
-                        x: 49.8,
-                        y: 36.9,
-                        title: "The code is timed and re-sendable",
-                        detail:
-                          "The countdown and resend sit together, so a delayed message does not become a dead end at the start of a shift.",
-                      },
-                      {
-                        x: 18.3,
-                        y: 74.9,
-                        title: "Six roles, one app",
-                        detail:
-                          "Signing in as a customer experience executive is offered as its own route, so the app opens the workspace for the job rather than a shared home screen.",
-                      },
-                      {
-                        x: 49.8,
-                        y: 77.3,
-                        title: "Numeric-first input",
-                        detail:
-                          "Every field on the way in takes digits, so the keypad opens directly rather than through a full keyboard.",
-                      },
-                    ],
-                  },
-                  {
                     src: "/work/bbdaily/BB_Daily_Milk_Basket%20Copy%2011.jpg",
                     width: 4581,
                     height: 2340,
@@ -447,6 +410,43 @@ export default function BbDailyPage() {
                       },
                     ],
                   },
+                  {
+                    src: "/work/bbdaily/BB_Daily_Milk_Basket%20Copy%2010.jpg",
+                    width: 4581,
+                    height: 2340,
+                    alt: "Operations app login: welcome screen, OTP entry, and signing in as a customer experience executive",
+                    caption: "Signing in — the app resolves which role’s workspace to open",
+                    hotspots: [
+                      {
+                        x: 25.9,
+                        y: 54.9,
+                        title: "A password is not always the fastest way in",
+                        detail:
+                          "An OTP route sits beside the password field, because a shared handset at 4am is a different sign-in problem from a desk login.",
+                      },
+                      {
+                        x: 49.8,
+                        y: 36.9,
+                        title: "The code is timed and re-sendable",
+                        detail:
+                          "The countdown and resend sit together, so a delayed message does not become a dead end at the start of a shift.",
+                      },
+                      {
+                        x: 18.3,
+                        y: 74.9,
+                        title: "Six roles, one app",
+                        detail:
+                          "Signing in as a customer experience executive is offered as its own route, so the app opens the workspace for the job rather than a shared home screen.",
+                      },
+                      {
+                        x: 49.8,
+                        y: 77.3,
+                        title: "Numeric-first input",
+                        detail:
+                          "Every field on the way in takes digits, so the keypad opens directly rather than through a full keyboard.",
+                      },
+                    ],
+                  },
                 ]}
               />
             </div>
@@ -460,7 +460,7 @@ export default function BbDailyPage() {
             body={[
               "None of that split was obvious from a process diagram. I spent time in the dark stores and went out on deliveries with the agents before designing any of it.",
               "Reading a process gives you the order of the steps. Standing in it gives you what a person is holding while they take them, and how much attention they have left over. Delivery executives worked a narrow morning window and moved through buildings continuously, which is a different design problem from a route drawn on a screen.",
-              "Prototype testing then checked the obvious things \u2014 whether key tasks completed, how long they took, how the experience held up in the context of the job.",
+              "We tested by putting the prototype in the hands of the people who would use it and watching what they did with it, then building around what came back rather than around the flow we had drawn.",
             ]}
             footnote="My own photographs from the field visits. Faces are out of frame — the people in them were at work, not presenting."
           />
@@ -513,13 +513,17 @@ export default function BbDailyPage() {
               this evidence. */}
         </CaseStudySection>
 
-        <CaseStudySection id="reflection">
+        {/* The outcome chapter. The hero figures are from the 2019-20 period,
+            so this dates them rather than letting them read as current — the
+            one number on the site that had no stated provenance. */}
+        <CaseStudySection id="changed">
           <CaseStudyChapter
-            eyebrow="What I believe now"
-            heading="A customer action is an instruction to someone else"
+            eyebrow="What changed"
+            heading="Both halves went live, and the paper came out of the round"
             body={[
-              "Working across both sides of bb daily changed how I thought about end-to-end product design.",
-              "A customer action on one screen could create work for several people in the physical world. Designing the service meant understanding that whole chain — from setting a recurring delivery to the operational system required to fulfil it.",
+              "The customer app shipped on Android and iOS and is still on both stores — bigbasket now lists bbdaily in eighteen Indian cities, well past the Bengaluru societies the delivery model was drawn for.",
+              "The change I can claim is the one in the photographs above. Six roles that had been coordinating a perishable delivery through paper slips and verbal handoffs were working against one shared record instead, each reaching it through the part of the job they actually did.",
+              "The figures at the top of this page are from that period rather than from today. What has happened to the product since is years of other people’s work.",
             ]}
           />
         </CaseStudySection>
@@ -527,9 +531,9 @@ export default function BbDailyPage() {
 
       <div className="mt-16 md:mt-20">
         <Reveal>
-          <PullStatement eyebrow="What it came down to" mark="connection">
-            The interface was only one part of the experience. The product was the connection between the
-            promise and the operation behind it.
+          <PullStatement eyebrow="What I believe now" mark="connection">
+            A customer action on one screen is an instruction to someone else. The product was never the
+            interface — it was the connection between the promise and the operation behind it.
           </PullStatement>
         </Reveal>
       </div>
