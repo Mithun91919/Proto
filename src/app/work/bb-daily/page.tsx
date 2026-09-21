@@ -6,6 +6,7 @@ import { ArtboardCarousel } from "@/components/design-system/ArtboardCarousel";
 import { ClipFigure } from "@/components/design-system/ClipFigure";
 import { DotCadence } from "@/components/design-system/DotCadence";
 import { DotFlow } from "@/components/design-system/DotFlow";
+import { HeroThumbnailRail } from "@/components/design-system/HeroThumbnailRail";
 import { PullStatement } from "@/components/design-system/PullStatement";
 import { SceneBanner } from "@/components/design-system/SceneBanner";
 import {
@@ -461,7 +462,50 @@ export default function BbDailyPage() {
               "Reading a process gives you the order of the steps. Standing in it gives you what a person is holding while they take them, and how much attention they have left over. Delivery executives worked a narrow morning window and moved through buildings continuously, which is a different design problem from a route drawn on a screen.",
               "Prototype testing then checked the obvious things \u2014 whether key tasks completed, how long they took, how the experience held up in the context of the job.",
             ]}
+            footnote="My own photographs from the field visits. Faces are out of frame — the people in them were at work, not presenting."
           />
+          <Reveal delay={80}>
+            <div className="mt-14 md:mt-16">
+              <HeroThumbnailRail
+                label="Field visits"
+                screens={[
+                  {
+                    src: "/work/bbdaily/field-paper-slip.jpg",
+                    width: 1600,
+                    height: 854,
+                    alt: "A delivery agent kneeling on the ground at night, reading a paper slip beside a crate of milk sachets and a sack",
+                    title: "The paper slip",
+                    description:
+                      "A round being sorted on the ground against a printed docket. This is the process the operations app was built to replace.",
+                  },
+                  {
+                    src: "/work/bbdaily/field-dark-store.jpg",
+                    width: 1200,
+                    height: 1862,
+                    alt: "Stacked dairy crates filled with milk sachets inside a dark store, lit by a single fluorescent tube",
+                    title: "The dark store",
+                    description: "Crates filled and stacked against the shutter before a round goes out.",
+                  },
+                  {
+                    src: "/work/bbdaily/field-loaded-van.jpg",
+                    width: 1200,
+                    height: 1600,
+                    alt: "The open back of a delivery van loaded with colour-coded crates stacked in columns",
+                    title: "One van, one round",
+                    description: "Loaded crate by crate. The crate, not the order, was the unit the delivery model worked in.",
+                  },
+                  {
+                    src: "/work/bbdaily/field-doorstep.jpg",
+                    width: 1200,
+                    height: 1600,
+                    alt: "An insulated delivery bag hanging on a door handle with a single milk sachet inside",
+                    title: "The last doorstep",
+                    description: "One insulated bag on one door, holding a single household\u2019s order.",
+                  },
+                ]}
+              />
+            </div>
+          </Reveal>
           {/* No media here on purpose. All four screen recordings are of the
               customer app; there is no approved footage of the delivery
               workflow, and a customer clip captioned as delivery work would be
