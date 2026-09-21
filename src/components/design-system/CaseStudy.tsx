@@ -124,7 +124,7 @@ export function CaseStudyShell({
 
 /** The page's reading column. Media inside it breaks out on its own. */
 export function CaseStudyColumn({ children }: { children: ReactNode }) {
-  return <div className="mx-auto w-full max-w-[85rem] px-5 md:px-8">{children}</div>;
+  return <div className="ds-cs-column mx-auto w-full max-w-[85rem] px-5 md:px-8">{children}</div>;
 }
 
 /**

@@ -1536,6 +1536,41 @@
   display: none;
 }
 
+/* Was gated at 1440px so the fixed rail could not overlap the reading
+   column. That hid it on 1280, 1341 and 1366 — most laptops — for a
+   component that is keyboard-operable and names every chapter. From
+   1150px the case-study column now reserves a left gutter instead, so
+   the rail has somewhere to be and the label has room to open into. */
+@media (min-width: 1150px) and (max-width: 1439.98px) {
+  .ds-progress {
+    position: fixed;
+    top: 50%;
+    left: 1.25rem;
+    z-index: 20;
+    display: block;
+    transform: translateY(-50%);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity var(--duration-med) ease;
+  }
+
+  .ds-progress.is-active {
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  /* The reserved gutter. Only on the case-study scope — the rail only
+     ever renders there. Matched on the container width rather than on
+     `.ds-cs-column` alone, because several pages hand-roll the same
+     85rem wrapper around a full-bleed run instead of using the
+     component. */
+  .ds-scope .ds-cs-column,
+  .ds-scope [class*="max-w-[85rem]"],
+  .ds-scope .ds-pull-inner {
+    padding-left: 6.5rem;
+  }
+}
+
 /* 1440px, not 1180: the reading column maxes out at 85rem (1360px) with
    32px of its own edge padding baked in, so the column's text starts
    roughly 32px inset from the viewport edge below ~1424px — any rail
@@ -1603,12 +1638,24 @@
   position: absolute;
   left: calc(100% + 0.7rem);
   top: 50%;
+  z-index: 1;
+  padding: 0.32rem 0.6rem 0.3rem;
+  border-radius: 999px;
+  /* Solid, not the rail's glass. Without any surface the label printed
+     straight onto live body copy — two sets of words in one place. Glass
+     was not enough either: the soft fill is 34-52% white, so the text
+     underneath still read through it. The rail itself can be glass
+     because it sits over whatever the page is doing; the label has to be
+     legible over a paragraph, so it gets an opaque one. */
+  background: var(--ds-solid-bg);
+  border: 1px solid var(--ds-solid-border);
+  box-shadow: var(--ds-glass-soft-shadow);
   font-family: var(--font-mono), ui-monospace, monospace;
   font-size: 0.62rem;
   letter-spacing: 0.1em;
   text-transform: uppercase;
   white-space: nowrap;
-  color: var(--muted);
+  color: var(--ink);
   opacity: 0;
   pointer-events: none;
   transform: translate(-4px, -50%);
