@@ -471,8 +471,8 @@ export default function BbDailyPage() {
                 screens={[
                   {
                     src: "/work/bbdaily/field-paper-slip.jpg",
-                    width: 1600,
-                    height: 854,
+                    width: 1500,
+                    height: 630,
                     alt: "A delivery agent kneeling on the ground at night, reading a paper slip beside a crate of milk sachets and a sack",
                     title: "The paper slip",
                     description:
@@ -481,7 +481,7 @@ export default function BbDailyPage() {
                   {
                     src: "/work/bbdaily/field-dark-store.jpg",
                     width: 1200,
-                    height: 1862,
+                    height: 1376,
                     alt: "Stacked dairy crates filled with milk sachets inside a dark store, lit by a single fluorescent tube",
                     title: "The dark store",
                     description: "Crates filled and stacked against the shutter before a round goes out.",
@@ -489,7 +489,7 @@ export default function BbDailyPage() {
                   {
                     src: "/work/bbdaily/field-loaded-van.jpg",
                     width: 1200,
-                    height: 1600,
+                    height: 1056,
                     alt: "The open back of a delivery van loaded with colour-coded crates stacked in columns",
                     title: "One van, one round",
                     description: "Loaded crate by crate. The crate, not the order, was the unit the delivery model worked in.",
@@ -497,7 +497,7 @@ export default function BbDailyPage() {
                   {
                     src: "/work/bbdaily/field-doorstep.jpg",
                     width: 1200,
-                    height: 1600,
+                    height: 1248,
                     alt: "An insulated delivery bag hanging on a door handle with a single milk sachet inside",
                     title: "The last doorstep",
                     description: "One insulated bag on one door, holding a single household\u2019s order.",
