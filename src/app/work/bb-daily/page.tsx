@@ -39,10 +39,11 @@ const FLOW = ["Customer subscription", "Procurement", "Inventory", "Shipment", "
 const CHAPTERS = [
   { id: "product-model", label: "The product model" },
   { id: "customer-side", label: "The customer side" },
+  { id: "reach", label: "Where it could reach" },
   { id: "operations", label: "The operations side" },
   { id: "operations-app", label: "The operations app" },
-  { id: "delivery-work", label: "Delivery work" },
-  { id: "reflection", label: "Reflection" },
+  { id: "delivery-work", label: "In the dark stores" },
+  { id: "reflection", label: "What I believe now" },
 ];
 
 export default function BbDailyPage() {
@@ -125,8 +126,8 @@ export default function BbDailyPage() {
             heading="Recurring grocery shopping is not a checkout problem"
             body={[
               "Most grocery experiences are designed around a single order. bb daily needed to support a relationship that continued across days and weeks.",
-              "Before designing the flows, we explored how the service should sit alongside the main bigbasket product: as a separate app, an integrated experience, or a subscription feature inside the parent product.",
-              "The direction kept bb daily as a focused subscription experience while connecting it back to the broader bigbasket ecosystem.",
+              "bigbasket and bb daily were not the same product for the same person. One is a grocery run. The other is a standing arrangement for a household that has already decided what it needs each week. We looked at three placements: a separate app, an integrated experience, or a subscription feature inside bigbasket.",
+              "We built it separately, and the deciding argument was reversibility. A focused app could be folded back into bigbasket once we understood how subscription behaviour actually worked. A feature buried inside bigbasket could not be pulled back out. Building separately kept the cheaper move available.",
             ]}
           />
           <Reveal delay={80}>
@@ -228,16 +229,20 @@ export default function BbDailyPage() {
             </div>
           </Reveal>
 
-          {/* Serviceability keeps its sentence from the draft but has no beat
-              of its own — three is the run's limit before the alternation
-              starts reading as a template. */}
-          <Reveal>
-            <p className="body-text mt-16 md:mt-20">
-              Serviceability was part of the experience too. Because delivery was available only to supported
-              apartments and gated communities, customers could identify eligible locations, search manually,
-              or register interest when their address was not yet supported.
-            </p>
-          </Reveal>
+        </CaseStudySection>
+
+        {/* Serviceability was the operating model showing through the UI, not a
+            feature — so it gets a chapter rather than a trailing sentence. */}
+        <CaseStudySection id="reach">
+          <CaseStudyChapter
+            eyebrow="Where it could reach"
+            heading="The delivery model decided who was allowed to subscribe"
+            body={[
+              "bb daily ran on batch delivery. A society or gated community with twenty to thirty subscriptions could be served on a single round. An individual household could only be reached if a van was already going somewhere nearby.",
+              "That is an operational constraint, but it lands on the first screen a customer sees. Letting someone build a subscription and then discover their address was unserviceable would have spent the one moment they were willing to commit.",
+              "So eligibility came first rather than at checkout, and an address outside the rounds got a way to register interest instead of a dead end \u2014 a record of demand where delivery did not yet go.",
+            ]}
+          />
         </CaseStudySection>
       </CaseStudyColumn>
 
@@ -280,11 +285,11 @@ export default function BbDailyPage() {
         <CaseStudySection id="operations-app">
           <CaseStudyChapter
             eyebrow="The operations app"
-            heading="One operations app supported different jobs"
+            heading="Six roles shared one app, and none of them saw the same one"
             body={[
-              "The operational product brought those workflows into one Android application.",
-              "Instead of making every role navigate the same interface, the experience changed according to the person’s responsibilities after login. Each role could focus on the information and actions relevant to its part of the process while contributing to the same operational record.",
-              "The app supported receiving and shipment creation, inventory movement, delivery execution, and payment tracking for delivery executives.",
+              "The operational product brought those workflows into one Android application \u2014 but not into one interface.",
+              "The alternative was a common experience with everything in it, navigated differently by each role. I argued against it. After login the app resolved to the person’s own work, so someone receiving stock and someone completing doorstep deliveries used the same operational record and almost none of the same screens.",
+              "Each flow was built around the activity that person actually performs, in the terms they already use for it, rather than a shared vocabulary none of them would have chosen.",
             ]}
           />
           {/* One slot, paged by dots — a shift in the order it actually runs. */}
@@ -449,11 +454,12 @@ export default function BbDailyPage() {
 
         <CaseStudySection id="delivery-work">
           <CaseStudyChapter
-            eyebrow="Designing for the job, not the screen"
-            heading="Designing around the realities of delivery work"
+            eyebrow="In the dark stores"
+            heading="I designed the role flows after standing in them"
             body={[
-              "The delivery experience had to fit the physical job, not an idealised route on a screen.",
-              "Executives worked within a narrow morning window, so the workflow supported the way they moved through buildings and completed many deliveries efficiently. Prototype testing focused on whether key tasks could be completed successfully, how long they took, and how usable the experience felt in the context of the job.",
+              "None of that split was obvious from a process diagram. I spent time in the dark stores and went out on deliveries with the agents before designing any of it.",
+              "Reading a process gives you the order of the steps. Standing in it gives you what a person is holding while they take them, and how much attention they have left over. Delivery executives worked a narrow morning window and moved through buildings continuously, which is a different design problem from a route drawn on a screen.",
+              "Prototype testing then checked the obvious things \u2014 whether key tasks completed, how long they took, how the experience held up in the context of the job.",
             ]}
           />
           {/* No media here on purpose. All four screen recordings are of the
@@ -465,8 +471,8 @@ export default function BbDailyPage() {
 
         <CaseStudySection id="reflection">
           <CaseStudyChapter
-            eyebrow="Reflection"
-            heading="What stayed with me"
+            eyebrow="What I believe now"
+            heading="A customer action is an instruction to someone else"
             body={[
               "Working across both sides of bb daily changed how I thought about end-to-end product design.",
               "A customer action on one screen could create work for several people in the physical world. Designing the service meant understanding that whole chain — from setting a recurring delivery to the operational system required to fulfil it.",
