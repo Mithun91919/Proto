@@ -146,6 +146,7 @@ export function CaseStudyChapter({
   heading,
   body,
   footnote,
+  links,
   layout = "split",
 }: {
   eyebrow?: string;
@@ -153,6 +154,12 @@ export function CaseStudyChapter({
   body: string[];
   /** Small note under the body — the source or limit of a figure stated above. */
   footnote?: string;
+  /**
+   * Outbound links that let a reader check a claim the chapter just made —
+   * a store listing behind "it shipped", say. Rendered under the prose,
+   * because the claim has to land before the proof is worth offering.
+   */
+  links?: { href: string; label: string }[];
   layout?: ChapterLayout;
 }) {
   const head = (
@@ -161,6 +168,25 @@ export function CaseStudyChapter({
       <h2 className="display-title display-section mt-3 text-[var(--ink)]">{heading}</h2>
     </>
   );
+
+  const linkRow =
+    links && links.length > 0 ? (
+      <div className="flex flex-wrap gap-x-7 gap-y-2 pt-1">
+        {links.map((link) => (
+          <a
+            key={link.href}
+            href={link.href}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="eyebrow inline-flex items-center gap-1.5 transition hover:gap-2.5"
+            style={{ color: "var(--ds-accent-deep)" }}
+          >
+            {link.label}
+            <span aria-hidden>&rarr;</span>
+          </a>
+        ))}
+      </div>
+    ) : null;
 
   if (layout === "flow") {
     return (
@@ -174,6 +200,7 @@ export function CaseStudyChapter({
               </p>
             ))}
           </div>
+          {linkRow ? <div className="mt-6">{linkRow}</div> : null}
           {footnote ? <p className="ds-note mt-6 max-w-[60ch]">{footnote}</p> : null}
         </div>
       </Reveal>
@@ -193,6 +220,7 @@ export function CaseStudyChapter({
             </p>
           ))}
         </div>
+        {linkRow ? <div className="mt-6">{linkRow}</div> : null}
         {footnote ? <p className="ds-note mt-6 max-w-[60ch]">{footnote}</p> : null}
       </Reveal>
     );
@@ -208,6 +236,7 @@ export function CaseStudyChapter({
               {paragraph}
             </p>
           ))}
+          {linkRow}
           {footnote ? <p className="ds-note pt-1">{footnote}</p> : null}
         </div>
       </div>

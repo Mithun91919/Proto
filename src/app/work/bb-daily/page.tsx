@@ -541,6 +541,10 @@ export default function BbDailyPage() {
               "The change I can claim is the one in the photographs above. Six roles that had been coordinating a perishable delivery through paper slips and verbal handoffs were working against one shared record instead, each reaching it through the part of the job they actually did.",
               "The figures at the top of this page are from that period rather than from today. What has happened to the product since is years of other people’s work.",
             ]}
+            links={[
+              { label: "bbdaily on the App Store", href: "https://apps.apple.com/in/app/bbdaily/id1148331468" },
+              { label: "bbdaily on Google Play", href: "https://play.google.com/store/apps/details?id=com.raincan.android.hybrid" },
+            ]}
           />
         </CaseStudySection>
       </CaseStudyColumn>
