@@ -42,3 +42,7 @@ next-env.d.ts
 
 # Confidential source material — approved public copy lives in projects/*/web/
 projects/*/master/
+
+# Output from /brag runs — build artefacts, not project files.
+brag-output/
+brag-output-*/
