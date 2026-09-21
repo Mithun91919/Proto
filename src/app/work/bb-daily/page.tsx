@@ -240,8 +240,8 @@ export default function BbDailyPage() {
             heading="The delivery model decided who was allowed to subscribe"
             body={[
               "bb daily ran on batch delivery. A society or gated community with twenty to thirty subscriptions could be served on a single round. An individual household could only be reached if a van was already going somewhere nearby.",
-              "That is an operational constraint, but it lands on the first screen a customer sees. Letting someone build a subscription and then discover their address was unserviceable would have spent the one moment they were willing to commit.",
-              "So eligibility came first rather than at checkout, and an address outside the rounds got a way to register interest instead of a dead end \u2014 a record of demand where delivery did not yet go.",
+              "The constraint is operational, but it lands on the first screen a customer sees. If someone builds a subscription and only then learns we cannot reach their address, we have spent the one moment they were willing to commit.",
+              "So I put eligibility at the start instead of at checkout. An address outside the rounds gets a request form, which records demand somewhere the vans do not reach yet.",
             ]}
           />
           {/* The serviceability recording: nearby societies first, then the
@@ -256,7 +256,7 @@ export default function BbDailyPage() {
                 mp4="/work/bbdaily/serviceability.mp4"
                 poster="/work/bbdaily/serviceability-poster.jpg"
                 alt="Choosing a serviceable address in the bb daily app: a list of nearby societies, an apartment or individual house choice, then a request form for an unsupported address"
-                caption="Nearby societies come first, then apartment or individual house \u2014 the batch model, showing through the address step. An address outside the rounds gets a request form rather than a refusal."
+                caption="Nearby societies come first, then apartment or individual house — the batch model showing through the address step. An address outside the rounds gets a request form, not a refusal."
               />
             </div>
           </Reveal>
@@ -334,7 +334,7 @@ export default function BbDailyPage() {
                         y: 37.2,
                         title: "Expected and received on the same row",
                         detail:
-                          "Each line carries what was expected next to what actually arrived, so a shortfall is visible while counting rather than found against a second document later.",
+                          "Each line carries what was expected next to what actually arrived, so a shortfall shows up while someone is still counting.",
                       },
                       {
                         x: 56.8,
@@ -401,7 +401,7 @@ export default function BbDailyPage() {
                         y: 36.5,
                         title: "Today and this month, same shape",
                         detail:
-                          "Both timeframes use one layout, so checking a day and checking a month is the same reading task rather than two different screens.",
+                          "Both timeframes use one layout, so checking a day and checking a month read the same way.",
                       },
                       {
                         x: 22.5,
@@ -459,7 +459,7 @@ export default function BbDailyPage() {
                         y: 77.3,
                         title: "Numeric-first input",
                         detail:
-                          "Every field on the way in takes digits, so the keypad opens directly rather than through a full keyboard.",
+                          "Every field on the way in takes digits, so the keypad opens straight onto numbers.",
                       },
                     ],
                   },
@@ -475,7 +475,7 @@ export default function BbDailyPage() {
             heading="I designed the role flows after standing in them"
             body={[
               "None of that split was obvious from a process diagram. I spent time in the dark stores and went out on deliveries with the agents before designing any of it.",
-              "Reading a process gives you the order of the steps. Standing in it gives you what a person is holding while they take them, and how much attention they have left over. Delivery executives worked a narrow morning window and moved through buildings continuously, which is a different design problem from a route drawn on a screen.",
+              "A diagram gave me the order of the steps. Standing there showed me what someone was carrying while they took them, and how little attention they had to spare. Delivery executives worked a narrow morning window and moved through buildings without stopping; a route drawn on a screen accounts for neither.",
               "We tested by putting the prototype in the hands of the people who would use it and watching what they did with it, then building around what came back rather than around the flow we had drawn.",
             ]}
             footnote="My own photographs from the field visits. Faces are out of frame — the people in them were at work, not presenting."
