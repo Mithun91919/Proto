@@ -23,13 +23,19 @@ export function DotGridBackground() {
       getComputedStyle(root).getPropertyValue("--dot-cursor-rgb").trim() ||
       "8, 145, 178";
 
+    // Tuning notes, since these are the only numbers that decide whether the
+    // effect reads at all. `maxAlpha` is the one that matters: at 0.15 the
+    // brightest dot under the cursor was 15% of a mid teal on an off-white
+    // ground, which is close to invisible on a bright screen. `baseAlpha`
+    // stays near zero on purpose — the grid should be felt only around the
+    // pointer, not printed across the page.
     const grid = new DotGrid({
       spacing: SPACING,
       dotMin: 1.15,
-      dotMax: 5,
-      radiusEffect: 140,
-      baseAlpha: 0.04,
-      maxAlpha: 0.15,
+      dotMax: 6,
+      radiusEffect: 190,
+      baseAlpha: 0.05,
+      maxAlpha: 0.32,
       color,
       smoothing: 0.14,
       zIndex: -1,
