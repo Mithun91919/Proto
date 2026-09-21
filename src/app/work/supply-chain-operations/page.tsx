@@ -197,8 +197,8 @@ export default function SupplyChainOperationsPage() {
         <ReframeBlock
           bleed
           eyebrow="Structure"
-          heading="The new structure took nearly a dozen teams to agree"
-          body="We worked through the platform with close to a dozen category teams to agree what every module did and where it belonged, then took the proposed structure through several rounds of leadership approval before it could ship. That information architecture became the foundation for every navigation decision that followed."
+          heading="The structure was a definition problem before it was a design problem"
+          body="Nothing could be grouped until we could say what each of the 139 modules actually did. We worked through the platform with close to a dozen category teams to settle that module by module, landed on Category → Module → Sub-module, and took it through several rounds of leadership approval before it could ship. That hierarchy became the foundation for every navigation decision that followed."
         />
       </div>
 
@@ -262,10 +262,9 @@ export default function SupplyChainOperationsPage() {
         <CaseStudySection id="front-door">
           <CaseStudyChapter
             eyebrow="Personalisation"
-            heading="Then we made the front door work differently for different people"
+            heading="The problem was not making everything visible, it was making the right things easy to return to"
             body={[
-              "The platform contained 139 modules, but most people relied on only a small working set.",
-              "That changed the design problem from “make everything equally visible” to “make the right things easier to return to.”",
+              "The platform contained 139 modules, but most people relied on only a small working set. Treating all 139 as equally likely was the thing making the front door slow.",
               "The redesigned experience introduced three faster paths: pins for frequently used modules, recent modules for returning to ongoing work without setup, and search for users who already knew what they needed.",
             ]}
           />
@@ -311,7 +310,7 @@ export default function SupplyChainOperationsPage() {
             body={[
               "In many digital products, more time spent can look like engagement. Here, the opposite was true.",
               "The purpose of the landing page was to route people into operational work as quickly as possible. Where a visit to it had run 10 to 30 minutes, that time fell by 62% after we introduced the new information architecture, navigation, search and personalisation.",
-              "The redesign gave the platform a scalable structure for new modules, persistent navigation across the experience, direct search, and personal routes back into frequently used tools. More importantly, the homepage became what it was supposed to be: a way through the platform, not a place users had to spend time figuring out.",
+              "The homepage became what it was supposed to be: a way through the platform, rather than a place people had to spend time working out.",
             ]}
           />
           <CaseStudyFigure>
