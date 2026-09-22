@@ -3,7 +3,7 @@ import { caseStudyRobots } from "@/content/seo";
 import { Reveal } from "@/components/Reveal";
 import { DotFlow } from "@/components/design-system/DotFlow";
 import { ArtboardCarousel } from "@/components/design-system/ArtboardCarousel";
-import { ArtboardFigure } from "@/components/design-system/ArtboardFigure";
+import { BrowserMockup } from "@/components/design-system/BrowserMockup";
 import { PullStatement } from "@/components/design-system/PullStatement";
 import {
   CaseStudyChapter,
@@ -159,12 +159,31 @@ export default function ApiLifecyclePage() {
 
       <CaseStudyColumn>
         <CaseStudySection id="overview" boundary={false} className="pt-14 md:pt-20">
-          <CaseStudyFigure label="The way in">
-            <ArtboardFigure
+          {/* The breaker above defines an API; this is the first thing said
+              about the product itself. Without it the page went from a claim
+              straight to an unlabelled screenshot, with nothing carrying the
+              reader between them. */}
+          <CaseStudyChapter
+            layout="stacked"
+            eyebrow="The product"
+            heading="Every one of those exchanges is a contract somebody has to keep working"
+            body={[
+              "An API has to be designed, published, found, subscribed to, and maintained when it changes. Each of those is someone's afternoon.",
+              "API Hub carries that whole arc in one place, across the 15K+ services onboarded to it.",
+            ]}
+          />
+          {/* A full-page capture, held to a fixed height and scrolled in
+              place. Laid out flat it was either 1131px tall at column width
+              or shrunk to 640px, where the Get Started cards stop being
+              readable — and reading them is the entire point of the shot. */}
+          <CaseStudyFigure rule label="The way in">
+            <BrowserMockup
+              route="api-hub / home"
               src="/work/api-lifecycle/home.png"
               width={2890}
               height={2712}
-              layout="portrait"
+              scrollable
+              maxHeight="34rem"
               alt="API Hub home: search across services, then eight Get Started routes — import, define, manage subscriptions, generate code, register a service, generate docs, monitor, and publish to the marketplace"
               caption="The entry point is a set of routes into work rather than a status board: search across every service, then the eight things an engineer actually arrives wanting to start."
             />
