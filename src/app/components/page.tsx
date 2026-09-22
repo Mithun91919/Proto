@@ -49,6 +49,7 @@ import { DotToInterfaceTransition } from "@/components/design-system/DotToInterf
 import { BeforeAfterMetric } from "@/components/design-system/BeforeAfterMetric";
 import { DottedRule } from "@/components/design-system/DottedRule";
 import { HoverLanguageDemo, ChapterProgressDemo, MotionTimingGrid, ReducedMotionFocusGrid } from "@/components/design-system/Interaction";
+import { MarkMotionGallery, MotionInventory } from "@/components/design-system/MotionCatalogue";
 import { ArtboardFigure } from "@/components/design-system/ArtboardFigure";
 import { ArtboardCarousel } from "@/components/design-system/ArtboardCarousel";
 import { ClipFigure } from "@/components/design-system/ClipFigure";
@@ -989,30 +990,53 @@ export default function ComponentsPage() {
         </div>
 
         <div className="ds-rule py-11">
-          <SubLabel code="J3b · Marks draw themselves" />
+          <SubLabel code="J3b · Mark motion" />
           <p className="max-w-[66ch] text-[0.95rem] leading-7" style={{ color: "var(--ink-soft)" }}>
-            A mark that means something can say it in the order it arrives. The pull-statement marks
-            and the compact dot marks both animate in sequence on entrance, riding the{" "}
-            <code className="font-mono text-[0.85em]">Reveal</code> wrapper&apos;s{" "}
+            A mark that means something can say it in the order it arrives, and keep saying it. Each
+            one draws itself on entrance, then settles into a standing loop where a single highlight
+            travels it and the mark rests for the remainder of the cycle. Both are keyed on the same{" "}
+            <code className="font-mono text-[0.85em]">--dot-i</code>, which is the meaning order
+            rather than the DOM order — so the choreography is authored once, in the component, and
+            the CSS never needs to know which mark it is running on.
+          </p>
+          <p className="mt-3 max-w-[66ch] text-[0.95rem] leading-7" style={{ color: "var(--ink-soft)" }}>
+            Both ride the <code className="font-mono text-[0.85em]">Reveal</code> wrapper&apos;s{" "}
             <code className="font-mono text-[0.85em]">is-visible</code> rather than observing
-            anything themselves — so a mark cannot fire off-screen, and a caller cannot forget to
-            add the behaviour.
+            anything themselves, so a mark cannot fire off-screen and a caller cannot forget to add
+            the behaviour.
           </p>
           <p className="mt-2 font-mono text-[0.6rem] uppercase tracking-[0.06em]" style={{ color: "var(--muted)" }}>
-            Rule · the order is the meaning · ships with the component · off under reduced motion
+            Rule · the order is the meaning · rest is most of the cycle · off under reduced motion
           </p>
-          <div className="mt-7 grid grid-cols-1 gap-8 md:grid-cols-2">
-            <Reveal>
-              <PullStatement eyebrow="Connection" mark="connection" note="Cluster, then bridge, then cluster — the claim drawn in the order it is made.">
-                One thing is the link between two others.
-              </PullStatement>
-            </Reveal>
-            <Reveal>
-              <PullStatement eyebrow="Seam" mark="seam" note="Node, join, node — the joins are the subject, so they arrive between the things they connect.">
-                The joins between the steps are the work.
-              </PullStatement>
-            </Reveal>
+          <div className="mt-7">
+            <MarkMotionGallery />
           </div>
+        </div>
+
+        <div className="ds-rule py-11">
+          <SubLabel code="J3c · In place" />
+          <p className="mb-7 max-w-[66ch] text-[0.95rem] leading-7" style={{ color: "var(--ink-soft)" }}>
+            The same mark doing its actual job — restating the sentence beside it, not sitting in a
+            specimen box.
+          </p>
+          <Reveal>
+            <PullStatement
+              eyebrow="Connection"
+              mark="connection"
+              note="Cluster, then bridge, then cluster — the claim drawn in the order it is made, then repeated on a slow cycle."
+            >
+              One thing is the link between two others.
+            </PullStatement>
+          </Reveal>
+        </div>
+
+        <div className="ds-rule py-11">
+          <SubLabel code="J3d · Motion inventory" />
+          <p className="mb-7 max-w-[66ch] text-[0.95rem] leading-7" style={{ color: "var(--ink-soft)" }}>
+            Every named movement in the system. The last column is the test: a motion that cannot
+            finish that sentence is decoration and should come out.
+          </p>
+          <MotionInventory />
         </div>
 
         <div className="py-11">

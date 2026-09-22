@@ -181,6 +181,15 @@
      before its own band had landed, and always below the fold, so nobody
      ever saw it happen. */
   --ds-mark-lead: 520ms;
+  /* The standing loop a mark settles into once it has drawn itself. One
+     period covers a full pass of the highlight plus a rest; `--ds-mark-travel`
+     is the fraction of the period the pass occupies, so the mark spends most
+     of its time still. Marks across the page share this clock, which keeps
+     two in view from beating against each other. */
+  --ds-mark-cycle: 6s;
+  --ds-mark-travel: 0.42;
+  /* Gap between a mark finishing its entrance and starting to loop. */
+  --ds-mark-settle: 900ms;
 
   /* ── Design system v6 (component library) ──────────────────
      Scoped to the new `design-system/` component set (see

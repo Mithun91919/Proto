@@ -17,8 +17,15 @@ import type { CSSProperties, ReactNode } from "react";
  * - `seam` — open nodes with the joins between them filled. Inverts the
  *   usual emphasis: for statements where the gaps between steps, not the
  *   steps, are the subject.
+ *
+ * Every mark draws itself on entrance and then keeps a standing loop, both
+ * keyed on the `--dot-i` each element carries. `--dot-i` is the meaning
+ * order, not the DOM order — that is why `connection` skips 5, holding the
+ * far cluster back until the bridge has been crossed. `--mark-n` on the
+ * root is how many positions that order spans, so the loop divides one
+ * shared cycle evenly however many dots a mark has.
  */
-type PullMark = "rhythm" | "connection" | "exchange" | "seam" | "none";
+export type PullMark = "rhythm" | "connection" | "exchange" | "seam" | "none";
 
 type PullStatementProps = {
   children: ReactNode;
@@ -36,7 +43,7 @@ type PullStatementProps = {
 function RhythmMark() {
   return (
     <div className="ds-pull-mark" aria-hidden>
-      <div className="ds-pull-rhythm">
+      <div className="ds-pull-rhythm" style={{ "--mark-n": 6 } as CSSProperties}>
         <span className="ds-pull-rail" />
         {Array.from({ length: 6 }).map((_, i) => (
           <span
@@ -54,7 +61,7 @@ function ConnectionMark() {
   const cluster = Array.from({ length: 4 });
   return (
     <div className="ds-pull-mark" aria-hidden>
-      <div className="ds-pull-connection">
+      <div className="ds-pull-connection" style={{ "--mark-n": 10 } as CSSProperties}>
         {/* One cascade left to right: the first cluster, then the bridge,
             then the second. The mark says "the link between two others", so
             it draws itself in that order rather than all at once. */}
@@ -77,7 +84,7 @@ function ConnectionMark() {
 function ExchangeMark() {
   return (
     <div className="ds-pull-mark" aria-hidden>
-      <div className="ds-pull-exchange">
+      <div className="ds-pull-exchange" style={{ "--mark-n": 12 } as CSSProperties}>
         <span className="ds-pull-one" style={{ "--dot-i": 0 } as CSSProperties} />
         <span className="ds-pull-bridge" style={{ "--dot-i": 1 } as CSSProperties} />
         <span className="ds-pull-many">
@@ -93,7 +100,7 @@ function ExchangeMark() {
 function SeamMark() {
   return (
     <div className="ds-pull-mark" aria-hidden>
-      <div className="ds-pull-seam">
+      <div className="ds-pull-seam" style={{ "--mark-n": 9 } as CSSProperties}>
         {Array.from({ length: 5 }).map((_, i) => (
           <span key={i} className="ds-pull-seam-step">
             <span className="ds-pull-seam-node" style={{ "--dot-i": i * 2 } as CSSProperties} />
@@ -126,12 +133,25 @@ export function PullStatement({ children, eyebrow, note, mark = "none" }: PullSt
             <p className="ds-pull-text">{children}</p>
             {note ? <p className="ds-pull-note">{note}</p> : null}
           </div>
-          {mark === "rhythm" ? <RhythmMark /> : null}
-          {mark === "connection" ? <ConnectionMark /> : null}
-          {mark === "exchange" ? <ExchangeMark /> : null}
-          {mark === "seam" ? <SeamMark /> : null}
+          <PullMarkFigure mark={mark} />
         </div>
       </div>
     </div>
   );
+}
+
+/**
+ * One mark on its own, with no statement beside it.
+ *
+ * Exported for the motion catalogue on `/components`, where the marks are the
+ * subject rather than the illustration. Nothing else should reach for this:
+ * a mark without the sentence it restates is decoration, which is the one
+ * thing C1 does not allow a dot to be.
+ */
+export function PullMarkFigure({ mark }: { mark: PullMark }) {
+  if (mark === "rhythm") return <RhythmMark />;
+  if (mark === "connection") return <ConnectionMark />;
+  if (mark === "exchange") return <ExchangeMark />;
+  if (mark === "seam") return <SeamMark />;
+  return null;
 }
