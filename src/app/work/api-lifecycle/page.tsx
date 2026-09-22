@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { caseStudyRobots } from "@/content/seo";
 import { DotFlow } from "@/components/design-system/DotFlow";
+import { NoteCard } from "@/components/design-system/NoteCard";
 import { ArtboardCarousel } from "@/components/design-system/ArtboardCarousel";
 import { ArtboardFigure } from "@/components/design-system/ArtboardFigure";
 import { PullStatement } from "@/components/design-system/PullStatement";
@@ -132,6 +133,19 @@ export default function ApiLifecyclePage() {
     >
       <CaseStudyColumn>
         <CaseStudySection id="overview" boundary={false} className="pt-14 md:pt-20">
+          {/* Every other case study here is about a product a reader can
+              picture. This one is infrastructure, and the rest of the page
+              assumes the word. Two sentences up front cost nothing and stop
+              a design reader bouncing off the first paragraph. Same treatment
+              the store associate study gives Living Design. */}
+          <CaseStudyFigure>
+            <NoteCard
+              label="First, the word"
+              heading="An API is how two pieces of software talk to each other"
+              body="One program asks another for something and gets an answer back — the way a waiter carries an order to a kitchen and brings the food out. This platform is where Walmart's engineers find those services, agree what each one will answer, check that it does, and keep it governed once other teams start depending on it."
+              mark="API"
+            />
+          </CaseStudyFigure>
           <CaseStudyFigure label="The way in">
             <ArtboardFigure
               src="/work/api-lifecycle/home.png"
