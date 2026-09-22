@@ -29,6 +29,14 @@ export type HeroStackScreen = {
 };
 
 type HeroScreenStackProps = {
+  /**
+   * The deck's aspect ratio. Defaults to the first screen's own, which is
+   * right for phone captures but wrong for a tall desktop screen — a 1.07
+   * capture makes a card nearly square and the deck eats the band. Pass a
+   * wider ratio and every card crops to it, anchored by each screen's
+   * `focus`.
+   */
+  ratio?: number;
   screens: HeroStackScreen[];
   /** Describes the deck as a whole, for the single image role. */
   label: string;
@@ -51,7 +59,7 @@ type HeroScreenStackProps = {
  * Four screens is the cap. Past that the fan stops widening and only the
  * front three read anyway.
  */
-export function HeroScreenStack({ screens, label }: HeroScreenStackProps) {
+export function HeroScreenStack({ screens, label, ratio }: HeroScreenStackProps) {
   const capped = screens.slice(0, 4);
   const [order, setOrder] = useState(() => capped.map((_, i) => i));
   const bringToFront = (i: number) =>
@@ -60,7 +68,9 @@ export function HeroScreenStack({ screens, label }: HeroScreenStackProps) {
   // Ratio comes from the authored first screen, never from whichever card is
   // currently in front. Reading it off the front made the whole deck resize
   // on every click — an 85px jump in the opener.
-  const stableRatio = capped[0] ? capped[0].width / capped[0].height : 16 / 10;
+  // A caller-set ratio wins. Otherwise the first authored screen decides —
+  // never the active one, or the deck would resize on every click.
+  const stableRatio = ratio ?? (capped[0] ? capped[0].width / capped[0].height : 16 / 10);
   // All cards carry the same chrome or none: a bar on one card and not the
   // next made that card ~60px taller than its neighbours.
   const anyRoute = capped.some((s) => s.route);

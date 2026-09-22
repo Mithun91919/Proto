@@ -31,6 +31,8 @@ export type CaseStudyHeroProps = {
       real screens — the perspective is earned by quantity, not applied as
       styling to a single mock. Ignored in `backdrop` mode. */
   stack?: HeroStackScreen[];
+  /** Deck aspect ratio. Defaults to the first screen's own. */
+  stackRatio?: number;
   /** The back link, placed above everything. */
   children?: ReactNode;
 };
@@ -66,6 +68,7 @@ export function CaseStudyHero({
   height,
   figureNote,
   stack,
+  stackRatio,
   artMode = "panel",
   children,
 }: CaseStudyHeroProps) {
@@ -192,7 +195,7 @@ export function CaseStudyHero({
             >
               {hasStack ? (
                 <div style={{ width: "92%", maxWidth: "46rem" }}>
-                  <HeroScreenStack screens={stack as HeroStackScreen[]} label={alt} />
+                  <HeroScreenStack screens={stack as HeroStackScreen[]} ratio={stackRatio} label={alt} />
                 </div>
               ) : (
                 <Image

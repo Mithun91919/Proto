@@ -94,6 +94,12 @@ export default function ApiLifecyclePage() {
             API Lifecycle Platform: <span style={{ color: "var(--ds-mint)" }}>one place</span> to discover, design, test, and govern APIs.
           </>
         ),
+        // These are desktop captures at about 1.07 — nearly square — so the
+        // deck defaulted to a card 593px tall and swallowed the band. Each
+        // screen crops to its top instead, which is where the chrome, the
+        // title and the first controls are. 16/10 took it to 395px, which
+        // was further than it needed to go; 1.39 lands at 455.
+        stackRatio: 1.39,
         stack: [
           {
             src: "/work/api-lifecycle/home.png",

@@ -47,6 +47,8 @@ type HeroProps = {
   /** A fanned deck instead of one screen, for openers with several real
       screens. See `HeroScreenStack`. */
   stack?: HeroStackScreen[];
+  /** Deck aspect ratio. Defaults to the first screen's own. */
+  stackRatio?: number;
 };
 
 type NextProps = { href: string; number: string; label: string; title: string };
