@@ -1616,8 +1616,22 @@
 @media (min-width: 1150px) {
   .ds-pull-inner,
   .ds-cs-column,
-  [class*="max-w-[85rem]"] {
-    padding-left: max(2rem, calc(6.5rem - max(0px, (100vw - 85rem) / 2)));
+  [class*="max-w-[85rem]"],
+  [class*="max-w-[80rem]"],
+  [class*="max-w-[70rem]"] {
+    /* `--rail-container` is the container's own max-width, so the backing
+       off is measured against the right number. It was hardcoded to 85rem,
+       which meant /work and /about — 80rem and 70rem — were never matched
+       at all and their content still ran under the rail. */
+    padding-left: max(2rem, calc(6.5rem - max(0px, (100vw - var(--rail-container, 85rem)) / 2)));
+  }
+
+  [class*="max-w-[80rem]"] {
+    --rail-container: 80rem;
+  }
+
+  [class*="max-w-[70rem]"] {
+    --rail-container: 70rem;
   }
 }
 

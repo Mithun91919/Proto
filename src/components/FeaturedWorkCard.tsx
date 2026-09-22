@@ -3,6 +3,7 @@ import type { CSSProperties } from "react";
 import { ProjectMedia } from "@/components/ProjectMedia";
 import { MetricRow } from "@/components/design-system/MetricRow";
 import { GlassPanel } from "@/components/design-system/primitives/GlassPanel";
+import { Chip } from "@/components/design-system/primitives/Chip";
 import type { SystemShape } from "@/components/design-system/FeaturedGlyph";
 import type { MetricMarkName } from "@/components/design-system/dotPatterns";
 import type { Project } from "@/content/projects";
@@ -44,19 +45,6 @@ export function metricGlyph(slug: string, index: number): MetricMarkName {
   return PROJECT_METRIC_GLYPHS[slug]?.[index] ?? "field";
 }
 
-/* Chips that sit on the artwork. Measured across the three posters, the
-   regions under them run Y=157-211 of 255 — the product captures are light
-   UIs, so a dark chip reads as a black bar laid over them. A light surface
-   with near-black type sits quieter and still holds up if a frame goes
-   dark, because the hairline and the shadow define the shape rather than
-   the fill alone. */
-const CHIP: CSSProperties = {
-  background: "var(--ds-solid-bg)",
-  color: "var(--ink)",
-  border: "1px solid var(--ds-solid-border)",
-  boxShadow: "var(--ds-glass-soft-shadow)",
-};
-
 /**
  * B · Media-forward glass card — one of six layouts compared live at
  * `/work/layout-options`; picked for the homepage grid.
@@ -86,32 +74,20 @@ export function FeaturedWorkCard({ project }: { project: Project }) {
       <GlassPanel variant="lift" hoverLift className="flex h-full flex-col overflow-hidden rounded-2xl">
         <div className="relative">
           <ProjectMedia project={project} aspect={16 / 10} flush hoverScope=".featured-card" />
-          <span
-            className="absolute left-4 top-4 rounded-full px-3 py-1 font-mono text-[0.65rem] uppercase tracking-[0.14em]"
-            style={CHIP}
-          >
+          <Chip size="lead" className="absolute left-4 top-4">
             {project.number} · {project.label}
-          </span>
+          </Chip>
           {/* Tags and timeframe share the foot of the artwork: tags left,
               years right, on the same chip surface as the number above. */}
           <div className="absolute inset-x-4 bottom-4 flex flex-wrap items-center justify-between gap-2">
             <ul className="flex flex-wrap items-center gap-2">
               {project.tags.slice(0, 2).map((t) => (
-                <li
-                  key={t}
-                  className="rounded-full px-3 py-1 font-mono text-[0.62rem] uppercase tracking-[0.12em]"
-                  style={CHIP}
-                >
+                <Chip as="li" key={t}>
                   {t}
-                </li>
+                </Chip>
               ))}
             </ul>
-            <span
-              className="rounded-full px-3 py-1 font-mono text-[0.62rem] uppercase tracking-[0.12em]"
-              style={CHIP}
-            >
-              {project.timeframe}
-            </span>
+            <Chip>{project.timeframe}</Chip>
           </div>
         </div>
         <div className="flex flex-1 flex-col p-7">

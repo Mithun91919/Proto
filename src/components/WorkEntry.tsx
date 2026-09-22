@@ -1,6 +1,7 @@
 import Link from "next/link";
 import type { CSSProperties } from "react";
 import { ProjectMedia } from "@/components/ProjectMedia";
+import { Chip } from "@/components/design-system/primitives/Chip";
 import { CompactNumeral } from "@/components/design-system/CompactNumeral";
 import { MetricRow } from "@/components/design-system/MetricRow";
 import { projectPlatforms } from "@/content/work-filters";
@@ -60,15 +61,27 @@ export function WorkEntry({ project, reverse = false, emphasis = "full" }: WorkE
         }`}
       >
         <div>
-          {emphasis === "full" ? <CompactNumeral value={project.number} /> : null}
-          {facets.length > 0 ? (
-            <p className={`eyebrow ${emphasis === "full" ? "mt-3" : ""}`}>
-              {facets.join("  ·  ")}
-            </p>
+          {/* The dot numeral and the facets read as one line of metadata, so
+              they share a row. They were stacked, with the facets as a plain
+              mono eyebrow under the mark — two separate quiet things where
+              one band does the job. */}
+          {emphasis === "full" || facets.length > 0 ? (
+            <div className="flex flex-wrap items-center gap-x-3 gap-y-2">
+              {emphasis === "full" ? <CompactNumeral value={project.number} /> : null}
+              {facets.length > 0 ? (
+                <ul className="flex flex-wrap items-center gap-2">
+                  {facets.map((facet) => (
+                    <Chip as="li" key={facet}>
+                      {facet}
+                    </Chip>
+                  ))}
+                </ul>
+              ) : null}
+            </div>
           ) : null}
           <h3
             className={`display-title text-[var(--ink)] transition-colors duration-300 group-hover:text-[var(--accent-deep)] ${
-              facets.length > 0 ? "mt-2" : emphasis === "full" ? "mt-4" : ""
+              emphasis === "full" || facets.length > 0 ? "mt-4" : ""
             }`}
             style={{ fontSize: "1.9rem" }}
           >

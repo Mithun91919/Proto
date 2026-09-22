@@ -37,6 +37,10 @@
   --color-muted: var(--neutral-700);
   --color-line: color-mix(in oklab, var(--cyan-800) 14%, transparent);
   --color-line-strong: color-mix(in oklab, var(--cyan-800) 24%, transparent);
+  /* Chip outline for labels laid over product media. The line tokens above
+     are cyan-tinted, which disappears against a light product UI; this one
+     is neutral so the edge reads as an outline rather than a tint. */
+  --color-chip-border: color-mix(in oklab, var(--neutral-900) 22%, transparent);
   --color-surface: var(--neutral-0);
   --color-surface-2: var(--neutral-200);
   --color-surface-solid: var(--neutral-50);
@@ -153,6 +157,7 @@
   --ink-soft: var(--color-ink-soft);
   --muted: var(--color-muted);
   --line: var(--color-line);
+  --chip-border: var(--color-chip-border);
   --line-strong: var(--color-line-strong);
   --accent: var(--color-accent);
   --accent-deep: var(--color-accent-deep);
