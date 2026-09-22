@@ -147,7 +147,7 @@ export default function ApiLifecyclePage() {
       <div className="mt-14 md:mt-20">
         <Reveal>
           <PullStatement
-            eyebrow="In simple words"
+            eyebrow="What is an API"
             mark="connection"
             note="Like a waiter carrying an order to the kitchen and bringing the food back out."
           >
