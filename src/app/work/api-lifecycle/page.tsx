@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { caseStudyRobots } from "@/content/seo";
+import { Reveal } from "@/components/Reveal";
 import { DotFlow } from "@/components/design-system/DotFlow";
 import { ArtboardCarousel } from "@/components/design-system/ArtboardCarousel";
 import { ArtboardFigure } from "@/components/design-system/ArtboardFigure";
@@ -144,10 +145,16 @@ export default function ApiLifecyclePage() {
           defines as "one thing being the link between two others", which is
           what an API is — the other marks would have been ornament. */}
       <div className="mt-14 md:mt-20">
-        <PullStatement eyebrow="In simple words" mark="connection">
-          An API is how two pieces of software talk to each other. One asks for something, the other
-          answers — a waiter carrying an order to the kitchen and bringing the food back out.
-        </PullStatement>
+        <Reveal>
+          <PullStatement
+            eyebrow="In simple words"
+            mark="connection"
+            note="Like a waiter carrying an order to the kitchen and bringing the food back out."
+          >
+            An API is how two pieces of software talk to each other. One asks for something, the
+            other answers.
+          </PullStatement>
+        </Reveal>
       </div>
 
       <CaseStudyColumn>
@@ -277,9 +284,12 @@ export default function ApiLifecyclePage() {
       </CaseStudyColumn>
 
       <div className="mt-16 md:mt-20">
-        <PullStatement eyebrow="What we were after" mark="rhythm">
-          Not to hide technical complexity, but to reveal the right amount of it for the person doing the work.
-        </PullStatement>
+        <Reveal>
+          <PullStatement eyebrow="What we were after" mark="rhythm">
+            Not to hide technical complexity, but to reveal the right amount of it for the person
+            doing the work.
+          </PullStatement>
+        </Reveal>
       </div>
 
       <CaseStudyColumn>
@@ -368,9 +378,12 @@ export default function ApiLifecyclePage() {
       </CaseStudyColumn>
 
       <div className="mt-16 md:mt-20">
-        <PullStatement eyebrow="What I believe now" mark="exchange">
-          A platform can support advanced technical work while still making the default path understandable.
-        </PullStatement>
+        <Reveal>
+          <PullStatement eyebrow="What I believe now" mark="exchange">
+            A platform can support advanced technical work while still making the default path
+            understandable.
+          </PullStatement>
+        </Reveal>
       </div>
     </CaseStudyShell>
   );

@@ -2906,3 +2906,71 @@ a:hover .ds-compact-mark .ds-dot {
   }
 }
 
+
+/* A quieter second line under a pull statement — an analogy, a limit, a
+   source. Sized well under `.ds-pull-text` so the claim stays the thing
+   being read and this reads as support for it. */
+.ds-pull-note {
+  margin: 1.25rem 0 0;
+  max-width: 46ch;
+  font-size: clamp(0.95rem, 1.05vw, 1.05rem);
+  line-height: 1.65;
+  color: var(--ds-dark-muted);
+}
+
+/* ── Pull-statement marks — micro-animation ──────────────────────────
+   Same contract as the compact dot marks above: the mark draws itself
+   in sequence on entrance, riding the `Reveal` wrapper's `is-visible`
+   rather than observing anything itself, so it cannot fire off-screen
+   and a caller cannot forget to add it.
+
+   The order is the meaning, not decoration. `connection` runs cluster →
+   bridge → cluster, which is the claim it illustrates. `exchange` runs
+   the one before the many. `seam` alternates node, join, node. `rhythm`
+   counts its beats left to right and opens on the last.
+
+   `--dot-i` is set per element by the component; 34ms is slower than the
+   compact marks' 16ms because these are a handful of large dots being
+   read, not fifteen small ones forming a glyph. */
+.reveal.is-visible .ds-pull-mark .ds-pull-beat,
+.reveal.is-visible .ds-pull-mark .ds-pull-bridge,
+.reveal.is-visible .ds-pull-mark .ds-pull-one,
+.reveal.is-visible .ds-pull-mark .ds-pull-many > span,
+.reveal.is-visible .ds-pull-mark .ds-pull-seam-node,
+.reveal.is-visible .ds-pull-mark .ds-pull-seam-join {
+  animation: ds-pull-mark-in 460ms cubic-bezier(0.2, 0.7, 0.3, 1) backwards;
+  animation-delay: calc(var(--dot-i, 0) * 34ms);
+}
+
+@keyframes ds-pull-mark-in {
+  from {
+    opacity: 0;
+    transform: scale(0.4);
+  }
+}
+
+/* The bridge is a line rather than a dot, so it arrives by drawing across
+   instead of scaling up from its centre. */
+.reveal.is-visible .ds-pull-mark .ds-pull-bridge,
+.reveal.is-visible .ds-pull-mark .ds-pull-seam-join {
+  animation-name: ds-pull-bridge-in;
+  transform-origin: left center;
+}
+
+@keyframes ds-pull-bridge-in {
+  from {
+    opacity: 0;
+    transform: scaleX(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal.is-visible .ds-pull-mark .ds-pull-beat,
+  .reveal.is-visible .ds-pull-mark .ds-pull-bridge,
+  .reveal.is-visible .ds-pull-mark .ds-pull-one,
+  .reveal.is-visible .ds-pull-mark .ds-pull-many > span,
+  .reveal.is-visible .ds-pull-mark .ds-pull-seam-node,
+  .reveal.is-visible .ds-pull-mark .ds-pull-seam-join {
+    animation: none;
+  }
+}

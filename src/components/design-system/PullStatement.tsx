@@ -1,4 +1,4 @@
-import type { ReactNode } from "react";
+import type { CSSProperties, ReactNode } from "react";
 
 /**
  * Which dot figure sits alongside the statement.
@@ -24,6 +24,12 @@ type PullStatementProps = {
   children: ReactNode;
   /** Optional short label above the statement, e.g. "The constraint". */
   eyebrow?: string;
+  /**
+   * A quieter line under the statement. For the thing that supports the
+   * claim without being it — an analogy, a limit, a source. Keep the claim
+   * in `children`; this is what a reader can skip.
+   */
+  note?: ReactNode;
   mark?: PullMark;
 };
 
@@ -33,7 +39,11 @@ function RhythmMark() {
       <div className="ds-pull-rhythm">
         <span className="ds-pull-rail" />
         {Array.from({ length: 6 }).map((_, i) => (
-          <span key={i} className={`ds-pull-beat${i === 5 ? " is-open" : ""}`} />
+          <span
+            key={i}
+            className={`ds-pull-beat${i === 5 ? " is-open" : ""}`}
+            style={{ "--dot-i": i } as CSSProperties}
+          />
         ))}
       </div>
     </div>
@@ -45,15 +55,18 @@ function ConnectionMark() {
   return (
     <div className="ds-pull-mark" aria-hidden>
       <div className="ds-pull-connection">
+        {/* One cascade left to right: the first cluster, then the bridge,
+            then the second. The mark says "the link between two others", so
+            it draws itself in that order rather than all at once. */}
         <span className="ds-pull-cluster">
           {cluster.map((_, i) => (
-            <span key={i} className="ds-pull-beat" />
+            <span key={i} className="ds-pull-beat" style={{ "--dot-i": i } as CSSProperties} />
           ))}
         </span>
-        <span className="ds-pull-bridge" />
+        <span className="ds-pull-bridge" style={{ "--dot-i": 4 } as CSSProperties} />
         <span className="ds-pull-cluster">
           {cluster.map((_, i) => (
-            <span key={i} className="ds-pull-beat" />
+            <span key={i} className="ds-pull-beat" style={{ "--dot-i": i + 6 } as CSSProperties} />
           ))}
         </span>
       </div>
@@ -65,11 +78,11 @@ function ExchangeMark() {
   return (
     <div className="ds-pull-mark" aria-hidden>
       <div className="ds-pull-exchange">
-        <span className="ds-pull-one" />
-        <span className="ds-pull-bridge" />
+        <span className="ds-pull-one" style={{ "--dot-i": 0 } as CSSProperties} />
+        <span className="ds-pull-bridge" style={{ "--dot-i": 1 } as CSSProperties} />
         <span className="ds-pull-many">
           {Array.from({ length: 9 }).map((_, i) => (
-            <span key={i} />
+            <span key={i} style={{ "--dot-i": i + 3 } as CSSProperties} />
           ))}
         </span>
       </div>
@@ -83,8 +96,10 @@ function SeamMark() {
       <div className="ds-pull-seam">
         {Array.from({ length: 5 }).map((_, i) => (
           <span key={i} className="ds-pull-seam-step">
-            <span className="ds-pull-seam-node" />
-            {i < 4 ? <span className="ds-pull-seam-join" /> : null}
+            <span className="ds-pull-seam-node" style={{ "--dot-i": i * 2 } as CSSProperties} />
+            {i < 4 ? (
+              <span className="ds-pull-seam-join" style={{ "--dot-i": i * 2 + 1 } as CSSProperties} />
+            ) : null}
           </span>
         ))}
       </div>
@@ -100,7 +115,7 @@ function SeamMark() {
  * eyebrow are the B4 boundary marker; the optional figure to the right is a
  * separate job — it draws the shape of the claim itself.
  */
-export function PullStatement({ children, eyebrow, mark = "none" }: PullStatementProps) {
+export function PullStatement({ children, eyebrow, note, mark = "none" }: PullStatementProps) {
   return (
     <div className="ds-pull">
       <div className="ds-pull-inner">
@@ -109,6 +124,7 @@ export function PullStatement({ children, eyebrow, mark = "none" }: PullStatemen
             <span className="ds-pull-dots" aria-hidden />
             {eyebrow ? <p className="ds-eyebrow ds-pull-eyebrow">{eyebrow}</p> : null}
             <p className="ds-pull-text">{children}</p>
+            {note ? <p className="ds-pull-note">{note}</p> : null}
           </div>
           {mark === "rhythm" ? <RhythmMark /> : null}
           {mark === "connection" ? <ConnectionMark /> : null}

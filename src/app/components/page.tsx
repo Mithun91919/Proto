@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { HeroPortrait } from "@/components/HeroPortrait";
 import { DotText } from "@/components/DotText";
+import { Reveal } from "@/components/Reveal";
+import { PullStatement } from "@/components/design-system/PullStatement";
 import { Chip } from "@/components/design-system/primitives/Chip";
 import { SectionHeader, SubLabel } from "@/components/design-system/primitives/SectionHeader";
 import { GlassPanel } from "@/components/design-system/primitives/GlassPanel";
@@ -984,6 +986,33 @@ export default function ComponentsPage() {
         <div className="ds-rule py-11">
           <SubLabel code="J3 · Motion timing" />
           <MotionTimingGrid />
+        </div>
+
+        <div className="ds-rule py-11">
+          <SubLabel code="J3b · Marks draw themselves" />
+          <p className="max-w-[66ch] text-[0.95rem] leading-7" style={{ color: "var(--ink-soft)" }}>
+            A mark that means something can say it in the order it arrives. The pull-statement marks
+            and the compact dot marks both animate in sequence on entrance, riding the{" "}
+            <code className="font-mono text-[0.85em]">Reveal</code> wrapper&apos;s{" "}
+            <code className="font-mono text-[0.85em]">is-visible</code> rather than observing
+            anything themselves — so a mark cannot fire off-screen, and a caller cannot forget to
+            add the behaviour.
+          </p>
+          <p className="mt-2 font-mono text-[0.6rem] uppercase tracking-[0.06em]" style={{ color: "var(--muted)" }}>
+            Rule · the order is the meaning · ships with the component · off under reduced motion
+          </p>
+          <div className="mt-7 grid grid-cols-1 gap-8 md:grid-cols-2">
+            <Reveal>
+              <PullStatement eyebrow="Connection" mark="connection" note="Cluster, then bridge, then cluster — the claim drawn in the order it is made.">
+                One thing is the link between two others.
+              </PullStatement>
+            </Reveal>
+            <Reveal>
+              <PullStatement eyebrow="Seam" mark="seam" note="Node, join, node — the joins are the subject, so they arrive between the things they connect.">
+                The joins between the steps are the work.
+              </PullStatement>
+            </Reveal>
+          </div>
         </div>
 
         <div className="py-11">
