@@ -2,6 +2,7 @@
 
 import { useId, useState } from "react";
 import { ArtboardFigure } from "./ArtboardFigure";
+import { BrowserMockup } from "./BrowserMockup";
 import type { Hotspot } from "./ImageHotspots";
 import { PagingArrows } from "./PagingArrows";
 
@@ -14,12 +15,28 @@ export type ArtboardSlide = {
   caption: string;
   /** Callouts layered over this slide's artboard. */
   hotspots?: Hotspot[];
+  /**
+   * Shown in the address pill when the carousel is `scrollable`. A real
+   * area of the product, not an invented domain — on a platform whose
+   * argument is that it is one place, the route is what shows that the
+   * screens are areas of a single product rather than separate tools.
+   */
+  route?: string;
 };
 
 type ArtboardCarouselProps = {
   slides: ArtboardSlide[];
   /** Names the set for screen readers, e.g. "Operations app workflows". */
   label: string;
+  /**
+   * Render each slide as a browser frame scrolled in place rather than a
+   * flat artboard. For sets of full-page captures: laid out whole these ran
+   * 1214px tall in a 927px viewport, so no slide could be seen at once and
+   * the paging dots sat below the fold, which is the one control the reader
+   * needs to get to the next one.
+   */
+  scrollable?: boolean;
+  maxHeight?: string;
 };
 
 /**
@@ -35,7 +52,7 @@ type ArtboardCarouselProps = {
  * Inactive slides are unmounted, so their images are never fetched until the
  * reader asks for them.
  */
-export function ArtboardCarousel({ slides, label }: ArtboardCarouselProps) {
+export function ArtboardCarousel({ slides, label, scrollable = false, maxHeight }: ArtboardCarouselProps) {
   const [active, setActive] = useState(0);
   const baseId = useId();
 
@@ -53,15 +70,30 @@ export function ArtboardCarousel({ slides, label }: ArtboardCarouselProps) {
         id={`${baseId}-panel-${active}`}
         aria-labelledby={`${baseId}-tab-${active}`}
       >
-        <ArtboardFigure
-          key={current.src}
-          src={current.src}
-          width={current.width}
-          height={current.height}
-          alt={current.alt}
-          caption={current.caption}
-          hotspots={current.hotspots}
-        />
+        {scrollable ? (
+          <BrowserMockup
+            key={current.src}
+            route={current.route ?? label}
+            src={current.src}
+            width={current.width}
+            height={current.height}
+            alt={current.alt}
+            caption={current.caption}
+            hotspots={current.hotspots}
+            scrollable
+            maxHeight={maxHeight}
+          />
+        ) : (
+          <ArtboardFigure
+            key={current.src}
+            src={current.src}
+            width={current.width}
+            height={current.height}
+            alt={current.alt}
+            caption={current.caption}
+            hotspots={current.hotspots}
+          />
+        )}
       </div>
 
       <div

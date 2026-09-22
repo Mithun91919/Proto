@@ -36,8 +36,8 @@ const ADOPTION_LOOP = ["Ship", "Adoption session", "Feedback", "Product change"]
 const SURFACE_PATH = ["UI platform", "Shared capability", "Conversational / tool-based access"];
 
 const CHAPTERS = [
-  { id: "overview", label: "Overview" },
-  { id: "fragmented", label: "The fragmentation" },
+  { id: "lifecycle", label: "The API lifecycle" },
+  { id: "overview", label: "The way in" },
   { id: "one-platform", label: "One platform" },
   { id: "marketplace", label: "Finding a service" },
   { id: "studio", label: "Designing a contract" },
@@ -158,42 +158,16 @@ export default function ApiLifecyclePage() {
       </div>
 
       <CaseStudyColumn>
-        <CaseStudySection id="overview" boundary={false} className="pt-14 md:pt-20">
-          {/* The breaker above defines an API; this is the first thing said
-              about the product itself. Without it the page went from a claim
-              straight to an unlabelled screenshot, with nothing carrying the
-              reader between them. */}
+        {/* Order matters here. The breaker defines an API as a single
+            exchange; the obvious next question is what the work around one
+            actually is, and the lifecycle answers it. Only then is the home
+            screen worth showing — it arrives as the answer to a question the
+            reader now has, rather than as an artefact shown before there is
+            anything to ask. */}
+        <CaseStudySection id="lifecycle" boundary={false} className="pt-14 md:pt-20">
           <CaseStudyChapter
             layout="stacked"
-            eyebrow="The product"
-            heading="Every one of those exchanges is a contract somebody has to keep working"
-            body={[
-              "An API has to be designed, published, found, subscribed to, and maintained when it changes. Each of those is someone's afternoon.",
-              "API Hub carries that whole arc in one place, across the 15K+ services onboarded to it.",
-            ]}
-          />
-          {/* A full-page capture, held to a fixed height and scrolled in
-              place. Laid out flat it was either 1131px tall at column width
-              or shrunk to 640px, where the Get Started cards stop being
-              readable — and reading them is the entire point of the shot. */}
-          <CaseStudyFigure rule label="The way in">
-            <BrowserMockup
-              route="api-hub / home"
-              src="/work/api-lifecycle/home.png"
-              width={2890}
-              height={2712}
-              scrollable
-              maxHeight="34rem"
-              alt="API Hub home: search across services, then eight Get Started routes — import, define, manage subscriptions, generate code, register a service, generate docs, monitor, and publish to the marketplace"
-              caption="The entry point is a set of routes into work rather than a status board: search across every service, then the eight things an engineer actually arrives wanting to start."
-            />
-          </CaseStudyFigure>
-        </CaseStudySection>
-
-        <CaseStudySection id="fragmented">
-          <CaseStudyChapter
-            layout="stacked"
-            eyebrow="Where it fragmented"
+            eyebrow="The API lifecycle"
             heading="The lifecycle was connected in theory, fragmented in practice"
             body={[
               "An API moves through discovery, contract design, validation, testing, publishing, subscription, governance, and eventually change or deprecation.",
@@ -203,6 +177,38 @@ export default function ApiLifecyclePage() {
           />
           <CaseStudyFigure rule label="The lifecycle an engineer has to reconstruct">
             <DotFlow stages={LIFECYCLE} />
+          </CaseStudyFigure>
+        </CaseStudySection>
+
+        <CaseStudySection id="overview">
+          {/* The claim this section makes is about the home screen
+              specifically — what an arriving engineer is given. It stays off
+              "it is all one place", which is the argument `one-platform`
+              makes below and would be weaker made twice. */}
+          <CaseStudyChapter
+            layout="stacked"
+            eyebrow="The way in"
+            heading="The entry point had to be a set of routes into work, not a status board"
+            body={[
+              "An engineer opening a platform is not there to read a summary of it. They have arrived to start something: import an API, define a new one, check a subscription, generate a client.",
+              "So the home screen leads with search across every service, and then the eight things people actually turn up wanting to do.",
+            ]}
+          />
+          {/* A full-page capture, held to a fixed height and scrolled in
+              place. Laid out flat it was either 1131px tall at column width
+              or shrunk to 640px, where the Get Started cards stop being
+              readable — and reading them is the entire point of the shot. */}
+          <CaseStudyFigure rule label="API Hub, home">
+            <BrowserMockup
+              route="/api-hub"
+              src="/work/api-lifecycle/home.png"
+              width={2890}
+              height={2712}
+              scrollable
+              maxHeight="44rem"
+              alt="API Hub home: search across services, then eight Get Started routes — import, define, manage subscriptions, generate code, register a service, generate docs, monitor, and publish to the marketplace"
+              caption="Search sits above the routes, so someone who already knows the service they want never has to browse for it."
+            />
           </CaseStudyFigure>
         </CaseStudySection>
 
@@ -231,9 +237,12 @@ export default function ApiLifecyclePage() {
           />
           <CaseStudyFigure label="Search, then the service, then a subscription">
             <ArtboardCarousel
+              scrollable
+              maxHeight="44rem"
               label="The discovery path"
               slides={[
                 {
+                  route: "/api-hub/search",
                   src: "/work/api-lifecycle/search-results.png",
                   width: 2880,
                   height: 2704,
@@ -241,6 +250,7 @@ export default function ApiLifecyclePage() {
                   caption: "Results carry the environment a service runs in and how widely it is used, so the shortlist is made before anything is opened.",
                 },
                 {
+                  route: "/api-hub/catalog/service",
                   src: "/work/api-lifecycle/api-overview.png",
                   width: 2890,
                   height: 3306,
@@ -248,6 +258,7 @@ export default function ApiLifecyclePage() {
                   caption: "The overview answers what gets asked before integration starts \u2014 what it does, which environments it runs in, who already depends on it.",
                 },
                 {
+                  route: "/api-hub/subscriptions",
                   src: "/work/api-lifecycle/subscriptions.png",
                   width: 2892,
                   height: 2610,
@@ -273,9 +284,12 @@ export default function ApiLifecyclePage() {
           />
           <CaseStudyFigure label="Two editors over one contract">
             <ArtboardCarousel
+              scrollable
+              maxHeight="44rem"
               label="The two editors"
               slides={[
                 {
+                  route: "/api-hub/catalog/edit",
                   src: "/work/api-lifecycle/spec-editor.png",
                   width: 2890,
                   height: 2712,
@@ -283,6 +297,7 @@ export default function ApiLifecyclePage() {
                   caption: "Advanced keeps the specification itself in the middle with the structure it produces listed beside it, so someone editing directly can still see the shape they are making.",
                 },
                 {
+                  route: "/api-hub/catalog/edit",
                   src: "/work/api-lifecycle/spec-editor-1.png",
                   width: 2890,
                   height: 2712,
@@ -290,6 +305,7 @@ export default function ApiLifecyclePage() {
                   caption: "Basic is the same contract as a form. The toggle between them is the hard part: switching has to carry unsupported changes and unsaved work across without losing either.",
                 },
                 {
+                  route: "/api-hub/catalog/versions",
                   src: "/work/api-lifecycle/version-compare.png",
                   width: 2890,
                   height: 2712,
@@ -323,9 +339,12 @@ export default function ApiLifecyclePage() {
           />
           <CaseStudyFigure label="Validation without leaving the platform">
             <ArtboardCarousel
+              scrollable
+              maxHeight="44rem"
               label="The API tester"
               slides={[
                 {
+                  route: "/api-hub/testing",
                   src: "/work/api-lifecycle/api-testing.png",
                   width: 2892,
                   height: 2052,
@@ -333,6 +352,7 @@ export default function ApiLifecyclePage() {
                   caption: "Collections sit beside the request, so a saved call is one click from the contract it was written against.",
                 },
                 {
+                  route: "/api-hub/testing",
                   src: "/work/api-lifecycle/api-testing-1.png",
                   width: 2892,
                   height: 2426,
@@ -340,6 +360,7 @@ export default function ApiLifecyclePage() {
                   caption: "Authorisation and environment belong to the request rather than to a separate setup step.",
                 },
                 {
+                  route: "/api-hub/testing",
                   src: "/work/api-lifecycle/api-testing-2.png",
                   width: 2892,
                   height: 2052,
