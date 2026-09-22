@@ -2241,7 +2241,7 @@
 .reveal.is-visible .ds-compact-mark .ds-dot,
 .reveal.is-visible .ds-dot-mark .ds-dot {
   animation: ds-mark-dot-in 380ms cubic-bezier(0.2, 0.7, 0.3, 1) backwards;
-  animation-delay: calc((var(--dot-i, 0) + var(--group-offset, 0)) * 16ms);
+  animation-delay: calc(var(--ds-mark-lead) + (var(--dot-i, 0) + var(--group-offset, 0)) * 16ms);
 }
 
 @keyframes ds-mark-dot-in {
@@ -2942,7 +2942,7 @@ a:hover .ds-compact-mark .ds-dot {
 .reveal.is-visible .ds-pull-mark .ds-pull-seam-node,
 .reveal.is-visible .ds-pull-mark .ds-pull-seam-join {
   animation: ds-pull-mark-in 460ms cubic-bezier(0.2, 0.7, 0.3, 1) backwards;
-  animation-delay: calc(var(--dot-i, 0) * 34ms);
+  animation-delay: calc(var(--ds-mark-lead) + var(--dot-i, 0) * 34ms);
 }
 
 @keyframes ds-pull-mark-in {

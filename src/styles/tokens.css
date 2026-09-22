@@ -175,6 +175,12 @@
   --duration-fast: 180ms;
   --duration-med: 300ms;
   --duration-slow: 800ms;
+  /* How long a dot mark waits before drawing itself. `Reveal` fires at 8%
+     intersection — as soon as a band peeks in from the bottom — and takes
+     --duration-slow to arrive. Without a lead-in a mark finished drawing
+     before its own band had landed, and always below the fold, so nobody
+     ever saw it happen. */
+  --ds-mark-lead: 520ms;
 
   /* ── Design system v6 (component library) ──────────────────
      Scoped to the new `design-system/` component set (see
