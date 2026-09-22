@@ -3201,13 +3201,34 @@ a:hover .ds-compact-mark .ds-dot {
 .ds-arch-cov-head,
 .ds-arch-cov-row {
   display: grid;
-  grid-template-columns: 17rem minmax(0, 1fr);
+  grid-template-columns: 15rem minmax(0, 1fr);
   gap: 2rem;
   align-items: center;
 }
 
+/* With friction present the table gains a third column. Declared here rather
+   than inline so the header and every row stay locked to one template. */
+.ds-arch-coverage[data-friction] .ds-arch-cov-head,
+.ds-arch-coverage[data-friction] .ds-arch-cov-row {
+  grid-template-columns: 15rem minmax(0, 1fr) 14rem;
+}
+
+/* The header now labels its columns, so it reads as a table rather than a
+   run of stage names floating above some dots. */
 .ds-arch-cov-head {
   padding-bottom: 0.85rem;
+  font-family: var(--font-mono), monospace;
+  font-size: 0.56rem;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.ds-arch-cov-friction {
+  margin: 0;
+  font-size: 0.8rem;
+  line-height: 1.5;
+  color: var(--ink-soft);
 }
 
 .ds-arch-cov-stages,
@@ -3227,8 +3248,25 @@ a:hover .ds-compact-mark .ds-dot {
 }
 
 .ds-arch-cov-row {
-  padding: 1rem 0;
+  padding: 1.05rem 1.25rem;
   border-top: 1px solid color-mix(in oklab, var(--ds-accent-deep) 12%, transparent);
+}
+
+/* Matches the cards: the set sits on one surface so a reader comparing rows
+   is looking at a single object, not six separately ruled bands. */
+.ds-arch-coverage {
+  border: 1px solid var(--ds-solid-border);
+  border-radius: var(--radius-sm);
+  background: var(--ds-solid-bg);
+  padding: 0.35rem 0 0.4rem;
+}
+
+.ds-arch-cov-head {
+  padding-inline: 1.25rem;
+}
+
+.ds-arch-cov-row:first-of-type {
+  border-top-color: color-mix(in oklab, var(--ds-accent-deep) 20%, transparent);
 }
 
 .ds-arch-cell {
@@ -3381,9 +3419,18 @@ a:hover .ds-compact-mark .ds-dot {
   }
 
   .ds-arch-cov-head,
-  .ds-arch-cov-row {
+  .ds-arch-cov-row,
+  .ds-arch-coverage[data-friction] .ds-arch-cov-head,
+  .ds-arch-coverage[data-friction] .ds-arch-cov-row {
     grid-template-columns: 12rem minmax(0, 1fr);
     gap: 1.25rem;
+  }
+
+  /* The friction column is the first thing to go when there is no room for
+     it: coverage is the table's job, friction is the bonus. */
+  .ds-arch-cov-friction,
+  .ds-arch-coverage[data-friction] .ds-arch-cov-head > span:last-child {
+    display: none;
   }
 }
 
@@ -3518,5 +3565,76 @@ a:hover .ds-compact-mark .ds-dot {
   .ds-arch-lane {
     grid-template-columns: 12rem minmax(0, 1fr);
     gap: 1.25rem;
+  }
+}
+
+/* ── Archetype glyph + cards (C13·F, C13·G) ──────────────────────────────
+   The glyph is the type's coverage at icon size: one cell per stage, in
+   order, filled where they work. Derived, not drawn — which is why it can
+   sit inline beside a name later without a legend following it around. */
+
+/* inline-grid, not grid: the mark is meant to sit in a sentence beside the
+   name it identifies, and a block-level one dropped onto its own line. */
+.ds-arch-glyph {
+  display: inline-grid;
+  width: max-content;
+  vertical-align: -0.15em;
+}
+
+.ds-arch-cards {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 1.5rem;
+}
+
+.ds-arch-card {
+  display: flex;
+  flex-direction: column;
+  padding: 1.6rem 1.5rem 1.5rem;
+  border: 1px solid var(--ds-solid-border);
+  border-radius: var(--radius-sm);
+  background: var(--ds-solid-bg);
+}
+
+/* The label sits tight under its glyph; the mark is the card's identifier,
+   so a gap between them would read as two separate things. */
+/* Set here rather than with a utility class: `.ds-arch-name` resets margin
+   with a shorthand at the same specificity, and won on source order, so an
+   `mt-4` on the element silently did nothing. */
+.ds-arch-card .ds-arch-name {
+  margin-top: 1.05rem;
+  font-size: 1rem;
+}
+
+.ds-arch-card .ds-arch-behaviour {
+  margin-top: 0.45rem;
+}
+
+.ds-arch-fields {
+  margin: 1.1rem 0 0;
+  padding-top: 1rem;
+  border-top: 1px solid color-mix(in oklab, var(--ds-accent-deep) 12%, transparent);
+  display: grid;
+  gap: 0.75rem;
+}
+
+.ds-arch-fields dt {
+  font-family: var(--font-mono), monospace;
+  font-size: 0.55rem;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  color: var(--ds-accent-deep);
+}
+
+.ds-arch-fields dd {
+  margin: 0.28rem 0 0;
+  font-size: 0.82rem;
+  line-height: 1.5;
+  color: var(--ink-soft);
+}
+
+@media (max-width: 1000px) {
+  .ds-arch-cards {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }

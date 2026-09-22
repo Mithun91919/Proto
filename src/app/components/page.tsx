@@ -56,6 +56,8 @@ import {
   ArchetypeContinuum,
   ArchetypeField,
   ArchetypeLanes,
+  ArchetypeGlyph,
+  ArchetypeCards,
   type Archetype,
 } from "@/components/design-system/ArchetypeFigure";
 import { ArchetypeSection } from "@/components/design-system/ArchetypeSection";
@@ -101,7 +103,9 @@ const DEMO_STAGES = ["Discover", "Design", "Validate", "Test", "Publish", "Gover
 const DEMO_ARCHETYPES: Archetype[] = [
   {
     name: "Service consumer",
-    behaviour: "Wants one service to work against. Judges fit, subscribes, and leaves.",
+    behaviour: "Arrives for one service, judges fit, subscribes, and leaves.",
+    wants: "To know whether a service fits before writing any integration code.",
+    friction: "Had to open three tools to answer one question about a service.",
     stages: [0, 3],
     depth: 0.82,
     side: "asks",
@@ -109,6 +113,8 @@ const DEMO_ARCHETYPES: Archetype[] = [
   {
     name: "Service owner",
     behaviour: "Publishes and maintains a service other teams depend on.",
+    wants: "To change a contract without breaking the teams already on it.",
+    friction: "No single place showed who depended on a service before a change.",
     stages: [1, 2, 4, 5],
     depth: 0.45,
     side: "answers",
@@ -116,12 +122,16 @@ const DEMO_ARCHETYPES: Archetype[] = [
   {
     name: "Contract specialist",
     behaviour: "Works the specification directly and wants the structure out of the way.",
+    wants: "To edit the spec itself, with validation that keeps up.",
+    friction: "Guided builders slowed down the people who least needed guiding.",
     stages: [1, 2, 3],
     depth: 0.05,
   },
   {
     name: "Platform administrator",
     behaviour: "Answers for the estate rather than any one service in it.",
+    wants: "To see standards holding across every service, not one at a time.",
+    friction: "Governance arrived late, when a contract was already in use.",
     stages: [0, 1, 2, 3, 4, 5],
     depth: 0.6,
   },
@@ -783,6 +793,46 @@ export default function ComponentsPage() {
             </p>
             <ArchetypeLanes archetypes={DEMO_ARCHETYPES} stages={DEMO_STAGES} />
           </div>
+
+          <div className="mt-12">
+            <p className="ds-eyebrow mb-1.5">F · Glyph — state, at icon size</p>
+            <p className="mb-6 max-w-[66ch] text-[0.88rem] leading-6" style={{ color: "var(--ink-soft)" }}>
+              One cell per stage, in order, filled where the type works — so the mark is the same
+              data the lanes draw, compressed. Not a shape picked to look distinct: two types with
+              different jobs cannot collide, and one who spans everything reads solid at a glance.
+              This is C6&apos;s fingerprint logic applied to people, and it is what earns C1 where
+              the arbitrary clusters in D do not.
+            </p>
+            <div className="flex flex-wrap items-end gap-x-10 gap-y-6">
+              {DEMO_ARCHETYPES.map((a) => (
+                <div key={a.name} className="flex flex-col gap-2.5">
+                  <ArchetypeGlyph archetype={a} stageCount={DEMO_STAGES.length} />
+                  <p className="font-mono text-[0.58rem] uppercase tracking-[0.07em]" style={{ color: "var(--muted)" }}>
+                    {a.name}
+                  </p>
+                </div>
+              ))}
+            </div>
+            <p className="mt-6 max-w-[66ch] text-[0.85rem] leading-6" style={{ color: "var(--ink-soft)" }}>
+              Because it is derived it travels: the same mark can sit inline beside a name later in
+              the case study — <ArchetypeGlyph archetype={DEMO_ARCHETYPES[2]} stageCount={DEMO_STAGES.length} size={5} gap={3} />{" "}
+              <span style={{ color: "var(--ink)" }}>the specialist path</span> — without dragging a
+              legend along behind it.
+            </p>
+          </div>
+
+          <div className="mt-12">
+            <p className="ds-eyebrow mb-1.5">G · Cards — the full statement</p>
+            <p className="mb-6 max-w-[66ch] text-[0.88rem] leading-6" style={{ color: "var(--ink-soft)" }}>
+              The standard persona template carries name, photo, demographics, goals, frustrations
+              and behaviours. Drop the invented character and the demographics that predict nothing
+              here, and what survives is behaviour, goal and friction. Friction is the field that
+              earns its place: every design decision on the page should be answerable to one of
+              them, and a friction nothing was designed against is a sign the segment was drawn for
+              tidiness.
+            </p>
+            <ArchetypeCards archetypes={DEMO_ARCHETYPES} stages={DEMO_STAGES} />
+          </div>
         </div>
 
         <div className="py-11">
@@ -805,7 +855,19 @@ export default function ComponentsPage() {
           </p>
 
           <div className="ds-rule mt-9 pb-11">
-            <p className="mb-8 font-mono text-[0.6rem] uppercase tracking-[0.06em]" style={{ color: "var(--ds-accent-deep)" }}>variant=&quot;lanes&quot; — the default</p>
+            <p className="mb-8 font-mono text-[0.6rem] uppercase tracking-[0.06em]" style={{ color: "var(--ds-accent-deep)" }}>variant=&quot;cards&quot; — the default</p>
+            <ArchetypeSection
+              heading="Four people arrive at this platform wanting different things"
+              intro="Named by what they do, not by an invented biography. The glyph on each card is that type's own coverage of the lifecycle, so the mark and the claim cannot drift apart."
+              archetypes={DEMO_ARCHETYPES}
+              stages={DEMO_STAGES}
+              variant="cards"
+              basis="Placeholder — replace with the real basis, e.g. 12 developer interviews, two rounds of usability testing."
+            />
+          </div>
+
+          <div className="ds-rule pt-11 pb-11">
+            <p className="mb-8 font-mono text-[0.6rem] uppercase tracking-[0.06em]" style={{ color: "var(--ds-accent-deep)" }}>variant=&quot;lanes&quot;</p>
             <ArchetypeSection
               heading="Four people arrive at this platform wanting different things"
               intro="The lifecycle is one path, but nobody walks all of it. What each type crosses without help is where the old tooling made them do the joining themselves."

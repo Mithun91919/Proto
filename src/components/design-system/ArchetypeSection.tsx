@@ -1,5 +1,6 @@
 import { Reveal } from "@/components/Reveal";
 import {
+  ArchetypeCards,
   ArchetypeCoverage,
   ArchetypeExchange,
   ArchetypeField,
@@ -22,8 +23,11 @@ import {
  * three times further down.
  *
  * `variant` picks the claim:
- * - `lanes`    — routes through a shared process, gaps included. The default,
- *                and the only one that shows what a type crosses unaided.
+ * - `cards`    — glyph, behaviour, goal and friction per type. The fullest
+ *                statement, and the one to reach for when the segments are
+ *                being introduced rather than referred back to.
+ * - `lanes`    — routes through a shared process, gaps included. The only
+ *                one that shows what a type crosses unaided.
  * - `coverage` — where each type works. Quieter than lanes; use when the
  *                gaps are not the story.
  * - `exchange` — two types who need each other. Two-sided products only.
@@ -38,9 +42,9 @@ type ArchetypeSectionProps = {
   /** One or two sentences. What the segmentation is for, not a list of it. */
   intro?: string;
   archetypes: Archetype[];
-  /** Required by `lanes` and `coverage`; ignored by the other two. */
+  /** Required by `cards`, `lanes` and `coverage`; ignored by the other two. */
   stages?: string[];
-  variant?: "lanes" | "coverage" | "exchange" | "field";
+  variant?: "cards" | "lanes" | "coverage" | "exchange" | "field";
   /**
    * Where the segments came from. Not decoration: an archetype with no stated
    * provenance is the thing a reader has learned to distrust, so the section
@@ -57,10 +61,10 @@ export function ArchetypeSection({
   intro,
   archetypes,
   stages = [],
-  variant = "lanes",
+  variant = "cards",
   basis,
 }: ArchetypeSectionProps) {
-  const needsStages = variant === "lanes" || variant === "coverage";
+  const needsStages = variant === "lanes" || variant === "coverage" || variant === "cards";
   // Falling back rather than rendering a broken grid: a caller who picks
   // `lanes` without stages gets the claim the data can actually support.
   const resolved = needsStages && stages.length === 0 ? "field" : variant;
@@ -79,6 +83,7 @@ export function ArchetypeSection({
 
       <Reveal>
         <div className="ds-arch-section-body">
+          {resolved === "cards" ? <ArchetypeCards archetypes={archetypes} stages={stages} /> : null}
           {resolved === "lanes" ? <ArchetypeLanes archetypes={archetypes} stages={stages} /> : null}
           {resolved === "coverage" ? (
             <ArchetypeCoverage archetypes={archetypes} stages={stages} />

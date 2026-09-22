@@ -26,6 +26,17 @@ export type Archetype = {
   name: string;
   /** The observed behaviour that separates this type from the others. */
   behaviour: string;
+  /**
+   * What they are trying to get done. The persona template's "goal", minus
+   * the biography around it.
+   */
+  wants?: string;
+  /**
+   * What got in the way. The field that earns its place: a design decision
+   * on the page should be answerable to one of these, and a friction nobody
+   * designed against is a sign the segment was drawn for tidiness.
+   */
+  friction?: string;
   /** Indices into `stages` this type works in. For `Coverage`. */
   stages?: number[];
   /** Position 0–1 on the axis a decision split. For `Continuum`. */
@@ -38,14 +49,15 @@ export type Archetype = {
 
 /**
  * Each type against a shared process, filled where it works and hollow where
- * it does not.
+ * it does not — with what got in the way alongside it.
  *
- * The most informative of the four, because the shape of each row *is* the
- * argument: two types whose rows barely overlap are two products waiting to
- * happen, and a row that spans everything is the person the platform was
- * really built for. It reuses the same stage list the page already draws as
- * a flow, so the reader is reading a second view of something known rather
- * than a new diagram.
+ * The shape of each row is half the argument: two types whose rows barely
+ * overlap are two products waiting to happen, and a row spanning everything
+ * is the person the platform was really built for. `Lanes` draws the same
+ * coverage more vividly, so what keeps this one distinct is the second half
+ * — it is the only variation wide enough to set coverage beside friction,
+ * which is the pairing a design decision answers to. The friction column
+ * appears only when the data carries it.
  */
 export function ArchetypeCoverage({
   archetypes,
@@ -54,10 +66,11 @@ export function ArchetypeCoverage({
   archetypes: Archetype[];
   stages: string[];
 }) {
+  const showFriction = archetypes.some((a) => a.friction);
   return (
-    <div className="ds-arch-coverage">
+    <div className="ds-arch-coverage" data-friction={showFriction ? "" : undefined}>
       <div className="ds-arch-cov-head" aria-hidden>
-        <span />
+        <span>Archetype</span>
         <div className="ds-arch-cov-stages">
           {stages.map((s) => (
             <span key={s} className="ds-arch-cov-stage">
@@ -65,6 +78,7 @@ export function ArchetypeCoverage({
             </span>
           ))}
         </div>
+        {showFriction ? <span>Friction</span> : null}
       </div>
       {archetypes.map((a) => (
         <div className="ds-arch-cov-row" key={a.name}>
@@ -89,6 +103,7 @@ export function ArchetypeCoverage({
               );
             })}
           </div>
+          {showFriction ? <p className="ds-arch-cov-friction">{a.friction}</p> : null}
         </div>
       ))}
     </div>
@@ -319,6 +334,109 @@ export function ArchetypeLanes({
           <span className="ds-arch-lane-seg is-crossed" /> crosses unaided
         </span>
       </p>
+    </div>
+  );
+}
+
+
+/* ── F · Glyph ─────────────────────────────────────────────────────────── */
+
+/**
+ * The archetype's coverage, compressed to an icon.
+ *
+ * Every cell is one stage of the shared process, in order, wrapped into a
+ * grid: filled where this type works, hollow where it does not. So the mark
+ * is not a shape chosen to look distinct — it is the same data the lanes
+ * draw, at the size of a bullet. Two types with different jobs cannot
+ * accidentally get the same glyph, and one that spans everything reads as
+ * solid at a glance.
+ *
+ * This is C6's fingerprint logic applied to people rather than projects: a
+ * tiny diagram derived from the thing's actual argument, never a decorative
+ * logo. It earns C1 on state, which the arbitrary clusters it replaces did
+ * not — those encoded nothing, which is the definition of decoration.
+ *
+ * Because it is derived, it travels: the same mark can sit inline beside the
+ * archetype's name later in a case study, so "the specialist path" carries
+ * its own identifier without a legend being repeated.
+ */
+export function ArchetypeGlyph({
+  archetype,
+  stageCount,
+  cols = 3,
+  size = 7,
+  gap = 4,
+}: {
+  archetype: Archetype;
+  stageCount: number;
+  cols?: number;
+  size?: number;
+  gap?: number;
+}) {
+  const stops = archetype.stages ?? [];
+  return (
+    <span
+      className="ds-arch-glyph"
+      style={{ gridTemplateColumns: `repeat(${cols}, ${size}px)`, gap: `${gap}px` }}
+      role="img"
+      aria-label={`${archetype.name}: works in ${stops.length} of ${stageCount} stages`}
+    >
+      {Array.from({ length: stageCount }).map((_, i) => (
+        <span
+          key={i}
+          className={`ds-arch-dot${stops.includes(i) ? "" : " is-off"}`}
+          style={{ width: size, height: size, "--dot-i": i } as CSSProperties}
+        />
+      ))}
+    </span>
+  );
+}
+
+/* ── G · Cards ─────────────────────────────────────────────────────────── */
+
+/**
+ * The card set: glyph, label, and the three fields an archetype actually
+ * needs.
+ *
+ * The standard persona template carries name, photo, demographics, goals,
+ * frustrations and behaviours. Strip the invented character and the
+ * demographics that do not predict anything here, and what survives is
+ * behaviour, goal and friction — which is what this renders. The usual
+ * warning applies: the point is not to fill every field, it is to carry the
+ * ones a design decision answers to.
+ */
+export function ArchetypeCards({
+  archetypes,
+  stages,
+}: {
+  archetypes: Archetype[];
+  stages: string[];
+}) {
+  return (
+    <div className="ds-arch-cards">
+      {archetypes.map((a) => (
+        <div className="ds-arch-card" key={a.name}>
+          <ArchetypeGlyph archetype={a} stageCount={stages.length} />
+          <p className="ds-arch-name">{a.name}</p>
+          <p className="ds-arch-behaviour">{a.behaviour}</p>
+          {a.wants || a.friction ? (
+            <dl className="ds-arch-fields">
+              {a.wants ? (
+                <div>
+                  <dt>Wants</dt>
+                  <dd>{a.wants}</dd>
+                </div>
+              ) : null}
+              {a.friction ? (
+                <div>
+                  <dt>Friction</dt>
+                  <dd>{a.friction}</dd>
+                </div>
+              ) : null}
+            </dl>
+          ) : null}
+        </div>
+      ))}
     </div>
   );
 }
