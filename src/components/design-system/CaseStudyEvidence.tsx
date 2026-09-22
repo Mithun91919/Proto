@@ -1,4 +1,5 @@
 import type { ReactNode } from "react";
+import { Reveal } from "@/components/Reveal";
 import { MetricGlyph } from "./MetricGlyph";
 import { DotGrid } from "./primitives/DotGrid";
 import { metricGlyph } from "@/components/FeaturedWorkCard";
@@ -39,7 +40,11 @@ export function CaseStudyEvidence({ slug, beats, metrics, caveat }: CaseStudyEvi
   if (!hasBeats && !hasMetrics) return null;
 
   return (
-    <div className="mx-auto w-full max-w-[85rem] px-5 md:px-8">
+    /* The shell renders this card directly, never inside a Reveal, so the
+       metric glyphs in it had no `is-visible` to ride and never animated.
+       It brings its own rather than asking every shell to remember. */
+    <Reveal>
+      <div className="mx-auto w-full max-w-[85rem] px-5 md:px-8">
       <div
         className="relative z-[1] overflow-hidden rounded-2xl"
         style={{
@@ -121,6 +126,7 @@ export function CaseStudyEvidence({ slug, beats, metrics, caveat }: CaseStudyEvi
           </div>
         ) : null}
       </div>
-    </div>
+      </div>
+    </Reveal>
   );
 }

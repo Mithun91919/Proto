@@ -24,7 +24,12 @@ type MetricGlyphProps = {
 export function MetricGlyph({ name, labelled = false, size = 6, gap = 4 }: MetricGlyphProps) {
   return (
     <div>
-      <DotGrid cols={5} size={size} gap={gap} dots={markDots(name)} />
+      {/* `ds-dot-mark` is the entrance-animation hook, baked in here the way
+          CompactMetricGlyph bakes in `ds-compact-mark`. Without it the 5x5
+          glyph was the only dot mark on the site that never drew itself. */}
+      <span className="ds-dot-mark" aria-hidden>
+        <DotGrid cols={5} size={size} gap={gap} dots={markDots(name)} />
+      </span>
       {labelled ? (
         <>
           <p className="ds-eyebrow mt-4" style={{ color: "var(--ink)" }}>
