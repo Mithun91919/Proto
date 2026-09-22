@@ -79,12 +79,6 @@ export function FeaturedWorkCard({ project }: { project: Project }) {
           >
             {project.number} · {project.label}
           </span>
-          <span
-            className="absolute bottom-4 right-4 rounded-full px-3 py-1 font-mono text-[0.62rem] uppercase tracking-[0.12em]"
-            style={{ background: "var(--ds-dark)", color: "var(--ds-mint)" }}
-          >
-            {project.timeframe}
-          </span>
         </div>
         <div className="flex flex-1 flex-col p-7">
           {/* Provenance above the title, where it gets read first — who the
@@ -109,14 +103,23 @@ export function FeaturedWorkCard({ project }: { project: Project }) {
           <div className="mt-6 border-t pt-5" style={{ borderColor: "var(--line)" }}>
             <MetricRow project={project} />
           </div>
-          <div className="mt-5 flex items-center justify-between">
-            <ul className="tag-list">
-              {project.tags.slice(0, 2).map((t) => (
-                <li key={t} className="tag">
-                  {t}
-                </li>
-              ))}
-            </ul>
+          {/* The timeframe used to sit as a pill over the artwork, where it
+              fought the media for attention and needed a dark chip to stay
+              legible. It belongs with the other card metadata: same row as
+              the tags, grouped left so the arrow keeps the right edge. */}
+          <div className="mt-5 flex items-center justify-between gap-4">
+            <div className="flex flex-wrap items-center gap-x-3 gap-y-2">
+              <span className="font-mono text-[0.62rem] uppercase tracking-[0.14em] text-[var(--muted)]">
+                {project.timeframe}
+              </span>
+              <ul className="tag-list">
+                {project.tags.slice(0, 2).map((t) => (
+                  <li key={t} className="tag">
+                    {t}
+                  </li>
+                ))}
+              </ul>
+            </div>
             <span
               className="ds-arrow text-xl transition-transform duration-300 group-hover:translate-x-1"
               style={{ color: "var(--accent-deep)" }}
