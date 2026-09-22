@@ -20,7 +20,7 @@ import { getProject } from "@/content/projects";
  * Prose verbatim from `projects/api-lifecycle/web/*.md`.
  *
  * Twelve anonymised captures of the shipped interface now carry the product
- * beats: a fanned deck of the three pillars in the hero, the entry point as
+ * beats: a fanned deck of the shipped areas in the hero, the entry point as
  * a single artboard, and one carousel per pillar. Beats asking for a diagram
  * are still reconstructed in the dot language.
  */
@@ -28,7 +28,7 @@ import { getProject } from "@/content/projects";
 export const metadata: Metadata = {
   title: "API Lifecycle Platform — One place to discover, design, test, and govern APIs",
   description:
-    "A connected developer platform organised around three jobs: Marketplace, Design Studio, and Testing.",  robots: caseStudyRobots,
+    "One developer platform for the whole API lifecycle — find a service, design its contract, test it, subscribe to it, keep it governed.",  robots: caseStudyRobots,
 };
 
 const LIFECYCLE = ["Discovery", "Contract design", "Validation", "Testing", "Publishing", "Governance"];
@@ -38,8 +38,9 @@ const SURFACE_PATH = ["UI platform", "Shared capability", "Conversational / tool
 const CHAPTERS = [
   { id: "overview", label: "Overview" },
   { id: "fragmented", label: "The fragmentation" },
-  { id: "marketplace", label: "Marketplace" },
-  { id: "studio", label: "Design Studio" },
+  { id: "one-platform", label: "One platform" },
+  { id: "marketplace", label: "Finding a service" },
+  { id: "studio", label: "Designing a contract" },
   { id: "testing", label: "Testing" },
   { id: "adoption", label: "Adoption" },
   { id: "infrastructure", label: "Infrastructure" },
@@ -72,7 +73,7 @@ export default function ApiLifecyclePage() {
             </>
           ),
           detail:
-            "The brief was not another API tool: one platform organised around three jobs — Marketplace, Design Studio and Testing — that still gives specialists the deeper control they need.",
+            "Not another API tool. One platform covering the whole lifecycle \u2014 and one product, not the three separate ones the early model called for.",
         },
         {
           label: "What I did",
@@ -82,7 +83,7 @@ export default function ApiLifecyclePage() {
             </>
           ),
           detail:
-            "I shaped the model as the three pillars took shape, then ran the weekly sessions that got teams onto it after a launch almost nobody turned up to \u2014 over a hundred of them, and the product grew from my first year on it to my fourth.",
+            "I shaped the product model, argued three planned products down to one, then ran the weekly sessions that got teams onto it after a launch almost nobody turned up to \u2014 over a hundred of them, and the product grew from my first year on it to my fourth.",
         },
       ]}
       chapters={CHAPTERS}
@@ -180,19 +181,32 @@ export default function ApiLifecyclePage() {
           </CaseStudyFigure>
         </CaseStudySection>
 
+        <CaseStudySection id="one-platform">
+          <CaseStudyChapter
+            layout="stacked"
+            eyebrow="One platform"
+            heading="Three products would have rebuilt the problem we were solving"
+            body={[
+              "The early model gave each job its own product: a marketplace to find services, a studio to design contracts, a tester to check them. Three names, three destinations, three things to learn.",
+              "I argued against it. The problem we had been given was that the lifecycle was spread across separate tools; shipping three of our own would have reproduced that with better styling, and an engineer would still have been the one carrying context between them.",
+              "So it ships as one place. API Hub, with Home, My APIs, Testing, Subscriptions and Settings \u2014 areas of a product rather than products. The jobs are all still there. What is gone is having to know which tool a job belongs to before you can start it.",
+            ]}
+          />
+        </CaseStudySection>
+
         <CaseStudySection id="marketplace">
           <CaseStudyChapter
-            eyebrow="Marketplace"
-            heading="Marketplace made APIs understandable before they were consumed"
+            eyebrow="Finding a service"
+            heading="A service had to be understandable before anyone consumed it"
             body={[
               "Discovery needed to answer more than “does this API exist?”",
               "Engineers needed to understand what a service did, whether it was appropriate for their use case, how to subscribe, and where to find the technical information required to begin using it.",
-              "Marketplace brought search, service details, subscriptions, and exploration into one entry point so evaluation could happen before integration work began.",
+              "Search, the service detail, and the subscription request all sit on the same path, so an engineer can judge whether a service fits before any integration work starts. Search leads rather than a category tree: with this many services, browsing to a specific one took too many steps to be worth keeping.",
             ]}
           />
           <CaseStudyFigure label="Search, then the service, then a subscription">
             <ArtboardCarousel
-              label="The discovery path through Marketplace"
+              label="The discovery path"
               slides={[
                 {
                   src: "/work/api-lifecycle/search-results.png",
@@ -223,8 +237,8 @@ export default function ApiLifecyclePage() {
         <CaseStudySection id="studio">
           <CaseStudyChapter
             layout="stacked"
-            eyebrow="Design Studio"
-            heading="Design Studio had to work for beginners and experts at the same time"
+            eyebrow="Designing a contract"
+            heading="Contract design had to work for beginners and experts at the same time"
             body={[
               "API contract design exposed one of the platform’s hardest interaction problems.",
               "Some engineers were comfortable working directly in YAML or JSON. Others needed a structured interface that made the schema easier to understand and create.",
@@ -234,7 +248,7 @@ export default function ApiLifecyclePage() {
           />
           <CaseStudyFigure label="Two editors over one contract">
             <ArtboardCarousel
-              label="The Design Studio editors"
+              label="The two editors"
               slides={[
                 {
                   src: "/work/api-lifecycle/spec-editor.png",
@@ -315,10 +329,10 @@ export default function ApiLifecyclePage() {
             eyebrow="Adoption"
             heading="It shipped, and almost nobody came"
             body={[
-              "Adoption after launch was very low. The platform worked, the three pillars were in place, and engineering teams carried on with the tools they already had. Nobody was going to read an announcement and change how they built services.",
+              "Adoption after launch was very low. The platform worked, every area was in place, and engineering teams carried on with the tools they already had. Nobody was going to read an announcement and change how they built services.",
               "So we started running a brown-bag session every week: show the product to one team, watch where they got stuck, answer the workflow questions that an announcement cannot. We have run more than a hundred of them, averaging over sixty people a session.",
               "That is what moved it. Teams onboarded and kept using it, and the sessions turned into a channel \u2014 feedback and suggestions started arriving through Slack and support rather than having to be chased.",
-              "It also fed the design. Terminology, interactions and guidance changed on what the sessions surfaced, and it mattered most in Design Studio, where teams on the redesigned experience measured a ~40% reduction in contract design time.",
+              "It also fed the design. Terminology, interactions and guidance changed on what the sessions surfaced, and it mattered most in contract design, where teams on the redesigned editors measured a ~40% reduction in the time it took.",
             ]}
           />
           <CaseStudyFigure rule label="The adoption loop">

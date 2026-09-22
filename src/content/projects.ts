@@ -116,7 +116,7 @@ export const projects: Project[] = [
       "API Lifecycle Platform: one place to discover, design, test, and govern APIs.",
     internalName: "API Lifecycle Manager",
     summary:
-      "API development was spread across disconnected documentation, design, testing, and subscription workflows. I helped define and design a platform built around three core experiences: Marketplace, Design Studio, and Testing.",
+      "API development was spread across disconnected documentation, design, testing, and subscription workflows. I helped define and design one platform that carries all of it, and argued down an early model that would have shipped three separate products instead.",
     outcome:
       "15K+ APIs onboarded · 10K+ monthly users · ~40% faster contract design in the redesigned Studio",
     metrics: [
@@ -149,7 +149,7 @@ export const projects: Project[] = [
       },
       {
         label: "Intervention",
-        detail: "Marketplace, Design Studio, and Testing as one lifecycle",
+        detail: "One platform: find a service, design its contract, test it, subscribe",
       },
       {
         label: "After",
