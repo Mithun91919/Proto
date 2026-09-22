@@ -43,7 +43,13 @@ export function ScrollFrame({
       const leaving = (atEnd && event.deltaY > 0) || (atTop && event.deltaY < 0);
       if (!leaving) return;
       event.preventDefault();
-      window.scrollBy(0, event.deltaY);
+      // `behavior: "instant"` because the document sets `scroll-behavior:
+      // smooth`. Under it each scrollBy retargets the animation already in
+      // flight from wherever it has reached, so successive wheel ticks
+      // collapse instead of accumulating — four ticks moved the page 28px
+      // where they should have moved it several hundred. Forwarding a wheel
+      // delta is not a jump to somewhere; it is the scroll itself, 1:1.
+      window.scrollBy({ top: event.deltaY, behavior: "instant" });
     };
 
     // Not passive: the whole point is to preventDefault at the boundary.

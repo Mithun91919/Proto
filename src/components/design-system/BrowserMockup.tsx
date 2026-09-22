@@ -77,6 +77,14 @@ export function BrowserMockup({
 
         <div className="ds-framebody relative">
           <Wrapper>
+            {/* The hotspot layer positions its dots in % of this box, so the
+                box has to be the image and nothing else. Left to resolve
+                against `.ds-framebody` they measured against the frame's
+                visible height instead of the capture's full height — a dot at
+                61% landed at 61% of 640px rather than of 799 — and, being
+                outside the scrolled content, they would not have travelled
+                with the screenshot either. */}
+            <div className="relative">
             <Image
               src={src}
               width={width}
@@ -86,6 +94,7 @@ export function BrowserMockup({
               className="block h-auto w-full"
             />
             {hotspots?.length ? <ImageHotspots hotspots={hotspots} /> : null}
+            </div>
           </Wrapper>
 
           {scrollable ? (

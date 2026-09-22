@@ -2034,6 +2034,27 @@
   margin: 3.5rem 0 0;
 }
 
+
+/* Copy one side, media the other. The figure's 3.5rem top margin is right
+   when it follows prose in a single column and wrong when it sits beside it:
+   it pushed the media down by its own gap so the two columns started on
+   different horizons. Inside a split the media aligns to the heading. */
+.ds-cs-split {
+  display: grid;
+  gap: 2rem 3rem;
+  align-items: start;
+}
+
+@media (min-width: 768px) {
+  .ds-cs-split {
+    grid-template-columns: minmax(0, 19rem) minmax(0, 1fr);
+  }
+}
+
+.ds-cs-split .ds-cs-figure {
+  margin-top: 0;
+}
+
 .ds-cs-figure.has-rule {
   border-top: 1px solid var(--line);
   padding-top: 2.5rem;

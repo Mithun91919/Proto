@@ -191,7 +191,7 @@ export default function ApiLifecyclePage() {
               it as a preamble; beside it the two read as one statement. The
               text column is deliberately narrow — the screen is a dense
               dashboard and every rem taken from it costs legibility. */}
-          <div className="grid gap-x-12 gap-y-8 md:grid-cols-[minmax(0,19rem)_minmax(0,1fr)] md:items-start">
+          <div className="ds-cs-split">
             <CaseStudyChapter
               layout="flow"
               eyebrow="The way in"
@@ -205,7 +205,12 @@ export default function ApiLifecyclePage() {
                 place. Laid out flat it was either 1131px tall at column width
                 or shrunk to 640px, where the Get Started cards stop being
                 readable — and reading them is the entire point of the shot. */}
-            <CaseStudyFigure label="API Hub, home">
+            {/* No label: it pushed the frame down by its own height and
+                half a rule, so the screen started below the heading beside
+                it. Unlabelled, the frame top meets the eyebrow and the two
+                columns share one horizon. The route pill in the chrome
+                already names the screen. */}
+            <CaseStudyFigure>
               <BrowserMockup
                 route="/api-hub"
                 src="/work/api-lifecycle/home.png"
@@ -214,6 +219,26 @@ export default function ApiLifecyclePage() {
                 scrollable
                 maxHeight="40rem"
                 alt="API Hub home: search across services, then eight Get Started routes — import, define, manage subscriptions, generate code, register a service, generate docs, monitor, and publish to the marketplace"
+                hotspots={[
+                  {
+                    x: 59,
+                    y: 22,
+                    title: "Search first",
+                    detail: "Above the routes, not inside them. Someone who already knows the service they want never has to browse for it.",
+                  },
+                  {
+                    x: 59,
+                    y: 39,
+                    title: "Eight ways to start",
+                    detail: "Import, define, subscribe, generate a client, register, document, monitor, publish. The routes are the things people arrive wanting to do, not a map of the product.",
+                  },
+                  {
+                    x: 65,
+                    y: 61,
+                    title: "Governance on the way in",
+                    detail: "Linting and standards sit on the home screen, so a contract is checked while it is being written rather than at a gate after it.",
+                  },
+                ]}
                 caption="Search sits above the routes, so someone who already knows the service they want never has to browse for it."
               />
             </CaseStudyFigure>
