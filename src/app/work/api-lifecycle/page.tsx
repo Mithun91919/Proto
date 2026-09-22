@@ -60,22 +60,23 @@ export default function ApiLifecyclePage() {
           label: "The problem",
           lead: (
             <>
-              Engineers switched tools at <span className="ds-accent-deep-text">every stage</span> of
-              an API&apos;s life.
+              Engineers worked in <span className="ds-accent-deep-text">external tools</span> nobody
+              governed.
             </>
           ),
           detail:
-            "Engineers discovered services in one place, designed contracts in another, tested through separate utilities, and met governance late. When each stage lives in a different product, the engineer has to reconstruct the lifecycle themselves.",
+            "Discovery, contract design and testing all ran on tools outside the company, and there was no governed way of working across them. Standards were met at the end, if at all \u2014 usually once a contract was already in use.",
         },
         {
           label: "The solution",
           lead: (
             <>
-              One platform for <span className="ds-accent-deep-text">the whole lifecycle</span>, not three.
+              One platform, with{" "}
+              <span className="ds-accent-deep-text">governance built into it</span>.
             </>
           ),
           detail:
-            "Not another API tool, and not the three separate products the early model called for \u2014 one place carrying every stage.",
+            "Not another external dependency. One place carrying every stage, with governance integrated into the work rather than waiting at the end of it.",
         },
         {
           label: "What I did",
@@ -85,13 +86,13 @@ export default function ApiLifecyclePage() {
             </>
           ),
           detail:
-            "I shaped the product model, argued three planned products down to one, then ran the weekly sessions that got teams onto it after a launch almost nobody turned up to \u2014 over a hundred of them, and the product grew from my first year on it to my fourth.",
+            "I shaped the product model, moved it from an initial three-stream concept to a single platform with the controls integrated, then ran the weekly sessions that got teams onto it after a launch almost nobody turned up to \u2014 over a hundred of them, and the product grew from my first year on it to my fourth.",
         },
       ]}
       chapters={CHAPTERS}
       hero={{
         standfirst:
-          "The internal platform Walmart engineers use to find a service, agree its contract, test it, and keep it governed — three jobs that used to live in three different tools.",
+          "The internal platform Walmart engineers use to find a service, agree its contract, test it, and keep it governed — work that used to depend on outside tools with no governed way through them.",
         headline: (
           <>
             API Lifecycle Platform: <span style={{ color: "var(--ds-mint)" }}>one place</span> to discover, design, test, and govern APIs.
@@ -173,8 +174,8 @@ export default function ApiLifecyclePage() {
             heading="The lifecycle was connected in theory, fragmented in practice"
             body={[
               "An API moves through discovery, contract design, validation, testing, publishing, subscription, governance, and eventually change or deprecation.",
-              "When each stage lives in a different product, engineers have to reconstruct that lifecycle themselves.",
-              "The opportunity was not to add another API tool. It was to create one product model that could carry engineers through the lifecycle while still supporting specialists who needed deeper control.",
+              "When those stages run on tools the company does not own, and nothing governs the path between them, engineers reconstruct the lifecycle themselves every time.",
+              "The opportunity was not to add another API tool. It was one product model carrying engineers through the whole lifecycle, with the controls part of the path rather than a gate at the end \u2014 and still enough depth for specialists.",
             ]}
           />
           <CaseStudyFigure rule label="The lifecycle an engineer has to reconstruct">
@@ -218,11 +219,11 @@ export default function ApiLifecyclePage() {
           <CaseStudyChapter
             layout="stacked"
             eyebrow="One platform"
-            heading="Three products would have rebuilt the problem we were solving"
+            heading="Three streams would have rebuilt the problem we were solving"
             body={[
-              "The early model gave each job its own product: a marketplace to find services, a studio to design contracts, a tester to check them. Three names, three destinations, three things to learn.",
-              "I argued against it. The problem we had been given was that the lifecycle was spread across separate tools; shipping three of our own would have reproduced that with better styling, and an engineer would still have been the one carrying context between them.",
-              "So it ships as one place. API Hub, with Home, My APIs, Testing, Subscriptions and Settings \u2014 areas of a product rather than products. The jobs are all still there. What is gone is having to know which tool a job belongs to before you can start it.",
+              "The initial concept split the work into three streams: a marketplace to find services, a studio to design contracts, a tester to check them. Three names, three destinations, three things to learn.",
+              "I moved the product away from it. What we had been asked to fix was a dependence on outside tools with nothing governing the path between them; three streams of our own would have reproduced that shape, and an engineer would still have carried the context across.",
+              "So it ships as one place. API Hub, with Home, My APIs, Testing, Subscriptions and Settings \u2014 areas of a product rather than products, and the controls integrated into them rather than met at the end. What is gone is having to leave the platform, or work out which tool a job belongs to before starting it.",
             ]}
           />
         </CaseStudySection>
