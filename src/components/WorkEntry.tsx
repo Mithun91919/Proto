@@ -2,7 +2,6 @@ import Link from "next/link";
 import type { CSSProperties } from "react";
 import { ProjectMedia } from "@/components/ProjectMedia";
 import { Chip } from "@/components/design-system/primitives/Chip";
-import { CompactNumeral } from "@/components/design-system/CompactNumeral";
 import { MetricRow } from "@/components/design-system/MetricRow";
 import { projectPlatforms } from "@/content/work-filters";
 import { orgLogo } from "@/content/work-page";
@@ -19,17 +18,17 @@ type WorkEntryProps = {
 };
 
 /**
- * C · Alternating index row — one of six layouts compared live at
- * `/work/layout-options`; picked for the work page's main list.
+ * C · Alternating index row — the work page's main list.
  *
- * On `full` emphasis, the row number leads as a `CompactNumeral` (3×5)
- * rather than the S6 display numeral (4×7, built to lead a full editorial
- * row, not a compact one) or the earlier `FeaturedGlyph` system-shape
- * mark. `quiet` rows drop it — they're already de-emphasized down to a
- * single metric line, and a full identity numeral on top of that fought
- * its own point. Source order is number → title → body → media, which is
- * the reading order on mobile; the grid moves media beside the text from
- * `md` up and swaps side via `reverse`.
+ * The row leads on the org: its mark at 1.65rem with the name in ink,
+ * because who the work was for is the first thing a reader weighs. Domain
+ * and platform sit on the artwork instead, where they read as context
+ * rather than credential, the way the home cards carry theirs.
+ *
+ * `emphasis` now only governs the metrics: `full` gets the glyph row,
+ * `quiet` a single text line. Source order is text → media, which is the
+ * reading order when the grid collapses; from `md` the media moves beside
+ * it and swaps side via `reverse`.
  */
 export function WorkEntry({ project, reverse = false, emphasis = "full" }: WorkEntryProps) {
   // Org first, then sector + surface. The org is the credibility signal a
@@ -73,13 +72,13 @@ export function WorkEntry({ project, reverse = false, emphasis = "full" }: WorkE
         }`}
       >
         <div>
-          {/* The org lockup. The mark runs at 1.65rem against the 0.78rem it
-              had inside a chip, and the name is in ink rather than muted —
-              who the work was for is the first thing a reader weighs. The
-              dot numeral keeps it company; it is quiet enough not to
-              compete. */}
+          {/* The org lockup, alone at the head of the row. A CompactNumeral
+              used to sit beside it: a 3x5 dot font, correct by C9 and
+              unreadable by design at that size, which was fine while it was
+              the only mark here and not fine once the logo arrived to do the
+              same job better. It also communicated identity, which is not
+              one of the five things C1 lets a dot say. */}
           <div className="flex flex-wrap items-center gap-x-4 gap-y-2">
-            {emphasis === "full" ? <CompactNumeral value={project.number} /> : null}
             <span className="flex items-center gap-2.5">
               {logo ? (
                 // eslint-disable-next-line @next/next/no-img-element
