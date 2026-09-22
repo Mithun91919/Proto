@@ -106,10 +106,20 @@ export default function WorkPage() {
           lede="Every project on this page, not a curated sample — consumer, commerce, enterprise, and developer work."
         />
 
-        <div className="mt-12 flex flex-col gap-16 md:mt-14 md:gap-24">
+        {/* The gap carries half the separation and the boundary's own top
+            padding carries the other half, so the rule lands in the middle
+            of the space rather than hugging the row above it — which is
+            what made the first attempt at a divider read as a stray line.
+            B4 major, not minor: the dot cluster anchors it at the left
+            edge so it reads as a deliberate mark rather than a hairline
+            that ran out. Not on the first row; the section head is already
+            its boundary. */}
+        <div className="mt-12 flex flex-col gap-20 md:mt-14 md:gap-28">
           {[...featured, ...more].map((project, index) => (
             <Reveal key={project.slug} delay={index * 70}>
-              <WorkEntry project={project} reverse={index % 2 === 1} />
+              <div className={index > 0 ? "ds-section-boundary pt-20 md:pt-28" : ""}>
+                <WorkEntry project={project} reverse={index % 2 === 1} />
+              </div>
             </Reveal>
           ))}
         </div>
