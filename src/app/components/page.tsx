@@ -52,9 +52,7 @@ import { HoverLanguageDemo, ChapterProgressDemo, MotionTimingGrid, ReducedMotion
 import { MarkMotionGallery, MotionInventory } from "@/components/design-system/MotionCatalogue";
 import {
   ArchetypeCoverage,
-  ArchetypeExchange,
   ArchetypeContinuum,
-  ArchetypeField,
   ArchetypeLanes,
   ArchetypeGlyph,
   ArchetypeCards,
@@ -108,7 +106,6 @@ const DEMO_ARCHETYPES: Archetype[] = [
     friction: "Had to open three tools to answer one question about a service.",
     stages: [0, 3],
     depth: 0.82,
-    side: "asks",
   },
   {
     name: "Service owner",
@@ -117,7 +114,6 @@ const DEMO_ARCHETYPES: Archetype[] = [
     friction: "No single place showed who depended on a service before a change.",
     stages: [1, 2, 4, 5],
     depth: 0.45,
-    side: "answers",
   },
   {
     name: "Contract specialist",
@@ -746,67 +742,11 @@ export default function ComponentsPage() {
           </div>
 
           <div className="mt-9">
-            <p className="ds-eyebrow mb-1.5">A · Coverage — state</p>
-            <p className="mb-6 max-w-[62ch] text-[0.88rem] leading-6" style={{ color: "var(--ink-soft)" }}>
-              Each type against a shared process. The most informative of the four: two rows that
-              barely overlap are two products waiting to happen, and a row spanning everything is
-              the person the platform was really for.
-            </p>
-            <ArchetypeCoverage archetypes={DEMO_ARCHETYPES} stages={DEMO_STAGES} />
-          </div>
-
-          <div className="mt-12">
-            <p className="ds-eyebrow mb-1.5">B · Exchange — connection</p>
-            <p className="mb-6 max-w-[62ch] text-[0.88rem] leading-6" style={{ color: "var(--ink-soft)" }}>
-              Two types who need each other. Only for a genuinely two-sided product — a request with
-              a reviewer, a hand-off, an approval. It says the thing the others cannot: neither
-              job is complete alone.
-            </p>
-            <ArchetypeExchange archetypes={DEMO_ARCHETYPES} />
-          </div>
-
-          <div className="mt-12">
-            <p className="ds-eyebrow mb-1.5">C · Continuum — position</p>
-            <p className="mb-6 max-w-[62ch] text-[0.88rem] leading-6" style={{ color: "var(--ink-soft)" }}>
-              The types along the one axis a decision split on. Use it when a single decision is why
-              the segments were drawn at all — it makes that decision read as a response to a
-              spread rather than a preference.
-            </p>
-            <ArchetypeContinuum
-              archetypes={DEMO_ARCHETYPES}
-              from="Works the spec directly"
-              to="Needs the structure drawn"
-            />
-          </div>
-
-          <div className="mt-12">
-            <p className="ds-eyebrow mb-1.5">D · Field — grouping</p>
-            <p className="mb-6 max-w-[62ch] text-[0.88rem] leading-6" style={{ color: "var(--ink-soft)" }}>
-              The honest minimum: these are distinct populations, and nothing further is claimed.
-              Cluster shape is a vocabulary, not a quantity — relative size is a number, and drawing
-              one unmeasured would be inventing a metric in dots.
-            </p>
-            <ArchetypeField archetypes={DEMO_ARCHETYPES} />
-          </div>
-
-          <div className="mt-12">
-            <p className="ds-eyebrow mb-1.5">E · Lanes — connection + state</p>
-            <p className="mb-6 max-w-[62ch] text-[0.88rem] leading-6" style={{ color: "var(--ink-soft)" }}>
-              The one the others cannot make. Coverage says where a type works; lanes say what they
-              cross to get there. A long hollow span in the middle of a lane is a hand-off nobody
-              owns — usually the finding worth putting on a page.
-            </p>
-            <ArchetypeLanes archetypes={DEMO_ARCHETYPES} stages={DEMO_STAGES} />
-          </div>
-
-          <div className="mt-12">
-            <p className="ds-eyebrow mb-1.5">F · Glyph — state, at icon size</p>
+            <p className="ds-eyebrow mb-1.5">A · Glyph — the mark</p>
             <p className="mb-6 max-w-[66ch] text-[0.88rem] leading-6" style={{ color: "var(--ink-soft)" }}>
-              One cell per stage, in order, filled where the type works — so the mark is the same
-              data the lanes draw, compressed. Not a shape picked to look distinct: two types with
-              different jobs cannot collide, and one who spans everything reads solid at a glance.
-              This is C6&apos;s fingerprint logic applied to people, and it is what earns C1 where
-              the arbitrary clusters in D do not.
+              One cell per stage, in order, filled where the type works. Derived, not drawn: two
+              types with different jobs cannot collide, and one who spans everything reads solid.
+              Everything below is built from it.
             </p>
             <div className="flex flex-wrap items-end gap-x-10 gap-y-6">
               {DEMO_ARCHETYPES.map((a) => (
@@ -819,24 +759,56 @@ export default function ComponentsPage() {
               ))}
             </div>
             <p className="mt-6 max-w-[66ch] text-[0.85rem] leading-6" style={{ color: "var(--ink-soft)" }}>
-              Because it is derived it travels: the same mark can sit inline beside a name later in
-              the case study — <ArchetypeGlyph archetype={DEMO_ARCHETYPES[2]} stageCount={DEMO_STAGES.length} size={5} gap={3} />{" "}
-              <span style={{ color: "var(--ink)" }}>the specialist path</span> — without dragging a
-              legend along behind it.
+              Because it is derived it travels — inline beside a name later in the case study,{" "}
+              <ArchetypeGlyph archetype={DEMO_ARCHETYPES[2]} stageCount={DEMO_STAGES.length} size={5} gap={3} />{" "}
+              <span style={{ color: "var(--ink)" }}>the specialist path</span>, with no legend
+              following it around.
             </p>
           </div>
 
           <div className="mt-12">
-            <p className="ds-eyebrow mb-1.5">G · Cards — the full statement</p>
+            <p className="ds-eyebrow mb-1.5">B · Cards — the full statement</p>
             <p className="mb-6 max-w-[66ch] text-[0.88rem] leading-6" style={{ color: "var(--ink-soft)" }}>
-              The standard persona template carries name, photo, demographics, goals, frustrations
-              and behaviours. Drop the invented character and the demographics that predict nothing
-              here, and what survives is behaviour, goal and friction. Friction is the field that
-              earns its place: every design decision on the page should be answerable to one of
-              them, and a friction nothing was designed against is a sign the segment was drawn for
-              tidiness.
+              The default. Strip a persona of its invented character and the demographics that
+              predict nothing here, and what survives is behaviour, goal and friction. Friction
+              earns its place: a design decision should be answerable to one, and a friction
+              nothing was designed against means the segment was drawn for tidiness.
             </p>
             <ArchetypeCards archetypes={DEMO_ARCHETYPES} stages={DEMO_STAGES} />
+          </div>
+
+          <div className="mt-12">
+            <p className="ds-eyebrow mb-1.5">C · Lanes — what they cross unaided</p>
+            <p className="mb-6 max-w-[66ch] text-[0.88rem] leading-6" style={{ color: "var(--ink-soft)" }}>
+              The one nothing else can say. Solid is a stretch worked through, hollow is ground
+              crossed without the product helping. A long hollow span mid-lane is a hand-off nobody
+              owns — usually the finding worth putting on a page.
+            </p>
+            <ArchetypeLanes archetypes={DEMO_ARCHETYPES} stages={DEMO_STAGES} />
+          </div>
+
+          <div className="mt-12">
+            <p className="ds-eyebrow mb-1.5">D · Table — coverage beside friction</p>
+            <p className="mb-6 max-w-[66ch] text-[0.88rem] leading-6" style={{ color: "var(--ink-soft)" }}>
+              Lanes draws coverage more vividly, so what keeps the table is being the one layout
+              wide enough to set coverage against what got in the way — the pairing a design
+              decision answers to. The friction column appears only when the data carries it.
+            </p>
+            <ArchetypeCoverage archetypes={DEMO_ARCHETYPES} stages={DEMO_STAGES} />
+          </div>
+
+          <div className="mt-12">
+            <p className="ds-eyebrow mb-1.5">E · Continuum — the axis a decision split on</p>
+            <p className="mb-6 max-w-[66ch] text-[0.88rem] leading-6" style={{ color: "var(--ink-soft)" }}>
+              Inline, not a section. Use it inside the chapter whose decision turned on a spread —
+              two editors, two levels of disclosure — so the decision reads as a response to the
+              spread rather than a preference.
+            </p>
+            <ArchetypeContinuum
+              archetypes={DEMO_ARCHETYPES}
+              from="Works the spec directly"
+              to="Needs the structure drawn"
+            />
           </div>
         </div>
 
@@ -859,38 +831,13 @@ export default function ComponentsPage() {
             Rule · one section per case study · near the top · state the basis
           </p>
 
-          <div className="ds-rule mt-9 pb-11">
-            <p className="mb-8 font-mono text-[0.6rem] uppercase tracking-[0.06em]" style={{ color: "var(--ds-accent-deep)" }}>variant=&quot;cards&quot; — the default</p>
+          <div className="mt-9">
             <ArchetypeSection
               heading="Four people arrive at this platform wanting different things"
               intro="Named by what they do, not by an invented biography. The glyph on each card is that type's own coverage of the lifecycle, so the mark and the claim cannot drift apart."
               archetypes={DEMO_ARCHETYPES}
               stages={DEMO_STAGES}
-              variant="cards"
               basis="Placeholder — replace with the real basis, e.g. 12 developer interviews, two rounds of usability testing."
-            />
-          </div>
-
-          <div className="ds-rule pt-11 pb-11">
-            <p className="mb-8 font-mono text-[0.6rem] uppercase tracking-[0.06em]" style={{ color: "var(--ds-accent-deep)" }}>variant=&quot;lanes&quot;</p>
-            <ArchetypeSection
-              heading="Four people arrive at this platform wanting different things"
-              intro="The lifecycle is one path, but nobody walks all of it. What each type crosses without help is where the old tooling made them do the joining themselves."
-              archetypes={DEMO_ARCHETYPES}
-              stages={DEMO_STAGES}
-              variant="lanes"
-              basis="Placeholder — replace with the real basis, e.g. 12 developer interviews, two rounds of usability testing."
-            />
-          </div>
-
-          <div className="pt-11">
-            <p className="mb-8 font-mono text-[0.6rem] uppercase tracking-[0.06em]" style={{ color: "var(--ds-accent-deep)" }}>variant=&quot;field&quot; — the honest fallback</p>
-            <ArchetypeSection
-              heading="Four types, and no claim beyond that"
-              intro="When the research supports naming the segments but not mapping them, this is the version that does not overstate."
-              archetypes={DEMO_ARCHETYPES}
-              variant="field"
-              basis="Placeholder — the basis line matters most on this variant, where the dots carry least."
             />
           </div>
         </div>

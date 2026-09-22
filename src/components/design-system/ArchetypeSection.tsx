@@ -2,8 +2,6 @@ import { Reveal } from "@/components/Reveal";
 import {
   ArchetypeCards,
   ArchetypeCoverage,
-  ArchetypeExchange,
-  ArchetypeField,
   ArchetypeLanes,
   type Archetype,
 } from "./ArchetypeFigure";
@@ -28,11 +26,12 @@ import {
  *                being introduced rather than referred back to.
  * - `lanes`    — routes through a shared process, gaps included. The only
  *                one that shows what a type crosses unaided.
- * - `coverage` — where each type works. Quieter than lanes; use when the
- *                gaps are not the story.
- * - `exchange` — two types who need each other. Two-sided products only.
- * - `field`    — that the types are distinct, and nothing more. The honest
- *                fallback when the research does not support a stronger claim.
+ * - `coverage` — where each type works, beside what got in the way. The
+ *                comparison table.
+ *
+ * Given no `stages`, every variant falls back to cards without their marks:
+ * with no process to encode there is nothing for a dot to say, and a shape
+ * standing in for one is the decoration this set was built to avoid.
  */
 
 type ArchetypeSectionProps = {
@@ -42,9 +41,9 @@ type ArchetypeSectionProps = {
   /** One or two sentences. What the segmentation is for, not a list of it. */
   intro?: string;
   archetypes: Archetype[];
-  /** Required by `cards`, `lanes` and `coverage`; ignored by the other two. */
+  /** The shared process. Without it the marks are dropped, not faked. */
   stages?: string[];
-  variant?: "cards" | "lanes" | "coverage" | "exchange" | "field";
+  variant?: "cards" | "lanes" | "coverage";
   /**
    * Where the segments came from. Not decoration: an archetype with no stated
    * provenance is the thing a reader has learned to distrust, so the section
@@ -64,10 +63,9 @@ export function ArchetypeSection({
   variant = "cards",
   basis,
 }: ArchetypeSectionProps) {
-  const needsStages = variant === "lanes" || variant === "coverage" || variant === "cards";
   // Falling back rather than rendering a broken grid: a caller who picks
   // `lanes` without stages gets the claim the data can actually support.
-  const resolved = needsStages && stages.length === 0 ? "field" : variant;
+  const resolved = stages.length === 0 ? "cards" : variant;
 
   return (
     <section id={id} className="ds-arch-section scroll-mt-28">
@@ -88,8 +86,6 @@ export function ArchetypeSection({
           {resolved === "coverage" ? (
             <ArchetypeCoverage archetypes={archetypes} stages={stages} />
           ) : null}
-          {resolved === "exchange" ? <ArchetypeExchange archetypes={archetypes} /> : null}
-          {resolved === "field" ? <ArchetypeField archetypes={archetypes} /> : null}
 
           {basis ? <p className="ds-arch-basis">{basis}</p> : null}
         </div>

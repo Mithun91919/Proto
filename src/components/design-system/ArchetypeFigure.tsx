@@ -11,10 +11,11 @@ import type { CSSProperties } from "react";
  * Each variation is justified by a different clause of C1, and that is the
  * basis to choose between them — not which looks best:
  *
- * - `Coverage` — state. Which parts of a process each type actually works in.
- * - `Exchange` — connection. Two types who need each other.
+ * - `Glyph` — state, at icon size. The mark the others are built from.
+ * - `Cards` — the full statement: mark, behaviour, goal, friction.
+ * - `Lanes` — connection. What each type crosses unaided.
+ * - `Coverage` — state, beside friction. The comparison table.
  * - `Continuum` — position. Where each type sits on the axis a decision split.
- * - `Field` — grouping. That these are distinct populations, and nothing more.
  *
  * A label alone is a job title, not an archetype. What makes it one is the
  * observed behaviour attached to it, so `behaviour` is required on every
@@ -41,8 +42,6 @@ export type Archetype = {
   stages?: number[];
   /** Position 0–1 on the axis a decision split. For `Continuum`. */
   depth?: number;
-  /** Which side of the exchange. For `Exchange`. */
-  side?: "asks" | "answers";
 };
 
 /* ── A · Coverage ──────────────────────────────────────────────────────── */
@@ -110,48 +109,6 @@ export function ArchetypeCoverage({
   );
 }
 
-/* ── B · Exchange ──────────────────────────────────────────────────────── */
-
-/**
- * Two types who need each other, drawn as the request between them.
- *
- * Only worth using where the product is genuinely two-sided — a request with
- * a reviewer, a hand-off, an approval. It says something the other three
- * cannot: that neither type's job is complete on its own.
- */
-export function ArchetypeExchange({ archetypes }: { archetypes: Archetype[] }) {
-  const asks = archetypes.find((a) => a.side === "asks");
-  const answers = archetypes.find((a) => a.side === "answers");
-  if (!asks || !answers) return null;
-
-  return (
-    <div className="ds-arch-exchange">
-      <div className="ds-arch-ex-side">
-        <span className="ds-arch-ex-cluster" aria-hidden>
-          {Array.from({ length: 4 }).map((_, i) => (
-            <span key={i} className="ds-arch-dot" style={{ "--dot-i": i } as CSSProperties} />
-          ))}
-        </span>
-        <p className="ds-arch-name">{asks.name}</p>
-        <p className="ds-arch-behaviour">{asks.behaviour}</p>
-      </div>
-      <div className="ds-arch-ex-link" aria-hidden>
-        <span className="ds-arch-ex-bridge" />
-        <span className="ds-arch-ex-verb">asks</span>
-      </div>
-      <div className="ds-arch-ex-side">
-        <span className="ds-arch-ex-cluster" aria-hidden>
-          {Array.from({ length: 4 }).map((_, i) => (
-            <span key={i} className="ds-arch-dot" style={{ "--dot-i": i + 6 } as CSSProperties} />
-          ))}
-        </span>
-        <p className="ds-arch-name">{answers.name}</p>
-        <p className="ds-arch-behaviour">{answers.behaviour}</p>
-      </div>
-    </div>
-  );
-}
-
 /* ── C · Continuum ─────────────────────────────────────────────────────── */
 
 /**
@@ -208,46 +165,6 @@ export function ArchetypeContinuum({
         <span>{from}</span>
         <span>{to}</span>
       </div>
-    </div>
-  );
-}
-
-/* ── D · Field ─────────────────────────────────────────────────────────── */
-
-/**
- * Four clusters, one per type, and nothing else claimed.
- *
- * The honest minimum. Cluster shape carries only that the populations are
- * distinct — it deliberately does not encode relative size, because a
- * segment's share is a number, and drawing one without having measured it
- * would be inventing a metric in dots.
- */
-export function ArchetypeField({ archetypes }: { archetypes: Archetype[] }) {
-  // Shapes differ so the clusters read as different populations; the counts
-  // are a vocabulary, not a quantity. Same reason they are not labelled n=.
-  const shapes = [
-    [1, 1, 1, 0, 1, 1, 1, 0, 0],
-    [1, 1, 0, 1, 1, 0, 0, 0, 0],
-    [1, 1, 1, 1, 1, 1, 1, 1, 1],
-    [1, 0, 0, 1, 1, 0, 1, 1, 0],
-  ];
-  return (
-    <div className="ds-arch-field">
-      {archetypes.map((a, i) => (
-        <div className="ds-arch-field-item" key={a.name}>
-          <span className="ds-arch-cluster" aria-hidden>
-            {(shapes[i % shapes.length] ?? []).map((on, j) => (
-              <span
-                key={j}
-                className={`ds-arch-dot${on ? "" : " is-off"}`}
-                style={{ "--dot-i": j } as CSSProperties}
-              />
-            ))}
-          </span>
-          <p className="ds-arch-name">{a.name}</p>
-          <p className="ds-arch-behaviour">{a.behaviour}</p>
-        </div>
-      ))}
     </div>
   );
 }
@@ -412,12 +329,15 @@ export function ArchetypeCards({
   archetypes: Archetype[];
   stages: string[];
 }) {
+  // No process to encode means no mark. The alternative — a decorative
+  // cluster standing in for one — is what the glyph was built to replace.
+  const showGlyph = stages.length > 0;
   return (
     <div className="ds-arch-cards">
       {archetypes.map((a) => (
         <div className="ds-arch-card" key={a.name}>
-          <ArchetypeGlyph archetype={a} stageCount={stages.length} />
-          <p className="ds-arch-name">{a.name}</p>
+          {showGlyph ? <ArchetypeGlyph archetype={a} stageCount={stages.length} /> : null}
+          <p className={`ds-arch-name${showGlyph ? "" : " is-lead"}`}>{a.name}</p>
           <p className="ds-arch-behaviour">{a.behaviour}</p>
           {a.wants || a.friction ? (
             <dl className="ds-arch-fields">

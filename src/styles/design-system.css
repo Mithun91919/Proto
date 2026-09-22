@@ -3287,46 +3287,6 @@ a:hover .ds-compact-mark .ds-dot {
   box-shadow: none;
 }
 
-/* ── B · Exchange ──────────────────────────────────────────────────────── */
-
-.ds-arch-exchange {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
-  gap: 1.75rem;
-  align-items: start;
-}
-
-.ds-arch-ex-cluster {
-  display: grid;
-  grid-template-columns: repeat(2, 9px);
-  gap: 7px;
-  width: max-content;
-  margin-bottom: 1.1rem;
-}
-
-.ds-arch-ex-link {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 0.5rem;
-  padding-top: 0.45rem;
-}
-
-.ds-arch-ex-bridge {
-  width: 4.5rem;
-  height: 3px;
-  background-image: radial-gradient(circle, var(--ds-accent) 1.4px, transparent 1.55px);
-  background-size: 9px 3px;
-}
-
-.ds-arch-ex-verb {
-  font-family: var(--font-mono), monospace;
-  font-size: 0.56rem;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: var(--muted);
-}
-
 /* ── C · Continuum ─────────────────────────────────────────────────────── */
 
 /* Tall enough to hold two rows of pin labels under the rail. */
@@ -3397,28 +3357,8 @@ a:hover .ds-compact-mark .ds-dot {
   text-align: right;
 }
 
-/* ── D · Field ─────────────────────────────────────────────────────────── */
-
-.ds-arch-field {
-  display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 2rem;
-}
-
-.ds-arch-cluster {
-  display: grid;
-  grid-template-columns: repeat(3, 9px);
-  gap: 7px;
-  width: max-content;
-  margin-bottom: 1.1rem;
-}
-
 @media (max-width: 1000px) {
-  .ds-arch-field {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-
-  .ds-arch-cov-head,
+    .ds-arch-cov-head,
   .ds-arch-cov-row,
   .ds-arch-coverage[data-friction] .ds-arch-cov-head,
   .ds-arch-coverage[data-friction] .ds-arch-cov-row {
@@ -3604,6 +3544,12 @@ a:hover .ds-compact-mark .ds-dot {
 .ds-arch-card .ds-arch-name {
   margin-top: 1.05rem;
   font-size: 1rem;
+}
+
+/* With no process to encode there is no glyph, so the name leads the card
+   and the gap that sat under the mark would be a gap under nothing. */
+.ds-arch-card .ds-arch-name.is-lead {
+  margin-top: 0;
 }
 
 .ds-arch-card .ds-arch-behaviour {
