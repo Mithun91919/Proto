@@ -50,6 +50,13 @@ import { BeforeAfterMetric } from "@/components/design-system/BeforeAfterMetric"
 import { DottedRule } from "@/components/design-system/DottedRule";
 import { HoverLanguageDemo, ChapterProgressDemo, MotionTimingGrid, ReducedMotionFocusGrid } from "@/components/design-system/Interaction";
 import { MarkMotionGallery, MotionInventory } from "@/components/design-system/MotionCatalogue";
+import {
+  ArchetypeCoverage,
+  ArchetypeExchange,
+  ArchetypeContinuum,
+  ArchetypeField,
+  type Archetype,
+} from "@/components/design-system/ArchetypeFigure";
 import { ArtboardFigure } from "@/components/design-system/ArtboardFigure";
 import { ArtboardCarousel } from "@/components/design-system/ArtboardCarousel";
 import { ClipFigure } from "@/components/design-system/ClipFigure";
@@ -75,6 +82,49 @@ import { TimelineScrubber } from "@/components/design-system/TimelineScrubber";
 import { ZoomLens } from "@/components/design-system/ZoomLens";
 import { CoverflowRow } from "@/components/design-system/CoverflowRow";
 import { HeroThumbnailRail } from "@/components/design-system/HeroThumbnailRail";
+
+/**
+ * Stand-in archetypes for the C13 demos.
+ *
+ * NOT research output. These are assembled from distinctions the API case
+ * study already draws in prose — "specialists who needed deeper control",
+ * "some engineers were comfortable working directly in YAML", and the
+ * provider/consumer columns on its subscriptions screen — purely so the four
+ * variations have something with the right shape to render. Replace with the
+ * real segments before any of this is used in a case study; the guide's rule
+ * against inventing a metric applies just as much to inventing a population.
+ */
+const DEMO_STAGES = ["Discover", "Design", "Validate", "Test", "Publish", "Govern"];
+
+const DEMO_ARCHETYPES: Archetype[] = [
+  {
+    name: "Service consumer",
+    behaviour: "Wants one service to work against. Judges fit, subscribes, and leaves.",
+    stages: [0, 3],
+    depth: 0.82,
+    side: "asks",
+  },
+  {
+    name: "Service owner",
+    behaviour: "Publishes and maintains a service other teams depend on.",
+    stages: [1, 2, 4, 5],
+    depth: 0.45,
+    side: "answers",
+  },
+  {
+    name: "Contract specialist",
+    behaviour: "Works the specification directly and wants the structure out of the way.",
+    stages: [1, 2, 3],
+    depth: 0.05,
+  },
+  {
+    name: "Platform administrator",
+    behaviour: "Answers for the estate rather than any one service in it.",
+    stages: [0, 1, 2, 3, 4, 5],
+    depth: 0.6,
+  },
+];
+
 
 export const metadata: Metadata = {
   title: "Components",
@@ -644,6 +694,82 @@ export default function ComponentsPage() {
                 </div>
               ))}
             </dl>
+          </div>
+        </div>
+
+        <div className="py-11">
+          <SubLabel code="C13 · Archetypes" />
+          <p className="max-w-[68ch] text-[0.95rem] leading-7" style={{ color: "var(--ink-soft)" }}>
+            NN/g&apos;s distinction: a <em>persona</em> invents a name, a bio and a photo; an{" "}
+            <em>archetype</em> keeps the same research-backed behavioural cluster and refers to it
+            by a plain label. The research base is identical — only the fictional character is
+            dropped. These draw the archetype form, which is also the form that cannot be mistaken
+            for the stock-photo persona a reader has learned to distrust.
+          </p>
+          <p className="mt-3 max-w-[68ch] text-[0.95rem] leading-7" style={{ color: "var(--ink-soft)" }}>
+            Four variations, each justified by a different clause of C1. Choose on that basis rather
+            than on which looks best: the question is what the dots are being asked to say.
+          </p>
+          <p className="mt-2 font-mono text-[0.6rem] uppercase tracking-[0.06em]" style={{ color: "var(--muted)" }}>
+            Rule · a label alone is a job title · the behaviour is what makes it an archetype · never draw a share you have not measured
+          </p>
+
+          <div
+            className="mt-7 rounded-lg px-5 py-4"
+            style={{ background: "color-mix(in oklab, var(--ds-accent) 7%, transparent)" }}
+          >
+            <p className="font-mono text-[0.6rem] uppercase tracking-[0.06em]" style={{ color: "var(--ds-accent-deep)" }}>
+              Placeholder content
+            </p>
+            <p className="mt-1.5 text-[0.85rem] leading-6" style={{ color: "var(--ink-soft)" }}>
+              The four types below are stand-ins, assembled from distinctions the API case study
+              already makes in prose. They are not research output and must be replaced with the
+              real segments before any of this appears in a case study.
+            </p>
+          </div>
+
+          <div className="mt-9">
+            <p className="ds-eyebrow mb-1.5">A · Coverage — state</p>
+            <p className="mb-6 max-w-[62ch] text-[0.88rem] leading-6" style={{ color: "var(--ink-soft)" }}>
+              Each type against a shared process. The most informative of the four: two rows that
+              barely overlap are two products waiting to happen, and a row spanning everything is
+              the person the platform was really for.
+            </p>
+            <ArchetypeCoverage archetypes={DEMO_ARCHETYPES} stages={DEMO_STAGES} />
+          </div>
+
+          <div className="mt-12">
+            <p className="ds-eyebrow mb-1.5">B · Exchange — connection</p>
+            <p className="mb-6 max-w-[62ch] text-[0.88rem] leading-6" style={{ color: "var(--ink-soft)" }}>
+              Two types who need each other. Only for a genuinely two-sided product — a request with
+              a reviewer, a hand-off, an approval. It says the thing the others cannot: neither
+              job is complete alone.
+            </p>
+            <ArchetypeExchange archetypes={DEMO_ARCHETYPES} />
+          </div>
+
+          <div className="mt-12">
+            <p className="ds-eyebrow mb-1.5">C · Continuum — position</p>
+            <p className="mb-6 max-w-[62ch] text-[0.88rem] leading-6" style={{ color: "var(--ink-soft)" }}>
+              The types along the one axis a decision split on. Use it when a single decision is why
+              the segments were drawn at all — it makes that decision read as a response to a
+              spread rather than a preference.
+            </p>
+            <ArchetypeContinuum
+              archetypes={DEMO_ARCHETYPES}
+              from="Works the spec directly"
+              to="Needs the structure drawn"
+            />
+          </div>
+
+          <div className="mt-12">
+            <p className="ds-eyebrow mb-1.5">D · Field — grouping</p>
+            <p className="mb-6 max-w-[62ch] text-[0.88rem] leading-6" style={{ color: "var(--ink-soft)" }}>
+              The honest minimum: these are distinct populations, and nothing further is claimed.
+              Cluster shape is a vocabulary, not a quantity — relative size is a number, and drawing
+              one unmeasured would be inventing a metric in dots.
+            </p>
+            <ArchetypeField archetypes={DEMO_ARCHETYPES} />
           </div>
         </div>
       </section>
