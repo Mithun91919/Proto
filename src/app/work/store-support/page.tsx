@@ -57,9 +57,10 @@ export default function StoreSupportPage() {
     <CaseStudyShell
       slug="store-support"
       evidenceCaveat="Scale of the experience during the documented period — not a resolution claim."
+      evidenceMetricsLabel="The impact"
       evidence={[
         {
-          label: "Problem",
+          label: "The problem",
           lead: (
             <>
               Reporting a fault meant finding{" "}
@@ -70,10 +71,10 @@ export default function StoreSupportPage() {
             "An associate who found a cooler failing could not report it from the floor. There was little troubleshooting guidance, search returned an unstructured list with no next step, and the form came before anyone had tried the obvious fix.",
         },
         {
-          label: "Task",
+          label: "The solution",
           lead: (
             <>
-              Redesign frontline support <span className="ds-accent-deep-text">for a phone on the floor</span>.
+              One app for the building and <span className="ds-accent-deep-text">the technology inside it</span>.
             </>
           ),
           detail:

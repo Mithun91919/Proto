@@ -52,9 +52,10 @@ export default function PortfolioManagementPage() {
     <CaseStudyShell
       slug="portfolio-management"
       evidenceCaveat="Scale during the documented period."
+      evidenceMetricsLabel="The impact"
       evidence={[
         {
-          label: "Problem",
+          label: "The problem",
           lead: (
             <>
               Leaders <span className="ds-accent-deep-text">reconciled conflicting data</span> before they could decide.
@@ -64,10 +65,10 @@ export default function PortfolioManagementPage() {
             "Product data lived in one tool, people and allocation data in another, strategic initiatives somewhere else, with spreadsheets and approval processes in between.",
         },
         {
-          label: "Task",
+          label: "The solution",
           lead: (
             <>
-              Replace the fragments with <span className="ds-accent-deep-text">one operating model</span>.
+              <span className="ds-accent-deep-text">One platform</span> where five systems had been.
             </>
           ),
           detail:

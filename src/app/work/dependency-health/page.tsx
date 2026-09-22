@@ -51,9 +51,10 @@ export default function DependencyHealthPage() {
     <CaseStudyShell
       slug="dependency-health"
       evidenceCaveat="Pilot scale on the initial major version — the platform is still in progress."
+      evidenceMetricsLabel="The impact"
       evidence={[
         {
-          label: "Problem",
+          label: "The problem",
           lead: (
             <>
               The data existed. <span className="ds-accent-deep-text">The decisions did not</span>.
@@ -63,10 +64,10 @@ export default function DependencyHealthPage() {
             "Teams found dependency debt during migrations, breakages or security work rather than ahead of it. Exposing every available signal would have produced a dashboard that was complete and unusable.",
         },
         {
-          label: "Task",
+          label: "The solution",
           lead: (
             <>
-              Turn compliance signals into <span className="ds-accent-deep-text">actions a developer can take</span>.
+              Prioritised health, layered views, and <span className="ds-accent-deep-text">guided remediation</span>.
             </>
           ),
           detail:

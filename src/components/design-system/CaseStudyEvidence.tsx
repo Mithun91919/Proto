@@ -30,9 +30,10 @@ type CaseStudyEvidenceProps = {
  * so the page opens as one composed unit rather than a dark band followed
  * by a paragraph.
  *
- * Renders whatever the project actually has. Beats exist for one project
- * so far; metrics come from `projects.ts` for six. With neither, the
- * shell skips the card entirely rather than showing an empty frame.
+ * Renders whatever the project actually has. All six featured and range
+ * projects now carry the full arc — the problem, the solution, what I did,
+ * then the metric footer labelled as the impact. With neither beats nor
+ * metrics the shell skips the card rather than showing an empty frame.
  */
 const MARKS: Record<string, number[]> = {
   // The three beats as the state of the system at each: gaps, then

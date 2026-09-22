@@ -58,9 +58,10 @@ export default function BbDailyPage() {
     <CaseStudyShell
       slug="bb-daily"
       evidenceCaveat="Scale from the documented product period — not outcomes caused by the design work."
+      evidenceMetricsLabel="The impact"
       evidence={[
         {
-          label: "Problem",
+          label: "The problem",
           lead: (
             <>
               Recurring groceries are <span className="ds-accent-deep-text">not a checkout problem</span>.
@@ -70,10 +71,10 @@ export default function BbDailyPage() {
             "The customer promise was simple: choose what you need and have it arrive. Behind it sat procurement, inventory, packing, shipment creation and an early-morning delivery window that all had to stay coordinated.",
         },
         {
-          label: "Task",
+          label: "The solution",
           lead: (
             <>
-              Design <span className="ds-accent-deep-text">both sides</span> of one service.
+              The customer&apos;s subscription, and <span className="ds-accent-deep-text">the operations behind it</span>.
             </>
           ),
           detail:

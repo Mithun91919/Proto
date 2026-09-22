@@ -47,9 +47,10 @@ export default function SupplyChainOperationsPage() {
     <CaseStudyShell
       slug="supply-chain-operations"
       evidenceCaveat="Less time on the landing page was the goal here — it is a route into the work, not a place to hold people."
+      evidenceMetricsLabel="The impact"
       evidence={[
         {
-          label: "Problem",
+          label: "The problem",
           lead: (
             <>
               Finding a tool meant <span className="ds-accent-deep-text">remembering where it lived</span>.
@@ -59,11 +60,11 @@ export default function SupplyChainOperationsPage() {
             "Capability had been added over time without structure around it. Related modules were hard to identify, everyone started from the same view, frequently used tools could not be saved, and people who already knew what they wanted still had no fast route to it.",
         },
         {
-          label: "Task",
+          label: "The solution",
           lead: (
             <>
-              Redesign the architecture, navigation and{" "}
-              <span className="ds-accent-deep-text">landing experience</span>.
+              One shell: shared structure, search, and{" "}
+              <span className="ds-accent-deep-text">shortcuts to what you use</span>.
             </>
           ),
           detail:

@@ -60,8 +60,8 @@ export default function ApiLifecyclePage() {
           label: "The problem",
           lead: (
             <>
-              Engineers found a service in one tool, designed its contract in another, then{" "}
-              <span className="ds-accent-deep-text">tested it in a third</span>.
+              Engineers switched tools at <span className="ds-accent-deep-text">every stage</span> of
+              an API&apos;s life.
             </>
           ),
           detail:
@@ -71,8 +71,7 @@ export default function ApiLifecyclePage() {
           label: "The solution",
           lead: (
             <>
-              One platform for <span className="ds-accent-deep-text">the whole lifecycle</span>. Find a
-              service, agree its contract, test it, keep it governed.
+              One platform for <span className="ds-accent-deep-text">the whole lifecycle</span>, not three.
             </>
           ),
           detail:

@@ -207,6 +207,7 @@ const MECHANICS = [
   { label: "Headings", rule: "Make an argument. Never The Problem, The Process, The Solution — as a heading. As a small label above a sentence that makes the argument, they are fine; the ban is on a heading that names a section instead of claiming something." },
   { label: "Directness", rule: "Say who did what. A hidden subject or a softened claim is evasion, not modesty." },
   { label: "Plain statement", rule: "One sentence, ordinary words. Name the behaviour, not the condition: what people did, with the real objects they did it to. No adjective that is praise." },
+  { label: "Evidence leads", rule: "The problem / the solution / what I did, then the impact. Keep each lead near 55 characters — the slot is a third of a card, and past about 70 it wraps to three lines and stops reading as a claim." },
 ];
 
 const ANTI_PATTERNS = [
