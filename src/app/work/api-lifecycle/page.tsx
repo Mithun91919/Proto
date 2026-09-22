@@ -54,26 +54,29 @@ export default function ApiLifecyclePage() {
     <CaseStudyShell
       slug="api-lifecycle"
       evidenceCaveat="The ~40% is measured for teams using the redesigned Studio; the other two figures are scale."
+      evidenceMetricsLabel="The impact"
       evidence={[
         {
-          label: "Problem",
+          label: "The problem",
           lead: (
             <>
-              An API lifecycle running through <span className="ds-accent-deep-text">tools that did not connect</span>.
+              Engineers found a service in one tool, designed its contract in another, then{" "}
+              <span className="ds-accent-deep-text">tested it in a third</span>.
             </>
           ),
           detail:
             "Engineers discovered services in one place, designed contracts in another, tested through separate utilities, and met governance late. When each stage lives in a different product, the engineer has to reconstruct the lifecycle themselves.",
         },
         {
-          label: "Task",
+          label: "The solution",
           lead: (
             <>
-              Build one product model for <span className="ds-accent-deep-text">the whole lifecycle</span>.
+              One platform for <span className="ds-accent-deep-text">the whole lifecycle</span>. Find a
+              service, agree its contract, test it, keep it governed.
             </>
           ),
           detail:
-            "Not another API tool. One platform covering the whole lifecycle \u2014 and one product, not the three separate ones the early model called for.",
+            "Not another API tool, and not the three separate products the early model called for \u2014 one place carrying every stage.",
         },
         {
           label: "What I did",

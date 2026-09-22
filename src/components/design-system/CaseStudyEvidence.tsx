@@ -8,9 +8,18 @@ export type EvidenceBeat = { label: string; lead: ReactNode; detail: string };
 
 type CaseStudyEvidenceProps = {
   slug?: string;
-  /** Problem / Task / What I did. Omit and the card is metrics alone. */
+  /** The problem / the solution / what I did. Omit and the card is metrics alone. */
   beats?: EvidenceBeat[];
   metrics?: { value: string; label: string }[];
+  /**
+   * Names the metric footer, e.g. "The impact".
+   *
+   * Unlabelled, the strip was a row of numbers under an argument and the
+   * reader had to infer what they were evidence of. With the beats above it
+   * the card then reads as one arc — what was wrong, what was built, whether
+   * it worked — in a single screen.
+   */
+  metricsLabel?: string;
   /** Kept honest per project — several of these figures are scale, not
       proof of an outcome, and the caption has to say so. */
   caveat?: string;
@@ -34,7 +43,7 @@ const MARKS: Record<string, number[]> = {
   2: [1, 1, 1, 1, 1],
 };
 
-export function CaseStudyEvidence({ slug, beats, metrics, caveat }: CaseStudyEvidenceProps) {
+export function CaseStudyEvidence({ slug, beats, metrics, metricsLabel, caveat }: CaseStudyEvidenceProps) {
   const hasBeats = Boolean(beats?.length);
   const hasMetrics = Boolean(metrics?.length);
   if (!hasBeats && !hasMetrics) return null;
@@ -99,6 +108,19 @@ export function CaseStudyEvidence({ slug, beats, metrics, caveat }: CaseStudyEvi
                 : undefined
             }
           >
+            {metricsLabel ? (
+              <p
+                className="font-mono uppercase"
+                style={{
+                  marginBottom: "1.4rem",
+                  fontSize: "0.72rem",
+                  letterSpacing: "0.16em",
+                  color: "var(--accent-deep)",
+                }}
+              >
+                {metricsLabel}
+              </p>
+            ) : null}
             <div className="grid grid-cols-1 gap-7 sm:grid-cols-3">
               {metrics!.map((m, i) => (
                 <div key={m.label} className="flex items-center gap-4">
