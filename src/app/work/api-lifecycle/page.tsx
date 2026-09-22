@@ -36,8 +36,8 @@ const ADOPTION_LOOP = ["Ship", "Adoption session", "Feedback", "Product change"]
 const SURFACE_PATH = ["UI platform", "Shared capability", "Conversational / tool-based access"];
 
 const CHAPTERS = [
-  { id: "overview", label: "The way in" },
   { id: "lifecycle", label: "The lifecycle" },
+  { id: "overview", label: "The way in" },
   { id: "marketplace", label: "Finding a service" },
   { id: "studio", label: "Designing a contract" },
   { id: "testing", label: "Testing" },
@@ -160,10 +160,31 @@ export default function ApiLifecyclePage() {
       </div>
 
       <CaseStudyColumn>
-        <CaseStudySection id="overview" boundary={false} className="pt-14 md:pt-20">
-          {/* The page opens here because the home screen is where an
-              engineer opens the product. What follows walks the routes it
-              offers, in the order the lifecycle runs. */}
+        {/* The map first: the stages, and the single claim that used to be
+            its own `one-platform` chapter. Separated, that chapter spent two
+            of three paragraphs on a concept that never shipped; here the
+            three streams are one clause of the decision behind the map.
+            The home screen follows, then the routes it offers, in order. */}
+        <CaseStudySection id="lifecycle" boundary={false} className="pt-14 md:pt-20">
+          <CaseStudyChapter
+            layout="stacked"
+            eyebrow="The lifecycle"
+            heading="One place for every stage, with the controls inside the work"
+            body={[
+              "An API moves through discovery, contract design, validation, testing, publishing, subscription, governance, and eventually change or deprecation.",
+              "API Hub carries all of it. Home, My APIs, Testing, Subscriptions and Settings \u2014 areas of a product rather than products, with governance belonging to each area instead of waiting as a gate at the end of them.",
+              "That was a decision, not a default. The initial concept split the work into three streams \u2014 a marketplace, a studio, a tester \u2014 and I moved the product away from it: three streams of our own would have reproduced the shape we had been asked to fix.",
+            ]}
+          />
+          <CaseStudyFigure rule label="Every stage the platform carries">
+            <DotFlow stages={LIFECYCLE} />
+          </CaseStudyFigure>
+        </CaseStudySection>
+
+        <CaseStudySection id="overview">
+          {/* The map above names the stages; this is where an engineer
+              actually arrives at them. What follows walks the routes on this
+              screen, in the order the lifecycle runs. */}
           <CaseStudyChapter
             layout="stacked"
             eyebrow="The way in"
@@ -188,26 +209,6 @@ export default function ApiLifecyclePage() {
               alt="API Hub home: search across services, then eight Get Started routes — import, define, manage subscriptions, generate code, register a service, generate docs, monitor, and publish to the marketplace"
               caption="Search sits above the routes, so someone who already knows the service they want never has to browse for it."
             />
-          </CaseStudyFigure>
-        </CaseStudySection>
-
-        {/* The lifecycle map, and the single claim that used to be its own
-            `one-platform` chapter. Separated, that chapter spent two of three
-            paragraphs on a concept that never shipped; here the three streams
-            are one clause of the decision that produced the map beside it. */}
-        <CaseStudySection id="lifecycle">
-          <CaseStudyChapter
-            layout="stacked"
-            eyebrow="The lifecycle"
-            heading="One place for every stage, with the controls inside the work"
-            body={[
-              "An API moves through discovery, contract design, validation, testing, publishing, subscription, governance, and eventually change or deprecation.",
-              "API Hub carries all of it. Home, My APIs, Testing, Subscriptions and Settings \u2014 areas of a product rather than products, with governance belonging to each area instead of waiting as a gate at the end of them.",
-              "That was a decision, not a default. The initial concept split the work into three streams \u2014 a marketplace, a studio, a tester \u2014 and I moved the product away from it: three streams of our own would have reproduced the shape we had been asked to fix.",
-            ]}
-          />
-          <CaseStudyFigure rule label="Every stage the platform carries">
-            <DotFlow stages={LIFECYCLE} />
           </CaseStudyFigure>
         </CaseStudySection>
 
