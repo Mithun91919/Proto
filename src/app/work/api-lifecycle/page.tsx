@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
 import { caseStudyRobots } from "@/content/seo";
 import { DotFlow } from "@/components/design-system/DotFlow";
-import { MediaPlaceholder } from "@/components/design-system/MediaPlaceholder";
+import { ArtboardCarousel } from "@/components/design-system/ArtboardCarousel";
+import { ArtboardFigure } from "@/components/design-system/ArtboardFigure";
 import { PullStatement } from "@/components/design-system/PullStatement";
 import {
   CaseStudyChapter,
@@ -17,9 +18,10 @@ import { getProject } from "@/content/projects";
  *
  * Prose verbatim from `projects/api-lifecycle/web/*.md`.
  *
- * No assets exist for this project. Draft beats asking for a diagram are
- * reconstructed in the dot language; beats asking for product screens carry
- * a `MediaPlaceholder` naming what is needed.
+ * Twelve anonymised captures of the shipped interface now carry the product
+ * beats: a fanned deck of the three pillars in the hero, the entry point as
+ * a single artboard, and one carousel per pillar. Beats asking for a diagram
+ * are still reconstructed in the dot language.
  */
 
 export const metadata: Metadata = {
@@ -91,6 +93,29 @@ export default function ApiLifecyclePage() {
             API Lifecycle Platform: <span style={{ color: "var(--ds-mint)" }}>one place</span> to discover, design, test, and govern APIs.
           </>
         ),
+        stack: [
+          {
+            src: "/work/api-lifecycle/home.png",
+            width: 2890,
+            height: 2712,
+            alt: "API Hub home: a search field over service keywords, then Get Started routes for importing, defining, subscribing, registering and publishing an API",
+            route: "/api-hub",
+          },
+          {
+            src: "/work/api-lifecycle/spec-editor.png",
+            width: 2890,
+            height: 2712,
+            alt: "The contract editor with URL paths, data types and responses down the left, the specification in the middle, and parameter detail on the right",
+            route: "/api-hub/catalog/edit",
+          },
+          {
+            src: "/work/api-lifecycle/api-testing.png",
+            width: 2892,
+            height: 2052,
+            alt: "The API tester with a saved collection, request builder and run controls",
+            route: "/api-hub/testing",
+          },
+        ],
         figureNote: "The interface is as it shipped, built on Living Design — Walmart's design system. I have replaced the data and some product names, because the work is internal.",
         meta: [
           { label: "Role", value: "UX Designer → Senior UX Designer" },
@@ -107,11 +132,14 @@ export default function ApiLifecyclePage() {
     >
       <CaseStudyColumn>
         <CaseStudySection id="overview" boundary={false} className="pt-14 md:pt-20">
-          <CaseStudyFigure>
-            <MediaPlaceholder
-              kind="image"
-              needs="A hero composite carrying the three pillars in sequence: Marketplace → Design Studio → Testing."
-              source="Draft beat: MEDIA — HERO"
+          <CaseStudyFigure label="The way in">
+            <ArtboardFigure
+              src="/work/api-lifecycle/home.png"
+              width={2890}
+              height={2712}
+              layout="portrait"
+              alt="API Hub home: search across services, then eight Get Started routes — import, define, manage subscriptions, generate code, register a service, generate docs, monitor, and publish to the marketplace"
+              caption="The entry point is a set of routes into work rather than a status board: search across every service, then the eight things an engineer actually arrives wanting to start."
             />
           </CaseStudyFigure>
         </CaseStudySection>
@@ -142,10 +170,32 @@ export default function ApiLifecyclePage() {
               "Marketplace brought search, service details, subscriptions, and exploration into one entry point so evaluation could happen before integration work began.",
             ]}
           />
-          <CaseStudyFigure>
-            <MediaPlaceholder
-              needs="The discovery path through Marketplace: search, then service details, then subscribe or explore."
-              source="Draft beat: MEDIA — SEARCH → SERVICE DETAILS → SUBSCRIBE / EXPLORE"
+          <CaseStudyFigure label="Search, then the service, then a subscription">
+            <ArtboardCarousel
+              label="The discovery path through Marketplace"
+              slides={[
+                {
+                  src: "/work/api-lifecycle/search-results.png",
+                  width: 2880,
+                  height: 2704,
+                  alt: "Search results across services, each row carrying a rating, environment badges and a short description, with filters for type, environment, rating and popularity",
+                  caption: "Results carry the environment a service runs in and how widely it is used, so the shortlist is made before anything is opened.",
+                },
+                {
+                  src: "/work/api-lifecycle/api-overview.png",
+                  width: 2890,
+                  height: 3306,
+                  alt: "A service overview: what it does, its environments, API key, created and updated dates, its subscriptions table and its top contributors",
+                  caption: "The overview answers what gets asked before integration starts \u2014 what it does, which environments it runs in, who already depends on it.",
+                },
+                {
+                  src: "/work/api-lifecycle/subscriptions.png",
+                  width: 2892,
+                  height: 2610,
+                  alt: "Subscriptions management with received requests, submitted requests and active subscriptions, each row showing provider, consumer, keys and status",
+                  caption: "A subscription is a request with a justification and a reviewer, not a self-serve switch \u2014 one screen serves the side asking and the side approving.",
+                },
+              ]}
             />
           </CaseStudyFigure>
         </CaseStudySection>
@@ -162,11 +212,32 @@ export default function ApiLifecyclePage() {
               "Switching between them required careful handling of validation, unsupported changes, and the risk of losing work. Around that core interaction, the Studio added linting, duplicate detection, quality feedback, versioning, imports, collaboration, code generation, and governance guidance.",
             ]}
           />
-          <CaseStudyFigure>
-            <MediaPlaceholder
-              ratio={16 / 9}
-              needs="The Basic and Advanced editors side by side, including the validation states shown when switching between them."
-              source="Draft beat: MEDIA — BASIC ↔ ADVANCED EDITOR"
+          <CaseStudyFigure label="Two editors over one contract">
+            <ArtboardCarousel
+              label="The Design Studio editors"
+              slides={[
+                {
+                  src: "/work/api-lifecycle/spec-editor.png",
+                  width: 2890,
+                  height: 2712,
+                  alt: "The specification editor: URL paths, data types, responses and security down the left, the specification in the middle, parameters and example values on the right",
+                  caption: "Advanced keeps the specification itself in the middle with the structure it produces listed beside it, so someone editing directly can still see the shape they are making.",
+                },
+                {
+                  src: "/work/api-lifecycle/spec-editor-1.png",
+                  width: 2890,
+                  height: 2712,
+                  alt: "The same contract in the guided editor, with a Basic and Advanced toggle and a Define, Specs, Docs, Publish progression across the top",
+                  caption: "Basic is the same contract as a form. The toggle between them is the hard part: switching has to carry unsupported changes and unsaved work across without losing either.",
+                },
+                {
+                  src: "/work/api-lifecycle/version-compare.png",
+                  width: 2890,
+                  height: 2712,
+                  alt: "A comparative analysis view with two versions of a specification side by side and the differences marked between them",
+                  caption: "Versions are compared in place, so a consumer sees what changed between two releases rather than reading both and working it out.",
+                },
+              ]}
             />
           </CaseStudyFigure>
         </CaseStudySection>
@@ -188,10 +259,32 @@ export default function ApiLifecyclePage() {
               "Engineers could test APIs, work with authentication, use scripting and snippets, share collections, and prepare outputs for downstream security processes without treating testing as a completely separate product experience.",
             ]}
           />
-          <CaseStudyFigure>
-            <MediaPlaceholder
-              needs="The API tester with a saved collection and its result states."
-              source="Draft beat: MEDIA — API TESTER / COLLECTION / RESULT STATES"
+          <CaseStudyFigure label="Validation without leaving the platform">
+            <ArtboardCarousel
+              label="The API tester"
+              slides={[
+                {
+                  src: "/work/api-lifecycle/api-testing.png",
+                  width: 2892,
+                  height: 2052,
+                  alt: "The API tester: saved collections on the left, a request builder with parameters, authorisation, headers and body, and a run control",
+                  caption: "Collections sit beside the request, so a saved call is one click from the contract it was written against.",
+                },
+                {
+                  src: "/work/api-lifecycle/api-testing-1.png",
+                  width: 2892,
+                  height: 2426,
+                  alt: "A request configured with its authorisation and headers, ready to run against a chosen environment",
+                  caption: "Authorisation and environment belong to the request rather than to a separate setup step.",
+                },
+                {
+                  src: "/work/api-lifecycle/api-testing-2.png",
+                  width: 2892,
+                  height: 2052,
+                  alt: "A completed run showing the response and its result state",
+                  caption: "The result lands where the request was made, which is the handoff the old flow lost.",
+                },
+              ]}
             />
           </CaseStudyFigure>
         </CaseStudySection>

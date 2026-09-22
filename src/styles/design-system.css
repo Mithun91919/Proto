@@ -1295,7 +1295,12 @@
 .ds-scene-banner {
   position: relative;
   width: min(calc(100vw - 3rem), 1800px);
-  margin-left: 50%;
+  /* `50%` centres on the containing block. Once the rail reserves a gutter
+     on the left, that block's centre sits half the gutter right of the
+     viewport's, and a break-out this wide spills off the right edge —
+     measured at 9px over. Subtracting half the gutter puts it back on the
+     viewport's centre line. */
+  margin-left: calc(50% - var(--rail-extra, 0px) / 2);
   transform: translateX(-50%);
 }
 
@@ -1623,7 +1628,11 @@
        off is measured against the right number. It was hardcoded to 85rem,
        which meant /work and /about — 80rem and 70rem — were never matched
        at all and their content still ran under the rail. */
-    padding-left: max(2rem, calc(6.5rem - max(0px, (100vw - var(--rail-container, 85rem)) / 2)));
+    /* Published as a variable so full-bleed children can correct for it —
+       they centre on their containing block, and padding on one side moves
+       that centre by half the padding. */
+    --rail-extra: max(0px, calc(6.5rem - max(0px, (100vw - var(--rail-container, 85rem)) / 2) - 2rem));
+    padding-left: calc(2rem + var(--rail-extra));
   }
 
   [class*="max-w-[80rem]"] {
