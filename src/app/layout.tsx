@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
+import { ResetScrollOnNavigate } from "@/components/ResetScrollOnNavigate";
 import { DotGridBackground } from "@/components/DotGridBackground";
 import { SiteFooter } from "@/components/SiteFooter";
 import { SiteHeader } from "@/components/SiteHeader";
@@ -75,15 +76,14 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         <a href="#main-content" className="skip-link">
           Skip to content
         </a>
+        <ResetScrollOnNavigate />
         <DotGridBackground />
         <SiteHeader />
-        {/* `scroll-mt-[71px]` matches the sticky header's height. Two things
-            scroll to this element and both landed it underneath the header:
-            the skip link, and the App Router's own focus handling after a
-            client-side navigation — `main` carries tabIndex -1, and focusing
-            an element scrolls it to the top of the viewport. Clicking a card
-            on the home page arrived at scrollY 72 with the back link hidden
-            behind the header. The margin stops the scroll short instead. */}
+        {/* `scroll-mt-[71px]` matches the sticky header's height, so the skip
+            link lands content below the header rather than behind it. It does
+            not fix the same problem on a client-side navigation — the router's
+            scroll ignores the margin, measured at 72 with it applied — which
+            is what `ResetScrollOnNavigate` above is for. */}
         <main id="main-content" tabIndex={-1} className="flex-1 scroll-mt-[71px] outline-none">
           {children}
         </main>
