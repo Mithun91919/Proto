@@ -36,7 +36,11 @@ export function WorkEntry({ project, reverse = false, emphasis = "full" }: WorkE
   // scanner needs before opening the case study, and it matches how the
   // earlier-work cards already lead with the company; sector and surface
   // then place the work. The fuller craft breakdown lives in the case study.
-  const facets = [project.org, project.domain, ...projectPlatforms(project.slug)];
+  // The org comes out of the facet run. It is the one piece of metadata
+  // that gives a project its weight, and as a third identical chip it read
+  // at the same rank as "Web". It gets its own lockup; the rest go onto the
+  // artwork, the way the home cards carry theirs.
+  const contextFacets = [project.domain, ...projectPlatforms(project.slug)];
   const logo = orgLogo(project.org);
 
   return (
@@ -69,40 +73,25 @@ export function WorkEntry({ project, reverse = false, emphasis = "full" }: WorkE
         }`}
       >
         <div>
-          {/* The dot numeral and the facets read as one line of metadata, so
-              they share a row. They were stacked, with the facets as a plain
-              mono eyebrow under the mark — two separate quiet things where
-              one band does the job. */}
-          {emphasis === "full" || facets.length > 0 ? (
-            <div className="flex flex-wrap items-center gap-x-3 gap-y-2">
-              {emphasis === "full" ? <CompactNumeral value={project.number} /> : null}
-              {facets.length > 0 ? (
-                <ul className="flex flex-wrap items-center gap-2">
-                  {facets.map((facet) => (
-                    <Chip
-                      as="li"
-                      key={facet}
-                      /* Only the org facet carries a mark. The wordmark is the
-                         credibility signal; putting an icon on "Web" as well
-                         would flatten that back into decoration. */
-                      icon={
-                        facet === project.org && logo ? (
-                          // eslint-disable-next-line @next/next/no-img-element
-                          <img src={logo} alt="" style={{ height: "0.78rem" }} />
-                        ) : undefined
-                      }
-                    >
-                      {facet}
-                    </Chip>
-                  ))}
-                </ul>
+          {/* The org lockup. The mark runs at 1.65rem against the 0.78rem it
+              had inside a chip, and the name is in ink rather than muted —
+              who the work was for is the first thing a reader weighs. The
+              dot numeral keeps it company; it is quiet enough not to
+              compete. */}
+          <div className="flex flex-wrap items-center gap-x-4 gap-y-2">
+            {emphasis === "full" ? <CompactNumeral value={project.number} /> : null}
+            <span className="flex items-center gap-2.5">
+              {logo ? (
+                // eslint-disable-next-line @next/next/no-img-element
+                <img src={logo} alt="" style={{ height: "1.65rem", width: "auto", objectFit: "contain" }} />
               ) : null}
-            </div>
-          ) : null}
+              <span className="font-mono text-[0.74rem] uppercase tracking-[0.13em]" style={{ color: "var(--ink)" }}>
+                {project.org}
+              </span>
+            </span>
+          </div>
           <h3
-            className={`display-title text-[var(--ink)] transition-colors duration-300 group-hover:text-[var(--accent-deep)] ${
-              emphasis === "full" || facets.length > 0 ? "mt-4" : ""
-            }`}
+            className="display-title mt-5 text-[var(--ink)] transition-colors duration-300 group-hover:text-[var(--accent-deep)]"
             style={{ fontSize: "1.9rem" }}
           >
             {project.title}
@@ -118,12 +107,23 @@ export function WorkEntry({ project, reverse = false, emphasis = "full" }: WorkE
           )}
         </div>
         {/* One aspect for every row. Left to their own, the media ran 1.097
-              (store-support is nearly square) to 1.728, so heights went 302
-              to 556px down the list and no two rows lined up — and the two
-              placeholders, fixed at 16/10, matched none of them. The
-              featured cards already force this same ratio on the same
-              assets, so nothing is cropped here that is not cropped there. */}
+            (store-support is nearly square) to 1.728, so heights went 302 to
+            556px down the list and no two rows lined up — and the two
+            placeholders, fixed at 16/10, matched none of them. The featured
+            cards already force this same ratio on the same assets, so
+            nothing is cropped here that is not cropped there. */}
+        <div className="relative">
           <ProjectMedia project={project} aspect={16 / 10} hoverScope=".work-entry" />
+          {contextFacets.length > 0 ? (
+            <ul className="absolute bottom-4 left-4 flex flex-wrap items-center gap-2">
+              {contextFacets.map((facet) => (
+                <Chip as="li" key={facet}>
+                  {facet}
+                </Chip>
+              ))}
+            </ul>
+          ) : null}
+        </div>
       </div>
     </Link>
   );
