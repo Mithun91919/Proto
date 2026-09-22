@@ -56,7 +56,13 @@ export function WorkEntry({ project, reverse = false, emphasis = "full" }: WorkE
         // narrower column on every reversed row, so it rendered 633px on one
         // row and 527px on the next while the text took the larger share on
         // exactly the rows that needed it least.
-        className={`grid grid-cols-1 items-center gap-8 md:gap-14 ${
+        /* `items-start`, not centre. Centring made each entry's text begin
+           at a different height against its media — measured across the six
+           rows the offset ran -127px to +5px, so nothing lined up and the
+           eye had to find the start again on every one. Aligned to the top
+           they all begin on one horizon; the ragged bottom that leaves is
+           far less noticeable than a jumping top. */
+        className={`grid grid-cols-1 items-start gap-8 md:gap-14 ${
           reverse
             ? "md:grid-cols-[1.2fr_1fr] md:[&>*:first-child]:order-2"
             : "md:grid-cols-[1fr_1.2fr]"
