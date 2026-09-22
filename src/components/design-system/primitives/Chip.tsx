@@ -11,6 +11,8 @@ type ChipProps = {
    * name. Everything else is `meta`.
    */
   size?: "lead" | "meta";
+  /** A small mark before the label — an org wordmark, usually. */
+  icon?: ReactNode;
   style?: CSSProperties;
 };
 
@@ -26,6 +28,14 @@ type ChipProps = {
  * sit inside a `GlassPanel` card, so a glass chip would be glass inside
  * glass — the first entry in L · Anti-patterns.
  *
+ * Rounded, not a pill. Every other surface in the system sits on the
+ * radius scale — cards at 2xl, panels at xl — so a 999px chip was the one
+ * fully-round thing in it, speaking a different vocabulary. A pill also
+ * suits a short label; at "Walmart Global Tech" it stretches into a
+ * lozenge 160px long. `rounded-md` keeps it in the family, and the white
+ * fill, the shadow and the mono uppercase already separate it from the
+ * screenshot underneath without the radius having to do it.
+ *
  * The outline is the part that earns its keep. Measured across the posters,
  * the artwork under these chips runs Y=157-211 of 255: light product UI. A
  * white fill on a near-white screenshot loses its edge entirely, so the
@@ -38,13 +48,14 @@ export function Chip({
   as: Tag = "span",
   className = "",
   size = "meta",
+  icon,
   style,
 }: ChipProps) {
   const type = size === "lead" ? "text-[0.65rem] tracking-[0.14em]" : "text-[0.62rem] tracking-[0.12em]";
 
   return (
     <Tag
-      className={`rounded-full px-3 py-1 font-mono uppercase ${type}${className ? ` ${className}` : ""}`}
+      className={`inline-flex items-center gap-1.5 rounded-md px-3 py-1 font-mono uppercase ${type}${className ? ` ${className}` : ""}`}
       style={{
         background: "var(--ds-solid-bg)",
         color: "var(--ink)",
@@ -53,6 +64,7 @@ export function Chip({
         ...style,
       }}
     >
+      {icon}
       {children}
     </Tag>
   );

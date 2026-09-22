@@ -785,19 +785,13 @@ a {
   list-style: none;
 }
 
-.tag {
-  display: inline-flex;
-  align-items: center;
-  border-radius: 0.4rem;
-  border: 1px solid color-mix(in oklab, var(--cyan-800) 16%, transparent);
-  background: color-mix(in oklab, var(--paper) 86%, var(--cyan-50));
-  padding: 0.32rem 0.62rem;
-  font-size: 0.75rem;
-  line-height: 1.35;
-  color: var(--ink-soft);
-}
+/* `.tag` is gone. It was a second tag treatment — sans, 12px, 6.4px
+   radius, cyan-tinted — sitting a few hundred pixels from the mono pill
+   chips, so the same idea had two looks depending on which component
+   happened to render it. Everything now goes through
+   `primitives/Chip`; `.tag-list` stays because it only does layout. */
 
-/* The /work filter chips — same footprint as .tag, but a real toggle
+/* The /work filter chips — a real toggle
    control rather than a label, so it needs a hover/active/focus state a
    static tag never does. */
 .work-filter-chip {

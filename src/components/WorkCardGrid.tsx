@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { Reveal } from "@/components/Reveal";
 import { GlassPanel } from "@/components/design-system/primitives/GlassPanel";
+import { Chip } from "@/components/design-system/primitives/Chip";
 
 export type WorkCard = {
   id: string;
@@ -55,12 +56,9 @@ export function WorkCardGrid({ items }: { items: WorkCard[] }) {
                   sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                   className="object-cover"
                 />
-                <span
-                  className="absolute left-4 top-4 rounded-full px-3 py-1 font-mono text-[0.65rem] uppercase tracking-[0.14em]"
-                  style={{ background: "var(--ds-dark)", color: "var(--ds-mint)" }}
-                >
+                <Chip size="lead" className="absolute left-4 top-4">
                   {item.number} · {item.tags[0]}
-                </span>
+                </Chip>
               </div>
             ) : null}
 
@@ -85,9 +83,9 @@ export function WorkCardGrid({ items }: { items: WorkCard[] }) {
                 <div className="mt-5 flex items-center justify-between">
                   <ul className="tag-list">
                     {item.tags.slice(0, 2).map((tag) => (
-                      <li key={tag} className="tag">
+                      <Chip as="li" key={tag}>
                         {tag}
-                      </li>
+                      </Chip>
                     ))}
                   </ul>
                   <span className="ds-arrow text-xl" style={{ color: "var(--accent-deep)" }}>
@@ -97,9 +95,9 @@ export function WorkCardGrid({ items }: { items: WorkCard[] }) {
               ) : (
                 <ul className="tag-list mt-5">
                   {item.tags.map((tag) => (
-                    <li key={tag} className="tag">
+                    <Chip as="li" key={tag}>
                       {tag}
-                    </li>
+                    </Chip>
                   ))}
                 </ul>
               )}

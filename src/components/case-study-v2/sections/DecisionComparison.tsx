@@ -1,4 +1,5 @@
 import type { DecisionComparisonSection } from "@/content/case-study-v2/types";
+import { Chip } from "@/components/design-system/primitives/Chip";
 
 type DecisionComparisonProps = { section: DecisionComparisonSection };
 
@@ -13,7 +14,7 @@ function Option({
     <div className={`glass-panel glass-card p-6 ${picked ? "border-[var(--accent-deep)]" : ""}`}>
       <div className="flex items-center justify-between gap-3">
         <h3 className="display-title display-sub text-[var(--ink)]">{option.name}</h3>
-        {picked ? <span className="tag">Decision</span> : null}
+        {picked ? <Chip>Decision</Chip> : null}
       </div>
       <p className="mt-3 body-sm">{option.rationale}</p>
     </div>

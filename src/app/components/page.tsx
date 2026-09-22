@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { HeroPortrait } from "@/components/HeroPortrait";
 import { DotText } from "@/components/DotText";
+import { Chip } from "@/components/design-system/primitives/Chip";
 import { SectionHeader, SubLabel } from "@/components/design-system/primitives/SectionHeader";
 import { GlassPanel } from "@/components/design-system/primitives/GlassPanel";
 import { DotGrid } from "@/components/design-system/primitives/DotGrid";
@@ -283,6 +284,43 @@ export default function ComponentsPage() {
               <h4 className="display-title mt-3" style={{ fontSize: "1.3rem" }}>Precision content stays solid</h4>
               <p className="ds-note">Reconstructed interfaces, forms, code, dense tables. Glass here would reduce contrast.</p>
             </GlassPanel>
+          </div>
+        </div>
+
+        <div className="ds-rule py-11">
+          <SubLabel code="B3b · Chips" />
+          <p className="max-w-[66ch] text-[0.95rem] leading-7" style={{ color: "var(--ink-soft)" }}>
+            One label shape for a card&rsquo;s number, its tags, its years, and a project&rsquo;s facets. Solid,
+            never glass \u2014 B3 puts precision content on a solid surface, and a chip laid over a screen
+            recording is exactly that; a chip inside a glass card would also be glass on glass.
+          </p>
+          <p className="mt-2 font-mono text-[0.6rem] uppercase tracking-[0.06em]" style={{ color: "var(--muted)" }}>
+            Rule \u00b7 neutral outline, not a tinted one \u00b7 the edge carries the shape, not the fill
+          </p>
+          <div className="mt-7 grid grid-cols-1 gap-5 sm:grid-cols-2">
+            <div className="ds-env-dark rounded-2xl p-7">
+              <p className="ds-eyebrow" style={{ color: "var(--ds-mint)" }}>Over media</p>
+              <p className="ds-note mt-2" style={{ color: "var(--ds-dark-muted)" }}>
+                Home cards. The artwork under these runs Y=157\u2013211 of 255 \u2014 light product UI \u2014 so a
+                cyan-tinted hairline reads as a tint and the chip loses its edge.
+              </p>
+              <div className="mt-5 flex flex-wrap items-center gap-2">
+                <Chip size="lead">01 \u00b7 Portfolio Management Platform</Chip>
+                <Chip>2022\u2013Present</Chip>
+              </div>
+            </div>
+            <div className="rounded-2xl p-7" style={{ border: "1px solid var(--line)" }}>
+              <p className="ds-eyebrow">On the page</p>
+              <p className="ds-note mt-2">
+                The work index, inline with the compact dot mark \u2014 the numeral and the facets are one band of
+                metadata, not two stacked quiet things.
+              </p>
+              <div className="mt-5 flex flex-wrap items-center gap-2">
+                <Chip>Walmart Global Tech</Chip>
+                <Chip>Enterprise</Chip>
+                <Chip>Web</Chip>
+              </div>
+            </div>
           </div>
         </div>
 

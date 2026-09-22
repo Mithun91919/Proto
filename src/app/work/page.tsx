@@ -9,6 +9,7 @@ import { WorkCardGrid } from "@/components/WorkCardGrid";
 import { ChapterProgress } from "@/components/design-system/ChapterProgress";
 import { hasCaseStudyPage } from "@/content/case-study-routes";
 import { getFeaturedProjects, getRangeProjects } from "@/content/projects";
+import { Chip } from "@/components/design-system/primitives/Chip";
 import {
   careerStages,
   currentStage,
@@ -76,9 +77,9 @@ export default function WorkPage() {
                   <p className="timeline-body">{stage.body}</p>
                   <ul className="tag-list">
                     {stage.tags.map((tag) => (
-                      <li key={tag} className="tag">
+                      <Chip as="li" key={tag}>
                         {tag}
-                      </li>
+                      </Chip>
                     ))}
                   </ul>
                 </div>

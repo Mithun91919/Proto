@@ -5,6 +5,7 @@ import { Chip } from "@/components/design-system/primitives/Chip";
 import { CompactNumeral } from "@/components/design-system/CompactNumeral";
 import { MetricRow } from "@/components/design-system/MetricRow";
 import { projectPlatforms } from "@/content/work-filters";
+import { orgLogo } from "@/content/work-page";
 import type { Project } from "@/content/projects";
 
 type WorkEntryProps = {
@@ -36,6 +37,7 @@ export function WorkEntry({ project, reverse = false, emphasis = "full" }: WorkE
   // earlier-work cards already lead with the company; sector and surface
   // then place the work. The fuller craft breakdown lives in the case study.
   const facets = [project.org, project.domain, ...projectPlatforms(project.slug)];
+  const logo = orgLogo(project.org);
 
   return (
     <Link
@@ -71,7 +73,19 @@ export function WorkEntry({ project, reverse = false, emphasis = "full" }: WorkE
               {facets.length > 0 ? (
                 <ul className="flex flex-wrap items-center gap-2">
                   {facets.map((facet) => (
-                    <Chip as="li" key={facet}>
+                    <Chip
+                      as="li"
+                      key={facet}
+                      /* Only the org facet carries a mark. The wordmark is the
+                         credibility signal; putting an icon on "Web" as well
+                         would flatten that back into decoration. */
+                      icon={
+                        facet === project.org && logo ? (
+                          // eslint-disable-next-line @next/next/no-img-element
+                          <img src={logo} alt="" style={{ height: "0.78rem" }} />
+                        ) : undefined
+                      }
+                    >
                       {facet}
                     </Chip>
                   ))}
