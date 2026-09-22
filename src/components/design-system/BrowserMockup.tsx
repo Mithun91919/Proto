@@ -1,6 +1,6 @@
-import type { CSSProperties } from "react";
 import Image from "next/image";
 import { ImageHotspots, type Hotspot } from "./ImageHotspots";
+import { ScrollFrame } from "./ScrollFrame";
 
 type BrowserMockupProps = {
   /** Shown in the address pill. A plausible route, not a claim about a real domain. */
@@ -52,6 +52,12 @@ export function BrowserMockup({
   maxHeight = "32rem",
   hotspots,
 }: BrowserMockupProps) {
+  // `ScrollFrame` is a client component and owns the wheel handling that
+  // keeps a nested scroller from trapping the page. A non-scrollable mockup
+  // has no scroller and stays entirely on the server.
+  const Wrapper = ({ children }: { children: React.ReactNode }) =>
+    scrollable ? <ScrollFrame maxHeight={maxHeight}>{children}</ScrollFrame> : <>{children}</>;
+
   return (
     <figure>
       <div className="ds-frame">
@@ -70,10 +76,7 @@ export function BrowserMockup({
         </div>
 
         <div className="ds-framebody relative">
-          <div
-            className={scrollable ? "ds-frame-scroll" : undefined}
-            style={scrollable ? ({ "--frame-max-height": maxHeight } as CSSProperties) : undefined}
-          >
+          <Wrapper>
             <Image
               src={src}
               width={width}
@@ -83,7 +86,7 @@ export function BrowserMockup({
               className="block h-auto w-full"
             />
             {hotspots?.length ? <ImageHotspots hotspots={hotspots} /> : null}
-          </div>
+          </Wrapper>
 
           {scrollable ? (
             <span className="ds-frame-scroll-hint" aria-hidden>

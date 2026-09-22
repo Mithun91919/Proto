@@ -507,7 +507,14 @@
 .ds-frame-scroll {
   max-height: var(--frame-max-height, 32rem);
   overflow-y: auto;
-  overscroll-behavior: contain;
+  /* Deliberately NOT `overscroll-behavior: contain`. Contain stops wheel
+     events propagating once this element hits its end, which is right for a
+     modal — the page behind must not move — and wrong for a figure in the
+     middle of an article: the reader reached the bottom of the screenshot
+     and the page stopped scrolling entirely until they moved the pointer
+     off it. `auto` chains to the page instead, which is what a reader
+     scrolling down a page expects. */
+  overscroll-behavior-y: auto;
   scrollbar-width: thin;
 }
 

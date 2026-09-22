@@ -184,32 +184,40 @@ export default function ApiLifecyclePage() {
         <CaseStudySection id="overview">
           {/* The map above names the stages; this is where an engineer
               actually arrives at them. What follows walks the routes on this
-              screen, in the order the lifecycle runs. */}
-          <CaseStudyChapter
-            layout="stacked"
-            eyebrow="The way in"
-            heading="The entry point had to be a set of routes into work, not a status board"
-            body={[
-              "An engineer opening a platform is not there to read a summary of it. They have arrived to start something: import an API, define a new one, check a subscription, generate a client.",
-              "So the home screen leads with search across every service, and then the eight things people actually turn up wanting to do.",
-            ]}
-          />
-          {/* A full-page capture, held to a fixed height and scrolled in
-              place. Laid out flat it was either 1131px tall at column width
-              or shrunk to 640px, where the Get Started cards stop being
-              readable — and reading them is the entire point of the shot. */}
-          <CaseStudyFigure rule label="API Hub, home">
-            <BrowserMockup
-              route="/api-hub"
-              src="/work/api-lifecycle/home.png"
-              width={2890}
-              height={2712}
-              scrollable
-              maxHeight="44rem"
-              alt="API Hub home: search across services, then eight Get Started routes — import, define, manage subscriptions, generate code, register a service, generate docs, monitor, and publish to the marketplace"
-              caption="Search sits above the routes, so someone who already knows the service they want never has to browse for it."
+              screen, in the order the lifecycle runs.
+
+              Copy left, screen right, the M8 arrangement inverted. Full
+              width the mockup was the whole section and the claim sat above
+              it as a preamble; beside it the two read as one statement. The
+              text column is deliberately narrow — the screen is a dense
+              dashboard and every rem taken from it costs legibility. */}
+          <div className="grid gap-x-12 gap-y-8 md:grid-cols-[minmax(0,19rem)_minmax(0,1fr)] md:items-start">
+            <CaseStudyChapter
+              layout="flow"
+              eyebrow="The way in"
+              heading="Routes into work, not a status board"
+              body={[
+                "An engineer opening a platform is not there to read a summary of it. They have arrived to start something: import an API, define a new one, check a subscription, generate a client.",
+                "So the home screen leads with search across every service, and then the eight things people actually turn up wanting to do.",
+              ]}
             />
-          </CaseStudyFigure>
+            {/* A full-page capture, held to a fixed height and scrolled in
+                place. Laid out flat it was either 1131px tall at column width
+                or shrunk to 640px, where the Get Started cards stop being
+                readable — and reading them is the entire point of the shot. */}
+            <CaseStudyFigure label="API Hub, home">
+              <BrowserMockup
+                route="/api-hub"
+                src="/work/api-lifecycle/home.png"
+                width={2890}
+                height={2712}
+                scrollable
+                maxHeight="40rem"
+                alt="API Hub home: search across services, then eight Get Started routes — import, define, manage subscriptions, generate code, register a service, generate docs, monitor, and publish to the marketplace"
+                caption="Search sits above the routes, so someone who already knows the service they want never has to browse for it."
+              />
+            </CaseStudyFigure>
+          </div>
         </CaseStudySection>
 
         <CaseStudySection id="marketplace">
