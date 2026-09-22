@@ -140,7 +140,7 @@ export const projects: Project[] = [
       mp4: "/work/api-lifecycle/hero.mp4",
       webm: "/work/api-lifecycle/hero.webm",
       poster: "/work/api-lifecycle/poster.jpg",
-      aspect: 1600 / 1200,
+      aspect: 1600 / 1000,
     },
     systemMap: [
       {
