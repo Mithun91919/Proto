@@ -106,18 +106,10 @@ export default function WorkPage() {
           lede="Every project on this page, not a curated sample — consumer, commerce, enterprise, and developer work."
         />
 
-        {/* B4 minor boundary between entries rather than whitespace alone.
-            Six full-width rows separated only by a 96px gap read as one
-            continuous scroll; the hairline chunks them. Not on the first —
-            the section head above it is already the boundary. The gap moves
-            into padding so the line sits in the space rather than tight to
-            the row that follows it. */}
-        <div className="mt-12 flex flex-col md:mt-14">
+        <div className="mt-12 flex flex-col gap-16 md:mt-14 md:gap-24">
           {[...featured, ...more].map((project, index) => (
             <Reveal key={project.slug} delay={index * 70}>
-              <div className={index > 0 ? "ds-section-boundary-minor pt-16 md:pt-24" : ""}>
-                <WorkEntry project={project} reverse={index % 2 === 1} />
-              </div>
+              <WorkEntry project={project} reverse={index % 2 === 1} />
             </Reveal>
           ))}
         </div>

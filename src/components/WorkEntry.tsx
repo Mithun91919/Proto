@@ -117,7 +117,13 @@ export function WorkEntry({ project, reverse = false, emphasis = "full" }: WorkE
             </p>
           )}
         </div>
-        <ProjectMedia project={project} hoverScope=".work-entry" />
+        {/* One aspect for every row. Left to their own, the media ran 1.097
+              (store-support is nearly square) to 1.728, so heights went 302
+              to 556px down the list and no two rows lined up — and the two
+              placeholders, fixed at 16/10, matched none of them. The
+              featured cards already force this same ratio on the same
+              assets, so nothing is cropped here that is not cropped there. */}
+          <ProjectMedia project={project} aspect={16 / 10} hoverScope=".work-entry" />
       </div>
     </Link>
   );
