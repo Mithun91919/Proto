@@ -3386,3 +3386,137 @@ a:hover .ds-compact-mark .ds-dot {
     gap: 1.25rem;
   }
 }
+
+/* ── Archetype lanes (C13·E) ─────────────────────────────────────────────
+   A route through the shared stages rather than a set of marks against them.
+   The segment between two stops carries the meaning: solid where the type
+   works through, hollow where they cross unaided. */
+
+.ds-arch-lanes {
+  display: flex;
+  flex-direction: column;
+}
+
+.ds-arch-lane-head,
+.ds-arch-lane {
+  display: grid;
+  grid-template-columns: 17rem minmax(0, 1fr);
+  gap: 2rem;
+  align-items: center;
+}
+
+.ds-arch-lane-head {
+  padding-bottom: 0.9rem;
+}
+
+.ds-arch-lane-track {
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: minmax(0, 1fr);
+  align-items: center;
+}
+
+.ds-arch-lane-stage {
+  font-family: var(--font-mono), monospace;
+  font-size: 0.56rem;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.ds-arch-lane {
+  padding: 1.15rem 0;
+  border-top: 1px solid color-mix(in oklab, var(--ds-accent-deep) 12%, transparent);
+}
+
+/* The cell is the anchor for both the stop and the segment leaving it, so a
+   lane needs no absolute positioning against the row — each span owns the
+   stretch to its right and the grid does the spacing. */
+.ds-arch-lane-cell {
+  position: relative;
+  display: flex;
+  align-items: center;
+  min-height: 9px;
+}
+
+.ds-arch-lane-cell .ds-arch-dot {
+  position: relative;
+  z-index: 1;
+  background: transparent;
+  box-shadow: inset 0 0 0 1.5px var(--ds-dot-muted);
+}
+
+.ds-arch-lane-cell.is-on .ds-arch-dot {
+  background: var(--ds-accent);
+  box-shadow: none;
+}
+
+.ds-arch-lane-seg {
+  position: absolute;
+  left: 4.5px;
+  right: -4.5px;
+  top: 50%;
+  height: 2px;
+  transform: translateY(-50%);
+  background: var(--ds-accent);
+}
+
+/* Crossed, not worked: the same span drawn as a dotted rule, which is the
+   system's existing shorthand for a gap being spanned rather than filled. */
+.ds-arch-lane-seg.is-crossed {
+  height: 3px;
+  background: none;
+  background-image: radial-gradient(circle, var(--ds-dot-muted) 1.3px, transparent 1.45px);
+  background-size: 7px 3px;
+}
+
+.ds-arch-lane-key {
+  display: flex;
+  gap: 1.75rem;
+  margin: 1.5rem 0 0;
+  padding-top: 1.1rem;
+  border-top: 1px solid color-mix(in oklab, var(--ds-accent-deep) 12%, transparent);
+  font-family: var(--font-mono), monospace;
+  font-size: 0.58rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.ds-arch-key-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+/* In the key the segment is a standalone swatch, not a span between stops. */
+.ds-arch-key-item .ds-arch-lane-seg {
+  position: static;
+  transform: none;
+  width: 2.25rem;
+  flex: 0 0 auto;
+}
+
+/* ── Archetype section (C14) ─────────────────────────────────────────── */
+
+.ds-arch-section-body {
+  margin-top: 2.75rem;
+}
+
+.ds-arch-basis {
+  margin: 1.6rem 0 0;
+  max-width: 62ch;
+  font-family: var(--font-mono), monospace;
+  font-size: 0.62rem;
+  line-height: 1.7;
+  letter-spacing: 0.04em;
+  color: var(--muted);
+}
+
+@media (max-width: 1000px) {
+  .ds-arch-lane-head,
+  .ds-arch-lane {
+    grid-template-columns: 12rem minmax(0, 1fr);
+    gap: 1.25rem;
+  }
+}

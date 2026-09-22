@@ -55,8 +55,10 @@ import {
   ArchetypeExchange,
   ArchetypeContinuum,
   ArchetypeField,
+  ArchetypeLanes,
   type Archetype,
 } from "@/components/design-system/ArchetypeFigure";
+import { ArchetypeSection } from "@/components/design-system/ArchetypeSection";
 import { ArtboardFigure } from "@/components/design-system/ArtboardFigure";
 import { ArtboardCarousel } from "@/components/design-system/ArtboardCarousel";
 import { ClipFigure } from "@/components/design-system/ClipFigure";
@@ -770,6 +772,59 @@ export default function ComponentsPage() {
               one unmeasured would be inventing a metric in dots.
             </p>
             <ArchetypeField archetypes={DEMO_ARCHETYPES} />
+          </div>
+
+          <div className="mt-12">
+            <p className="ds-eyebrow mb-1.5">E · Lanes — connection + state</p>
+            <p className="mb-6 max-w-[62ch] text-[0.88rem] leading-6" style={{ color: "var(--ink-soft)" }}>
+              The one the others cannot make. Coverage says where a type works; lanes say what they
+              cross to get there. A long hollow span in the middle of a lane is a hand-off nobody
+              owns — usually the finding worth putting on a page.
+            </p>
+            <ArchetypeLanes archetypes={DEMO_ARCHETYPES} stages={DEMO_STAGES} />
+          </div>
+        </div>
+
+        <div className="py-11">
+          <SubLabel code="C14 · Archetype section" />
+          <p className="max-w-[68ch] text-[0.95rem] leading-7" style={{ color: "var(--ink-soft)" }}>
+            The reusable block. A segment list is not evidence for the chapter it sits in — it is
+            the ground the rest of the case study stands on. Given its own section near the top it
+            can be referred back to (&ldquo;the specialist path&rdquo;, &ldquo;the consumer
+            side&rdquo;) instead of being re-explained three times further down.
+          </p>
+          <p className="mt-3 max-w-[68ch] text-[0.95rem] leading-7" style={{ color: "var(--ink-soft)" }}>
+            One component, one <code className="font-mono text-[0.85em]">variant</code> prop. The
+            only decision left to the author is which claim the dots are making. It also reserves a
+            line for where the segments came from: an archetype with no stated provenance is exactly
+            the thing a reader has learned to distrust, so the section asks for it rather than
+            leaving the author to remember.
+          </p>
+          <p className="mt-2 font-mono text-[0.6rem] uppercase tracking-[0.06em]" style={{ color: "var(--muted)" }}>
+            Rule · one section per case study · near the top · state the basis
+          </p>
+
+          <div className="ds-rule mt-9 pb-11">
+            <p className="mb-8 font-mono text-[0.6rem] uppercase tracking-[0.06em]" style={{ color: "var(--ds-accent-deep)" }}>variant=&quot;lanes&quot; — the default</p>
+            <ArchetypeSection
+              heading="Four people arrive at this platform wanting different things"
+              intro="The lifecycle is one path, but nobody walks all of it. What each type crosses without help is where the old tooling made them do the joining themselves."
+              archetypes={DEMO_ARCHETYPES}
+              stages={DEMO_STAGES}
+              variant="lanes"
+              basis="Placeholder — replace with the real basis, e.g. 12 developer interviews, two rounds of usability testing."
+            />
+          </div>
+
+          <div className="pt-11">
+            <p className="mb-8 font-mono text-[0.6rem] uppercase tracking-[0.06em]" style={{ color: "var(--ds-accent-deep)" }}>variant=&quot;field&quot; — the honest fallback</p>
+            <ArchetypeSection
+              heading="Four types, and no claim beyond that"
+              intro="When the research supports naming the segments but not mapping them, this is the version that does not overstate."
+              archetypes={DEMO_ARCHETYPES}
+              variant="field"
+              basis="Placeholder — the basis line matters most on this variant, where the dots carry least."
+            />
           </div>
         </div>
       </section>

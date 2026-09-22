@@ -236,3 +236,89 @@ export function ArchetypeField({ archetypes }: { archetypes: Archetype[] }) {
     </div>
   );
 }
+
+/* ── E · Lanes ─────────────────────────────────────────────────────────── */
+
+/**
+ * Each type's route through one shared process, with the gaps drawn.
+ *
+ * The pattern the other four cannot make: a solid segment is a stretch this
+ * type works through, a hollow one is ground they have to cross without the
+ * product helping. Four lanes over one set of stages is a transit map — same
+ * network, different journeys — which is exactly the claim a single platform
+ * has to earn.
+ *
+ * Under C1 it carries connection as well as state, and the connection is the
+ * point: coverage says where someone works, lanes say what they cross to get
+ * there. A lane with a long hollow span in the middle is a hand-off nobody
+ * owns, which is usually the finding worth putting on the page.
+ */
+export function ArchetypeLanes({
+  archetypes,
+  stages,
+}: {
+  archetypes: Archetype[];
+  stages: string[];
+}) {
+  return (
+    <div className="ds-arch-lanes">
+      <div className="ds-arch-lane-head" aria-hidden>
+        <span />
+        <div className="ds-arch-lane-track">
+          {stages.map((s) => (
+            <span key={s} className="ds-arch-lane-stage">
+              {s}
+            </span>
+          ))}
+        </div>
+      </div>
+
+      {archetypes.map((a) => {
+        const stops = [...(a.stages ?? [])].sort((x, y) => x - y);
+        const first = stops[0] ?? -1;
+        const last = stops[stops.length - 1] ?? -1;
+        return (
+          <div className="ds-arch-lane" key={a.name}>
+            <div className="ds-arch-lane-label">
+              <p className="ds-arch-name">{a.name}</p>
+              <p className="ds-arch-behaviour">{a.behaviour}</p>
+            </div>
+            <div className="ds-arch-lane-track">
+              {stages.map((s, i) => {
+                const on = stops.includes(i);
+                // A segment only exists between this stop and the next one,
+                // so the lane starts where the type joins and ends where it
+                // leaves rather than running the full width for everyone.
+                const within = i >= first && i < last;
+                const bridged = within && !(on && stops.includes(i + 1));
+                return (
+                  <span key={s} className={`ds-arch-lane-cell${on ? " is-on" : ""}`}>
+                    {within ? (
+                      <span
+                        className={`ds-arch-lane-seg${bridged ? " is-crossed" : ""}`}
+                        aria-hidden
+                      />
+                    ) : null}
+                    <span className="ds-arch-dot" />
+                    <span className="sr-only">
+                      {a.name} {on ? "works in" : "passes through"} {s}
+                    </span>
+                  </span>
+                );
+              })}
+            </div>
+          </div>
+        );
+      })}
+
+      <p className="ds-arch-lane-key" aria-hidden>
+        <span className="ds-arch-key-item">
+          <span className="ds-arch-lane-seg" /> works through
+        </span>
+        <span className="ds-arch-key-item">
+          <span className="ds-arch-lane-seg is-crossed" /> crosses unaided
+        </span>
+      </p>
+    </div>
+  );
+}
