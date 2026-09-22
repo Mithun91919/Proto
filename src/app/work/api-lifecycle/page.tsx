@@ -36,9 +36,8 @@ const ADOPTION_LOOP = ["Ship", "Adoption session", "Feedback", "Product change"]
 const SURFACE_PATH = ["UI platform", "Shared capability", "Conversational / tool-based access"];
 
 const CHAPTERS = [
-  { id: "lifecycle", label: "The API lifecycle" },
   { id: "overview", label: "The way in" },
-  { id: "one-platform", label: "One platform" },
+  { id: "lifecycle", label: "The lifecycle" },
   { id: "marketplace", label: "Finding a service" },
   { id: "studio", label: "Designing a contract" },
   { id: "testing", label: "Testing" },
@@ -161,33 +160,10 @@ export default function ApiLifecyclePage() {
       </div>
 
       <CaseStudyColumn>
-        {/* Order matters here. The breaker defines an API as a single
-            exchange; the obvious next question is what the work around one
-            actually is, and the lifecycle answers it. Only then is the home
-            screen worth showing — it arrives as the answer to a question the
-            reader now has, rather than as an artefact shown before there is
-            anything to ask. */}
-        <CaseStudySection id="lifecycle" boundary={false} className="pt-14 md:pt-20">
-          <CaseStudyChapter
-            layout="stacked"
-            eyebrow="The API lifecycle"
-            heading="The lifecycle was connected in theory, fragmented in practice"
-            body={[
-              "An API moves through discovery, contract design, validation, testing, publishing, subscription, governance, and eventually change or deprecation.",
-              "When those stages run on tools the company does not own, and nothing governs the path between them, engineers reconstruct the lifecycle themselves every time.",
-              "The opportunity was not to add another API tool. It was one product model carrying engineers through the whole lifecycle, with the controls part of the path rather than a gate at the end \u2014 and still enough depth for specialists.",
-            ]}
-          />
-          <CaseStudyFigure rule label="The lifecycle an engineer has to reconstruct">
-            <DotFlow stages={LIFECYCLE} />
-          </CaseStudyFigure>
-        </CaseStudySection>
-
-        <CaseStudySection id="overview">
-          {/* The claim this section makes is about the home screen
-              specifically — what an arriving engineer is given. It stays off
-              "it is all one place", which is the argument `one-platform`
-              makes below and would be weaker made twice. */}
+        <CaseStudySection id="overview" boundary={false} className="pt-14 md:pt-20">
+          {/* The page opens here because the home screen is where an
+              engineer opens the product. What follows walks the routes it
+              offers, in the order the lifecycle runs. */}
           <CaseStudyChapter
             layout="stacked"
             eyebrow="The way in"
@@ -215,17 +191,24 @@ export default function ApiLifecyclePage() {
           </CaseStudyFigure>
         </CaseStudySection>
 
-        <CaseStudySection id="one-platform">
+        {/* The lifecycle map, and the single claim that used to be its own
+            `one-platform` chapter. Separated, that chapter spent two of three
+            paragraphs on a concept that never shipped; here the three streams
+            are one clause of the decision that produced the map beside it. */}
+        <CaseStudySection id="lifecycle">
           <CaseStudyChapter
             layout="stacked"
-            eyebrow="One platform"
-            heading="Three streams would have rebuilt the problem we were solving"
+            eyebrow="The lifecycle"
+            heading="One place for every stage, with the controls inside the work"
             body={[
-              "The initial concept split the work into three streams: a marketplace to find services, a studio to design contracts, a tester to check them. Three names, three destinations, three things to learn.",
-              "I moved the product away from it. What we had been asked to fix was a dependence on outside tools with nothing governing the path between them; three streams of our own would have reproduced that shape, and an engineer would still have carried the context across.",
-              "So it ships as one place. API Hub, with Home, My APIs, Testing, Subscriptions and Settings \u2014 areas of a product rather than products, and the controls integrated into them rather than met at the end. What is gone is having to leave the platform, or work out which tool a job belongs to before starting it.",
+              "An API moves through discovery, contract design, validation, testing, publishing, subscription, governance, and eventually change or deprecation.",
+              "API Hub carries all of it. Home, My APIs, Testing, Subscriptions and Settings \u2014 areas of a product rather than products, with governance belonging to each area instead of waiting as a gate at the end of them.",
+              "That was a decision, not a default. The initial concept split the work into three streams \u2014 a marketplace, a studio, a tester \u2014 and I moved the product away from it: three streams of our own would have reproduced the shape we had been asked to fix.",
             ]}
           />
+          <CaseStudyFigure rule label="Every stage the platform carries">
+            <DotFlow stages={LIFECYCLE} />
+          </CaseStudyFigure>
         </CaseStudySection>
 
         <CaseStudySection id="marketplace">
