@@ -77,7 +77,14 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         </a>
         <DotGridBackground />
         <SiteHeader />
-        <main id="main-content" className="flex-1">
+        {/* `scroll-mt-[71px]` matches the sticky header's height. Two things
+            scroll to this element and both landed it underneath the header:
+            the skip link, and the App Router's own focus handling after a
+            client-side navigation — `main` carries tabIndex -1, and focusing
+            an element scrolls it to the top of the viewport. Clicking a card
+            on the home page arrived at scrollY 72 with the back link hidden
+            behind the header. The margin stops the scroll short instead. */}
+        <main id="main-content" tabIndex={-1} className="flex-1 scroll-mt-[71px] outline-none">
           {children}
         </main>
         <SiteFooter />
