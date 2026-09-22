@@ -136,6 +136,12 @@ export const projects: Project[] = [
     accentSoft: "#a5f3fc",
     contentPath:
       "projects/api-lifecycle-manager/web/api-lifecycle-web.md",
+    media: {
+      mp4: "/work/api-lifecycle/hero.mp4",
+      webm: "/work/api-lifecycle/hero.webm",
+      poster: "/work/api-lifecycle/poster.jpg",
+      aspect: 1600 / 1200,
+    },
     systemMap: [
       {
         label: "Before",
