@@ -194,6 +194,10 @@ const SWAPS = [
     good: "One pilot surfaced details that polished mockups had hidden.",
     bad: "Through rigorous user-centred research, we uncovered key insights that informed our design decisions.",
   },
+  {
+    good: "Engineers read the same contract, then rebuilt its meaning in separate tools.",
+    bad: "The platform experience suffered from a lack of cohesion across the developer journey.",
+  },
 ];
 
 const MECHANICS = [
@@ -204,8 +208,9 @@ const MECHANICS = [
   { label: "Outcomes", rule: "No number is not no outcome. Say what changed and who stopped having to do something. Never invent a metric to fill the gap." },
   { label: "Arrows", rule: "→ for transformation and hierarchy. Never -> in rendered copy." },
   { label: "Product names", rule: "Public label only. Internal names never appear as a primary title." },
-  { label: "Headings", rule: "Make an argument. Never The Problem, The Process, The Solution." },
+  { label: "Headings", rule: "Make an argument. Never The Problem, The Process, The Solution — as a heading. As a small label above a sentence that makes the argument, they are fine; the ban is on a heading that names a section instead of claiming something." },
   { label: "Directness", rule: "Say who did what. A hidden subject or a softened claim is evasion, not modesty." },
+  { label: "Plain statement", rule: "One sentence, ordinary words. Name the behaviour, not the condition: what people did, with the real objects they did it to. No adjective that is praise." },
 ];
 
 const ANTI_PATTERNS = [
@@ -1335,6 +1340,52 @@ export default function ComponentsPage() {
               </div>
             ))}
           </dl>
+        </div>
+
+        <div className="ds-rule py-11">
+          <SubLabel code="Label and claim" />
+          <p className="max-w-[66ch] text-[0.95rem] leading-7" style={{ color: "var(--ink-soft)" }}>
+            The shortest shape that still argues. A small label says what kind of sentence is
+            coming; the sentence does the work. This is the one place{" "}
+            <em>The problem</em> and <em>The solution</em> are allowed — demoted to labels, they
+            signpost without pretending to be the claim.
+          </p>
+          <div className="mt-8 grid grid-cols-1 gap-x-14 gap-y-9 md:grid-cols-2">
+            <div>
+              <p className="ds-eyebrow">The problem</p>
+              <p className="display-title mt-2.5" style={{ fontSize: "1.2rem", lineHeight: 1.45 }}>
+                Engineers read the same contract, then rebuilt its meaning in separate tools.
+              </p>
+            </div>
+            <div>
+              <p className="ds-eyebrow">The solution</p>
+              <p className="display-title mt-2.5" style={{ fontSize: "1.2rem", lineHeight: 1.45 }}>
+                One platform for the whole lifecycle. Find a service, agree its contract, test it,
+                keep it governed.
+              </p>
+            </div>
+          </div>
+          <div className="mt-9 grid grid-cols-1 gap-x-14 gap-y-1 sm:grid-cols-2">
+            {[
+              { rule: "Name the behaviour, not the condition", note: "What people did, with the real objects they did it to. Not “collaboration was fragmented”." },
+              { rule: "Let the sequence carry the waste", note: "“read the same contract, then rebuilt it separately” — the duplication is in the word then." },
+              { rule: "Lead the solution with a noun", note: "Name the thing first, then the verbs. One platform, then find / agree / test / keep." },
+              { rule: "No adjective that is praise", note: "Seamless, powerful, intuitive. An adjective may name a capability; it may not grade one." },
+              { rule: "Ordinary words", note: "Read, rebuilt, find, keep. If a shorter word is true, it is also the right one." },
+              { rule: "One sentence each", note: "If it needs two, the claim is not settled yet. Settle it before writing it down." },
+            ].map((r) => (
+              <div key={r.rule} className="ds-rule py-4">
+                <p className="text-[0.92rem] leading-6" style={{ color: "var(--ink)" }}>{r.rule}</p>
+                <p className="mt-1 text-[0.85rem] leading-6" style={{ color: "var(--ink-soft)" }}>{r.note}</p>
+              </div>
+            ))}
+          </div>
+          <p className="mt-7 max-w-[66ch] text-[0.88rem] leading-6" style={{ color: "var(--ink-soft)" }}>
+            No new component: <code className="font-mono text-[0.85em]">BeforeAfterModel</code>{" "}
+            already takes a <code className="font-mono text-[0.85em]">before</code> and{" "}
+            <code className="font-mono text-[0.85em]">after</code> as heading-and-body pairs, which
+            is this shape. What was missing was the rule for what goes in them.
+          </p>
         </div>
       </section>
 
