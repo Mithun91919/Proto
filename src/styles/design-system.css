@@ -2115,14 +2115,30 @@
   z-index: 3;
 }
 
+/* Glass, not the solid `.ds-callout-dot` fill it inherits.
+   A hotspot sits *on* a screenshot rather than in a margin beside it, so an
+   opaque 27px disc deletes whatever it lands on — a label, a control, the
+   very thing it is pointing at. Translucent with a blur behind it, the
+   interface stays readable underneath while the numeral keeps its contrast,
+   and the ring gives it an edge against light and dark ground alike.
+   `.ds-callout-dot` on its own is unchanged: AnnotatedInterface places those
+   outside the image, where covering nothing is already true. */
 .ds-hotspot-dot {
   position: absolute;
   top: 0;
   left: 0;
+  width: 24px;
+  height: 24px;
   transform: translate(-50%, -50%);
   cursor: pointer;
   border: 0;
   padding: 0;
+  background: color-mix(in oklab, var(--ds-accent) 72%, transparent);
+  -webkit-backdrop-filter: blur(3px) saturate(1.25);
+  backdrop-filter: blur(3px) saturate(1.25);
+  box-shadow:
+    inset 0 0 0 1px color-mix(in oklab, white 55%, transparent),
+    0 0 0 4px color-mix(in oklab, var(--ds-accent) 12%, transparent);
   transition:
     transform 180ms ease,
     box-shadow 180ms ease,
@@ -2171,6 +2187,12 @@
 .ds-hotspot-dot:hover,
 .ds-hotspot-dot:focus-visible {
   animation: none;
+  /* Solid once engaged: while a panel is open the reader needs to know
+     without ambiguity which dot it belongs to, and that is worth covering a
+     few pixels for. */
+  background: var(--ds-accent);
+  -webkit-backdrop-filter: none;
+  backdrop-filter: none;
 }
 
 .ds-hotspot-pop {

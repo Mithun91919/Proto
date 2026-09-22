@@ -197,8 +197,8 @@ export default function ApiLifecyclePage() {
               eyebrow="The way in"
               heading="Routes into work, not a status board"
               body={[
-                "An engineer opening a platform is not there to read a summary of it. They have arrived to start something: import an API, define a new one, check a subscription, generate a client.",
-                "So the home screen leads with search across every service, and then the eight things people actually turn up wanting to do.",
+                "An engineer opening a platform is not there to read a summary of it. They have arrived to do something \u2014 and what that is varies: find a service, start a task, or reach one specific function.",
+                "So the home screen carries all three ways in rather than picking one. Search across every service, the eight tasks people most often start, and direct routes to functions like proxy and linting.",
               ]}
             />
             {/* A full-page capture, held to a fixed height and scrolled in
@@ -222,21 +222,21 @@ export default function ApiLifecyclePage() {
                 hotspots={[
                   {
                     x: 59,
-                    y: 22,
-                    title: "Search first",
-                    detail: "Above the routes, not inside them. Someone who already knows the service they want never has to browse for it.",
+                    y: 19,
+                    title: "Arriving to find",
+                    detail: "Search leads, across every service. Someone who already knows what they want never has to browse for it.",
                   },
                   {
                     x: 59,
-                    y: 39,
-                    title: "Eight ways to start",
-                    detail: "Import, define, subscribe, generate a client, register, document, monitor, publish. The routes are the things people arrive wanting to do, not a map of the product.",
+                    y: 31,
+                    title: "Arriving to do",
+                    detail: "Import, define, subscribe, generate a client, register, document, monitor, publish. The eight tasks people most often turn up to start.",
                   },
                   {
-                    x: 65,
+                    x: 92,
                     y: 61,
-                    title: "Governance on the way in",
-                    detail: "Linting and standards sit on the home screen, so a contract is checked while it is being written rather than at a gate after it.",
+                    title: "Arriving for one function",
+                    detail: "Proxy and linting are reachable directly, without going through a task first \u2014 and linting on the way in means a contract is checked while it is written, not at a gate after it.",
                   },
                 ]}
                 caption="Search sits above the routes, so someone who already knows the service they want never has to browse for it."
