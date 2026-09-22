@@ -120,7 +120,7 @@ const SWAPS = [
     good: "Portfolio planning was split across separate systems for people, products, initiatives, approvals, and strategic work.",
     bad: "Users were facing significant pain points due to a fragmented and disjointed tooling landscape.",
   },
-  { good: "~500 services onboarded.", bad: "Massive adoption across the engineering organisation." },
+  { good: "15K+ APIs onboarded.", bad: "Massive adoption across the engineering organisation." },
   {
     good: "I co-led the redesign of the information architecture with another designer.",
     bad: "Spearheaded a complete end-to-end transformation of the platform experience.",
@@ -915,7 +915,7 @@ export default function ComponentsPage() {
           <CaseStudyEvidence
             slug="api-lifecycle"
             metrics={[
-              { value: "~500", label: "services onboarded" },
+              { value: "15K+", label: "APIs onboarded" },
               { value: "~40%", label: "faster contract design" },
               { value: "60+", label: "teams" },
             ]}

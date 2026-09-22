@@ -82,7 +82,7 @@ export default function ApiLifecyclePage() {
             </>
           ),
           detail:
-            "I ran 60+ adoption sessions with engineering teams as the three pillars took shape, and led design through the product's growth from UX Designer to Senior.",
+            "I shaped the model as the three pillars took shape, then ran the weekly sessions that got teams onto it after a launch almost nobody turned up to \u2014 over a hundred of them, and the product grew from my first year on it to my fourth.",
         },
       ]}
       chapters={CHAPTERS}
@@ -313,11 +313,12 @@ export default function ApiLifecyclePage() {
           <CaseStudyChapter
             layout="stacked"
             eyebrow="Adoption"
-            heading="Adoption was part of the design work"
+            heading="It shipped, and almost nobody came"
             body={[
-              "A developer platform does not become useful simply because it ships.",
-              "Across more than 60 engineering sessions, we demonstrated the product, observed where teams struggled, answered workflow questions, and used that feedback to refine terminology, interactions, and guidance.",
-              "This mattered especially for Design Studio, where teams using the redesigned experience measured a ~40% reduction in API contract design time.",
+              "Adoption after launch was very low. The platform worked, the three pillars were in place, and engineering teams carried on with the tools they already had. Nobody was going to read an announcement and change how they built services.",
+              "So we started running a brown-bag session every week: show the product to one team, watch where they got stuck, answer the workflow questions that an announcement cannot. We have run more than a hundred of them, averaging over sixty people a session.",
+              "That is what moved it. Teams onboarded and kept using it, and the sessions turned into a channel \u2014 feedback and suggestions started arriving through Slack and support rather than having to be chased.",
+              "It also fed the design. Terminology, interactions and guidance changed on what the sessions surfaced, and it mattered most in Design Studio, where teams on the redesigned experience measured a ~40% reduction in contract design time.",
             ]}
           />
           <CaseStudyFigure rule label="The adoption loop">
@@ -346,7 +347,7 @@ export default function ApiLifecyclePage() {
             eyebrow="What changed"
             heading="Fewer translations between tools"
             body={[
-              "The platform established a connected API lifecycle across discovery, contract design, and testing, with ~500 services onboarded during the documented period.",
+              "The platform established a connected API lifecycle across discovery, contract design and testing. More than 15,000 APIs are onboarded and it is opened by over 10,000 people a month.",
               "The strongest outcome was not feature count. It was reducing the number of times engineers had to translate context between disconnected tools while giving different levels of expertise a workable path through the same lifecycle.",
             ]}
           />

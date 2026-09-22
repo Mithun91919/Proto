@@ -118,11 +118,11 @@ export const projects: Project[] = [
     summary:
       "API development was spread across disconnected documentation, design, testing, and subscription workflows. I helped define and design a platform built around three core experiences: Marketplace, Design Studio, and Testing.",
     outcome:
-      "~500 services onboarded · ~40% faster contract design in the redesigned Studio · 60+ adoption sessions",
+      "15K+ APIs onboarded · 10K+ monthly users · ~40% faster contract design in the redesigned Studio",
     metrics: [
-      { value: "~500", label: "services onboarded" },
+      { value: "15K+", label: "APIs onboarded" },
+      { value: "10K+", label: "monthly users" },
       { value: "~40%", label: "faster contract design in the Studio" },
-      { value: "60+", label: "adoption sessions" },
     ],
     org: "Walmart Global Tech",
     domain: "Developer tools",
