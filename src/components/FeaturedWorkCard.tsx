@@ -44,6 +44,19 @@ export function metricGlyph(slug: string, index: number): MetricMarkName {
   return PROJECT_METRIC_GLYPHS[slug]?.[index] ?? "field";
 }
 
+/* Chips that sit on the artwork. Measured across the three posters, the
+   regions under them run Y=157-211 of 255 — the product captures are light
+   UIs, so a dark chip reads as a black bar laid over them. A light surface
+   with near-black type sits quieter and still holds up if a frame goes
+   dark, because the hairline and the shadow define the shape rather than
+   the fill alone. */
+const CHIP: CSSProperties = {
+  background: "var(--ds-solid-bg)",
+  color: "var(--ink)",
+  border: "1px solid var(--ds-solid-border)",
+  boxShadow: "var(--ds-glass-soft-shadow)",
+};
+
 /**
  * B · Media-forward glass card — one of six layouts compared live at
  * `/work/layout-options`; picked for the homepage grid.
@@ -75,10 +88,31 @@ export function FeaturedWorkCard({ project }: { project: Project }) {
           <ProjectMedia project={project} aspect={16 / 10} flush hoverScope=".featured-card" />
           <span
             className="absolute left-4 top-4 rounded-full px-3 py-1 font-mono text-[0.65rem] uppercase tracking-[0.14em]"
-            style={{ background: "var(--ds-dark)", color: "var(--ds-mint)" }}
+            style={CHIP}
           >
             {project.number} · {project.label}
           </span>
+          {/* Tags and timeframe share the foot of the artwork: tags left,
+              years right, on the same chip surface as the number above. */}
+          <div className="absolute inset-x-4 bottom-4 flex flex-wrap items-center justify-between gap-2">
+            <ul className="flex flex-wrap items-center gap-2">
+              {project.tags.slice(0, 2).map((t) => (
+                <li
+                  key={t}
+                  className="rounded-full px-3 py-1 font-mono text-[0.62rem] uppercase tracking-[0.12em]"
+                  style={CHIP}
+                >
+                  {t}
+                </li>
+              ))}
+            </ul>
+            <span
+              className="rounded-full px-3 py-1 font-mono text-[0.62rem] uppercase tracking-[0.12em]"
+              style={CHIP}
+            >
+              {project.timeframe}
+            </span>
+          </div>
         </div>
         <div className="flex flex-1 flex-col p-7">
           {/* Provenance above the title, where it gets read first — who the
@@ -103,23 +137,9 @@ export function FeaturedWorkCard({ project }: { project: Project }) {
           <div className="mt-6 border-t pt-5" style={{ borderColor: "var(--line)" }}>
             <MetricRow project={project} />
           </div>
-          {/* The timeframe used to sit as a pill over the artwork, where it
-              fought the media for attention and needed a dark chip to stay
-              legible. It belongs with the other card metadata: same row as
-              the tags, grouped left so the arrow keeps the right edge. */}
-          <div className="mt-5 flex items-center justify-between gap-4">
-            <div className="flex flex-wrap items-center gap-x-3 gap-y-2">
-              <span className="font-mono text-[0.62rem] uppercase tracking-[0.14em] text-[var(--muted)]">
-                {project.timeframe}
-              </span>
-              <ul className="tag-list">
-                {project.tags.slice(0, 2).map((t) => (
-                  <li key={t} className="tag">
-                    {t}
-                  </li>
-                ))}
-              </ul>
-            </div>
+          {/* Tags moved up onto the artwork, so this row carries the
+              affordance alone. */}
+          <div className="mt-5 flex items-center justify-end">
             <span
               className="ds-arrow text-xl transition-transform duration-300 group-hover:translate-x-1"
               style={{ color: "var(--accent-deep)" }}
