@@ -2047,7 +2047,19 @@
 
 @media (min-width: 768px) {
   .ds-cs-split {
-    grid-template-columns: minmax(0, 19rem) minmax(0, 1fr);
+    grid-template-columns: minmax(0, var(--split-copy, 24rem)) minmax(0, 1fr);
+  }
+
+  /* Media left, copy right. Source order stays copy-then-media, because that
+     is the reading order when the columns stack; only the painted order
+     swaps. Alternating down the page stops four identical silhouettes
+     reading as one long column with a gutter. */
+  .ds-cs-split.is-reversed {
+    grid-template-columns: minmax(0, 1fr) minmax(0, var(--split-copy, 24rem));
+  }
+
+  .ds-cs-split.is-reversed > *:first-child {
+    order: 2;
   }
 }
 
