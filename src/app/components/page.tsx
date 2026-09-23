@@ -839,12 +839,14 @@ export default function ComponentsPage() {
           <p className="mt-3 max-w-[68ch] text-[0.95rem] leading-7" style={{ color: "var(--ink-soft)" }}>
             One component, one <code className="font-mono text-[0.85em]">variant</code> prop. The
             only decision left to the author is which claim the dots are making. It also reserves a
-            line for where the segments came from: an archetype with no stated provenance is exactly
-            the thing a reader has learned to distrust, so the section asks for it rather than
-            leaving the author to remember.
+            line for where the segments came from, and puts it{" "}
+            <em>above</em> the archetypes: one with no stated provenance is exactly the thing a
+            reader has learned to distrust, and a reader who already knows these came from
+            interviews reads the cards as found rather than imagined. Underneath, it arrives after
+            the judgement is formed.
           </p>
           <p className="mt-2 font-mono text-[0.6rem] uppercase tracking-[0.06em]" style={{ color: "var(--muted)" }}>
-            Rule · one section per case study · near the top · state the basis
+            Rule · one section per case study · near the top · state the basis before the cards, not after
           </p>
 
           <div className="mt-9">
