@@ -3798,3 +3798,64 @@ a:hover .ds-compact-mark .ds-dot {
   margin-top: 0;
 }
 
+/* ── `ledger` — a row per role ──────────────────────────────────────────── */
+
+.ds-arch-ledger {
+  display: flex;
+  flex-direction: column;
+}
+
+.ds-arch-ledger-head,
+.ds-arch-ledger-row {
+  display: grid;
+  grid-template-columns: 13rem 1fr 1fr 1fr;
+  gap: 2rem;
+  align-items: start;
+}
+
+.ds-arch-ledger-head {
+  padding-bottom: 0.9rem;
+  font-family: var(--font-mono), monospace;
+  font-size: 0.58rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.ds-arch-ledger-row {
+  padding: 1.5rem 0;
+  border-top: 1px solid color-mix(in oklab, var(--ds-accent-deep) 13%, transparent);
+}
+
+.ds-arch-ledger-role {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.6rem;
+}
+
+.ds-arch-ledger-cell {
+  margin: 0;
+  font-size: 0.87rem;
+  line-height: 1.55;
+  color: var(--ink-soft);
+}
+
+/* Want and friction keep the weight they carry on a card: they are what the
+   work is judged against, and a table should not quietly flatten them back
+   into the descriptive column. */
+.ds-arch-ledger-cell.is-key {
+  font-size: 0.95rem;
+  color: var(--ink);
+}
+
+@media (max-width: 1100px) {
+  .ds-arch-ledger {
+    overflow-x: auto;
+  }
+
+  .ds-arch-ledger-head,
+  .ds-arch-ledger-row {
+    min-width: 58rem;
+  }
+}

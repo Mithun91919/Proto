@@ -126,8 +126,8 @@ const DEMO_ARCHETYPES: Archetype[] = [
   {
     name: "Specification specialist",
     behaviour: "Works the specification directly and wants the structure out of the way.",
-    wants: "To edit the spec itself, with validation that keeps up.",
-    friction: "Guided builders slowed down the people who least needed guiding.",
+    wants: ["Edit the spec itself, with validation that keeps up."],
+    friction: ["Guided builders slowed the people who least needed guiding."],
     stages: [1, 2, 3],
     depth: 0.05,
   },
@@ -858,11 +858,34 @@ export default function ComponentsPage() {
             Rule · one section per case study · near the top · state the basis before the cards, not after
           </p>
 
-          <div className="mt-9">
+          <p className="mt-7 max-w-[68ch] text-[0.95rem] leading-7" style={{ color: "var(--ink-soft)" }}>
+            The count picks the figure. Two roles or fewer sit as cards beside the copy; three or
+            more switch to a ledger across the full width, because that is where cards stop fitting
+            — two in a split column get about 375px each, three get 240 and break to two or three
+            words a line. The section decides, so an author cannot pick the one that does not fit.
+          </p>
+
+          <div className="ds-rule mt-9 pb-12">
+            <p className="mb-7 font-mono text-[0.6rem] uppercase tracking-[0.06em]" style={{ color: "var(--ds-accent-deep)" }}>
+              Two roles
+            </p>
             <ArchetypeSection
               heading="Two roles, two sides of the same contract"
               intro="An engineer consumes an API; an architect provides one, and the same person is often both."
               archetypes={PAIR}
+              stages={DEMO_STAGES}
+              basis={DEMO_BASIS}
+            />
+          </div>
+
+          <div className="pt-12">
+            <p className="mb-7 font-mono text-[0.6rem] uppercase tracking-[0.06em]" style={{ color: "var(--ds-accent-deep)" }}>
+              Four roles — same component, no prop changed
+            </p>
+            <ArchetypeSection
+              heading="Who the platform serves"
+              intro="Past two, the reading changes: every need together, every frustration together, rather than one person at a time."
+              archetypes={DEMO_ARCHETYPES}
               stages={DEMO_STAGES}
               basis={DEMO_BASIS}
             />

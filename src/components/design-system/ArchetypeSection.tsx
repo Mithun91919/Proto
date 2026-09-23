@@ -3,6 +3,7 @@ import {
   ArchetypeCards,
   ArchetypeCoverage,
   ArchetypeLanes,
+  ArchetypeLedger,
   type Archetype,
 } from "./ArchetypeFigure";
 
@@ -19,6 +20,10 @@ import {
  * referred back to — "the specialist path", "the consumer side" — without
  * being restated, which is what stops the distinctions being re-explained
  * three times further down.
+ *
+ * Two roles or fewer render as cards beside the copy; three or more switch
+ * to a ledger across the full width, because that is where cards stop
+ * fitting. The section decides, not the caller.
  *
  * `variant` picks the claim:
  * - `cards`    — glyph, behaviour, goal and friction per type. The fullest
@@ -86,9 +91,29 @@ export function ArchetypeSection({
     </div>
   );
 
-  // Copy one side, roles the other. The only composition: the page already
-  // runs this rhythm, and three alternatives nobody picked is a menu, not a
-  // system.
+  // Three roles or more and the cards stop fitting: two in a split column
+  // get about 375px each, three get 240 and break to two or three words a
+  // line. So the count picks the figure, and the composition follows it —
+  // a four-column ledger cannot live in the narrower half of a split, so
+  // that case runs the full width instead. One rule, no prop: where cards
+  // stop working is arithmetic, not taste.
+  const many = archetypes.length > 2 && resolved === "cards";
+
+  if (many) {
+    return (
+      <section id={id} className="ds-arch-section scroll-mt-28">
+        <Reveal>{head}</Reveal>
+        <Reveal>
+          <div className="ds-arch-section-body">
+            <ArchetypeLedger archetypes={archetypes} stages={stages} />
+          </div>
+        </Reveal>
+      </section>
+    );
+  }
+
+  // Copy one side, roles the other. The default, and the reason it is the
+  // default is that it reads as a section rather than a block of cards.
   return (
     <section id={id} className="ds-arch-section scroll-mt-28">
       <div className="ds-cs-split">

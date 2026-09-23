@@ -412,3 +412,53 @@ export function ArchetypeCards({
     </div>
   );
 }
+
+/* ── H · Ledger ────────────────────────────────────────────────────────── */
+
+/**
+ * One row per role rather than a card each. For three roles or more.
+ *
+ * Not an author's choice — `ArchetypeSection` switches to this on count,
+ * because the point at which cards stop working is arithmetic rather than
+ * taste. Two cards in a split column get about 375px each and read well;
+ * three get 240 and start breaking to two or three words a line.
+ *
+ * It also reads differently, which is the part worth having: a reader can
+ * compare the same field down a column — every need together, every
+ * frustration together — where a card asks you to take one person whole
+ * before moving to the next. With three or more that comparison is the
+ * reason to draw them at all.
+ */
+export function ArchetypeLedger({
+  archetypes,
+  stages,
+}: {
+  archetypes: Archetype[];
+  stages: string[];
+}) {
+  const showGlyph = stages.length > 0;
+  return (
+    <div className="ds-arch-ledger">
+      <div className="ds-arch-ledger-head" aria-hidden>
+        <span>Role</span>
+        <span>What they do</span>
+        <span>Top needs</span>
+        <span>Top frustrations</span>
+      </div>
+      {archetypes.map((a) => (
+        <div className="ds-arch-ledger-row" key={a.name}>
+          <div className="ds-arch-ledger-role">
+            {showGlyph ? <ArchetypeGlyph archetype={a} stageCount={stages.length} /> : null}
+            <p className="ds-arch-name">{a.name}</p>
+            {a.side ? <span className="ds-arch-side">{a.side}</span> : null}
+          </div>
+          <p className="ds-arch-ledger-cell">{a.behaviour}</p>
+          <div>{a.wants ? <ArchetypeField label="" items={a.wants} tone="need" /> : null}</div>
+          <div>
+            {a.friction ? <ArchetypeField label="" items={a.friction} tone="friction" /> : null}
+          </div>
+        </div>
+      ))}
+    </div>
+  );
+}
