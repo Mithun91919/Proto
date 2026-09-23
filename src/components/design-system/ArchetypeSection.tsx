@@ -3,7 +3,6 @@ import {
   ArchetypeCards,
   ArchetypeCoverage,
   ArchetypeLanes,
-  ArchetypeLedger,
   type Archetype,
 } from "./ArchetypeFigure";
 
@@ -46,23 +45,6 @@ type ArchetypeSectionProps = {
   stages?: string[];
   variant?: "cards" | "lanes" | "coverage";
   /**
-   * How the section composes itself, independent of which figure it holds.
-   *
-   * - `stack`  — head, basis, then the figure across the full column. The
-   *              default: nothing competes, and it reads as its own beat.
-   * - `split`  — head and basis in a narrow column with the roles beside
-   *              them. For a page already running copy-one-side, media-other,
-   *              where a full-width block would break the rhythm.
-   * - `anchor` — the whole section on the dark ground. B6 reserves dark for
-   *              a thesis or reframe, and the roles are the premise every
-   *              decision below answers to, so it qualifies — once. Two dark
-   *              blocks in a case study is the anti-pattern.
-   * - `ledger` — one row per role instead of a card each. The only layout
-   *              that holds four roles without cramping them, and the only
-   *              one that lets a reader compare the same field down a column.
-   */
-  layout?: "stack" | "split" | "anchor" | "ledger";
-  /**
    * Where the segments came from, rendered above them.
    *
    * Not decoration: an archetype with no stated provenance is the thing a
@@ -84,7 +66,6 @@ export function ArchetypeSection({
   archetypes,
   stages = [],
   variant = "cards",
-  layout = "stack",
   basis,
 }: ArchetypeSectionProps) {
   // Falling back rather than rendering a broken grid: a caller who picks
@@ -105,43 +86,23 @@ export function ArchetypeSection({
     </div>
   );
 
-  // `ledger` is a layout rather than a figure variant: it replaces the cards
-  // with rows but keeps whatever the section is otherwise doing.
-  const figure =
-    layout === "ledger" ? (
-      <ArchetypeLedger archetypes={archetypes} stages={stages} />
-    ) : (
-      <>
-        {resolved === "cards" ? <ArchetypeCards archetypes={archetypes} stages={stages} /> : null}
-        {resolved === "lanes" ? <ArchetypeLanes archetypes={archetypes} stages={stages} /> : null}
-        {resolved === "coverage" ? (
-          <ArchetypeCoverage archetypes={archetypes} stages={stages} />
-        ) : null}
-      </>
-    );
-
-  if (layout === "split") {
-    return (
-      <section id={id} className="ds-arch-section scroll-mt-28">
-        <div className="ds-cs-split">
-          <Reveal>{head}</Reveal>
-          <Reveal>
-            <div className="ds-arch-section-body is-tight">{figure}</div>
-          </Reveal>
-        </div>
-      </section>
-    );
-  }
-
+  // Copy one side, roles the other. The only composition: the page already
+  // runs this rhythm, and three alternatives nobody picked is a menu, not a
+  // system.
   return (
-    <section
-      id={id}
-      className={`ds-arch-section scroll-mt-28${layout === "anchor" ? " is-anchor" : ""}`}
-    >
-      <Reveal>{head}</Reveal>
-      <Reveal>
-        <div className="ds-arch-section-body">{figure}</div>
-      </Reveal>
+    <section id={id} className="ds-arch-section scroll-mt-28">
+      <div className="ds-cs-split">
+        <Reveal>{head}</Reveal>
+        <Reveal>
+          <div className="ds-arch-section-body is-tight">
+            {resolved === "cards" ? <ArchetypeCards archetypes={archetypes} stages={stages} /> : null}
+            {resolved === "lanes" ? <ArchetypeLanes archetypes={archetypes} stages={stages} /> : null}
+            {resolved === "coverage" ? (
+              <ArchetypeCoverage archetypes={archetypes} stages={stages} />
+            ) : null}
+          </div>
+        </Reveal>
+      </div>
     </section>
   );
 }

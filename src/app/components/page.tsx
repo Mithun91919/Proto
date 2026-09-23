@@ -858,82 +858,13 @@ export default function ComponentsPage() {
             Rule · one section per case study · near the top · state the basis before the cards, not after
           </p>
 
-          <p className="mt-7 max-w-[68ch] text-[0.95rem] leading-7" style={{ color: "var(--ink-soft)" }}>
-            Four ways the section can sit on a page, over identical content. The figure inside is a
-            separate choice — these govern composition, not what the dots say.
-          </p>
-
-          <div className="ds-rule mt-9 pb-12">
-            <p className="mb-7 font-mono text-[0.6rem] uppercase tracking-[0.06em]" style={{ color: "var(--ds-accent-deep)" }}>
-              1 · layout=&quot;stack&quot; — the default
-            </p>
-            <p className="mb-7 max-w-[64ch] text-[0.88rem] leading-6" style={{ color: "var(--ink-soft)" }}>
-              Head, basis, then the roles across the full column. Nothing competes, and the section
-              reads as its own beat. Best when the roles are being introduced for the first time.
-            </p>
+          <div className="mt-9">
             <ArchetypeSection
               heading="Two roles, two sides of the same contract"
-              intro="An engineer consumes an API; an architect provides one."
+              intro="An engineer consumes an API; an architect provides one, and the same person is often both."
               archetypes={PAIR}
               stages={DEMO_STAGES}
               basis={DEMO_BASIS}
-            />
-          </div>
-
-          <div className="ds-rule pt-12 pb-12">
-            <p className="mb-7 font-mono text-[0.6rem] uppercase tracking-[0.06em]" style={{ color: "var(--ds-accent-deep)" }}>
-              2 · layout=&quot;split&quot;
-            </p>
-            <p className="mb-7 max-w-[64ch] text-[0.88rem] leading-6" style={{ color: "var(--ink-soft)" }}>
-              Head and basis in a narrow column, roles beside them. For a page already running copy
-              one side and media the other, where a full-width block breaks the rhythm.
-            </p>
-            <ArchetypeSection
-              heading="Two roles, two sides of the same contract"
-              intro="An engineer consumes an API; an architect provides one."
-              archetypes={PAIR}
-              stages={DEMO_STAGES}
-              basis={DEMO_BASIS}
-              layout="split"
-            />
-          </div>
-
-          <div className="ds-rule pt-12 pb-12">
-            <p className="mb-7 font-mono text-[0.6rem] uppercase tracking-[0.06em]" style={{ color: "var(--ds-accent-deep)" }}>
-              3 · layout=&quot;anchor&quot;
-            </p>
-            <p className="mb-7 max-w-[64ch] text-[0.88rem] leading-6" style={{ color: "var(--ink-soft)" }}>
-              On the dark ground. B6 reserves dark for a thesis or a reframe, and the roles are the
-              premise every decision below answers to — so it qualifies, once. Two dark blocks in a
-              case study is the anti-pattern, not a rhythm.
-            </p>
-            <ArchetypeSection
-              heading="Two roles, two sides of the same contract"
-              intro="An engineer consumes an API; an architect provides one."
-              archetypes={PAIR}
-              stages={DEMO_STAGES}
-              basis={DEMO_BASIS}
-              layout="anchor"
-            />
-          </div>
-
-          <div className="pt-12">
-            <p className="mb-7 font-mono text-[0.6rem] uppercase tracking-[0.06em]" style={{ color: "var(--ds-accent-deep)" }}>
-              4 · layout=&quot;ledger&quot;
-            </p>
-            <p className="mb-7 max-w-[64ch] text-[0.88rem] leading-6" style={{ color: "var(--ink-soft)" }}>
-              A row per role. The only one that holds four without cramping them, and the only one
-              where a reader can compare the same field down a column — every want together, every
-              friction together — rather than taking one person whole before moving on. Shown with
-              four to make the point.
-            </p>
-            <ArchetypeSection
-              heading="Who the platform serves"
-              intro="Four roles, compared field by field rather than one card at a time."
-              archetypes={DEMO_ARCHETYPES}
-              stages={DEMO_STAGES}
-              basis={DEMO_BASIS}
-              layout="ledger"
             />
           </div>
         </div>

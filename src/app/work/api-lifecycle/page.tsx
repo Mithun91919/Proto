@@ -55,14 +55,14 @@ const ARCHETYPES: Archetype[] = [
     name: "Engineer",
     side: "Consumer",
     behaviour:
-      "Needs an API that already exists. Arrives looking, judges fit, subscribes, and gets back to their own build.",
+      "Needs an API that already exists, judges whether it fits, and subscribes.",
     wants: [
-      "Judge whether a service fits before writing any integration code against it.",
-      "Subscribe, and reach the technical detail, without leaving the path they are on.",
+      "Judge whether a service fits before writing any code against it.",
+      "Subscribe without leaving the path they are on.",
     ],
     friction: [
       "Discovery answered \u201cdoes this API exist?\u201d and little else.",
-      "What it does, which environments it runs in, and who depends on it lived apart.",
+      "What it does, where it runs, and who depends on it lived apart.",
     ],
     stages: [0, 3],
   },
@@ -70,13 +70,13 @@ const ARCHETYPES: Archetype[] = [
     name: "Architect",
     side: "Provider",
     behaviour:
-      "Creates and owns an API other teams depend on. Designs the contract, publishes it, and answers for it afterwards.",
+      "Creates an API other teams depend on, and answers for it afterwards.",
     wants: [
-      "Work the contract at their own depth \u2014 the specification directly, or the schema drawn for them.",
-      "Change a published contract without breaking the teams already on it.",
+      "Work the spec directly, or have the schema drawn for them.",
+      "Change a published contract without breaking the teams on it.",
     ],
     friction: [
-      "One mode suited one kind of engineer and slowed the other down.",
+      "One mode suited one kind of engineer and slowed the other.",
       "Governance arrived at the end, often once a contract was already in use.",
     ],
     stages: [1, 2, 4, 5],
@@ -238,11 +238,11 @@ export default function ApiLifecyclePage() {
         <CaseStudySection id="who">
           <ArchetypeSection
             heading="Two roles, two sides of the same contract"
-            intro="An engineer consumes an API; an architect provides one. The same person is often both across two services, so the split is which side of a contract they are on that day rather than who they are. The mark on each card is the six stages above, filled where that role does the work."
+            intro="An engineer consumes an API; an architect provides one, and the same person is often both. Each mark below is the six stages above, filled where that role works."
             archetypes={ARCHETYPES}
             stages={LIFECYCLE}
             variant="cards"
-            basis="These two roles came out of 20+ interviews, run before any design work started: how people were already doing this, and where it went wrong for them. Nothing here is assumed — the same interviews set the focus area and vetted the product spec."
+            basis="From 20+ interviews before any design work — how people already worked, and where it went wrong. Nothing assumed; the same interviews set the focus area and vetted the spec."
           />
         </CaseStudySection>
 
