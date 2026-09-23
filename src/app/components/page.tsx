@@ -100,7 +100,8 @@ const DEMO_STAGES = ["Discover", "Design", "Validate", "Test", "Publish", "Gover
 
 const DEMO_ARCHETYPES: Archetype[] = [
   {
-    name: "Service consumer",
+    name: "Engineer",
+    side: "Consumer",
     behaviour: "Arrives for one service, judges fit, subscribes, and leaves.",
     wants: "To know whether a service fits before writing any integration code.",
     friction: "Had to open three tools to answer one question about a service.",
@@ -108,7 +109,8 @@ const DEMO_ARCHETYPES: Archetype[] = [
     depth: 0.82,
   },
   {
-    name: "Service owner",
+    name: "Architect",
+    side: "Provider",
     behaviour: "Publishes and maintains a service other teams depend on.",
     wants: "To change a contract without breaking the teams already on it.",
     friction: "No single place showed who depended on a service before a change.",
@@ -116,7 +118,7 @@ const DEMO_ARCHETYPES: Archetype[] = [
     depth: 0.45,
   },
   {
-    name: "Contract specialist",
+    name: "Specification specialist",
     behaviour: "Works the specification directly and wants the structure out of the way.",
     wants: "To edit the spec itself, with validation that keeps up.",
     friction: "Guided builders slowed down the people who least needed guiding.",
@@ -724,8 +726,21 @@ export default function ComponentsPage() {
             Four variations, each justified by a different clause of C1. Choose on that basis rather
             than on which looks best: the question is what the dots are being asked to say.
           </p>
+          <p className="mt-3 max-w-[68ch] text-[0.95rem] leading-7" style={{ color: "var(--ink-soft)" }}>
+            Label each one with the <strong style={{ color: "var(--ink)", fontWeight: 500 }}>role, as
+            the person would give it</strong> — Engineer, Solutions architect, Store associate. Not
+            their relationship to the product: &ldquo;the consumer&rdquo; is a position in a
+            transaction and nobody can picture a person from it. Where a product is two-sided, the
+            side goes beside the role as a qualifier rather than replacing it.
+          </p>
+          <p className="mt-3 max-w-[68ch] text-[0.95rem] leading-7" style={{ color: "var(--ink-soft)" }}>
+            And let <em>what they want</em> and <em>what got in the way</em> carry more weight than
+            the behaviour line. Those two are what a reader judges the work against — every decision
+            further down a case study should answer one of them — so a reader who skims must land on
+            them, not on a description of someone&apos;s day.
+          </p>
           <p className="mt-2 font-mono text-[0.6rem] uppercase tracking-[0.06em]" style={{ color: "var(--muted)" }}>
-            Rule · a label alone is a job title · the behaviour is what makes it an archetype · never draw a share you have not measured
+            Rule · label it with the role, not the relationship · want and friction carry the weight · never draw a share you have not measured
           </p>
 
           <div

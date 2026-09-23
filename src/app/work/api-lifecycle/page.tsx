@@ -52,18 +52,20 @@ const SURFACE_PATH = ["UI platform", "Shared capability", "Conversational / tool
  */
 const ARCHETYPES: Archetype[] = [
   {
-    name: "The consumer",
+    name: "Engineer",
+    side: "Consumer",
     behaviour:
-      "An engineer who needs an API that already exists. Arrives looking, judges fit, subscribes, and gets back to their own build.",
+      "Needs an API that already exists. Arrives looking, judges fit, subscribes, and gets back to their own build.",
     wants: "To know whether a service fits before writing any integration code against it.",
     friction:
       "Discovery had to answer more than “does this API exist?” — what it does, whether it suits the use case, how to subscribe, and where the technical detail lives.",
     stages: [0, 3],
   },
   {
-    name: "The provider",
+    name: "Architect",
+    side: "Provider",
     behaviour:
-      "An architect who creates and owns an API other teams depend on. Designs the contract, publishes it, and answers for it afterwards.",
+      "Creates and owns an API other teams depend on. Designs the contract, publishes it, and answers for it afterwards.",
     wants: "To design a contract at the depth they prefer, and change it later without breaking the teams already on it.",
     friction:
       "Some work the specification directly, others need the schema drawn for them, and governance arrived at the end — often once a contract was already in use.",
@@ -225,8 +227,8 @@ export default function ApiLifecyclePage() {
             half, designing a contract the provider's. */}
         <CaseStudySection id="who">
           <ArchetypeSection
-            heading="Two sides of one contract, not two kinds of engineer"
-            intro="Everyone here is an engineer by discipline. What separates them is which side of a contract they are on that day, which means one person is often both across two services. The mark on each card is the six stages above, filled where that side does the work."
+            heading="Two roles, two sides of the same contract"
+            intro="An engineer consumes an API; an architect provides one. The same person is often both across two services, so the split is which side of a contract they are on that day rather than who they are. The mark on each card is the six stages above, filled where that role does the work."
             archetypes={ARCHETYPES}
             stages={LIFECYCLE}
             variant="cards"

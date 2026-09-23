@@ -3603,46 +3603,72 @@ a:hover .ds-compact-mark .ds-dot {
 
 /* The label sits tight under its glyph; the mark is the card's identifier,
    so a gap between them would read as two separate things. */
+/* The glyph and the side label share the card's first line, so the role
+   underneath is the first thing read rather than the third. */
+.ds-arch-card-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  min-height: 18px;
+}
+
+/* The relationship, qualifying the role rather than standing in for it.
+   "Consumer" alone is a position in a transaction and a reader cannot
+   picture a person from it; above a job title it does useful work. */
+.ds-arch-side {
+  font-family: var(--font-mono), monospace;
+  font-size: 0.55rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ds-accent-deep);
+  border: 1px solid color-mix(in oklab, var(--ds-accent-deep) 22%, transparent);
+  border-radius: 999px;
+  padding: 3px 9px;
+  white-space: nowrap;
+}
+
 /* Set here rather than with a utility class: `.ds-arch-name` resets margin
    with a shorthand at the same specificity, and won on source order, so an
    `mt-4` on the element silently did nothing. */
 .ds-arch-card .ds-arch-name {
-  margin-top: 1.05rem;
-  font-size: 1rem;
-}
-
-/* With no process to encode there is no glyph, so the name leads the card
-   and the gap that sat under the mark would be a gap under nothing. */
-.ds-arch-card .ds-arch-name.is-lead {
-  margin-top: 0;
+  margin-top: 1.1rem;
+  font-size: 1.32rem;
+  line-height: 1.2;
 }
 
 .ds-arch-card .ds-arch-behaviour {
-  margin-top: 0.45rem;
+  margin-top: 0.55rem;
+  font-size: 0.87rem;
 }
 
 .ds-arch-fields {
-  margin: 1.1rem 0 0;
-  padding-top: 1rem;
+  margin: 1.35rem 0 0;
+  padding-top: 1.25rem;
   border-top: 1px solid color-mix(in oklab, var(--ds-accent-deep) 12%, transparent);
   display: grid;
-  gap: 0.75rem;
+  gap: 1.15rem;
 }
 
+/* Wants and friction are what a reader judges the work against — every
+   decision further down the page should answer one of them — so they carry
+   more weight than the behaviour line, not less. Before this the labels were
+   0.55rem mono against 0.83rem prose and the eye skimmed straight past the
+   only part that makes the design assessable. */
 .ds-arch-fields dt {
   font-family: var(--font-mono), monospace;
-  font-size: 0.55rem;
-  letter-spacing: 0.09em;
+  font-size: 0.6rem;
+  letter-spacing: 0.1em;
   text-transform: uppercase;
   color: var(--ds-accent-deep);
 }
 
 .ds-arch-fields dd {
-  margin: 0.28rem 0 0;
+  margin: 0.4rem 0 0;
   max-width: 46ch;
-  font-size: 0.82rem;
-  line-height: 1.5;
-  color: var(--ink-soft);
+  font-size: 0.95rem;
+  line-height: 1.55;
+  color: var(--ink);
 }
 
 @media (max-width: 1000px) {

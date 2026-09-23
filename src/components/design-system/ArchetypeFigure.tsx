@@ -23,8 +23,19 @@ import type { CSSProperties } from "react";
  */
 
 export type Archetype = {
-  /** The plain label. No invented name, no photo — that is the whole point. */
+  /**
+   * The role, as the person would give it: "Engineer", "Solutions architect",
+   * "Store associate". Not their relationship to the product — "the consumer"
+   * describes a position in a transaction, and a reader cannot picture it.
+   * A label someone would put on a CV is the one that lands.
+   */
   name: string;
+  /**
+   * Which side of the relationship this role is on — "Consumer", "Provider",
+   * "Approver". Optional, and only worth setting where the product is
+   * two-sided: it qualifies the role rather than replacing it.
+   */
+  side?: string;
   /** The observed behaviour that separates this type from the others. */
   behaviour: string;
   /**
@@ -339,20 +350,23 @@ export function ArchetypeCards({
     >
       {archetypes.map((a) => (
         <div className="ds-arch-card" key={a.name}>
-          {showGlyph ? <ArchetypeGlyph archetype={a} stageCount={stages.length} /> : null}
-          <p className={`ds-arch-name${showGlyph ? "" : " is-lead"}`}>{a.name}</p>
+          <div className="ds-arch-card-head">
+            {showGlyph ? <ArchetypeGlyph archetype={a} stageCount={stages.length} /> : null}
+            {a.side ? <span className="ds-arch-side">{a.side}</span> : null}
+          </div>
+          <p className="ds-arch-name">{a.name}</p>
           <p className="ds-arch-behaviour">{a.behaviour}</p>
           {a.wants || a.friction ? (
             <dl className="ds-arch-fields">
               {a.wants ? (
                 <div>
-                  <dt>Wants</dt>
+                  <dt>What they want</dt>
                   <dd>{a.wants}</dd>
                 </div>
               ) : null}
               {a.friction ? (
                 <div>
-                  <dt>Friction</dt>
+                  <dt>What got in the way</dt>
                   <dd>{a.friction}</dd>
                 </div>
               ) : null}
