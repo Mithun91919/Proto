@@ -131,6 +131,17 @@ export function bitmapToDots(bitmap: string, restOpacity = REST_OPACITY): number
   return bitmap.split("").map((bit) => (bit === "1" ? 1 : restOpacity));
 }
 
+/**
+ * The only way to draw a metric mark. Rest is 0, not the faint 0.14 that
+ * `bitmapToDots` still defaults to for digits — an unlit cell in a metric
+ * glyph says nothing-here, which the empty position already says, and
+ * spending the second tone on it competes with `layers`, where 0.6 and 0.32
+ * mean receding depth.
+ *
+ * Call this rather than `bitmapToDots(METRIC_MARKS.x)`: the home page did
+ * the latter and rendered `modules` and `ramp` with ghost dots while every
+ * other surface drew them without.
+ */
 export function markDots(name: MetricMarkName, restOpacity = 0): number[] {
   return bitmapToDots(METRIC_MARKS[name], restOpacity);
 }

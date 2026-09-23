@@ -96,7 +96,7 @@ import { HeroThumbnailRail } from "@/components/design-system/HeroThumbnailRail"
  * real segments before any of this is used in a case study; the guide's rule
  * against inventing a metric applies just as much to inventing a population.
  */
-/** The first two of DEMO_ARCHETYPES — the two-role case, for comparing layouts. */
+/** How many of DEMO_ARCHETYPES the two-role demo uses. */
 const PAIR_SLICE = 2;
 
 const DEMO_BASIS =
@@ -141,7 +141,7 @@ const DEMO_ARCHETYPES: Archetype[] = [
   },
 ];
 
-/** The two-role case, for comparing section layouts like-for-like. */
+/** The two-role case, which renders as cards; four renders as a ledger. */
 const PAIR: Archetype[] = DEMO_ARCHETYPES.slice(0, PAIR_SLICE);
 
 
@@ -734,7 +734,7 @@ export default function ComponentsPage() {
             for the stock-photo persona a reader has learned to distrust.
           </p>
           <p className="mt-3 max-w-[68ch] text-[0.95rem] leading-7" style={{ color: "var(--ink-soft)" }}>
-            Four variations, each justified by a different clause of C1. Choose on that basis rather
+            Five variations, each justified by a different clause of C1. Choose on that basis rather
             than on which looks best: the question is what the dots are being asked to say.
           </p>
           <p className="mt-3 max-w-[68ch] text-[0.95rem] leading-7" style={{ color: "var(--ink-soft)" }}>
@@ -745,10 +745,18 @@ export default function ComponentsPage() {
             side goes beside the role as a qualifier rather than replacing it.
           </p>
           <p className="mt-3 max-w-[68ch] text-[0.95rem] leading-7" style={{ color: "var(--ink-soft)" }}>
-            And let <em>what they want</em> and <em>what got in the way</em> carry more weight than
-            the behaviour line. Those two are what a reader judges the work against — every decision
+            And let <em>top needs</em> and <em>top frustrations</em> carry more weight than the
+            behaviour line. Those two are what a reader judges the work against — every decision
             further down a case study should answer one of them — so a reader who skims must land on
             them, not on a description of someone&apos;s day.
+          </p>
+          <p className="mt-3 max-w-[68ch] text-[0.95rem] leading-7" style={{ color: "var(--ink-soft)" }}>
+            The two blocks are identical but for colour: cyan-600 for the target, cyan-800 for what
+            blocked it. An earlier pass gave frustrations an open mark and an inset rule as well,
+            which made it a second kind of thing rather than the same thing in a different register
+            — two differences to interpret where one was doing the work. Depth has to be deep enough
+            to see, though: at 11% both grounds measured a perceptual distance of 14 and read as the
+            same near-white.
           </p>
           <p className="mt-2 font-mono text-[0.6rem] uppercase tracking-[0.06em]" style={{ color: "var(--muted)" }}>
             Rule · label it with the role, not the relationship · want and friction carry the weight · never draw a share you have not measured

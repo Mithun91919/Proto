@@ -8,7 +8,7 @@ import { SectionHead } from "@/components/SectionHead";
 import { ChapterProgress } from "@/components/design-system/ChapterProgress";
 import { DotGrid } from "@/components/design-system/primitives/DotGrid";
 import { GlassPanel } from "@/components/design-system/primitives/GlassPanel";
-import { bitmapToDots, METRIC_MARKS } from "@/components/design-system/dotPatterns";
+import { markDots } from "@/components/design-system/dotPatterns";
 import { getFeaturedProjects, getRangeProjects } from "@/content/projects";
 
 const CHAPTERS = [
@@ -107,7 +107,7 @@ export default function HomePage() {
                 {/* `modules` — discrete parts: every project, side by side. */}
                 <DotGrid
                   cols={5}
-                  dots={bitmapToDots(METRIC_MARKS.modules)}
+                  dots={markDots("modules")}
                   size={5}
                   gap={3}
                   className="mb-5"
@@ -139,7 +139,7 @@ export default function HomePage() {
                 {/* `ramp` — a rising stair: a path built up over time. */}
                 <DotGrid
                   cols={5}
-                  dots={bitmapToDots(METRIC_MARKS.ramp)}
+                  dots={markDots("ramp")}
                   size={5}
                   gap={3}
                   className="mb-5"
