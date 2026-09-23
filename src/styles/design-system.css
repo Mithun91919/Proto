@@ -3708,7 +3708,7 @@ a:hover .ds-compact-mark .ds-dot {
    colour — the red-for-bad reflex — is the first thing that would break the
    brief, and a neutral grey read as no treatment at all. */
 .ds-arch-field.is-need {
-  background: color-mix(in oklab, var(--ds-accent) 8%, transparent);
+  background: color-mix(in oklab, var(--ds-accent) 10%, transparent);
 }
 
 /* Deeper, and deliberately not the dark band. B6 reserves dark surfaces for
@@ -3717,9 +3717,15 @@ a:hover .ds-compact-mark .ds-dot {
    on a field label, in a case study whose dark ground already says "this is
    the thesis" at the breaker above. cyan-800 carries the weight without
    borrowing a surface that means something else. */
+/* 26%, not the 11% this started at. Both cyans wash out to the same pale
+   blue below about 15% — measured, the two grounds were rgb(235,246,249) and
+   rgb(229,237,240), a perceptual distance of 14 on a 0-441 scale, which is
+   no distinction at all. At 26% the distance is 55 and ink still reads at
+   12:1 against it, where AA asks for 4.5. Depth is only a difference if it
+   is deep enough to see. */
 .ds-arch-field.is-friction {
-  background: color-mix(in oklab, var(--ds-accent-deep) 11%, transparent);
-  box-shadow: inset 2px 0 0 color-mix(in oklab, var(--ds-accent-deep) 45%, transparent);
+  background: color-mix(in oklab, var(--ds-accent-deep) 26%, transparent);
+  box-shadow: inset 2px 0 0 color-mix(in oklab, var(--ds-accent-deep) 60%, transparent);
 }
 
 .ds-arch-field-label {
@@ -3773,7 +3779,7 @@ a:hover .ds-compact-mark .ds-dot {
 
 .ds-arch-field.is-friction .ds-arch-field-mark {
   background: transparent;
-  box-shadow: inset 0 0 0 1.5px color-mix(in oklab, var(--ds-accent-deep) 55%, transparent);
+  box-shadow: inset 0 0 0 1.5px color-mix(in oklab, var(--ds-accent-deep) 75%, transparent);
 }
 
 @media (max-width: 1000px) {
