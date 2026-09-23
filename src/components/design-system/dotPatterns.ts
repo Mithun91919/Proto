@@ -40,26 +40,32 @@ export const COMPACT_METRIC_MARKS: Record<MetricMarkName, number[]> = {
   // reverted to something with no directional bias at all. Corners+centre
   // (the X) was the more obvious "population" shape but now belongs to
   // `funnel`, so this uses the edge midpoints instead — free, and neutral.
-  field: [0.14, 1, 0.14, 1, 0.14, 1, 0.14, 1, 0.14],
+  field: [0, 1, 0, 1, 0, 1, 0, 1, 0],
   // Four corners converging on a centre — many points funnelling into
   // one, which is what "consolidation" actually is. (The X shape freed up
   // once `field` moved off it, above.)
-  funnel: [1, 0.14, 1, 0.14, 1, 0.14, 1, 0.14, 1],
-  // The full outer ring, chosen deliberately even though it now matches
-  // `ring` below — a considered call, not an oversight (the alternative,
-  // four separate corners, read as the opposite of "connected modules";
-  // see git history for that version and the block that replaced it).
-  modules: [1, 1, 1, 1, 0.14, 1, 1, 1, 1],
+  funnel: [1, 0, 1, 0, 1, 0, 1, 0, 1],
+  // A block of joined parts with one sitting apart from it. This was the
+  // full outer ring, identical to `ring` below — defended in a comment as
+  // deliberate, which it cannot be: the glyph's whole job is to say which
+  // family a metric belongs to, and two families drawn the same picture
+  // land in one bucket. `store-support` showed `ring` and `api-lifecycle`
+  // showed `modules` as the same mark.
+  //
+  // One adjoined block, with no dot set apart from it: the researched sketch
+  // had a detached corner, and under the live label "6 connected modules"
+  // that draws "disconnected" beside the word connected.
+  modules: [1, 1, 0, 1, 1, 0, 0, 0, 0],
   // A stair rising toward the top-right corner.
-  ramp: [0.14, 0.14, 1, 0.14, 1, 1, 1, 1, 1],
+  ramp: [0, 0, 1, 0, 1, 1, 1, 1, 1],
   // A hollow loop — a cycle, a closed system.
-  ring: [1, 1, 1, 1, 0.14, 1, 1, 1, 1],
+  ring: [1, 1, 1, 1, 0, 1, 1, 1, 1],
   // Three uneven columns — a comparison, not a trend.
-  bars: [0.14, 1, 0.14, 1, 1, 0.14, 1, 1, 1],
+  bars: [0, 1, 0, 1, 1, 0, 1, 1, 1],
   // Full rows fading with depth — stacked, receding layers.
   layers: [1, 1, 1, 0.6, 0.6, 0.6, 0.32, 0.32, 0.32],
   // The mirror of `ramp` — a stair falling toward the bottom-left.
-  drop: [1, 1, 1, 1, 1, 0.14, 1, 0.14, 0.14],
+  drop: [1, 1, 1, 1, 1, 0, 1, 0, 0],
 };
 
 export const METRIC_MARK_MEANINGS: Record<MetricMarkName, string> = {
