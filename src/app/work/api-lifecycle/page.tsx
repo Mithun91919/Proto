@@ -56,9 +56,14 @@ const ARCHETYPES: Archetype[] = [
     side: "Consumer",
     behaviour:
       "Needs an API that already exists. Arrives looking, judges fit, subscribes, and gets back to their own build.",
-    wants: "To know whether a service fits before writing any integration code against it.",
-    friction:
-      "Discovery had to answer more than “does this API exist?” — what it does, whether it suits the use case, how to subscribe, and where the technical detail lives.",
+    wants: [
+      "Judge whether a service fits before writing any integration code against it.",
+      "Subscribe, and reach the technical detail, without leaving the path they are on.",
+    ],
+    friction: [
+      "Discovery answered \u201cdoes this API exist?\u201d and little else.",
+      "What it does, which environments it runs in, and who depends on it lived apart.",
+    ],
     stages: [0, 3],
   },
   {
@@ -66,9 +71,14 @@ const ARCHETYPES: Archetype[] = [
     side: "Provider",
     behaviour:
       "Creates and owns an API other teams depend on. Designs the contract, publishes it, and answers for it afterwards.",
-    wants: "To design a contract at the depth they prefer, and change it later without breaking the teams already on it.",
-    friction:
-      "Some work the specification directly, others need the schema drawn for them, and governance arrived at the end — often once a contract was already in use.",
+    wants: [
+      "Work the contract at their own depth \u2014 the specification directly, or the schema drawn for them.",
+      "Change a published contract without breaking the teams already on it.",
+    ],
+    friction: [
+      "One mode suited one kind of engineer and slowed the other down.",
+      "Governance arrived at the end, often once a contract was already in use.",
+    ],
     stages: [1, 2, 4, 5],
   },
 ];

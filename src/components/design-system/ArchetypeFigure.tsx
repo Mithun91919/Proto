@@ -40,20 +40,59 @@ export type Archetype = {
   behaviour: string;
   /**
    * What they are trying to get done. The persona template's "goal", minus
-   * the biography around it.
+   * the biography around it. A list reads better than a paragraph here — a
+   * reader scanning wants the two or three that matter, not a sentence to
+   * parse — so an array renders as one.
    */
-  wants?: string;
+  wants?: string | string[];
   /**
    * What got in the way. The field that earns its place: a design decision
    * on the page should be answerable to one of these, and a friction nobody
    * designed against is a sign the segment was drawn for tidiness.
    */
-  friction?: string;
+  friction?: string | string[];
   /** Indices into `stages` this type works in. For `Coverage`. */
   stages?: number[];
   /** Position 0–1 on the axis a decision split. For `Continuum`. */
   depth?: number;
 };
+
+
+/**
+ * One field block: needs or frustrations.
+ *
+ * The two are drawn differently on purpose. They are opposite in kind — one
+ * is a target, the other is what stopped someone reaching it — and set as
+ * two identical label-and-prose blocks a reader takes them as one
+ * undifferentiated lump. A filled mark reads as something to reach; an open
+ * one reads as unresolved, which is the same on/off vocabulary the glyph and
+ * the lanes already use, so it earns C1 on state rather than inventing a
+ * second colour the brief does not have.
+ */
+function ArchetypeField({
+  label,
+  items,
+  tone,
+}: {
+  label: string;
+  items: string | string[];
+  tone: "need" | "friction";
+}) {
+  const list = Array.isArray(items) ? items : [items];
+  return (
+    <div className={`ds-arch-field is-${tone}`}>
+      <p className="ds-arch-field-label">{label}</p>
+      <ul className="ds-arch-field-list">
+        {list.map((item) => (
+          <li key={item}>
+            <span className="ds-arch-field-mark" aria-hidden />
+            <span>{item}</span>
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
+}
 
 /* ── A · Coverage ──────────────────────────────────────────────────────── */
 
@@ -351,26 +390,22 @@ export function ArchetypeCards({
       {archetypes.map((a) => (
         <div className="ds-arch-card" key={a.name}>
           <div className="ds-arch-card-head">
-            {showGlyph ? <ArchetypeGlyph archetype={a} stageCount={stages.length} /> : null}
+            {/* The mark identifies the role, so it sits with the role rather
+                than floating on a line of its own above it. */}
+            <span className="ds-arch-card-id">
+              {showGlyph ? <ArchetypeGlyph archetype={a} stageCount={stages.length} /> : null}
+              <span className="ds-arch-name">{a.name}</span>
+            </span>
             {a.side ? <span className="ds-arch-side">{a.side}</span> : null}
           </div>
-          <p className="ds-arch-name">{a.name}</p>
           <p className="ds-arch-behaviour">{a.behaviour}</p>
           {a.wants || a.friction ? (
-            <dl className="ds-arch-fields">
-              {a.wants ? (
-                <div>
-                  <dt>What they want</dt>
-                  <dd>{a.wants}</dd>
-                </div>
-              ) : null}
+            <div className="ds-arch-fields">
+              {a.wants ? <ArchetypeField label="Top needs" items={a.wants} tone="need" /> : null}
               {a.friction ? (
-                <div>
-                  <dt>What got in the way</dt>
-                  <dd>{a.friction}</dd>
-                </div>
+                <ArchetypeField label="Top frustrations" items={a.friction} tone="friction" />
               ) : null}
-            </dl>
+            </div>
           ) : null}
         </div>
       ))}
@@ -404,19 +439,23 @@ export function ArchetypeLedger({
       <div className="ds-arch-ledger-head" aria-hidden>
         <span>Role</span>
         <span>What they do</span>
-        <span>What they want</span>
-        <span>What got in the way</span>
+        <span>Top needs</span>
+        <span>Top frustrations</span>
       </div>
       {archetypes.map((a) => (
         <div className="ds-arch-ledger-row" key={a.name}>
           <div className="ds-arch-ledger-role">
-            {showGlyph ? <ArchetypeGlyph archetype={a} stageCount={stages.length} /> : null}
-            <p className="ds-arch-name">{a.name}</p>
+            <span className="ds-arch-card-id">
+              {showGlyph ? <ArchetypeGlyph archetype={a} stageCount={stages.length} /> : null}
+              <span className="ds-arch-name">{a.name}</span>
+            </span>
             {a.side ? <span className="ds-arch-side">{a.side}</span> : null}
           </div>
           <p className="ds-arch-ledger-cell">{a.behaviour}</p>
-          <p className="ds-arch-ledger-cell is-key">{a.wants}</p>
-          <p className="ds-arch-ledger-cell is-key">{a.friction}</p>
+          <div>{a.wants ? <ArchetypeField label="" items={a.wants} tone="need" /> : null}</div>
+          <div>
+            {a.friction ? <ArchetypeField label="" items={a.friction} tone="friction" /> : null}
+          </div>
         </div>
       ))}
     </div>

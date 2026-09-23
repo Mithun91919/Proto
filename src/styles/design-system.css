@@ -3240,15 +3240,15 @@ a:hover .ds-compact-mark .ds-dot {
 .ds-arch-name {
   margin: 0;
   font-family: var(--font-display), ui-sans-serif, system-ui, sans-serif;
-  font-size: 0.95rem;
+  font-size: 1rem;
   line-height: 1.35;
   color: var(--ink);
 }
 
 .ds-arch-behaviour {
   margin: 0.3rem 0 0;
-  max-width: 38ch;
-  font-size: 0.83rem;
+  max-width: 52ch;
+  font-size: 0.86rem;
   line-height: 1.55;
   color: var(--ink-soft);
 }
@@ -3280,15 +3280,15 @@ a:hover .ds-compact-mark .ds-dot {
 .ds-arch-cov-head {
   padding-bottom: 0.85rem;
   font-family: var(--font-mono), monospace;
-  font-size: 0.56rem;
-  letter-spacing: 0.07em;
+  font-size: 0.72rem;
+  letter-spacing: 0.14em;
   text-transform: uppercase;
   color: var(--muted);
 }
 
 .ds-arch-cov-friction {
   margin: 0;
-  font-size: 0.8rem;
+  font-size: 0.86rem;
   line-height: 1.5;
   color: var(--ink-soft);
 }
@@ -3303,8 +3303,8 @@ a:hover .ds-compact-mark .ds-dot {
 
 .ds-arch-cov-stage {
   font-family: var(--font-mono), monospace;
-  font-size: 0.56rem;
-  letter-spacing: 0.07em;
+  font-size: 0.72rem;
+  letter-spacing: 0.14em;
   text-transform: uppercase;
   color: var(--muted);
 }
@@ -3378,8 +3378,8 @@ a:hover .ds-compact-mark .ds-dot {
   display: flex;
   justify-content: space-between;
   font-family: var(--font-mono), monospace;
-  font-size: 0.56rem;
-  letter-spacing: 0.07em;
+  font-size: 0.72rem;
+  letter-spacing: 0.14em;
   text-transform: uppercase;
   color: var(--muted);
 }
@@ -3395,7 +3395,7 @@ a:hover .ds-compact-mark .ds-dot {
   transform: translateX(-50%);
   width: 8.5rem;
   text-align: center;
-  font-size: 0.78rem;
+  font-size: 0.86rem;
   line-height: 1.35;
   color: var(--ink);
 }
@@ -3467,8 +3467,8 @@ a:hover .ds-compact-mark .ds-dot {
 
 .ds-arch-lane-stage {
   font-family: var(--font-mono), monospace;
-  font-size: 0.56rem;
-  letter-spacing: 0.07em;
+  font-size: 0.72rem;
+  letter-spacing: 0.14em;
   text-transform: uppercase;
   color: var(--muted);
 }
@@ -3526,8 +3526,8 @@ a:hover .ds-compact-mark .ds-dot {
   padding-top: 1.1rem;
   border-top: 1px solid color-mix(in oklab, var(--ds-accent-deep) 12%, transparent);
   font-family: var(--font-mono), monospace;
-  font-size: 0.58rem;
-  letter-spacing: 0.06em;
+  font-size: 0.72rem;
+  letter-spacing: 0.14em;
   text-transform: uppercase;
   color: var(--muted);
 }
@@ -3562,7 +3562,7 @@ a:hover .ds-compact-mark .ds-dot {
   max-width: 64ch;
   padding-left: 1.1rem;
   border-left: 2px solid color-mix(in oklab, var(--ds-accent) 45%, transparent);
-  font-size: 0.93rem;
+  font-size: 1rem;
   line-height: 1.6;
   color: var(--ink-soft);
 }
@@ -3571,8 +3571,8 @@ a:hover .ds-compact-mark .ds-dot {
   display: block;
   margin-bottom: 0.35rem;
   font-family: var(--font-mono), monospace;
-  font-size: 0.6rem;
-  letter-spacing: 0.12em;
+  font-size: 0.72rem;
+  letter-spacing: 0.14em;
   text-transform: uppercase;
   color: var(--ds-accent-deep);
 }
@@ -3634,13 +3634,21 @@ a:hover .ds-compact-mark .ds-dot {
   min-height: 18px;
 }
 
+/* The mark and the role it identifies, as one object. */
+.ds-arch-card-id {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.7rem;
+  min-width: 0;
+}
+
 /* The relationship, qualifying the role rather than standing in for it.
    "Consumer" alone is a position in a transaction and a reader cannot
    picture a person from it; above a job title it does useful work. */
 .ds-arch-side {
   font-family: var(--font-mono), monospace;
-  font-size: 0.55rem;
-  letter-spacing: 0.12em;
+  font-size: 0.72rem;
+  letter-spacing: 0.14em;
   text-transform: uppercase;
   color: var(--ds-accent-deep);
   border: 1px solid color-mix(in oklab, var(--ds-accent-deep) 22%, transparent);
@@ -3653,14 +3661,13 @@ a:hover .ds-compact-mark .ds-dot {
    with a shorthand at the same specificity, and won on source order, so an
    `mt-4` on the element silently did nothing. */
 .ds-arch-card .ds-arch-name {
-  margin-top: 1.1rem;
   font-size: 1.32rem;
   line-height: 1.2;
 }
 
 .ds-arch-card .ds-arch-behaviour {
-  margin-top: 0.55rem;
-  font-size: 0.87rem;
+  margin-top: 0.85rem;
+  font-size: 0.86rem;
 }
 
 .ds-arch-fields {
@@ -3671,25 +3678,102 @@ a:hover .ds-compact-mark .ds-dot {
   gap: 1.15rem;
 }
 
-/* Wants and friction are what a reader judges the work against — every
-   decision further down the page should answer one of them — so they carry
-   more weight than the behaviour line, not less. Before this the labels were
-   0.55rem mono against 0.83rem prose and the eye skimmed straight past the
-   only part that makes the design assessable. */
-.ds-arch-fields dt {
+/* ── Needs and frustrations ──────────────────────────────────────────────
+   Two blocks, drawn differently because they are opposite in kind: one is a
+   target, the other is what stopped someone reaching it. Set as identical
+   label-and-prose pairs a reader took them as one lump, which is the half of
+   the card the work is actually judged on.
+
+   The difference is carried by mark and ground, not by a second colour — the
+   brief allows one accent, and a red-for-bad palette would be the first
+   thing to break it. A filled mark reads as something to reach for, an open
+   one as unresolved: the same on/off vocabulary the glyph and the lanes
+   already use. */
+
+.ds-arch-fields {
+  display: grid;
+  gap: 0.85rem;
+  margin: 1.35rem 0 0;
+  padding-top: 1.25rem;
+  border-top: 1px solid color-mix(in oklab, var(--ds-accent-deep) 12%, transparent);
+}
+
+.ds-arch-field {
+  border-radius: 0.65rem;
+  padding: 0.85rem 0.95rem;
+}
+
+/* Both grounds come from the one accent, separated by depth rather than
+   hue: cyan-600 for the target, cyan-800 for what blocked it. A second
+   colour — the red-for-bad reflex — is the first thing that would break the
+   brief, and a neutral grey read as no treatment at all. */
+.ds-arch-field.is-need {
+  background: color-mix(in oklab, var(--ds-accent) 8%, transparent);
+}
+
+/* Deeper, and deliberately not the dark band. B6 reserves dark surfaces for
+   a thesis, reframe or conclusion, and L lists "dark blocks for variety" as
+   an anti-pattern — four of them inside two cards would spend that meaning
+   on a field label, in a case study whose dark ground already says "this is
+   the thesis" at the breaker above. cyan-800 carries the weight without
+   borrowing a surface that means something else. */
+.ds-arch-field.is-friction {
+  background: color-mix(in oklab, var(--ds-accent-deep) 11%, transparent);
+  box-shadow: inset 2px 0 0 color-mix(in oklab, var(--ds-accent-deep) 45%, transparent);
+}
+
+.ds-arch-field-label {
+  margin: 0 0 0.5rem;
   font-family: var(--font-mono), monospace;
-  font-size: 0.6rem;
+  font-size: 0.72rem;
   letter-spacing: 0.1em;
   text-transform: uppercase;
   color: var(--ds-accent-deep);
 }
 
-.ds-arch-fields dd {
-  margin: 0.4rem 0 0;
-  max-width: 46ch;
-  font-size: 0.95rem;
-  line-height: 1.55;
+.ds-arch-field.is-friction .ds-arch-field-label {
+  color: var(--ds-accent-deep);
+}
+
+/* An empty label still holds its slot in the ledger, where the column header
+   names the field instead. */
+.ds-arch-field-label:empty {
+  display: none;
+}
+
+.ds-arch-field-list {
+  display: grid;
+  gap: 0.5rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.ds-arch-field-list li {
+  display: grid;
+  grid-template-columns: 9px minmax(0, 1fr);
+  gap: 0.6rem;
+  align-items: start;
+  font-size: 1rem;
+  line-height: 1.5;
   color: var(--ink);
+}
+
+/* Nudged onto the first line's optical centre rather than its box top. */
+.ds-arch-field-mark {
+  width: 9px;
+  height: 9px;
+  margin-top: 0.36rem;
+  border-radius: 50%;
+}
+
+.ds-arch-field.is-need .ds-arch-field-mark {
+  background: var(--ds-accent);
+}
+
+.ds-arch-field.is-friction .ds-arch-field-mark {
+  background: transparent;
+  box-shadow: inset 0 0 0 1.5px color-mix(in oklab, var(--ds-accent-deep) 55%, transparent);
 }
 
 @media (max-width: 1000px) {
@@ -3786,7 +3870,7 @@ a:hover .ds-compact-mark .ds-dot {
 .ds-arch-ledger-head {
   padding-bottom: 0.9rem;
   font-family: var(--font-mono), monospace;
-  font-size: 0.58rem;
+  font-size: 0.72rem;
   letter-spacing: 0.1em;
   text-transform: uppercase;
   color: var(--muted);
@@ -3806,7 +3890,7 @@ a:hover .ds-compact-mark .ds-dot {
 
 .ds-arch-ledger-cell {
   margin: 0;
-  font-size: 0.87rem;
+  font-size: 0.86rem;
   line-height: 1.55;
   color: var(--ink-soft);
 }
@@ -3815,7 +3899,7 @@ a:hover .ds-compact-mark .ds-dot {
    work is judged against, and a table should not quietly flatten them back
    into the descriptive column. */
 .ds-arch-ledger-cell.is-key {
-  font-size: 0.95rem;
+  font-size: 1rem;
   color: var(--ink);
 }
 

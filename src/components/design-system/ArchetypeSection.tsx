@@ -95,7 +95,7 @@ export function ArchetypeSection({
     <div className="ds-arch-section-head">
       {eyebrow ? <p className="ds-eyebrow">{eyebrow}</p> : null}
       <h2 className="display-title display-section mt-3">{heading}</h2>
-      {intro ? <p className="body-text mt-5 max-w-[58ch]">{intro}</p> : null}
+      {intro ? <p className="body-text mt-5 max-w-[62ch]">{intro}</p> : null}
       {basis ? (
         <p className="ds-arch-basis">
           <span className="ds-arch-basis-label">How these were defined</span>
