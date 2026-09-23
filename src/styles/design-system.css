@@ -3583,9 +3583,12 @@ a:hover .ds-compact-mark .ds-dot {
   vertical-align: -0.15em;
 }
 
+/* Columns follow the count, set by the component. Fixed at four, a set of
+   two left half the row empty and the pair read as an unfinished grid
+   rather than as the whole answer. */
 .ds-arch-cards {
   display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
+  grid-template-columns: repeat(var(--card-cols, 4), minmax(0, 1fr));
   gap: 1.5rem;
 }
 
@@ -3636,6 +3639,7 @@ a:hover .ds-compact-mark .ds-dot {
 
 .ds-arch-fields dd {
   margin: 0.28rem 0 0;
+  max-width: 46ch;
   font-size: 0.82rem;
   line-height: 1.5;
   color: var(--ink-soft);

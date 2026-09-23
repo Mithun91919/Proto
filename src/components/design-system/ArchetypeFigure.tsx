@@ -333,7 +333,10 @@ export function ArchetypeCards({
   // cluster standing in for one — is what the glyph was built to replace.
   const showGlyph = stages.length > 0;
   return (
-    <div className="ds-arch-cards">
+    <div
+      className="ds-arch-cards"
+      style={{ "--card-cols": Math.min(archetypes.length, 4) } as CSSProperties}
+    >
       {archetypes.map((a) => (
         <div className="ds-arch-card" key={a.name}>
           {showGlyph ? <ArchetypeGlyph archetype={a} stageCount={stages.length} /> : null}

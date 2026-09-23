@@ -5,6 +5,8 @@ import { DotFlow } from "@/components/design-system/DotFlow";
 import { ArtboardCarousel } from "@/components/design-system/ArtboardCarousel";
 import { BrowserMockup } from "@/components/design-system/BrowserMockup";
 import { PullStatement } from "@/components/design-system/PullStatement";
+import { ArchetypeSection } from "@/components/design-system/ArchetypeSection";
+import type { Archetype } from "@/components/design-system/ArchetypeFigure";
 import {
   CaseStudyChapter,
   CaseStudyColumn,
@@ -35,8 +37,43 @@ const LIFECYCLE = ["Discovery", "Contract design", "Validation", "Testing", "Pub
 const ADOPTION_LOOP = ["Ship", "Adoption session", "Feedback", "Product change"];
 const SURFACE_PATH = ["UI platform", "Shared capability", "Conversational / tool-based access"];
 
+/**
+ * The two fronts the platform serves.
+ *
+ * Not four segments: one relationship with two sides. Both are engineers by
+ * discipline, so the split is not seniority or skill — it is which side of a
+ * contract someone is on that day, which is why a single person can be both
+ * across two services. Written as archetypes rather than personas: a plain
+ * label and the observed behaviour, no invented name or biography.
+ *
+ * `stages` indexes LIFECYCLE above. The two barely overlap, and that is the
+ * point on this page — one platform carrying both sides of a handoff rather
+ * than a tool for each.
+ */
+const ARCHETYPES: Archetype[] = [
+  {
+    name: "The consumer",
+    behaviour:
+      "An engineer who needs an API that already exists. Arrives looking, judges fit, subscribes, and gets back to their own build.",
+    wants: "To know whether a service fits before writing any integration code against it.",
+    friction:
+      "Discovery had to answer more than “does this API exist?” — what it does, whether it suits the use case, how to subscribe, and where the technical detail lives.",
+    stages: [0, 3],
+  },
+  {
+    name: "The provider",
+    behaviour:
+      "An architect who creates and owns an API other teams depend on. Designs the contract, publishes it, and answers for it afterwards.",
+    wants: "To design a contract at the depth they prefer, and change it later without breaking the teams already on it.",
+    friction:
+      "Some work the specification directly, others need the schema drawn for them, and governance arrived at the end — often once a contract was already in use.",
+    stages: [1, 2, 4, 5],
+  },
+];
+
 const CHAPTERS = [
   { id: "lifecycle", label: "The lifecycle" },
+  { id: "who", label: "Who it is for" },
   { id: "overview", label: "The way in" },
   { id: "marketplace", label: "Finding a service" },
   { id: "studio", label: "Designing a contract" },
@@ -179,6 +216,21 @@ export default function ApiLifecyclePage() {
           <CaseStudyFigure rule label="Every stage the platform carries">
             <DotFlow stages={LIFECYCLE} />
           </CaseStudyFigure>
+        </CaseStudySection>
+
+        {/* After the stages are named and before the screen that leads into
+            them: the reader now knows what the lifecycle is, and needs to know
+            who walks it before being shown a route through it. It also sets up
+            the two sections that follow — finding a service is the consumer's
+            half, designing a contract the provider's. */}
+        <CaseStudySection id="who">
+          <ArchetypeSection
+            heading="Two sides of one contract, not two kinds of engineer"
+            intro="Everyone here is an engineer by discipline. What separates them is which side of a contract they are on that day, which means one person is often both across two services. The mark on each card is the six stages above, filled where that side does the work."
+            archetypes={ARCHETYPES}
+            stages={LIFECYCLE}
+            variant="cards"
+          />
         </CaseStudySection>
 
         <CaseStudySection id="overview">
