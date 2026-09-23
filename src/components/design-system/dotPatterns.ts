@@ -5,11 +5,17 @@
  *
  * One glyph per metric meaning, never decorative, never more than one per
  * stat — see the Copy guide / anti-patterns (L) for why.
+ *
+ * `modules` keeps four quadrants but joins them through the centre row. It
+ * was four blocks with a clear gap between them, which draws "disconnected"
+ * under the live label "6 connected modules" — the same misread the 3x3
+ * version was corrected for, left standing at the larger size. Joined, the
+ * parts are still countable and the shape agrees with its caption.
  */
 export const METRIC_MARKS = {
   field: "1010101010101010101010101",
   funnel: "1111101110001000010000100",
-  modules: "1101111011000001101111011",
+  modules: "1101111011111111101111011",
   ramp: "0000100011000111011111111",
   ring: "0111010001100011000101110",
   bars: "0000100101001011010110101",

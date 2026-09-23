@@ -676,10 +676,12 @@ export default function ComponentsPage() {
           </div>
 
           <p className="mt-8 max-w-[68ch] text-[0.85rem] leading-6" style={{ color: "var(--muted)" }}>
-            <code className="font-mono text-[0.8em]">modules</code> is drawn as one adjoined 2×2 block, not four
-            separate corners — an earlier pass scattered it into isolated dots, which visually said
-            &quot;disconnected&quot; directly under labels like &quot;6 connected modules.&quot; The shape has to
-            agree with the word next to it, not just belong to the same family of shapes.
+            <code className="font-mono text-[0.8em]">modules</code> draws parts that touch, at both
+            sizes: four quadrants joined through the centre row at 5×5, one adjoined block at 3×3
+            where there is no room for the join. Separated, they said &quot;disconnected&quot; directly
+            under labels like &quot;6 connected modules&quot; — and the two sizes disagreed with each
+            other for a while, the small one corrected and the large one left scattered. The shape
+            has to agree with the word next to it, and with itself at every size.
           </p>
 
           <div className="mt-10 flex flex-wrap items-end gap-8">
