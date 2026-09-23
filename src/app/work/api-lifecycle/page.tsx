@@ -230,6 +230,7 @@ export default function ApiLifecyclePage() {
             archetypes={ARCHETYPES}
             stages={LIFECYCLE}
             variant="cards"
+            basis="From 20+ interviews before any design work — how people were working already, and where the friction was. What came out of them set the focus area and vetted the product spec."
           />
         </CaseStudySection>
 
@@ -353,7 +354,7 @@ export default function ApiLifecyclePage() {
               heading="Contract design had to work for beginners and experts at the same time"
               body={[
                 "API contract design exposed one of the platform’s hardest interaction problems.",
-                "Some engineers were comfortable working directly in YAML or JSON. Others needed a structured interface that made the schema easier to understand and create.",
+                "Providers split on this. Some were comfortable working directly in YAML or JSON; others needed a structured interface that made the schema easier to understand and create.",
                 "Instead of forcing one mode on everyone, we designed two connected editors: Basic for guided, structured contract creation, and Advanced for engineers who preferred direct specification editing.",
                 "Switching between them required careful handling of validation, unsupported changes, and the risk of losing work. Around that core interaction, the Studio added linting, duplicate detection, quality feedback, versioning, imports, collaboration, code generation, and governance guidance.",
               ]}
