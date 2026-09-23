@@ -377,3 +377,48 @@ export function ArchetypeCards({
     </div>
   );
 }
+
+
+/* ── H · Ledger ────────────────────────────────────────────────────────── */
+
+/**
+ * One row per role rather than a card each.
+ *
+ * The only arrangement that holds four roles without cramping them — cards
+ * at four across a case-study column give each about 280px, which is two or
+ * three words a line — and the only one where a reader can compare the same
+ * field down a column: every want together, every friction together. That is
+ * a different reading than a card, which asks you to take one person whole
+ * before moving to the next.
+ */
+export function ArchetypeLedger({
+  archetypes,
+  stages,
+}: {
+  archetypes: Archetype[];
+  stages: string[];
+}) {
+  const showGlyph = stages.length > 0;
+  return (
+    <div className="ds-arch-ledger">
+      <div className="ds-arch-ledger-head" aria-hidden>
+        <span>Role</span>
+        <span>What they do</span>
+        <span>What they want</span>
+        <span>What got in the way</span>
+      </div>
+      {archetypes.map((a) => (
+        <div className="ds-arch-ledger-row" key={a.name}>
+          <div className="ds-arch-ledger-role">
+            {showGlyph ? <ArchetypeGlyph archetype={a} stageCount={stages.length} /> : null}
+            <p className="ds-arch-name">{a.name}</p>
+            {a.side ? <span className="ds-arch-side">{a.side}</span> : null}
+          </div>
+          <p className="ds-arch-ledger-cell">{a.behaviour}</p>
+          <p className="ds-arch-ledger-cell is-key">{a.wants}</p>
+          <p className="ds-arch-ledger-cell is-key">{a.friction}</p>
+        </div>
+      ))}
+    </div>
+  );
+}

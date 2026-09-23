@@ -3697,3 +3697,135 @@ a:hover .ds-compact-mark .ds-dot {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
+
+/* ── Archetype section layouts (C14) ─────────────────────────────────────
+   Four compositions over the same content. The figure inside is a separate
+   choice; these govern how the section sits on the page. */
+
+/* `split` — the figure sits beside the head, so it needs less room above it
+   than it does when it runs the full column. */
+.ds-arch-section-body.is-tight {
+  margin-top: 0;
+}
+
+/* `anchor` — the dark ground. B6 reserves it for a thesis or a reframe, and
+   the roles are the premise every decision below answers to. Once per case
+   study: two dark blocks is the anti-pattern, not a rhythm. */
+.ds-arch-section.is-anchor {
+  border-radius: var(--radius);
+  background: var(--ds-dark);
+  padding: clamp(2.25rem, 4vw, 3.5rem);
+}
+
+.ds-arch-section.is-anchor .display-section,
+.ds-arch-section.is-anchor .ds-arch-name {
+  color: var(--ds-dark-ink);
+}
+
+.ds-arch-section.is-anchor .ds-eyebrow,
+.ds-arch-section.is-anchor .ds-arch-basis-label,
+.ds-arch-section.is-anchor .ds-arch-fields dt,
+.ds-arch-section.is-anchor .ds-arch-side {
+  color: var(--ds-mint);
+}
+
+.ds-arch-section.is-anchor .body-text,
+.ds-arch-section.is-anchor .ds-arch-behaviour,
+.ds-arch-section.is-anchor .ds-arch-basis {
+  color: var(--ds-dark-muted);
+}
+
+.ds-arch-section.is-anchor .ds-arch-fields dd {
+  color: var(--ds-dark-ink);
+}
+
+/* Cards on dark do not get a second surface: B/L forbid glass inside glass,
+   and a panel on a panel reads as depth nobody asked for. A hairline is
+   enough to separate them from the ground. */
+.ds-arch-section.is-anchor .ds-arch-card {
+  background: transparent;
+  border-color: color-mix(in oklab, var(--ds-mint) 26%, transparent);
+}
+
+.ds-arch-section.is-anchor .ds-arch-basis {
+  border-left-color: color-mix(in oklab, var(--ds-mint) 55%, transparent);
+}
+
+.ds-arch-section.is-anchor .ds-arch-side {
+  border-color: color-mix(in oklab, var(--ds-mint) 35%, transparent);
+}
+
+.ds-arch-section.is-anchor .ds-arch-fields {
+  border-top-color: color-mix(in oklab, var(--ds-mint) 20%, transparent);
+}
+
+.ds-arch-section.is-anchor .ds-arch-dot {
+  background: var(--ds-mint);
+}
+
+.ds-arch-section.is-anchor .ds-arch-dot.is-off {
+  background: transparent;
+  box-shadow: inset 0 0 0 1.5px color-mix(in oklab, var(--ds-mint) 40%, transparent);
+}
+
+/* ── `ledger` — a row per role ──────────────────────────────────────────── */
+
+.ds-arch-ledger {
+  display: flex;
+  flex-direction: column;
+}
+
+.ds-arch-ledger-head,
+.ds-arch-ledger-row {
+  display: grid;
+  grid-template-columns: 13rem 1fr 1fr 1fr;
+  gap: 2rem;
+  align-items: start;
+}
+
+.ds-arch-ledger-head {
+  padding-bottom: 0.9rem;
+  font-family: var(--font-mono), monospace;
+  font-size: 0.58rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.ds-arch-ledger-row {
+  padding: 1.5rem 0;
+  border-top: 1px solid color-mix(in oklab, var(--ds-accent-deep) 13%, transparent);
+}
+
+.ds-arch-ledger-role {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.6rem;
+}
+
+.ds-arch-ledger-cell {
+  margin: 0;
+  font-size: 0.87rem;
+  line-height: 1.55;
+  color: var(--ink-soft);
+}
+
+/* Want and friction keep the weight they carry on a card: they are what the
+   work is judged against, and a table should not quietly flatten them back
+   into the descriptive column. */
+.ds-arch-ledger-cell.is-key {
+  font-size: 0.95rem;
+  color: var(--ink);
+}
+
+@media (max-width: 1100px) {
+  .ds-arch-ledger {
+    overflow-x: auto;
+  }
+
+  .ds-arch-ledger-head,
+  .ds-arch-ledger-row {
+    min-width: 58rem;
+  }
+}

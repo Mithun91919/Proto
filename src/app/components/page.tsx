@@ -96,6 +96,12 @@ import { HeroThumbnailRail } from "@/components/design-system/HeroThumbnailRail"
  * real segments before any of this is used in a case study; the guide's rule
  * against inventing a metric applies just as much to inventing a population.
  */
+/** The first two of DEMO_ARCHETYPES — the two-role case, for comparing layouts. */
+const PAIR_SLICE = 2;
+
+const DEMO_BASIS =
+  "Placeholder \u2014 replace with the real basis, e.g. 20+ interviews run before any design work.";
+
 const DEMO_STAGES = ["Discover", "Design", "Validate", "Test", "Publish", "Govern"];
 
 const DEMO_ARCHETYPES: Archetype[] = [
@@ -134,6 +140,9 @@ const DEMO_ARCHETYPES: Archetype[] = [
     depth: 0.6,
   },
 ];
+
+/** The two-role case, for comparing section layouts like-for-like. */
+const PAIR: Archetype[] = DEMO_ARCHETYPES.slice(0, PAIR_SLICE);
 
 
 export const metadata: Metadata = {
@@ -360,28 +369,28 @@ export default function ComponentsPage() {
           <SubLabel code="B3b · Chips" />
           <p className="max-w-[66ch] text-[0.95rem] leading-7" style={{ color: "var(--ink-soft)" }}>
             One label shape for a card&rsquo;s number, its tags, its years, and a project&rsquo;s facets. Solid,
-            never glass \u2014 B3 puts precision content on a solid surface, and a chip laid over a screen
+            never glass — B3 puts precision content on a solid surface, and a chip laid over a screen
             recording is exactly that; a chip inside a glass card would also be glass on glass.
           </p>
           <p className="mt-2 font-mono text-[0.6rem] uppercase tracking-[0.06em]" style={{ color: "var(--muted)" }}>
-            Rule \u00b7 neutral outline, not a tinted one \u00b7 the edge carries the shape, not the fill
+            Rule · neutral outline, not a tinted one · the edge carries the shape, not the fill
           </p>
           <div className="mt-7 grid grid-cols-1 gap-5 sm:grid-cols-2">
             <div className="ds-env-dark rounded-2xl p-7">
               <p className="ds-eyebrow" style={{ color: "var(--ds-mint)" }}>Over media</p>
               <p className="ds-note mt-2" style={{ color: "var(--ds-dark-muted)" }}>
-                Home cards. The artwork under these runs Y=157\u2013211 of 255 \u2014 light product UI \u2014 so a
+                Home cards. The artwork under these runs Y=157–211 of 255 — light product UI — so a
                 cyan-tinted hairline reads as a tint and the chip loses its edge.
               </p>
               <div className="mt-5 flex flex-wrap items-center gap-2">
-                <Chip size="lead">01 \u00b7 Portfolio Management Platform</Chip>
-                <Chip>2022\u2013Present</Chip>
+                <Chip size="lead">01 · Portfolio Management Platform</Chip>
+                <Chip>2022–Present</Chip>
               </div>
             </div>
             <div className="rounded-2xl p-7" style={{ border: "1px solid var(--line)" }}>
               <p className="ds-eyebrow">On the page</p>
               <p className="ds-note mt-2">
-                The work index, inline with the compact dot mark \u2014 the numeral and the facets are one band of
+                The work index, inline with the compact dot mark — the numeral and the facets are one band of
                 metadata, not two stacked quiet things.
               </p>
               <div className="mt-5 flex flex-wrap items-center gap-2">
@@ -849,13 +858,82 @@ export default function ComponentsPage() {
             Rule · one section per case study · near the top · state the basis before the cards, not after
           </p>
 
-          <div className="mt-9">
+          <p className="mt-7 max-w-[68ch] text-[0.95rem] leading-7" style={{ color: "var(--ink-soft)" }}>
+            Four ways the section can sit on a page, over identical content. The figure inside is a
+            separate choice — these govern composition, not what the dots say.
+          </p>
+
+          <div className="ds-rule mt-9 pb-12">
+            <p className="mb-7 font-mono text-[0.6rem] uppercase tracking-[0.06em]" style={{ color: "var(--ds-accent-deep)" }}>
+              1 · layout=&quot;stack&quot; — the default
+            </p>
+            <p className="mb-7 max-w-[64ch] text-[0.88rem] leading-6" style={{ color: "var(--ink-soft)" }}>
+              Head, basis, then the roles across the full column. Nothing competes, and the section
+              reads as its own beat. Best when the roles are being introduced for the first time.
+            </p>
             <ArchetypeSection
-              heading="Four people arrive at this platform wanting different things"
-              intro="Named by what they do, not by an invented biography. The glyph on each card is that type's own coverage of the lifecycle, so the mark and the claim cannot drift apart."
+              heading="Two roles, two sides of the same contract"
+              intro="An engineer consumes an API; an architect provides one."
+              archetypes={PAIR}
+              stages={DEMO_STAGES}
+              basis={DEMO_BASIS}
+            />
+          </div>
+
+          <div className="ds-rule pt-12 pb-12">
+            <p className="mb-7 font-mono text-[0.6rem] uppercase tracking-[0.06em]" style={{ color: "var(--ds-accent-deep)" }}>
+              2 · layout=&quot;split&quot;
+            </p>
+            <p className="mb-7 max-w-[64ch] text-[0.88rem] leading-6" style={{ color: "var(--ink-soft)" }}>
+              Head and basis in a narrow column, roles beside them. For a page already running copy
+              one side and media the other, where a full-width block breaks the rhythm.
+            </p>
+            <ArchetypeSection
+              heading="Two roles, two sides of the same contract"
+              intro="An engineer consumes an API; an architect provides one."
+              archetypes={PAIR}
+              stages={DEMO_STAGES}
+              basis={DEMO_BASIS}
+              layout="split"
+            />
+          </div>
+
+          <div className="ds-rule pt-12 pb-12">
+            <p className="mb-7 font-mono text-[0.6rem] uppercase tracking-[0.06em]" style={{ color: "var(--ds-accent-deep)" }}>
+              3 · layout=&quot;anchor&quot;
+            </p>
+            <p className="mb-7 max-w-[64ch] text-[0.88rem] leading-6" style={{ color: "var(--ink-soft)" }}>
+              On the dark ground. B6 reserves dark for a thesis or a reframe, and the roles are the
+              premise every decision below answers to — so it qualifies, once. Two dark blocks in a
+              case study is the anti-pattern, not a rhythm.
+            </p>
+            <ArchetypeSection
+              heading="Two roles, two sides of the same contract"
+              intro="An engineer consumes an API; an architect provides one."
+              archetypes={PAIR}
+              stages={DEMO_STAGES}
+              basis={DEMO_BASIS}
+              layout="anchor"
+            />
+          </div>
+
+          <div className="pt-12">
+            <p className="mb-7 font-mono text-[0.6rem] uppercase tracking-[0.06em]" style={{ color: "var(--ds-accent-deep)" }}>
+              4 · layout=&quot;ledger&quot;
+            </p>
+            <p className="mb-7 max-w-[64ch] text-[0.88rem] leading-6" style={{ color: "var(--ink-soft)" }}>
+              A row per role. The only one that holds four without cramping them, and the only one
+              where a reader can compare the same field down a column — every want together, every
+              friction together — rather than taking one person whole before moving on. Shown with
+              four to make the point.
+            </p>
+            <ArchetypeSection
+              heading="Who the platform serves"
+              intro="Four roles, compared field by field rather than one card at a time."
               archetypes={DEMO_ARCHETYPES}
               stages={DEMO_STAGES}
-              basis="Placeholder — replace with the real basis, e.g. 12 developer interviews, two rounds of usability testing."
+              basis={DEMO_BASIS}
+              layout="ledger"
             />
           </div>
         </div>
