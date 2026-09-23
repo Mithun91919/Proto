@@ -3552,14 +3552,35 @@ a:hover .ds-compact-mark .ds-dot {
   margin-top: 2.75rem;
 }
 
+/* Readable, and above the cards rather than under them. At 0.62rem mono in
+   muted grey at the foot of the section this was the smallest text on the
+   page, carrying the one claim that separates a researched archetype from an
+   invented one. A reader deciding whether to trust the cards was being asked
+   to find it afterwards, in the type size reserved for footnotes. */
 .ds-arch-basis {
-  margin: 1.6rem 0 0;
-  max-width: 62ch;
+  margin: 1.9rem 0 0;
+  max-width: 64ch;
+  padding-left: 1.1rem;
+  border-left: 2px solid color-mix(in oklab, var(--ds-accent) 45%, transparent);
+  font-size: 0.93rem;
+  line-height: 1.6;
+  color: var(--ink-soft);
+}
+
+.ds-arch-basis-label {
+  display: block;
+  margin-bottom: 0.35rem;
   font-family: var(--font-mono), monospace;
-  font-size: 0.62rem;
-  line-height: 1.7;
-  letter-spacing: 0.04em;
-  color: var(--muted);
+  font-size: 0.6rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ds-accent-deep);
+}
+
+/* The cards then need their own gap from it, not the head's. */
+.ds-arch-basis + * .ds-arch-section-body,
+.ds-arch-basis ~ * .ds-arch-section-body {
+  margin-top: 2.25rem;
 }
 
 @media (max-width: 1000px) {

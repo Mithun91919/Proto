@@ -232,7 +232,7 @@ export default function ApiLifecyclePage() {
             archetypes={ARCHETYPES}
             stages={LIFECYCLE}
             variant="cards"
-            basis="From 20+ interviews before any design work — how people were working already, and where the friction was. What came out of them set the focus area and vetted the product spec."
+            basis="These two roles came out of 20+ interviews, run before any design work started: how people were already doing this, and where it went wrong for them. Nothing here is assumed — the same interviews set the focus area and vetted the product spec."
           />
         </CaseStudySection>
 

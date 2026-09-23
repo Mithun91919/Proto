@@ -45,10 +45,15 @@ type ArchetypeSectionProps = {
   stages?: string[];
   variant?: "cards" | "lanes" | "coverage";
   /**
-   * Where the segments came from. Not decoration: an archetype with no stated
-   * provenance is the thing a reader has learned to distrust, so the section
-   * makes room for the sentence rather than leaving it to the author to
-   * remember. Omit only when there is genuinely nothing to cite.
+   * Where the segments came from, rendered above them.
+   *
+   * Not decoration: an archetype with no stated provenance is the thing a
+   * reader has learned to distrust, so the section makes room for the
+   * sentence rather than leaving it to the author to remember. It sits
+   * before the cards rather than under them because a reader who already
+   * knows these came from interviews reads the cards differently — found
+   * rather than imagined. Underneath, it arrived after the judgement was
+   * already formed. Omit only when there is genuinely nothing to cite.
    */
   basis?: string;
 };
@@ -79,6 +84,15 @@ export function ArchetypeSection({
         </div>
       </Reveal>
 
+      {basis ? (
+        <Reveal>
+          <p className="ds-arch-basis">
+            <span className="ds-arch-basis-label">How these were defined</span>
+            {basis}
+          </p>
+        </Reveal>
+      ) : null}
+
       <Reveal>
         <div className="ds-arch-section-body">
           {resolved === "cards" ? <ArchetypeCards archetypes={archetypes} stages={stages} /> : null}
@@ -86,8 +100,6 @@ export function ArchetypeSection({
           {resolved === "coverage" ? (
             <ArchetypeCoverage archetypes={archetypes} stages={stages} />
           ) : null}
-
-          {basis ? <p className="ds-arch-basis">{basis}</p> : null}
         </div>
       </Reveal>
     </section>
