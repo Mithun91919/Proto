@@ -23,7 +23,7 @@ type MetricGlyphProps = {
 };
 
 /**
- * S2b · One semantic 5×5 glyph per metric meaning — never decorative, never
+ * C8b · One semantic 5×5 glyph per metric meaning — never decorative, never
  * more than one per stat. Use `labelled` in a reference grid; drop it when
  * pairing the glyph with a real metric value in a ProofStrip.
  */

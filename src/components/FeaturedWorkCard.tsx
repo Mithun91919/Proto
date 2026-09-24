@@ -26,7 +26,7 @@ export const PROJECT_SHAPE: Record<string, SystemShape> = {
 
 /**
  * One semantic glyph per metric, aligned by index to `project.metrics` —
- * chosen for what each figure actually measures (S2b), not decoration.
+ * chosen for what each figure actually measures (C8b), not decoration.
  */
 export const PROJECT_METRIC_GLYPHS: Record<string, MetricMarkName[]> = {
   "portfolio-management": ["field", "funnel", "modules"],

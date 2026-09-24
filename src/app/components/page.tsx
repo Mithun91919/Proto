@@ -644,6 +644,33 @@ export default function ComponentsPage() {
         </div>
 
         <div className="ds-rule py-11">
+          <SubLabel code="C8b · Metric glyphs" />
+          <p className="mb-2 max-w-[68ch] text-[0.95rem] leading-7" style={{ color: "var(--ink-soft)" }}>
+            Eight glyphs on the same dot unit, one per thing a number can measure. Both sizes are
+            authored together in <code className="font-mono text-[0.85em]">dotPatterns</code> as art
+            you can read in source — drifting apart is exactly what happened when they were a bitmap
+            string and an opacity array in separate objects, and twice nobody noticed.
+          </p>
+          <p className="mb-7 max-w-[68ch] text-[0.95rem] leading-7" style={{ color: "var(--ink-soft)" }}>
+            An unlit cell is a hollow ring: the grid shows as a grid without costing a tone, which
+            keeps the opacity scale free to mean something. Only{" "}
+            <code className="font-mono text-[0.85em]">layers</code> uses it, for receding depth.
+          </p>
+          <div className="grid grid-cols-2 gap-8 sm:grid-cols-4">
+            {(Object.keys(METRIC_MARK_MEANINGS) as MetricMarkName[]).map((name) => (
+              <MetricGlyph key={name} name={name} labelled />
+            ))}
+          </div>
+          <p className="mt-8 max-w-[68ch] text-[0.85rem] leading-6" style={{ color: "var(--muted)" }}>
+            Where the number itself is small enough to count, the glyph can be the number instead:
+            &ldquo;6 connected modules&rdquo; draws six lit cells against three empty ones. C1&apos;s
+            first clause is quantity, and a count a reader can verify beats a category they have to
+            learn. It is opt-in and falls back above nine, because a partial fill standing in for
+            139 would be a lie.
+          </p>
+        </div>
+
+        <div className="ds-rule py-11">
           <SubLabel code="C9 · Compact dot marks" />
           <h3 className="display-title max-w-[30ch]" style={{ fontSize: "1.7rem" }}>
             A meaning that shrinks has to be redrawn, not resized.
@@ -1004,18 +1031,6 @@ export default function ComponentsPage() {
               { value: "6", label: "connected modules", glyph: "modules" },
             ]}
           />
-        </div>
-
-        <div className="ds-rule py-11">
-          <SubLabel code="S2b · Dot marks" />
-          <p className="mb-7 max-w-[60ch] text-[0.95rem] leading-7" style={{ color: "var(--ink-soft)" }}>
-            Eight 5×5 glyphs on the same dot unit. One per metric, chosen for what the number measures.
-          </p>
-          <div className="grid grid-cols-2 gap-8 sm:grid-cols-4">
-            {(Object.keys(METRIC_MARK_MEANINGS) as MetricMarkName[]).map((name) => (
-              <MetricGlyph key={name} name={name} labelled />
-            ))}
-          </div>
         </div>
 
         <div className="ds-rule py-11">

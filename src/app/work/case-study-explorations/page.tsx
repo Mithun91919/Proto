@@ -104,7 +104,7 @@ const BEATS = [
   },
 ];
 
-/** S2b semantic marks, read off METRIC_MARK_MEANINGS: population, reach,
+/** C8b semantic marks, read off METRIC_MARK_MEANINGS: population, reach,
     volume — the mapping PROJECT_METRIC_GLYPHS already stores for this
     project. */
 const METRICS = [
