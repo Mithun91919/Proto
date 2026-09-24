@@ -11,6 +11,18 @@ type DotGridProps = {
   size?: number;
   gap?: number;
   variant?: DotVariant;
+  /**
+   * How a cell at 0 is drawn.
+   *
+   * `hidden` (default) leaves it invisible — right for a digit, where the
+   * unlit cells are not part of the letterform. `ring` draws it as a hollow
+   * outline, for a glyph read against a grid: the position is visible as a
+   * position without being a tone, which keeps the opacity scale free to
+   * mean something (`layers` uses 0.6 and 0.32 for receding depth). A faint
+   * fill was tried for this and sat awkwardly between the two — too pale to
+   * read as ground, too present to ignore.
+   */
+  offStyle?: "hidden" | "ring";
   className?: string;
 };
 
@@ -28,7 +40,15 @@ const VARIANT_CLASS: Record<DotVariant, string> = {
  * grouping, connection, state, or change) — this component only draws
  * what you tell it to; the meaning is the caller's responsibility.
  */
-export function DotGrid({ cols, dots, size = 7, gap = 5, variant = "default", className }: DotGridProps) {
+export function DotGrid({
+  cols,
+  dots,
+  size = 7,
+  gap = 5,
+  variant = "default",
+  offStyle = "hidden",
+  className,
+}: DotGridProps) {
   return (
     <div
       className={className}
@@ -39,18 +59,28 @@ export function DotGrid({ cols, dots, size = 7, gap = 5, variant = "default", cl
         width: "max-content",
       }}
     >
-      {dots.map((opacity, index) => (
+      {dots.map((opacity, index) => {
+        const off = offStyle === "ring" && opacity === 0;
+        return (
         <span
           key={index}
-          className={VARIANT_CLASS[variant]}
+          className={`${VARIANT_CLASS[variant]}${off ? " ds-dot-off" : ""}`}
           // `--dot-i` is unused by default — a consumer opts a grid into a
           // staggered entrance (see `.ds-compact-mark`) by keying an
           // animation-delay off it. Setting it here, once, means any dot
           // pattern in the system can pick up that motion without every
           // caller wiring its own index.
-          style={{ width: size, height: size, opacity, "--dot-i": index } as CSSProperties}
+          style={
+            {
+              width: size,
+              height: size,
+              opacity: off ? 1 : opacity,
+              "--dot-i": index,
+            } as CSSProperties
+          }
         />
-      ))}
+        );
+      })}
     </div>
   );
 }

@@ -10,10 +10,12 @@
  * Tone characters, so the mid-tones stay reserved for meaning:
  *   `#` lit · `+` 0.6 · `-` 0.32 · `.` unlit
  *
- * `.` is empty, not a faint dot. An unlit cell saying "nothing here" is a
- * thing the empty position already says, and spending a tone on it puts it in
- * competition with `layers`, where 0.6 and 0.32 mean receding depth. A
- * mid-tone is free for a state worth naming: baseline against achieved.
+ * `.` is the unlit cell of the grid the glyph sits on, drawn as a hollow
+ * ring rather than a faint fill. A ring is a position, not a tone: the grid
+ * reads as a grid, and the opacity scale stays free to carry meaning. A
+ * faint fill was tried at 0.12 and sat between the two — too pale to read as
+ * ground, too present to ignore — and at 0 the shapes lost the frame that
+ * makes them read as one family.
  *
  * The 3×3 is drawn fresh, never downsampled — at a few pixels per dot a 5×5
  * silhouette collapses into noise, and three identical dots in a row read as
@@ -161,6 +163,11 @@ export const GLYPHS = {
 
 export type MetricMarkName = keyof typeof GLYPHS;
 
+/**
+ * `.` is 0 and `DotGrid` draws it as a hollow ring, so the grid is visible
+ * without costing a tone. That leaves the whole opacity scale free to mean
+ * something — `layers` is the only glyph using it, for receding depth.
+ */
 const TONES: Record<string, number> = { "#": 1, "+": 0.6, "-": 0.32, ".": 0 };
 
 /** Art → opacity array. Whitespace and newlines are layout, not data. */
@@ -231,11 +238,31 @@ export function bitmapToDots(bitmap: string, restOpacity = REST_OPACITY): number
 }
 
 /**
- * The only way to draw a metric mark. Rest is 0, not the faint 0.14 that
- * `bitmapToDots` still defaults to for digits — an unlit cell in a metric
- * glyph says nothing-here, which the empty position already says, and
- * spending the second tone on it competes with `layers`, where 0.6 and 0.32
- * mean receding depth.
+ * A glyph that *is* the number, for a metric small enough to count.
+ *
+ * C1's first clause is quantity, and it is the strongest justification a dot
+ * has — but only when the count is legible. "6 connected modules" beside a
+ * four-dot block invites a reader to count and find a mismatch; six lit
+ * cells against three unlit ones says six and cannot be misread.
+ *
+ * The trade is real: a counted glyph stops saying which family the metric
+ * belongs to, so `modules` and `ring` at 6 would draw the same. It is worth
+ * it only where the number is the point, which is why this is opt-in and
+ * returns null above the grid's capacity — 139 cannot be counted in nine
+ * cells, and a partial fill pretending otherwise would be a lie.
+ */
+export function countDots(value: string, cells: number): number[] | null {
+  const n = Number(value.trim());
+  if (!Number.isInteger(n) || n < 1 || n > cells) return null;
+  // Reading order, so counting follows the eye rather than a pattern.
+  return Array.from({ length: cells }, (_, i) => (i < n ? 1 : 0));
+}
+
+/**
+ * The only way to draw a metric mark: the art is the single source, so a
+ * caller cannot land on a different rest tone by reaching for a different
+ * helper. The home page did exactly that once and drew `modules` and `ramp`
+ * against a different ground from every other surface.
  *
  * Call this rather than reaching for the array: the home page built its
  * marks through `bitmapToDots` instead and rendered `modules` and `ramp`

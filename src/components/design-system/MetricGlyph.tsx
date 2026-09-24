@@ -1,5 +1,11 @@
 import { DotGrid } from "./primitives/DotGrid";
-import { COMPACT_METRIC_MARKS, markDots, METRIC_MARK_MEANINGS, type MetricMarkName } from "./dotPatterns";
+import {
+  COMPACT_METRIC_MARKS,
+  countDots,
+  markDots,
+  METRIC_MARK_MEANINGS,
+  type MetricMarkName,
+} from "./dotPatterns";
 
 type MetricGlyphProps = {
   name: MetricMarkName;
@@ -28,7 +34,7 @@ export function MetricGlyph({ name, labelled = false, size = 6, gap = 4 }: Metri
           CompactMetricGlyph bakes in `ds-compact-mark`. Without it the 5x5
           glyph was the only dot mark on the site that never drew itself. */}
       <span className="ds-dot-mark" aria-hidden>
-        <DotGrid cols={5} size={size} gap={gap} dots={markDots(name)} />
+        <DotGrid cols={5} size={size} gap={gap} dots={markDots(name)} offStyle="ring" />
       </span>
       {labelled ? (
         <>
@@ -57,10 +63,27 @@ export function MetricGlyph({ name, labelled = false, size = 6, gap = 4 }: Metri
  * rasterizes, which reads as the dots being unevenly sized even though
  * every one carries the same CSS value.
  */
-export function CompactMetricGlyph({ name, size = 6, gap = 4 }: { name: MetricMarkName; size?: number; gap?: number }) {
+export function CompactMetricGlyph({
+  name,
+  value,
+  size = 6,
+  gap = 4,
+}: {
+  name: MetricMarkName;
+  /**
+   * The metric's own value. Given one that counts — a plain integer the grid
+   * can hold — the glyph draws that many lit cells instead of the family
+   * shape, because a number a reader can verify beats a category they have
+   * to learn. Anything larger falls back to the family shape.
+   */
+  value?: string;
+  size?: number;
+  gap?: number;
+}) {
+  const counted = value ? countDots(value, 9) : null;
   return (
     <span className="ds-compact-mark" aria-hidden>
-      <DotGrid cols={3} size={size} gap={gap} dots={COMPACT_METRIC_MARKS[name]} />
+      <DotGrid cols={3} size={size} gap={gap} dots={counted ?? COMPACT_METRIC_MARKS[name]} offStyle="ring" />
     </span>
   );
 }

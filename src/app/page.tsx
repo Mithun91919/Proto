@@ -6,9 +6,8 @@ import { Reveal } from "@/components/Reveal";
 import { SectionAnchor } from "@/components/SectionAnchor";
 import { SectionHead } from "@/components/SectionHead";
 import { ChapterProgress } from "@/components/design-system/ChapterProgress";
-import { DotGrid } from "@/components/design-system/primitives/DotGrid";
+import { MetricGlyph } from "@/components/design-system/MetricGlyph";
 import { GlassPanel } from "@/components/design-system/primitives/GlassPanel";
-import { markDots } from "@/components/design-system/dotPatterns";
 import { getFeaturedProjects, getRangeProjects } from "@/content/projects";
 
 const CHAPTERS = [
@@ -105,13 +104,9 @@ export default function HomePage() {
             <Link href="/work" className="group block h-full no-underline">
               <GlassPanel variant="lift" hoverLift className="flex h-full flex-col rounded-2xl p-8">
                 {/* `modules` — discrete parts: every project, side by side. */}
-                <DotGrid
-                  cols={5}
-                  dots={markDots("modules")}
-                  size={5}
-                  gap={3}
-                  className="mb-5"
-                />
+                <div className="mb-5">
+                  <MetricGlyph name="modules" size={5} gap={3} />
+                </div>
                 <p className="eyebrow">Work</p>
                 <h3
                   className="display-title mt-3 text-[var(--ink)] transition-colors duration-300 group-hover:text-[var(--accent-deep)]"
@@ -137,13 +132,9 @@ export default function HomePage() {
             <Link href="/about" className="group block h-full no-underline">
               <GlassPanel variant="lift" hoverLift className="flex h-full flex-col rounded-2xl p-8">
                 {/* `ramp` — a rising stair: a path built up over time. */}
-                <DotGrid
-                  cols={5}
-                  dots={markDots("ramp")}
-                  size={5}
-                  gap={3}
-                  className="mb-5"
-                />
+                <div className="mb-5">
+                  <MetricGlyph name="ramp" size={5} gap={3} />
+                </div>
                 <p className="eyebrow">About</p>
                 <h3
                   className="display-title mt-3 text-[var(--ink)] transition-colors duration-300 group-hover:text-[var(--accent-deep)]"

@@ -31,7 +31,7 @@ export function MetricRow({ project, max = 3, className = "" }: MetricRowProps) 
     >
       {metrics.map((m, i) => (
         <div key={m.label} className="flex items-center" style={{ gap: "11px" }}>
-          <CompactMetricGlyph name={metricGlyph(project.slug, i)} />
+          <CompactMetricGlyph name={metricGlyph(project.slug, i)} value={m.value} />
           <div>
             <dt className="display-title" style={{ fontSize: "1.32rem", lineHeight: 1.15, color: "var(--accent-deep)" }}>
               {m.value}
