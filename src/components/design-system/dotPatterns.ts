@@ -33,10 +33,14 @@ export const GLYPHS = {
       .#.#.
       #.#.#
     `,
+    // The COUNT group's anchor shape — shared with everything that is not
+    // a trend. See the note at the top of this file: direction is the one
+    // claim a 3×3 shape can make without a caption, so anything that is
+    // not "up" or "down" gets this and nothing more specific.
     sm: `
-      .#.
+      ###
       #.#
-      .#.
+      ###
     `,
   },
   funnel: {
@@ -49,14 +53,12 @@ export const GLYPHS = {
       ..#..
       ..#..
     `,
-    // Shares its compact shape with `drop` — see the note at the top of
-    // this file on why the 3×3 set collapses eight meanings into four
-    // shapes. Consolidating to one and reducing to less are the same move
-    // at this size: both draw as "falling".
+    // Shares its compact shape with `drop`: consolidating to one and
+    // reducing to less are the same move at this size, both "falling".
     sm: `
       ###
-      ##.
-      #..
+      ###
+      .#.
     `,
   },
   modules: {
@@ -71,13 +73,13 @@ export const GLYPHS = {
       ##.##
       ##.##
     `,
-    // The BLOCK group's anchor shape — shared with `ring` and `layers`.
-    // No room for four parts plus a join at this size; one adjoined block
-    // is the same claim compressed.
+    // COUNT, same as every other non-directional meaning: a 2×2 block
+    // read as "discrete parts" only once you already knew that was the
+    // claim. Nothing at 3×3 does.
     sm: `
-      ##.
-      ##.
-      ...
+      ###
+      #.#
+      ###
     `,
   },
   ramp: {
@@ -89,12 +91,13 @@ export const GLYPHS = {
       #.###
       #####
     `,
-    // The UP group's anchor shape, and the only member: it is the one
-    // meaning specific enough to need its own compact silhouette rather
-    // than sharing one.
+    // UP. A solid triangle, apex at top — the stock-ticker \u25b2, which
+    // already means "increasing" to anyone who has looked at a finance
+    // page, rather than a staircase that needed a caption to read as
+    // directional at all.
     sm: `
-      ..#
-      .##
+      .#.
+      ###
       ###
     `,
   },
@@ -107,12 +110,12 @@ export const GLYPHS = {
       #...#
       .###.
     `,
-    // Shares its compact shape with `modules` and `layers` — reach reads
-    // as a structured whole at this size, same as a set of discrete parts.
+    // COUNT. "Footprint" and "coverage" have no more of a 3×3 pictogram
+    // than "discrete parts" does; this is the same honest non-claim.
     sm: `
-      ##.
-      ##.
-      ...
+      ###
+      #.#
+      ###
     `,
   },
   bars: {
@@ -124,14 +127,13 @@ export const GLYPHS = {
       #.#.#
       #.#.#
     `,
-    // Shares its compact shape with `field`. Was a solid triangle one cell
-    // off from `ramp` — the near-collision that forced this whole
-    // regrouping — and volume is not inherently directional the way
-    // growth is, so it belongs with the generic scatter instead.
+    // COUNT. Was a solid triangle one cell off from `ramp` — the
+    // near-collision that forced the first regrouping — and volume is not
+    // a trend, so there is no shape it is owed beyond the honest default.
     sm: `
-      .#.
+      ###
       #.#
-      .#.
+      ###
     `,
   },
   layers: {
@@ -143,15 +145,14 @@ export const GLYPHS = {
       .....
       #####
     `,
-    // BLOCK at compact scale, not a shrunk version of the receding-rows
-    // idea: mid-tones already distinguish `layers` at 5×5, and three
-    // states in nine cells at 3×3 was asking one glyph to carry more than
-    // this size can hold — the same overreach the whole regrouping fixes.
-    // Shares its shape with `modules` and `ring`.
+    // COUNT at compact scale, not a shrunk version of the receding-rows
+    // idea: mid-tones already distinguish `layers` at 5×5, and asking a
+    // single 3×3 glyph to carry a tone state on top of a shape claim was
+    // the same overreach the whole regrouping exists to fix.
     sm: `
-      ##.
-      ##.
-      ...
+      ###
+      #.#
+      ###
     `,
   },
   drop: {
@@ -164,11 +165,11 @@ export const GLYPHS = {
       ##...
       #....
     `,
-    // The DOWN group's anchor shape — shared with `funnel`.
+    // DOWN — \u25bc, the mirror stock-ticker convention.
     sm: `
       ###
-      ##.
-      #..
+      ###
+      .#.
     `,
   },
 } as const;
@@ -248,33 +249,39 @@ export const METRIC_MARK_MEANINGS = Object.fromEntries(
  * always ships with a label (see C8b on /components). Two identical shapes
  * there is a straightforward mistake, so it throws.
  *
- * At 3×3 it is not a mistake — it is the fix. Eight meanings do not survive
- * nine binary cells with no caption: tested side by side, `ramp` and `bars`
- * differed by one cell and read as the same shape, and that was not the
- * only near-miss. So the compact set deliberately collapses to four
- * silhouettes chosen to stay apart from each other — rising, falling, a
- * solid block, a scatter — and several meanings share one on purpose:
+ * At 3×3, a first pass tried four silhouettes (rising, falling, a solid
+ * block, a scatter) and it still did not read: a 2×2 block for "15K+ APIs
+ * onboarded" says nothing to a reader who has not already been told it
+ * means "discrete parts" — there is no pictogram convention for that the
+ * way there is for up and down. Direction is the one claim a handful of
+ * dots can make without a caption, so that is now the whole vocabulary:
  *
- *   up      ramp
- *   down    funnel, drop        (consolidating and reducing both "fall")
- *   block   modules, ring, layers   (three kinds of "a structured whole")
- *   scatter field, bars         (population and volume are not directional)
+ *   up      ramp                          ▲, a solid triangle
+ *   down    funnel, drop                  ▼, its mirror
+ *   count   modules, ring, bars, layers, field   a hollow ring, no claim
  *
- * What still has to hold, and what this checks: exactly those four shapes,
- * exactly that grouping. A fifth near-shape sneaking in from a future edit,
- * or a name landing in the wrong group, defeats the reason this exists —
- * so both are asserted rather than trusted. Development only — dead in a
- * production build.
+ * `count` is the default for everything that is not a trend. It does not
+ * pretend to distinguish population from structure from volume, because
+ * nothing at this resolution was actually managing that distinction — it
+ * was five different-looking shapes all making the same non-claim. Most of
+ * what renders here in practice is the count-bearing override anyway
+ * (`countDots`), which shows the real number instead of any of this.
+ *
+ * What still has to hold, and what this checks: exactly these three
+ * shapes, exactly this grouping. A fourth near-shape sneaking in from a
+ * future edit, or a name landing in the wrong group, defeats the reason
+ * this exists — so both are asserted rather than trusted. Development
+ * only — dead in a production build.
  */
-export const COMPACT_GROUPS: Record<MetricMarkName, "up" | "down" | "block" | "scatter"> = {
+export const COMPACT_GROUPS: Record<MetricMarkName, "up" | "down" | "count"> = {
   ramp: "up",
   funnel: "down",
   drop: "down",
-  modules: "block",
-  ring: "block",
-  layers: "block",
-  field: "scatter",
-  bars: "scatter",
+  modules: "count",
+  ring: "count",
+  bars: "count",
+  layers: "count",
+  field: "count",
 };
 
 if (process.env.NODE_ENV !== "production") {

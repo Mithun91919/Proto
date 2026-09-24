@@ -676,28 +676,28 @@ export default function ComponentsPage() {
         <div className="ds-rule py-11">
           <SubLabel code="C9 · Compact dot marks" />
           <h3 className="display-title max-w-[34ch]" style={{ fontSize: "1.7rem" }}>
-            Nine cells and no caption cannot hold eight meanings.
+            Only direction survives nine cells with no caption.
           </h3>
           <p className="mt-3 max-w-[68ch] text-[0.95rem] leading-7" style={{ color: "var(--ink-soft)" }}>
             <code className="font-mono text-[0.85em]">MetricGlyph</code>&apos;s 5×5 bitmap reads clearly above a
             display-scale number in a <code className="font-mono text-[0.85em]">ProofStrip</code> — that&apos;s the
             only place it was designed to run, and it always ships with a label. Shrunk to sit beside a small
-            value/label pair with no caption, all eight meanings were tried as eight distinct 3×3 shapes and it did
-            not hold up: compared side by side, <code className="font-mono text-[0.85em]">ramp</code> and{" "}
-            <code className="font-mono text-[0.85em]">bars</code> differed by exactly one lit cell and read as the
-            same shape, and that was not the only near-miss. Redrawing them again would have fixed one pair and
-            left the next — the real limit is that nine binary cells cannot carry eight unlabelled categories, no
-            matter how they are drawn.
+            value/label pair with no caption, eight meanings were tried as eight shapes, then as four grouped
+            shapes, and neither held up: a 2×2 block for &ldquo;15K+ APIs onboarded&rdquo; says nothing to a reader
+            who was never told it meant &ldquo;discrete parts&rdquo; — there is no pictogram convention for that
+            the way there is for up and down.
           </p>
           <p className="mt-3 max-w-[68ch] text-[0.95rem] leading-7" style={{ color: "var(--ink-soft)" }}>
-            So the compact set collapses to four silhouettes chosen to stay apart from each other — rising,
-            falling, a solid block, a scatter — and several meanings share one on purpose. What each still needs at
-            this size is not its own picture; it is to land in the right one of four buckets, which is what C1
-            asked of a dot in the first place. The full eight-way distinction stays intact at 5×5, always labelled.
+            So the compact set now has exactly two claims: rising or falling, drawn as the stock-ticker triangles
+            everyone already reads that way. Everything that is not a trend gets one honest default — a hollow
+            ring, dots outside, nothing in the middle — rather than a shape pretending to distinguish population
+            from structure from volume when nothing at nine cells was actually managing that. Most of what renders
+            in practice is the count-bearing override anyway, showing the real number instead of any of this. The
+            full eight-way distinction stays intact at 5×5, always labelled.
           </p>
 
-          <div className="mt-8 grid grid-cols-2 gap-3.5 sm:grid-cols-4">
-            {(["up", "down", "block", "scatter"] as const).map((group) => {
+          <div className="mt-8 grid grid-cols-2 gap-3.5 sm:grid-cols-3">
+            {(["up", "down", "count"] as const).map((group) => {
               const members = (Object.keys(COMPACT_GROUPS) as MetricMarkName[]).filter(
                 (n) => COMPACT_GROUPS[n] === group,
               );
@@ -723,8 +723,8 @@ export default function ComponentsPage() {
             The grouping is checked, not just documented: a dev-only guard in{" "}
             <code className="font-mono text-[0.8em]">dotPatterns.ts</code> throws if a name is missing from a
             group, if two members of one group draw different shapes, or if two different groups draw the same
-            shape — the last of which would quietly collapse four buckets back down to three without anyone
-            noticing, the same way the eight-shape version drifted twice before this.
+            shape — the last of which would quietly collapse three buckets down to two without anyone
+            noticing, the same way the eight-shape and four-shape versions before it both drifted unnoticed.
           </p>
 
           <div className="mt-10 flex flex-wrap items-end gap-8">
