@@ -10,12 +10,12 @@
  * Tone characters, so the mid-tones stay reserved for meaning:
  *   `#` lit · `+` 0.6 · `-` 0.32 · `.` unlit
  *
- * `.` is the unlit cell of the grid the glyph sits on, drawn as a hollow
- * ring rather than a faint fill. A ring is a position, not a tone: the grid
- * reads as a grid, and the opacity scale stays free to carry meaning. A
- * faint fill was tried at 0.12 and sat between the two — too pale to read as
- * ground, too present to ignore — and at 0 the shapes lost the frame that
- * makes them read as one family.
+ * `.` is the unlit cell of the grid the glyph sits on. `DotGrid` draws it
+ * small and faded rather than as a tone of its own, so the grid reads as a
+ * grid and the opacity scale stays free to carry meaning. Size is the
+ * primary difference, which is what keeps an unlit cell clear of `layers` —
+ * those are full-size dots at 0.32 and cannot be confused with a third-size
+ * dot at 0.45.
  *
  * The 3×3 is drawn fresh, never downsampled — at a few pixels per dot a 5×5
  * silhouette collapses into noise, and three identical dots in a row read as
@@ -164,7 +164,7 @@ export const GLYPHS = {
 export type MetricMarkName = keyof typeof GLYPHS;
 
 /**
- * `.` is 0 and `DotGrid` draws it as a hollow ring, so the grid is visible
+ * `.` is 0 and `DotGrid` draws it small and faded, so the grid is visible
  * without costing a tone. That leaves the whole opacity scale free to mean
  * something — `layers` is the only glyph using it, for receding depth.
  */
@@ -254,8 +254,16 @@ export function bitmapToDots(bitmap: string, restOpacity = REST_OPACITY): number
 export function countDots(value: string, cells: number): number[] | null {
   const n = Number(value.trim());
   if (!Number.isInteger(n) || n < 1 || n > cells) return null;
-  // Reading order, so counting follows the eye rather than a pattern.
-  return Array.from({ length: cells }, (_, i) => (i < n ? 1 : 0));
+  // Centre, then corners, then edge midpoints. Reading order was tried and
+  // filled top-down, so six lit cells came out as two solid rows — a block,
+  // which is what `modules` already draws, and it read as a shape rather
+  // than a count. This order spreads instead: one dot is centred, five is a
+  // clean X, and six is that X plus an edge. Only a 3x3 is supported, which
+  // is the only grid a count is legible in anyway.
+  const SPREAD = cells === 9 ? [4, 0, 2, 6, 8, 1, 7, 3, 5] : null;
+  const order = SPREAD ?? Array.from({ length: cells }, (_, i) => i);
+  const lit = new Set(order.slice(0, n));
+  return Array.from({ length: cells }, (_, i) => (lit.has(i) ? 1 : 0));
 }
 
 /**

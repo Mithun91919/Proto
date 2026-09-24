@@ -34,7 +34,7 @@ export function MetricGlyph({ name, labelled = false, size = 6, gap = 4 }: Metri
           CompactMetricGlyph bakes in `ds-compact-mark`. Without it the 5x5
           glyph was the only dot mark on the site that never drew itself. */}
       <span className="ds-dot-mark" aria-hidden>
-        <DotGrid cols={5} size={size} gap={gap} dots={markDots(name)} offStyle="ring" />
+        <DotGrid cols={5} size={size} gap={gap} dots={markDots(name)} offStyle="small" />
       </span>
       {labelled ? (
         <>
@@ -83,7 +83,7 @@ export function CompactMetricGlyph({
   const counted = value ? countDots(value, 9) : null;
   return (
     <span className="ds-compact-mark" aria-hidden>
-      <DotGrid cols={3} size={size} gap={gap} dots={counted ?? COMPACT_METRIC_MARKS[name]} offStyle="ring" />
+      <DotGrid cols={3} size={size} gap={gap} dots={counted ?? COMPACT_METRIC_MARKS[name]} offStyle="small" />
     </span>
   );
 }

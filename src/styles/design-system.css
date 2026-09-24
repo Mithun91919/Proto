@@ -3844,11 +3844,3 @@ a:hover .ds-compact-mark .ds-dot {
     min-width: 58rem;
   }
 }
-
-/* An unlit cell in a glyph drawn against a grid: the position shown as a
-   position, not as a quiet state. A 1px ring, because at the 5–6px these
-   render at, 1.5px closes the hole and the cell reads as filled. */
-.ds-dot.ds-dot-off {
-  background: transparent;
-  box-shadow: inset 0 0 0 1px var(--ds-dot-muted);
-}

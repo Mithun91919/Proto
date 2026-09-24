@@ -652,9 +652,12 @@ export default function ComponentsPage() {
             string and an opacity array in separate objects, and twice nobody noticed.
           </p>
           <p className="mb-7 max-w-[68ch] text-[0.95rem] leading-7" style={{ color: "var(--ink-soft)" }}>
-            An unlit cell is a hollow ring: the grid shows as a grid without costing a tone, which
-            keeps the opacity scale free to mean something. Only{" "}
-            <code className="font-mono text-[0.85em]">layers</code> uses it, for receding depth.
+            An unlit cell is drawn small and faded rather than given a tone of its own, so the
+            grid shows as a grid and the opacity scale stays free to mean something. Size is the
+            difference that does the work — the fade only stops a small dot still reading as
+            &ldquo;on, but small&rdquo; — which is what keeps an unlit cell clear of{" "}
+            <code className="font-mono text-[0.85em]">layers</code>, the one glyph that does use
+            tone, for receding depth.
           </p>
           <div className="grid grid-cols-2 gap-8 sm:grid-cols-4">
             {(Object.keys(METRIC_MARK_MEANINGS) as MetricMarkName[]).map((name) => (
