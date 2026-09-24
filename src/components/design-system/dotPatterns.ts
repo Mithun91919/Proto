@@ -24,18 +24,19 @@
 export const GLYPHS = {
   field: {
     meaning: "Population — users, accounts, people",
-    // A distributed scatter: many, spread, no direction implied. A rising
-    // arrow was tried here and read as growth on a plain headcount.
+    // The same X the 3×3 draws, spaced out rather than redrawn as a
+    // different idea — a full checkerboard filled all 25 cells and read
+    // as a texture, not a count of anything. A rising arrow was tried
+    // too and read as growth on a plain headcount.
     lg: `
-      #.#.#
+      #...#
       .#.#.
-      #.#.#
+      ..#..
       .#.#.
-      #.#.#
+      #...#
     `,
     // Scattered, no structure implied — a population is a count of
-    // individuals, not a shape. The diamond echoes the 5×5's own scatter
-    // at three cells across.
+    // individuals, not a shape. The same X, three cells across.
     sm: `
       #.#
       .#.

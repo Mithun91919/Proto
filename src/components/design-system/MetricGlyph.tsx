@@ -32,8 +32,10 @@ export function MetricGlyph({ name, labelled = false, size = 6, gap = 4 }: Metri
     <div>
       {/* `ds-dot-mark` is the entrance-animation hook, baked in here the way
           CompactMetricGlyph bakes in `ds-compact-mark`. Without it the 5x5
-          glyph was the only dot mark on the site that never drew itself. */}
-      <span className="ds-dot-mark" aria-hidden>
+          glyph was the only dot mark on the site that never drew itself.
+          `data-mark` lets the CSS give each meaning's entrance its own
+          motion — see the stylesheet note by `ds-mark-dot-in`. */}
+      <span className="ds-dot-mark" data-mark={name} aria-hidden>
         <DotGrid cols={5} size={size} gap={gap} dots={markDots(name)} offStyle="small" />
       </span>
       {labelled ? (
@@ -82,7 +84,10 @@ export function CompactMetricGlyph({
 }) {
   const counted = value ? countDots(value, 9) : null;
   return (
-    <span className="ds-compact-mark" aria-hidden>
+    // `data-mark` is "count" rather than `name` once the literal number
+    // takes over the shape — the dot-in motion for a family shouldn't
+    // imply a claim (rising, converging) that the count isn't making.
+    <span className="ds-compact-mark" data-mark={counted ? "count" : name} aria-hidden>
       <DotGrid cols={3} size={size} gap={gap} dots={counted ?? COMPACT_METRIC_MARKS[name]} offStyle="small" />
     </span>
   );

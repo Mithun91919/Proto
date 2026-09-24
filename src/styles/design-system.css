@@ -2300,16 +2300,71 @@
   display: inline-flex;
 }
 
+/* `data-mark` groups meanings that should move the same way a reader
+   already reads their shape — up rises, down settles, the hub/ring shapes
+   snap into place with a small overshoot, the two fill-based shapes build
+   more deliberately, and population arrives loose rather than swept.
+   Grouped by feel, not 1:1 with the shape families in dotPatterns.ts: two
+   glyphs can look different and still earn the same motion. Every value
+   here is a variable read by the one shared keyframe below, so a family
+   with nothing to say just inherits the defaults instead of overriding. */
+.ds-compact-mark,
+.ds-dot-mark {
+  --mark-from-scale: 0.35;
+  --mark-from-y: 0px;
+  --mark-from-rotate: 0deg;
+  --mark-stagger: 16ms;
+  --mark-ease: cubic-bezier(0.2, 0.7, 0.3, 1);
+}
+
+[data-mark="ramp"] {
+  /* UP: dots rise the last few pixels into place. */
+  --mark-from-y: 5px;
+}
+
+[data-mark="funnel"],
+[data-mark="drop"] {
+  /* DOWN: dots settle in from above, the mirror of `ramp`. */
+  --mark-from-y: -5px;
+}
+
+[data-mark="modules"],
+[data-mark="ring"] {
+  /* Hub and ring both read as one piece assembling, not a sweep — a
+     small overshoot on the way in rather than a directional approach. */
+  --mark-from-scale: 0.2;
+  --mark-ease: cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+[data-mark="bars"],
+[data-mark="layers"] {
+  /* Both are a shape you fill, not a shape that arrives — a slower
+     per-dot cadence reads as building up rather than snapping on. */
+  --mark-stagger: 26ms;
+}
+
+[data-mark="field"] {
+  /* Population has no direction to imply, so the pop is looser instead:
+     a slight rotation in on top of the same scale everything else uses,
+     rather than a rotation-free arrival that would read as too composed
+     for a plain scatter of individuals. */
+  --mark-from-scale: 0.15;
+  --mark-from-rotate: -10deg;
+}
+
 .reveal.is-visible .ds-compact-mark .ds-dot,
 .reveal.is-visible .ds-dot-mark .ds-dot {
-  animation: ds-mark-dot-in 380ms cubic-bezier(0.2, 0.7, 0.3, 1) backwards;
-  animation-delay: calc(var(--ds-mark-lead) + (var(--dot-i, 0) + var(--group-offset, 0)) * 16ms);
+  animation: ds-mark-dot-in 380ms var(--mark-ease, cubic-bezier(0.2, 0.7, 0.3, 1)) backwards;
+  animation-delay: calc(
+    var(--ds-mark-lead) + (var(--dot-i, 0) + var(--group-offset, 0)) * var(--mark-stagger, 16ms)
+  );
 }
 
 @keyframes ds-mark-dot-in {
   from {
     opacity: 0;
-    transform: scale(0.35);
+    transform: scale(var(--mark-from-scale, 0.35)) translateY(var(--mark-from-y, 0px))
+      rotate(var(--mark-from-rotate, 0deg));
   }
 }
 
