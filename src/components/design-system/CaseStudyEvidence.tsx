@@ -7,6 +7,10 @@ import { metricGlyph } from "@/components/FeaturedWorkCard";
 export type EvidenceBeat = { label: string; lead: ReactNode; detail: string };
 
 type CaseStudyEvidenceProps = {
+  /** No longer read here — metric glyphs are now derived from the metric's
+      own label/value, not looked up by project slug. Kept optional so
+      existing callers passing it are not a type error; safe to drop once
+      call sites are cleaned up. */
   slug?: string;
   /** The problem / the solution / what I did. Omit and the card is metrics alone. */
   beats?: EvidenceBeat[];
@@ -126,7 +130,7 @@ export function CaseStudyEvidence({ slug, beats, metrics, metricsLabel, caveat }
               {metrics!.map((m, i) => (
                 <div key={m.label} className="flex items-center gap-4">
                   <span aria-hidden>
-                    <MetricGlyph name={metricGlyph(slug ?? "", i)} size={5} gap={3} />
+                    <MetricGlyph name={metricGlyph(m)} size={5} gap={3} />
                   </span>
                   <span>
                     <span

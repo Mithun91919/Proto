@@ -5,8 +5,8 @@ import { MetricRow } from "@/components/design-system/MetricRow";
 import { GlassPanel } from "@/components/design-system/primitives/GlassPanel";
 import { Chip } from "@/components/design-system/primitives/Chip";
 import type { SystemShape } from "@/components/design-system/FeaturedGlyph";
-import type { MetricMarkName } from "@/components/design-system/dotPatterns";
-import type { Project } from "@/content/projects";
+import { glyphForMetric, type MetricMarkName } from "@/components/design-system/dotPatterns";
+import type { Project, ProjectMetric } from "@/content/projects";
 import { orgLogo } from "@/content/work-page";
 
 /**
@@ -25,24 +25,15 @@ export const PROJECT_SHAPE: Record<string, SystemShape> = {
 };
 
 /**
- * One semantic glyph per metric, aligned by index to `project.metrics` —
- * chosen for what each figure actually measures (C8b), not decoration.
+ * One semantic glyph per metric (C8b), read off what the metric itself
+ * says rather than a hand-maintained array kept in sync by index — see
+ * `glyphForMetric` for why that array was replaced. Falls back to `field`
+ * for a metric with no label to read, same as the old array's fallback
+ * for a project gaining a metric nobody had added an entry for.
  */
-export const PROJECT_METRIC_GLYPHS: Record<string, MetricMarkName[]> = {
-  "portfolio-management": ["field", "funnel", "modules"],
-  "api-lifecycle": ["modules", "ramp", "bars"],
-  "dependency-health": ["layers", "modules"],
-  "store-support": ["field", "ring", "bars"],
-  "supply-chain-operations": ["field", "modules", "funnel"],
-};
-
-/**
- * Falls back rather than throwing. A project gaining a metric used to crash
- * the whole prerender on `undefined.split`, which is a hard failure for a
- * missing decoration — pick a neutral glyph and let the page render.
- */
-export function metricGlyph(slug: string, index: number): MetricMarkName {
-  return PROJECT_METRIC_GLYPHS[slug]?.[index] ?? "field";
+export function metricGlyph(metric: Pick<ProjectMetric, "label" | "value"> | undefined): MetricMarkName {
+  if (!metric) return "field";
+  return glyphForMetric(metric.label, metric.value);
 }
 
 /**

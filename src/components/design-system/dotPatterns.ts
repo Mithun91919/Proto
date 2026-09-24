@@ -190,6 +190,43 @@ export const COMPACT_METRIC_MARKS = Object.fromEntries(
   NAMES.map((n) => [n, parseArt(GLYPHS[n].sm)]),
 ) as Record<MetricMarkName, number[]>;
 
+/**
+ * Derives a glyph from what a metric's label actually says, instead of a
+ * hand-maintained array kept in sync by index with `project.metrics`.
+ *
+ * That array was the failure mode: a metric inserted or reordered silently
+ * shifted every glyph after it onto the wrong meaning, and there was no way
+ * to notice short of reading eight projects' worth of arrays side by side.
+ * Audited across every metric live on the site, hand-assignment had drifted
+ * on six of seventeen — "10K+ monthly users" drawn as growth, "~40% faster"
+ * drawn as volume, three metrics on one project fell through to a default
+ * because nobody had added an entry for it at all.
+ *
+ * Ordered by specificity, most specific first: a plain rate/trend word
+ * ("faster", "less") is checked before a population noun so "daily users"
+ * doesn't answer to "daily" before it answers to "users". Falls back to
+ * `field` — count of people is the least wrong default for a metric that
+ * names none of these things, and it is what most metrics on the site are.
+ */
+const LABEL_RULES: [MetricMarkName, string[]][] = [
+  ["drop", ["less ", "fewer", "reduction", "reduced", "saved", "cut ", "time spent"]],
+  ["ramp", ["faster", "growth", "increase", "improve", "adoption", "uplift"]],
+  ["funnel", ["consolidat", "into one", "unified", "\u21921", "merge"]],
+  ["layers", ["level", "tier", "hierarch", "visibility"]],
+  ["field", ["user", "visitor", "people", "account", "member", "customer", "associate", "engineer", "team"]],
+  ["ring", ["cities", "market", "countr", "footprint", "device", "coverage", "reach", "region"]],
+  ["modules", ["module", "service", "api", "repositor", "tool", "product", "integration"]],
+  ["bars", ["search", "session", "request", "deliver", "throughput", "volume", "transaction"]],
+];
+
+export function glyphForMetric(label: string, value: string = ""): MetricMarkName {
+  const text = `${label} ${value}`.toLowerCase();
+  for (const [name, keys] of LABEL_RULES) {
+    if (keys.some((k) => text.includes(k))) return name;
+  }
+  return "field";
+}
+
 export const METRIC_MARK_MEANINGS = Object.fromEntries(
   NAMES.map((n) => [n, GLYPHS[n].meaning]),
 ) as Record<MetricMarkName, string>;
