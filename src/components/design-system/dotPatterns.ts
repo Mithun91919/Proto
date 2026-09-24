@@ -49,13 +49,14 @@ export const GLYPHS = {
       ..#..
       ..#..
     `,
-    // Was the exact inverse of `field` — an X against a diamond, two
-    // five-dot scatters that read alike at a glance. Now it tapers, which
-    // is the only thing a funnel has to do.
+    // Shares its compact shape with `drop` — see the note at the top of
+    // this file on why the 3×3 set collapses eight meanings into four
+    // shapes. Consolidating to one and reducing to less are the same move
+    // at this size: both draw as "falling".
     sm: `
       ###
-      .#.
-      .#.
+      ##.
+      #..
     `,
   },
   modules: {
@@ -70,6 +71,7 @@ export const GLYPHS = {
       ##.##
       ##.##
     `,
+    // The BLOCK group's anchor shape — shared with `ring` and `layers`.
     // No room for four parts plus a join at this size; one adjoined block
     // is the same claim compressed.
     sm: `
@@ -87,6 +89,9 @@ export const GLYPHS = {
       #.###
       #####
     `,
+    // The UP group's anchor shape, and the only member: it is the one
+    // meaning specific enough to need its own compact silhouette rather
+    // than sharing one.
     sm: `
       ..#
       .##
@@ -102,10 +107,12 @@ export const GLYPHS = {
       #...#
       .###.
     `,
+    // Shares its compact shape with `modules` and `layers` — reach reads
+    // as a structured whole at this size, same as a set of discrete parts.
     sm: `
-      ###
-      #.#
-      ###
+      ##.
+      ##.
+      ...
     `,
   },
   bars: {
@@ -117,13 +124,14 @@ export const GLYPHS = {
       #.#.#
       #.#.#
     `,
-    // Three columns of uneven height — a comparison. It was a solid
-    // triangle, which is `ramp` with the corner filled in: same silhouette,
-    // different meaning.
+    // Shares its compact shape with `field`. Was a solid triangle one cell
+    // off from `ramp` — the near-collision that forced this whole
+    // regrouping — and volume is not inherently directional the way
+    // growth is, so it belongs with the generic scatter instead.
     sm: `
-      ..#
+      .#.
       #.#
-      ###
+      .#.
     `,
   },
   layers: {
@@ -135,12 +143,15 @@ export const GLYPHS = {
       .....
       #####
     `,
-    // The only glyph using mid-tones, and the reason they are reserved:
-    // rows receding with depth.
+    // BLOCK at compact scale, not a shrunk version of the receding-rows
+    // idea: mid-tones already distinguish `layers` at 5×5, and three
+    // states in nine cells at 3×3 was asking one glyph to carry more than
+    // this size can hold — the same overreach the whole regrouping fixes.
+    // Shares its shape with `modules` and `ring`.
     sm: `
-      ###
-      +++
-      ---
+      ##.
+      ##.
+      ...
     `,
   },
   drop: {
@@ -153,6 +164,7 @@ export const GLYPHS = {
       ##...
       #....
     `,
+    // The DOWN group's anchor shape — shared with `funnel`.
     sm: `
       ###
       ##.
@@ -232,24 +244,82 @@ export const METRIC_MARK_MEANINGS = Object.fromEntries(
 ) as Record<MetricMarkName, string>;
 
 /**
- * Two glyphs drawn the same put two meanings in one bucket, which is the one
- * thing this set exists to prevent. It has happened twice, both times
- * unnoticed because the shapes were unreadable in source, so it is asserted
- * rather than trusted. Development only — dead in a production build.
+ * At 5×5 every meaning still gets its own shape — there is room, and it
+ * always ships with a label (see C8b on /components). Two identical shapes
+ * there is a straightforward mistake, so it throws.
+ *
+ * At 3×3 it is not a mistake — it is the fix. Eight meanings do not survive
+ * nine binary cells with no caption: tested side by side, `ramp` and `bars`
+ * differed by one cell and read as the same shape, and that was not the
+ * only near-miss. So the compact set deliberately collapses to four
+ * silhouettes chosen to stay apart from each other — rising, falling, a
+ * solid block, a scatter — and several meanings share one on purpose:
+ *
+ *   up      ramp
+ *   down    funnel, drop        (consolidating and reducing both "fall")
+ *   block   modules, ring, layers   (three kinds of "a structured whole")
+ *   scatter field, bars         (population and volume are not directional)
+ *
+ * What still has to hold, and what this checks: exactly those four shapes,
+ * exactly that grouping. A fifth near-shape sneaking in from a future edit,
+ * or a name landing in the wrong group, defeats the reason this exists —
+ * so both are asserted rather than trusted. Development only — dead in a
+ * production build.
  */
+export const COMPACT_GROUPS: Record<MetricMarkName, "up" | "down" | "block" | "scatter"> = {
+  ramp: "up",
+  funnel: "down",
+  drop: "down",
+  modules: "block",
+  ring: "block",
+  layers: "block",
+  field: "scatter",
+  bars: "scatter",
+};
+
 if (process.env.NODE_ENV !== "production") {
-  for (const size of ["lg", "sm"] as const) {
-    const seen = new Map<string, MetricMarkName>();
-    for (const name of NAMES) {
-      const key = parseArt(GLYPHS[name][size]).join(",");
-      const clash = seen.get(key);
-      if (clash) {
+  // 5×5: every name distinct.
+  const seenLg = new Map<string, MetricMarkName>();
+  for (const name of NAMES) {
+    const key = parseArt(GLYPHS[name].lg).join(",");
+    const clash = seenLg.get(key);
+    if (clash) {
+      throw new Error(
+        `Metric glyphs "${clash}" and "${name}" are identical at 5×5. ` +
+          `Each has to say which family a metric belongs to; two of the same picture cannot.`,
+      );
+    }
+    seenLg.set(key, name);
+  }
+
+  // 3×3: every name in COMPACT_GROUPS (nothing left unassigned or stale),
+  // every member of a group drawing the same shape, and no two groups
+  // drawing the same shape as each other.
+  for (const name of NAMES) {
+    if (!(name in COMPACT_GROUPS)) {
+      throw new Error(`"${name}" has no compact group in COMPACT_GROUPS.`);
+    }
+  }
+  const shapeByGroup = new Map<string, string>();
+  const groupByShape = new Map<string, string>();
+  for (const name of NAMES) {
+    const group = COMPACT_GROUPS[name];
+    const key = parseArt(GLYPHS[name].sm).join(",");
+    const expected = shapeByGroup.get(group);
+    if (expected === undefined) {
+      shapeByGroup.set(group, key);
+      const otherGroup = groupByShape.get(key);
+      if (otherGroup && otherGroup !== group) {
         throw new Error(
-          `Metric glyphs "${clash}" and "${name}" are identical at ${size}. ` +
-            `Each has to say which family a metric belongs to; two of the same picture cannot.`,
+          `Compact groups "${otherGroup}" and "${group}" draw the same 3×3 shape — ` +
+            `that collapses two of the four intended silhouettes into one.`,
         );
       }
-      seen.set(key, name);
+      groupByShape.set(key, group);
+    } else if (expected !== key) {
+      throw new Error(
+        `"${name}" (group "${group}") draws a different 3×3 shape from the rest of its group.`,
+      );
     }
   }
 }

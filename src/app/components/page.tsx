@@ -75,7 +75,7 @@ import { CaseStudyHero } from "@/components/design-system/CaseStudyHero";
 import { CaseStudyEvidence } from "@/components/design-system/CaseStudyEvidence";
 import { AlternatingTextMedia } from "@/components/design-system/AlternatingTextMedia";
 import { FullBleedMediaAnchor } from "@/components/design-system/FullBleedMediaAnchor";
-import { METRIC_MARK_MEANINGS, type MetricMarkName } from "@/components/design-system/dotPatterns";
+import { COMPACT_GROUPS, METRIC_MARK_MEANINGS, type MetricMarkName } from "@/components/design-system/dotPatterns";
 import { BeforeAfterSlider } from "@/components/design-system/BeforeAfterSlider";
 import { GuidedHotspotTour } from "@/components/design-system/GuidedHotspotTour";
 import { SyncedDualView } from "@/components/design-system/SyncedDualView";
@@ -675,43 +675,56 @@ export default function ComponentsPage() {
 
         <div className="ds-rule py-11">
           <SubLabel code="C9 · Compact dot marks" />
-          <h3 className="display-title max-w-[30ch]" style={{ fontSize: "1.7rem" }}>
-            A meaning that shrinks has to be redrawn, not resized.
+          <h3 className="display-title max-w-[34ch]" style={{ fontSize: "1.7rem" }}>
+            Nine cells and no caption cannot hold eight meanings.
           </h3>
           <p className="mt-3 max-w-[68ch] text-[0.95rem] leading-7" style={{ color: "var(--ink-soft)" }}>
             <code className="font-mono text-[0.85em]">MetricGlyph</code>&apos;s 5×5 bitmap reads clearly above a
             display-scale number in a <code className="font-mono text-[0.85em]">ProofStrip</code> — that&apos;s the
-            only place it was designed to run. Shrunk to sit beside a small value/label pair, the pattern collapses
-            into noise nobody can actually read, and a row of identical dots standing in for it reads as an ellipsis,
-            not an icon — both quietly drop the C1 rule this whole language rests on. These are separate,
-            purpose-drawn fonts at a resolution built to stay legible small: a 3×3 metric mark (
-            <code className="font-mono text-[0.85em]">CompactMetricGlyph</code>) and a 3×5 digit (
-            <code className="font-mono text-[0.85em]">CompactNumeral</code>), not a smaller draw of the bigger ones.
+            only place it was designed to run, and it always ships with a label. Shrunk to sit beside a small
+            value/label pair with no caption, all eight meanings were tried as eight distinct 3×3 shapes and it did
+            not hold up: compared side by side, <code className="font-mono text-[0.85em]">ramp</code> and{" "}
+            <code className="font-mono text-[0.85em]">bars</code> differed by exactly one lit cell and read as the
+            same shape, and that was not the only near-miss. Redrawing them again would have fixed one pair and
+            left the next — the real limit is that nine binary cells cannot carry eight unlabelled categories, no
+            matter how they are drawn.
+          </p>
+          <p className="mt-3 max-w-[68ch] text-[0.95rem] leading-7" style={{ color: "var(--ink-soft)" }}>
+            So the compact set collapses to four silhouettes chosen to stay apart from each other — rising,
+            falling, a solid block, a scatter — and several meanings share one on purpose. What each still needs at
+            this size is not its own picture; it is to land in the right one of four buckets, which is what C1
+            asked of a dot in the first place. The full eight-way distinction stays intact at 5×5, always labelled.
           </p>
 
           <div className="mt-8 grid grid-cols-2 gap-3.5 sm:grid-cols-4">
-            {(Object.keys(METRIC_MARK_MEANINGS) as MetricMarkName[]).map((name) => (
-              <div
-                key={name}
-                className="rounded-xl p-5"
-                style={{ background: "var(--ds-glass-soft-fill)", border: "1px solid var(--ds-glass-soft-border)" }}
-              >
-                <CompactMetricGlyph name={name} />
-                <p className="ds-eyebrow mt-4" style={{ color: "var(--ds-accent-deep)" }}>
-                  {name}
-                </p>
-                <p className="ds-note">{METRIC_MARK_MEANINGS[name]}</p>
-              </div>
-            ))}
+            {(["up", "down", "block", "scatter"] as const).map((group) => {
+              const members = (Object.keys(COMPACT_GROUPS) as MetricMarkName[]).filter(
+                (n) => COMPACT_GROUPS[n] === group,
+              );
+              return (
+                <div
+                  key={group}
+                  className="rounded-xl p-5"
+                  style={{ background: "var(--ds-glass-soft-fill)", border: "1px solid var(--ds-glass-soft-border)" }}
+                >
+                  <CompactMetricGlyph name={members[0]} />
+                  <p className="ds-eyebrow mt-4" style={{ color: "var(--ds-accent-deep)" }}>
+                    {group}
+                  </p>
+                  <p className="ds-note">
+                    {members.map((m) => `${m} \u2014 ${METRIC_MARK_MEANINGS[m]}`).join("; ")}
+                  </p>
+                </div>
+              );
+            })}
           </div>
 
           <p className="mt-8 max-w-[68ch] text-[0.85rem] leading-6" style={{ color: "var(--muted)" }}>
-            <code className="font-mono text-[0.8em]">modules</code> draws parts that touch, at both
-            sizes: four quadrants joined through the centre row at 5×5, one adjoined block at 3×3
-            where there is no room for the join. Separated, they said &quot;disconnected&quot; directly
-            under labels like &quot;6 connected modules&quot; — and the two sizes disagreed with each
-            other for a while, the small one corrected and the large one left scattered. The shape
-            has to agree with the word next to it, and with itself at every size.
+            The grouping is checked, not just documented: a dev-only guard in{" "}
+            <code className="font-mono text-[0.8em]">dotPatterns.ts</code> throws if a name is missing from a
+            group, if two members of one group draw different shapes, or if two different groups draw the same
+            shape — the last of which would quietly collapse four buckets back down to three without anyone
+            noticing, the same way the eight-shape version drifted twice before this.
           </p>
 
           <div className="mt-10 flex flex-wrap items-end gap-8">
