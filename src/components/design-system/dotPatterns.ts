@@ -33,14 +33,13 @@ export const GLYPHS = {
       .#.#.
       #.#.#
     `,
-    // The COUNT group's anchor shape — shared with everything that is not
-    // a trend. See the note at the top of this file: direction is the one
-    // claim a 3×3 shape can make without a caption, so anything that is
-    // not "up" or "down" gets this and nothing more specific.
+    // Scattered, no structure implied — a population is a count of
+    // individuals, not a shape. The diamond echoes the 5×5's own scatter
+    // at three cells across.
     sm: `
-      ###
       #.#
-      ###
+      .#.
+      #.#
     `,
   },
   funnel: {
@@ -53,11 +52,12 @@ export const GLYPHS = {
       ..#..
       ..#..
     `,
-    // Shares its compact shape with `drop`: consolidating to one and
-    // reducing to less are the same move at this size, both "falling".
+    // A neck held for two rows, not one clean taper — the point is
+    // reached and then stays there, which is what separates a funnel's
+    // drain from `drop`'s single downward wedge.
     sm: `
       ###
-      ###
+      .#.
       .#.
     `,
   },
@@ -73,13 +73,12 @@ export const GLYPHS = {
       ##.##
       ##.##
     `,
-    // COUNT, same as every other non-directional meaning: a 2×2 block
-    // read as "discrete parts" only once you already knew that was the
-    // claim. Nothing at 3×3 does.
+    // A cross through the centre — the same hub the 5×5 draws with four
+    // quadrants, at the one resolution that can't fit four of anything.
     sm: `
+      .#.
       ###
-      #.#
-      ###
+      .#.
     `,
   },
   ramp: {
@@ -110,8 +109,8 @@ export const GLYPHS = {
       #...#
       .###.
     `,
-    // COUNT. "Footprint" and "coverage" have no more of a 3×3 pictogram
-    // than "discrete parts" does; this is the same honest non-claim.
+    // Dots outside, nothing in the middle — a footprint with no interior
+    // claim, drawn as a hollow ring rather than a filled shape.
     sm: `
       ###
       #.#
@@ -127,11 +126,11 @@ export const GLYPHS = {
       #.#.#
       #.#.#
     `,
-    // COUNT. Was a solid triangle one cell off from `ramp` — the
-    // near-collision that forced the first regrouping — and volume is not
-    // a trend, so there is no shape it is owed beyond the honest default.
+    // Two columns on a flat baseline, deliberately not ascending — a
+    // rising bar chart here would smuggle `ramp`'s claim back in for a
+    // metric that is a volume, not a trend.
     sm: `
-      ###
+      #.#
       #.#
       ###
     `,
@@ -145,13 +144,12 @@ export const GLYPHS = {
       .....
       #####
     `,
-    // COUNT at compact scale, not a shrunk version of the receding-rows
-    // idea: mid-tones already distinguish `layers` at 5×5, and asking a
-    // single 3×3 glyph to carry a tone state on top of a shape claim was
-    // the same overreach the whole regrouping exists to fix.
+    // Two slabs with an empty row between them — the same held-apart
+    // levels the 5×5 draws with alternating tone, at the resolution
+    // where a tone reads as "small" instead.
     sm: `
       ###
-      #.#
+      ...
       ###
     `,
   },
@@ -165,7 +163,9 @@ export const GLYPHS = {
       ##...
       #....
     `,
-    // DOWN — \u25bc, the mirror stock-ticker convention.
+    // DOWN — \u25bc, the mirror stock-ticker convention. One clean wedge,
+    // heaviest at the top — the single motion `funnel`'s held neck is
+    // deliberately not.
     sm: `
       ###
       ###
@@ -245,44 +245,26 @@ export const METRIC_MARK_MEANINGS = Object.fromEntries(
 ) as Record<MetricMarkName, string>;
 
 /**
- * At 5×5 every meaning still gets its own shape — there is room, and it
- * always ships with a label (see C8b on /components). Two identical shapes
- * there is a straightforward mistake, so it throws.
+ * Every meaning gets its own shape at both sizes, not a shared default for
+ * everything that isn't a trend. That collapse was tried — eight silhouettes,
+ * then four, then two arrows plus one honest "no claim" ring for the rest —
+ * and it kept solving the wrong problem. The compact glyph was never actually
+ * read in isolation: `CompactMetricGlyph` always sits beside the metric's own
+ * value and label (see `MetricRow`), so the thing doing the identifying work
+ * is "15K+ APIs onboarded" in text, right next to it. The glyph's job is
+ * narrower than a stand-alone pictogram — it only has to (a) not look
+ * identical to a different meaning's glyph, so two unrelated metrics don't
+ * appear to be the same kind of thing, and (b) carry enough of a family
+ * resemblance to its own 5×5 sibling that the two read as one system. Eight
+ * distinct shapes clear both bars; three shapes cleared them too but told a
+ * reader less than the system could actually afford to say.
  *
- * At 3×3, a first pass tried four silhouettes (rising, falling, a solid
- * block, a scatter) and it still did not read: a 2×2 block for "15K+ APIs
- * onboarded" says nothing to a reader who has not already been told it
- * means "discrete parts" — there is no pictogram convention for that the
- * way there is for up and down. Direction is the one claim a handful of
- * dots can make without a caption, so that is now the whole vocabulary:
- *
- *   up      ramp                          ▲, a solid triangle
- *   down    funnel, drop                  ▼, its mirror
- *   count   modules, ring, bars, layers, field   a hollow ring, no claim
- *
- * `count` is the default for everything that is not a trend. It does not
- * pretend to distinguish population from structure from volume, because
- * nothing at this resolution was actually managing that distinction — it
- * was five different-looking shapes all making the same non-claim. Most of
- * what renders here in practice is the count-bearing override anyway
- * (`countDots`), which shows the real number instead of any of this.
- *
- * What still has to hold, and what this checks: exactly these three
- * shapes, exactly this grouping. A fourth near-shape sneaking in from a
- * future edit, or a name landing in the wrong group, defeats the reason
- * this exists — so both are asserted rather than trusted. Development
- * only — dead in a production build.
+ * What still has to hold, and what this checks: no two names share a 3×3
+ * shape, the same as no two sharing a 5×5 one. A future edit landing two
+ * meanings on the same silhouette is the one failure mode that would go
+ * unnoticed without it — it did, twice, before this guard existed.
+ * Development only — dead in a production build.
  */
-export const COMPACT_GROUPS: Record<MetricMarkName, "up" | "down" | "count"> = {
-  ramp: "up",
-  funnel: "down",
-  drop: "down",
-  modules: "count",
-  ring: "count",
-  bars: "count",
-  layers: "count",
-  field: "count",
-};
 
 if (process.env.NODE_ENV !== "production") {
   // 5×5: every name distinct.
@@ -299,35 +281,18 @@ if (process.env.NODE_ENV !== "production") {
     seenLg.set(key, name);
   }
 
-  // 3×3: every name in COMPACT_GROUPS (nothing left unassigned or stale),
-  // every member of a group drawing the same shape, and no two groups
-  // drawing the same shape as each other.
+  // 3×3: every name distinct too — same check, same reason, smaller grid.
+  const seenSm = new Map<string, MetricMarkName>();
   for (const name of NAMES) {
-    if (!(name in COMPACT_GROUPS)) {
-      throw new Error(`"${name}" has no compact group in COMPACT_GROUPS.`);
-    }
-  }
-  const shapeByGroup = new Map<string, string>();
-  const groupByShape = new Map<string, string>();
-  for (const name of NAMES) {
-    const group = COMPACT_GROUPS[name];
     const key = parseArt(GLYPHS[name].sm).join(",");
-    const expected = shapeByGroup.get(group);
-    if (expected === undefined) {
-      shapeByGroup.set(group, key);
-      const otherGroup = groupByShape.get(key);
-      if (otherGroup && otherGroup !== group) {
-        throw new Error(
-          `Compact groups "${otherGroup}" and "${group}" draw the same 3×3 shape — ` +
-            `that collapses two of the four intended silhouettes into one.`,
-        );
-      }
-      groupByShape.set(key, group);
-    } else if (expected !== key) {
+    const clash = seenSm.get(key);
+    if (clash) {
       throw new Error(
-        `"${name}" (group "${group}") draws a different 3×3 shape from the rest of its group.`,
+        `Metric glyphs "${clash}" and "${name}" are identical at 3×3. ` +
+          `Each has to draw its own silhouette; two of the same picture cannot.`,
       );
     }
+    seenSm.set(key, name);
   }
 }
 

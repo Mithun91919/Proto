@@ -75,7 +75,7 @@ import { CaseStudyHero } from "@/components/design-system/CaseStudyHero";
 import { CaseStudyEvidence } from "@/components/design-system/CaseStudyEvidence";
 import { AlternatingTextMedia } from "@/components/design-system/AlternatingTextMedia";
 import { FullBleedMediaAnchor } from "@/components/design-system/FullBleedMediaAnchor";
-import { COMPACT_GROUPS, METRIC_MARK_MEANINGS, type MetricMarkName } from "@/components/design-system/dotPatterns";
+import { METRIC_MARK_MEANINGS, type MetricMarkName } from "@/components/design-system/dotPatterns";
 import { BeforeAfterSlider } from "@/components/design-system/BeforeAfterSlider";
 import { GuidedHotspotTour } from "@/components/design-system/GuidedHotspotTour";
 import { SyncedDualView } from "@/components/design-system/SyncedDualView";
@@ -676,55 +676,46 @@ export default function ComponentsPage() {
         <div className="ds-rule py-11">
           <SubLabel code="C9 · Compact dot marks" />
           <h3 className="display-title max-w-[34ch]" style={{ fontSize: "1.7rem" }}>
-            Only direction survives nine cells with no caption.
+            Eight shapes, never shown without the number they belong to.
           </h3>
           <p className="mt-3 max-w-[68ch] text-[0.95rem] leading-7" style={{ color: "var(--ink-soft)" }}>
-            <code className="font-mono text-[0.85em]">MetricGlyph</code>&apos;s 5×5 bitmap reads clearly above a
-            display-scale number in a <code className="font-mono text-[0.85em]">ProofStrip</code> — that&apos;s the
-            only place it was designed to run, and it always ships with a label. Shrunk to sit beside a small
-            value/label pair with no caption, eight meanings were tried as eight shapes, then as four grouped
-            shapes, and neither held up: a 2×2 block for &ldquo;15K+ APIs onboarded&rdquo; says nothing to a reader
-            who was never told it meant &ldquo;discrete parts&rdquo; — there is no pictogram convention for that
-            the way there is for up and down.
+            The first version of this set tried to make nine unlabelled cells legible on their own, and
+            collapsed twice — eight shapes down to four, then down to two arrows plus one honest &ldquo;no
+            claim&rdquo; ring for everything else. Both collapses were solving the wrong problem.{" "}
+            <code className="font-mono text-[0.85em]">CompactMetricGlyph</code> never actually renders alone —
+            it always sits directly beside the metric&apos;s own value and label in{" "}
+            <code className="font-mono text-[0.85em]">MetricRow</code>, so &ldquo;15K+ APIs onboarded&rdquo; is
+            already sitting in text a few pixels away. The glyph doesn&apos;t have to identify the metric by
+            itself; it has to not look identical to a different metric&apos;s glyph, and it has to look like it
+            belongs to the same family as its 5×5 sibling above.
           </p>
           <p className="mt-3 max-w-[68ch] text-[0.95rem] leading-7" style={{ color: "var(--ink-soft)" }}>
-            So the compact set now has exactly two claims: rising or falling, drawn as the stock-ticker triangles
-            everyone already reads that way. Everything that is not a trend gets one honest default — a hollow
-            ring, dots outside, nothing in the middle — rather than a shape pretending to distinguish population
-            from structure from volume when nothing at nine cells was actually managing that. Most of what renders
-            in practice is the count-bearing override anyway, showing the real number instead of any of this. The
-            full eight-way distinction stays intact at 5×5, always labelled.
+            That&apos;s a lower bar than stand-alone legibility, and it&apos;s why the full eight-way
+            distinction can run at both sizes instead of thinning out to three at the smaller one. Most of what
+            renders in practice is the count-bearing override anyway — a metric small enough to count draws
+            that many lit cells instead of any of this.
           </p>
 
-          <div className="mt-8 grid grid-cols-2 gap-3.5 sm:grid-cols-3">
-            {(["up", "down", "count"] as const).map((group) => {
-              const members = (Object.keys(COMPACT_GROUPS) as MetricMarkName[]).filter(
-                (n) => COMPACT_GROUPS[n] === group,
-              );
-              return (
-                <div
-                  key={group}
-                  className="rounded-xl p-5"
-                  style={{ background: "var(--ds-glass-soft-fill)", border: "1px solid var(--ds-glass-soft-border)" }}
-                >
-                  <CompactMetricGlyph name={members[0]} />
-                  <p className="ds-eyebrow mt-4" style={{ color: "var(--ds-accent-deep)" }}>
-                    {group}
-                  </p>
-                  <p className="ds-note">
-                    {members.map((m) => `${m} \u2014 ${METRIC_MARK_MEANINGS[m]}`).join("; ")}
-                  </p>
-                </div>
-              );
-            })}
+          <div className="mt-8 grid grid-cols-2 gap-3.5 sm:grid-cols-4">
+            {(Object.keys(METRIC_MARK_MEANINGS) as MetricMarkName[]).map((name) => (
+              <div
+                key={name}
+                className="rounded-xl p-5"
+                style={{ background: "var(--ds-glass-soft-fill)", border: "1px solid var(--ds-glass-soft-border)" }}
+              >
+                <CompactMetricGlyph name={name} />
+                <p className="ds-eyebrow mt-4" style={{ color: "var(--ds-accent-deep)" }}>
+                  {name}
+                </p>
+                <p className="ds-note">{METRIC_MARK_MEANINGS[name]}</p>
+              </div>
+            ))}
           </div>
 
           <p className="mt-8 max-w-[68ch] text-[0.85rem] leading-6" style={{ color: "var(--muted)" }}>
-            The grouping is checked, not just documented: a dev-only guard in{" "}
-            <code className="font-mono text-[0.8em]">dotPatterns.ts</code> throws if a name is missing from a
-            group, if two members of one group draw different shapes, or if two different groups draw the same
-            shape — the last of which would quietly collapse three buckets down to two without anyone
-            noticing, the same way the eight-shape and four-shape versions before it both drifted unnoticed.
+            Checked, not just documented: the same dev-only guard that keeps every 5×5 shape distinct runs
+            the identical check at 3×3 — two meanings landing on the same silhouette throws immediately,
+            rather than drifting unnoticed the way it did before either guard existed.
           </p>
 
           <div className="mt-10 flex flex-wrap items-end gap-8">
