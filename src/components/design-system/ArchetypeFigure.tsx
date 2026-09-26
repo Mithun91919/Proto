@@ -111,13 +111,27 @@ function ArchetypeField({
 export function ArchetypeCoverage({
   archetypes,
   stages,
+  compact = false,
 }: {
   archetypes: Archetype[];
   stages: string[];
+  /**
+   * Name and track only — no behaviour paragraph, no friction column, even
+   * when the data carries one. For pairing above `ArchetypeCards`, which
+   * already states behaviour and friction in full: repeating either here
+   * would be the same fact stated twice in two places a reader compares
+   * side by side, rather than the matrix adding something the cards can't.
+   * What it adds instead is the one thing cards can't state without a
+   * legend — which stage is which, next to every other role at once.
+   */
+  compact?: boolean;
 }) {
-  const showFriction = archetypes.some((a) => a.friction);
+  const showFriction = !compact && archetypes.some((a) => a.friction);
   return (
-    <div className="ds-arch-coverage" data-friction={showFriction ? "" : undefined}>
+    <div
+      className={`ds-arch-coverage${compact ? " is-compact" : ""}`}
+      data-friction={showFriction ? "" : undefined}
+    >
       <div className="ds-arch-cov-head" aria-hidden>
         <span>Archetype</span>
         <div className="ds-arch-cov-stages">
@@ -133,7 +147,7 @@ export function ArchetypeCoverage({
         <div className="ds-arch-cov-row" key={a.name}>
           <div className="ds-arch-cov-label">
             <p className="ds-arch-name">{a.name}</p>
-            <p className="ds-arch-behaviour">{a.behaviour}</p>
+            {compact ? null : <p className="ds-arch-behaviour">{a.behaviour}</p>}
           </div>
           <div className="ds-arch-cov-track">
             {stages.map((s, i) => {

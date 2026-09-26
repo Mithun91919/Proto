@@ -3404,6 +3404,39 @@ a:hover .ds-compact-mark .ds-dot {
   box-shadow: none;
 }
 
+/* Compact: paired above `ArchetypeCards`, so it reads as a summary strip
+   the cards follow rather than a second full table. Tighter rows (no
+   behaviour paragraph to give them height), a smaller name to match a
+   heading rather than a card's own title, and a bottom margin that holds
+   it apart from the cards as a distinct read rather than one long list. */
+.ds-arch-coverage.is-compact {
+  margin-bottom: 1.75rem;
+}
+
+/* The 15rem label column was sized to hold a behaviour paragraph under the
+   name. Compact has no paragraph — just "Engineer" — so keeping that width
+   here starved the stage columns instead: six single words at ~61px each
+   is not enough room for "Validation" or "Governance" to sit on one line,
+   and they ran into their neighbours rather than wrapping. A narrower
+   label column gives the six stages the width the label no longer needs. */
+.ds-arch-coverage.is-compact .ds-arch-cov-head,
+.ds-arch-coverage.is-compact .ds-arch-cov-row {
+  grid-template-columns: 7rem minmax(0, 1fr);
+}
+
+.ds-arch-coverage.is-compact .ds-arch-cov-row {
+  padding-block: 0.7rem;
+}
+
+.ds-arch-coverage.is-compact .ds-arch-name {
+  font-size: 0.95rem;
+  font-weight: 600;
+}
+
+.ds-arch-coverage.is-compact .ds-arch-cov-stage {
+  letter-spacing: 0.04em;
+}
+
 /* ── C · Continuum ─────────────────────────────────────────────────────── */
 
 /* Tall enough to hold two rows of pin labels under the rail. */

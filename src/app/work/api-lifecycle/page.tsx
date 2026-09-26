@@ -238,10 +238,11 @@ export default function ApiLifecyclePage() {
         <CaseStudySection id="who">
           <ArchetypeSection
             heading="Two roles, two sides of the same contract"
-            intro="An engineer consumes an API; an architect provides one, and the same person is often both. Each mark below is the six stages above, filled where that role works."
+            intro="An engineer consumes an API; an architect provides one, and the same person is often both. The two barely overlap — the table below shows exactly where each one works."
             archetypes={ARCHETYPES}
             stages={LIFECYCLE}
             variant="cards"
+            showCoverage
             basis="From 20+ interviews before any design work — how people already worked, and where it went wrong. Nothing assumed; the same interviews set the focus area and vetted the spec."
           />
         </CaseStudySection>

@@ -50,6 +50,18 @@ type ArchetypeSectionProps = {
   stages?: string[];
   variant?: "cards" | "lanes" | "coverage";
   /**
+   * Runs the compact coverage matrix above the cards, stage names as
+   * column headers. `cards` alone states each role's behaviour, needs and
+   * friction in full but has to name coverage inline via a nine-dot icon
+   * with no room for a legend next to it — legible to a screen reader from
+   * its `aria-label`, not to a sighted reader without already holding
+   * `stages` in mind. The matrix is the one thing coverage-as-icon can't
+   * do: read every role against every stage at once, in the stage's own
+   * words. Only applies when `variant` resolves to `cards` — `lanes` and
+   * `coverage` already state coverage as their whole argument.
+   */
+  showCoverage?: boolean;
+  /**
    * Where the segments came from, rendered above them.
    *
    * Not decoration: an archetype with no stated provenance is the thing a
@@ -71,6 +83,7 @@ export function ArchetypeSection({
   archetypes,
   stages = [],
   variant = "cards",
+  showCoverage = false,
   basis,
 }: ArchetypeSectionProps) {
   // Falling back rather than rendering a broken grid: a caller who picks
@@ -120,6 +133,9 @@ export function ArchetypeSection({
         <Reveal>{head}</Reveal>
         <Reveal>
           <div className="ds-arch-section-body is-tight">
+            {resolved === "cards" && showCoverage ? (
+              <ArchetypeCoverage archetypes={archetypes} stages={stages} compact />
+            ) : null}
             {resolved === "cards" ? <ArchetypeCards archetypes={archetypes} stages={stages} /> : null}
             {resolved === "lanes" ? <ArchetypeLanes archetypes={archetypes} stages={stages} /> : null}
             {resolved === "coverage" ? (
