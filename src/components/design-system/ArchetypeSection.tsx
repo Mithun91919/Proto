@@ -73,6 +73,13 @@ type ArchetypeSectionProps = {
    * already formed. Omit only when there is genuinely nothing to cite.
    */
   basis?: string;
+  /**
+   * The label over `basis`. A prop rather than a fixed string because the
+   * number it usually leads with — "20+ interviews" — already lives inside
+   * `basis` itself; hardcoding it a second time up here would be the same
+   * fact stated twice with only one of them to update if it ever changes.
+   */
+  basisLabel?: string;
 };
 
 export function ArchetypeSection({
@@ -85,6 +92,7 @@ export function ArchetypeSection({
   variant = "cards",
   showCoverage = false,
   basis,
+  basisLabel = "How these were defined",
 }: ArchetypeSectionProps) {
   // Falling back rather than rendering a broken grid: a caller who picks
   // `lanes` without stages gets the claim the data can actually support.
@@ -97,7 +105,7 @@ export function ArchetypeSection({
       {intro ? <p className="body-text mt-5 max-w-[62ch]">{intro}</p> : null}
       {basis ? (
         <p className="ds-arch-basis">
-          <span className="ds-arch-basis-label">How these were defined</span>
+          <span className="ds-arch-basis-label">{basisLabel}</span>
           {basis}
         </p>
       ) : null}

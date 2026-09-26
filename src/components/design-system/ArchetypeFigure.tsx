@@ -417,7 +417,7 @@ export function ArchetypeCards({
             <div className="ds-arch-fields">
               {a.wants ? <ArchetypeField label="Top needs" items={a.wants} tone="need" /> : null}
               {a.friction ? (
-                <ArchetypeField label="Top frustrations" items={a.friction} tone="friction" />
+                <ArchetypeField label="Where it broke" items={a.friction} tone="friction" />
               ) : null}
             </div>
           ) : null}
@@ -457,7 +457,7 @@ export function ArchetypeLedger({
         <span>Role</span>
         <span>What they do</span>
         <span>Top needs</span>
-        <span>Top frustrations</span>
+        <span>Where it broke</span>
       </div>
       {archetypes.map((a) => (
         <div className="ds-arch-ledger-row" key={a.name}>

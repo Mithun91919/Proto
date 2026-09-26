@@ -54,29 +54,18 @@ const ARCHETYPES: Archetype[] = [
   {
     name: "Engineer",
     side: "Consumer",
-    behaviour:
-      "Needs an API that already exists, judges whether it fits, and subscribes.",
-    wants: [
-      "Judge whether a service fits before writing any code against it.",
-      "Subscribe without leaving the path they are on.",
-    ],
-    friction: [
-      "Discovery answered \u201cdoes this API exist?\u201d and little else.",
-      "What it does, where it runs, and who depends on it lived apart.",
-    ],
+    behaviour: "Finds, evaluates and consumes existing APIs.",
+    wants: ["Is this the right API?", "Can I use it now?"],
+    friction: ["Context lived apart.", "Subscription broke flow."],
     stages: [0, 3],
   },
   {
     name: "Architect",
     side: "Provider",
-    behaviour:
-      "Creates an API other teams depend on, and answers for it afterwards.",
-    wants: [
-      "Work the spec directly, or have the schema drawn for them.",
-      "Change a published contract without breaking the teams on it.",
-    ],
+    behaviour: "Defines, publishes and evolves API contracts.",
+    wants: ["Can I define it quickly?", "Can I change it safely?"],
     friction: [
-      "One mode suited one kind of engineer and slowed the other.",
+      "One authoring mode didn\u2019t fit everyone.",
       "Governance arrived at the end, often once a contract was already in use.",
     ],
     stages: [1, 2, 4, 5],
@@ -237,13 +226,14 @@ export default function ApiLifecyclePage() {
             half, designing a contract the provider's. */}
         <CaseStudySection id="who">
           <ArchetypeSection
-            heading="Two roles, two sides of the same contract"
-            intro="An engineer consumes an API; an architect provides one, and the same person is often both. The two barely overlap — the table below shows exactly where each one works."
+            heading="One API contract. Two very different jobs."
+            intro="Engineers decide whether they can trust and consume it. Architects create it, evolve it, and answer for it. Often, the same person is both."
             archetypes={ARCHETYPES}
             stages={LIFECYCLE}
             variant="cards"
             showCoverage
-            basis="From 20+ interviews before any design work — how people already worked, and where it went wrong. Nothing assumed; the same interviews set the focus area and vetted the spec."
+            basisLabel="20+ interviews before design"
+            basis="The research defined these roles, exposed the broken hand-offs, and later helped us validate the specification."
           />
         </CaseStudySection>
 
