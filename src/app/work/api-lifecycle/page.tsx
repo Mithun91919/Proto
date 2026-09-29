@@ -329,6 +329,7 @@ export default function ApiLifecyclePage() {
                 label="The discovery path"
                 slides={[
                   {
+                    title: "Search results",
                     route: "/api-hub/search",
                     src: "/work/api-lifecycle/search-results.png",
                     width: 2880,
@@ -337,6 +338,7 @@ export default function ApiLifecyclePage() {
                     caption: "Results carry the environment a service runs in and how widely it is used, so the shortlist is made before anything is opened.",
                   },
                   {
+                    title: "API Docs",
                     route: "/api-hub/catalog/service/docs",
                     src: "/work/api-lifecycle/api-docs.png",
                     width: 2890,
@@ -345,6 +347,7 @@ export default function ApiLifecyclePage() {
                     caption: "Every endpoint is documented on the service itself, parameters and example responses included \u2014 nothing to go find in a wiki someone else was supposed to keep current.",
                   },
                   {
+                    title: "Version history",
                     route: "/api-hub/catalog/versions",
                     src: "/work/api-lifecycle/version-compare.png",
                     width: 2890,

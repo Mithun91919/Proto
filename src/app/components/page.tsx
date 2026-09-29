@@ -1518,6 +1518,55 @@ export default function ComponentsPage() {
         </div>
 
         <div className="ds-rule py-11">
+          <SubLabel code="M2c · Artboard carousel — split layout (prototype)" />
+          <p className="mb-7 max-w-[68ch] text-[0.95rem] leading-7" style={{ color: "var(--ink-soft)" }}>
+            Under review, not yet used anywhere a reader would see it — M2b above is what every case study
+            still runs. Here the set&apos;s own title and description sit fixed at the top, unchanging as the
+            dots page through; below, the artboard sits beside a narrower column carrying the per-slide title,
+            description and arrows, foot of the column rather than beside the title. Real content from the API
+            Lifecycle case study&apos;s &ldquo;Finding a service&rdquo; section, so the comparison against M2b
+            (same idea, current layout) is a fair one.
+          </p>
+          <ArtboardCarousel
+            label="The discovery path (split layout prototype)"
+            layout="split"
+            title="Search, then everything about the service"
+            description="An engineer can know everything about a service — and judge whether it fits — before any integration work starts."
+            scrollable
+            maxHeight="34rem"
+            slides={[
+              {
+                title: "Search results",
+                route: "/api-hub/search",
+                src: "/work/api-lifecycle/search-results.png",
+                width: 2880,
+                height: 2704,
+                alt: "Search results across services, each row carrying a rating, environment badges and a short description, with filters for type, environment, rating and popularity",
+                caption: "Results carry the environment a service runs in and how widely it is used, so the shortlist is made before anything is opened.",
+              },
+              {
+                title: "API Docs",
+                route: "/api-hub/catalog/service/docs",
+                src: "/work/api-lifecycle/api-docs.png",
+                width: 2890,
+                height: 2704,
+                alt: "A service's API Docs tab: an environment selector, then each endpoint listed with its parameters and example request and response bodies, expandable in place",
+                caption: "Every endpoint is documented on the service itself, parameters and example responses included — nothing to go find in a wiki someone else was supposed to keep current.",
+              },
+              {
+                title: "Version history",
+                route: "/api-hub/catalog/versions",
+                src: "/work/api-lifecycle/version-compare.png",
+                width: 2890,
+                height: 2712,
+                alt: "A comparative analysis view with two versions of a specification side by side and the differences marked between them",
+                caption: "Version history is visible before integrating, not something to ask around about after a change breaks something.",
+              },
+            ]}
+          />
+        </div>
+
+        <div className="ds-rule py-11">
           <SubLabel code="M3 · Scene banner" />
           <p className="mb-7 max-w-[68ch] text-[0.95rem] leading-7" style={{ color: "var(--ink-soft)" }}>
             An atmospheric composite — the one media role where cropping is correct, because nothing in the

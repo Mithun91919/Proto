@@ -1,6 +1,6 @@
 "use client";
 
-import { useId, useState } from "react";
+import { useId, useState, type KeyboardEvent } from "react";
 import { ArtboardFigure } from "./ArtboardFigure";
 import { BrowserMockup } from "./BrowserMockup";
 import type { Hotspot } from "./ImageHotspots";
@@ -11,6 +11,13 @@ export type ArtboardSlide = {
   width: number;
   height: number;
   alt: string;
+  /**
+   * A short name for the slide — "API Docs", "Version history" — shown next
+   * to the paging controls, above the artboard. Optional: a set with nothing
+   * shorter to say than the caption itself can leave it out and the caption
+   * carries the header alone.
+   */
+  title?: string;
   /** Doubles as the accessible name of this slide's dot. */
   caption: string;
   /** Callouts layered over this slide's artboard. */
@@ -37,6 +44,28 @@ type ArtboardCarouselProps = {
    */
   scrollable?: boolean;
   maxHeight?: string;
+  /**
+   * `stacked` (default): header — per-slide title, description, and the
+   * dots/count/arrows that act on them — runs above the artboard, which is
+   * then free to run its full width below.
+   *
+   * `split`: a fixed title and description for the whole set sit above
+   * everything, unchanging as the reader pages through; below that, the
+   * artboard sits beside a narrower column carrying the per-slide title,
+   * description, and the arrows, which sit at the foot of that column
+   * rather than beside the title — reusing `.ds-cs-split`, the same
+   * copy-beside-media pattern a case-study chapter already uses, so a
+   * carousel dropped into one continues its rhythm instead of introducing
+   * a second one. EXPERIMENTAL — being trialled here on `/components`
+   * before it replaces `stacked` anywhere a reader would actually see it.
+   */
+  layout?: "stacked" | "split";
+  /** `split` only: the set's own title, static across every slide. */
+  title?: string;
+  /** `split` only: the set's own description, static across every slide. */
+  description?: string;
+  /** `split` only: which side the artboard sits on. Defaults to `right`. */
+  imageSide?: "left" | "right";
 };
 
 /**
@@ -51,8 +80,26 @@ type ArtboardCarouselProps = {
  *
  * Inactive slides are unmounted, so their images are never fetched until the
  * reader asks for them.
+ *
+ * The header runs above the artboard, not below it: title and description on
+ * the left, the dots/count/arrows this slide's own text changes with on the
+ * right, same row. Caption-then-controls stacked underneath a tall artboard
+ * put a reader's eye a full scroll away from the arrow that acts on what they
+ * just read — reading, then hunting below the image for how to move on. Up
+ * here the label for what you're looking at and the control that changes it
+ * sit together, and the image is free to run its full, legible width below
+ * with nothing splitting it into a side-by-side column.
  */
-export function ArtboardCarousel({ slides, label, scrollable = false, maxHeight }: ArtboardCarouselProps) {
+export function ArtboardCarousel({
+  slides,
+  label,
+  scrollable = false,
+  maxHeight,
+  layout = "stacked",
+  title,
+  description,
+  imageSide = "right",
+}: ArtboardCarouselProps) {
   const [active, setActive] = useState(0);
   const baseId = useId();
 
@@ -63,73 +110,115 @@ export function ArtboardCarousel({ slides, label, scrollable = false, maxHeight 
     setActive((i) => (i + delta + slides.length) % slides.length);
   };
 
+  const dotsKeyDown = (event: KeyboardEvent) => {
+    if (event.key === "ArrowRight") {
+      event.preventDefault();
+      step(1);
+    } else if (event.key === "ArrowLeft") {
+      event.preventDefault();
+      step(-1);
+    }
+  };
+
+  const dots = (
+    <>
+      {slides.map((slide, i) => (
+        <button
+          key={slide.src}
+          type="button"
+          role="tab"
+          id={`${baseId}-tab-${i}`}
+          aria-controls={`${baseId}-panel-${i}`}
+          aria-selected={i === active}
+          tabIndex={i === active ? 0 : -1}
+          className={`ds-artboard-dot${i === active ? " is-active" : ""}`}
+          onClick={() => setActive(i)}
+        >
+          <span className="sr-only">{`${i + 1} of ${slides.length}: ${slide.title ?? slide.caption}`}</span>
+        </button>
+      ))}
+      <span className="ds-artboard-count" aria-hidden>
+        {active + 1} / {slides.length}
+      </span>
+      <PagingArrows onPrev={() => step(-1)} onNext={() => step(1)} label="slide" />
+    </>
+  );
+
+  const artboard = (
+    <div role="tabpanel" id={`${baseId}-panel-${active}`} aria-labelledby={`${baseId}-tab-${active}`}>
+      {scrollable ? (
+        <BrowserMockup
+          key={current.src}
+          route={current.route ?? label}
+          src={current.src}
+          width={current.width}
+          height={current.height}
+          alt={current.alt}
+          hotspots={current.hotspots}
+          scrollable
+          maxHeight={maxHeight}
+        />
+      ) : (
+        <ArtboardFigure
+          key={current.src}
+          src={current.src}
+          width={current.width}
+          height={current.height}
+          alt={current.alt}
+          hotspots={current.hotspots}
+        />
+      )}
+    </div>
+  );
+
+  if (layout === "split") {
+    return (
+      <div className="ds-artboard-carousel" role="group" aria-roledescription="carousel" aria-label={label}>
+        {title || description ? (
+          <div className="ds-artboard-static-head">
+            {title ? <p className="ds-artboard-static-title">{title}</p> : null}
+            {description ? <p className="ds-artboard-static-desc">{description}</p> : null}
+          </div>
+        ) : null}
+        <div className={`ds-cs-split ds-artboard-split${imageSide === "left" ? " is-reversed" : ""}`}>
+          <div className="ds-artboard-split-text">
+            {current.title ? <p className="ds-artboard-title">{current.title}</p> : null}
+            <p className="ds-artboard-desc">{current.caption}</p>
+            <div
+              className="ds-artboard-dots"
+              role="tablist"
+              aria-label={label}
+              style={{ marginTop: "1.5rem", justifyContent: "flex-start" }}
+              onKeyDown={dotsKeyDown}
+            >
+              {dots}
+            </div>
+          </div>
+          {artboard}
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div className="ds-artboard-carousel" role="group" aria-roledescription="carousel" aria-label={label}>
-      <div
-        role="tabpanel"
-        id={`${baseId}-panel-${active}`}
-        aria-labelledby={`${baseId}-tab-${active}`}
-      >
-        {scrollable ? (
-          <BrowserMockup
-            key={current.src}
-            route={current.route ?? label}
-            src={current.src}
-            width={current.width}
-            height={current.height}
-            alt={current.alt}
-            caption={current.caption}
-            hotspots={current.hotspots}
-            scrollable
-            maxHeight={maxHeight}
-          />
-        ) : (
-          <ArtboardFigure
-            key={current.src}
-            src={current.src}
-            width={current.width}
-            height={current.height}
-            alt={current.alt}
-            caption={current.caption}
-            hotspots={current.hotspots}
-          />
-        )}
+      <div className="ds-artboard-head">
+        <div className="ds-artboard-head-row">
+          {current.title ? <p className="ds-artboard-title">{current.title}</p> : <span />}
+          <div
+            className="ds-artboard-dots"
+            role="tablist"
+            aria-label={label}
+            style={{ marginTop: 0, justifyContent: "flex-end" }}
+            onKeyDown={dotsKeyDown}
+          >
+            {dots}
+          </div>
+        </div>
+        <p className="ds-artboard-desc">{current.caption}</p>
       </div>
 
-      <div
-        className="ds-artboard-dots"
-        role="tablist"
-        aria-label={label}
-        onKeyDown={(event) => {
-          if (event.key === "ArrowRight") {
-            event.preventDefault();
-            step(1);
-          } else if (event.key === "ArrowLeft") {
-            event.preventDefault();
-            step(-1);
-          }
-        }}
-      >
-        {slides.map((slide, i) => (
-          <button
-            key={slide.src}
-            type="button"
-            role="tab"
-            id={`${baseId}-tab-${i}`}
-            aria-controls={`${baseId}-panel-${i}`}
-            aria-selected={i === active}
-            tabIndex={i === active ? 0 : -1}
-            className={`ds-artboard-dot${i === active ? " is-active" : ""}`}
-            onClick={() => setActive(i)}
-          >
-            <span className="sr-only">{`${i + 1} of ${slides.length}: ${slide.caption}`}</span>
-          </button>
-        ))}
-        <span className="ds-artboard-count" aria-hidden>
-          {active + 1} / {slides.length}
-        </span>
-        <PagingArrows onPrev={() => step(-1)} onNext={() => step(1)} label="slide" />
-      </div>
+      {artboard}
     </div>
   );
 }
