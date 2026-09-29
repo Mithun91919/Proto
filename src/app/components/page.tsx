@@ -1546,6 +1546,26 @@ export default function ComponentsPage() {
                 height: 2704,
                 alt: "Search results across services, each row carrying a rating, environment badges and a short description, with filters for type, environment, rating and popularity",
                 caption: "Results carry the environment a service runs in and how widely it is used, so the shortlist is made before anything is opened.",
+                hotspots: [
+                  {
+                    x: 22,
+                    y: 13,
+                    title: "A live filter, not a static list",
+                    detail: "Typing narrows the 19 results shown here in place — nothing is a fixed category page.",
+                  },
+                  {
+                    x: 84,
+                    y: 13,
+                    title: "Narrow before opening anything",
+                    detail: "Filter by type, environment, rating or popularity — the shortlist narrows here, not one card at a time.",
+                  },
+                  {
+                    x: 9.75,
+                    y: 24,
+                    title: "Every environment, on the card",
+                    detail: "Prod, Staging, Dev, QA, Beta — which environments a service is live in, without opening it.",
+                  },
+                ],
               },
               {
                 title: "API Docs",
@@ -1555,6 +1575,26 @@ export default function ComponentsPage() {
                 height: 2704,
                 alt: "A service's API Docs tab: an environment selector, then each endpoint listed with its parameters and example request and response bodies, expandable in place",
                 caption: "Every endpoint is documented on the service itself, parameters and example responses included — nothing to go find in a wiki someone else was supposed to keep current.",
+                hotspots: [
+                  {
+                    x: 12,
+                    y: 17,
+                    title: "Docs live on the service itself",
+                    detail: "API Docs is a tab away from the overview, not a separate wiki page to go find and hope is current.",
+                  },
+                  {
+                    x: 28,
+                    y: 22,
+                    title: "Every environment, one screen",
+                    detail: "prod3, prod2, qa1, dev1, sm2devmac — the full set a service runs in, switchable without leaving the page.",
+                  },
+                  {
+                    x: 83,
+                    y: 57,
+                    title: "Real parameters, real responses",
+                    detail: "Example request and response bodies sit beside each endpoint, not left to a separate spec file.",
+                  },
+                ],
               },
               {
                 title: "Version history",
@@ -1564,6 +1604,26 @@ export default function ComponentsPage() {
                 height: 2712,
                 alt: "A comparative analysis view with two versions of a specification side by side and the differences marked between them",
                 caption: "Version history is visible before integrating, not something to ask around about after a change breaks something.",
+                hotspots: [
+                  {
+                    x: 64,
+                    y: 18,
+                    title: "Compare against staging, not just history",
+                    detail: "One side names a version, the other names an environment — the same view answers both questions.",
+                  },
+                  {
+                    x: 39,
+                    y: 38,
+                    title: "Changes marked inline",
+                    detail: "Additions and edits are highlighted line by line, not left for the reader to spot by re-reading both.",
+                  },
+                  {
+                    x: 91,
+                    y: 10,
+                    title: "Split view, side by side",
+                    detail: "Two specs open at once rather than tabbing between them to hold the difference in your head.",
+                  },
+                ],
               },
             ]}
           />
@@ -1594,6 +1654,26 @@ export default function ComponentsPage() {
                 height: 2704,
                 alt: "Search results across services, each row carrying a rating, environment badges and a short description, with filters for type, environment, rating and popularity",
                 caption: "Results carry the environment a service runs in and how widely it is used, so the shortlist is made before anything is opened.",
+                hotspots: [
+                  {
+                    x: 22,
+                    y: 13,
+                    title: "A live filter, not a static list",
+                    detail: "Typing narrows the 19 results shown here in place — nothing is a fixed category page.",
+                  },
+                  {
+                    x: 84,
+                    y: 13,
+                    title: "Narrow before opening anything",
+                    detail: "Filter by type, environment, rating or popularity — the shortlist narrows here, not one card at a time.",
+                  },
+                  {
+                    x: 9.75,
+                    y: 24,
+                    title: "Every environment, on the card",
+                    detail: "Prod, Staging, Dev, QA, Beta — which environments a service is live in, without opening it.",
+                  },
+                ],
               },
               {
                 title: "API Docs",
@@ -1603,6 +1683,26 @@ export default function ComponentsPage() {
                 height: 2704,
                 alt: "A service's API Docs tab: an environment selector, then each endpoint listed with its parameters and example request and response bodies, expandable in place",
                 caption: "Every endpoint is documented on the service itself, parameters and example responses included — nothing to go find in a wiki someone else was supposed to keep current.",
+                hotspots: [
+                  {
+                    x: 12,
+                    y: 17,
+                    title: "Docs live on the service itself",
+                    detail: "API Docs is a tab away from the overview, not a separate wiki page to go find and hope is current.",
+                  },
+                  {
+                    x: 28,
+                    y: 22,
+                    title: "Every environment, one screen",
+                    detail: "prod3, prod2, qa1, dev1, sm2devmac — the full set a service runs in, switchable without leaving the page.",
+                  },
+                  {
+                    x: 83,
+                    y: 57,
+                    title: "Real parameters, real responses",
+                    detail: "Example request and response bodies sit beside each endpoint, not left to a separate spec file.",
+                  },
+                ],
               },
               {
                 title: "Version history",
@@ -1612,6 +1712,26 @@ export default function ComponentsPage() {
                 height: 2712,
                 alt: "A comparative analysis view with two versions of a specification side by side and the differences marked between them",
                 caption: "Version history is visible before integrating, not something to ask around about after a change breaks something.",
+                hotspots: [
+                  {
+                    x: 64,
+                    y: 18,
+                    title: "Compare against staging, not just history",
+                    detail: "One side names a version, the other names an environment — the same view answers both questions.",
+                  },
+                  {
+                    x: 39,
+                    y: 38,
+                    title: "Changes marked inline",
+                    detail: "Additions and edits are highlighted line by line, not left for the reader to spot by re-reading both.",
+                  },
+                  {
+                    x: 91,
+                    y: 10,
+                    title: "Split view, side by side",
+                    detail: "Two specs open at once rather than tabbing between them to hold the difference in your head.",
+                  },
+                ],
               },
             ]}
           />

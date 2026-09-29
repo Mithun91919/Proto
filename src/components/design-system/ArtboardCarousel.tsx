@@ -159,7 +159,13 @@ export function ArtboardCarousel({
   );
 
   const artboard = (
-    <div role="tabpanel" id={`${baseId}-panel-${active}`} aria-labelledby={`${baseId}-tab-${active}`}>
+    <div
+      key={active}
+      role="tabpanel"
+      id={`${baseId}-panel-${active}`}
+      aria-labelledby={`${baseId}-tab-${active}`}
+      className="ds-artboard-fade"
+    >
       {scrollable ? (
         <BrowserMockup
           key={current.src}
@@ -211,11 +217,13 @@ export function ArtboardCarousel({
           style={{ "--split-copy": "15rem" } as CSSProperties}
         >
           <div className="ds-artboard-split-text">
-            <span className="ds-artboard-split-numeral">
-              <CompactNumeral value={String(active + 1)} />
-            </span>
-            {current.title ? <p className="ds-artboard-title">{current.title}</p> : null}
-            <p className="ds-artboard-desc">{current.caption}</p>
+            <div key={active} className="ds-artboard-fade">
+              <span className="ds-artboard-split-numeral">
+                <CompactNumeral value={String(active + 1)} />
+              </span>
+              {current.title ? <p className="ds-artboard-title">{current.title}</p> : null}
+              <p className="ds-artboard-desc">{current.caption}</p>
+            </div>
             <div
               className="ds-artboard-dots"
               role="tablist"
@@ -236,7 +244,13 @@ export function ArtboardCarousel({
     <div className="ds-artboard-carousel" role="group" aria-roledescription="carousel" aria-label={label}>
       <div className="ds-artboard-head">
         <div className="ds-artboard-head-row">
-          {current.title ? <p className="ds-artboard-title">{current.title}</p> : <span />}
+          {current.title ? (
+            <p key={active} className="ds-artboard-title ds-artboard-fade">
+              {current.title}
+            </p>
+          ) : (
+            <span />
+          )}
           <div
             className="ds-artboard-dots"
             role="tablist"
@@ -247,7 +261,9 @@ export function ArtboardCarousel({
             {dots}
           </div>
         </div>
-        <p className="ds-artboard-desc">{current.caption}</p>
+        <p key={active} className="ds-artboard-desc ds-artboard-fade">
+          {current.caption}
+        </p>
       </div>
 
       {artboard}

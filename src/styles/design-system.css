@@ -2599,6 +2599,29 @@ a:hover .ds-compact-mark .ds-dot {
   text-wrap: pretty;
 }
 
+/* The slide content — artboard, and the per-slide title/desc beside or
+   above it — fades and settles in on every change instead of cutting.
+   `key={active}` on each of these remounts the node per slide, which is
+   what lets a CSS animation retrigger on every step rather than firing
+   once on first mount. Kept to opacity and a small translate — nothing
+   that would reflow the row it sits in while it plays. */
+@keyframes ds-artboard-fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+}
+
+.ds-artboard-fade {
+  animation: ds-artboard-fade-in 280ms cubic-bezier(0.2, 0.7, 0.3, 1) both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ds-artboard-fade {
+    animation: none;
+  }
+}
+
 /* `layout="split"` — EXPERIMENTAL, trialled on /components only. A fixed
    title and description for the whole set, unchanging as the reader pages
    through, then the artboard beside a narrower column carrying the
