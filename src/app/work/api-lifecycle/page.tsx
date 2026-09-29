@@ -56,7 +56,10 @@ const ARCHETYPES: Archetype[] = [
     side: "Consumer",
     behaviour: "Finds, evaluates and consumes existing APIs.",
     wants: ["Is this the right API?", "Can I use it now?"],
-    friction: ["Context lived apart.", "Subscription broke flow."],
+    friction: [
+      "No single place to search whether an API already existed.",
+      "Documentation lived in Confluence, and only some teams kept it current.",
+    ],
     stages: [0, 3],
   },
   {
@@ -65,8 +68,8 @@ const ARCHETYPES: Archetype[] = [
     behaviour: "Defines, publishes and evolves API contracts.",
     wants: ["Can I define it quickly?", "Can I change it safely?"],
     friction: [
-      "One authoring mode didn\u2019t fit everyone.",
-      "Governance arrived at the end, often once a contract was already in use.",
+      "Every change went out as an org-wide email.",
+      "Access was granted and tracked by hand.",
     ],
     stages: [1, 2, 4, 5],
   },
