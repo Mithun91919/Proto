@@ -21,6 +21,20 @@ import { useEffect, useRef, type CSSProperties, type ReactNode } from "react";
  * So the boundary is handled directly: at either end, take the wheel event and
  * move the window by the same delta. The figure keeps its own scroll, and the
  * page never stops.
+ *
+ * That boundary logic assumes there is real scroll room between the two
+ * ends. Some captures are tall enough at their true pixel size to need
+ * `scrollable`, but once scaled down to the column's width barely clear
+ * `maxHeight` — or don't clear it at all, and land exactly at it. For those,
+ * `atTop` and `atEnd` are both true on every single wheel event, so every
+ * tick forwards straight to the page: not a leak in the forwarding, but a
+ * true report that there is nothing left to reveal. Measured on this page,
+ * one capture had 33px of real scroll room and two others had none at all
+ * — same `scrollable` markup, same "Scroll to explore" hint over an image
+ * already shown whole. `data-has-overflow` records which is which, set
+ * after layout since the answer depends on the rendered column width no
+ * prop here knows in advance, so the hint (a sibling, not a child — see
+ * `BrowserMockup`) can stay hidden over a capture with nothing to scroll to.
  */
 export function ScrollFrame({
   maxHeight,
@@ -54,7 +68,25 @@ export function ScrollFrame({
 
     // Not passive: the whole point is to preventDefault at the boundary.
     el.addEventListener("wheel", onWheel, { passive: false });
-    return () => el.removeEventListener("wheel", onWheel);
+
+    // `scrollHeight` only reflects the true render once the image has taken
+    // its layout space; Next/Image reserves that immediately from its own
+    // width/height props, but a ResizeObserver on the content — not on `el`
+    // itself, whose own box is pinned to `maxHeight` and never changes — is
+    // the cheap way to stay correct if that space is ever wrong on first
+    // paint rather than trusting a single measurement taken once on mount.
+    const content = el.firstElementChild;
+    const updateOverflow = () => {
+      el.dataset.hasOverflow = el.scrollHeight > el.clientHeight + 1 ? "true" : "false";
+    };
+    updateOverflow();
+    const observer = content ? new ResizeObserver(updateOverflow) : null;
+    observer?.observe(content as Element);
+
+    return () => {
+      el.removeEventListener("wheel", onWheel);
+      observer?.disconnect();
+    };
   }, []);
 
   return (

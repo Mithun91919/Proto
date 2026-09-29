@@ -542,6 +542,13 @@
   opacity: 0;
 }
 
+/* Set by `ScrollFrame` once it has measured its own content: a capture that
+   already fits `maxHeight` at the column's rendered width has nothing left
+   to reveal, and the hint was still promising one anyway. */
+.ds-framebody:has(.ds-frame-scroll[data-has-overflow="false"]) .ds-frame-scroll-hint {
+  display: none;
+}
+
 @media (prefers-reduced-motion: reduce) {
   .ds-frame-scroll-hint {
     transition: none;
