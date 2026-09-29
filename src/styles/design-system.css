@@ -2607,9 +2607,12 @@ a:hover .ds-compact-mark .ds-dot {
    The static title and description are `display-title display-section`
    and `body-text` — the same classes a case-study chapter heading and
    intro already use, not a third size invented for this one spot. */
+/* No max-width here: the title relies on its container the same way a
+   case-study chapter's own `h2` does, the single-paragraph description
+   caps itself via `.body-text`'s own 68ch, and the two-column variant
+   needs the full width to have two columns worth having. */
 .ds-artboard-static-head {
   margin-bottom: 1.75rem;
-  max-width: 60ch;
 }
 
 /* The per-slide title/desc share `.ds-artboard-title`/`.ds-artboard-desc`
@@ -2621,6 +2624,14 @@ a:hover .ds-compact-mark .ds-dot {
    put its width but wrap. */
 .ds-artboard-split-text {
   padding-top: 0.25rem;
+}
+
+/* The slide's position as a lead-in mark, same unit `CompactNumeral` gives
+   every other row-leading number on the site (`DotFlow`'s stages) rather
+   than the plain "1 / 3" text doing that job alone here too. */
+.ds-artboard-split-numeral {
+  display: block;
+  margin-bottom: 0.6rem;
 }
 
 .ds-artboard-split-text .ds-artboard-title {
@@ -2688,6 +2699,9 @@ a:hover .ds-compact-mark .ds-dot {
   margin-left: 0.75rem;
 }
 
+/* Quiet outline at rest, the site's own accent-fill-plus-lift on hover —
+   the same interaction `.button-primary` uses, at the scale a small paging
+   control gets rather than the marketing button's gradient and shadow. */
 .ds-paging-arrow {
   display: inline-flex;
   align-items: center;
@@ -2703,12 +2717,23 @@ a:hover .ds-compact-mark .ds-dot {
   cursor: pointer;
   transition:
     border-color 160ms ease,
-    color 160ms ease;
+    background-color 160ms ease,
+    color 160ms ease,
+    transform 160ms ease,
+    box-shadow 160ms ease;
 }
 
 .ds-paging-arrow:hover {
   border-color: var(--ds-accent);
-  color: var(--ds-accent-deep);
+  background: var(--ds-accent);
+  color: var(--color-on-accent);
+  transform: translateY(-1px);
+  box-shadow: 0 6px 14px color-mix(in oklab, var(--ds-accent) 32%, transparent);
+}
+
+.ds-paging-arrow:active {
+  transform: translateY(0);
+  box-shadow: none;
 }
 
 .ds-paging-arrow:focus-visible {

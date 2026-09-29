@@ -3,6 +3,7 @@
 import { useId, useState, type CSSProperties, type KeyboardEvent } from "react";
 import { ArtboardFigure } from "./ArtboardFigure";
 import { BrowserMockup } from "./BrowserMockup";
+import { CompactNumeral } from "./CompactNumeral";
 import type { Hotspot } from "./ImageHotspots";
 import { PagingArrows } from "./PagingArrows";
 
@@ -62,8 +63,16 @@ type ArtboardCarouselProps = {
   layout?: "stacked" | "split";
   /** `split` only: the set's own title, static across every slide. */
   title?: string;
-  /** `split` only: the set's own description, static across every slide. */
-  description?: string;
+  /**
+   * `split` only: the set's own description, static across every slide.
+   * A single string runs as one `body-text` paragraph; an array of two or
+   * more runs in the same two-column flow "The lifecycle" section already
+   * uses for its own three paragraphs — the description here tends to run
+   * that long too, and a single narrow column under the heading was making
+   * a reader scroll past it to reach the artboard for text that had the
+   * same page-width available to it that the lifecycle section's does.
+   */
+  description?: string | string[];
   /** `split` only: which side the artboard sits on. Defaults to `right`. */
   imageSide?: "left" | "right";
 };
@@ -177,7 +186,19 @@ export function ArtboardCarousel({
         {title || description ? (
           <div className="ds-artboard-static-head">
             {title ? <h3 className="display-title display-section">{title}</h3> : null}
-            {description ? <p className="body-text mt-3">{description}</p> : null}
+            {description ? (
+              Array.isArray(description) && description.length > 1 ? (
+                <div className="mt-5 md:columns-2 md:gap-16">
+                  {description.map((paragraph) => (
+                    <p key={paragraph} className="body-text mb-5 break-inside-avoid last:mb-0">
+                      {paragraph}
+                    </p>
+                  ))}
+                </div>
+              ) : (
+                <p className="body-text mt-3">{Array.isArray(description) ? description[0] : description}</p>
+              )
+            ) : null}
           </div>
         ) : null}
         <div
@@ -185,6 +206,9 @@ export function ArtboardCarousel({
           style={{ "--split-copy": "15rem" } as CSSProperties}
         >
           <div className="ds-artboard-split-text">
+            <span className="ds-artboard-split-numeral">
+              <CompactNumeral value={String(active + 1)} />
+            </span>
             {current.title ? <p className="ds-artboard-title">{current.title}</p> : null}
             <p className="ds-artboard-desc">{current.caption}</p>
             <div

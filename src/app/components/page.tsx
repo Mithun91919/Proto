@@ -1531,6 +1531,57 @@ export default function ComponentsPage() {
             label="The discovery path (split layout prototype)"
             layout="split"
             title="Search, then everything about the service"
+            description={[
+              "Discovery used to answer little more than whether an API existed at all. Now search, a service's own documentation, and its version history all sit on the same path.",
+              "An engineer can know everything about a service — and judge whether it fits — before any integration work starts, the same claim the lifecycle section above makes about the platform as a whole.",
+            ]}
+            scrollable
+            maxHeight="34rem"
+            slides={[
+              {
+                title: "Search results",
+                route: "/api-hub/search",
+                src: "/work/api-lifecycle/search-results.png",
+                width: 2880,
+                height: 2704,
+                alt: "Search results across services, each row carrying a rating, environment badges and a short description, with filters for type, environment, rating and popularity",
+                caption: "Results carry the environment a service runs in and how widely it is used, so the shortlist is made before anything is opened.",
+              },
+              {
+                title: "API Docs",
+                route: "/api-hub/catalog/service/docs",
+                src: "/work/api-lifecycle/api-docs.png",
+                width: 2890,
+                height: 2704,
+                alt: "A service's API Docs tab: an environment selector, then each endpoint listed with its parameters and example request and response bodies, expandable in place",
+                caption: "Every endpoint is documented on the service itself, parameters and example responses included — nothing to go find in a wiki someone else was supposed to keep current.",
+              },
+              {
+                title: "Version history",
+                route: "/api-hub/catalog/versions",
+                src: "/work/api-lifecycle/version-compare.png",
+                width: 2890,
+                height: 2712,
+                alt: "A comparative analysis view with two versions of a specification side by side and the differences marked between them",
+                caption: "Version history is visible before integrating, not something to ask around about after a change breaks something.",
+              },
+            ]}
+          />
+        </div>
+
+        <div className="ds-rule py-11">
+          <SubLabel code="M2d · Artboard carousel — split layout, image left (prototype)" />
+          <p className="mb-7 max-w-[68ch] text-[0.95rem] leading-7" style={{ color: "var(--ink-soft)" }}>
+            Same M2c prototype, <code className="font-mono text-[0.85em]">imageSide=&quot;left&quot;</code> instead
+            of the default <code className="font-mono text-[0.85em]">&quot;right&quot;</code> — the artboard and
+            text column swap sides, same as <code className="font-mono text-[0.85em]">is-reversed</code> does for
+            a case-study chapter. Same slides as M2c, so the only variable is which side the image sits on.
+          </p>
+          <ArtboardCarousel
+            label="The discovery path (split layout, image left)"
+            layout="split"
+            imageSide="left"
+            title="Search, then everything about the service"
             description="An engineer can know everything about a service — and judge whether it fits — before any integration work starts."
             scrollable
             maxHeight="34rem"
