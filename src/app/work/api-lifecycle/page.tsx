@@ -55,7 +55,10 @@ const ARCHETYPES: Archetype[] = [
     name: "Engineer",
     side: "Consumer",
     behaviour: "Finds, evaluates and consumes existing APIs.",
-    wants: ["Is this the right API?", "Can I use it now?"],
+    wants: [
+      "Judge whether a service fits before writing any code against it.",
+      "Subscribe without leaving the path they're on.",
+    ],
     friction: [
       "No single place to search whether an API already existed.",
       "Documentation lived in Confluence, and only some teams kept it current.",
@@ -66,7 +69,10 @@ const ARCHETYPES: Archetype[] = [
     name: "Architect",
     side: "Provider",
     behaviour: "Defines, publishes and evolves API contracts.",
-    wants: ["Can I define it quickly?", "Can I change it safely?"],
+    wants: [
+      "Work the spec directly, or have the schema drawn for them.",
+      "Change a published contract without breaking the teams on it.",
+    ],
     friction: [
       "Every change went out as an org-wide email.",
       "Access was granted and tracked by hand.",
@@ -100,12 +106,12 @@ export default function ApiLifecyclePage() {
           label: "The problem",
           lead: (
             <>
-              Engineers worked in <span className="ds-accent-deep-text">external tools</span> nobody
-              governed.
+              There was <span className="ds-accent-deep-text">no single place</span> to check whether
+              an API already existed.
             </>
           ),
           detail:
-            "Discovery, contract design and testing all ran on tools outside the company, and there was no governed way of working across them. Standards were met at the end, if at all \u2014 usually once a contract was already in use.",
+            "Documentation lived in Confluence, kept current by some teams and not others. A change to a contract went out as an org-wide email, and who had access to an API was tracked by hand. Each team built around whatever tooling suited them, and that alone was slowing delivery down.",
         },
         {
           label: "The solution",
@@ -311,7 +317,7 @@ export default function ApiLifecyclePage() {
               eyebrow="Finding a service"
               heading="A service had to be understandable before anyone consumed it"
               body={[
-                "Discovery needed to answer more than “does this API exist?”",
+                "Discovery needed to answer more than “does this API exist?” There was no single repository to search, and the documentation for the services that did exist lived in Confluence, current for some teams and stale for others.",
                 "Engineers needed to understand what a service did, whether it was appropriate for their use case, how to subscribe, and where to find the technical information required to begin using it.",
                 "Search, the service detail, and the subscription request all sit on the same path, so an engineer can judge whether a service fits before any integration work starts. Search leads rather than a category tree: with this many services, browsing to a specific one took too many steps to be worth keeping.",
               ]}
