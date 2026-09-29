@@ -281,7 +281,7 @@ export default function ApiLifecyclePage() {
                 src="/work/api-lifecycle/home.png"
                 width={2890}
                 height={2712}
-                scrollable
+                crop
                 maxHeight="40rem"
                 alt="API Hub home: search across services, then eight Get Started routes — import, define, manage subscriptions, generate code, register a service, generate docs, monitor, and publish to the marketplace"
                 hotspots={[

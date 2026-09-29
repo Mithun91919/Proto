@@ -1,4 +1,5 @@
 import Image from "next/image";
+import type { CSSProperties, ReactNode } from "react";
 import { ImageHotspots, type Hotspot } from "./ImageHotspots";
 import { ScrollFrame } from "./ScrollFrame";
 
@@ -23,6 +24,15 @@ type BrowserMockupProps = {
    * otherwise need.
    */
   scrollable?: boolean;
+  /**
+   * Holds the frame to `maxHeight` without the scroller — for a capture
+   * that clears `maxHeight` by only a sliver once scaled to the column
+   * width. That sliver isn't enough to justify `scrollable`'s wheel
+   * handling and hint for what a reader would barely notice moving; a
+   * plain crop of the bottom edge says the same "this continues a little
+   * further" without promising an interaction worth having.
+   */
+  crop?: boolean;
   maxHeight?: string;
   /** Optional callouts layered over the screenshot — same overlay `ImageHotspots` uses elsewhere. */
   hotspots?: Hotspot[];
@@ -49,14 +59,25 @@ export function BrowserMockup({
   alt,
   caption,
   scrollable = false,
+  crop = false,
   maxHeight = "32rem",
   hotspots,
 }: BrowserMockupProps) {
   // `ScrollFrame` is a client component and owns the wheel handling that
   // keeps a nested scroller from trapping the page. A non-scrollable mockup
-  // has no scroller and stays entirely on the server.
-  const Wrapper = ({ children }: { children: React.ReactNode }) =>
-    scrollable ? <ScrollFrame maxHeight={maxHeight}>{children}</ScrollFrame> : <>{children}</>;
+  // has no scroller and stays entirely on the server — `crop` stays on the
+  // server too, since clipping to a fixed height needs no JS at all.
+  const Wrapper = ({ children }: { children: ReactNode }) => {
+    if (scrollable) return <ScrollFrame maxHeight={maxHeight}>{children}</ScrollFrame>;
+    if (crop) {
+      return (
+        <div className="ds-frame-crop" style={{ "--frame-max-height": maxHeight } as CSSProperties}>
+          {children}
+        </div>
+      );
+    }
+    return <>{children}</>;
+  };
 
   return (
     <figure>

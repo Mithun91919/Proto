@@ -518,6 +518,15 @@
   scrollbar-width: thin;
 }
 
+/* The non-interactive sibling of `.ds-frame-scroll`: same height cap, no
+   scroller and no wheel handling to go with it, for a capture that clears
+   `maxHeight` by only a sliver — real overflow, just not enough of it to
+   earn a scroll interaction. Plain clipping, nothing to trap. */
+.ds-frame-crop {
+  max-height: var(--frame-max-height, 32rem);
+  overflow: hidden;
+}
+
 .ds-frame-scroll-hint {
   position: absolute;
   bottom: 10px;
