@@ -1,6 +1,6 @@
 "use client";
 
-import { useId, useState, type KeyboardEvent } from "react";
+import { useId, useState, type CSSProperties, type KeyboardEvent } from "react";
 import { ArtboardFigure } from "./ArtboardFigure";
 import { BrowserMockup } from "./BrowserMockup";
 import type { Hotspot } from "./ImageHotspots";
@@ -176,11 +176,14 @@ export function ArtboardCarousel({
       <div className="ds-artboard-carousel" role="group" aria-roledescription="carousel" aria-label={label}>
         {title || description ? (
           <div className="ds-artboard-static-head">
-            {title ? <p className="ds-artboard-static-title">{title}</p> : null}
-            {description ? <p className="ds-artboard-static-desc">{description}</p> : null}
+            {title ? <h3 className="display-title display-section">{title}</h3> : null}
+            {description ? <p className="body-text mt-3">{description}</p> : null}
           </div>
         ) : null}
-        <div className={`ds-cs-split ds-artboard-split${imageSide === "left" ? " is-reversed" : ""}`}>
+        <div
+          className={`ds-cs-split ds-artboard-split${imageSide === "left" ? " is-reversed" : ""}`}
+          style={{ "--split-copy": "15rem" } as CSSProperties}
+        >
           <div className="ds-artboard-split-text">
             {current.title ? <p className="ds-artboard-title">{current.title}</p> : null}
             <p className="ds-artboard-desc">{current.caption}</p>

@@ -2603,29 +2603,33 @@ a:hover .ds-compact-mark .ds-dot {
    title and description for the whole set, unchanging as the reader pages
    through, then the artboard beside a narrower column carrying the
    per-slide title, description and arrows — reusing `.ds-cs-split` rather
-   than inventing a second copy-beside-media pattern. */
+   than inventing a second copy-beside-media pattern.
+   The static title and description are `display-title display-section`
+   and `body-text` — the same classes a case-study chapter heading and
+   intro already use, not a third size invented for this one spot. */
 .ds-artboard-static-head {
   margin-bottom: 1.75rem;
   max-width: 60ch;
 }
 
-.ds-artboard-static-title {
-  margin: 0;
-  font-size: 1.7rem;
-  font-weight: 600;
-  line-height: 1.25;
-  color: var(--ink);
-}
-
-.ds-artboard-static-desc {
-  margin: 0.6rem 0 0;
-  font-size: 0.95rem;
-  line-height: 1.6;
-  color: var(--ink-soft);
-}
-
+/* The per-slide title/desc share `.ds-artboard-title`/`.ds-artboard-desc`
+   with the `stacked` header above, sized for a full-width header there.
+   Narrowed to the `--split-copy` column here, the same size wrapped hard
+   — smaller undercuts the static title above it and gives the artboard a
+   little more of the row back, which is the column this layout can most
+   afford to give up: unlike the artboard, this text has nowhere else to
+   put its width but wrap. */
 .ds-artboard-split-text {
   padding-top: 0.25rem;
+}
+
+.ds-artboard-split-text .ds-artboard-title {
+  font-size: 0.92rem;
+}
+
+.ds-artboard-split-text .ds-artboard-desc {
+  font-size: 0.8rem;
+  line-height: 1.55;
 }
 
 /* Several artboards in one slot, paged by dots rather than scrolled. One
