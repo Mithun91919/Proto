@@ -149,7 +149,12 @@ export function ArtboardCarousel({
       <span className="ds-artboard-count" aria-hidden>
         {active + 1} / {slides.length}
       </span>
-      <PagingArrows onPrev={() => step(-1)} onNext={() => step(1)} label="slide" />
+      <PagingArrows
+        onPrev={() => step(-1)}
+        onNext={() => step(1)}
+        label="slide"
+        emphasize={active === 0 ? "next" : active === slides.length - 1 ? "prev" : null}
+      />
     </>
   );
 

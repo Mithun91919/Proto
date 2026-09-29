@@ -3,6 +3,15 @@ type PagingArrowsProps = {
   onNext: () => void;
   /** What's being paged, for the accessible name — e.g. "screen", "slide". */
   label: string;
+  /**
+   * Which arrow, if either, is the more useful direction from where the
+   * reader currently is — filled solid without needing a hover first, e.g.
+   * `"next"` on the first item (there's more ahead) or `"prev"` on the last
+   * (nothing further that way). Paging still wraps either direction
+   * regardless; this is a hint about which way is worth taking, not a
+   * disabled state on the other arrow.
+   */
+  emphasize?: "prev" | "next" | null;
 };
 
 /**
@@ -44,13 +53,23 @@ function Chevron({ direction }: { direction: "prev" | "next" }) {
   );
 }
 
-export function PagingArrows({ onPrev, onNext, label }: PagingArrowsProps) {
+export function PagingArrows({ onPrev, onNext, label, emphasize }: PagingArrowsProps) {
   return (
     <span className="ds-paging-arrows">
-      <button type="button" className="ds-paging-arrow" onClick={onPrev} aria-label={`Previous ${label}`}>
+      <button
+        type="button"
+        className={`ds-paging-arrow${emphasize === "prev" ? " is-emphasized" : ""}`}
+        onClick={onPrev}
+        aria-label={`Previous ${label}`}
+      >
         <Chevron direction="prev" />
       </button>
-      <button type="button" className="ds-paging-arrow" onClick={onNext} aria-label={`Next ${label}`}>
+      <button
+        type="button"
+        className={`ds-paging-arrow${emphasize === "next" ? " is-emphasized" : ""}`}
+        onClick={onNext}
+        aria-label={`Next ${label}`}
+      >
         <Chevron direction="next" />
       </button>
     </span>

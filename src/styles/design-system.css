@@ -2723,10 +2723,16 @@ a:hover .ds-compact-mark .ds-dot {
     box-shadow 160ms ease;
 }
 
-.ds-paging-arrow:hover {
+.ds-paging-arrow:hover,
+.ds-paging-arrow.is-emphasized {
   border-color: var(--ds-accent);
   background: var(--ds-accent);
   color: var(--color-on-accent);
+}
+
+/* Only the hover itself lifts — an emphasized arrow sitting at rest lifting
+   on its own would read as it already being interacted with. */
+.ds-paging-arrow:hover {
   transform: translateY(-1px);
   box-shadow: 0 6px 14px color-mix(in oklab, var(--ds-accent) 32%, transparent);
 }
