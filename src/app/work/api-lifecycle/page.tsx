@@ -311,54 +311,110 @@ export default function ApiLifecyclePage() {
         </CaseStudySection>
 
         <CaseStudySection id="marketplace">
-          <div className="ds-cs-split is-reversed">
-            <CaseStudyChapter
-              layout="flow"
+          <Reveal>
+            <ArtboardCarousel
+              layout="split"
+              imageSide="left"
               eyebrow="Finding a service"
-              heading="A service had to be understandable before anyone consumed it"
-              body={[
+              title="A service had to be understandable before anyone consumed it"
+              description={[
                 "Discovery needed to answer more than “does this API exist?” There was no single repository to search, and the documentation for the services that did exist lived in Confluence, current for some teams and stale for others.",
-                "Engineers needed to understand what a service did, whether it was appropriate for their use case, how to subscribe, and where to find the technical information required to begin using it.",
-                "Search, a service's own documentation, and its version history all sit on the same path, so an engineer can know everything about a service \u2014 and judge whether it fits \u2014 before any integration work starts. Search leads rather than a category tree: with this many services, browsing to a specific one took too many steps to be worth keeping.",
+                "Engineers needed to understand what a service did, whether it was appropriate for their use case, how to subscribe, and where to find the technical information required to begin using it. Search leads rather than a category tree: with this many services, browsing to a specific one took too many steps to be worth keeping.",
+              ]}
+              scrollable
+              maxHeight="44rem"
+              label="The discovery path"
+              slides={[
+                {
+                  title: "Search results",
+                  route: "/api-hub/search",
+                  src: "/work/api-lifecycle/search-results.png",
+                  width: 2880,
+                  height: 2704,
+                  alt: "Search results across services, each row carrying a rating, environment badges and a short description, with filters for type, environment, rating and popularity",
+                  caption: "Results carry the environment a service runs in and how widely it is used, so the shortlist is made before anything is opened.",
+                  hotspots: [
+                    {
+                      x: 22,
+                      y: 13,
+                      title: "A live filter, not a static list",
+                      detail: "Typing narrows the 19 results shown here in place — nothing is a fixed category page.",
+                    },
+                    {
+                      x: 84,
+                      y: 13,
+                      title: "Narrow before opening anything",
+                      detail: "Filter by type, environment, rating or popularity — the shortlist narrows here, not one card at a time.",
+                    },
+                    {
+                      x: 9.75,
+                      y: 24,
+                      title: "Every environment, on the card",
+                      detail: "Prod, Staging, Dev, QA, Beta — which environments a service is live in, without opening it.",
+                    },
+                  ],
+                },
+                {
+                  title: "API Docs",
+                  route: "/api-hub/catalog/service/docs",
+                  src: "/work/api-lifecycle/api-docs.png",
+                  width: 2890,
+                  height: 2704,
+                  alt: "A service's API Docs tab: an environment selector, then each endpoint listed with its parameters and example request and response bodies, expandable in place",
+                  caption: "Every endpoint is documented on the service itself, parameters and example responses included — nothing to go find in a wiki someone else was supposed to keep current.",
+                  hotspots: [
+                    {
+                      x: 12,
+                      y: 17,
+                      title: "Docs live on the service itself",
+                      detail: "API Docs is a tab away from the overview, not a separate wiki page to go find and hope is current.",
+                    },
+                    {
+                      x: 28,
+                      y: 22,
+                      title: "Every environment, one screen",
+                      detail: "prod3, prod2, qa1, dev1, sm2devmac — the full set a service runs in, switchable without leaving the page.",
+                    },
+                    {
+                      x: 83,
+                      y: 57,
+                      title: "Real parameters, real responses",
+                      detail: "Example request and response bodies sit beside each endpoint, not left to a separate spec file.",
+                    },
+                  ],
+                },
+                {
+                  title: "Version history",
+                  route: "/api-hub/catalog/versions",
+                  src: "/work/api-lifecycle/version-compare.png",
+                  width: 2890,
+                  height: 2712,
+                  alt: "A comparative analysis view with two versions of a specification side by side and the differences marked between them",
+                  caption: "Version history is visible before integrating, not something to ask around about after a change breaks something.",
+                  hotspots: [
+                    {
+                      x: 64,
+                      y: 18,
+                      title: "Compare against staging, not just history",
+                      detail: "One side names a version, the other names an environment — the same view answers both questions.",
+                    },
+                    {
+                      x: 39,
+                      y: 38,
+                      title: "Changes marked inline",
+                      detail: "Additions and edits are highlighted line by line, not left for the reader to spot by re-reading both.",
+                    },
+                    {
+                      x: 91,
+                      y: 10,
+                      title: "Split view, side by side",
+                      detail: "Two specs open at once rather than tabbing between them to hold the difference in your head.",
+                    },
+                  ],
+                },
               ]}
             />
-            <CaseStudyFigure label="Search, then everything about the service">
-              <ArtboardCarousel
-                scrollable
-                maxHeight="44rem"
-                label="The discovery path"
-                slides={[
-                  {
-                    title: "Search results",
-                    route: "/api-hub/search",
-                    src: "/work/api-lifecycle/search-results.png",
-                    width: 2880,
-                    height: 2704,
-                    alt: "Search results across services, each row carrying a rating, environment badges and a short description, with filters for type, environment, rating and popularity",
-                    caption: "Results carry the environment a service runs in and how widely it is used, so the shortlist is made before anything is opened.",
-                  },
-                  {
-                    title: "API Docs",
-                    route: "/api-hub/catalog/service/docs",
-                    src: "/work/api-lifecycle/api-docs.png",
-                    width: 2890,
-                    height: 2704,
-                    alt: "A service's API Docs tab: an environment selector, then each endpoint listed with its parameters and example request and response bodies, expandable in place",
-                    caption: "Every endpoint is documented on the service itself, parameters and example responses included \u2014 nothing to go find in a wiki someone else was supposed to keep current.",
-                  },
-                  {
-                    title: "Version history",
-                    route: "/api-hub/catalog/versions",
-                    src: "/work/api-lifecycle/version-compare.png",
-                    width: 2890,
-                    height: 2712,
-                    alt: "A comparative analysis view with two versions of a specification side by side and the differences marked between them",
-                    caption: "Version history is visible before integrating, not something to ask around about after a change breaks something.",
-                  },
-                ]}
-              />
-            </CaseStudyFigure>
-          </div>
+          </Reveal>
         </CaseStudySection>
 
         <CaseStudySection id="studio">

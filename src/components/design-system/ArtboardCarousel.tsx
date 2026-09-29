@@ -61,6 +61,13 @@ type ArtboardCarouselProps = {
    * before it replaces `stacked` anywhere a reader would actually see it.
    */
   layout?: "stacked" | "split";
+  /**
+   * `split` only: the eyebrow above the static title — `CaseStudyChapter`'s
+   * own label, e.g. "Finding a service". Replacing a chapter's own heading
+   * block with this carousel shouldn't cost it the eyebrow every other
+   * chapter on the page still gets.
+   */
+  eyebrow?: string;
   /** `split` only: the set's own title, static across every slide. */
   title?: string;
   /**
@@ -105,6 +112,7 @@ export function ArtboardCarousel({
   scrollable = false,
   maxHeight,
   layout = "stacked",
+  eyebrow,
   title,
   description,
   imageSide = "right",
@@ -194,9 +202,10 @@ export function ArtboardCarousel({
   if (layout === "split") {
     return (
       <div className="ds-artboard-carousel" role="group" aria-roledescription="carousel" aria-label={label}>
-        {title || description ? (
+        {eyebrow || title || description ? (
           <div className="ds-artboard-static-head">
-            {title ? <h3 className="display-title display-section">{title}</h3> : null}
+            {eyebrow ? <p className="eyebrow">{eyebrow}</p> : null}
+            {title ? <h3 className="display-title display-section mt-3">{title}</h3> : null}
             {description ? (
               Array.isArray(description) && description.length > 1 ? (
                 <div className="mt-5 md:columns-2 md:gap-16">
