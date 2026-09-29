@@ -319,10 +319,10 @@ export default function ApiLifecyclePage() {
               body={[
                 "Discovery needed to answer more than “does this API exist?” There was no single repository to search, and the documentation for the services that did exist lived in Confluence, current for some teams and stale for others.",
                 "Engineers needed to understand what a service did, whether it was appropriate for their use case, how to subscribe, and where to find the technical information required to begin using it.",
-                "Search, the service detail, and the subscription request all sit on the same path, so an engineer can judge whether a service fits before any integration work starts. Search leads rather than a category tree: with this many services, browsing to a specific one took too many steps to be worth keeping.",
+                "Search, a service's own documentation, and its version history all sit on the same path, so an engineer can know everything about a service \u2014 and judge whether it fits \u2014 before any integration work starts. Search leads rather than a category tree: with this many services, browsing to a specific one took too many steps to be worth keeping.",
               ]}
             />
-            <CaseStudyFigure label="Search, then the service, then a subscription">
+            <CaseStudyFigure label="Search, then everything about the service">
               <ArtboardCarousel
                 scrollable
                 maxHeight="44rem"
@@ -337,20 +337,20 @@ export default function ApiLifecyclePage() {
                     caption: "Results carry the environment a service runs in and how widely it is used, so the shortlist is made before anything is opened.",
                   },
                   {
-                    route: "/api-hub/catalog/service",
-                    src: "/work/api-lifecycle/api-overview.png",
+                    route: "/api-hub/catalog/service/docs",
+                    src: "/work/api-lifecycle/api-docs.png",
                     width: 2890,
-                    height: 3306,
-                    alt: "A service overview: what it does, its environments, API key, created and updated dates, its subscriptions table and its top contributors",
-                    caption: "The overview answers what gets asked before integration starts \u2014 what it does, which environments it runs in, who already depends on it.",
+                    height: 2704,
+                    alt: "A service's API Docs tab: an environment selector, then each endpoint listed with its parameters and example request and response bodies, expandable in place",
+                    caption: "Every endpoint is documented on the service itself, parameters and example responses included \u2014 nothing to go find in a wiki someone else was supposed to keep current.",
                   },
                   {
-                    route: "/api-hub/subscriptions",
-                    src: "/work/api-lifecycle/subscriptions.png",
-                    width: 2892,
-                    height: 2610,
-                    alt: "Subscriptions management with received requests, submitted requests and active subscriptions, each row showing provider, consumer, keys and status",
-                    caption: "A subscription is a request with a justification and a reviewer, not a self-serve switch \u2014 one screen serves the side asking and the side approving.",
+                    route: "/api-hub/catalog/versions",
+                    src: "/work/api-lifecycle/version-compare.png",
+                    width: 2890,
+                    height: 2712,
+                    alt: "A comparative analysis view with two versions of a specification side by side and the differences marked between them",
+                    caption: "Version history is visible before integrating, not something to ask around about after a change breaks something.",
                   },
                 ]}
               />
@@ -392,14 +392,6 @@ export default function ApiLifecyclePage() {
                     height: 2712,
                     alt: "The same contract in the guided editor, with a Basic and Advanced toggle and a Define, Specs, Docs, Publish progression across the top",
                     caption: "Basic is the same contract as a form. The toggle between them is the hard part: switching has to carry unsupported changes and unsaved work across without losing either.",
-                  },
-                  {
-                    route: "/api-hub/catalog/versions",
-                    src: "/work/api-lifecycle/version-compare.png",
-                    width: 2890,
-                    height: 2712,
-                    alt: "A comparative analysis view with two versions of a specification side by side and the differences marked between them",
-                    caption: "Versions are compared in place, so a consumer sees what changed between two releases rather than reading both and working it out.",
                   },
                 ]}
               />
