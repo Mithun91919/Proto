@@ -151,7 +151,7 @@ export default function DependencyHealthPage() {
           <PullStatement
             eyebrow="What is an outdated library"
             mark="connection"
-            note="Nothing breaks the day a version falls behind. The cost turns up later."
+            note="Like a phone that still works, until the apps on it start asking for a newer system."
           >
             Almost every application is built on libraries other people wrote. An outdated one
             is a version the team has fallen behind on.
