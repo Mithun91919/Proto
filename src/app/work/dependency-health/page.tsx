@@ -63,7 +63,7 @@ export default function DependencyHealthPage() {
           label: "The problem",
           lead: (
             <>
-              Library rework kept <span className="ds-accent-text">landing on release deadlines</span>.
+              <span className="ds-accent-text">Unexpected library rework</span> kept pushing release dates.
             </>
           ),
           detail:
@@ -148,7 +148,7 @@ export default function DependencyHealthPage() {
             <ArtboardCarousel
               layout="split"
               eyebrow="The problem"
-              title="Library rework kept landing on release deadlines"
+              title="Unexpected library rework kept pushing release dates"
               description={[
                 "Teams often found library problems during a migration, a breakage or security work, rather than through visibility that came early.",
                 "Blind spots in their dependencies cost them productivity, and the stability of standardising on the Unified BOM went unused.",
