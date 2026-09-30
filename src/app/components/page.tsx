@@ -99,8 +99,11 @@ import { HeroThumbnailRail } from "@/components/design-system/HeroThumbnailRail"
 /** How many of DEMO_ARCHETYPES the two-role demo uses. */
 const PAIR_SLICE = 2;
 
+// A label that opens with a number gets the number lifted out and set large;
+// one that does not ("How these were defined") renders as plain text.
+const DEMO_BASIS_LABEL = "20+ interviews before design";
 const DEMO_BASIS =
-  "Placeholder \u2014 replace with the real basis, e.g. 20+ interviews run before any design work.";
+  "Placeholder \u2014 replace with what the research found and what it changed.";
 
 const DEMO_STAGES = ["Discover", "Design", "Validate", "Test", "Publish", "Govern"];
 
@@ -918,6 +921,7 @@ export default function ComponentsPage() {
               intro="An engineer consumes an API; an architect provides one, and the same person is often both."
               archetypes={PAIR}
               stages={DEMO_STAGES}
+              basisLabel={DEMO_BASIS_LABEL}
               basis={DEMO_BASIS}
             />
           </div>
@@ -931,6 +935,7 @@ export default function ComponentsPage() {
               intro="Past two, the reading changes: every need together, every frustration together, rather than one person at a time."
               archetypes={DEMO_ARCHETYPES}
               stages={DEMO_STAGES}
+              basisLabel={DEMO_BASIS_LABEL}
               basis={DEMO_BASIS}
             />
           </div>
