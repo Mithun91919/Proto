@@ -1,3 +1,4 @@
+import type { CSSProperties } from "react";
 import { GlassPanel } from "./primitives/GlassPanel";
 import { DotFlow } from "./DotFlow";
 import { MetricGlyph } from "./MetricGlyph";
@@ -39,7 +40,13 @@ function CardLead({ card, muted = false }: { card: StateCard; muted?: boolean })
   if (!card.glyph && !card.figure) return null;
   return (
     <div className="mb-5 flex items-center gap-5">
-      {card.glyph ? <MetricGlyph name={card.glyph} size={5} gap={3} /> : null}
+      {card.glyph ? (
+        // The Before side is the muted one: grey heading, grey figure, so the
+        // glyph drops out of the accent too and only the After is coloured.
+        <span style={muted ? ({ "--ds-accent": "var(--ds-dot-muted)" } as CSSProperties) : undefined}>
+          <MetricGlyph name={card.glyph} size={5} gap={3} />
+        </span>
+      ) : null}
       {card.figure ? (
         <p className="ds-stat-row" style={{ margin: 0 }}>
           <span className="ds-stat-figure" style={muted ? { color: "var(--ink-soft)" } : undefined}>
