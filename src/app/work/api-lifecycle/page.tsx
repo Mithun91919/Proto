@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import { caseStudyRobots } from "@/content/seo";
 import { Reveal } from "@/components/Reveal";
 import { DotFlow } from "@/components/design-system/DotFlow";
+import { ProofStrip } from "@/components/design-system/ProofStrip";
+import { BeforeAfterModel } from "@/components/design-system/BeforeAfterModel";
 import { ArtboardCarousel } from "@/components/design-system/ArtboardCarousel";
 import { BrowserMockup } from "@/components/design-system/BrowserMockup";
 import { PullStatement } from "@/components/design-system/PullStatement";
@@ -34,8 +36,6 @@ export const metadata: Metadata = {
 };
 
 const LIFECYCLE = ["Discovery", "Contract design", "Validation", "Testing", "Publishing", "Governance"];
-const ADOPTION_LOOP = ["Ship", "Adoption session", "Feedback", "Product change"];
-const SURFACE_PATH = ["UI platform", "Shared capability", "Conversational / tool-based access"];
 
 /**
  * The two fronts the platform serves.
@@ -57,7 +57,7 @@ const ARCHETYPES: Archetype[] = [
     behaviour: "Finds, evaluates and consumes existing APIs.",
     wants: [
       "Judge whether a service fits before writing any code against it.",
-      "Subscribe without leaving the path they're on.",
+      "Subscribe without leaving the path they’re on.",
     ],
     friction: [
       "No single place to search whether an API already existed.",
@@ -89,7 +89,7 @@ const CHAPTERS = [
   { id: "studio", label: "Designing a contract" },
   { id: "testing", label: "Testing" },
   { id: "adoption", label: "Adoption" },
-  { id: "infrastructure", label: "Infrastructure" },
+  { id: "infrastructure", label: "Where it went" },
   { id: "outcomes", label: "What changed" },
 ];
 
@@ -173,7 +173,7 @@ export default function ApiLifecyclePage() {
             route: "/api-hub/testing",
           },
         ],
-        figureNote: "The interface is as it shipped, built on Living Design — Walmart's design system. I have replaced the data and some product names, because the work is internal.",
+        figureNote: "The interface is as it shipped, built on Living Design — Walmart’s design system. I have replaced the data and some product names, because the work is internal.",
         meta: [
           { label: "Role", value: "UX Designer → Senior UX Designer" },
           { label: "Client", value: "Walmart Global Tech" },
@@ -418,44 +418,94 @@ export default function ApiLifecyclePage() {
         </CaseStudySection>
 
         <CaseStudySection id="studio">
-          <div className="ds-cs-split">
-            <CaseStudyChapter
-              layout="flow"
+          <Reveal>
+            <ArtboardCarousel
+              layout="split"
               eyebrow="Designing a contract"
-              heading="Contract design had to work for beginners and experts at the same time"
-              body={[
+              title="Contract design had to work for beginners and experts at the same time"
+              description={[
                 "API contract design exposed one of the platform’s hardest interaction problems.",
                 "Providers split on this. Some were comfortable working directly in YAML or JSON; others needed a structured interface that made the schema easier to understand and create.",
                 "Instead of forcing one mode on everyone, we designed two connected editors: Basic for guided, structured contract creation, and Advanced for engineers who preferred direct specification editing.",
                 "Switching between them required careful handling of validation, unsupported changes, and the risk of losing work. Around that core interaction, the Studio added linting, duplicate detection, quality feedback, versioning, imports, collaboration, code generation, and governance guidance.",
               ]}
+              scrollable
+              maxHeight="44rem"
+              label="Designing a contract"
+              slides={[
+                {
+                  title: "Start from what already exists",
+                  route: "/api-hub/my-apis",
+                  src: "/work/api-lifecycle/my-apis.png",
+                  width: 2890,
+                  height: 2712,
+                  alt: "My APIs: a searchable, filterable registry of a provider's services with status, tags and consumer counts, and Register New API and Import API actions at the top",
+                  caption: "A provider’s own registry is where a contract starts, either registering a new API or importing one that already exists.",
+                  hotspots: [
+                    { x: 90.7, y: 7.9, title: "Two ways in", detail: "Register New API or Import API, side by side at the top: start from nothing, or bring in a contract that already exists." },
+                    { x: 58, y: 14.4, title: "Search the registry", detail: "By API name, domain, tags or key, with keyword suggestions beneath for the common ones." },
+                    { x: 88, y: 30.3, title: "Status on every row", detail: "Published, Deprecated or Retired, so the state of each service is readable without opening it." },
+                  ],
+                },
+                {
+                  title: "Bring a contract in",
+                  route: "/api-hub/catalog/import",
+                  src: "/work/api-lifecycle/import-service.png",
+                  width: 2890,
+                  height: 2712,
+                  alt: "Import Service: a choice of import source (URL, SR, source control, clipboard, file, Azure), visibility, and an option to make the API doc the source of truth",
+                  caption: "A specification can come in from a URL, SR, source control, the clipboard, a file or Azure.",
+                  hotspots: [
+                    { x: 36.4, y: 30.4, title: "Six ways to import", detail: "URL, SR, source control, clipboard, file or Azure, so the specification can come from wherever it already lives." },
+                    { x: 80.5, y: 29.3, title: "Visibility set at import", detail: "Who can see the service is set as it is imported." },
+                    { x: 29.5, y: 46.6, title: "Source of truth, spelled out", detail: "Choosing the API doc as source of truth syncs docs from Git and makes them uneditable in the Studio. The form says so beside the checkbox." },
+                  ],
+                },
+                {
+                  title: "Basic: the contract as a form",
+                  route: "/api-hub/catalog/edit",
+                  src: "/work/api-lifecycle/basic-editor.png",
+                  width: 2890,
+                  height: 2712,
+                  alt: "The guided editor with the Basic Editor toggle on: URL paths, data types, responses and security on the left, and collapsible sections for operation details, parameters and servers on the right",
+                  caption: "Basic is the same contract as a form. The toggle between the two editors is the hard part: switching has to carry unsupported changes and unsaved work across without losing either.",
+                  hotspots: [
+                    { x: 44.7, y: 16.5, title: "One switch between editors", detail: "The Basic Editor toggle sits in the toolbar, not on a separate page, so changing mode never means leaving the contract." },
+                    { x: 70, y: 15.8, title: "A path, not a page", detail: "Define, Specs, Docs, Publish: where the contract is in its life stays visible while editing." },
+                    { x: 26.5, y: 24.9, title: "The same outline in both", detail: "URL paths, data types, responses and security down the left, whichever editor is open." },
+                  ],
+                },
+                {
+                  title: "Advanced: the specification itself",
+                  route: "/api-hub/catalog/edit",
+                  src: "/work/api-lifecycle/spec-editor.png",
+                  width: 2890,
+                  height: 2712,
+                  alt: "The specification editor: URL paths, data types, responses and security down the left, the specification in the middle, parameters and example values on the right",
+                  caption: "Advanced keeps the specification in the middle with the structure it produces listed beside it, so someone editing directly can still see the shape they are making.",
+                  hotspots: [
+                    { x: 44.7, y: 16.5, title: "The same toggle, the other way", detail: "Off here: the specification itself, with the same toolbar and the same outline beside it." },
+                    { x: 37.7, y: 49, title: "Errors marked at the line", detail: "A marker sits on the line with the problem, with an Errors panel beneath the editor." },
+                    { x: 85, y: 26, title: "The structure it produces", detail: "Parameters, example values and responses for each operation, listed beside the YAML as it is written." },
+                  ],
+                },
+                {
+                  title: "Where the contract lands",
+                  route: "/api-hub/catalog/service",
+                  src: "/work/api-lifecycle/api-overview.png",
+                  width: 2890,
+                  height: 3306,
+                  alt: "A service's Overview: description, tags, environments and key details, then subscription requests, top contributors and an audit history of every change",
+                  caption: "Once published, the service has one overview: who is subscribing, who has been editing, and an audit trail of what changed.",
+                  hotspots: [
+                    { x: 37.5, y: 24, title: "Every environment", detail: "Prod, Sandbox, Dev and the staging environments the service runs in, alongside its ID, key and dates." },
+                    { x: 34.3, y: 30.8, title: "Subscriptions in three views", detail: "Received requests, submitted requests and active subscriptions, each with the consumer and environment involved." },
+                    { x: 57, y: 60.8, title: "An audit trail of every change", detail: "Who changed which endpoint, the operation, and the old and new value." },
+                  ],
+                },
+              ]}
             />
-            <CaseStudyFigure label="Two editors over one contract">
-              <ArtboardCarousel
-                scrollable
-                maxHeight="44rem"
-                label="The two editors"
-                slides={[
-                  {
-                    route: "/api-hub/catalog/edit",
-                    src: "/work/api-lifecycle/spec-editor.png",
-                    width: 2890,
-                    height: 2712,
-                    alt: "The specification editor: URL paths, data types, responses and security down the left, the specification in the middle, parameters and example values on the right",
-                    caption: "Advanced keeps the specification itself in the middle with the structure it produces listed beside it, so someone editing directly can still see the shape they are making.",
-                  },
-                  {
-                    route: "/api-hub/catalog/edit",
-                    src: "/work/api-lifecycle/spec-editor-1.png",
-                    width: 2890,
-                    height: 2712,
-                    alt: "The same contract in the guided editor, with a Basic and Advanced toggle and a Define, Specs, Docs, Publish progression across the top",
-                    caption: "Basic is the same contract as a form. The toggle between them is the hard part: switching has to carry unsupported changes and unsaved work across without losing either.",
-                  },
-                ]}
-              />
-            </CaseStudyFigure>
-          </div>
+          </Reveal>
         </CaseStudySection>
       </CaseStudyColumn>
 
@@ -470,94 +520,125 @@ export default function ApiLifecyclePage() {
 
       <CaseStudyColumn>
         <CaseStudySection id="testing" boundary={false} className="pt-16 md:pt-20">
-          <div className="ds-cs-split is-reversed">
-            <CaseStudyChapter
-              layout="flow"
+          <Reveal>
+            <ArtboardCarousel
+              layout="split"
+              imageSide="left"
               eyebrow="Testing"
-              heading="Testing kept validation inside the same product journey"
-              body={[
+              title="Testing kept validation inside the same product journey"
+              description={[
                 "The Testing pillar reduced another handoff by bringing common API validation tasks closer to design and discovery.",
                 "Engineers could test APIs, work with authentication, use scripting and snippets, share collections, and prepare outputs for downstream security processes without treating testing as a completely separate product experience.",
               ]}
+              scrollable
+              maxHeight="44rem"
+              label="The API tester"
+              slides={[
+                {
+                  title: "Collections beside the request",
+                  route: "/api-hub/testing",
+                  src: "/work/api-lifecycle/api-testing.png",
+                  width: 2892,
+                  height: 2052,
+                  alt: "The API tester: saved collections on the left, a request builder with parameters, authorisation, headers and body, and a run control",
+                  caption: "Collections sit beside the request, so a saved call is one click from the contract it was written against.",
+                  hotspots: [
+                    { x: 28, y: 33.1, title: "Collections beside the request", detail: "Saved collections and a search by name sit at the left, next to the request they belong to." },
+                    { x: 87.4, y: 13.2, title: "Environment and Run together", detail: "The environment is picked in the toolbar, with Run beside it, not in a separate setup step." },
+                    { x: 68.8, y: 78.2, title: "The response, under the request", detail: "Body, header and test results appear on the same screen the request was written on." },
+                  ],
+                },
+                {
+                  title: "Run it once or on a schedule",
+                  route: "/api-hub/testing",
+                  src: "/work/api-lifecycle/api-testing-1.png",
+                  width: 2892,
+                  height: 2426,
+                  alt: "Run Collection: a choice between running manually or on a schedule, with schedule name, frequency, environment, iterations, a data file and email notifications",
+                  caption: "A collection can run once or on a schedule, against a chosen environment, with the team told when it fails.",
+                  hotspots: [
+                    { x: 65, y: 25.8, title: "Once, or on a schedule", detail: "Run a collection manually, or periodically at a set time." },
+                    { x: 68.3, y: 55, title: "Environment and iterations, chosen on the run", detail: "Which environment to run against and how many iterations, with a data file that can be attached and previewed." },
+                    { x: 78.2, y: 72.4, title: "Failures reach the team", detail: "Up to five team members can be notified, with a setting to stop after consecutive failures." },
+                  ],
+                },
+                {
+                  title: "The result, in place",
+                  route: "/api-hub/testing",
+                  src: "/work/api-lifecycle/api-testing-2.png",
+                  width: 2892,
+                  height: 2052,
+                  alt: "A completed run showing the response and its result state",
+                  caption: "The result lands where the request was made, which is the handoff the old flow lost.",
+                  hotspots: [
+                    { x: 57.9, y: 24, title: "The outcome at a glance", detail: "Environment, iterations, average response time, passed and failed percentages, duration and data received." },
+                    { x: 45, y: 31.7, title: "A timeline of the run", detail: "Each interval is marked passed or failed, so a bad stretch can be found without reading every row." },
+                    { x: 94, y: 13.3, title: "A report to take away", detail: "Download Report exports the run for whoever needs it next." },
+                  ],
+                },
+              ]}
             />
-            <CaseStudyFigure label="Validation without leaving the platform">
-              <ArtboardCarousel
-                scrollable
-                maxHeight="44rem"
-                label="The API tester"
-                slides={[
-                  {
-                    route: "/api-hub/testing",
-                    src: "/work/api-lifecycle/api-testing.png",
-                    width: 2892,
-                    height: 2052,
-                    alt: "The API tester: saved collections on the left, a request builder with parameters, authorisation, headers and body, and a run control",
-                    caption: "Collections sit beside the request, so a saved call is one click from the contract it was written against.",
-                  },
-                  {
-                    route: "/api-hub/testing",
-                    src: "/work/api-lifecycle/api-testing-1.png",
-                    width: 2892,
-                    height: 2426,
-                    alt: "A request configured with its authorisation and headers, ready to run against a chosen environment",
-                    caption: "Authorisation and environment belong to the request rather than to a separate setup step.",
-                  },
-                  {
-                    route: "/api-hub/testing",
-                    src: "/work/api-lifecycle/api-testing-2.png",
-                    width: 2892,
-                    height: 2052,
-                    alt: "A completed run showing the response and its result state",
-                    caption: "The result lands where the request was made, which is the handoff the old flow lost.",
-                  },
-                ]}
-              />
-            </CaseStudyFigure>
-          </div>
+          </Reveal>
         </CaseStudySection>
 
         <CaseStudySection id="adoption">
           <CaseStudyChapter
             layout="stacked"
             eyebrow="Adoption"
-            heading="It shipped, and almost nobody came"
+            heading="It shipped, and for three months almost nobody came"
             body={[
-              "Adoption after launch was very low. The platform worked, every area was in place, and engineering teams carried on with the tools they already had. Nobody was going to read an announcement and change how they built services.",
-              "So we started running a brown-bag session every week: show the product to one team, watch where they got stuck, answer the workflow questions that an announcement cannot. We have run more than a hundred of them, averaging over sixty people a session.",
-              "That is what moved it. Teams onboarded and kept using it, and the sessions turned into a channel \u2014 feedback and suggestions started arriving through Slack and support rather than having to be chased.",
-              "It also fed the design. Terminology, interactions and guidance changed on what the sessions surfaced, and it mattered most in contract design, where teams on the redesigned editors measured a ~40% reduction in the time it took.",
+              "The platform launched and, for the first three months, adoption was low. It worked and every area was in place, but teams were comfortable with the tools they already had and had not seen what the platform offered.",
+              "I interviewed teams to find out why, and took what I learned into brown-bag sessions: show the product to one team, watch where they got stuck, answer the workflow questions an announcement cannot.",
+              "I have run more than a hundred of them, averaging over sixty people a session, and the sessions became a feedback channel of their own.",
             ]}
           />
-          <CaseStudyFigure rule label="The adoption loop">
-            <DotFlow stages={ADOPTION_LOOP} />
+          <CaseStudyFigure rule label="The intervention">
+            <BeforeAfterModel
+              before={{
+                glyph: "field",
+                heading: "Set in their ways",
+                body: "Three months of low adoption. Teams kept to the tools they had.",
+              }}
+              after={{
+                glyph: "ramp",
+                heading: "Shown what they were missing",
+                body: "Seeing the product working is what moved teams, and adoption grew.",
+              }}
+            />
           </CaseStudyFigure>
         </CaseStudySection>
 
         <CaseStudySection id="infrastructure">
           <CaseStudyChapter
+            layout="stacked"
             eyebrow="Where it went"
-            heading="From useful tool to engineering infrastructure"
+            heading="Ready for AI because the groundwork was already there"
             body={[
-              "As adoption grew, the platform became more deeply connected to governance and the software-development lifecycle. Quality and policy checks moved closer to the work rather than appearing only as a late gate.",
-              "The platform is also beginning to extend beyond the interface itself. API capabilities can increasingly be surfaced through skills and conversational tools, turning the product from a destination engineers visit into a capability that can also be invoked in context.",
-              "That evolution changes the surface, but not the design responsibility: make the system’s capabilities, constraints, and results understandable.",
+              "With AI arriving, the platform now has an MCP to discover, create and manage APIs.",
+              "That was only possible because the data and the workflows were already in place. The lifecycle engineers use through the interface can now be invoked in context.",
             ]}
           />
-          <CaseStudyFigure rule label="From platform to invocable capability">
-            <DotFlow stages={SURFACE_PATH} />
-          </CaseStudyFigure>
         </CaseStudySection>
 
         <CaseStudySection id="outcomes">
           <CaseStudyChapter
-            layout="flow"
+            layout="stacked"
             eyebrow="What changed"
             heading="Fewer translations between tools"
             body={[
-              "The platform established a connected API lifecycle across discovery, contract design and testing. More than 15,000 APIs are onboarded and it is opened by over 10,000 people a month.",
+              "The platform established a connected API lifecycle across discovery, contract design and testing, with governance built into the work rather than waiting at the end of it.",
               "The strongest outcome was not feature count. It was reducing the number of times engineers had to translate context between disconnected tools while giving different levels of expertise a workable path through the same lifecycle.",
             ]}
           />
+          <CaseStudyFigure>
+            <ProofStrip
+              items={[
+                { value: "15K+", label: "APIs onboarded", glyph: "modules" },
+                { value: "10K+", label: "monthly users", glyph: "field" },
+                { value: "~40%", label: "less contract-design time, redesigned Studio teams", glyph: "drop" },
+              ]}
+            />
+          </CaseStudyFigure>
         </CaseStudySection>
       </CaseStudyColumn>
 
