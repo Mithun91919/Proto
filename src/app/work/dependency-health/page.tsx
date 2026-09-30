@@ -25,9 +25,9 @@ import { getProject } from "@/content/projects";
  * carousels with hotspots where a screen has something to point at, the
  * recording as its own band, a Before/After where a decision moved.
  *
- * The platform has shipped. The evidence is the 148-repository pilot from the
- * draft and the impact figures given since: 5K+ repositories migrated, 40%
- * fewer library issues during releases, 80% increase in product health. The
+ * The platform has shipped. The evidence is the impact figures: 5K+ repositories
+ * migrated, 40% fewer library issues during releases, 80% increase in product
+ * health. The
  * numbers visible inside the screens are the fictional data they were
  * reconstructed with; none of them is quoted.
  */
@@ -86,7 +86,7 @@ export default function DependencyHealthPage() {
             </>
           ),
           detail:
-            "I framed the product as Repository → Pillar → Organisation, so a leader and an engineer read the same model at their own level. Then I ran a 148-repository pilot on the initial major version and designed the self-service onboarding and remediation teams use to move onto the Unified BOM. The platform team built the scanning behind it.",
+            "I framed the product as Repository → Pillar → Organisation, so a leader and an engineer read the same model at their own level, and designed the self-service onboarding and remediation teams use to move onto the Unified BOM. The platform team built the scanning behind it.",
         },
       ]}
       chapters={CHAPTERS}
@@ -363,7 +363,7 @@ export default function DependencyHealthPage() {
                   alt: "Remediations: every repository with its current stage, point of contact, ticket and pull-request status",
                   caption: "Each repository shows its current stage, who to talk to, its ticket and the state of its pull request.",
                   hotspots: [
-                    { x: 21.4, y: 39.2, title: "The pilot, in one list", detail: "The repositories in the initial major-version pilot, filterable by open, merged or closed." },
+                    { x: 21.4, y: 39.2, title: "Every repository, in one list", detail: "Each repository with a pull request, filterable by open, merged or closed." },
                     { x: 52.7, y: 49.3, title: "The current step is explicit", detail: "Analysis, then each stage in turn, with an info control beside each." },
                     { x: 87.4, y: 49.3, title: "Pull-request status", detail: "Open, merged or closed on each row, with the pull request one click away." },
                   ],
@@ -441,14 +441,14 @@ export default function DependencyHealthPage() {
             eyebrow="Current evidence"
             heading="What changed once teams moved across"
             body={[
-              "The platform has shipped. After a 148-repository pilot on the initial major version, more than 5K repositories have migrated, and the platform gives dependency-health visibility from individual repositories through pillar and organisation views, alongside self-service onboarding and remediation.",
+              "The platform has shipped. More than 5K repositories have migrated, and the platform gives dependency-health visibility from individual repositories through pillar and organisation views, alongside self-service onboarding and remediation.",
               "Fewer library issues arriving at release is what shifting left was for.",
             ]}
           />
           <CaseStudyFigure>
             <ProofStrip
               items={[
-                { from: "148", value: "5K+", label: "repositories migrated, from the initial pilot", glyph: "funnel" },
+                { value: "5K+", label: "repositories migrated to the Unified BOM", glyph: "funnel" },
                 { value: "40%", label: "fewer library issues during releases", glyph: "drop" },
                 { value: "80%", label: "increase in product health", glyph: "ramp" },
               ]}
