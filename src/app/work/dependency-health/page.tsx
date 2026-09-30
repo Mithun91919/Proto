@@ -215,6 +215,7 @@ export default function DependencyHealthPage() {
                 { label: "Test", done: true },
                 { label: "Security review", done: true },
                 { label: "Check for outdated libraries", flagged: true, flag: "Flagged at the last moment" },
+                { label: "Release", end: true },
               ]}
             />
             <p className="ds-note mt-3">An illustration of a release list, not a screenshot.</p>
