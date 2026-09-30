@@ -59,7 +59,7 @@ const ARCHETYPES: Archetype[] = [
       "Raise a pull request to fix it, and follow it through.",
     ],
     friction: [
-      "Library problems found during a migration, a breakage or security work, not ahead of it.",
+      "Library problems found late, not ahead of it.",
       "Blind spots in the dependencies they build on.",
     ],
   },
@@ -104,7 +104,7 @@ export default function DependencyHealthPage() {
             </>
           ),
           detail:
-            "Teams found library issues during migrations, breakages or security work, not ahead of it. Blind spots in their dependencies cost productivity, and the stability of standardising on the Unified BOM went unused.",
+            "Teams found library issues late, not ahead of it. Blind spots in their dependencies cost productivity, and one standard package of library versions went unused.",
         },
         {
           label: "The solution",
@@ -130,7 +130,7 @@ export default function DependencyHealthPage() {
       chapters={CHAPTERS}
       hero={{
         standfirst:
-          "The platform Walmart developers and engineering leaders open to see which dependencies in a repository need attention, why they matter, and what to do next.",
+          "The platform Walmart developers and engineer managers open to see which dependencies in a repository need attention, why they matter, and what to do next.",
         headline: (
           <>
             Dependency Health Platform: moving teams onto one <span style={{ color: "var(--ds-mint)" }}>Unified BOM</span> before release.
@@ -485,7 +485,7 @@ export default function DependencyHealthPage() {
       <div className="mt-16 md:mt-20">
         <Reveal>
           <PullStatement eyebrow="What I believe now" mark="seam">
-            A compliance state should always explain the path forward, not only what is wrong.
+            A status should always say what to do next, not only what is wrong.
           </PullStatement>
         </Reveal>
       </div>
