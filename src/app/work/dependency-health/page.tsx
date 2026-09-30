@@ -86,7 +86,7 @@ export default function DependencyHealthPage() {
             </>
           ),
           detail:
-            "One Repository → Pillar → Organisation model gives leaders a bird’s-eye view, and gives engineers their repository’s debt and the remediation to clear it. The platform team built the scanning and pre-commit checks; I ran a 148-repository pilot on the initial major version.",
+            "I framed the product as Repository → Pillar → Organisation, so a leader and an engineer read the same model at their own level. Then I ran a 148-repository pilot on the initial major version and designed the self-service onboarding and remediation teams use to move onto the Unified BOM. The platform team built the scanning behind it.",
         },
       ]}
       chapters={CHAPTERS}
