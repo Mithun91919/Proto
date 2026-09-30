@@ -4,7 +4,6 @@ import { Reveal } from "@/components/Reveal";
 import { ArtboardCarousel } from "@/components/design-system/ArtboardCarousel";
 import { BeforeAfterModel } from "@/components/design-system/BeforeAfterModel";
 import { BrowserMockup } from "@/components/design-system/BrowserMockup";
-import { ClipFigure } from "@/components/design-system/ClipFigure";
 import { ReleaseChecklist } from "@/components/design-system/ReleaseChecklist";
 import { ArchetypeSection } from "@/components/design-system/ArchetypeSection";
 import type { Archetype } from "@/components/design-system/ArchetypeFigure";
@@ -85,7 +84,6 @@ const CHAPTERS = [
   { id: "manager", label: "Engineer manager" },
   { id: "engineer", label: "Engineer" },
   { id: "catalogue", label: "The Unified BOM" },
-  { id: "scale", label: "Scale" },
   { id: "tokens", label: "Tokens" },
   { id: "evidence", label: "Evidence" },
 ];
@@ -449,30 +447,6 @@ export default function DependencyHealthPage() {
                 { x: 85.6, y: 24.2, title: "How far adoption has got", detail: "Repositories and artifacts not yet onboarded, each as a count, a share and a bar." },
                 { x: 55, y: 54.2, title: "Every managed dependency", detail: "Group, artifact and version for the selected release, searchable by any of the three." },
               ]}
-            />
-          </CaseStudyFigure>
-        </CaseStudySection>
-
-        <CaseStudySection id="scale">
-          <CaseStudyChapter
-            layout="stacked"
-            eyebrow="Scale"
-            heading="The same health model had to work at different levels of scale"
-            body={[
-              "Repository health is useful to an individual team. It becomes a different design problem when leaders need to understand hundreds of repositories together.",
-              "Pillar and organisation views aggregate the same health model for comparison and prioritisation, while governance reporting opens into deeper filtering and analysis.",
-              "The product therefore uses one underlying language across different decision contexts rather than inventing a new dashboard at every level.",
-            ]}
-          />
-          <CaseStudyFigure>
-            <ClipFigure
-              mp4="/work/dependency-health/walkthrough.mp4"
-              webm="/work/dependency-health/walkthrough.webm"
-              poster="/work/dependency-health/walkthrough-poster.jpg"
-              width={1600}
-              height={1123}
-              alt="The repository, pillar, organisation, remediation and catalogue screens moving past one another: one set of measures and one layout at every level"
-              caption="Repository, pillar, organisation, remediation and catalogue, on one layout and one set of measures."
             />
           </CaseStudyFigure>
         </CaseStudySection>
