@@ -166,7 +166,7 @@ export const projects: Project[] = [
       "Dependency Health Platform: turning compliance data into clear action.",
     internalName: "Dependency Management",
     summary:
-      "The backend could provide dozens of technical signals. The UX challenge was deciding what mattered to developers, engineering leaders, and platform teams — and translating it into status, diagnosis, and guided remediation.",
+      "The backend could provide dozens of technical signals. The UX challenge was deciding what mattered to engineers and engineering leaders — and translating it into status, diagnosis, and guided remediation.",
     outcome:
       "Repository → Pillar → Organisation visibility · 148 repositories in initial major-version pilot",
     metrics: [

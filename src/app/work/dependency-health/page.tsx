@@ -40,7 +40,9 @@ export const metadata: Metadata = {
 };
 
 const CHAPTERS = [
-  { id: "not-data", label: "Not a data problem" },
+  { id: "problem", label: "The problem" },
+  { id: "goals", label: "The goals" },
+  { id: "solution", label: "The idea" },
   { id: "decision-model", label: "Decision model" },
   { id: "guided", label: "Guided path" },
   { id: "scale", label: "Scale" },
@@ -61,21 +63,21 @@ export default function DependencyHealthPage() {
           label: "The problem",
           lead: (
             <>
-              The data existed. <span className="ds-accent-text">The decisions did not</span>.
+              Library rework kept <span className="ds-accent-text">landing on release deadlines</span>.
             </>
           ),
           detail:
-            "Teams found dependency debt during migrations, breakages or security work rather than ahead of it. Exposing every available signal would have produced a dashboard that was complete and unusable.",
+            "Teams found library issues during migrations, breakages or security work, not ahead of it. Blind spots in their dependencies cost productivity, and the stability of standardising on the Unified BOM went unused.",
         },
         {
           label: "The solution",
           lead: (
             <>
-              Prioritised health, layered views, and <span className="ds-accent-text">guided remediation</span>.
+              One Unified BOM, and <span className="ds-accent-text">a guided way onto it</span>.
             </>
           ),
           detail:
-            "Technical signals — standard-library versions, Java versions, security findings, conflicts, version drift — had to become repository health, organisation-level visibility and guided remediation.",
+            "A Unified BOM: one package of approved library versions that teams migrate to as a batch, not one library at a time. Java and Spring Boot stay supported as individual packages until a team moves across.",
         },
         {
           label: "What I did",
@@ -85,7 +87,7 @@ export default function DependencyHealthPage() {
             </>
           ),
           detail:
-            "I framed the product as Repository → Pillar → Organisation, ran a 148-repository pilot on the initial major version, and built self-service onboarding and remediation.",
+            "I framed the product as Repository → Pillar → Organisation and ran a 148-repository pilot on the initial major version. The platform team built the scanning and pre-commit checks; I designed how their findings reach engineers and leaders, and the self-service onboarding and remediation.",
         },
       ]}
       chapters={CHAPTERS}
@@ -141,47 +143,47 @@ export default function DependencyHealthPage() {
       }
     >
       <CaseStudyColumn>
-        <CaseStudySection id="not-data" boundary={false} className="pt-14 md:pt-20">
+        <CaseStudySection id="problem" boundary={false} className="pt-14 md:pt-20">
           <Reveal>
             <ArtboardCarousel
               layout="split"
-              eyebrow="Debt found too late"
-              title="A lack of data was never the issue"
+              eyebrow="The problem"
+              title="Library rework kept landing on release deadlines"
               description={[
-                "Teams often discovered dependency debt during migrations, breakages, or security work rather than through proactive visibility.",
-                "At the same time, exposing every available technical signal would have created a complete but overwhelming dashboard.",
-                "A developer asks: is my repository healthy, and what should I fix first? A manager asks: which teams are falling behind? A platform administrator asks: what is the state of adoption and compliance across the organisation?",
-                "The same underlying data needed a different hierarchy at each level.",
+                "Teams often found library problems during a migration, a breakage or security work, rather than through visibility that came early.",
+                "Blind spots in their dependencies cost them productivity, and the stability of standardising on the Unified BOM went unused.",
+                "Two people needed different things from the same data. An engineer needed the debt in their repository and a way to clear it. A tech lead needed a bird’s-eye view of the debt across their teams.",
+                "The same underlying data needed a different hierarchy for each.",
               ]}
               scrollable
               maxHeight="44rem"
-              label="Three questions, one model"
+              label="Two people, one model"
               slides={[
                 {
-                  title: "Is my repository healthy?",
+                  title: "The engineer: what does my repository owe?",
                   route: "/stacklift/products/orion",
                   src: "/work/dependency-health/development.png",
                   width: 2880,
                   height: 2560,
                   alt: "A product's development view: services with deprecated dependencies, version distribution by library, and a table of services with their version drift",
-                  caption: "A developer starts from one product: how many services are behind, then which ones, with the drift beside each.",
+                  caption: "An engineer starts from one product: how many services are behind, then which ones, with the drift beside each.",
                 },
                 {
-                  title: "Which teams are falling behind?",
+                  title: "The leader: how are my teams doing?",
                   route: "/stacklift/home",
                   src: "/work/dependency-health/pillar.png",
                   width: 2880,
                   height: 2960,
                   alt: "A pillar view: three health measures with a runtime distribution beside them, then every team's services against the same measures",
-                  caption: "A manager sees every team's services against the same three measures, so who is furthest behind is a sort away.",
+                  caption: "A tech lead sees every team’s services against the same three measures, so who is furthest behind is a sort away.",
                   hotspots: [
-                    { x: 28.3, y: 37.2, title: "The health, in one sentence", detail: "The three measures are followed by a plain statement of what they add up to, above the detail." },
-                    { x: 70.1, y: 28.9, title: "Versions, with the outdated ones marked", detail: "Runtime versions across the pillar's services as one bar each, the outdated releases in orange." },
-                    { x: 47, y: 62.5, title: "Every team, same measures", detail: "Services and their leads against deprecated dependencies, outdated runtimes and services not registered in the catalogue." },
+                    { x: 27.8, y: 36.4, title: "The health, in one sentence", detail: "The three measures are followed by a plain statement of what they add up to, above the detail." },
+                    { x: 66.8, y: 30, title: "The Unified BOM beside Java and Spring Boot", detail: "One bar each for the versions in use across the pillar’s services, the outdated releases in orange." },
+                    { x: 45.7, y: 61.9, title: "Every team, same measures", detail: "Services and their leads against deprecated dependencies, outdated runtimes and services not registered in the catalogue." },
                   ],
                 },
                 {
-                  title: "What is the state across the organisation?",
+                  title: "The leader, a level up: how is the organisation doing?",
                   route: "/stacklift/organisations",
                   src: "/work/dependency-health/organisation.png",
                   width: 2880,
@@ -190,8 +192,8 @@ export default function DependencyHealthPage() {
                   caption: "The organisation view rolls the same measures up by division, with a filter for the ones that need attention.",
                   hotspots: [
                     { x: 28.3, y: 43.6, title: "The same sentence at organisation scale", detail: "Artifacts, repositories and enrolment, summarised in one line before any table." },
-                    { x: 69.9, y: 33.3, title: "Version distribution across repositories", detail: "Not onboarded, then each version in use, for the libraries that matter at this level." },
-                    { x: 25.2, y: 56.2, title: "Needs attention, as a filter", detail: "The divisions that need attention are one click from the full list of divisions." },
+                    { x: 70, y: 35.3, title: "Version distribution across repositories", detail: "Not onboarded, then each version in use, for the Unified BOM, Java and Spring Boot." },
+                    { x: 25.1, y: 56.2, title: "Needs attention, as a filter", detail: "The divisions that need attention are one click from the full list of divisions." },
                   ],
                 },
               ]}
@@ -209,7 +211,57 @@ export default function DependencyHealthPage() {
       </div>
 
       <CaseStudyColumn>
-        <CaseStudySection id="decision-model" boundary={false} className="pt-16 md:pt-20">
+        <CaseStudySection id="goals" boundary={false} className="pt-16 md:pt-20">
+          <CaseStudyChapter
+            layout="stacked"
+            eyebrow="The goals"
+            heading="The aim was to find library problems before they became rework"
+            body={[
+              "Shift left: find and fix library issues early, so fewer bugs are fixed late.",
+              "Adopt the Unified BOM faster: one standard package of library versions across teams means less to maintain.",
+              "Raise code quality and developer productivity as a result.",
+            ]}
+          />
+          <CaseStudyFigure rule label="Where the problem is found">
+            <BeforeAfterModel
+              before={{
+                heading: "Found late",
+                body: "During a migration, a breakage or security work.",
+              }}
+              after={{
+                heading: "Found early",
+                body: "Before code is integrated, and before it becomes a release problem.",
+              }}
+            />
+          </CaseStudyFigure>
+        </CaseStudySection>
+
+        <CaseStudySection id="solution">
+          <CaseStudyChapter
+            layout="stacked"
+            eyebrow="The idea"
+            heading="One Unified BOM, migrated as a batch"
+            body={[
+              "The team proposed a Unified BOM, short for bill of materials: one package of approved library versions that a team moves onto together, instead of updating libraries one at a time. Until a team migrates, its Java and Spring Boot packages stay supported as individual packages, and some legacy systems had to keep running on older versions.",
+              "Underneath, the platform scans repositories for library issues and checks for problems before code is integrated. The platform team built that. I designed how it reaches people: what an engineer sees in their repository, what a leader sees across their teams, and the path from one to the other.",
+            ]}
+          />
+          <CaseStudyFigure rule label="How a team gets onto the Unified BOM">
+            <BeforeAfterModel
+              before={{
+                heading: "Package by package",
+                body: "Java and Spring Boot packages, each updated on its own.",
+              }}
+              after={{
+                glyph: "funnel",
+                heading: "One Unified BOM, as a batch",
+                body: "One package of approved versions that a team moves onto together.",
+              }}
+            />
+          </CaseStudyFigure>
+        </CaseStudySection>
+
+        <CaseStudySection id="decision-model" >
           <Reveal>
             <ArtboardCarousel
               layout="split"
@@ -218,7 +270,7 @@ export default function DependencyHealthPage() {
               title="I turned technical signals into a decision model"
               description={[
                 "The highest-leverage design work happened before the dashboard.",
-                "I mapped signals such as the approved library baseline, Java version, feature-library freshness, conflicts, and version drift against two questions: who needs this, and what decision does it help them make?",
+                "I mapped signals such as the Unified BOM version, Java and Spring Boot versions, feature-library freshness, conflicts, and version drift against two questions: who needs this, and what decision does it help them make?",
                 "That produced a layered health model rather than a wall of metrics. For a repository, the experience begins with a concise overall state and the issues requiring attention. Detail opens progressively for diagnosis. The next action remains close to the status that created the question.",
                 "The interaction principle became: summary for orientation, diagnosis for understanding, action for resolution.",
               ]}
@@ -266,7 +318,7 @@ export default function DependencyHealthPage() {
               eyebrow="Remediation"
               title="Compliance became a guided path, not a warning state"
               description={[
-                "Repositories that are behind may need several technical changes in sequence: updating enforcement, removing legacy libraries, upgrading Java, or adopting the current standard-library baseline.",
+                "Repositories that are behind may need several technical changes in sequence: updating enforcement, removing legacy libraries, upgrading Java or Spring Boot, or moving onto the current Unified BOM.",
                 "A red status can tell an engineer something is wrong without helping them understand how to recover.",
                 "I designed onboarding and remediation as a progressive journey. The current step is explicit, completed work remains visible, dependencies between steps are clear, and each stage explains the expected action and outcome.",
                 "Where automation can help create the required code change, it appears at the point of action rather than as a disconnected capability.",
@@ -276,15 +328,15 @@ export default function DependencyHealthPage() {
               label="The remediation path"
               slides={[
                 {
-                  title: "The baseline everything is measured against",
+                  title: "The BOM everything is measured against",
                   route: "/stacklift/dependency-catalog",
                   src: "/work/dependency-health/catalog.png",
                   width: 2880,
                   height: 2020,
                   alt: "The BOM catalogue: the latest version, how many repositories and artifacts are not yet onboarded, and the managed dependencies for the selected version",
-                  caption: "The approved library baseline has a home of its own: the latest version, how far adoption has got, and every managed dependency.",
+                  caption: "The approved BOM has a home of its own: the latest version, how far adoption has got, and every managed dependency.",
                   hotspots: [
-                    { x: 25.2, y: 20.3, title: "The current version, named", detail: "The latest version of the bill of materials sits beside its title." },
+                    { x: 25.2, y: 20.3, title: "The current version, named", detail: "The latest version of the BOM sits beside its title." },
                     { x: 85.6, y: 24.2, title: "How far adoption has got", detail: "Repositories and artifacts not yet onboarded, each as a count, a share and a bar." },
                     { x: 55, y: 54.2, title: "Every managed dependency", detail: "Group, artifact and version for the selected release, searchable by any of the three." },
                   ],
@@ -298,7 +350,7 @@ export default function DependencyHealthPage() {
                   alt: "Version details for one repository: its libraries grouped by patch and major, each beside the expected version",
                   caption: "A repository's libraries sit beside the version each should be on, grouped by how big the move is.",
                   hotspots: [
-                    { x: 91.8, y: 13.9, title: "Status in the header", detail: "The repository's standing against the baseline is stated where the page begins." },
+                    { x: 91.8, y: 13.9, title: "Status in the header", detail: "The repository’s standing against the BOM is stated where the page begins." },
                     { x: 33.1, y: 20.6, title: "Narrow to what matters", detail: "All, outdated libraries, or only those where drift was detected." },
                     { x: 76.1, y: 31.4, title: "The version to move to", detail: "The expected version sits beside the one in use, under Patch and Major." },
                   ],
