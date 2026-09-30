@@ -6,7 +6,6 @@ import { BeforeAfterModel } from "@/components/design-system/BeforeAfterModel";
 import { ClipFigure } from "@/components/design-system/ClipFigure";
 import { ArchetypeSection } from "@/components/design-system/ArchetypeSection";
 import type { Archetype } from "@/components/design-system/ArchetypeFigure";
-import { CostStrip } from "@/components/design-system/CostStrip";
 import { ProofStrip } from "@/components/design-system/ProofStrip";
 import { PullStatement } from "@/components/design-system/PullStatement";
 import {
@@ -79,9 +78,9 @@ const ARCHETYPES: Archetype[] = [
 
 const CHAPTERS = [
   { id: "outdated", label: "Outdated libraries" },
+  { id: "goals", label: "The goals" },
   { id: "who", label: "Who it is for" },
   { id: "problem", label: "The problem" },
-  { id: "goals", label: "The goals" },
   { id: "solution", label: "The idea" },
   { id: "decision-model", label: "Decision model" },
   { id: "guided", label: "Guided path" },
@@ -209,37 +208,19 @@ export default function DependencyHealthPage() {
               "The libraries a repository depends on do not wait for each other. Java and Spring Boot each ship on a six-month rhythm, and Node.js has too, so a team on all three has something to catch up on several times a year.",
             ]}
           />
-          <CaseStudyFigure rule label="How often the libraries move">
-            <ProofStrip
-              items={[
-                { value: "6 months", label: "between Java feature releases, in March and September", glyph: "modules" },
-                { value: "6 months", label: "between Spring Boot major or minor releases, in May and November", glyph: "modules" },
-                { from: "6 months", value: "12 months", label: "between Node.js majors, changing from Node 27", glyph: "modules" },
-              ]}
-            />
-            <p className="ds-note mt-3">As published by the OpenJDK, Spring Boot and Node.js projects.</p>
-          </CaseStudyFigure>
-          <CaseStudyFigure>
-            <CostStrip
-              items={[
-                {
-                  label: "Rework near release",
-                  heading: "Found when it is expensive",
-                  body: "The fix lands during a migration, a breakage or security work, not ahead of it.",
-                },
-                {
-                  label: "Blind spots",
-                  heading: "Nobody sees it building",
-                  body: "Without a view of their dependencies, teams lose productivity to problems they could not see coming.",
-                },
-                {
-                  label: "Risk",
-                  heading: "Older versions age badly",
-                  body: "Stale dependencies raise vulnerability risk, which is why the dashboards say so in a sentence.",
-                },
-              ]}
-            />
-          </CaseStudyFigure>
+        </CaseStudySection>
+
+        <CaseStudySection id="goals">
+          <CaseStudyChapter
+            layout="stacked"
+            eyebrow="The goals"
+            heading="The aim was to find library problems before they became rework"
+            body={[
+              "Shift left: find and fix library issues early, so fewer bugs are fixed late.",
+              "Adopt the Unified BOM faster: one standard package of library versions across teams means less to maintain.",
+              "Raise code quality and developer productivity as a result.",
+            ]}
+          />
         </CaseStudySection>
 
         {/* After the cost, before the problem: the reader knows what an
@@ -323,32 +304,8 @@ export default function DependencyHealthPage() {
       </div>
 
       <CaseStudyColumn>
-        <CaseStudySection id="goals" boundary={false} className="pt-16 md:pt-20">
-          <CaseStudyChapter
-            layout="stacked"
-            eyebrow="The goals"
-            heading="The aim was to find library problems before they became rework"
-            body={[
-              "Shift left: find and fix library issues early, so fewer bugs are fixed late.",
-              "Adopt the Unified BOM faster: one standard package of library versions across teams means less to maintain.",
-              "Raise code quality and developer productivity as a result.",
-            ]}
-          />
-          <CaseStudyFigure rule label="Where the problem is found">
-            <BeforeAfterModel
-              before={{
-                heading: "Found late",
-                body: "During a migration, a breakage or security work.",
-              }}
-              after={{
-                heading: "Found early",
-                body: "Before code is integrated, and before it becomes a release problem.",
-              }}
-            />
-          </CaseStudyFigure>
-        </CaseStudySection>
 
-        <CaseStudySection id="solution">
+        <CaseStudySection id="solution" boundary={false} className="pt-16 md:pt-20">
           <CaseStudyChapter
             layout="stacked"
             eyebrow="The idea"
@@ -373,7 +330,7 @@ export default function DependencyHealthPage() {
           </CaseStudyFigure>
         </CaseStudySection>
 
-        <CaseStudySection id="decision-model" >
+        <CaseStudySection id="decision-model">
           <Reveal>
             <ArtboardCarousel
               layout="split"
