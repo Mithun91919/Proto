@@ -648,9 +648,12 @@ export default function ApiLifecyclePage() {
 
       <div className="mt-16 md:mt-20">
         <Reveal>
-          <PullStatement eyebrow="What I believe now" mark="exchange">
-            A platform can support advanced technical work while still making the default path
-            understandable.
+          <PullStatement
+            eyebrow="What I believe now"
+            mark="exchange"
+            note="Adoption stayed low for three months, until the brown-bag sessions showed teams what they were missing."
+          >
+            A good product is only as good as its marketing.
           </PullStatement>
         </Reveal>
       </div>
