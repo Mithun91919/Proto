@@ -168,11 +168,11 @@ export const projects: Project[] = [
     summary:
       "The platform could surface dozens of library signals. The design work was deciding which an engineer needed and which an engineer manager needed, and what each does next: status, diagnosis, and a guided move onto the Unified BOM.",
     outcome:
-      "5K+ repositories migrated · 40% fewer library issues during releases · 80% increase in product health",
+      "3 days to ~2 hrs to migrate a team · 40% fewer library issues during releases · 80% increase in product health",
     metrics: [
       {
-        value: "5K+",
-        label: "repositories migrated to the Unified BOM",
+        value: "~2 hrs",
+        label: "for a team to migrate its libraries, from 3 days",
       },
       {
         value: "40%",

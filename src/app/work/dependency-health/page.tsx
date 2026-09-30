@@ -464,7 +464,8 @@ export default function DependencyHealthPage() {
           <CaseStudyFigure>
             <ProofStrip
               items={[
-                { value: "40%", label: "fewer library issues during releases", glyph: "drop" },
+                { from: "3 days", value: "~2 hrs", label: "for a team to migrate its libraries", glyph: "ring" },
+                { value: "40%", label: "fewer library issues during releases", glyph: "bars" },
                 { value: "80%", label: "increase in product health", glyph: "ramp" },
               ]}
             />
