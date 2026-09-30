@@ -1,6 +1,6 @@
 "use client";
 
-import { useId, useState, type CSSProperties, type KeyboardEvent } from "react";
+import { useEffect, useId, useRef, useState, type CSSProperties, type KeyboardEvent } from "react";
 import { ArtboardFigure } from "./ArtboardFigure";
 import { BrowserMockup } from "./BrowserMockup";
 import { CompactNumeral } from "./CompactNumeral";
@@ -118,12 +118,48 @@ export function ArtboardCarousel({
   imageSide = "right",
 }: ArtboardCarouselProps) {
   const [active, setActive] = useState(0);
+  // Which way the reader is moving, so the incoming slide enters from that
+  // side rather than always rising in place. Read by the CSS as `--dir`.
+  const [dir, setDir] = useState<1 | -1>(1);
   const baseId = useId();
+
+  // The entrance has to play when the reader gets here, not at page load
+  // while the carousel is still below the fold. `pending` holds the first
+  // slide back (CSS), `ready` lets it play. Server markup carries neither, so
+  // without script the content is simply there.
+  const rootRef = useRef<HTMLDivElement>(null);
+  const [motion, setMotion] = useState<"idle" | "pending" | "ready">("idle");
+  useEffect(() => {
+    const el = rootRef.current;
+    if (!el || typeof IntersectionObserver === "undefined") {
+      setMotion("ready");
+      return;
+    }
+    setMotion("pending");
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setMotion("ready");
+          observer.disconnect();
+        }
+      },
+      { threshold: 0.2 },
+    );
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, []);
 
   if (slides.length === 0) return null;
   const current = slides[active];
 
+  const go = (index: number) => {
+    if (index === active) return;
+    setDir(index > active ? 1 : -1);
+    setActive(index);
+  };
+
   const step = (delta: number) => {
+    setDir(delta > 0 ? 1 : -1);
     setActive((i) => (i + delta + slides.length) % slides.length);
   };
 
@@ -149,7 +185,7 @@ export function ArtboardCarousel({
           aria-selected={i === active}
           tabIndex={i === active ? 0 : -1}
           className={`ds-artboard-dot${i === active ? " is-active" : ""}`}
-          onClick={() => setActive(i)}
+          onClick={() => go(i)}
         >
           <span className="sr-only">{`${i + 1} of ${slides.length}: ${slide.title ?? slide.caption}`}</span>
         </button>
@@ -172,7 +208,7 @@ export function ArtboardCarousel({
       role="tabpanel"
       id={`${baseId}-panel-${active}`}
       aria-labelledby={`${baseId}-tab-${active}`}
-      className="ds-artboard-fade"
+      className="ds-artboard-enter"
     >
       {scrollable ? (
         <BrowserMockup
@@ -201,7 +237,15 @@ export function ArtboardCarousel({
 
   if (layout === "split") {
     return (
-      <div className="ds-artboard-carousel" role="group" aria-roledescription="carousel" aria-label={label}>
+      <div
+        className="ds-artboard-carousel"
+        role="group"
+        aria-roledescription="carousel"
+        aria-label={label}
+        ref={rootRef}
+        data-motion={motion}
+        style={{ "--dir": dir } as CSSProperties}
+      >
         {eyebrow || title || description ? (
           <div className="ds-artboard-static-head">
             {eyebrow ? <p className="eyebrow">{eyebrow}</p> : null}
@@ -223,10 +267,10 @@ export function ArtboardCarousel({
         ) : null}
         <div
           className={`ds-cs-split ds-artboard-split${imageSide === "left" ? " is-reversed" : ""}`}
-          style={{ "--split-copy": "15rem" } as CSSProperties}
+          style={{ "--split-copy": "18rem" } as CSSProperties}
         >
           <div className="ds-artboard-split-text">
-            <div key={active} className="ds-artboard-fade">
+            <div key={active} className="ds-artboard-text">
               <span className="ds-artboard-split-numeral">
                 <CompactNumeral value={String(active + 1)} />
               </span>
@@ -250,7 +294,15 @@ export function ArtboardCarousel({
   }
 
   return (
-    <div className="ds-artboard-carousel" role="group" aria-roledescription="carousel" aria-label={label}>
+    <div
+        className="ds-artboard-carousel"
+        role="group"
+        aria-roledescription="carousel"
+        aria-label={label}
+        ref={rootRef}
+        data-motion={motion}
+        style={{ "--dir": dir } as CSSProperties}
+      >
       <div className="ds-artboard-head">
         <div className="ds-artboard-head-row">
           {current.title ? (

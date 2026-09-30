@@ -2695,6 +2695,75 @@ a:hover .ds-compact-mark .ds-dot {
   }
 }
 
+/* Paging, as one movement rather than three separate fades.
+   The artboard enters from the side the reader is moving towards (`--dir`
+   is 1 going forward, -1 back, set by the carousel) and settles with a long
+   ease-out, so the slide reads as the next one in a row rather than the same
+   one replaced. The copy beside it follows in three beats — mark, title,
+   description — a beat apart, then the hotspot markers land last, after the
+   artboard has stopped moving, so nothing points at a screen that is still
+   travelling. Opacity and transform only: nothing here reflows the row. */
+@keyframes ds-artboard-slide-in {
+  from {
+    opacity: 0;
+    transform: translateX(calc(var(--dir, 1) * 28px)) scale(0.985);
+  }
+}
+
+@keyframes ds-artboard-rise-in {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+}
+
+@keyframes ds-hotspot-land {
+  from {
+    opacity: 0;
+    transform: scale(0.55);
+  }
+}
+
+.ds-artboard-enter {
+  animation: ds-artboard-slide-in 460ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.ds-artboard-text > * {
+  animation: ds-artboard-rise-in 380ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.ds-artboard-text > :nth-child(2) {
+  animation-delay: 70ms;
+}
+
+.ds-artboard-text > :nth-child(3) {
+  animation-delay: 140ms;
+}
+
+.ds-artboard-enter .ds-hotspot {
+  transform-origin: 0 0;
+  animation: ds-hotspot-land 320ms cubic-bezier(0.34, 1.4, 0.64, 1) both;
+  animation-delay: calc(420ms + var(--i, 0) * 90ms);
+}
+
+/* Held back until the carousel is on screen (`data-motion` is set by the
+   component), then released — so the first slide plays its entrance where the
+   reader can see it, not at page load. Only when motion is allowed. */
+@media (prefers-reduced-motion: no-preference) {
+  .ds-artboard-carousel[data-motion="pending"] :is(.ds-artboard-enter, .ds-artboard-text > *, .ds-hotspot) {
+    opacity: 0;
+    animation: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ds-artboard-enter,
+  .ds-artboard-text > *,
+  .ds-artboard-enter .ds-hotspot {
+    animation: none;
+  }
+}
+
 /* `layout="split"` — EXPERIMENTAL, trialled on /components only. A fixed
    title and description for the whole set, unchanging as the reader pages
    through, then the artboard beside a narrower column carrying the
@@ -2713,11 +2782,10 @@ a:hover .ds-compact-mark .ds-dot {
 
 /* The per-slide title/desc share `.ds-artboard-title`/`.ds-artboard-desc`
    with the `stacked` header above, sized for a full-width header there.
-   Narrowed to the `--split-copy` column here, the same size wrapped hard
-   — smaller undercuts the static title above it and gives the artboard a
-   little more of the row back, which is the column this layout can most
-   afford to give up: unlike the artboard, this text has nowhere else to
-   put its width but wrap. */
+   Narrowed to the `--split-copy` column here, but sized up from the
+   header's: at the earlier, smaller size the copy read as a footnote
+   beside the artboard. The column is widened to match so it wraps no
+   harder than before. */
 .ds-artboard-split-text {
   padding-top: 0.25rem;
 }
@@ -2731,12 +2799,12 @@ a:hover .ds-compact-mark .ds-dot {
 }
 
 .ds-artboard-split-text .ds-artboard-title {
-  font-size: 0.92rem;
+  font-size: 1.15rem;
 }
 
 .ds-artboard-split-text .ds-artboard-desc {
-  font-size: 0.8rem;
-  line-height: 1.55;
+  font-size: 1rem;
+  line-height: 1.6;
 }
 
 /* Several artboards in one slot, paged by dots rather than scrolled. One
