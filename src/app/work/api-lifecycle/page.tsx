@@ -132,7 +132,7 @@ export default function ApiLifecyclePage() {
             </>
           ),
           detail:
-            "I shaped the product model, moved it from an initial three-stream concept to a single platform with the controls integrated, then ran the weekly sessions that got teams onto it after a launch almost nobody turned up to \u2014 over a hundred of them, and the product grew from my first year on it to my fourth.",
+            "I shaped the product model as a single platform with the controls integrated, then ran the weekly sessions that got teams onto it after a launch almost nobody turned up to \u2014 over a hundred of them, and the product grew from my first year on it to my fourth.",
         },
       ]}
       chapters={CHAPTERS}
@@ -207,11 +207,9 @@ export default function ApiLifecyclePage() {
       </div>
 
       <CaseStudyColumn>
-        {/* The map first: the stages, and the single claim that used to be
-            its own `one-platform` chapter. Separated, that chapter spent two
-            of three paragraphs on a concept that never shipped; here the
-            three streams are one clause of the decision behind the map.
-            The home screen follows, then the routes it offers, in order. */}
+        {/* The map first: the stages, and the single claim that the platform
+            is one place with the controls inside the work. The home screen
+            follows, then the routes it offers, in order. */}
         <CaseStudySection id="lifecycle" boundary={false} className="pt-14 md:pt-20">
           <CaseStudyChapter
             layout="stacked"
@@ -220,7 +218,6 @@ export default function ApiLifecyclePage() {
             body={[
               "An API moves through discovery, contract design, validation, testing, publishing, subscription, governance, and eventually change or deprecation.",
               "API Hub carries all of it. Home, My APIs, Testing, Subscriptions and Settings \u2014 areas of a product rather than products, with governance belonging to each area instead of waiting as a gate at the end of them.",
-              "That was a decision, not a default. The initial concept split the work into three streams \u2014 a marketplace, a studio, a tester \u2014 and I moved the product away from it: three streams of our own would have reproduced the shape we had been asked to fix.",
             ]}
           />
           <CaseStudyFigure rule label="Every stage the platform carries">

@@ -116,7 +116,7 @@ export const projects: Project[] = [
       "API Lifecycle Platform: one place to discover, design, test, and govern APIs.",
     internalName: "API Lifecycle Manager",
     summary:
-      "API work ran on tools outside the company, with no governed way of working across them. I helped define and design a single platform carrying the whole lifecycle with the controls integrated, moving it from an initial three-stream concept to one place.",
+      "API work ran on tools outside the company, with no governed way of working across them. I helped define and design a single platform carrying the whole lifecycle with the controls integrated.",
     outcome:
       "15K+ APIs onboarded · 10K+ monthly users · ~40% faster contract design in the redesigned Studio",
     metrics: [
