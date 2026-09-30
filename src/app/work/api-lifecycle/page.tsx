@@ -649,7 +649,7 @@ export default function ApiLifecyclePage() {
       <div className="mt-16 md:mt-20">
         <Reveal>
           <PullStatement eyebrow="What I believe now" mark="exchange">
-            A platform is adopted when someone shows teams what it does, not when it ships.
+            A product is not finished when it ships. It is finished when people use it.
           </PullStatement>
         </Reveal>
       </div>
