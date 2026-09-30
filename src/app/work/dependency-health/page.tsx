@@ -464,7 +464,6 @@ export default function DependencyHealthPage() {
           <CaseStudyFigure>
             <ProofStrip
               items={[
-                { value: "5K+", label: "repositories migrated to the Unified BOM", glyph: "ring" },
                 { value: "40%", label: "fewer library issues during releases", glyph: "drop" },
                 { value: "80%", label: "increase in product health", glyph: "ramp" },
               ]}
