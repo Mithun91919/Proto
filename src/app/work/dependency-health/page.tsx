@@ -53,7 +53,7 @@ const ARCHETYPES: Archetype[] = [
   {
     name: "Engineer",
     side: "Fixes it",
-    behaviour: "Works in the repository: sees the library debt it carries, and raises the pull requests that clear it.",
+    behaviour: "Works in the repository: sees which libraries are outdated, and raises the pull requests that clear them.",
     wants: [
       "See what their repository owes, and how far behind it is.",
       "Raise a pull request to fix it, and follow it through.",
@@ -66,9 +66,9 @@ const ARCHETYPES: Archetype[] = [
   {
     name: "Engineer manager",
     side: "Answers for it",
-    behaviour: "Reads across teams: where the library debt is, and which teams are furthest behind.",
+    behaviour: "Reads across teams: where the outdated libraries are, and which teams are furthest behind.",
     wants: [
-      "A bird’s-eye view of library debt across their teams.",
+      "A bird’s-eye view of outdated libraries across their teams.",
       "See which teams need attention, and how remediation is moving.",
     ],
     friction: [
@@ -226,8 +226,8 @@ export default function DependencyHealthPage() {
             eyebrow="The idea"
             heading="One team builds the Unified BOM. Every other team onboards to it."
             body={[
-              "To shift that check left, the team proposed a Unified BOM, short for bill of materials: one package of approved library versions, Java and Spring Boot included, that one team builds and every other team onboards to.",
-              "Until a team migrates, its Java and Spring Boot packages stay supported on their own, and some legacy systems keep running on older versions.",
+              "To shift that check left, the team proposed a Unified BOM, short for bill of materials: one package of approved library versions that one team builds and every other team onboards to.",
+              "Java and Spring Boot are in the package too. Until a team migrates, their packages stay supported on their own, and some legacy systems keep running on older versions.",
               "The platform team built the scanning and pre-commit checks behind it. I designed the dashboard that monitors it and the remediation flow that helps engineers raise and manage pull requests.",
             ]}
           />
@@ -252,7 +252,7 @@ export default function DependencyHealthPage() {
         <CaseStudySection id="who">
           <ArchetypeSection
             heading="The same libraries. Two very different jobs."
-            intro="An engineer fixes the libraries in a repository. An engineer manager answers for the debt across their teams."
+            intro="An engineer fixes the libraries in a repository. An engineer manager answers for the outdated libraries across their teams."
             archetypes={ARCHETYPES}
             basisLabel="12+ teams spoken to"
             basis="We spoke to them to understand how they find and fix library problems today."
@@ -277,8 +277,8 @@ export default function DependencyHealthPage() {
               eyebrow="The engineer manager"
               title="A bird’s-eye view that drills down to the service"
               description={[
-                "Library debt used to surface when a release was already close. The dashboard shows it ahead of time, from the organisation down to a single product.",
-                "Three levels share one set of measures. The organisation view shows debt by division, the pillar view by team, and the product view by service, so an engineer manager can see where to look and go there.",
+                "Outdated libraries used to surface when a release was already close. The dashboard shows it ahead of time, from the organisation down to a single product.",
+                "Three levels share one set of measures. The organisation view shows outdated libraries by division, the pillar view by team, and the product view by service, so an engineer manager can see where to look and go there.",
                 "Each level opens with one sentence on what the numbers add up to, then the detail behind it.",
               ]}
               scrollable
@@ -286,7 +286,7 @@ export default function DependencyHealthPage() {
               label="The engineer manager’s view"
               slides={[
                 {
-                  title: "The organisation: which divisions carry the debt?",
+                  title: "The organisation: which divisions have the most outdated libraries?",
                   route: "/stacklift/organisations",
                   src: "/work/dependency-health/organisation.png",
                   width: 2880,
