@@ -235,7 +235,7 @@ function EvidenceCard() {
       <div
         className="px-8 py-7 md:px-12 md:py-8"
         style={{
-          background: "color-mix(in oklab, var(--ds-accent) 7%, var(--paper))",
+          background: "color-mix(in oklab, var(--ds-accent) 3%, var(--paper))",
           borderTop: "1px solid var(--ds-solid-border)",
         }}
       >

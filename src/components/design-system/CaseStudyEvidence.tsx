@@ -107,7 +107,7 @@ export function CaseStudyEvidence({ slug, beats, metrics, metricsLabel, caveat }
               // is the card, and a tint would read as a stray band.
               hasBeats
                 ? {
-                    background: "color-mix(in oklab, var(--ds-accent) 7%, var(--paper))",
+                    background: "color-mix(in oklab, var(--ds-accent) 3%, var(--paper))",
                     borderTop: "1px solid var(--ds-solid-border)",
                   }
                 : undefined
