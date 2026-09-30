@@ -84,7 +84,6 @@ const CHAPTERS = [
   { id: "manager", label: "Engineer manager" },
   { id: "engineer", label: "Engineer" },
   { id: "catalogue", label: "The Unified BOM" },
-  { id: "tokens", label: "Tokens" },
   { id: "evidence", label: "Evidence" },
 ];
 
@@ -447,30 +446,6 @@ export default function DependencyHealthPage() {
                 { x: 85.6, y: 24.2, title: "How far adoption has got", detail: "Repositories and artifacts not yet onboarded, each as a count, a share and a bar." },
                 { x: 55, y: 54.2, title: "Every managed dependency", detail: "Group, artifact and version for the selected release, searchable by any of the three." },
               ]}
-            />
-          </CaseStudyFigure>
-        </CaseStudySection>
-
-        <CaseStudySection id="tokens">
-          <CaseStudyChapter
-            layout="stacked"
-            eyebrow="After launch"
-            heading="We could not land on one colour tone, so users choose"
-            body={[
-              "After launch, developers wanted the dashboard’s states shown in different colours, and no single tone worked for everyone.",
-              "Instead of picking a winner, we moved the product to semantic design tokens and theme-level control. A state means the same thing in every theme, and each user picks the theme they prefer.",
-            ]}
-          />
-          <CaseStudyFigure rule label="Where the decision moved to">
-            <BeforeAfterModel
-              before={{
-                heading: "One colour tone for everyone",
-                body: "Colours hard-coded into individual components, with no agreement on which tone to ship.",
-              }}
-              after={{
-                heading: "A theme each user picks",
-                body: "Semantic tokens and theme-level control: the meaning stays the same while the colours change.",
-              }}
             />
           </CaseStudyFigure>
         </CaseStudySection>
