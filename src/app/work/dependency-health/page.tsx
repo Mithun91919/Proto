@@ -203,7 +203,6 @@ export default function DependencyHealthPage() {
             heading="Checking for outdated libraries kept getting left to the last moment"
             body={[
               "Keeping libraries current is a task that runs alongside every release. A library is code a team depends on but did not write, and it falls behind each time a newer approved version ships.",
-              "The libraries do not wait for each other. Java and Spring Boot each ship on a six-month rhythm, and Node.js has too, so there is always something new to check.",
               "More often than not the check was flagged at the last moment: during a migration, a breakage or security work, close to a release, with little time to absorb it.",
               "The aim was to shift that check left: find and fix library issues early, get teams onto the Unified BOM faster, and raise code quality and developer productivity as a result.",
             ]}
