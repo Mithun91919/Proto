@@ -474,6 +474,84 @@
   box-shadow: 0 0 0 4px color-mix(in oklab, var(--ds-accent) 20%, transparent);
 }
 
+/* ── Release cycles (S6) ─────────────────────────────────────────────────
+   One run of dots per row, repeated per cycle: small dots are the cycle, the
+   ring is the release, the filled dot is where the check is flagged. Only
+   that dot changes position between rows. */
+.ds-cycles {
+  display: grid;
+  gap: 2rem;
+}
+
+.ds-cycles-row {
+  display: grid;
+  grid-template-columns: minmax(11rem, 15rem) minmax(0, 1fr);
+  gap: 2rem;
+  align-items: center;
+}
+
+.ds-cycles-copy .ds-note {
+  max-width: 28ch;
+}
+
+.ds-cycles-track {
+  display: flex;
+  align-items: center;
+  gap: 1.75rem;
+}
+
+.ds-cycles-group {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.ds-cycles-legend {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.6rem 0.5rem;
+  margin: 1.75rem 0 0;
+  padding-top: 1.1rem;
+  border-top: 1px solid color-mix(in oklab, var(--ds-solid-border) 70%, transparent);
+  font-family: var(--font-mono), monospace;
+  font-size: 0.62rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.ds-cycles-key {
+  display: inline-block;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  margin-left: 1.1rem;
+}
+
+.ds-cycles-legend .ds-cycles-key:first-child {
+  margin-left: 0;
+}
+
+.ds-cycles-key-release {
+  box-shadow: inset 0 0 0 2px var(--ink-soft);
+}
+
+.ds-cycles-key-flag {
+  background: var(--ds-accent);
+}
+
+.ds-cycles-key-flag-late {
+  background: var(--ink-soft);
+}
+
+@media (max-width: 720px) {
+  .ds-cycles-row {
+    grid-template-columns: 1fr;
+    gap: 0.9rem;
+  }
+}
+
 /* ── Media frame (S3) ────────────────────────────────────────────────── */
 
 .ds-frame {

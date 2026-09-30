@@ -4,6 +4,7 @@ import { Reveal } from "@/components/Reveal";
 import { ArtboardCarousel } from "@/components/design-system/ArtboardCarousel";
 import { BeforeAfterModel } from "@/components/design-system/BeforeAfterModel";
 import { ClipFigure } from "@/components/design-system/ClipFigure";
+import { ReleaseCycles } from "@/components/design-system/ReleaseCycles";
 import { ArchetypeSection } from "@/components/design-system/ArchetypeSection";
 import type { Archetype } from "@/components/design-system/ArchetypeFigure";
 import { ProofStrip } from "@/components/design-system/ProofStrip";
@@ -207,6 +208,26 @@ export default function DependencyHealthPage() {
               "The aim was to shift that check left: find and fix library issues early, get teams onto the Unified BOM faster, and raise code quality and developer productivity as a result.",
             ]}
           />
+          <CaseStudyFigure rule label="Where the check lands in a release cycle">
+            <ReleaseCycles
+              label="Three release cycles twice over. In the first, the check is flagged just before each release. In the second, it is flagged early in each cycle."
+              rows={[
+                {
+                  label: "Flagged at the last moment",
+                  note: "Just before the release, with little time left to fix it.",
+                  flagAt: 5,
+                  tone: "muted",
+                },
+                {
+                  label: "Flagged early",
+                  note: "Near the start of the cycle, with the whole cycle to fix it.",
+                  flagAt: 1,
+                  tone: "accent",
+                },
+              ]}
+            />
+            <p className="ds-note mt-3">A diagram of position in a cycle, not a measurement.</p>
+          </CaseStudyFigure>
         </CaseStudySection>
 
         <CaseStudySection id="solution">
@@ -215,9 +236,9 @@ export default function DependencyHealthPage() {
             eyebrow="The idea"
             heading="One team builds the Unified BOM. Every other team onboards to it."
             body={[
-              "The team proposed a Unified BOM, short for bill of materials: one package of approved library versions that a team creates and others onboard to, instead of every team checking and updating libraries one at a time.",
-              "It covers every individual library a repository depends on, and the bigger dependencies too: Java and Spring Boot sit in the package as well. Until a team migrates, its Java and Spring Boot packages stay supported on their own, and some legacy systems had to keep running on older versions.",
-              "Underneath, the platform scans repositories for library issues and checks for problems before code is integrated. The platform team built that. I designed the dashboard that monitors it, with what an engineer sees in a repository and what an engineer manager sees across their teams, and the remediation flow that helps engineers raise pull requests and manage them.",
+              "The team proposed a Unified BOM, short for bill of materials: one package of approved library versions, Java and Spring Boot included, that one team builds and every other team onboards to.",
+              "Until a team migrates, its Java and Spring Boot packages stay supported on their own, and some legacy systems keep running on older versions.",
+              "The platform team built the scanning and pre-commit checks behind it. I designed the dashboard that monitors it and the remediation flow that helps engineers raise and manage pull requests.",
             ]}
           />
           <CaseStudyFigure rule label="How a team gets onto the Unified BOM">
