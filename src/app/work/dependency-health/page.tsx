@@ -78,7 +78,6 @@ const ARCHETYPES: Archetype[] = [
 
 const CHAPTERS = [
   { id: "outdated", label: "Outdated libraries" },
-  { id: "goals", label: "The goals" },
   { id: "solution", label: "The idea" },
   { id: "who", label: "Who it is for" },
   { id: "problem", label: "The problem" },
@@ -206,19 +205,7 @@ export default function DependencyHealthPage() {
               "Keeping libraries current is a task that runs alongside every release. A library is code a team depends on but did not write, and it falls behind each time a newer approved version ships.",
               "The libraries do not wait for each other. Java and Spring Boot each ship on a six-month rhythm, and Node.js has too, so there is always something new to check.",
               "More often than not the check was flagged at the last moment: during a migration, a breakage or security work, close to a release, with little time to absorb it.",
-            ]}
-          />
-        </CaseStudySection>
-
-        <CaseStudySection id="goals">
-          <CaseStudyChapter
-            layout="stacked"
-            eyebrow="The goals"
-            heading="The aim was to find library problems before they became rework"
-            body={[
-              "Shift left: find and fix library issues early, so fewer bugs are fixed late.",
-              "Adopt the Unified BOM faster: one standard package of library versions across teams means less to maintain.",
-              "Raise code quality and developer productivity as a result.",
+              "The aim was to shift that check left: find and fix library issues early, get teams onto the Unified BOM faster, and raise code quality and developer productivity as a result.",
             ]}
           />
         </CaseStudySection>
