@@ -351,6 +351,20 @@ export default function DependencyHealthPage() {
               label="The engineer’s path"
               slides={[
                 {
+                  title: "My products: start from what you own",
+                  route: "/stacklift/home",
+                  src: "/work/dependency-health/my-products.png",
+                  width: 2880,
+                  height: 2070,
+                  alt: "My Products: the same measures and version distribution for the Unified BOM, Java and Spring Boot, filtered to the products an engineer owns",
+                  caption: "An engineer starts from their own products: the same measures as everyone else’s view, filtered to what they own.",
+                  hotspots: [
+                    { x: 63.6, y: 13.5, title: "Only my products", detail: "One switch narrows the view from everything to what this engineer owns." },
+                    { x: 70.2, y: 31.7, title: "The same versions, for their products", detail: "The Unified BOM, Java and Spring Boot distributions, scoped to the products they own." },
+                    { x: 25, y: 62.4, title: "Their products, listed", detail: "Each product against the same measures, with a filter for the ones that need attention." },
+                  ],
+                },
+                {
                   title: "Production: the same view, for artifacts",
                   route: "/stacklift/products/orion",
                   src: "/work/dependency-health/production.png",
@@ -431,7 +445,7 @@ export default function DependencyHealthPage() {
               scrollable
               maxHeight="34rem"
               hotspots={[
-                { x: 25.2, y: 20.3, title: "The current version, named", detail: "The latest version of the BOM sits beside its title." },
+                { x: 26.7, y: 20.3, title: "The current version, named", detail: "The latest version of the BOM sits beside its title." },
                 { x: 85.6, y: 24.2, title: "How far adoption has got", detail: "Repositories and artifacts not yet onboarded, each as a count, a share and a bar." },
                 { x: 55, y: 54.2, title: "Every managed dependency", detail: "Group, artifact and version for the selected release, searchable by any of the three." },
               ]}
