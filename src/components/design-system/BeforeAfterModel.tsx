@@ -30,22 +30,36 @@ type BeforeAfterModelProps = {
   after: StateCard;
 };
 
+/**
+ * The top of a card: the glyph and, when there is one, the figure, on one row
+ * so the mark and the number it belongs to read as a single unit rather than
+ * two stacked lines. With only a glyph it sits alone, as it always did.
+ */
+function CardLead({ card, muted = false }: { card: StateCard; muted?: boolean }) {
+  if (!card.glyph && !card.figure) return null;
+  return (
+    <div className="mb-5 flex items-center gap-5">
+      {card.glyph ? <MetricGlyph name={card.glyph} size={5} gap={3} /> : null}
+      {card.figure ? (
+        <p className="ds-stat-row" style={{ margin: 0 }}>
+          <span className="ds-stat-figure" style={muted ? { color: "var(--ink-soft)" } : undefined}>
+            {card.figure.value}
+          </span>
+          <span className="ds-stat-label" style={muted ? { color: "var(--muted)" } : undefined}>
+            {card.figure.label}
+          </span>
+        </p>
+      ) : null}
+    </div>
+  );
+}
+
 /** E2 · Before / after model — compares mental models or system structure, not just screenshots. */
 export function BeforeAfterModel({ before, after }: BeforeAfterModelProps) {
   return (
     <div className="grid grid-cols-1 items-stretch gap-5 md:grid-cols-[1fr_auto_1fr]">
       <GlassPanel variant="soft" className="rounded-2xl p-7">
-        {before.glyph ? (
-          <div className="mb-5">
-            <MetricGlyph name={before.glyph} size={5} gap={3} />
-          </div>
-        ) : null}
-        {before.figure ? (
-          <p className="ds-stat-row" style={{ marginBottom: "0.9rem" }}>
-            <span className="ds-stat-figure" style={{ color: "var(--ink-soft)" }}>{before.figure.value}</span>
-            <span className="ds-stat-label" style={{ color: "var(--muted)" }}>{before.figure.label}</span>
-          </p>
-        ) : null}
+        <CardLead card={before} muted />
         <p className="ds-eyebrow" style={{ color: "var(--muted)" }}>
           Before
         </p>
@@ -69,17 +83,7 @@ export function BeforeAfterModel({ before, after }: BeforeAfterModelProps) {
       <span className="ds-arrow self-center hidden md:block">→</span>
 
       <GlassPanel className="rounded-2xl p-7">
-        {after.glyph ? (
-          <div className="mb-5">
-            <MetricGlyph name={after.glyph} size={5} gap={3} />
-          </div>
-        ) : null}
-        {after.figure ? (
-          <p className="ds-stat-row" style={{ marginBottom: "0.9rem" }}>
-            <span className="ds-stat-figure">{after.figure.value}</span>
-            <span className="ds-stat-label">{after.figure.label}</span>
-          </p>
-        ) : null}
+        <CardLead card={after} />
         <p className="ds-eyebrow" style={{ color: "var(--ds-accent-deep)" }}>
           After
         </p>
