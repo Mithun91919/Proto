@@ -1,5 +1,6 @@
 import Image from "next/image";
 import type { CSSProperties, ReactNode } from "react";
+import { AnnotationToggle } from "./AnnotationToggle";
 import { ImageHotspots, type Hotspot } from "./ImageHotspots";
 import { ScrollFrame } from "./ScrollFrame";
 
@@ -94,6 +95,7 @@ export function BrowserMockup({
           >
             {route}
           </span>
+          {hotspots?.length ? <AnnotationToggle variant="frame" /> : null}
         </div>
 
         <div className="ds-framebody relative">

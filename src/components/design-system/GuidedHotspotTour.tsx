@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import Image from "next/image";
+import { AnnotationToggle, useAnnotationsVisible } from "./AnnotationToggle";
 import { PagingArrows } from "./PagingArrows";
 
 export type TourStop = {
@@ -30,6 +31,7 @@ type GuidedHotspotTourProps = {
  */
 export function GuidedHotspotTour({ src, width, height, alt, stops, label }: GuidedHotspotTourProps) {
   const [active, setActive] = useState(0);
+  const markersShown = useAnnotationsVisible();
   const stop = stops[active];
   const stepBy = (delta: number) => setActive((a) => (a + delta + stops.length) % stops.length);
 
@@ -38,7 +40,7 @@ export function GuidedHotspotTour({ src, width, height, alt, stops, label }: Gui
       <div className="ds-frame">
         <div className="ds-framebody relative">
           <Image src={src} width={width} height={height} alt={alt} sizes="(max-width: 900px) 100vw, 900px" className="block h-auto w-full" />
-          {stops.map((s, i) => (
+          {markersShown && stops.map((s, i) => (
             <button
               key={s.title}
               type="button"
@@ -51,6 +53,7 @@ export function GuidedHotspotTour({ src, width, height, alt, stops, label }: Gui
               {i + 1}
             </button>
           ))}
+          <AnnotationToggle variant="corner" />
         </div>
       </div>
 

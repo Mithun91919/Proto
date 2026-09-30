@@ -1780,6 +1780,37 @@ export default function ComponentsPage() {
           </div>
         </div>
 
+        <div className="ds-rule py-11">
+          <SubLabel code="M4b · Callouts switch" />
+          <p className="mb-7 max-w-[68ch] text-[0.95rem] leading-7" style={{ color: "var(--ink-soft)" }}>
+            Any figure that lays numbered markers over a screen carries a switch to take them off, so the
+            interface can be read as it shipped. It is part of the component, not something a page adds:{" "}
+            <code className="font-mono text-[0.85em]">BrowserMockup</code> puts it in the title bar,{" "}
+            <code className="font-mono text-[0.85em]">ArtboardFigure</code> in the corner, and it comes with
+            <code className="font-mono text-[0.85em]"> ArtboardCarousel</code> and{" "}
+            <code className="font-mono text-[0.85em]">GuidedHotspotTour</code> because they are built on
+            those. One preference for the whole site: turn it off here and it is off on every slide and every
+            other annotated figure, and it is remembered. It only appears where markers exist, and
+            <code className="font-mono text-[0.85em]"> BrowserFlow</code>&apos;s hotspots stay, because those
+            are its controls, not annotations.
+          </p>
+          <div className="max-w-[46rem]">
+            <BrowserMockup
+              route="/api-hub/my-apis"
+              src="/work/api-lifecycle/my-apis.png"
+              width={2890}
+              height={2712}
+              alt="My APIs: a searchable registry of services with status, tags and consumer counts"
+              scrollable
+              maxHeight="24rem"
+              hotspots={[
+                { x: 90.7, y: 7.9, title: "Two ways in", detail: "Register New API or Import API, side by side at the top." },
+                { x: 88, y: 30.3, title: "Status on every row", detail: "Published, Deprecated or Retired, readable without opening the service." },
+              ]}
+            />
+          </div>
+        </div>
+
         <div className="py-11">
           <SubLabel code="M5 · Browser flow" />
           <p className="mb-7 max-w-[68ch] text-[0.95rem] leading-7" style={{ color: "var(--ink-soft)" }}>

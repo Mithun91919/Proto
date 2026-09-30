@@ -2,6 +2,7 @@
 
 import type { CSSProperties } from "react";
 import { useId, useState } from "react";
+import { useAnnotationsVisible } from "./AnnotationToggle";
 
 export type Hotspot = {
   /** Position over the image, in % of its width / height. */
@@ -42,7 +43,10 @@ export function ImageHotspots({ hotspots }: { hotspots: Hotspot[] }) {
   const [hovered, setHovered] = useState<number | null>(null);
   const [pinned, setPinned] = useState<number | null>(null);
   const baseId = useId();
+  const shown = useAnnotationsVisible();
   const open = pinned ?? hovered;
+
+  if (!shown) return null;
 
   return (
     <div className={`ds-hotspots${open !== null ? " has-open" : ""}`}>

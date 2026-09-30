@@ -1,5 +1,6 @@
 import type React from "react";
 import Image from "next/image";
+import { AnnotationToggle } from "./AnnotationToggle";
 import { ImageHotspots, type Hotspot } from "./ImageHotspots";
 
 type ArtboardFigureProps = {
@@ -84,6 +85,7 @@ export function ArtboardFigure({
           className="ds-artboard-img"
         />
         {hotspots?.length ? <ImageHotspots hotspots={hotspots} /> : null}
+        {hotspots?.length ? <AnnotationToggle variant="corner" /> : null}
       </div>
       {caption ? <figcaption className="ds-media-caption">{caption}</figcaption> : null}
     </figure>

@@ -527,6 +527,79 @@
   overflow: hidden;
 }
 
+/* ── Callouts switch ─────────────────────────────────────────────────────
+   Takes every hotspot marker off the screen so the interface can be read
+   as it shipped. One preference for the whole site (see AnnotationToggle).
+   State is the thumb's position and the track's fill, not colour alone. */
+.ds-annotation-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex-shrink: 0;
+  padding: 0.2rem 0.3rem 0.2rem 0.6rem;
+  border: 1px solid var(--ds-solid-border);
+  border-radius: 999px;
+  background: var(--ds-solid-bg);
+  color: var(--ink);
+  font-family: var(--font-mono), ui-monospace, monospace;
+  font-size: 0.6rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+.ds-annotation-toggle-corner {
+  position: absolute;
+  top: 0.75rem;
+  right: 0.75rem;
+  z-index: 4;
+  box-shadow: var(--ds-glass-soft-shadow);
+}
+
+.ds-annotation-toggle-track {
+  position: relative;
+  width: 1.6rem;
+  height: 0.9rem;
+  border-radius: 999px;
+  border: 1.5px solid var(--ds-dot-muted);
+  background: transparent;
+  transition: background 160ms ease, border-color 160ms ease;
+}
+
+.ds-annotation-toggle-thumb {
+  position: absolute;
+  top: 50%;
+  left: 0.1rem;
+  width: 0.5rem;
+  height: 0.5rem;
+  border-radius: 50%;
+  background: var(--ds-dot-muted);
+  transform: translateY(-50%);
+  transition: transform 160ms ease, background 160ms ease;
+}
+
+.ds-annotation-toggle[aria-checked="true"] .ds-annotation-toggle-track {
+  background: var(--ds-accent-deep);
+  border-color: var(--ds-accent-deep);
+}
+
+.ds-annotation-toggle[aria-checked="true"] .ds-annotation-toggle-thumb {
+  background: #fff;
+  transform: translate(0.7rem, -50%);
+}
+
+.ds-annotation-toggle:focus-visible {
+  outline: 2px solid var(--ds-accent-deep);
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ds-annotation-toggle-track,
+  .ds-annotation-toggle-thumb {
+    transition: none;
+  }
+}
+
 .ds-frame-scroll-hint {
   position: absolute;
   bottom: 10px;
