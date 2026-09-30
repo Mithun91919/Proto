@@ -79,9 +79,9 @@ const ARCHETYPES: Archetype[] = [
 const CHAPTERS = [
   { id: "outdated", label: "Outdated libraries" },
   { id: "goals", label: "The goals" },
+  { id: "solution", label: "The idea" },
   { id: "who", label: "Who it is for" },
   { id: "problem", label: "The problem" },
-  { id: "solution", label: "The idea" },
   { id: "decision-model", label: "Decision model" },
   { id: "guided", label: "Guided path" },
   { id: "scale", label: "Scale" },
@@ -223,6 +223,32 @@ export default function DependencyHealthPage() {
           />
         </CaseStudySection>
 
+        <CaseStudySection id="solution">
+          <CaseStudyChapter
+            layout="stacked"
+            eyebrow="The idea"
+            heading="One team builds the Unified BOM. Every other team onboards to it."
+            body={[
+              "The team proposed a Unified BOM, short for bill of materials: one package of approved library versions that a team creates and others onboard to, instead of every team checking and updating libraries one at a time.",
+              "It covers every individual library a repository depends on, and the bigger dependencies too: Java and Spring Boot sit in the package as well. Until a team migrates, its Java and Spring Boot packages stay supported on their own, and some legacy systems had to keep running on older versions.",
+              "Underneath, the platform scans repositories for library issues and checks for problems before code is integrated. The platform team built that. I designed the dashboard that monitors it, with what an engineer sees in a repository and what an engineer manager sees across their teams, and the remediation flow that helps engineers raise pull requests and manage them.",
+            ]}
+          />
+          <CaseStudyFigure rule label="How a team gets onto the Unified BOM">
+            <BeforeAfterModel
+              before={{
+                heading: "Upgrade each one by hand",
+                body: "Teams upgraded libraries one at a time, by hand.",
+              }}
+              after={{
+                glyph: "funnel",
+                heading: "One package, already checked",
+                body: "The Unified BOM is a single package covering the libraries and Java and Spring Boot, with security and governance checked, so a team onboards to it and tests it.",
+              }}
+            />
+          </CaseStudyFigure>
+        </CaseStudySection>
+
         {/* After the cost, before the problem: the reader knows what an
             outdated library is and what it costs, and needs to know who
             it costs before being shown a route through it. */}
@@ -305,33 +331,7 @@ export default function DependencyHealthPage() {
 
       <CaseStudyColumn>
 
-        <CaseStudySection id="solution" boundary={false} className="pt-16 md:pt-20">
-          <CaseStudyChapter
-            layout="stacked"
-            eyebrow="The idea"
-            heading="One team builds the Unified BOM. Every other team onboards to it."
-            body={[
-              "The team proposed a Unified BOM, short for bill of materials: one package of approved library versions that a team creates and others onboard to, instead of every team checking and updating libraries one at a time.",
-              "It covers every individual library a repository depends on, and the bigger dependencies too: Java and Spring Boot sit in the package as well. Until a team migrates, its Java and Spring Boot packages stay supported on their own, and some legacy systems had to keep running on older versions.",
-              "Underneath, the platform scans repositories for library issues and checks for problems before code is integrated. The platform team built that. I designed the dashboard that monitors it, with what an engineer sees in a repository and what an engineer manager sees across their teams, and the remediation flow that helps engineers raise pull requests and manage them.",
-            ]}
-          />
-          <CaseStudyFigure rule label="How a team gets onto the Unified BOM">
-            <BeforeAfterModel
-              before={{
-                heading: "Upgrade each one by hand",
-                body: "Teams upgraded libraries one at a time, by hand.",
-              }}
-              after={{
-                glyph: "funnel",
-                heading: "One package, already checked",
-                body: "The Unified BOM is a single package covering the libraries and Java and Spring Boot, with security and governance checked, so a team onboards to it and tests it.",
-              }}
-            />
-          </CaseStudyFigure>
-        </CaseStudySection>
-
-        <CaseStudySection id="decision-model">
+        <CaseStudySection id="decision-model" boundary={false} className="pt-16 md:pt-20">
           <Reveal>
             <ArtboardCarousel
               layout="split"
