@@ -653,7 +653,7 @@ export default function ApiLifecyclePage() {
             mark="exchange"
             note="Adoption stayed low for three months, until the brown-bag sessions showed teams what they were missing."
           >
-            A good product is only as good as its marketing.
+            Showing people what a product does can matter as much as building it.
           </PullStatement>
         </Reveal>
       </div>
