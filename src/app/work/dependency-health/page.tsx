@@ -82,11 +82,11 @@ export default function DependencyHealthPage() {
           label: "What I did",
           lead: (
             <>
-              I put leadership and execution on <span className="ds-accent-text">one platform</span>.
+              I designed a dashboard that <span className="ds-accent-text">ends in a pull request</span>.
             </>
           ),
           detail:
-            "I framed the product as Repository → Pillar → Organisation, so a leader and an engineer read the same model at their own level, and designed the self-service onboarding and remediation teams use to move onto the Unified BOM. The platform team built the scanning behind it.",
+            "I designed the dashboard that monitors library health at each level, from repository to organisation, and the remediation flow that helps engineers raise pull requests and manage them. The platform team built the scanning behind it.",
         },
       ]}
       chapters={CHAPTERS}
@@ -242,7 +242,7 @@ export default function DependencyHealthPage() {
             heading="One Unified BOM, migrated as a batch"
             body={[
               "The team proposed a Unified BOM, short for bill of materials: one package of approved library versions that a team moves onto together, instead of updating libraries one at a time. Until a team migrates, its Java and Spring Boot packages stay supported as individual packages, and some legacy systems had to keep running on older versions.",
-              "Underneath, the platform scans repositories for library issues and checks for problems before code is integrated. The platform team built that. I designed how it reaches people: what an engineer sees in their repository, what a leader sees across their teams, and the path from one to the other.",
+              "Underneath, the platform scans repositories for library issues and checks for problems before code is integrated. The platform team built that. I designed the dashboard that monitors it, with what an engineer sees in a repository and what a leader sees across their teams, and the remediation flow that helps engineers raise pull requests and manage them.",
             ]}
           />
           <CaseStudyFigure rule label="How a team gets onto the Unified BOM">
