@@ -648,7 +648,7 @@ export default function ApiLifecyclePage() {
 
       <div className="mt-16 md:mt-20">
         <Reveal>
-          <PullStatement eyebrow="What I believe now" mark="exchange">
+          <PullStatement eyebrow="What I believe now" mark="seam">
             A product is not finished when it ships. It is finished when people use it.
           </PullStatement>
         </Reveal>
