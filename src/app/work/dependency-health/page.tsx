@@ -77,7 +77,7 @@ export default function DependencyHealthPage() {
             </>
           ),
           detail:
-            "A Unified BOM: one package of approved library versions that teams migrate to as a batch, not one library at a time. Java and Spring Boot stay supported as individual packages until a team moves across.",
+            "A Unified BOM: one package of approved library versions that teams migrate to as a batch, not one library at a time, along with Java and Spring Boot, which stay supported as individual packages until a team moves across.",
         },
         {
           label: "What I did",
