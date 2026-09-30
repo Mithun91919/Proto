@@ -4,6 +4,7 @@ import { Reveal } from "@/components/Reveal";
 import { ArtboardCarousel } from "@/components/design-system/ArtboardCarousel";
 import { BeforeAfterModel } from "@/components/design-system/BeforeAfterModel";
 import { ClipFigure } from "@/components/design-system/ClipFigure";
+import { CostStrip } from "@/components/design-system/CostStrip";
 import { ProofStrip } from "@/components/design-system/ProofStrip";
 import { PullStatement } from "@/components/design-system/PullStatement";
 import {
@@ -40,6 +41,7 @@ export const metadata: Metadata = {
 };
 
 const CHAPTERS = [
+  { id: "outdated", label: "Outdated libraries" },
   { id: "problem", label: "The problem" },
   { id: "goals", label: "The goals" },
   { id: "solution", label: "The idea" },
@@ -141,8 +143,57 @@ export default function DependencyHealthPage() {
           : { href: "/work", number: "—", label: "All work", title: "See the rest of the work." }
       }
     >
+      {/* The term first, before the problem, as the API page does: a reader
+          who does not work in Java should know what an outdated library is
+          before being told what it cost. */}
+      <div className="mt-14 md:mt-20">
+        <Reveal>
+          <PullStatement
+            eyebrow="What is an outdated library"
+            mark="connection"
+            note="Nothing breaks the day a version falls behind. The cost turns up later."
+          >
+            Almost every application is built on libraries other people wrote. An outdated one
+            is a version the team has fallen behind on.
+          </PullStatement>
+        </Reveal>
+      </div>
+
       <CaseStudyColumn>
-        <CaseStudySection id="problem" boundary={false} className="pt-14 md:pt-20">
+        <CaseStudySection id="outdated" boundary={false} className="pt-14 md:pt-20">
+          <CaseStudyChapter
+            layout="stacked"
+            eyebrow="What it costs"
+            heading="An outdated library is a cost that arrives late"
+            body={[
+              "A library is code a team depends on but did not write. It falls behind when a newer approved version exists and the repository has not moved to it.",
+              "The trouble is when it shows up: during a migration, a breakage or security work, close to a release, with little time to absorb it.",
+            ]}
+          />
+          <CaseStudyFigure>
+            <CostStrip
+              items={[
+                {
+                  label: "Rework near release",
+                  heading: "Found when it is expensive",
+                  body: "The fix lands during a migration, a breakage or security work, not ahead of it.",
+                },
+                {
+                  label: "Blind spots",
+                  heading: "Nobody sees it building",
+                  body: "Without a view of their dependencies, teams lose productivity to problems they could not see coming.",
+                },
+                {
+                  label: "Risk",
+                  heading: "Older versions age badly",
+                  body: "Stale dependencies raise vulnerability risk, which is why the dashboards say so in a sentence.",
+                },
+              ]}
+            />
+          </CaseStudyFigure>
+        </CaseStudySection>
+
+        <CaseStudySection id="problem">
           <Reveal>
             <ArtboardCarousel
               layout="split"
@@ -203,7 +254,7 @@ export default function DependencyHealthPage() {
 
       <div className="mt-16 md:mt-20">
         <Reveal>
-          <PullStatement eyebrow="What research pointed to" mark="connection">
+          <PullStatement eyebrow="What research pointed to" mark="exchange">
             The data needed to be organised around the decisions people were trying to make.
           </PullStatement>
         </Reveal>
