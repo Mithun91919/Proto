@@ -76,7 +76,7 @@ const BEATS = [
     lead: (
       <>
         Reporting a fault meant finding{" "}
-        <span className="ds-accent-deep-text">a manager and a desktop</span>.
+        <span className="ds-accent-text">a manager and a desktop</span>.
       </>
     ),
     detail:
@@ -86,7 +86,7 @@ const BEATS = [
     label: "Task",
     lead: (
       <>
-        Redesign frontline support across <span className="ds-accent-deep-text">mobile and web</span>.
+        Redesign frontline support across <span className="ds-accent-text">mobile and web</span>.
       </>
     ),
     detail:
@@ -96,7 +96,7 @@ const BEATS = [
     label: "What I did",
     lead: (
       <>
-        I put guided resolution <span className="ds-accent-deep-text">before the ticket form</span>.
+        I put guided resolution <span className="ds-accent-text">before the ticket form</span>.
       </>
     ),
     detail:

@@ -64,7 +64,7 @@ export default function StoreSupportPage() {
           lead: (
             <>
               Reporting a fault meant finding{" "}
-              <span className="ds-accent-deep-text">a manager and a desktop</span>.
+              <span className="ds-accent-text">a manager and a desktop</span>.
             </>
           ),
           detail:
@@ -74,7 +74,7 @@ export default function StoreSupportPage() {
           label: "The solution",
           lead: (
             <>
-              One app for the building and <span className="ds-accent-deep-text">the technology inside it</span>.
+              One app for the building and <span className="ds-accent-text">the technology inside it</span>.
             </>
           ),
           detail:
@@ -84,7 +84,7 @@ export default function StoreSupportPage() {
           label: "What I did",
           lead: (
             <>
-              I put guided resolution <span className="ds-accent-deep-text">before the ticket form</span>.
+              I put guided resolution <span className="ds-accent-text">before the ticket form</span>.
             </>
           ),
           detail:

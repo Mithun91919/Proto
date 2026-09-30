@@ -49,7 +49,7 @@ export default function RatingsReviewsPage() {
           label: "Problem",
           lead: (
             <>
-              A star rating is quick to give and <span className="ds-accent-deep-text">hard to act on</span>.
+              A star rating is quick to give and <span className="ds-accent-text">hard to act on</span>.
             </>
           ),
           detail:
@@ -59,7 +59,7 @@ export default function RatingsReviewsPage() {
           label: "Task",
           lead: (
             <>
-              Design one feedback system for <span className="ds-accent-deep-text">every surface</span>.
+              Design one feedback system for <span className="ds-accent-text">every surface</span>.
             </>
           ),
           detail:
@@ -69,7 +69,7 @@ export default function RatingsReviewsPage() {
           label: "What I did",
           lead: (
             <>
-              I worked the system across <span className="ds-accent-deep-text">four surfaces at once</span>.
+              I worked the system across <span className="ds-accent-text">four surfaces at once</span>.
             </>
           ),
           detail:

@@ -54,7 +54,7 @@ export default function MovieTicketsPage() {
           label: "Problem",
           lead: (
             <>
-              Most people arrived <span className="ds-accent-deep-text">already knowing the film</span>.
+              Most people arrived <span className="ds-accent-text">already knowing the film</span>.
             </>
           ),
           detail:
@@ -64,7 +64,7 @@ export default function MovieTicketsPage() {
           label: "Task",
           lead: (
             <>
-              Close the gap between <span className="ds-accent-deep-text">intent and purchase</span>.
+              Close the gap between <span className="ds-accent-text">intent and purchase</span>.
             </>
           ),
           detail:
@@ -74,7 +74,7 @@ export default function MovieTicketsPage() {
           label: "What I did",
           lead: (
             <>
-              I made booking <span className="ds-accent-deep-text">one continuous transaction</span>.
+              I made booking <span className="ds-accent-text">one continuous transaction</span>.
             </>
           ),
           detail:

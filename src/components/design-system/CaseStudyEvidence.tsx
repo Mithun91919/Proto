@@ -139,7 +139,7 @@ export function CaseStudyEvidence({ slug, beats, metrics, metricsLabel, caveat }
                         fontSize: "1.6rem",
                         lineHeight: 1,
                         letterSpacing: "-0.01em",
-                        color: "var(--accent-deep)",
+                        color: "var(--ds-accent)",
                       }}
                     >
                       {m.value}

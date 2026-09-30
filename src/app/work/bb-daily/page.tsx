@@ -64,7 +64,7 @@ export default function BbDailyPage() {
           label: "The problem",
           lead: (
             <>
-              Recurring groceries are <span className="ds-accent-deep-text">not a checkout problem</span>.
+              Recurring groceries are <span className="ds-accent-text">not a checkout problem</span>.
             </>
           ),
           detail:
@@ -74,7 +74,7 @@ export default function BbDailyPage() {
           label: "The solution",
           lead: (
             <>
-              The customer&apos;s subscription, and <span className="ds-accent-deep-text">the operations behind it</span>.
+              The customer&apos;s subscription, and <span className="ds-accent-text">the operations behind it</span>.
             </>
           ),
           detail:
@@ -84,7 +84,7 @@ export default function BbDailyPage() {
           label: "What I did",
           lead: (
             <>
-              I worked the customer app and <span className="ds-accent-deep-text">the operations app</span> together.
+              I worked the customer app and <span className="ds-accent-text">the operations app</span> together.
             </>
           ),
           detail:

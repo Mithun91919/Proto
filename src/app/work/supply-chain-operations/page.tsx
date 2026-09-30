@@ -53,7 +53,7 @@ export default function SupplyChainOperationsPage() {
           label: "The problem",
           lead: (
             <>
-              Finding a tool meant <span className="ds-accent-deep-text">remembering where it lived</span>.
+              Finding a tool meant <span className="ds-accent-text">remembering where it lived</span>.
             </>
           ),
           detail:
@@ -64,7 +64,7 @@ export default function SupplyChainOperationsPage() {
           lead: (
             <>
               One shell: shared structure, search, and{" "}
-              <span className="ds-accent-deep-text">shortcuts to what you use</span>.
+              <span className="ds-accent-text">shortcuts to what you use</span>.
             </>
           ),
           detail:
@@ -74,7 +74,7 @@ export default function SupplyChainOperationsPage() {
           label: "What I did",
           lead: (
             <>
-              I fixed the structure <span className="ds-accent-deep-text">before the navigation</span>.
+              I fixed the structure <span className="ds-accent-text">before the navigation</span>.
             </>
           ),
           detail:

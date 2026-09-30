@@ -33,7 +33,7 @@ export function MetricRow({ project, max = 3, className = "" }: MetricRowProps) 
         <div key={m.label} className="flex items-center" style={{ gap: "11px" }}>
           <CompactMetricGlyph name={metricGlyph(m)} value={m.value} />
           <div>
-            <dt className="display-title" style={{ fontSize: "1.32rem", lineHeight: 1.15, color: "var(--accent-deep)" }}>
+            <dt className="display-title" style={{ fontSize: "1.32rem", lineHeight: 1.15, color: "var(--ds-accent)" }}>
               {m.value}
             </dt>
             <dd className="text-[0.75rem]" style={{ color: "var(--ink-soft)" }}>

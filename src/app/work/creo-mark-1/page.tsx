@@ -44,7 +44,7 @@ export default function CreoMark1Page() {
           label: "Problem",
           lead: (
             <>
-              The product changed <span className="ds-accent-deep-text">every month</span>.
+              The product changed <span className="ds-accent-text">every month</span>.
             </>
           ),
           detail:
@@ -54,7 +54,7 @@ export default function CreoMark1Page() {
           label: "Task",
           lead: (
             <>
-              Build one visual language across <span className="ds-accent-deep-text">every touchpoint</span>.
+              Build one visual language across <span className="ds-accent-text">every touchpoint</span>.
             </>
           ),
           detail:
@@ -64,7 +64,7 @@ export default function CreoMark1Page() {
           label: "What I did",
           lead: (
             <>
-              I kept <span className="ds-accent-deep-text">the product at the centre</span>.
+              I kept <span className="ds-accent-text">the product at the centre</span>.
             </>
           ),
           detail:

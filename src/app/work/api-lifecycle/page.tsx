@@ -106,7 +106,7 @@ export default function ApiLifecyclePage() {
           label: "The problem",
           lead: (
             <>
-              There was <span className="ds-accent-deep-text">no single place</span> to check whether
+              There was <span className="ds-accent-text">no single place</span> to check whether
               an API already existed.
             </>
           ),
@@ -118,7 +118,7 @@ export default function ApiLifecyclePage() {
           lead: (
             <>
               One platform, with{" "}
-              <span className="ds-accent-deep-text">governance built into it</span>.
+              <span className="ds-accent-text">governance built into it</span>.
             </>
           ),
           detail:
@@ -128,7 +128,7 @@ export default function ApiLifecyclePage() {
           label: "What I did",
           lead: (
             <>
-              I joined at inception and <span className="ds-accent-deep-text">shaped the product model</span>.
+              I joined at inception and <span className="ds-accent-text">shaped the product model</span>.
             </>
           ),
           detail:

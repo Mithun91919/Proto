@@ -46,7 +46,7 @@ export default function TotalOsLocalizationPage() {
           label: "Problem",
           lead: (
             <>
-              Translation is <span className="ds-accent-deep-text">not localisation</span>.
+              Translation is <span className="ds-accent-text">not localisation</span>.
             </>
           ),
           detail:
@@ -56,7 +56,7 @@ export default function TotalOsLocalizationPage() {
           label: "Task",
           lead: (
             <>
-              Build a repeatable process across <span className="ds-accent-deep-text">eight languages</span>.
+              Build a repeatable process across <span className="ds-accent-text">eight languages</span>.
             </>
           ),
           detail:
@@ -66,7 +66,7 @@ export default function TotalOsLocalizationPage() {
           label: "What I did",
           lead: (
             <>
-              I ran the research and <span className="ds-accent-deep-text">the process itself</span>.
+              I ran the research and <span className="ds-accent-text">the process itself</span>.
             </>
           ),
           detail:

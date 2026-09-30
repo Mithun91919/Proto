@@ -113,12 +113,13 @@
   margin: 0.5rem 0 0;
 }
 
+/* The one highlight colour for words and figures set large: evidence-lead
+   phrases, the After heading, metric values. The brighter accent, because at
+   these sizes it clears AA for large text (3.5:1 against 3:1) and the deep
+   accent sat too close to body colour to read as a highlight. Small text
+   (labels, eyebrows) keeps `--ds-accent-deep`: 3.5:1 is not enough there. */
 .ds-accent-text {
   color: var(--ds-accent);
-}
-
-.ds-accent-deep-text {
-  color: var(--ds-accent-deep);
 }
 
 .ds-muted-text {

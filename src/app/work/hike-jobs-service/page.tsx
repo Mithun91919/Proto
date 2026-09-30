@@ -47,7 +47,7 @@ export default function HikeJobsServicePage() {
           label: "Problem",
           lead: (
             <>
-              Finding a job is only <span className="ds-accent-deep-text">half of applying</span>.
+              Finding a job is only <span className="ds-accent-text">half of applying</span>.
             </>
           ),
           detail:
@@ -57,7 +57,7 @@ export default function HikeJobsServicePage() {
           label: "Task",
           lead: (
             <>
-              Take someone from discovery to <span className="ds-accent-deep-text">ready to apply</span>.
+              Take someone from discovery to <span className="ds-accent-text">ready to apply</span>.
             </>
           ),
           detail:
@@ -67,7 +67,7 @@ export default function HikeJobsServicePage() {
           label: "What I did",
           lead: (
             <>
-              I started the product with <span className="ds-accent-deep-text">intent, not a feed</span>.
+              I started the product with <span className="ds-accent-text">intent, not a feed</span>.
             </>
           ),
           detail:

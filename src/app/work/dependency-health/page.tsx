@@ -57,7 +57,7 @@ export default function DependencyHealthPage() {
           label: "The problem",
           lead: (
             <>
-              The data existed. <span className="ds-accent-deep-text">The decisions did not</span>.
+              The data existed. <span className="ds-accent-text">The decisions did not</span>.
             </>
           ),
           detail:
@@ -67,7 +67,7 @@ export default function DependencyHealthPage() {
           label: "The solution",
           lead: (
             <>
-              Prioritised health, layered views, and <span className="ds-accent-deep-text">guided remediation</span>.
+              Prioritised health, layered views, and <span className="ds-accent-text">guided remediation</span>.
             </>
           ),
           detail:
@@ -77,7 +77,7 @@ export default function DependencyHealthPage() {
           label: "What I did",
           lead: (
             <>
-              I own the UX <span className="ds-accent-deep-text">end to end</span>.
+              I own the UX <span className="ds-accent-text">end to end</span>.
             </>
           ),
           detail:

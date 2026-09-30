@@ -58,7 +58,7 @@ export default function PortfolioManagementPage() {
           label: "The problem",
           lead: (
             <>
-              Leaders <span className="ds-accent-deep-text">reconciled conflicting data</span> before they could decide.
+              Leaders <span className="ds-accent-text">reconciled conflicting data</span> before they could decide.
             </>
           ),
           detail:
@@ -68,7 +68,7 @@ export default function PortfolioManagementPage() {
           label: "The solution",
           lead: (
             <>
-              <span className="ds-accent-deep-text">One platform</span> where five systems had been.
+              <span className="ds-accent-text">One platform</span> where five systems had been.
             </>
           ),
           detail:
@@ -78,7 +78,7 @@ export default function PortfolioManagementPage() {
           label: "What I did",
           lead: (
             <>
-              I joined <span className="ds-accent-deep-text">at inception</span> and stayed through migration.
+              I joined <span className="ds-accent-text">at inception</span> and stayed through migration.
             </>
           ),
           detail:

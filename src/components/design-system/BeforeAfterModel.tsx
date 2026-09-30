@@ -95,7 +95,7 @@ export function BeforeAfterModel({ before, after }: BeforeAfterModelProps) {
           After
         </p>
         <h3 className="display-title mt-3" style={{ fontSize: "1.4rem" }}>
-          <span className="ds-accent-deep-text">{after.heading}</span>
+          <span className="ds-accent-text">{after.heading}</span>
         </h3>
         <p className="ds-note">{after.body}</p>
         {after.stages ? (
