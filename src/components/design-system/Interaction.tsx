@@ -29,13 +29,35 @@ export function HoverLanguageDemo() {
 export function ChapterProgressDemo() {
   return (
     <div className="grid grid-cols-[auto_1fr] items-center gap-9">
-      <div className="ds-glass-soft ds-scroll-rail">
-        <span className="ds-scroll-node done" />
-        <span className="ds-scroll-node done" />
-        <span className="ds-scroll-node current" />
-        <span className="ds-scroll-node" />
-        <span className="ds-scroll-node" />
-      </div>
+      {/* The same node + label pair the live rail uses (`ChapterProgress`),
+          so the demo does what its own description says: hover or focus a
+          dot and its chapter label appears. Raised above the panel beside
+          it, or the label would slide out underneath it. */}
+      <ol
+        className="ds-glass-soft ds-scroll-rail"
+        aria-label="Chapters (demo)"
+        style={{ position: "relative", zIndex: 2, margin: 0, listStyle: "none" }}
+      >
+        {[
+          { label: "Context", state: "done" },
+          { label: "The problem", state: "done" },
+          { label: "The reframe", state: "current" },
+          { label: "The result", state: "" },
+          { label: "Reflection", state: "" },
+        ].map((chapter) => (
+          <li key={chapter.label}>
+            <button
+              type="button"
+              className="ds-progress-item"
+              aria-current={chapter.state === "current" ? "step" : undefined}
+              style={{ background: "none", border: 0, padding: 0, cursor: "pointer" }}
+            >
+              <span className={`ds-scroll-node ${chapter.state}`.trim()} />
+              <span className="ds-progress-label">{chapter.label}</span>
+            </button>
+          </li>
+        ))}
+      </ol>
       <GlassPanel variant="base" className="rounded-xl p-[1.875rem]">
         <p className="ds-eyebrow">03 / The reframe</p>
         <h4 className="display-title mt-3.5" style={{ fontSize: "1.5rem" }}>

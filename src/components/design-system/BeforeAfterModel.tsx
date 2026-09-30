@@ -1,5 +1,7 @@
 import { GlassPanel } from "./primitives/GlassPanel";
 import { DotFlow } from "./DotFlow";
+import { MetricGlyph } from "./MetricGlyph";
+import type { MetricMarkName } from "./dotPatterns";
 
 type StateCard = {
   heading: string;
@@ -13,6 +15,8 @@ type StateCard = {
    * step changed from raising a ticket to trying the fix.
    */
   stages?: string[];
+  /** A single semantic dot glyph above the card, same family as `ProofStrip`'s. */
+  glyph?: MetricMarkName;
 };
 
 type BeforeAfterModelProps = {
@@ -25,47 +29,57 @@ export function BeforeAfterModel({ before, after }: BeforeAfterModelProps) {
   return (
     <div className="grid grid-cols-1 items-stretch gap-5 md:grid-cols-[1fr_auto_1fr]">
       <GlassPanel variant="soft" className="rounded-2xl p-7">
+        {before.glyph ? (
+          <div className="mb-5">
+            <MetricGlyph name={before.glyph} size={5} gap={3} />
+          </div>
+        ) : null}
         <p className="ds-eyebrow" style={{ color: "var(--muted)" }}>
           Before
         </p>
-        <h4 className="display-title mt-3" style={{ fontSize: "1.4rem", color: "var(--ink-soft)" }}>
+        <h3 className="display-title mt-3" style={{ fontSize: "1.4rem", color: "var(--ink-soft)" }}>
           {before.heading}
-        </h4>
+        </h3>
         <p className="ds-note">{before.body}</p>
         {before.stages ? (
           <div className="mt-6">
             <DotFlow stages={before.stages} />
           </div>
-        ) : (
+        ) : before.lineWidths ? (
           <div className="mt-5 flex flex-col gap-2">
-            {(before.lineWidths ?? []).map((w, i) => (
+            {before.lineWidths.map((w, i) => (
               <span key={i} className="block h-2 rounded-full" style={{ width: `${w}%`, background: "#cfe1e5" }} />
             ))}
           </div>
-        )}
+        ) : null}
       </GlassPanel>
 
       <span className="ds-arrow self-center hidden md:block">→</span>
 
       <GlassPanel className="rounded-2xl p-7">
-        <p className="ds-eyebrow" style={{ color: "var(--ds-accent)" }}>
+        {after.glyph ? (
+          <div className="mb-5">
+            <MetricGlyph name={after.glyph} size={5} gap={3} />
+          </div>
+        ) : null}
+        <p className="ds-eyebrow" style={{ color: "var(--ds-accent-deep)" }}>
           After
         </p>
-        <h4 className="display-title mt-3" style={{ fontSize: "1.4rem" }}>
-          <span className="ds-accent-text">{after.heading}</span>
-        </h4>
+        <h3 className="display-title mt-3" style={{ fontSize: "1.4rem" }}>
+          <span className="ds-accent-deep-text">{after.heading}</span>
+        </h3>
         <p className="ds-note">{after.body}</p>
         {after.stages ? (
           <div className="mt-6">
             <DotFlow stages={after.stages} />
           </div>
-        ) : (
+        ) : after.lineWidths ? (
           <div className="mt-5 flex flex-col gap-2">
-            {(after.lineWidths ?? []).map((w, i) => (
+            {after.lineWidths.map((w, i) => (
               <span key={i} className="block h-2 rounded-full" style={{ width: `${w}%`, background: "#b8e4e9" }} />
             ))}
           </div>
-        )}
+        ) : null}
       </GlassPanel>
     </div>
   );
