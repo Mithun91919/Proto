@@ -266,7 +266,7 @@ export default function DependencyHealthPage() {
       <div className="mt-16 md:mt-20">
         <Reveal>
           <PullStatement eyebrow="What research pointed to" mark="exchange">
-            The data needed to be organised around the decisions people were trying to make.
+            The same library data had to be organised around a different decision for each person.
           </PullStatement>
         </Reveal>
       </div>
