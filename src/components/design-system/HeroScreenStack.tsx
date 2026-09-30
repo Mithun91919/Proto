@@ -62,8 +62,16 @@ type HeroScreenStackProps = {
 export function HeroScreenStack({ screens, label, ratio }: HeroScreenStackProps) {
   const capped = screens.slice(0, 4);
   const [order, setOrder] = useState(() => capped.map((_, i) => i));
+  // Rotate rather than swap: the clicked card comes to the front and every
+  // card that was ahead of it goes to the back, in order. Pulling the clicked
+  // card out and leaving the rest where they were made the old front the new
+  // second card, so clicking "the next one" only ever flipped between the
+  // same two screens and the last one never came forward.
   const bringToFront = (i: number) =>
-    setOrder((prev) => (prev[0] === i ? prev : [i, ...prev.filter((p) => p !== i)]));
+    setOrder((prev) => {
+      const at = prev.indexOf(i);
+      return at <= 0 ? prev : [...prev.slice(at), ...prev.slice(0, at)];
+    });
   const deck = order.map((i) => capped[i]);
   // Ratio comes from the authored first screen, never from whichever card is
   // currently in front. Reading it off the front made the whole deck resize
