@@ -83,11 +83,11 @@ export default function DependencyHealthPage() {
           label: "What I did",
           lead: (
             <>
-              I designed <span className="ds-accent-text">what each person sees</span>, and what they do next.
+              I designed one platform for <span className="ds-accent-text">leadership and execution</span>.
             </>
           ),
           detail:
-            "I framed the product as Repository → Pillar → Organisation and ran a 148-repository pilot on the initial major version. The platform team built the scanning and pre-commit checks; I designed how their findings reach engineers and leaders, and the self-service onboarding and remediation.",
+            "One Repository → Pillar → Organisation model gives leaders a bird’s-eye view, and gives engineers their repository’s debt and the remediation to clear it. The platform team built the scanning and pre-commit checks; I ran a 148-repository pilot on the initial major version.",
         },
       ]}
       chapters={CHAPTERS}
