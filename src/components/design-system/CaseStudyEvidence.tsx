@@ -128,8 +128,15 @@ export function CaseStudyEvidence({ slug, beats, metrics, metricsLabel, caveat }
             ) : null}
             <div className="grid grid-cols-1 gap-7 sm:grid-cols-3">
               {metrics!.map((m, i) => (
-                <div key={m.label} className="flex items-center gap-4">
-                  <span aria-hidden>
+                <div key={m.label} className="flex items-start gap-4">
+                  {/* Top-aligned to the figure, not centred on figure and
+                      label together: the mark belongs to the number. The
+                      small offset puts its top edge on the digits' cap line
+                      rather than on the line box above them. `leading-[0]`
+                      because the mark is an inline span holding a block
+                      grid, and the empty text line that creates put ~12px of
+                      air above the dots. */}
+                  <span aria-hidden className="mt-1 block leading-[0]">
                     <MetricGlyph name={metricGlyph(m)} size={5} gap={3} />
                   </span>
                   <span>
