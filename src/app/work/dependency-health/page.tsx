@@ -82,7 +82,7 @@ export default function DependencyHealthPage() {
           label: "What I did",
           lead: (
             <>
-              I own the UX for <span className="ds-accent-text">one platform</span> serving leadership and execution.
+              I put leadership and execution on <span className="ds-accent-text">one platform</span>.
             </>
           ),
           detail:

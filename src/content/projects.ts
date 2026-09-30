@@ -195,6 +195,12 @@ export const projects: Project[] = [
     accentSoft: "#ecfeff",
     contentPath:
       "projects/dependency-management/web/dependency-management-web.md",
+    media: {
+      mp4: "/work/dependency-health/card.mp4",
+      webm: "/work/dependency-health/card.webm",
+      poster: "/work/dependency-health/card-poster.jpg",
+      aspect: 1600 / 1000,
+    },
     systemMap: [
       {
         label: "Before",
