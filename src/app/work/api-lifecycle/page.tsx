@@ -627,19 +627,23 @@ export default function ApiLifecyclePage() {
             />
           </CaseStudyFigure>
         </CaseStudySection>
-
-        <CaseStudySection id="infrastructure">
-          <CaseStudyChapter
-            layout="stacked"
-            eyebrow="Where it went"
-            heading="Ready for AI because the groundwork was already there"
-            body={[
-              "With AI arriving, the platform now has an MCP to discover, create and manage APIs.",
-              "That was only possible because the data and the workflows were already in place. The lifecycle engineers use through the interface can now be invoked in context.",
-            ]}
-          />
-        </CaseStudySection>
       </CaseStudyColumn>
+
+      {/* Where it went, as a band rather than a chapter: it is a claim about
+          the whole platform (it was ready for this), not evidence for the
+          section above. Top-level so it reaches the page edges, with the id
+          the chapter rail looks for. */}
+      <div id="infrastructure" className="mt-16 scroll-mt-28 md:mt-20">
+        <Reveal>
+          <PullStatement
+            eyebrow="Where it went"
+            mark="connection"
+            note="There is now an MCP to discover, create and manage APIs."
+          >
+            Ready for AI because the data and the workflows were already in place.
+          </PullStatement>
+        </Reveal>
+      </div>
 
       <div className="mt-16 md:mt-20">
         <Reveal>
