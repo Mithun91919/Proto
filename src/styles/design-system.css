@@ -474,6 +474,83 @@
   box-shadow: 0 0 0 4px color-mix(in oklab, var(--ds-accent) 20%, transparent);
 }
 
+/* ── Release checklist (S7) ──────────────────────────────────────────────
+   A list with one item singled out. Done items recede; the flagged one is
+   open, tinted and tagged. Text is ink throughout: the tint and the tag carry
+   the emphasis, so contrast does not depend on the accent. */
+.ds-checklist {
+  max-width: 38rem;
+}
+
+.ds-checklist-list {
+  list-style: none;
+  margin: 1rem 0 0;
+  padding: 0;
+  display: grid;
+  gap: 0.5rem;
+}
+
+.ds-checklist-item {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+  padding: 0.7rem 0.85rem;
+  border-radius: 10px;
+  border: 1px solid transparent;
+  font-size: 0.98rem;
+  color: var(--ink);
+}
+
+.ds-checklist-box {
+  flex: 0 0 auto;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.3rem;
+  height: 1.3rem;
+  border-radius: 5px;
+  border: 1.5px solid var(--ds-dot-muted);
+  font-family: var(--font-mono), monospace;
+  font-size: 0.75rem;
+  line-height: 1;
+  color: var(--ink-soft);
+}
+
+.ds-checklist-item.is-done {
+  color: var(--ink-soft);
+}
+
+.ds-checklist-item.is-done .ds-checklist-box {
+  background: color-mix(in oklab, var(--ds-dot-muted) 35%, transparent);
+  border-color: transparent;
+}
+
+.ds-checklist-item.is-flagged {
+  background: color-mix(in oklab, var(--ds-accent) 9%, var(--paper));
+  border-color: color-mix(in oklab, var(--ds-accent) 45%, transparent);
+  font-weight: 600;
+}
+
+.ds-checklist-item.is-flagged .ds-checklist-box {
+  border-color: var(--ds-accent-deep);
+  color: var(--ds-accent-deep);
+  font-weight: 700;
+}
+
+.ds-checklist-flag {
+  margin-left: auto;
+  padding: 0.2rem 0.55rem;
+  border-radius: 999px;
+  border: 1px solid color-mix(in oklab, var(--ds-accent-deep) 40%, transparent);
+  font-family: var(--font-mono), monospace;
+  font-size: 0.6rem;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ds-accent-deep);
+  white-space: nowrap;
+}
+
 /* ── Release cycles (S6) ─────────────────────────────────────────────────
    One run of dots per row, repeated per cycle: small dots are the cycle, the
    ring is the release, the filled dot is where the check is flagged. Only

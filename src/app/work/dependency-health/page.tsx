@@ -4,7 +4,7 @@ import { Reveal } from "@/components/Reveal";
 import { ArtboardCarousel } from "@/components/design-system/ArtboardCarousel";
 import { BeforeAfterModel } from "@/components/design-system/BeforeAfterModel";
 import { ClipFigure } from "@/components/design-system/ClipFigure";
-import { ReleaseCycles } from "@/components/design-system/ReleaseCycles";
+import { ReleaseChecklist } from "@/components/design-system/ReleaseChecklist";
 import { ArchetypeSection } from "@/components/design-system/ArchetypeSection";
 import type { Archetype } from "@/components/design-system/ArchetypeFigure";
 import { ProofStrip } from "@/components/design-system/ProofStrip";
@@ -208,25 +208,30 @@ export default function DependencyHealthPage() {
               "The aim was to shift that check left: find and fix library issues early, get teams onto the Unified BOM faster, and raise code quality and developer productivity as a result.",
             ]}
           />
-          <CaseStudyFigure rule label="Where the check lands in a release cycle">
-            <ReleaseCycles
-              label="Three release cycles twice over. In the first, the check is flagged just before each release. In the second, it is flagged early in each cycle."
-              rows={[
-                {
-                  label: "Flagged at the last moment",
-                  note: "Just before the release, with little time left to fix it.",
-                  flagAt: 5,
-                  tone: "muted",
-                },
-                {
-                  label: "Flagged early",
-                  note: "Near the start of the cycle, with the whole cycle to fix it.",
-                  flagAt: 1,
-                  tone: "accent",
-                },
+          {/* TEMPORARY: two options side by side for review. */}
+          <CaseStudyFigure rule label="Option 1 · a release checklist">
+            <ReleaseChecklist
+              title="Release"
+              items={[
+                { label: "Build", done: true },
+                { label: "Test", done: true },
+                { label: "Security review", done: true },
+                { label: "Check for outdated libraries", flagged: true, flag: "Flagged at the last moment" },
               ]}
             />
-            <p className="ds-note mt-3">A diagram of position in a cycle, not a measurement.</p>
+            <p className="ds-note mt-3">An illustration of a release list, not a screenshot.</p>
+          </CaseStudyFigure>
+          <CaseStudyFigure rule label="Option 4 · before and after">
+            <BeforeAfterModel
+              before={{
+                heading: "Found at the last moment",
+                body: "Flagged close to the release, during a migration, a breakage or security work.",
+              }}
+              after={{
+                heading: "Found early",
+                body: "Flagged while there is still a whole release cycle to fix it.",
+              }}
+            />
           </CaseStudyFigure>
         </CaseStudySection>
 
