@@ -25,9 +25,9 @@ import { getProject } from "@/content/projects";
  * carousels with hotspots where a screen has something to point at, the
  * recording as its own band, a Before/After where a decision moved.
  *
- * The draft is explicit that the programme is active and that it would
- * rather show verified change than invent a stronger metric, so the only
- * figure on the page is the 148-repository pilot the draft states. The
+ * The platform has shipped. The evidence is the 148-repository pilot from the
+ * draft and the impact figures given since: 5K+ repositories migrated, 40%
+ * fewer library issues during releases, 80% increase in product health. The
  * numbers visible inside the screens are the fictional data they were
  * reconstructed with; none of them is quoted.
  */
@@ -56,7 +56,6 @@ export default function DependencyHealthPage() {
   return (
     <CaseStudyShell
       slug="dependency-health"
-      evidenceCaveat="The platform is still in progress."
       evidenceMetricsLabel="The impact"
       evidence={[
         {
@@ -442,7 +441,7 @@ export default function DependencyHealthPage() {
             eyebrow="Current evidence"
             heading="What changed once teams moved across"
             body={[
-              "The product is live and continues to evolve. After a 148-repository pilot on the initial major version, more than 5K repositories have migrated, and the platform supports dependency-health visibility from individual repositories through pillar and organisation views, alongside self-service onboarding and remediation.",
+              "The platform has shipped. After a 148-repository pilot on the initial major version, more than 5K repositories have migrated, and the platform gives dependency-health visibility from individual repositories through pillar and organisation views, alongside self-service onboarding and remediation.",
               "Fewer library issues arriving at release is what shifting left was for.",
             ]}
           />
