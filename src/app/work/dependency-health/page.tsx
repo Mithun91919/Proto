@@ -115,7 +115,7 @@ export default function DependencyHealthPage() {
             </>
           ),
           detail:
-            "A Unified BOM: one package of approved library versions that teams migrate to as a batch, not one library at a time, along with Java and Spring Boot, which stay supported as individual packages until a team moves across.",
+            "A Unified BOM: one package of approved library versions, Java and Spring Boot included, that one team builds and every other team onboards to, instead of upgrading each library by hand.",
         },
         {
           label: "What I did",
@@ -200,12 +200,12 @@ export default function DependencyHealthPage() {
         <CaseStudySection id="outdated" boundary={false} className="pt-14 md:pt-20">
           <CaseStudyChapter
             layout="stacked"
-            eyebrow="What it costs"
-            heading="An outdated library is a cost that arrives late"
+            eyebrow="Every release"
+            heading="Checking for outdated libraries kept getting left to the last moment"
             body={[
-              "A library is code a team depends on but did not write. It falls behind when a newer approved version exists and the repository has not moved to it.",
-              "The trouble is when it shows up: during a migration, a breakage or security work, close to a release, with little time to absorb it.",
-              "The libraries a repository depends on do not wait for each other. Java and Spring Boot each ship on a six-month rhythm, and Node.js has too, so a team on all three has something to catch up on several times a year.",
+              "Keeping libraries current is a task that runs alongside every release. A library is code a team depends on but did not write, and it falls behind each time a newer approved version ships.",
+              "The libraries do not wait for each other. Java and Spring Boot each ship on a six-month rhythm, and Node.js has too, so there is always something new to check.",
+              "More often than not the check was flagged at the last moment: during a migration, a breakage or security work, close to a release, with little time to absorb it.",
             ]}
           />
         </CaseStudySection>
@@ -309,9 +309,10 @@ export default function DependencyHealthPage() {
           <CaseStudyChapter
             layout="stacked"
             eyebrow="The idea"
-            heading="One Unified BOM, migrated as a batch"
+            heading="One team builds the Unified BOM. Every other team onboards to it."
             body={[
-              "The team proposed a Unified BOM, short for bill of materials: one package of approved library versions that a team moves onto together, instead of updating libraries one at a time. Until a team migrates, its Java and Spring Boot packages stay supported as individual packages, and some legacy systems had to keep running on older versions.",
+              "The team proposed a Unified BOM, short for bill of materials: one package of approved library versions that a team creates and others onboard to, instead of every team checking and updating libraries one at a time.",
+              "It covers every individual library a repository depends on, and the bigger dependencies too: Java and Spring Boot sit in the package as well. Until a team migrates, its Java and Spring Boot packages stay supported on their own, and some legacy systems had to keep running on older versions.",
               "Underneath, the platform scans repositories for library issues and checks for problems before code is integrated. The platform team built that. I designed the dashboard that monitors it, with what an engineer sees in a repository and what an engineer manager sees across their teams, and the remediation flow that helps engineers raise pull requests and manage them.",
             ]}
           />
@@ -324,7 +325,7 @@ export default function DependencyHealthPage() {
               after={{
                 glyph: "funnel",
                 heading: "One package, already checked",
-                body: "The Unified BOM is a single package of approved versions with security and governance checked, so a team migrates to it and tests it.",
+                body: "The Unified BOM is a single package covering the libraries and Java and Spring Boot, with security and governance checked, so a team onboards to it and tests it.",
               }}
             />
           </CaseStudyFigure>
