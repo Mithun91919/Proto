@@ -250,6 +250,8 @@ export default function DependencyHealthPage() {
             heading="The same libraries. Two very different jobs."
             intro="An engineer fixes the libraries in a repository. An engineer manager answers for the debt across their teams."
             archetypes={ARCHETYPES}
+            basisLabel="30+ teams spoken to"
+            basis="We spoke to them to understand how they find and fix library problems today."
           />
         </CaseStudySection>
 
