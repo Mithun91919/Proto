@@ -455,21 +455,21 @@ export default function DependencyHealthPage() {
           <CaseStudyChapter
             layout="stacked"
             eyebrow="After launch"
-            heading="Post-launch feedback became a systems problem"
+            heading="We could not land on one colour tone, so users choose"
             body={[
-              "After launch, developers had different preferences for how dashboard states should be represented visually.",
-              "Instead of hard-coding alternate colours into individual components, we moved the product towards semantic design tokens and theme-level control. The same meaning could remain consistent while presentation changed across themes.",
+              "After launch, developers wanted the dashboard’s states shown in different colours, and no single tone worked for everyone.",
+              "Instead of picking a winner, we moved the product to semantic design tokens and theme-level control. A state means the same thing in every theme, and each user picks the theme they prefer.",
             ]}
           />
           <CaseStudyFigure rule label="Where the decision moved to">
             <BeforeAfterModel
               before={{
-                heading: "The request: a different look",
-                body: "Developers wanted the states on the dashboard shown differently.",
+                heading: "One colour tone for everyone",
+                body: "Colours hard-coded into individual components, with no agreement on which tone to ship.",
               }}
               after={{
-                heading: "The decision: tokens and themes",
-                body: "Semantic tokens and theme-level control, so the meaning stays the same while the presentation changes.",
+                heading: "A theme each user picks",
+                body: "Semantic tokens and theme-level control: the meaning stays the same while the colours change.",
               }}
             />
           </CaseStudyFigure>
