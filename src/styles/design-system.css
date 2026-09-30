@@ -4176,14 +4176,10 @@ a:hover .ds-compact-mark .ds-dot {
 /* The relationship, qualifying the role rather than standing in for it.
    "Consumer" alone is a position in a transaction and a reader cannot
    picture a person from it; above a job title it does useful work. */
-/* A plain mono label, like every other eyebrow and tag on the page, not a
-   bordered pill: the pill was the one place a label had a container. */
+/* The role's qualifier is the shared `Chip`, the same label the work cards use
+   for their tags. This rule is layout only: the surface is the chip's job. */
 .ds-arch-side {
-  font-family: var(--font-mono), monospace;
-  font-size: 0.72rem;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: var(--muted);
+  flex-shrink: 0;
   white-space: nowrap;
 }
 

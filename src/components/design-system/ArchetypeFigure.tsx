@@ -1,3 +1,4 @@
+import { Chip } from "./primitives/Chip";
 import type { CSSProperties } from "react";
 
 /**
@@ -410,7 +411,7 @@ export function ArchetypeCards({
               {showGlyph ? <ArchetypeGlyph archetype={a} stageCount={stages.length} /> : null}
               <span className="ds-arch-name">{a.name}</span>
             </span>
-            {a.side ? <span className="ds-arch-side">{a.side}</span> : null}
+            {a.side ? <Chip className="ds-arch-side">{a.side}</Chip> : null}
           </div>
           <p className="ds-arch-behaviour">{a.behaviour}</p>
           {a.wants || a.friction ? (
@@ -464,7 +465,7 @@ export function ArchetypeLedger({
           <div className="ds-arch-ledger-role">
             {showGlyph ? <ArchetypeGlyph archetype={a} stageCount={stages.length} /> : null}
             <p className="ds-arch-name">{a.name}</p>
-            {a.side ? <span className="ds-arch-side">{a.side}</span> : null}
+            {a.side ? <Chip className="ds-arch-side">{a.side}</Chip> : null}
           </div>
           <p className="ds-arch-ledger-cell">{a.behaviour}</p>
           <div>{a.wants ? <ArchetypeField label="" items={a.wants} tone="need" /> : null}</div>
