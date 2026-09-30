@@ -1,3 +1,4 @@
+import type { MetricMarkName } from "@/components/design-system/dotPatterns";
 export type ProjectTier = "featured" | "range";
 export type ProjectDomain =
   | "Enterprise"
@@ -14,6 +15,12 @@ export type SystemMapStep = {
 export type ProjectMetric = {
   value: string;
   label: string;
+  /**
+   * Names the mark outright, for the metric whose label would be read as
+   * something else: "for a team to migrate" says people to the label rules
+   * and duration to a reader. Omit it and the mark is derived from the label.
+   */
+  glyph?: MetricMarkName;
 };
 
 /** Looping product clip — or, with no `mp4`, a still key screen — shown at
@@ -173,6 +180,7 @@ export const projects: Project[] = [
       {
         value: "~2 hrs",
         label: "for a team to migrate its libraries, from 3 days",
+        glyph: "ring",
       },
       {
         value: "40%",

@@ -31,9 +31,9 @@ export const PROJECT_SHAPE: Record<string, SystemShape> = {
  * for a metric with no label to read, same as the old array's fallback
  * for a project gaining a metric nobody had added an entry for.
  */
-export function metricGlyph(metric: Pick<ProjectMetric, "label" | "value"> | undefined): MetricMarkName {
+export function metricGlyph(metric: Pick<ProjectMetric, "label" | "value" | "glyph"> | undefined): MetricMarkName {
   if (!metric) return "field";
-  return glyphForMetric(metric.label, metric.value);
+  return metric.glyph ?? glyphForMetric(metric.label, metric.value);
 }
 
 /**
