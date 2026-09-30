@@ -118,9 +118,9 @@ export const projects: Project[] = [
     summary:
       "API work ran on tools outside the company, with no governed way of working across them. I helped define and design a single platform carrying the whole lifecycle with the controls integrated.",
     outcome:
-      "15K+ APIs onboarded · 10K+ monthly users · ~40% faster contract design in the redesigned Studio",
+      "20K+ APIs onboarded · 10K+ monthly users · ~40% faster contract design in the redesigned Studio",
     metrics: [
-      { value: "15K+", label: "APIs onboarded" },
+      { value: "20K+", label: "APIs onboarded" },
       { value: "10K+", label: "monthly users" },
       { value: "~40%", label: "faster contract design in the Studio" },
     ],

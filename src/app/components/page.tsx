@@ -195,7 +195,7 @@ const SWAPS = [
     good: "Portfolio planning was split across separate systems for people, products, initiatives, approvals, and strategic work.",
     bad: "Users were facing significant pain points due to a fragmented and disjointed tooling landscape.",
   },
-  { good: "15K+ APIs onboarded.", bad: "Massive adoption across the engineering organisation." },
+  { good: "20K+ APIs onboarded.", bad: "Massive adoption across the engineering organisation." },
   {
     good: "I co-led the redesign of the information architecture with another designer.",
     bad: "Spearheaded a complete end-to-end transformation of the platform experience.",
@@ -687,7 +687,7 @@ export default function ComponentsPage() {
             claim&rdquo; ring for everything else. Both collapses were solving the wrong problem.{" "}
             <code className="font-mono text-[0.85em]">CompactMetricGlyph</code> never actually renders alone —
             it always sits directly beside the metric&apos;s own value and label in{" "}
-            <code className="font-mono text-[0.85em]">MetricRow</code>, so &ldquo;15K+ APIs onboarded&rdquo; is
+            <code className="font-mono text-[0.85em]">MetricRow</code>, so &ldquo;20K+ APIs onboarded&rdquo; is
             already sitting in text a few pixels away. The glyph doesn&apos;t have to identify the metric by
             itself; it has to not look identical to a different metric&apos;s glyph, and it has to look like it
             belongs to the same family as its 5×5 sibling above.
@@ -1200,7 +1200,7 @@ export default function ComponentsPage() {
           <CaseStudyEvidence
             slug="api-lifecycle"
             metrics={[
-              { value: "15K+", label: "APIs onboarded" },
+              { value: "20K+", label: "APIs onboarded" },
               { value: "~40%", label: "faster contract design" },
               { value: "60+", label: "teams" },
             ]}

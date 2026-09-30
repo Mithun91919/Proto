@@ -252,7 +252,7 @@ export const METRIC_MARK_MEANINGS = Object.fromEntries(
  * and it kept solving the wrong problem. The compact glyph was never actually
  * read in isolation: `CompactMetricGlyph` always sits beside the metric's own
  * value and label (see `MetricRow`), so the thing doing the identifying work
- * is "15K+ APIs onboarded" in text, right next to it. The glyph's job is
+ * is "20K+ APIs onboarded" in text, right next to it. The glyph's job is
  * narrower than a stand-alone pictogram — it only has to (a) not look
  * identical to a different meaning's glyph, so two unrelated metrics don't
  * appear to be the same kind of thing, and (b) carry enough of a family
