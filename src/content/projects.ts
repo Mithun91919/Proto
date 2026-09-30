@@ -163,10 +163,10 @@ export const projects: Project[] = [
     number: "03",
     label: "Dependency Health Platform",
     title:
-      "Dependency Health Platform: turning compliance data into clear action.",
+      "Dependency Health Platform: moving teams onto one Unified BOM before release.",
     internalName: "Dependency Management",
     summary:
-      "The backend could provide dozens of technical signals. The UX challenge was deciding what mattered to engineers and engineering leaders — and translating it into status, diagnosis, and guided remediation.",
+      "The platform could surface dozens of library signals. The design work was deciding which an engineer needed and which a tech lead needed, and what each does next: status, diagnosis, and a guided move onto the Unified BOM.",
     outcome:
       "5K+ repositories migrated · 40% fewer library issues during releases · 80% increase in product health",
     metrics: [

@@ -33,9 +33,9 @@ import { getProject } from "@/content/projects";
  */
 
 export const metadata: Metadata = {
-  title: "Dependency Health Platform — Turning compliance data into clear action",
+  title: "Dependency Health Platform — Moving teams onto one Unified BOM before release",
   description:
-    "A dependency-health platform translating technical signals into repository health, organisation visibility, and guided remediation.",
+    "One platform for engineers and tech leads: which library versions are behind, why it matters, and a guided way onto the Unified BOM.",
   robots: caseStudyRobots,
 };
 
@@ -83,7 +83,7 @@ export default function DependencyHealthPage() {
           label: "What I did",
           lead: (
             <>
-              I designed one platform for <span className="ds-accent-text">leadership and execution</span>.
+              I own the UX for <span className="ds-accent-text">one platform</span> serving leadership and execution.
             </>
           ),
           detail:
@@ -96,7 +96,7 @@ export default function DependencyHealthPage() {
           "The platform Walmart developers and engineering leaders open to see which dependencies in a repository need attention, why they matter, and what to do next.",
         headline: (
           <>
-            Dependency Health Platform: turning compliance data into <span style={{ color: "var(--ds-mint)" }}>clear action</span>.
+            Dependency Health Platform: moving teams onto one <span style={{ color: "var(--ds-mint)" }}>Unified BOM</span> before release.
           </>
         ),
         // Desktop captures at about 1 — nearly square — so each card crops to
