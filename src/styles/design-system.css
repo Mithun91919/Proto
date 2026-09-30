@@ -1593,8 +1593,11 @@
   background: color-mix(in oklab, var(--ds-mint) 78%, transparent);
 }
 
-/* The joins carry the weight, the steps are drawn open — the inverse of the
-   usual emphasis, for a claim about what happens between steps. */
+/* The steps begin open: a step is only finished once the join to the next
+   is made, so each node fills in turn on entrance (see the seam block below)
+   and then stays filled. The resting state, and the one reduced motion
+   shows, is finished. With the nodes solid the joins step back to a thin,
+   quieter line: they connect the steps now rather than outweighing them. */
 .ds-pull-seam {
   display: flex;
   align-items: center;
@@ -1610,15 +1613,16 @@
   height: 12px;
   flex: 0 0 auto;
   border-radius: 50%;
-  box-shadow: inset 0 0 0 1.5px color-mix(in oklab, var(--ds-mint) 45%, transparent);
+  background: var(--ds-mint);
+  box-shadow: inset 0 0 0 1.5px var(--ds-mint);
 }
 
 .ds-pull-seam-join {
   width: 1.6rem;
-  height: 5px;
+  height: 2px;
   margin-inline: 0.4rem;
   border-radius: 999px;
-  background: var(--ds-mint);
+  background: color-mix(in oklab, var(--ds-mint) 55%, transparent);
 }
 
 .ds-pull-text {
@@ -3428,6 +3432,37 @@ a:hover .ds-compact-mark .ds-dot {
     background-image: none;
     background-color: var(--ds-mint);
   }
+}
+
+/* Seam nodes: open, then filled, in order, and they stay filled.
+   The shared standing loop lifts a dot and lets it fall back, which says
+   "here" and not "done". A step in a seam is finished when the join to the
+   next is made, so each node draws open (the shared entrance) and then fills
+   once, a beat after the one before, and holds. The joins keep the shared
+   pulse. Ends filled, so the rest state and reduced motion both read as
+   finished. */
+@keyframes ds-pull-seam-fill {
+  from {
+    background-color: transparent;
+    box-shadow: inset 0 0 0 1.5px color-mix(in oklab, var(--ds-mint) 45%, transparent);
+  }
+  55% {
+    transform: scale(1.28);
+  }
+  to {
+    transform: scale(1);
+  }
+}
+
+.reveal.is-visible .ds-pull-mark .ds-pull-seam-node {
+  animation-name: ds-pull-mark-in, ds-pull-seam-fill;
+  animation-duration: 460ms, 520ms;
+  animation-timing-function: cubic-bezier(0.2, 0.7, 0.3, 1), ease-out;
+  animation-iteration-count: 1, 1;
+  animation-fill-mode: backwards, backwards;
+  animation-delay:
+    calc(var(--ds-mark-lead) + var(--dot-i, 0) * 34ms),
+    calc(var(--ds-mark-lead) + var(--ds-mark-settle) + var(--dot-i, 0) * 110ms);
 }
 
 @media (prefers-reduced-motion: reduce) {

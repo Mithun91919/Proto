@@ -14,9 +14,10 @@ import type { CSSProperties, ReactNode } from "react";
  *   one thing being the link between two others.
  * - `exchange` — one dot feeding a field of many. For statements where the
  *   two sides are not matched: one person contributes, many act on it.
- * - `seam` — open nodes with the joins between them filled. Inverts the
- *   usual emphasis: for statements where the gaps between steps, not the
- *   steps, are the subject.
+ * - `seam` — nodes with the joins between them filled. Inverts the usual
+ *   emphasis: for statements where the gaps between steps, not the steps,
+ *   are the subject. The nodes start open and fill in order, because a step
+ *   is only finished once the join to the next is made.
  *
  * Every mark draws itself on entrance and then keeps a standing loop, both
  * keyed on the `--dot-i` each element carries. `--dot-i` is the meaning
