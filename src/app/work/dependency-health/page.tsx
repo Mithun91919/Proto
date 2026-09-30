@@ -56,7 +56,7 @@ export default function DependencyHealthPage() {
   return (
     <CaseStudyShell
       slug="dependency-health"
-      evidenceCaveat="Pilot scale on the initial major version — the platform is still in progress."
+      evidenceCaveat="The platform is still in progress."
       evidenceMetricsLabel="The impact"
       evidence={[
         {
@@ -440,16 +440,18 @@ export default function DependencyHealthPage() {
           <CaseStudyChapter
             layout="stacked"
             eyebrow="Current evidence"
-            heading="What can be shown today"
+            heading="What changed once teams moved across"
             body={[
-              "The product is live and continues to evolve. The initial major-version pilot covered 148 repositories, and the platform now supports dependency-health visibility from individual repositories through pillar and organisation views, alongside self-service onboarding and remediation.",
-              "Because the programme is active, I would rather show verified adoption and workflow changes than invent a stronger-looking outcome metric.",
+              "The product is live and continues to evolve. After a 148-repository pilot on the initial major version, more than 5K repositories have migrated, and the platform supports dependency-health visibility from individual repositories through pillar and organisation views, alongside self-service onboarding and remediation.",
+              "Fewer library issues arriving at release is what shifting left was for.",
             ]}
           />
           <CaseStudyFigure>
             <ProofStrip
               items={[
-                { value: "148", label: "repositories in the initial major-version pilot", glyph: "field" },
+                { from: "148", value: "5K+", label: "repositories migrated, from the initial pilot", glyph: "funnel" },
+                { value: "40%", label: "fewer library issues during releases", glyph: "drop" },
+                { value: "80%", label: "increase in product health", glyph: "ramp" },
               ]}
             />
           </CaseStudyFigure>

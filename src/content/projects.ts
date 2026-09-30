@@ -168,15 +168,19 @@ export const projects: Project[] = [
     summary:
       "The backend could provide dozens of technical signals. The UX challenge was deciding what mattered to engineers and engineering leaders — and translating it into status, diagnosis, and guided remediation.",
     outcome:
-      "Repository → Pillar → Organisation visibility · 148 repositories in initial major-version pilot",
+      "5K+ repositories migrated · 40% fewer library issues during releases · 80% increase in product health",
     metrics: [
       {
-        value: "3 levels",
-        label: "Repository → Pillar → Organisation visibility",
+        value: "5K+",
+        label: "repositories migrated to the Unified BOM",
       },
       {
-        value: "148",
-        label: "repositories in initial major-version pilot",
+        value: "40%",
+        label: "fewer library issues during releases",
+      },
+      {
+        value: "80%",
+        label: "increase in product health",
       },
     ],
     org: "Walmart Global Tech",
