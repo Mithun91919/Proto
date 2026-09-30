@@ -205,11 +205,9 @@ export default function DependencyHealthPage() {
             body={[
               "Keeping libraries current is a task that runs alongside every release. A library is code a team depends on but did not write, and it falls behind each time a newer approved version ships.",
               "More often than not the check was flagged at the last moment: during a migration, a breakage or security work, close to a release, with little time to absorb it.",
-              "The aim was to shift that check left: find and fix library issues early, get teams onto the Unified BOM faster, and raise code quality and developer productivity as a result.",
             ]}
           />
-          {/* TEMPORARY: two options side by side for review. */}
-          <CaseStudyFigure rule label="Option 1 · a release checklist">
+          <CaseStudyFigure rule label="The check, on the release list">
             <ReleaseChecklist
               title="Release"
               items={[
@@ -221,18 +219,6 @@ export default function DependencyHealthPage() {
             />
             <p className="ds-note mt-3">An illustration of a release list, not a screenshot.</p>
           </CaseStudyFigure>
-          <CaseStudyFigure rule label="Option 4 · before and after">
-            <BeforeAfterModel
-              before={{
-                heading: "Found at the last moment",
-                body: "Flagged close to the release, during a migration, a breakage or security work.",
-              }}
-              after={{
-                heading: "Found early",
-                body: "Flagged while there is still a whole release cycle to fix it.",
-              }}
-            />
-          </CaseStudyFigure>
         </CaseStudySection>
 
         <CaseStudySection id="solution">
@@ -241,7 +227,7 @@ export default function DependencyHealthPage() {
             eyebrow="The idea"
             heading="One team builds the Unified BOM. Every other team onboards to it."
             body={[
-              "The team proposed a Unified BOM, short for bill of materials: one package of approved library versions, Java and Spring Boot included, that one team builds and every other team onboards to.",
+              "To shift that check left, the team proposed a Unified BOM, short for bill of materials: one package of approved library versions, Java and Spring Boot included, that one team builds and every other team onboards to.",
               "Until a team migrates, its Java and Spring Boot packages stay supported on their own, and some legacy systems keep running on older versions.",
               "The platform team built the scanning and pre-commit checks behind it. I designed the dashboard that monitors it and the remediation flow that helps engineers raise and manage pull requests.",
             ]}
