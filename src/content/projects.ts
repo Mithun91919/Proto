@@ -166,7 +166,7 @@ export const projects: Project[] = [
       "Dependency Health Platform: moving teams onto one Unified BOM before release.",
     internalName: "Dependency Management",
     summary:
-      "The platform could surface dozens of library signals. The design work was deciding which an engineer needed and which a tech lead needed, and what each does next: status, diagnosis, and a guided move onto the Unified BOM.",
+      "The platform could surface dozens of library signals. The design work was deciding which an engineer needed and which an engineer manager needed, and what each does next: status, diagnosis, and a guided move onto the Unified BOM.",
     outcome:
       "5K+ repositories migrated · 40% fewer library issues during releases · 80% increase in product health",
     metrics: [

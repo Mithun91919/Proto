@@ -4,6 +4,8 @@ import { Reveal } from "@/components/Reveal";
 import { ArtboardCarousel } from "@/components/design-system/ArtboardCarousel";
 import { BeforeAfterModel } from "@/components/design-system/BeforeAfterModel";
 import { ClipFigure } from "@/components/design-system/ClipFigure";
+import { ArchetypeSection } from "@/components/design-system/ArchetypeSection";
+import type { Archetype } from "@/components/design-system/ArchetypeFigure";
 import { CostStrip } from "@/components/design-system/CostStrip";
 import { ProofStrip } from "@/components/design-system/ProofStrip";
 import { PullStatement } from "@/components/design-system/PullStatement";
@@ -36,12 +38,48 @@ import { getProject } from "@/content/projects";
 export const metadata: Metadata = {
   title: "Dependency Health Platform — Moving teams onto one Unified BOM before release",
   description:
-    "One platform for engineers and tech leads: which library versions are behind, why it matters, and a guided way onto the Unified BOM.",
+    "One platform for engineers and engineer managers: which library versions are behind, why it matters, and a guided way onto the Unified BOM.",
   robots: caseStudyRobots,
 };
 
+/**
+ * The two people the platform serves. One relationship with two sides: both
+ * are engineers by discipline, so the split is what each has to do with the
+ * same libraries. Behaviour and friction are the ones the problem names — no
+ * invented name or biography.
+ */
+const ARCHETYPES: Archetype[] = [
+  {
+    name: "Engineer",
+    side: "Fixes it",
+    behaviour: "Works in the repository: sees the library debt it carries, and raises the pull requests that clear it.",
+    wants: [
+      "See what their repository owes, and how far behind it is.",
+      "Raise a pull request to fix it, and follow it through.",
+    ],
+    friction: [
+      "Library problems found during a migration, a breakage or security work, not ahead of it.",
+      "Blind spots in the dependencies they build on.",
+    ],
+  },
+  {
+    name: "Engineer manager",
+    side: "Answers for it",
+    behaviour: "Reads across teams: where the library debt is, and which teams are furthest behind.",
+    wants: [
+      "A bird’s-eye view of library debt across their teams.",
+      "See which teams need attention, and how remediation is moving.",
+    ],
+    friction: [
+      "Rework surfacing close to a release, with no earlier warning.",
+      "Blind spots across the dependencies their teams rely on.",
+    ],
+  },
+];
+
 const CHAPTERS = [
   { id: "outdated", label: "Outdated libraries" },
+  { id: "who", label: "Who it is for" },
   { id: "problem", label: "The problem" },
   { id: "goals", label: "The goals" },
   { id: "solution", label: "The idea" },
@@ -168,8 +206,19 @@ export default function DependencyHealthPage() {
             body={[
               "A library is code a team depends on but did not write. It falls behind when a newer approved version exists and the repository has not moved to it.",
               "The trouble is when it shows up: during a migration, a breakage or security work, close to a release, with little time to absorb it.",
+              "The libraries a repository depends on do not wait for each other. Java and Spring Boot each ship on a six-month rhythm, and Node.js has too, so a team on all three has something to catch up on several times a year.",
             ]}
           />
+          <CaseStudyFigure rule label="How often the libraries move">
+            <ProofStrip
+              items={[
+                { value: "6 months", label: "between Java feature releases, in March and September", glyph: "modules" },
+                { value: "6 months", label: "between Spring Boot major or minor releases, in May and November", glyph: "modules" },
+                { from: "6 months", value: "12 months", label: "between Node.js majors, changing from Node 27", glyph: "modules" },
+              ]}
+            />
+            <p className="ds-note mt-3">As published by the OpenJDK, Spring Boot and Node.js projects.</p>
+          </CaseStudyFigure>
           <CaseStudyFigure>
             <CostStrip
               items={[
@@ -193,6 +242,17 @@ export default function DependencyHealthPage() {
           </CaseStudyFigure>
         </CaseStudySection>
 
+        {/* After the cost, before the problem: the reader knows what an
+            outdated library is and what it costs, and needs to know who
+            it costs before being shown a route through it. */}
+        <CaseStudySection id="who">
+          <ArchetypeSection
+            heading="The same libraries. Two very different jobs."
+            intro="An engineer fixes the libraries in a repository. An engineer manager answers for the debt across their teams."
+            archetypes={ARCHETYPES}
+          />
+        </CaseStudySection>
+
         <CaseStudySection id="problem">
           <Reveal>
             <ArtboardCarousel
@@ -202,7 +262,7 @@ export default function DependencyHealthPage() {
               description={[
                 "Teams often found library problems during a migration, a breakage or security work, rather than through visibility that came early.",
                 "Blind spots in their dependencies cost them productivity, and the stability of standardising on the Unified BOM went unused.",
-                "Two people needed different things from the same data. An engineer needed the debt in their repository and a way to clear it. A tech lead needed a bird’s-eye view of the debt across their teams.",
+                "Two people needed different things from the same data. An engineer needed the debt in their repository and a way to clear it. An engineer manager needed a bird’s-eye view of the debt across their teams.",
                 "The same underlying data needed a different hierarchy for each.",
               ]}
               scrollable
@@ -219,13 +279,13 @@ export default function DependencyHealthPage() {
                   caption: "An engineer starts from one product: how many services are behind, then which ones, with the drift beside each.",
                 },
                 {
-                  title: "The leader: how are my teams doing?",
+                  title: "The engineer manager: how are my teams doing?",
                   route: "/stacklift/home",
                   src: "/work/dependency-health/pillar.png",
                   width: 2880,
                   height: 2960,
                   alt: "A pillar view: three health measures with a runtime distribution beside them, then every team's services against the same measures",
-                  caption: "A tech lead sees every team’s services against the same three measures, so who is furthest behind is a sort away.",
+                  caption: "An engineer manager sees every team’s services against the same three measures, so who is furthest behind is a sort away.",
                   hotspots: [
                     { x: 27.8, y: 36.4, title: "The health, in one sentence", detail: "The three measures are followed by a plain statement of what they add up to, above the detail." },
                     { x: 66.8, y: 30, title: "The Unified BOM beside Java and Spring Boot", detail: "One bar each for the versions in use across the pillar’s services, the outdated releases in orange." },
@@ -233,7 +293,7 @@ export default function DependencyHealthPage() {
                   ],
                 },
                 {
-                  title: "The leader, a level up: how is the organisation doing?",
+                  title: "The engineer manager, a level up: how is the organisation doing?",
                   route: "/stacklift/organisations",
                   src: "/work/dependency-health/organisation.png",
                   width: 2880,
@@ -293,19 +353,19 @@ export default function DependencyHealthPage() {
             heading="One Unified BOM, migrated as a batch"
             body={[
               "The team proposed a Unified BOM, short for bill of materials: one package of approved library versions that a team moves onto together, instead of updating libraries one at a time. Until a team migrates, its Java and Spring Boot packages stay supported as individual packages, and some legacy systems had to keep running on older versions.",
-              "Underneath, the platform scans repositories for library issues and checks for problems before code is integrated. The platform team built that. I designed the dashboard that monitors it, with what an engineer sees in a repository and what a leader sees across their teams, and the remediation flow that helps engineers raise pull requests and manage them.",
+              "Underneath, the platform scans repositories for library issues and checks for problems before code is integrated. The platform team built that. I designed the dashboard that monitors it, with what an engineer sees in a repository and what an engineer manager sees across their teams, and the remediation flow that helps engineers raise pull requests and manage them.",
             ]}
           />
           <CaseStudyFigure rule label="How a team gets onto the Unified BOM">
             <BeforeAfterModel
               before={{
-                heading: "Package by package",
-                body: "Java and Spring Boot packages, each updated on its own.",
+                heading: "Upgrade each one by hand",
+                body: "Teams upgraded libraries one at a time, by hand.",
               }}
               after={{
                 glyph: "funnel",
-                heading: "One Unified BOM, as a batch",
-                body: "One package of approved versions that a team moves onto together.",
+                heading: "One package, already checked",
+                body: "The Unified BOM is a single package of approved versions with security and governance checked, so a team migrates to it and tests it.",
               }}
             />
           </CaseStudyFigure>
