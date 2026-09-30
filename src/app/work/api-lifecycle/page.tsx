@@ -89,8 +89,8 @@ const CHAPTERS = [
   { id: "studio", label: "Designing a contract" },
   { id: "testing", label: "Testing" },
   { id: "adoption", label: "Adoption" },
-  { id: "infrastructure", label: "Where it went" },
   { id: "outcomes", label: "What changed" },
+  { id: "infrastructure", label: "Where it went" },
 ];
 
 export default function ApiLifecyclePage() {
@@ -593,28 +593,18 @@ export default function ApiLifecyclePage() {
             <BeforeAfterModel
               before={{
                 glyph: "field",
+                figure: { value: "3", label: "months of low adoption" },
                 heading: "Set in their ways",
                 body: "Three months of low adoption. Teams kept to the tools they had.",
               }}
               after={{
                 glyph: "ramp",
+                figure: { value: "100+", label: "brown-bag sessions, 60+ people on average" },
                 heading: "Shown what they were missing",
                 body: "Seeing the product working is what moved teams, and adoption grew.",
               }}
             />
           </CaseStudyFigure>
-        </CaseStudySection>
-
-        <CaseStudySection id="infrastructure">
-          <CaseStudyChapter
-            layout="stacked"
-            eyebrow="Where it went"
-            heading="Ready for AI because the groundwork was already there"
-            body={[
-              "With AI arriving, the platform now has an MCP to discover, create and manage APIs.",
-              "That was only possible because the data and the workflows were already in place. The lifecycle engineers use through the interface can now be invoked in context.",
-            ]}
-          />
         </CaseStudySection>
 
         <CaseStudySection id="outcomes">
@@ -636,6 +626,18 @@ export default function ApiLifecyclePage() {
               ]}
             />
           </CaseStudyFigure>
+        </CaseStudySection>
+
+        <CaseStudySection id="infrastructure">
+          <CaseStudyChapter
+            layout="stacked"
+            eyebrow="Where it went"
+            heading="Ready for AI because the groundwork was already there"
+            body={[
+              "With AI arriving, the platform now has an MCP to discover, create and manage APIs.",
+              "That was only possible because the data and the workflows were already in place. The lifecycle engineers use through the interface can now be invoked in context.",
+            ]}
+          />
         </CaseStudySection>
       </CaseStudyColumn>
 

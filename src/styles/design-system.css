@@ -3930,14 +3930,37 @@ a:hover .ds-compact-mark .ds-dot {
   color: var(--ink-soft);
 }
 
-.ds-arch-basis-label {
-  display: block;
-  margin-bottom: 0.35rem;
+/* A figure and its unit, on one baseline: the number set at display size in
+   the deep accent so it is read first, the mono label as what it counts.
+   Shared by the archetype basis and the Before/After cards, so a number the
+   page leans on looks the same wherever it appears. */
+.ds-stat-row {
+  display: flex;
+  align-items: baseline;
+  gap: 0.85rem;
+  margin: 0 0 0.6rem;
+}
+
+.ds-stat-figure {
+  font-family: var(--font-display), ui-sans-serif, system-ui, sans-serif;
+  font-size: 3rem;
+  font-weight: 600;
+  line-height: 0.95;
+  letter-spacing: -0.03em;
+  font-variant-numeric: tabular-nums;
+  color: var(--ds-accent-deep);
+}
+
+.ds-stat-label {
   font-family: var(--font-mono), monospace;
   font-size: 0.72rem;
   letter-spacing: 0.14em;
   text-transform: uppercase;
   color: var(--ds-accent-deep);
+}
+
+.ds-arch-basis-text {
+  margin: 0;
 }
 
 /* The cards then need their own gap from it, not the head's. */

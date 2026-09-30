@@ -17,6 +17,12 @@ type StateCard = {
   stages?: string[];
   /** A single semantic dot glyph above the card, same family as `ProofStrip`'s. */
   glyph?: MetricMarkName;
+  /**
+   * A number the card leans on, set large with its unit beside it — "3" and
+   * "months of low adoption". Kept out of the body so the figure is read
+   * first rather than found inside a sentence.
+   */
+  figure?: { value: string; label: string };
 };
 
 type BeforeAfterModelProps = {
@@ -33,6 +39,12 @@ export function BeforeAfterModel({ before, after }: BeforeAfterModelProps) {
           <div className="mb-5">
             <MetricGlyph name={before.glyph} size={5} gap={3} />
           </div>
+        ) : null}
+        {before.figure ? (
+          <p className="ds-stat-row" style={{ marginBottom: "0.9rem" }}>
+            <span className="ds-stat-figure" style={{ color: "var(--ink-soft)" }}>{before.figure.value}</span>
+            <span className="ds-stat-label" style={{ color: "var(--muted)" }}>{before.figure.label}</span>
+          </p>
         ) : null}
         <p className="ds-eyebrow" style={{ color: "var(--muted)" }}>
           Before
@@ -61,6 +73,12 @@ export function BeforeAfterModel({ before, after }: BeforeAfterModelProps) {
           <div className="mb-5">
             <MetricGlyph name={after.glyph} size={5} gap={3} />
           </div>
+        ) : null}
+        {after.figure ? (
+          <p className="ds-stat-row" style={{ marginBottom: "0.9rem" }}>
+            <span className="ds-stat-figure">{after.figure.value}</span>
+            <span className="ds-stat-label">{after.figure.label}</span>
+          </p>
         ) : null}
         <p className="ds-eyebrow" style={{ color: "var(--ds-accent-deep)" }}>
           After

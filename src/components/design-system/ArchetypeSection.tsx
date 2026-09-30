@@ -74,13 +74,25 @@ type ArchetypeSectionProps = {
    */
   basis?: string;
   /**
-   * The label over `basis`. A prop rather than a fixed string because the
-   * number it usually leads with — "20+ interviews" — already lives inside
-   * `basis` itself; hardcoding it a second time up here would be the same
-   * fact stated twice with only one of them to update if it ever changes.
+   * The label over `basis`. A prop rather than a fixed string so the number
+   * it leads with — "20+ interviews before design" — is stated once, here,
+   * and not again in `basis`.
+   *
+   * A leading figure ("20+", "~40%", "1.4K") is lifted out and set large,
+   * with the rest as the label beside it, so the number a reader is meant to
+   * trust is the first thing they see rather than one more word in a small
+   * mono line. The split is done here, so every caller gets it and nobody
+   * has to pass the number separately; a label with no leading figure ("How
+   * these were defined") renders as plain text, as before.
    */
   basisLabel?: string;
 };
+
+/** "20+ interviews before design" → { figure: "20+", rest: "interviews before design" }. */
+function splitFigure(label: string): { figure: string | null; rest: string } {
+  const match = label.match(/^(~?\d[\d.,]*[KMkm]?\+?%?)\s+(.+)$/);
+  return match ? { figure: match[1], rest: match[2] } : { figure: null, rest: label };
+}
 
 export function ArchetypeSection({
   id,
@@ -98,16 +110,21 @@ export function ArchetypeSection({
   // `lanes` without stages gets the claim the data can actually support.
   const resolved = stages.length === 0 ? "cards" : variant;
 
+  const { figure, rest } = splitFigure(basisLabel);
+
   const head = (
     <div className="ds-arch-section-head">
       {eyebrow ? <p className="ds-eyebrow">{eyebrow}</p> : null}
       <h2 className="display-title display-section mt-3">{heading}</h2>
       {intro ? <p className="body-text mt-5 max-w-[62ch]">{intro}</p> : null}
       {basis ? (
-        <p className="ds-arch-basis">
-          <span className="ds-arch-basis-label">{basisLabel}</span>
-          {basis}
-        </p>
+        <div className="ds-arch-basis">
+          <p className="ds-stat-row">
+            {figure ? <span className="ds-stat-figure">{figure}</span> : null}
+            <span className="ds-stat-label">{rest}</span>
+          </p>
+          <p className="ds-arch-basis-text">{basis}</p>
+        </div>
       ) : null}
     </div>
   );
