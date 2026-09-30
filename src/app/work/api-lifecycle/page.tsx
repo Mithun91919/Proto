@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { caseStudyRobots } from "@/content/seo";
 import { Reveal } from "@/components/Reveal";
 import { DotFlow } from "@/components/design-system/DotFlow";
+import { NoteCard } from "@/components/design-system/NoteCard";
 import { ProofStrip } from "@/components/design-system/ProofStrip";
 import { BeforeAfterModel } from "@/components/design-system/BeforeAfterModel";
 import { ArtboardCarousel } from "@/components/design-system/ArtboardCarousel";
@@ -627,23 +628,23 @@ export default function ApiLifecyclePage() {
             />
           </CaseStudyFigure>
         </CaseStudySection>
-      </CaseStudyColumn>
 
-      {/* Where it went, as a band rather than a chapter: it is a claim about
-          the whole platform (it was ready for this), not evidence for the
-          section above. Top-level so it reaches the page edges, with the id
-          the chapter rail looks for. */}
-      <div id="infrastructure" className="mt-16 scroll-mt-28 md:mt-20">
-        <Reveal>
-          <PullStatement
-            eyebrow="Where it went"
-            mark="connection"
-            note="There is now an MCP to discover, create and manage APIs."
-          >
-            Ready for AI because the data and the workflows were already in place.
-          </PullStatement>
-        </Reveal>
-      </div>
+        {/* Where it went, as the AI note: a claim about the whole platform
+            (the data and workflows were already in place, so it was ready),
+            in the same card the work page uses for its own AI line. Sparkle
+            because it is about AI. */}
+        <CaseStudySection id="infrastructure">
+          <Reveal>
+            <NoteCard
+              label="Where it went"
+              heading="Ready for AI because the groundwork was already there"
+              body="There is now an MCP to discover, create and manage APIs. That was only possible because the data and the workflows were already in place."
+              mark="AI"
+              sparkle
+            />
+          </Reveal>
+        </CaseStudySection>
+      </CaseStudyColumn>
 
       <div className="mt-16 md:mt-20">
         <Reveal>
