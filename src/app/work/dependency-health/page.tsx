@@ -8,6 +8,7 @@ import { ReleaseChecklist } from "@/components/design-system/ReleaseChecklist";
 import { ArchetypeSection } from "@/components/design-system/ArchetypeSection";
 import type { Archetype } from "@/components/design-system/ArchetypeFigure";
 import { ProofStrip } from "@/components/design-system/ProofStrip";
+import { NoteCard } from "@/components/design-system/NoteCard";
 import { PullStatement } from "@/components/design-system/PullStatement";
 import {
   CaseStudyChapter,
@@ -463,12 +464,21 @@ export default function DependencyHealthPage() {
           <CaseStudyFigure>
             <ProofStrip
               items={[
-                { value: "5K+", label: "repositories migrated to the Unified BOM", glyph: "funnel" },
+                { value: "5K+", label: "repositories migrated to the Unified BOM", glyph: "ring" },
                 { value: "40%", label: "fewer library issues during releases", glyph: "drop" },
                 { value: "80%", label: "increase in product health", glyph: "ramp" },
               ]}
             />
           </CaseStudyFigure>
+          <Reveal>
+            <NoteCard
+              label="Where it went"
+              heading="A skill and an MCP now check and remediate product health"
+              body="They help check product health and remediate it, alongside the dashboard."
+              mark="AI"
+              sparkle
+            />
+          </Reveal>
         </CaseStudySection>
       </CaseStudyColumn>
 
