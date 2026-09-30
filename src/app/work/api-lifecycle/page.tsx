@@ -620,9 +620,9 @@ export default function ApiLifecyclePage() {
           <CaseStudyFigure>
             <ProofStrip
               items={[
-                { value: "15K+", label: "APIs onboarded", glyph: "modules" },
-                { value: "10K+", label: "monthly users", glyph: "field" },
-                { value: "~40%", label: "less contract-design time, redesigned Studio teams", glyph: "drop" },
+                { from: "0", value: "20K+", label: "APIs onboarded", glyph: "modules" },
+                { from: "600", value: "10K+", label: "monthly users", glyph: "field" },
+                { value: "60%", label: "less time taken by developers", glyph: "drop" },
               ]}
             />
           </CaseStudyFigure>
