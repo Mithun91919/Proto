@@ -207,9 +207,9 @@ export default function DependencyHealthPage() {
               "More often than not the check was flagged at the last moment: during a migration, a breakage or security work, close to a release, with little time to absorb it.",
             ]}
           />
-          <CaseStudyFigure rule label="The check, on the release list">
+          <CaseStudyFigure rule label="Where the check lands on the way to a release">
             <ReleaseChecklist
-              title="Release"
+              label="A release: Build, Test and Security review are done, the check for outdated libraries is flagged at the last moment, then the release."
               items={[
                 { label: "Build", done: true },
                 { label: "Test", done: true },
@@ -218,7 +218,7 @@ export default function DependencyHealthPage() {
                 { label: "Release", end: true },
               ]}
             />
-            <p className="ds-note mt-3">An illustration of a release list, not a screenshot.</p>
+            <p className="ds-note mt-3">An illustration of a release, not a screenshot.</p>
           </CaseStudyFigure>
         </CaseStudySection>
 

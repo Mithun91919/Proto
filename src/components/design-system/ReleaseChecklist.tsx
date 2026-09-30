@@ -1,55 +1,50 @@
-import { GlassPanel } from "./primitives/GlassPanel";
-
 export type ReleaseChecklistItem = {
   label: string;
   /** Ticked off. */
   done?: boolean;
-  /** The item the figure is about: open, tinted and tagged. */
+  /** The step the figure is about: the one accent dot, with its note under it. */
   flagged?: boolean;
-  /** The tag under a flagged item, in mono. */
+  /** A few words under a flagged step, in mono. */
   flag?: string;
-  /** The point the row runs to — drawn as a ring, with no line after it. */
+  /** The point the row runs to: a ring, with no line after it. */
   end?: boolean;
 };
 
 type ReleaseChecklistProps = {
-  /** The row's own name, in mono: "Release". */
-  title: string;
   items: ReleaseChecklistItem[];
+  /** Names the row for screen readers. */
+  label: string;
 };
 
 /**
- * S7 · Release checklist — a task on a list, drawn as the list, left to right.
+ * S7 · Release row — a step on a path, drawn as the path, left to right.
  *
- * For a claim about when something happens in a process, the plainest figure
- * is the process as the reader already knows it: a short run of steps with one
- * singled out. Left to right so that *where* the flagged step sits is the
- * picture: right up against the release, with nothing after it but the
- * deadline. Done steps are ticked and recede; the flagged one is open, tinted
- * and tagged; the end is a ring.
+ * The plainest figure for a claim about *when* something happens in a
+ * process: a line with a dot per step and one dot singled out. No card, no
+ * boxes, no tags; the same vocabulary as a lane in C13, where a mark on a line
+ * is the whole statement. Done steps are small and quiet, the flagged one is
+ * the only accent and the only large dot, and the end is a ring. Where the
+ * flagged dot sits against the ring is the picture.
  *
- * It is a depiction of a release, not a screenshot of one, and should be
- * captioned as such where the steps are illustrative.
+ * A depiction of a release, not a screenshot of one; caption it as such where
+ * the steps are illustrative.
  */
-export function ReleaseChecklist({ title, items }: ReleaseChecklistProps) {
+export function ReleaseChecklist({ items, label }: ReleaseChecklistProps) {
   return (
-    <GlassPanel className="ds-checklist rounded-2xl p-7">
-      <p className="ds-eyebrow">{title}</p>
-      <ol className="ds-checklist-list">
-        {items.map((item, index) => (
-          <li
-            key={item.label}
-            className={`ds-checklist-item${item.done ? " is-done" : ""}${item.flagged ? " is-flagged" : ""}${item.end ? " is-end" : ""}`}
-          >
-            <span className="ds-checklist-track" aria-hidden>
-              <span className="ds-checklist-box">{item.done ? "✓" : item.flagged ? "!" : ""}</span>
-              {index < items.length - 1 ? <span className="ds-checklist-line" /> : null}
-            </span>
-            <span className="ds-checklist-label">{item.label}</span>
-            {item.flagged && item.flag ? <span className="ds-checklist-flag">{item.flag}</span> : null}
-          </li>
-        ))}
-      </ol>
-    </GlassPanel>
+    <ol className="ds-checklist-list" aria-label={label}>
+      {items.map((item, index) => (
+        <li
+          key={item.label}
+          className={`ds-checklist-item${item.done ? " is-done" : ""}${item.flagged ? " is-flagged" : ""}${item.end ? " is-end" : ""}`}
+        >
+          <span className="ds-checklist-track" aria-hidden>
+            <span className="ds-checklist-box" />
+            {index < items.length - 1 ? <span className="ds-checklist-line" /> : null}
+          </span>
+          <span className="ds-checklist-label">{item.label}</span>
+          {item.flagged && item.flag ? <span className="ds-checklist-flag">{item.flag}</span> : null}
+        </li>
+      ))}
+    </ol>
   );
 }
