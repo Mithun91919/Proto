@@ -3948,7 +3948,10 @@ a:hover .ds-compact-mark .ds-dot {
   line-height: 0.95;
   letter-spacing: -0.03em;
   font-variant-numeric: tabular-nums;
-  color: var(--ds-accent-deep);
+  /* The brighter accent, not the deep one: at this size it clears AA for
+     large text (3.5:1 against 3:1) and reads as a highlight rather than as
+     near-body-colour. The small mono label beside it stays deep. */
+  color: var(--ds-accent);
 }
 
 .ds-stat-label {
