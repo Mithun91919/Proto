@@ -4176,15 +4176,14 @@ a:hover .ds-compact-mark .ds-dot {
 /* The relationship, qualifying the role rather than standing in for it.
    "Consumer" alone is a position in a transaction and a reader cannot
    picture a person from it; above a job title it does useful work. */
+/* A plain mono label, like every other eyebrow and tag on the page, not a
+   bordered pill: the pill was the one place a label had a container. */
 .ds-arch-side {
   font-family: var(--font-mono), monospace;
   font-size: 0.72rem;
   letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: var(--ds-accent-deep);
-  border: 1px solid color-mix(in oklab, var(--ds-accent-deep) 22%, transparent);
-  border-radius: 999px;
-  padding: 3px 9px;
+  color: var(--muted);
   white-space: nowrap;
 }
 
@@ -4194,6 +4193,11 @@ a:hover .ds-compact-mark .ds-dot {
 .ds-arch-card .ds-arch-name {
   font-size: 1.32rem;
   line-height: 1.2;
+  /* The same weight and tracking every other display line on the page has.
+     At the inherited 400 the role name read as a different typeface from the
+     headings around it. */
+  font-weight: 600;
+  letter-spacing: -0.02em;
 }
 
 .ds-arch-card .ds-arch-behaviour {
