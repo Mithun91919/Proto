@@ -651,9 +651,9 @@ export default function ApiLifecyclePage() {
           <PullStatement
             eyebrow="What I believe now"
             mark="exchange"
-            note="Adoption stayed low for three months, until the brown-bag sessions showed teams what they were missing."
+            note="Adoption stayed low for three months after launch. It rose when I took the platform to teams, one session at a time."
           >
-            Showing people what a product does can matter as much as building it.
+            A platform is adopted when someone shows teams what it does, not when it ships.
           </PullStatement>
         </Reveal>
       </div>
