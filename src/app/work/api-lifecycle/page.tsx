@@ -85,6 +85,7 @@ const ARCHETYPES: Archetype[] = [
 const CHAPTERS = [
   { id: "lifecycle", label: "The lifecycle" },
   { id: "who", label: "Who it is for" },
+  { id: "decision", label: "One platform" },
   { id: "overview", label: "The way in" },
   { id: "marketplace", label: "Finding a service" },
   { id: "studio", label: "Designing a contract" },
@@ -100,7 +101,7 @@ export default function ApiLifecyclePage() {
   return (
     <CaseStudyShell
       slug="api-lifecycle"
-      evidenceCaveat="The ~40% is measured for teams using the redesigned Studio; the other two figures are scale."
+      evidenceCaveat="The 60% is the reduction in time developers take on API contracting; the other two figures are scale."
       evidenceMetricsLabel="The impact"
       evidence={[
         {
@@ -133,7 +134,7 @@ export default function ApiLifecyclePage() {
             </>
           ),
           detail:
-            "I shaped the product model as a single platform with the controls integrated, then ran the weekly sessions that got teams onto it after a launch almost nobody turned up to \u2014 over a hundred of them, and the product grew from my first year on it to my fourth.",
+            "I owned the design direction and pushed for one platform with the controls integrated, not three products. Launch was not the end: I ran the sessions that got teams onto it after almost nobody turned up \u2014 over a hundred of them, and the product grew from my first year on it to my fourth.",
         },
       ]}
       chapters={CHAPTERS}
@@ -219,6 +220,7 @@ export default function ApiLifecyclePage() {
             body={[
               "An API moves through discovery, contract design, validation, testing, publishing, subscription, governance, and eventually change or deprecation.",
               "API Hub carries all of it. Home, My APIs, Testing, Subscriptions and Settings \u2014 areas of a product rather than products, with governance belonging to each area instead of waiting as a gate at the end of them.",
+              "Two rules carry it. A specification with flagged errors cannot be pushed to Git, and a push to production needs a manager\u2019s approval.",
             ]}
           />
           <CaseStudyFigure rule label="Every stage the platform carries">
@@ -242,6 +244,38 @@ export default function ApiLifecyclePage() {
             basisLabel="20+ interviews before design"
             basis="The research defined these roles, exposed the broken hand-offs, and later helped us validate the specification."
           />
+        </CaseStudySection>
+
+        {/* The two sides are now known, so this is where the choice that
+            served both is said: the spec asked for three products. The
+            figure is that change itself, three built in turn against one. It
+            uses `stages` on the before card because what differs is what the
+            pieces are, not how many steps there are. */}
+        <CaseStudySection id="decision">
+          <CaseStudyChapter
+            layout="stacked"
+            eyebrow="A decision"
+            heading="The spec asked for three products. Teams needed one."
+            body={[
+              "The spec was a marketplace, a Studio and testing, as separate products. With the engineering capacity available, version one was built that way.",
+              "Teams were on Swagger, Postman and Confluence, each with its own budget. To leave them, it had to be a whole package: an import that brought existing specifications across, with testing, mocking, versioning and environments inside. I pushed for one experience instead and started the work to join the three.",
+            ]}
+          />
+          <CaseStudyFigure>
+            <BeforeAfterModel
+              before={{
+                stages: ["Marketplace", "Studio", "Testing"],
+                heading: "Three products, built in turn",
+                body: "Each one was complete on its own and handed work to the next.",
+              }}
+              after={{
+                glyph: "modules",
+                figure: { value: "1", label: "platform, with the areas using each other" },
+                heading: "One experience",
+                body: "The touchpoints overlap, so work does not have to be carried between them.",
+              }}
+            />
+          </CaseStudyFigure>
         </CaseStudySection>
 
         <CaseStudySection id="overview">
@@ -423,7 +457,7 @@ export default function ApiLifecyclePage() {
               title="Contract design had to work for beginners and experts at the same time"
               description={[
                 "API contract design exposed one of the platform’s hardest interaction problems.",
-                "Providers split on this. Some were comfortable working directly in YAML or JSON; others needed a structured interface that made the schema easier to understand and create.",
+                "Not every team had an expert who could write a specification by hand, and at this scale a specification gets long. Some providers were comfortable working directly in YAML or JSON. Others needed to add a constant or change one small thing without breaking the structure around it.",
                 "Instead of forcing one mode on everyone, we designed two connected editors: Basic for guided, structured contract creation, and Advanced for engineers who preferred direct specification editing.",
                 "Switching between them required careful handling of validation, unsupported changes, and the risk of losing work. Around that core interaction, the Studio added linting, duplicate detection, quality feedback, versioning, imports, collaboration, code generation, and governance guidance.",
               ]}
@@ -585,8 +619,8 @@ export default function ApiLifecyclePage() {
             eyebrow="Adoption"
             heading="It shipped, and for three months almost nobody came"
             body={[
-              "The platform launched and, for the first three months, adoption was low. It worked and every area was in place, but teams were comfortable with the tools they already had and had not seen what the platform offered.",
-              "I interviewed teams to find out why, and took what I learned into brown-bag sessions: show the product to one team, watch where they got stuck, answer the workflow questions an announcement cannot.",
+              "The platform came out in batches: the marketplace first, then the Studio, then testing. Teams waited until all of it was there before moving. When it was, the assumption that it was unfinished stayed, and for the first three months adoption was low.",
+              "I interviewed teams to find out why, and took what I learned into brown-bag sessions: show the product to one team, watch where they got stuck, answer the workflow questions an announcement cannot. Whatever was stopping a team from migrating was raised and worked through in the same session.",
               "I have run more than a hundred of them, averaging over sixty people a session, and the sessions became a feedback channel of their own.",
             ]}
           />
@@ -596,7 +630,7 @@ export default function ApiLifecyclePage() {
                 glyph: "field",
                 figure: { value: "3", label: "months of low adoption" },
                 heading: "Set in their ways",
-                body: "Three months of low adoption. Teams kept to the tools they had.",
+                body: "Teams waited for every piece, then still assumed it was unfinished. They kept to the tools they had.",
               }}
               after={{
                 glyph: "ramp",
@@ -623,7 +657,7 @@ export default function ApiLifecyclePage() {
               items={[
                 { from: "0", value: "20K+", label: "APIs onboarded", glyph: "modules" },
                 { from: "600", value: "10K+", label: "monthly users", glyph: "field" },
-                { value: "60%", label: "less time taken by developers", glyph: "drop" },
+                { value: "60%", label: "less time taken by developers on API contracting", glyph: "drop" },
               ]}
             />
           </CaseStudyFigure>
@@ -638,7 +672,7 @@ export default function ApiLifecyclePage() {
             <NoteCard
               label="Where it went"
               heading="Ready for AI because the groundwork was already there"
-              body="There is now an MCP to discover, create and manage APIs. That was only possible because the data and the workflows were already in place."
+              body="There is now an MCP to discover, create and manage APIs. People can use it from any AI tool, such as Copilot, to get API information and take actions without opening the platform, so it sits inside their workflow instead of beside it. That was only possible because the data and the workflows were already in place."
               mark="AI"
               sparkle
             />
