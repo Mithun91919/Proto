@@ -672,16 +672,7 @@ export default function ApiLifecyclePage() {
             <NoteCard
               label="Where it went"
               heading="Ready for AI because the groundwork was already there"
-              body="There is now an MCP to discover, create and manage APIs. People can use it from any AI tool, such as Copilot, to get API information and take actions without opening the platform, so it sits inside their workflow instead of beside it. That was only possible because the data and the workflows were already in place."
-              mark="AI"
-              sparkle
-            />
-          </Reveal>
-          <Reveal>
-            <NoteCard
-              label="What I would change"
-              heading="Start from the agent, not the screen"
-              body="If I started today I would make it agentic first. The whole platform can now run as an MCP, with the screens as one way in instead of the only one."
+              body="There is now an MCP to discover, create and manage APIs. People can use it from any AI tool, such as Copilot, to get API information and take actions without opening the platform, so it sits inside their workflow instead of beside it. That was only possible because the data and the workflows were already in place. If I started today I would go further and make it agentic first, with the screens as one way in instead of the only one."
               mark="AI"
               sparkle
             />
