@@ -220,7 +220,7 @@ export default function ApiLifecyclePage() {
             body={[
               "An API moves through discovery, contract design, validation, testing, publishing, subscription, governance, and eventually change or deprecation.",
               "API Hub carries all of it. Home, My APIs, Testing, Subscriptions and Settings \u2014 areas of a product rather than products, with governance belonging to each area instead of waiting as a gate at the end of them.",
-              "Two rules carry it. A specification with flagged errors cannot be pushed to Git, and a push to production needs a manager\u2019s approval.",
+              "Two org rules carry it, enforced inside the work. A specification with flagged errors cannot be pushed to Git, and a push to production needs a manager\u2019s approval.",
             ]}
           />
           <CaseStudyFigure rule label="Every stage the platform carries">
@@ -257,7 +257,7 @@ export default function ApiLifecyclePage() {
             eyebrow="A decision"
             heading="The spec asked for three products. Teams needed one."
             body={[
-              "The spec was a marketplace, a Studio and testing, as separate products. With the engineering capacity available, version one was built that way.",
+              "The spec was a marketplace, a Studio and testing, as separate products, in the order people needed them: find a service, then build one, then test it. With the engineering capacity available, version one was built that way.",
               "Teams were on Swagger, Postman and Confluence, each with its own budget. To leave them, it had to be a whole package: an import that brought existing specifications across, with testing, mocking, versioning and environments inside. I pushed for one experience instead and started the work to join the three.",
             ]}
           />
@@ -673,6 +673,15 @@ export default function ApiLifecyclePage() {
               label="Where it went"
               heading="Ready for AI because the groundwork was already there"
               body="There is now an MCP to discover, create and manage APIs. People can use it from any AI tool, such as Copilot, to get API information and take actions without opening the platform, so it sits inside their workflow instead of beside it. That was only possible because the data and the workflows were already in place."
+              mark="AI"
+              sparkle
+            />
+          </Reveal>
+          <Reveal>
+            <NoteCard
+              label="What I would change"
+              heading="Start from the agent, not the screen"
+              body="If I started today I would make it agentic first. The whole platform can now run as an MCP, with the screens as one way in instead of the only one."
               mark="AI"
               sparkle
             />
