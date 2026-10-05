@@ -40,6 +40,38 @@ type BrowserMockupProps = {
 };
 
 /**
+ * `ScrollFrame` is a client component and owns the wheel handling that keeps a
+ * nested scroller from trapping the page. A non-scrollable mockup has no
+ * scroller and stays entirely on the server — `crop` stays on the server too,
+ * since clipping to a fixed height needs no JS at all.
+ *
+ * Declared at module level, not inside `BrowserMockup`: a component defined in
+ * the render body is a new component type on every render, so React unmounts
+ * and remounts everything under it each time.
+ */
+function FrameWrapper({
+  scrollable,
+  crop,
+  maxHeight,
+  children,
+}: {
+  scrollable: boolean;
+  crop: boolean;
+  maxHeight: string;
+  children: ReactNode;
+}) {
+  if (scrollable) return <ScrollFrame maxHeight={maxHeight}>{children}</ScrollFrame>;
+  if (crop) {
+    return (
+      <div className="ds-frame-crop" style={{ "--frame-max-height": maxHeight } as CSSProperties}>
+        {children}
+      </div>
+    );
+  }
+  return <>{children}</>;
+}
+
+/**
  * S3 · Browser mockup — the real, asset-backed sibling of `MediaFrameChrome`.
  * Same chrome (traffic-light dots, route pill) so the two read as one
  * pattern, but this one takes a genuine screenshot from the image folder
@@ -64,22 +96,6 @@ export function BrowserMockup({
   maxHeight = "32rem",
   hotspots,
 }: BrowserMockupProps) {
-  // `ScrollFrame` is a client component and owns the wheel handling that
-  // keeps a nested scroller from trapping the page. A non-scrollable mockup
-  // has no scroller and stays entirely on the server — `crop` stays on the
-  // server too, since clipping to a fixed height needs no JS at all.
-  const Wrapper = ({ children }: { children: ReactNode }) => {
-    if (scrollable) return <ScrollFrame maxHeight={maxHeight}>{children}</ScrollFrame>;
-    if (crop) {
-      return (
-        <div className="ds-frame-crop" style={{ "--frame-max-height": maxHeight } as CSSProperties}>
-          {children}
-        </div>
-      );
-    }
-    return <>{children}</>;
-  };
-
   return (
     <figure>
       <div className="ds-frame">
@@ -99,7 +115,7 @@ export function BrowserMockup({
         </div>
 
         <div className="ds-framebody relative">
-          <Wrapper>
+          <FrameWrapper scrollable={scrollable} crop={crop} maxHeight={maxHeight}>
             {/* The hotspot layer positions its dots in % of this box, so the
                 box has to be the image and nothing else. Left to resolve
                 against `.ds-framebody` they measured against the frame's
@@ -118,7 +134,7 @@ export function BrowserMockup({
             />
             {hotspots?.length ? <ImageHotspots hotspots={hotspots} /> : null}
             </div>
-          </Wrapper>
+          </FrameWrapper>
 
           {scrollable ? (
             <span className="ds-frame-scroll-hint" aria-hidden>
