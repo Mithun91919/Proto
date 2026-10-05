@@ -143,8 +143,6 @@ export default function TotalOsLocalizationPage() {
           />
           <CaseStudyFigure>
             <ArtboardFigure
-              layout="portrait"
-              portraitMax="62rem"
               src="/work/total-os/hindi-screens.jpg"
               width={2000}
               height={1800}
