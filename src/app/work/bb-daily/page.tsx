@@ -9,6 +9,8 @@ import { DotFlow } from "@/components/design-system/DotFlow";
 import { HeroThumbnailRail } from "@/components/design-system/HeroThumbnailRail";
 import { PullStatement } from "@/components/design-system/PullStatement";
 import { SceneBanner } from "@/components/design-system/SceneBanner";
+import { ArchetypeSection } from "@/components/design-system/ArchetypeSection";
+import type { Archetype } from "@/components/design-system/ArchetypeFigure";
 import {
   CaseStudyChapter,
   CaseStudyColumn,
@@ -37,8 +39,44 @@ export const metadata: Metadata = {
 
 const FLOW = ["Customer subscription", "Procurement", "Inventory", "Shipment", "Delivery"];
 
+/**
+ * The two people either side of a delivery. Drawn from what the page already
+ * says about each: the friction is the situation as it was found, the wants
+ * are what each half of the product was built to give them. No invented name
+ * or biography.
+ */
+const ARCHETYPES: Archetype[] = [
+  {
+    name: "Customer",
+    side: "Subscribes",
+    behaviour: "A household that has already decided what it needs each week, and wants it to arrive without rebuilding the basket.",
+    wants: [
+      "Set a schedule once, then change one day rather than the whole subscription.",
+      "Know before committing whether bb daily reaches their address.",
+    ],
+    friction: [
+      "Grocery experiences built around a single order, not a standing arrangement.",
+      "Learning only at the end that the address was out of reach.",
+    ],
+  },
+  {
+    name: "Operations team",
+    side: "Delivers it",
+    behaviour: "Six roles coordinate stock arriving, packing, shipments and doorstep delivery inside a narrow morning window.",
+    wants: [
+      "An app that opens on their own work, in the terms they already use.",
+      "An accurate picture of what has arrived, what is packed and what still has to move.",
+    ],
+    friction: [
+      "A process that ran on paperwork and manual handoffs.",
+      "Inventory moving between people and places, with no way to keep track of it.",
+    ],
+  },
+];
+
 const CHAPTERS = [
   { id: "product-model", label: "The product model" },
+  { id: "who", label: "Who it is for" },
   { id: "customer-side", label: "The customer side" },
   { id: "reach", label: "Where it could reach" },
   { id: "operations", label: "The operations side" },
@@ -164,6 +202,15 @@ export default function BbDailyPage() {
       </div>
 
       <CaseStudyColumn>
+        <CaseStudySection id="who">
+          <ArchetypeSection
+            heading="One subscription. Two halves of the work."
+            intro="A customer sets up a routine and expects it to arrive. An operations team does the physical work that makes each delivery happen."
+            archetypes={ARCHETYPES}
+            variant="cards"
+          />
+        </CaseStudySection>
+
         {/* The title stands alone, then each clip gets its own alternating
             beat beside the sentence it evidences (S12). */}
         <CaseStudySection id="customer-side">
