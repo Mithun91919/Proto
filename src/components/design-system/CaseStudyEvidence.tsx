@@ -48,7 +48,7 @@ const MARKS: Record<string, number[]> = {
   2: [1, 1, 1, 1, 1],
 };
 
-export function CaseStudyEvidence({ slug, beats, metrics, metricsLabel, caveat }: CaseStudyEvidenceProps) {
+export function CaseStudyEvidence({ beats, metrics, metricsLabel, caveat }: CaseStudyEvidenceProps) {
   const hasBeats = Boolean(beats?.length);
   const hasMetrics = Boolean(metrics?.length);
   if (!hasBeats && !hasMetrics) return null;
@@ -127,7 +127,7 @@ export function CaseStudyEvidence({ slug, beats, metrics, metricsLabel, caveat }
               </p>
             ) : null}
             <div className="grid grid-cols-1 gap-7 sm:grid-cols-3">
-              {metrics!.map((m, i) => (
+              {metrics!.map((m) => (
                 <div key={m.label} className="flex items-start gap-4">
                   {/* Top-aligned to the figure, not centred on figure and
                       label together: the mark belongs to the number. The

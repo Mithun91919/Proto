@@ -29,7 +29,7 @@ export function MetricRow({ project, max = 3, className = "" }: MetricRowProps) 
       className={`grid ${className}`.trim()}
       style={{ gridTemplateColumns: `repeat(${metrics.length}, 1fr)`, columnGap: "22px", rowGap: "13px" }}
     >
-      {metrics.map((m, i) => (
+      {metrics.map((m) => (
         <div key={m.label} className="flex items-center" style={{ gap: "11px" }}>
           <CompactMetricGlyph name={metricGlyph(m)} value={m.value} />
           <div>

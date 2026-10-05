@@ -29,15 +29,15 @@ type ZoomLensProps = {
  */
 export function ZoomLens({ src, width, height, alt, caption, zoom = 2.2, lensSize = 180 }: ZoomLensProps) {
   const stageRef = useRef<HTMLDivElement>(null);
-  const [pos, setPos] = useState<{ x: number; y: number } | null>(null);
+  // The stage width is measured in the handler and kept with the position,
+  // not read from the ref while rendering.
+  const [pos, setPos] = useState<{ x: number; y: number; stageWidth: number } | null>(null);
 
   const handleMove = (event: MouseEvent<HTMLDivElement>) => {
     const rect = stageRef.current?.getBoundingClientRect();
     if (!rect) return;
-    setPos({ x: event.clientX - rect.left, y: event.clientY - rect.top });
+    setPos({ x: event.clientX - rect.left, y: event.clientY - rect.top, stageWidth: rect.width });
   };
-
-  const stageWidth = stageRef.current?.clientWidth ?? width;
 
   return (
     <figure>
@@ -58,7 +58,7 @@ export function ZoomLens({ src, width, height, alt, caption, zoom = 2.2, lensSiz
               width: lensSize,
               height: lensSize,
               backgroundImage: `url(${src})`,
-              backgroundSize: `${stageWidth * zoom}px auto`,
+              backgroundSize: `${pos.stageWidth * zoom}px auto`,
               backgroundPosition: `${-(pos.x * zoom - lensSize / 2)}px ${-(pos.y * zoom - lensSize / 2)}px`,
             }}
           />
