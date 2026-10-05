@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import { caseStudyRobots } from "@/content/seo";
 import { ArtboardFigure } from "@/components/design-system/ArtboardFigure";
 import { DotFlow } from "@/components/design-system/DotFlow";
-import { MediaPlaceholder } from "@/components/design-system/MediaPlaceholder";
 import { PullStatement } from "@/components/design-system/PullStatement";
 import {
   CaseStudyChapter,
@@ -201,13 +200,6 @@ export default function HikeJobsServicePage() {
               "A personalised area allowed users to save and track opportunities so they could return without starting their search again.",
             ]}
           />
-          <CaseStudyFigure>
-            <MediaPlaceholder
-              ratio={16 / 10}
-              needs="The saved and tracked jobs area, showing how someone returns to opportunities across sessions."
-              source="Draft beat: MEDIA — SAVED / TRACKED JOBS"
-            />
-          </CaseStudyFigure>
         </CaseStudySection>
 
         <CaseStudySection id="resume">

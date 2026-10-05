@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import { caseStudyRobots } from "@/content/seo";
 import { ArtboardFigure } from "@/components/design-system/ArtboardFigure";
-import { MediaPlaceholder } from "@/components/design-system/MediaPlaceholder";
 import { PullStatement } from "@/components/design-system/PullStatement";
 import {
   CaseStudyChapter,
@@ -163,13 +162,6 @@ export default function CreoMark1Page() {
               height={5320}
               alt="Campaign creative applying the same visual system to a customer-facing surface"
               caption="The same system, a different surface"
-            />
-          </CaseStudyFigure>
-          <CaseStudyFigure>
-            <MediaPlaceholder
-              ratio={16 / 9}
-              needs="A cross-channel collage — web, social, email, and animated GIF assets side by side — showing the system holding across touchpoints."
-              source="Draft beat: MEDIA — CROSS-CHANNEL COLLAGE"
             />
           </CaseStudyFigure>
         </CaseStudySection>

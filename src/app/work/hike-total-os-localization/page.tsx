@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import { caseStudyRobots } from "@/content/seo";
 import { DotFlow } from "@/components/design-system/DotFlow";
-import { MediaPlaceholder } from "@/components/design-system/MediaPlaceholder";
 import { PullStatement } from "@/components/design-system/PullStatement";
 import {
   CaseStudyChapter,
@@ -30,7 +29,6 @@ export const metadata: Metadata = {
 const PIPELINE = ["English copy", "Language partner", "Internal review", "XML", "Device validation"];
 
 const CHAPTERS = [
-  { id: "overview", label: "Overview" },
   { id: "beyond-translation", label: "Beyond translation" },
   { id: "pipeline", label: "The pipeline" },
   { id: "in-interface", label: "In the interface" },
@@ -97,16 +95,7 @@ export default function TotalOsLocalizationPage() {
       }}
     >
       <CaseStudyColumn>
-        <CaseStudySection id="overview" boundary={false} className="pt-14 md:pt-20">
-          <CaseStudyFigure>
-            <MediaPlaceholder
-              needs="The same product screen shown across several of the eight languages, as the page hero."
-              source="Draft beat: MEDIA — HERO"
-            />
-          </CaseStudyFigure>
-        </CaseStudySection>
-
-        <CaseStudySection id="beyond-translation">
+        <CaseStudySection id="beyond-translation" boundary={false} className="pt-14 md:pt-20">
           <CaseStudyChapter
             layout="flow"
             eyebrow="Not a copy task"
@@ -148,13 +137,6 @@ export default function TotalOsLocalizationPage() {
               "That allowed text length, hierarchy, context, and usability to be evaluated in the actual product rather than only inside a translation document.",
             ]}
           />
-          <CaseStudyFigure>
-            <MediaPlaceholder
-              ratio={16 / 9}
-              needs="The same screen compared across four to eight languages, showing how text length and hierarchy shift between scripts."
-              source="Draft beat: MEDIA — LANGUAGE SCREEN COMPARISON"
-            />
-          </CaseStudyFigure>
         </CaseStudySection>
 
         <CaseStudySection id="reflection">
