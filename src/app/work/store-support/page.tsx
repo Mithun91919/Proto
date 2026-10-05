@@ -5,6 +5,7 @@ import { AlternatingTextMedia } from "@/components/design-system/AlternatingText
 import { ClipFigure } from "@/components/design-system/ClipFigure";
 import { BeforeAfterModel } from "@/components/design-system/BeforeAfterModel";
 import { PullStatement } from "@/components/design-system/PullStatement";
+import { ProofStrip } from "@/components/design-system/ProofStrip";
 import { ReframeBlock } from "@/components/design-system/ReframeBlock";
 import { ArchetypeSection } from "@/components/design-system/ArchetypeSection";
 import type { Archetype } from "@/components/design-system/ArchetypeFigure";
@@ -31,9 +32,11 @@ import { getProject } from "@/content/projects";
  * fix it yourself before raising a ticket; and a tracked loop after. The
  * four screen recordings carry those beats as S12 feature rows.
  *
- * The draft is explicit that ticket-volume and resolution-time claims
- * are unavailable, so the metric band stays captioned as scale, not as
- * proof the redesign resolved anything.
+ * The draft predates the post-launch figures. The outcome strip carries the
+ * three the owner supplied: closing time, tickets raised, and the
+ * do-it-yourself fixes created. The 40% of tickets an associate could have
+ * cleared (the discovery finding) is a different number and stays footnoted
+ * as a description of the tickets before the redesign.
  */
 
 export const metadata: Metadata = {
@@ -94,7 +97,6 @@ export default function StoreSupportPage() {
   return (
     <CaseStudyShell
       slug="store-support"
-      evidenceCaveat="Scale of the experience during the documented period — not a resolution claim."
       evidenceMetricsLabel="The impact"
       evidence={[
         {
@@ -364,10 +366,18 @@ export default function StoreSupportPage() {
             body={[
               "The question the product asks first is different. An associate who finds a cooler failing no longer goes looking for a manager, or a desktop, or the words to describe from memory something they are standing in front of. They say what happened and get the steps back, and where those work nobody is dispatched at all.",
               "Every store associate has the app, and they are still using it on the floor.",
-              "The scale at the top of this page is what the experience reached during the documented period, and the growing role of search and self-service in it. It is not what the redesign achieved.",
-              "Ticket volume, resolution time and store downtime would be the right measures, and I would rather leave them out than claim them without approved post-launch data.",
+              "Tickets that took three days to close now close in one, and fewer are raised in the first place. Where there were no do-it-yourself fixes, there are now 40.",
             ]}
           />
+          <CaseStudyFigure>
+            <ProofStrip
+              items={[
+                { from: "3 days", value: "1 day", label: "to close a ticket", glyph: "ring" },
+                { value: "40%", label: "fewer tickets raised", glyph: "drop" },
+                { from: "0", value: "40", label: "do-it-yourself fixes created", glyph: "ramp" },
+              ]}
+            />
+          </CaseStudyFigure>
         </CaseStudySection>
       </CaseStudyColumn>
 

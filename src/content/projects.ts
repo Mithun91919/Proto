@@ -237,11 +237,11 @@ export const projects: Project[] = [
     summary:
       "Support used to start at a manager\u2019s desk. I rebuilt it as a phone app that offers the fix before the form, with a ticket only if the steps do not work, and a work order the associate can follow.",
     outcome:
-      "~5.9K daily users · ~580K-device footprint · 7K+ weekly searches",
+      "Tickets closed in 1 day, from 3 · 40% fewer tickets raised · 40 do-it-yourself fixes created",
     metrics: [
-      { value: "~5.9K", label: "daily users" },
-      { value: "~580K", label: "device footprint" },
-      { value: "7K+", label: "weekly searches" },
+      { value: "1 day", label: "to close a ticket, from 3 days", glyph: "ring" },
+      { value: "40%", label: "fewer tickets raised", glyph: "drop" },
+      { value: "40", label: "do-it-yourself fixes created, from none", glyph: "ramp" },
     ],
     org: "Walmart Global Tech",
     domain: "Frontline ops",
