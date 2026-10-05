@@ -123,7 +123,7 @@ export const projects: Project[] = [
       "API Lifecycle Platform: one place to discover, design, test, and govern APIs.",
     internalName: "API Lifecycle Manager",
     summary:
-      "API work ran on tools outside the company, with no governed way of working across them. I helped define and design a single platform carrying the whole lifecycle with the controls integrated.",
+      "API work ran on tools outside the company, with no governed way of working across them. I owned the design direction for a single platform carrying the whole lifecycle with the controls integrated, and pushed for it to be one product, not three.",
     outcome:
       "20K+ APIs onboarded · 10K+ monthly users · 60% less time taken by developers on API contracting",
     metrics: [
@@ -173,7 +173,7 @@ export const projects: Project[] = [
       "Dependency Health Platform: moving teams onto one Unified BOM before release.",
     internalName: "Dependency Management",
     summary:
-      "The platform could surface dozens of library signals. The design work was deciding which an engineer needed and which an engineer manager needed, and what each does next: status, diagnosis, and a guided move onto the Unified BOM.",
+      "The request was a dashboard to monitor library health. I pushed for it to act as well: a pull request generated to start the upgrade, and a flag a manager can assign, so teams move onto one Unified BOM before release.",
     outcome:
       "3 days to ~2 hrs to migrate a team · 40% fewer library issues during releases · 80% increase in product health",
     metrics: [
@@ -235,7 +235,7 @@ export const projects: Project[] = [
     title:
       "Store associate app: fix everything that breaks.",
     summary:
-      "I redesigned the self-service support experience around clearer classification, guided troubleshooting, search, location context, and better escalation information.",
+      "Support used to start at a manager\u2019s desk. I rebuilt it as a phone app that offers the fix before the form, with a ticket only if the steps do not work, and a work order the associate can follow.",
     outcome:
       "~5.9K daily users · ~580K-device footprint · 7K+ weekly searches",
     metrics: [
@@ -285,7 +285,7 @@ export const projects: Project[] = [
     title:
       "Supply Chain Operations Platform: getting to the right tool faster.",
     summary:
-      "As the platform expanded, hundreds of operational modules became increasingly difficult to discover. I co-led the information architecture and navigation redesign, evaluating competing navigation models with users across multiple markets.",
+      "As the platform expanded, 139 operational modules became increasingly difficult to discover. I co-led the redesign of the landing page, sign-in and navigation, evaluating competing navigation models with users across multiple markets.",
     outcome: "~985K monthly unique visitors · 139 modules",
     metrics: [
       { value: "~985K", label: "monthly unique visitors" },

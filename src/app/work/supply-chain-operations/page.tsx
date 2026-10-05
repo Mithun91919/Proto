@@ -339,7 +339,7 @@ export default function SupplyChainOperationsPage() {
           <CaseStudyChapter
             layout="stacked"
             eyebrow="What changed"
-            heading="The best outcome was people leaving the homepage faster"
+            heading="The outcome that mattered was people leaving the homepage faster"
             body={[
               "In many digital products, more time spent can look like engagement. Here, the opposite was true.",
               "The purpose of the landing page was to route people into operational work as quickly as possible. Where a visit to it had run 10 to 30 minutes, that time fell by 62% after we introduced the new information architecture, navigation, search and personalisation. The figure compares time spent on the landing page before the redesign with the time spent after it.",
