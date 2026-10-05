@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { caseStudyRobots } from "@/content/seo";
 import { Reveal } from "@/components/Reveal";
 import { ArchetypeSection } from "@/components/design-system/ArchetypeSection";
+import { ArtboardFigure } from "@/components/design-system/ArtboardFigure";
 import type { Archetype } from "@/components/design-system/ArchetypeFigure";
 import { ArtboardCarousel } from "@/components/design-system/ArtboardCarousel";
 import { BeforeAfterModel } from "@/components/design-system/BeforeAfterModel";
@@ -236,6 +237,17 @@ export default function PortfolioManagementPage() {
               "It mattered most when something was shared. When someone sends a link or a figure to be reviewed, the person receiving it has to understand what they are looking at without a glossary.",
             ]}
           />
+          <CaseStudyFigure>
+            <ArtboardFigure
+              layout="portrait"
+              portraitMax="56rem"
+              src="/work/portfolio-management/diagram.png"
+              width={1954}
+              height={1782}
+              alt="Pfolio at the centre, with People, Product, Initiative, Manager and StratTrack around it, each with a one-line description"
+              caption="The platform in one picture: five categories around one hub. A central platform for planning and workflows, team allocation and the information behind decisions. It manages entities, controls permissions and keeps data accurate, and it holds initiatives across their hierarchy so priorities and outcomes line up."
+            />
+          </CaseStudyFigure>
           <CaseStudyFigure>
             <BrowserMockup
               route="/home"
