@@ -411,6 +411,35 @@ export default function PortfolioManagementPage() {
                     { x: 50, y: 42.5, title: "Planned against actual", detail: "Planned headcount and actual headcount sit side by side for every objective." },
                   ],
                 },
+                {
+                  title: "A goal is written with its key results and owners",
+                  route: "/portfolio/okr/new",
+                  src: "/work/portfolio-management/new-okr.png",
+                  width: 2880,
+                  height: 3509,
+                  alt: "A new OKR form: phase and status, strategic alignment, an objective definition, key results with metrics and targets, dependencies, ownership, and a comments panel",
+                  caption: "An objective is aligned first, then defined, then broken into key results with a quarter target and an annual target each.",
+                  hotspots: [
+                    { x: 12.2, y: 12.7, title: "A phase, and when it is approved", detail: "Planning or Approved, with the note that an objective is marked approved once it passes peer review." },
+                    { x: 21.6, y: 16.6, title: "Alignment comes first", detail: "The objective's type, its strategic theme and the L3 and L4 objectives it supports are chosen before anything is written." },
+                    { x: 36.6, y: 57, title: "Key results carry their metrics", detail: "Each key result takes one or more metrics, each with a quarter target and an annual target." },
+                    { x: 84.1, y: 9.75, title: "Comments beside the form", detail: "A comments panel sits next to the form, so a reviewer's question and the author's answer are on the page they are about." },
+                  ],
+                },
+                {
+                  title: "The health of every goal, in one view",
+                  route: "/portfolio/kpi",
+                  src: "/work/portfolio-management/kpi.png",
+                  width: 2880,
+                  height: 2919,
+                  alt: "The KPI view of the Portfolio page: goals health as a ring, a bar of health for each director, goals by owner, and a table of goals with linked initiatives and products",
+                  caption: "Goals are read by health, by director and by owner, and each goal shows the initiatives and products linked to it.",
+                  hotspots: [
+                    { x: 95.8, y: 27, title: "Three views of the same goals", detail: "Compact, Detailed and Report switch how much each goal shows, without leaving the page." },
+                    { x: 50.1, y: 32.4, title: "Health by director", detail: "Each director's goals as a bar, split into on track, at risk and behind." },
+                    { x: 71, y: 64.5, title: "Goals linked to the work", detail: "Every goal lists the initiatives and the products linked to it, which is where goals meet the rest of the platform." },
+                  ],
+                },
               ]}
             />
           </Reveal>
