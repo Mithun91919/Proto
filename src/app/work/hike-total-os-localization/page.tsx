@@ -3,7 +3,6 @@ import { caseStudyRobots } from "@/content/seo";
 import { ArtboardFigure } from "@/components/design-system/ArtboardFigure";
 import { DotFlow } from "@/components/design-system/DotFlow";
 import { PullStatement } from "@/components/design-system/PullStatement";
-import { SceneBanner } from "@/components/design-system/SceneBanner";
 import {
   CaseStudyChapter,
   CaseStudyColumn,
@@ -31,7 +30,6 @@ export const metadata: Metadata = {
 const PIPELINE = ["English copy", "Language partner", "Internal review", "XML", "Device validation"];
 
 const CHAPTERS = [
-  { id: "overview", label: "Overview" },
   { id: "beyond-translation", label: "Beyond translation" },
   { id: "pipeline", label: "The pipeline" },
   { id: "in-interface", label: "In the interface" },
@@ -76,6 +74,9 @@ export default function TotalOsLocalizationPage() {
       ]}
       chapters={CHAPTERS}
       hero={{
+        artMode: "backdrop" as const,
+        src: "/work/total-os/cover.jpg",
+        alt: "TOTAL, built by Hike, set over a photograph of a crowd of people in turbans and headscarves",
         standfirst:
           "TOTAL OS was built to run without a connection, for people across India reading in their own script. Every string had to survive translation, review, build and a real handset before it counted as done.",
         headline: (
@@ -97,16 +98,6 @@ export default function TotalOsLocalizationPage() {
         title: "Job Discovery & Resume Builder: from finding a job to being ready to apply.",
       }}
     >
-      {/* The cover is a banner (~1.74), not evidence: it sets the audience and
-          nothing in it needs reading, so it is a band, not a figure. */}
-      <div id="overview" className="mt-14 md:mt-20">
-        <SceneBanner
-          fullBleed
-          src="/work/total-os/cover.jpg"
-          alt="TOTAL, built by Hike, set over a photograph of a crowd of people in turbans and headscarves"
-        />
-      </div>
-
       <CaseStudyColumn>
         <CaseStudySection id="beyond-translation" boundary={false} className="pt-14 md:pt-20">
           <CaseStudyChapter

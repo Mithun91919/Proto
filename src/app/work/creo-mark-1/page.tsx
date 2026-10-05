@@ -133,18 +133,6 @@ export default function CreoMark1Page() {
               "Software pages and Flipkart content were updated to explain what had changed while keeping each release connected to the same product story.",
             ]}
           />
-          <CaseStudyFigure>
-            <BrowserMockup
-              route="mark-1 / software update"
-              src="/work/creo/screen-2.jpg"
-              width={2880}
-              height={8000}
-              alt="A monthly software update page explaining the features introduced in that release"
-              caption="A monthly update page — new content each release, the same product story"
-              scrollable
-              maxHeight="40rem"
-            />
-          </CaseStudyFigure>
         </CaseStudySection>
 
         <CaseStudySection id="surfaces">
