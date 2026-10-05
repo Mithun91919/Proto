@@ -6,6 +6,8 @@ import { DecisionRecord } from "@/components/design-system/DecisionRecord";
 import { GuidedHotspotTour } from "@/components/design-system/GuidedHotspotTour";
 import { ProofStrip } from "@/components/design-system/ProofStrip";
 import { ReframeBlock } from "@/components/design-system/ReframeBlock";
+import { ArchetypeSection } from "@/components/design-system/ArchetypeSection";
+import type { Archetype } from "@/components/design-system/ArchetypeFigure";
 import { PullStatement } from "@/components/design-system/PullStatement";
 import {
   CaseStudyChapter,
@@ -32,7 +34,28 @@ export const metadata: Metadata = {
     "Redesigning the information architecture, navigation, and landing experience for a platform fronting 139 operational modules.",  robots: caseStudyRobots,
 };
 
+/**
+ * The one person the front door was solved for. Drawn from what the page
+ * already says: the friction is the old landing page as it was, the wants are
+ * what the redesign was built to give them. No invented name or biography.
+ */
+const ARCHETYPES: Archetype[] = [
+  {
+    name: "Operations user",
+    behaviour: "Uses one or more of the 139 modules in their supply chain work, and opens the platform to reach a tool, not to spend time in it.",
+    wants: [
+      "Get back to the few modules they use, quickly.",
+      "Find a module they only need now and then without remembering where it lives.",
+    ],
+    friction: [
+      "No pins or recent modules, so a tool opened twenty times a day sat beside one opened twice a year.",
+      "Everyone started from the same page, whatever their role.",
+    ],
+  },
+];
+
 const CHAPTERS = [
+  { id: "who", label: "Who it is for" },
   { id: "bottleneck", label: "The bottleneck" },
   { id: "structure", label: "Structure" },
   { id: "navigation", label: "Navigation" },
@@ -78,7 +101,7 @@ export default function SupplyChainOperationsPage() {
             </>
           ),
           detail:
-            "We regrouped the platform into Category → Module → Sub-module with users and platform teams, put two navigation directions in front of users, then added pins, recent modules and search so the small working set most people rely on is a short trip away.",
+            "Other designers owned the categories inside the platform. I designed the landing page, the sign-in and the navigation. We regrouped the platform into Category → Module → Sub-module with users and platform teams, put two navigation directions in front of users, then added pins, recent modules and search so the small working set most people rely on is a short trip away.",
         },
       ]}
       chapters={CHAPTERS}
@@ -139,7 +162,16 @@ export default function SupplyChainOperationsPage() {
       }
     >
       <CaseStudyColumn>
-        <CaseStudySection id="bottleneck" boundary={false} className="pt-14 md:pt-20">
+        <CaseStudySection id="who" boundary={false} className="pt-14 md:pt-20">
+          <ArchetypeSection
+            heading="One kind of user: someone who needs a few of the 139 tools."
+            intro="They use one or more of them in their supply chain work. The front door exists to get them there, not to hold them."
+            archetypes={ARCHETYPES}
+            variant="cards"
+          />
+        </CaseStudySection>
+
+        <CaseStudySection id="bottleneck">
           <CaseStudyChapter
             layout="stacked"
             eyebrow="A crowded front door"
@@ -199,7 +231,7 @@ export default function SupplyChainOperationsPage() {
           bleed
           eyebrow="Structure"
           heading="Re-skinning the front would have promised what the platform could not deliver"
-          body="The cheaper path was to leave the structure alone and redesign over it. We argued against that: better packaging raises what people expect, and the product underneath has to be worth the expectation it sets. Nothing could be grouped until we could say what each of the 139 modules actually did, so close to a dozen category teams settled that module by module. We landed on Category → Module → Sub-module, then several rounds of leadership approval before it could ship."
+          body="The cheaper path was to leave the structure alone and redesign over it. We argued against that: better packaging raises what people expect, and the product underneath has to be worth the expectation it sets. Nothing could be grouped until we could say what each of the 139 modules actually did, so close to a dozen category teams settled that module by module. We landed on Category → Module → Sub-module. These were legacy systems and the teams were against changing them, so each had to be shown the merit before they agreed, and it took several rounds of leadership approval before it could ship."
         />
       </div>
 
@@ -213,7 +245,7 @@ export default function SupplyChainOperationsPage() {
             heading="Two navigation ideas went in front of users"
             body={[
               "With the new structure in place, we explored two directions: a top-navigation model and a persistent left-navigation model.",
-              "Rather than choosing internally, we evaluated both concepts through moderated sessions with users representing different operational groups and markets.",
+              "Rather than choosing internally, we evaluated both concepts through moderated sessions, averaging 12 people each, with users representing different operational groups and markets.",
               "Feedback on the alternative still improved the final design, including how controls such as market selection were consolidated into the navigation.",
             ]}
           />
@@ -221,7 +253,7 @@ export default function SupplyChainOperationsPage() {
             <DecisionRecord
               optionA={{
                 title: "Top navigation",
-                body: "The familiar option, but the platform’s depth left little room as categories and module count grew.",
+                body: "The familiar option, but the platform already had domains and sub-domains, and the list of modules kept growing. A top bar would not have scaled.",
               }}
               chosen={{
                 title: "Persistent left navigation",
