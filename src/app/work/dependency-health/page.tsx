@@ -124,7 +124,7 @@ export default function DependencyHealthPage() {
             </>
           ),
           detail:
-            "I designed the dashboard that monitors library health at each level, from repository to organisation, and the remediation flow that helps engineers raise pull requests and manage them. The platform team built the scanning behind it.",
+            "The request was a dashboard to monitor library health at each level, from repository to organisation. I pushed for it to act as well, with a remediation flow that helps engineers raise pull requests and manage them. The platform team built the scanning behind it.",
         },
       ]}
       chapters={CHAPTERS}
@@ -227,8 +227,8 @@ export default function DependencyHealthPage() {
             heading="One team builds the Unified BOM. Every other team onboards to it."
             body={[
               "To shift that check left, the team proposed a Unified BOM, short for bill of materials: one package of approved library versions that one team builds and every other team onboards to.",
-              "Java and Spring Boot are in the package too. Until a team migrates, their packages stay supported on their own, and some legacy systems keep running on older versions.",
-              "The platform team built the scanning and pre-commit checks behind it. I designed the dashboard that monitors it and the remediation flow that helps engineers raise and manage pull requests.",
+              "The package holds the latest version of everything, and not every system or team can move to all of them at once. So it was not forced. Java and Spring Boot are in the package too, and their individual packages stay supported until a team migrates. Some legacy systems keep running on older versions.",
+              "The request was a dashboard to monitor. I pushed for it to act as well: a pull request generated to start the upgrade, and a flag a manager can assign to someone instead of only looking at it. The platform team built the scanning and pre-commit checks behind it, and the monitoring ran on existing APIs, so it needed no new work from them.",
             ]}
           />
           <CaseStudyFigure rule label="How a team gets onto the Unified BOM">
@@ -458,7 +458,7 @@ export default function DependencyHealthPage() {
             heading="What changed once teams moved across"
             body={[
               "The platform has shipped. More than 5K repositories have migrated, and the platform gives dependency-health visibility from individual repositories through pillar and organisation views, alongside self-service onboarding and remediation.",
-              "Fewer library issues arriving at release is what shifting left was for.",
+              "Product health is a score based on how many of a product\u2019s repositories are up to date. Fewer library issues arriving at release is what shifting left was for.",
             ]}
           />
           <CaseStudyFigure>
@@ -474,7 +474,7 @@ export default function DependencyHealthPage() {
             <NoteCard
               label="Where it went"
               heading="A skill and an MCP now check and remediate product health"
-              body="They help check product health and remediate it, alongside the dashboard."
+              body="With them, someone can check a product\u2019s health, get a report, create a Jira ticket and assign it, alongside the dashboard."
               mark="AI"
               sparkle
             />
