@@ -3,6 +3,7 @@ import { caseStudyRobots } from "@/content/seo";
 import { ArtboardFigure } from "@/components/design-system/ArtboardFigure";
 import { DotFlow } from "@/components/design-system/DotFlow";
 import { PullStatement } from "@/components/design-system/PullStatement";
+import { SceneBanner } from "@/components/design-system/SceneBanner";
 import {
   CaseStudyChapter,
   CaseStudyColumn,
@@ -96,20 +97,18 @@ export default function TotalOsLocalizationPage() {
         title: "Job Discovery & Resume Builder: from finding a job to being ready to apply.",
       }}
     >
-      <CaseStudyColumn>
-        <CaseStudySection id="overview" boundary={false} className="pt-14 md:pt-20">
-          <CaseStudyFigure>
-            <ArtboardFigure
-              src="/work/total-os/cover.jpg"
-              width={2000}
-              height={1150}
-              alt="TOTAL, built by Hike, set over a photograph of a crowd of people in turbans and headscarves"
-              caption="TOTAL, built by Hike — for people reading in their own script"
-            />
-          </CaseStudyFigure>
-        </CaseStudySection>
+      {/* The cover is a banner (~1.74), not evidence: it sets the audience and
+          nothing in it needs reading, so it is a band, not a figure. */}
+      <div id="overview" className="mt-14 md:mt-20">
+        <SceneBanner
+          fullBleed
+          src="/work/total-os/cover.jpg"
+          alt="TOTAL, built by Hike, set over a photograph of a crowd of people in turbans and headscarves"
+        />
+      </div>
 
-        <CaseStudySection id="beyond-translation">
+      <CaseStudyColumn>
+        <CaseStudySection id="beyond-translation" boundary={false} className="pt-14 md:pt-20">
           <CaseStudyChapter
             layout="flow"
             eyebrow="Not a copy task"
@@ -154,7 +153,7 @@ export default function TotalOsLocalizationPage() {
           <CaseStudyFigure>
             <ArtboardFigure
               layout="portrait"
-              portraitMax="44rem"
+              portraitMax="62rem"
               src="/work/total-os/hindi-screens.jpg"
               width={2000}
               height={1800}

@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { caseStudyRobots } from "@/content/seo";
-import { ArtboardFigure } from "@/components/design-system/ArtboardFigure";
+import { BrowserMockup } from "@/components/design-system/BrowserMockup";
 import { ArtboardCarousel } from "@/components/design-system/ArtboardCarousel";
 import { PullStatement } from "@/components/design-system/PullStatement";
 import {
@@ -18,8 +18,9 @@ import {
  *
  * The draft asks for this one to run visual-first (~20% copy, 80% imagery),
  * so the chapters stay short and the media carries the page. The three long
- * page captures are held to narrow columns — at full width a 0.36-ratio
- * canvas would be several thousand pixels tall.
+ * page captures sit in a scrollable browser frame — at full width a
+ * 0.36-ratio canvas would be several thousand pixels tall, so the reader
+ * scrolls the page in place instead.
  */
 
 export const metadata: Metadata = {
@@ -109,14 +110,15 @@ export default function CreoMark1Page() {
             ]}
           />
           <CaseStudyFigure>
-            <ArtboardFigure
-              layout="portrait"
-              portraitMax="30rem"
+            <BrowserMockup
+              route="mark-1 / product"
               src="/work/creo/screen-1.png"
               width={1548}
               height={3291}
               alt="A Mark 1 product page: large product imagery with high-contrast typography"
               caption="Large product imagery and high-contrast type, repeated across surfaces"
+              scrollable
+              maxHeight="40rem"
             />
           </CaseStudyFigure>
         </CaseStudySection>
@@ -132,14 +134,15 @@ export default function CreoMark1Page() {
             ]}
           />
           <CaseStudyFigure>
-            <ArtboardFigure
-              layout="portrait"
-              portraitMax="30rem"
+            <BrowserMockup
+              route="mark-1 / software update"
               src="/work/creo/screen-2.jpg"
               width={2880}
               height={8000}
               alt="A monthly software update page explaining the features introduced in that release"
               caption="A monthly update page — new content each release, the same product story"
+              scrollable
+              maxHeight="40rem"
             />
           </CaseStudyFigure>
         </CaseStudySection>
@@ -155,14 +158,15 @@ export default function CreoMark1Page() {
             ]}
           />
           <CaseStudyFigure>
-            <ArtboardFigure
-              layout="portrait"
-              portraitMax="30rem"
+            <BrowserMockup
+              route="mark-1 / campaign"
               src="/work/creo/user-1.jpg"
               width={2880}
               height={5320}
               alt="Campaign creative applying the same visual system to a customer-facing surface"
               caption="The same system, a different surface"
+              scrollable
+              maxHeight="40rem"
             />
           </CaseStudyFigure>
           <CaseStudyFigure label="Six messages, one system">
