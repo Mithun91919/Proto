@@ -6,6 +6,8 @@ import { ClipFigure } from "@/components/design-system/ClipFigure";
 import { BeforeAfterModel } from "@/components/design-system/BeforeAfterModel";
 import { PullStatement } from "@/components/design-system/PullStatement";
 import { ReframeBlock } from "@/components/design-system/ReframeBlock";
+import { ArchetypeSection } from "@/components/design-system/ArchetypeSection";
+import type { Archetype } from "@/components/design-system/ArchetypeFigure";
 import {
   CaseStudyChapter,
   CaseStudyColumn,
@@ -41,8 +43,44 @@ export const metadata: Metadata = {
 };
 
 
+/**
+ * The two people on either end of a report. Drawn from what the page already
+ * says about each: the friction is the problem as it was, the wants are what
+ * the flow was built to give them. No invented name or biography.
+ */
+const ARCHETYPES: Archetype[] = [
+  {
+    name: "Store associate",
+    side: "Finds it",
+    behaviour: "Finds the fault on the floor, mid-shift, and has to fix it or report it from where they stand.",
+    wants: [
+      "Keep all the equipment in working order.",
+      "Raise the right ticket, with enough information in it.",
+      "Acknowledge the fix once it is done.",
+    ],
+    friction: [
+      "Reporting meant finding a manager and a desktop.",
+      "Little troubleshooting guidance, and search returned a list with no next step.",
+    ],
+  },
+  {
+    name: "Support desk",
+    side: "Receives it",
+    behaviour: "Receives what associates raise, and sends a technician to deal with it.",
+    wants: [
+      "Reports that arrive with the detail, the location and what was already tried.",
+      "Technicians sent only where a technician is needed.",
+    ],
+    friction: [
+      "Reports written from memory, minutes or hours after the fault.",
+      "Around two in five tickets were something the associate could have cleared.",
+    ],
+  },
+];
+
 const CHAPTERS = [
   { id: "mobile", label: "On the floor" },
+  { id: "who", label: "Who it is for" },
   { id: "report", label: "What the data said" },
   { id: "fixit", label: "Fix it first" },
   { id: "loop", label: "The loop" },
@@ -134,7 +172,16 @@ export default function StoreSupportPage() {
       </div>
 
       <CaseStudyColumn>
-        <CaseStudySection id="report" boundary={false} className="pt-16 md:pt-20">
+        <CaseStudySection id="who" boundary={false} className="pt-16 md:pt-20">
+          <ArchetypeSection
+            heading="One person finds the fault. Another receives the report."
+            intro="An associate finds and fixes what breaks on the floor. The support desk receives what they cannot fix."
+            archetypes={ARCHETYPES}
+            variant="cards"
+          />
+        </CaseStudySection>
+
+        <CaseStudySection id="report">
           <CaseStudyChapter
             eyebrow="What the data said"
             heading="Two in five tickets did not need a technician"
@@ -153,7 +200,7 @@ export default function StoreSupportPage() {
             eyebrow="The submit flow"
             heading="A ticket is the fallback, not the first move"
             body={[
-              "The cheaper project was to fix the form: make it quicker, put it on the phone, route it better. That was on the table and I argued against it.",
+              "The cheaper project was to fix the form: make it quicker, put it on the phone, route it better. The product owner wanted that, and I argued against it.",
               "A faster form still sends a technician for two in five faults that never needed one. How long the form took was never the problem. The problem was that the form was the only thing an associate could do.",
               "So I put the fix first. An associate tries it while standing in front of the fault, and raises a ticket only if it does not work — which makes tickets rarer, and the ones that arrive better.",
             ]}
@@ -191,7 +238,7 @@ export default function StoreSupportPage() {
               eyebrow: "Fix it",
               title: "The alarm carries its own way out",
               body:
-                "An associate opens the refrigeration alarm and the next control is Fix it, not Report. It answers with the steps to clear that alarm — photographic where the repair is physical, so the associate matches a picture to the case in front of them rather than translating a sentence into a piece of equipment. Where the steps cannot clear it, the work order is raised automatically with the technician already dispatched.",
+                "An associate opens the refrigeration alarm and the next control is Fix it, not Report. It answers with the steps to clear that alarm — photographic where the repair is physical, so the associate matches a picture to the case in front of them rather than translating a sentence into a piece of equipment. Every fix comes with clear steps and pictures, which also works as a first check that the associate is equipped to do it. Where the steps cannot clear it, the work order is raised automatically with the technician already dispatched.",
               media: (
                 <ClipFigure
                   variant="beside"
@@ -316,7 +363,7 @@ export default function StoreSupportPage() {
             heading="From “which form?” to “what happened?”"
             body={[
               "The question the product asks first is different. An associate who finds a cooler failing no longer goes looking for a manager, or a desktop, or the words to describe from memory something they are standing in front of. They say what happened and get the steps back, and where those work nobody is dispatched at all.",
-              "Associates are still using it on the floor.",
+              "Every store associate has the app, and they are still using it on the floor.",
               "The scale at the top of this page is what the experience reached during the documented period, and the growing role of search and self-service in it. It is not what the redesign achieved.",
               "Ticket volume, resolution time and store downtime would be the right measures, and I would rather leave them out than claim them without approved post-launch data.",
             ]}
