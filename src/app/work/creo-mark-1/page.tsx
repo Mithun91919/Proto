@@ -133,30 +133,6 @@ export default function CreoMark1Page() {
               "Software pages and Flipkart content were updated to explain what had changed while keeping each release connected to the same product story.",
             ]}
           />
-        </CaseStudySection>
-
-        <CaseStudySection id="surfaces">
-          <CaseStudyChapter
-            layout="flow"
-            eyebrow="Reach"
-            heading="One language, different surfaces"
-            body={[
-              "The same visual system extended into social campaigns, email, animated GIFs, and other customer touchpoints.",
-              "The value was not making every asset look identical. It was creating enough consistency that each new message still felt like part of the same brand.",
-            ]}
-          />
-          <CaseStudyFigure>
-            <BrowserMockup
-              route="mark-1 / campaign"
-              src="/work/creo/user-1.jpg"
-              width={2880}
-              height={5320}
-              alt="Campaign creative applying the same visual system to a customer-facing surface"
-              caption="The same system, a different surface"
-              scrollable
-              maxHeight="40rem"
-            />
-          </CaseStudyFigure>
           <CaseStudyFigure label="Six messages, one system">
             <ArtboardCarousel
               label="Mark 1 campaign creative"
@@ -210,6 +186,30 @@ export default function CreoMark1Page() {
                   caption: "No phone at all, and still recognisably the same brand.",
                 },
               ]}
+            />
+          </CaseStudyFigure>
+        </CaseStudySection>
+
+        <CaseStudySection id="surfaces">
+          <CaseStudyChapter
+            layout="flow"
+            eyebrow="Reach"
+            heading="One language, different surfaces"
+            body={[
+              "The same visual system extended into social campaigns, email, animated GIFs, and other customer touchpoints.",
+              "The value was not making every asset look identical. It was creating enough consistency that each new message still felt like part of the same brand.",
+            ]}
+          />
+          <CaseStudyFigure>
+            <BrowserMockup
+              route="mark-1 / campaign"
+              src="/work/creo/user-1.jpg"
+              width={2880}
+              height={5320}
+              alt="Campaign creative applying the same visual system to a customer-facing surface"
+              caption="The same system, a different surface"
+              scrollable
+              maxHeight="40rem"
             />
           </CaseStudyFigure>
         </CaseStudySection>
