@@ -74,7 +74,7 @@ export const projects: Project[] = [
     title: "Portfolio Management Platform: one system instead of five.",
     internalName: "Clipper",
     summary:
-      "Portfolio planning was split across separate systems for people, products, initiatives, approvals, and strategic work. I led the experience from the initial platform architecture through staged rollout, migration, and adoption.",
+      "Five outside tools held what one portfolio needed, and every change was an email to a backend team. I was the only designer, from inception to release, on one platform named in the words people already use.",
     outcome:
       "6K+ monthly users · 5→1 platform consolidation · 6 connected modules",
     metrics: [
@@ -94,23 +94,23 @@ export const projects: Project[] = [
     accentSoft: "#cffafe",
     contentPath: "projects/clipper/web/clipper-web.md",
     media: {
-      mp4: "/work/clipper/hero.mp4",
-      webm: "/work/clipper/hero.webm",
-      poster: "/work/clipper/poster.jpg",
+      mp4: "/work/portfolio-management/hero.mp4",
+      webm: "/work/portfolio-management/hero.webm",
+      poster: "/work/portfolio-management/poster.jpg",
       aspect: 1600 / 1046,
     },
     systemMap: [
       {
         label: "Before",
-        detail: "Disconnected portfolio, workforce, roadmap, and spreadsheet tools",
+        detail: "Five outside tools, with every change requested by email",
       },
       {
         label: "Intervention",
-        detail: "Unified module architecture organised as Understand / Operate / Align",
+        detail: "Five categories in plain words, built in parallel on shared data",
       },
       {
         label: "After",
-        detail: "One portfolio operating platform and system of record",
+        detail: "One portfolio platform and system of record",
       },
     ],
     tags: ["0→1 Platform", "Systems Design", "Enterprise UX"],
