@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { caseStudyRobots } from "@/content/seo";
+import { ArtboardFigure } from "@/components/design-system/ArtboardFigure";
 import { DotFlow } from "@/components/design-system/DotFlow";
 import { PullStatement } from "@/components/design-system/PullStatement";
 import {
@@ -29,6 +30,7 @@ export const metadata: Metadata = {
 const PIPELINE = ["English copy", "Language partner", "Internal review", "XML", "Device validation"];
 
 const CHAPTERS = [
+  { id: "overview", label: "Overview" },
   { id: "beyond-translation", label: "Beyond translation" },
   { id: "pipeline", label: "The pipeline" },
   { id: "in-interface", label: "In the interface" },
@@ -95,7 +97,19 @@ export default function TotalOsLocalizationPage() {
       }}
     >
       <CaseStudyColumn>
-        <CaseStudySection id="beyond-translation" boundary={false} className="pt-14 md:pt-20">
+        <CaseStudySection id="overview" boundary={false} className="pt-14 md:pt-20">
+          <CaseStudyFigure>
+            <ArtboardFigure
+              src="/work/total-os/cover.jpg"
+              width={2000}
+              height={1150}
+              alt="TOTAL, built by Hike, set over a photograph of a crowd of people in turbans and headscarves"
+              caption="TOTAL, built by Hike — for people reading in their own script"
+            />
+          </CaseStudyFigure>
+        </CaseStudySection>
+
+        <CaseStudySection id="beyond-translation">
           <CaseStudyChapter
             layout="flow"
             eyebrow="Not a copy task"
@@ -137,6 +151,17 @@ export default function TotalOsLocalizationPage() {
               "That allowed text length, hierarchy, context, and usability to be evaluated in the actual product rather than only inside a translation document.",
             ]}
           />
+          <CaseStudyFigure>
+            <ArtboardFigure
+              layout="portrait"
+              portraitMax="44rem"
+              src="/work/total-os/hindi-screens.jpg"
+              width={2000}
+              height={1800}
+              alt="Four TOTAL screens in Hindi: on-boarding, the launcher, single sign-on with a numeric keypad, and messaging"
+              caption="On-boarding, the launcher, single sign-on and messaging in Hindi"
+            />
+          </CaseStudyFigure>
         </CaseStudySection>
 
         <CaseStudySection id="reflection">
