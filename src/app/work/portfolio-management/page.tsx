@@ -164,9 +164,9 @@ export default function PortfolioManagementPage() {
         ],
         figureNote: "The interface is as it shipped, built on Living Design — Walmart's design system. I have replaced the data and some product names, because the work is internal.",
         meta: [
-          { label: "Role", value: "UX Designer → Senior UX Designer" },
+          { label: "Role", value: "Senior UX Designer" },
           { label: "Client", value: "Walmart Global Tech" },
-          { label: "Year", value: "2022–Present" },
+          { label: "Year", value: "2023–Present" },
           { label: "Discipline", value: "Enterprise platform · Product design" },
         ],
       }}
