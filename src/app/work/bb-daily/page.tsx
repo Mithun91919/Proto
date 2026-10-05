@@ -586,7 +586,7 @@ export default function BbDailyPage() {
             heading="Both halves went live, and the paper came out of the round"
             body={[
               "The customer app shipped on Android and iOS and is still on both stores — bigbasket now lists bbdaily in eighteen Indian cities, well past the Bengaluru societies the delivery model was drawn for.",
-              "The change I can claim is the one in the photographs above. Six roles that had been coordinating a perishable delivery through paper slips and verbal handoffs were working against one shared record instead, each reaching it through the part of the job they actually did.",
+              "The change I can claim is the one in the photographs above. The round had run on an Excel sheet and printouts. The operations app digitised it, so six roles that had been coordinating a perishable delivery through paper slips and verbal handoffs were working against one shared record instead, each reaching it through the part of the job they actually did. That gave the business better tracking, visibility and data.",
               "The figures at the top of this page are from that period rather than from today. What has happened to the product since is years of other people’s work.",
             ]}
             links={[

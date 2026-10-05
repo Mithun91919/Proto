@@ -352,6 +352,10 @@ export const projects: Project[] = [
     accent: "#059669",
     accentSoft: "#d1fae5",
     contentPath: "projects/bb-daily/web/bb-daily-web.md",
+    media: {
+      poster: "/work/bbdaily/8f79fb_20203531c98e4bd986f2bbf39a470197~mv2.avif",
+      aspect: 3456 / 1992,
+    },
     systemMap: [
       {
         label: "Before",
