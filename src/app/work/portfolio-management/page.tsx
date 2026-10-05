@@ -45,35 +45,38 @@ export const metadata: Metadata = {
 const FEEDBACK_LOOP = ["Product", "Users", "Issue", "Release change"];
 
 /**
- * The two jobs the platform is read through. Drawn from what the page says
- * about each: the friction is the problem as it was, the wants are what the
- * categories were built to give them. No invented name or biography.
+ * The two groups from the focus-group board of the design whiteboarding
+ * session with stakeholders. The pain points are the session's own; the
+ * quotes are verbatim from it. The "wants" are those pain points turned the
+ * right way round, nothing added.
  */
 const ARCHETYPES: Archetype[] = [
   {
-    name: "Manager",
-    side: "Keeps it right",
-    behaviour: "Looks after the people, products and initiatives in their area: who is allocated where, what exists, and what has changed.",
+    name: "Consumers",
+    side: "Reads it",
+    behaviour: "Engineers, engineering managers and executive leaders. They look things up and read across people, products and initiatives.",
     wants: [
-      "Keep their people's details and allocations right.",
-      "Ask for a change without writing an email, and see where it stands.",
+      "Find the information in one place, and search that finds it.",
+      "Create a product or an initiative through one standard workflow.",
+      "See allocations across products, pillars and cost centres without generating them one by one.",
     ],
     friction: [
-      "Details and allocations lived in different tools.",
-      "A change went to a backend team by email, with no way to follow it.",
+      "\u201cAccessing information was challenging since it\u2019s spread across different platforms.\u201d",
+      "\u201cI found the search function to be inadequate and needs improvement.\u201d",
+      "\u201cThe product and Initiative creation flows are overly complex, and there is no standard workflow.\u201d",
     ],
   },
   {
-    name: "Leader",
-    side: "Answers for it",
-    behaviour: "Reads across people, products, initiatives and goals to decide where the money and the effort go.",
+    name: "Contributors",
+    side: "Keeps it right",
+    behaviour: "Data quality champions and finance managers. They put information in, keep it accurate, and approve changes.",
     wants: [
-      "One view of who is working on what, and at what cost.",
-      "Goals tied to the initiatives, products and people that deliver them.",
+      "One process for approvals, not email, Slack and in-person conversations.",
+      "Make and correct changes to pillars and business structures, and see them land.",
     ],
     friction: [
-      "Conflicting data to reconcile from several tools before deciding.",
-      "Goals that sat apart from the work they were about.",
+      "\u201cThe approval process is currently fragmented across email, Slack, and in-person interactions, making it inefficient and error-prone.\u201d",
+      "Mistakes needed manual follow-ups, with no easy way to control or change pillars and business structures, which led to delays and confusion.",
     ],
   },
 ];
@@ -127,7 +130,7 @@ export default function PortfolioManagementPage() {
             </>
           ),
           detail:
-            "From the first whiteboarding sessions to release, I worked with three product managers and their head and three engineering teams, kept every name to a word a new user could recall, and stayed through the launch of each module.",
+            "I ran the whiteboarding session that set what to solve, then worked with three product managers and their head and three engineering teams, kept every name to a word a new user could recall, and stayed through the launch of each module.",
         },
       ]}
       chapters={CHAPTERS}
@@ -220,10 +223,12 @@ export default function PortfolioManagementPage() {
 
         <CaseStudySection id="who">
           <ArchetypeSection
-            heading="The same portfolio. Two very different jobs."
-            intro="A manager keeps the details of their people and products right, and asks for changes. A leader reads across all of it and answers for what it is meant to achieve."
+            heading="Some people read the portfolio. Others keep it right."
+            intro="Engineers, engineering managers and executive leaders consume it. Data quality champions and finance managers contribute to it, and approve the changes."
             archetypes={ARCHETYPES}
             variant="cards"
+            basisLabel="A whiteboarding session with stakeholders"
+            basis="I ran a design whiteboarding session with key stakeholders and the larger team on what users do today, where it hurts, and what to solve first. The quotes here are theirs."
           />
         </CaseStudySection>
 
