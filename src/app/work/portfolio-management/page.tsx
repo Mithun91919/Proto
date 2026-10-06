@@ -110,21 +110,21 @@ export default function PortfolioManagementPage() {
           label: "The problem",
           lead: (
             <>
-              Work was assigned in one place and <span className="ds-accent-text">done in another</span>.
+              A leader set a goal in January and <span className="ds-accent-text">had to guess at progress</span>.
             </>
           ),
           detail:
-            "Goals and allocations lived in the planning tools, and the work lived in Jira. The same product had a different name in each, so people matched them by hand, and nobody could say whether assigned work was being done.",
+            "At each quarterly check-in they wanted to know how much of the goal was done and which teams were blocked. Goals lived in the planning tools and the work in Jira, under different product names, so the answer came from assumptions.",
         },
         {
           label: "The solution",
           lead: (
             <>
-              A goal now links <span className="ds-accent-text">straight to the work done</span>.
+              A leader now opens a goal and <span className="ds-accent-text">sees the work behind it</span>.
             </>
           ),
           detail:
-            "A goal connects to an initiative, a product and a person, then to the Jira epic the work is tagged to. Planned allocation now sits beside the story points actually worked.",
+            "The goal connects to an initiative, a product and a person, then to the Jira epic the work is tagged to. Planned allocation sits beside the story points worked, so a blocked team shows up.",
         },
         {
           label: "What I did",
