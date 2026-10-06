@@ -2,14 +2,14 @@ import type { Metadata } from "next";
 import { caseStudyRobots } from "@/content/seo";
 import { Reveal } from "@/components/Reveal";
 import { ArchetypeSection } from "@/components/design-system/ArchetypeSection";
-import { ArtboardFigure } from "@/components/design-system/ArtboardFigure";
 import type { Archetype } from "@/components/design-system/ArchetypeFigure";
 import { ArtboardCarousel } from "@/components/design-system/ArtboardCarousel";
-import { BeforeAfterModel } from "@/components/design-system/BeforeAfterModel";
+import { ArtboardFigure } from "@/components/design-system/ArtboardFigure";
 import { BrowserMockup } from "@/components/design-system/BrowserMockup";
 import { DotFlow } from "@/components/design-system/DotFlow";
 import { NoteCard } from "@/components/design-system/NoteCard";
 import { ProofStrip } from "@/components/design-system/ProofStrip";
+import { ZoomLens } from "@/components/design-system/ZoomLens";
 import { PullStatement } from "@/components/design-system/PullStatement";
 import {
   CaseStudyChapter,
@@ -23,32 +23,33 @@ import { getProject } from "@/content/projects";
 /**
  * Portfolio Management Platform — on the locked case-study template.
  *
- * Rebuilt on the structure the API Lifecycle and Dependency Health pages
- * settled on: the definition up front, the problem as a before and after, who
- * it is for, the decisions with what was weighed, the screens as paged
- * carousels with callouts, then the outcomes.
+ * The argument is platform thinking: the work of a portfolio is one
+ * lifecycle, but it ran in separate tools, and the data went with it. Each
+ * touch point kept its own copy under its own names. The platform became the
+ * source of truth, with one name for each thing.
  *
- * The facts come from the owner, in their own words (the five outside tools,
- * the plain-words naming, the parallel build, the team shape) and from
- * `projects/portfolio-management/web/*.md` (the pilot, the outcome figures).
- * Everything on a screen is read off the screen. The product's own internal
- * names appear only where they are drawn in a mock, never in the copy.
+ * The body then follows the sidebar a new user meets, People, Product,
+ * Initiative, Portfolio and Manager, with one argument per category and the
+ * pain it answers. The pain points and quotes are from the design
+ * whiteboarding sessions. The product's internal names appear only where a
+ * mock draws them, never in the copy.
  */
 
 export const metadata: Metadata = {
   title: "Portfolio Management Platform — One system instead of five",
   description:
-    "One platform for people, products, initiatives and goals, in the words people already use, where five outside tools had been.",
+    "One platform for people, products, initiatives and goals: one source of truth where separate tools had each kept their own copy.",
   robots: caseStudyRobots,
 };
 
 const FEEDBACK_LOOP = ["Product", "Users", "Issue", "Release change"];
+const TRACE = ["Goal", "Initiative", "Product", "Jira epic", "Work"];
 
 /**
  * The two groups from the focus-group board of the design whiteboarding
- * session with stakeholders. The pain points are the session's own; the
- * quotes are verbatim from it. The "wants" are those pain points turned the
- * right way round, nothing added.
+ * sessions. The pain points are the sessions' own; the quotes are verbatim
+ * from them. The "wants" are those pain points turned the right way round,
+ * nothing added.
  */
 const ARCHETYPES: Archetype[] = [
   {
@@ -61,9 +62,9 @@ const ARCHETYPES: Archetype[] = [
       "See allocations across products, pillars and cost centres without generating them one by one.",
     ],
     friction: [
-      "\u201cAccessing information was challenging since it\u2019s spread across different platforms.\u201d",
-      "\u201cI found the search function to be inadequate and needs improvement.\u201d",
-      "\u201cThe product and Initiative creation flows are overly complex, and there is no standard workflow.\u201d",
+      "“Accessing information was challenging since it’s spread across different platforms.”",
+      "“I found the search function to be inadequate and needs improvement.”",
+      "“The product and Initiative creation flows are overly complex, and there is no standard workflow.”",
     ],
   },
   {
@@ -75,21 +76,23 @@ const ARCHETYPES: Archetype[] = [
       "Make and correct changes to pillars and business structures, and see them land.",
     ],
     friction: [
-      "\u201cThe approval process is currently fragmented across email, Slack, and in-person interactions, making it inefficient and error-prone.\u201d",
+      "“The approval process is currently fragmented across email, Slack, and in-person interactions, making it inefficient and error-prone.”",
       "Mistakes needed manual follow-ups, with no easy way to control or change pillars and business structures, which led to delays and confusion.",
     ],
   },
 ];
 
 const CHAPTERS = [
-  { id: "tools", label: "Five tools" },
+  { id: "pieces", label: "In pieces" },
+  { id: "platform", label: "Platform thinking" },
   { id: "who", label: "Who it is for" },
-  { id: "plain-words", label: "Plain words" },
-  { id: "people-products", label: "People and products" },
-  { id: "initiatives-goals", label: "Initiatives and goals" },
+  { id: "people", label: "People" },
+  { id: "product", label: "Product" },
+  { id: "initiative", label: "Initiative" },
+  { id: "portfolio", label: "Portfolio" },
   { id: "manager", label: "Manager" },
   { id: "parallel", label: "Built in parallel" },
-  { id: "pilot", label: "The pilot" },
+  { id: "beta", label: "The beta" },
   { id: "outcomes", label: "What changed" },
 ];
 
@@ -106,21 +109,21 @@ export default function PortfolioManagementPage() {
           label: "The problem",
           lead: (
             <>
-              <span className="ds-accent-text">Five outside tools</span> held one portfolio between them.
+              The same product had <span className="ds-accent-text">one name here and another in Jira</span>.
             </>
           ),
           detail:
-            "People and allocations lived in one, products and projects in another, initiatives and their budgets in a third, goals in a fourth. A change to any of it went to a backend team by email, with no way to follow it.",
+            "Every touch point kept its own copy of the portfolio, under its own names. People, products, initiatives and goals lived in separate tools, and any change was a ticket to a backend team.",
         },
         {
           label: "The solution",
           lead: (
             <>
-              One platform, in <span className="ds-accent-text">the words people use</span>.
+              One platform, and <span className="ds-accent-text">one source of truth</span>.
             </>
           ),
           detail:
-            "People, Product, Initiative, Portfolio and Manager, each with its own capabilities and all reading from the same data, so a figure means the same thing wherever it appears.",
+            "People, Product, Initiative, Portfolio and Manager, each with its own capabilities and all reading from the same data, so every title and statement means the same thing across teams.",
         },
         {
           label: "What I did",
@@ -130,7 +133,7 @@ export default function PortfolioManagementPage() {
             </>
           ),
           detail:
-            "I ran the whiteboarding session that set what to solve, then worked with three product managers and their head and three engineering teams, kept every name to a word a new user could recall, and stayed through the launch of each module.",
+            "I ran the whiteboarding sessions that set what to solve, then worked with three product managers and their head and three engineering teams, kept every name to a word a new user could recall, and stayed through the launch of each module.",
         },
       ]}
       chapters={CHAPTERS}
@@ -194,52 +197,38 @@ export default function PortfolioManagementPage() {
       </div>
 
       <CaseStudyColumn>
-        <CaseStudySection id="tools" boundary={false} className="pt-14 md:pt-20">
+        <CaseStudySection id="pieces" boundary={false} className="pt-14 md:pt-20">
           <CaseStudyChapter
             layout="stacked"
-            eyebrow="Five tools"
-            heading="Five outside tools each held a piece of the same portfolio"
+            eyebrow="In pieces"
+            heading="The work of a portfolio ran in pieces, and the data went with it"
             body={[
-              "People, with their details and allocations, lived in one. Products and projects lived in another. A third held initiatives: the yearly key results, each a group of products and projects that will help reach it, where budgets and costs were declared and managed. Goals, yearly, quarterly and monthly, tied the other three together in a fourth.",
-              "The fifth was not a tool at all. Any change to any of them went to a backend team by email, and the person asking had no way to see where it stood.",
+              "A portfolio's work is one lifecycle: people become aware of a need, brainstorm, plan, execute, assess, close out and troubleshoot. In practice each stage lived wherever it happened to live. Who works on what was in one place, products and projects in another, initiatives and their budgets in a third, and goals in a fourth.",
+              "Because the work was in separate tools, the data was too. Each touch point kept its own copy, under its own names: the same product could be a product in one tool and a project in Jira, titled differently in each. Any change to any of it needed a ticket for a backend team, and the person asking could not see where it stood.",
             ]}
           />
-          <CaseStudyFigure rule label="Before and after the consolidation">
-            <BeforeAfterModel
-              before={{
-                stages: ["People", "Products", "Initiatives", "Goals", "Admin by email"],
-                heading: "Five separate places",
-                body: "Each had its own workflow and its own words, and every change was an email.",
-              }}
-              after={{
-                glyph: "modules",
-                figure: { value: "1", label: "platform, six areas on one set of data" },
-                heading: "One connected platform",
-                body: "Home, People, Product, Initiative, Portfolio and Manager read from the same data.",
-              }}
+          <CaseStudyFigure>
+            <ZoomLens
+              src="/work/portfolio-management/journey-map.png"
+              width={2880}
+              height={1217}
+              zoom={2.2}
+              lensSize={260}
+              alt="A journey map across seven lifecycle stages, from Awareness to Troubleshooting, with the personas at each stage, their tasks, and how often the work happens"
+              caption="The journey map from the whiteboarding sessions: seven stages, the people at each, their tasks, and how often the work happens. Finance and data quality champions (DQC) each appear in five of the seven stages. Hover to read it."
             />
           </CaseStudyFigure>
         </CaseStudySection>
 
-        <CaseStudySection id="who">
-          <ArchetypeSection
-            heading="Some people read the portfolio. Others keep it right."
-            intro="Almost everyone in the organisation uses it, so I reduced the audience to two groups. Engineers, engineering managers and executive leaders consume it. Data quality champions and finance managers contribute to it, and approve the changes."
-            archetypes={ARCHETYPES}
-            variant="cards"
-            basisLabel="3 whiteboarding sessions, 12 people each"
-            basis="I ran them with key stakeholders and the larger team, four hours each. We plotted the stages and journeys of what users do today, where it hurts, and what to solve first. The quotes here are theirs."
-          />
-        </CaseStudySection>
-
-        <CaseStudySection id="plain-words">
+        <CaseStudySection id="platform">
           <CaseStudyChapter
             layout="stacked"
             eyebrow="A decision"
-            heading="I named everything in the words people already use"
+            heading="I designed one platform, not five replacements"
             body={[
-              "Each category was built as a place a person could name from memory: People, Product, Initiative, Portfolio and Manager. The old tools went by names like team rosters, roadmaps and numbered programme codes. I kept the names to common words, not corporate jargon or alphabet-soup names, so a new user could recall where something lived.",
-              "It mattered most when something was shared. When someone sends a link or a figure to be reviewed, the person receiving it has to understand what they are looking at without a glossary.",
+              "The aim was never to rebuild each tool one for one. It was to make the platform the source of truth: one record and one name for each thing, so every title and statement means the same across teams.",
+              "Each category keeps its own capabilities, and all of them read from the same data. Product and initiative are each tied to a Jira epic, so the work is traceable from a goal to an initiative to a product to an epic to the work itself.",
+              "I kept the names to common words: People, Product, Initiative, Portfolio and Manager. The old tools went by names like team rosters, roadmaps and numbered programme codes. A name a person can say to a colleague is also a data decision, because one name for a thing is what lets two records be one.",
             ]}
           />
           <CaseStudyFigure>
@@ -249,9 +238,12 @@ export default function PortfolioManagementPage() {
               src="/work/portfolio-management/diagram.png"
               width={1954}
               height={1782}
-              alt="Pfolio at the centre, with People, Product, Initiative, Manager and StratTrack around it, each with a one-line description"
+              alt="Pfolio at the centre, with People, Product, Initiative, Manager and Portfolio around it, each with a one-line description"
               caption="The platform in one picture: five categories around one hub. A central platform for planning and workflows, team allocation and the information behind decisions. It manages entities, controls permissions and keeps data accurate, and it holds initiatives across their hierarchy so priorities and outcomes line up."
             />
+          </CaseStudyFigure>
+          <CaseStudyFigure rule label="How the work is traced">
+            <DotFlow stages={TRACE} />
           </CaseStudyFigure>
           <CaseStudyFigure>
             <BrowserMockup
@@ -293,19 +285,30 @@ export default function PortfolioManagementPage() {
           </CaseStudyFigure>
         </CaseStudySection>
 
-        <CaseStudySection id="people-products">
+        <CaseStudySection id="who">
+          <ArchetypeSection
+            heading="Some people read the portfolio. Others keep it right."
+            intro="Almost everyone in the organisation uses it, so I reduced the audience to two groups. Engineers, engineering managers and executive leaders consume it. Data quality champions and finance managers contribute to it, and approve the changes."
+            archetypes={ARCHETYPES}
+            variant="cards"
+            basisLabel="3 whiteboarding sessions, 12 people each"
+            basis="I ran them with key stakeholders and the larger team, four hours each. We plotted the stages and journeys of what users do today, where it hurts, and what to solve first. The quotes here are theirs."
+          />
+        </CaseStudySection>
+
+        <CaseStudySection id="people">
           <Reveal>
             <ArtboardCarousel
               layout="split"
-              eyebrow="People and products"
-              title="Who works on what, and what exists to work on"
+              eyebrow="People"
+              title="One place to find a person, and what they are working on"
               description={[
-                "People answers who someone is, who they report to, and what they are allocated to. Product answers what exists, who leads it, and how many people are on it.",
-                "Both show allocation as a percentage, so a person and the product they work on say the same thing.",
+                "Information had been spread across platforms, and people found search inadequate. People answers who someone is, who they report to, and what they are allocated to.",
+                "It opens on the person, and search narrows a whole directory by org, pillar, product, location and manager.",
               ]}
               scrollable
               maxHeight="44rem"
-              label="People and products"
+              label="People"
               slides={[
                 {
                   title: "The org chart opens on the person",
@@ -328,13 +331,33 @@ export default function PortfolioManagementPage() {
                   width: 2880,
                   height: 2318,
                   alt: "People search: quick and applied filters on the left, and each person's product team and initiative allocations on the right",
-                  caption: "Filters by org, pillar, product, location and manager narrow the directory, and each result shows allocations beside the person.",
+                  caption: "Filters narrow the directory, and each result shows allocations beside the person, as a percentage.",
                   hotspots: [
                     { x: 15, y: 18, title: "Filters that can be saved", detail: "Quick filters can be saved and reused, with the applied filters listed beneath, so what is narrowing the list is always visible." },
                     { x: 59.5, y: 19.1, title: "Allocations beside the person", detail: "Each result shows the product teams and initiatives someone is allocated to, with a percentage for each." },
                     { x: 93, y: 13.9, title: "Data quality issues, from the list", detail: "A Data Quality Issues control sits above the results, so records that need fixing can be found from where people are searched." },
                   ],
                 },
+              ]}
+            />
+          </Reveal>
+        </CaseStudySection>
+
+        <CaseStudySection id="product">
+          <Reveal>
+            <ArtboardCarousel
+              layout="split"
+              imageSide="left"
+              eyebrow="Product"
+              title="Creating a product follows one standard workflow"
+              description={[
+                "Product creation had been overly complex, with no standard workflow for an app or a service. Product answers what exists, who leads it, and how many people are on it.",
+                "A new product is requested in four steps, and says up front where its work is tracked: each product is tied to a Jira epic, so every piece of work sits under it.",
+              ]}
+              scrollable
+              maxHeight="44rem"
+              label="Product"
+              slides={[
                 {
                   title: "A product opens on its leaders and its headcount",
                   route: "/product/all",
@@ -360,7 +383,7 @@ export default function PortfolioManagementPage() {
                   caption: "Basic details, people, product information and a preview, one step at a time, so the person asking can see what is left.",
                   hotspots: [
                     { x: 56.5, y: 16.1, title: "Four steps, and where you are", detail: "Basic Details, Add People, Product Information and Preview, with the current step marked on the line." },
-                    { x: 11.5, y: 77.8, title: "Say where the work is tracked", detail: "Enterprise Jira or Non-Jira is chosen first, ahead of the Jira project and the team name." },
+                    { x: 11.5, y: 77.8, title: "Tied to where the work is tracked", detail: "Enterprise Jira or Non-Jira is chosen first, ahead of the Jira project and the team name, so the product and its work stay connected." },
                     { x: 93.8, y: 42.2, title: "Teams are added to the request", detail: "Add New Team puts each team on the product, with its tracking system and approval status in the list." },
                   ],
                 },
@@ -369,20 +392,19 @@ export default function PortfolioManagementPage() {
           </Reveal>
         </CaseStudySection>
 
-        <CaseStudySection id="initiatives-goals">
+        <CaseStudySection id="initiative">
           <Reveal>
             <ArtboardCarousel
               layout="split"
-              imageSide="left"
-              eyebrow="Initiatives and goals"
-              title="Where the money is declared, and the goals it serves"
+              eyebrow="Initiative"
+              title="Where the money is declared, and tied to the work"
               description={[
-                "An initiative is a yearly key result: a group of products and projects that will help reach it. It is where budgets and costs are declared and managed.",
-                "Goals run yearly, quarterly and monthly, and tie initiatives, products and people together.",
+                "An initiative is a yearly key result: a group of products and projects that will help reach it. Budgets and costs are declared and managed here, a year at a time, and each initiative is tied to a Jira epic.",
+                "Allocation details across products, pillars and cost centres had been tedious to produce, because they had to be generated one by one.",
               ]}
               scrollable
               maxHeight="44rem"
-              label="Initiatives and goals"
+              label="Initiative"
               slides={[
                 {
                   title: "Initiatives, with their approval beside them",
@@ -413,6 +435,26 @@ export default function PortfolioManagementPage() {
                     { x: 8.2, y: 63.9, title: "Fill the months once", detail: "Auto-fill counts for months carries a headcount across all twelve months." },
                   ],
                 },
+              ]}
+            />
+          </Reveal>
+        </CaseStudySection>
+
+        <CaseStudySection id="portfolio">
+          <Reveal>
+            <ArtboardCarousel
+              layout="split"
+              imageSide="left"
+              eyebrow="Portfolio"
+              title="Goals sit on the same data as the work they are about"
+              description={[
+                "Goals run yearly, quarterly and monthly, and tie initiatives, products and people together. At launch of the goals experience, teams created more than 1.4K goals across 14 strategic themes.",
+                "Because goals read from the same records, a goal shows the initiatives and products linked to it, and where they stand.",
+              ]}
+              scrollable
+              maxHeight="44rem"
+              label="Portfolio"
+              slides={[
                 {
                   title: "Goals sit beside the requests",
                   route: "/portfolio/okr",
@@ -466,10 +508,10 @@ export default function PortfolioManagementPage() {
           <CaseStudyChapter
             layout="stacked"
             eyebrow="Manager"
-            heading="Changes stopped being emails to a backend team"
+            heading="Changes stopped being tickets to a backend team"
             body={[
-              "Any change or modification used to go to a backend team by email. The team did the work, and the person asking could not see where it stood.",
-              "Manager is where those requests now arrive: product, initiative, application and pillar requests, each with its own approval status.",
+              "Any change used to need a ticket raised for a backend team, which made the change. The person asking could not see where it stood, and approvals ran across email, Slack and in-person conversations.",
+              "Manager is where those requests are now made and approved: product, initiative, application and pillar requests, each with its own approval status. Changes are made directly in the platform and approvals are part of it, so the decision and the action sit together. Support tickets fell by a sustained 50%.",
             ]}
           />
           <CaseStudyFigure>
@@ -494,11 +536,11 @@ export default function PortfolioManagementPage() {
           <CaseStudyChapter
             layout="stacked"
             eyebrow="How it was built"
-            heading="The categories were built in parallel, a sprint at a time"
+            heading="The categories were built in parallel, with design a sprint ahead"
             body={[
               "People, Product and Initiative were not built one after another. Features for each arrived together, sprint by sprint, while every category kept its own capabilities and the data stayed shared between them.",
-              "I was the only designer on it, working with three product managers and their head, and three engineering teams. Each product manager had their own priorities and deliverables, so I worked a sprint ahead of every team.",
-              "A weekly review with each team, and an all-hands once a month, kept the parts fitting as they landed. The harder job was persuasion: I had to influence each product manager to look at the product as a whole, not only at their own piece, whether people or product. The shared names and shared data are what let the pieces read as one.",
+              "I was the only designer on it, working with three product managers and their head, and three engineering teams. Each had their own priorities and deliverables, so I worked a sprint ahead of every team, with a weekly review with each team and an all-hands once a month.",
+              "The harder job was persuasion. I had to influence each product manager to look at the product as a whole, not only at their own piece, whether people or product. The shared names and shared data are what let the pieces read as one.",
             ]}
           />
           <CaseStudyFigure>
@@ -512,10 +554,10 @@ export default function PortfolioManagementPage() {
           </CaseStudyFigure>
         </CaseStudySection>
 
-        <CaseStudySection id="pilot">
+        <CaseStudySection id="beta">
           <CaseStudyChapter
-            eyebrow="The pilot"
-            heading="A pilot found the jargon the mockups had hidden"
+            eyebrow="The beta"
+            heading="A beta found the jargon the mockups had hidden"
             body={[
               "We released a beta to stress-test the product with teams before the launch across the organisation. Frequent demos, research sessions and live pilot feedback exposed it before decisions became expensive to reverse.",
               "One pilot surfaced details that polished mockups had hidden: internal field terminology appearing in the interface, draft persistence problems, and validation behaviour that became frustrating in real work.",
@@ -532,9 +574,8 @@ export default function PortfolioManagementPage() {
             eyebrow="What changed"
             heading="A clearer model, not simply fewer tools"
             body={[
-              "The platform reached more than 6K monthly users, consolidated five legacy systems into one connected product, and put six areas on one shared set of data.",
-              "Documented operational outcomes also included a sustained 50% reduction in support tickets and ~800 hours of manual reconciliation reclaimed each week as more portfolio work moved into connected workflows.",
-              "At launch of the goals experience, teams created more than 1.4K goals across 14 strategic themes.",
+              "The platform reached more than 6K monthly users and put six areas on one shared set of data, where each touch point had kept its own copy.",
+              "The product managers reported ~800 hours of manual reconciliation reclaimed each week as more portfolio work moved into connected workflows, and support tickets fell by a sustained 50% once changes no longer needed one.",
               "If I did it again I would go further on personalisation. It is one platform for everyone today: it knows who someone is from their sign-in and shows what is relevant to them, and it could be customised much more.",
             ]}
           />
