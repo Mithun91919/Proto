@@ -110,21 +110,21 @@ export default function PortfolioManagementPage() {
           label: "The problem",
           lead: (
             <>
-              Nobody could see <span className="ds-accent-text">whether assigned work was being done</span>.
+              Work was assigned in one place and <span className="ds-accent-text">done in another</span>.
             </>
           ),
           detail:
-            "Goals, budgets and allocations lived in one set of tools and the work in Jira, with nothing joining them. Each tool kept its own copy under its own names, and people reconciled them by hand.",
+            "Goals and allocations lived in the planning tools, and the work lived in Jira. The same product had a different name in each, so people matched them by hand, and nobody could say whether assigned work was being done.",
         },
         {
           label: "The solution",
           lead: (
             <>
-              A goal now runs <span className="ds-accent-text">all the way down to the work</span>.
+              A goal now links <span className="ds-accent-text">straight to the work done</span>.
             </>
           ),
           detail:
-            "An OKR ties to an initiative, a product and a person, and to the Jira epic the work is tagged to, so planned allocation sits beside the story points actually worked.",
+            "A goal connects to an initiative, a product and a person, then to the Jira epic the work is tagged to. Planned allocation now sits beside the story points actually worked.",
         },
         {
           label: "What I did",
@@ -134,7 +134,7 @@ export default function PortfolioManagementPage() {
             </>
           ),
           detail:
-            "I ran the sessions that set what to solve, worked a sprint ahead of every team, and persuaded each product manager to see the whole product, not only their piece.",
+            "I ran the sessions that set the problem, designed a sprint ahead of each team, and got every product manager to plan for the whole product, not only their piece.",
         },
       ]}
       chapters={CHAPTERS}
