@@ -204,20 +204,22 @@ export default function PortfolioManagementPage() {
             eyebrow="In pieces"
             heading="Nothing connected the work assigned to the work done"
             body={[
-              "I ran three whiteboarding sessions with key stakeholders and the larger team. We plotted the stages of a portfolio's work as it happens today, who does what at each, where it hurts, and what to solve first.",
+              "I ran the sessions that plotted the stages of a portfolio's work as it happens today: who does what at each, where it hurts, and what to solve first.",
               "A portfolio's work is one lifecycle: people become aware of a need, brainstorm, plan, execute, assess, close out and troubleshoot. The map showed every stage living somewhere different. Who works on what was in one place, products and projects in another, initiatives and their budgets in a third, goals in a fourth, and the work in Jira.",
               "Each place kept its own copy under its own names: the same product could be a product in one tool and a project in Jira, titled differently in each. Nothing joined them, so people did, by hand.",
               "No stage won. Each was someone's problem, so the sessions did not pick one to fix first. They pointed to a system that stitches the stages together, not one that fixes each on its own.",
             ]}
           />
           <CaseStudyFigure>
-            <ProofStrip
-              items={[
-                { value: "3", label: "whiteboarding sessions", glyph: "layers" },
-                { value: "12", label: "people in each", glyph: "field" },
-                { value: "4 hrs", label: "for each session", glyph: "ramp" },
-              ]}
-            />
+            <div className="ds-arch-basis" style={{ marginTop: 0 }}>
+              <p className="ds-stat-row">
+                <span className="ds-stat-figure">3</span>
+                <span className="ds-stat-label">whiteboarding sessions, 12 people each</span>
+              </p>
+              <p className="ds-arch-basis-text">
+                Four hours each, with key stakeholders and the larger team.
+              </p>
+            </div>
           </CaseStudyFigure>
           <CaseStudyFigure>
             <ArtboardFigure
