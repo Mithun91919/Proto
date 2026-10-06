@@ -71,10 +71,10 @@ export const projects: Project[] = [
     slug: "portfolio-management",
     number: "01",
     label: "Portfolio Management Platform",
-    title: "Portfolio Management Platform: one system instead of five.",
+    title: "Portfolio Management Platform: from a goal to the work, in one place.",
     internalName: "Clipper",
     summary:
-      "Five outside tools held what one portfolio needed, and every change was an email to a backend team. I was the only designer, from inception to release, on one platform named in the words people already use.",
+      "Nothing connected the work assigned to the work done. I was the only designer, from inception to release, on one platform where a goal runs down to the work, in the words people already use.",
     outcome:
       "6K+ monthly users · 5→1 platform consolidation · 6 connected modules",
     metrics: [
@@ -102,11 +102,11 @@ export const projects: Project[] = [
     systemMap: [
       {
         label: "Before",
-        detail: "Five outside tools, with every change requested by email",
+        detail: "Goals, people and work in separate tools, with nothing joining them",
       },
       {
         label: "Intervention",
-        detail: "Five categories in plain words, built in parallel on shared data",
+        detail: "A line from a goal to the work, in plain words, built in parallel",
       },
       {
         label: "After",

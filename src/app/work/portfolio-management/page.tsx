@@ -22,10 +22,12 @@ import { getProject } from "@/content/projects";
 /**
  * Portfolio Management Platform — on the locked case-study template.
  *
- * The argument is platform thinking: the work of a portfolio is one
- * lifecycle, but it ran in separate tools, and the data went with it. Each
- * touch point kept its own copy under its own names. The platform became the
- * source of truth, with one name for each thing.
+ * The argument: fragmented tools left nothing connecting the work assigned to
+ * the work done. Goals, budgets and allocations lived in one set of places and
+ * the work in Jira. The platform draws the line from a goal to an initiative,
+ * a product, a person and the Jira epic the work is tagged to, so planned
+ * allocation sits beside actual story points, and each touch point stops
+ * keeping its own copy under its own names.
  *
  * The body then follows the sidebar a new user meets, People, Product,
  * Initiative, Portfolio and Manager, with one argument per category and the
@@ -35,14 +37,14 @@ import { getProject } from "@/content/projects";
  */
 
 export const metadata: Metadata = {
-  title: "Portfolio Management Platform — One system instead of five",
+  title: "Portfolio Management Platform — From a goal to the work, in one place",
   description:
-    "One platform for people, products, initiatives and goals: one source of truth where separate tools had each kept their own copy.",
+    "One platform where a goal runs down to the work: OKRs tied to initiatives, products, people and Jira, so planned allocation sits beside the work being done.",
   robots: caseStudyRobots,
 };
 
 const FEEDBACK_LOOP = ["Product", "Users", "Issue", "Release change"];
-const TRACE = ["Goal", "Initiative", "Product", "Jira epic", "Work"];
+const TRACE = ["Goal", "Initiative", "Product", "Person", "Jira epic", "Work"];
 
 /**
  * The two groups from the focus-group board of the design whiteboarding
@@ -108,40 +110,40 @@ export default function PortfolioManagementPage() {
           label: "The problem",
           lead: (
             <>
-              Every tool kept <span className="ds-accent-text">its own copy</span>, and every change was a ticket.
+              Nobody could see <span className="ds-accent-text">whether assigned work was being done</span>.
             </>
           ),
           detail:
-            "A product had one name here and another in Jira. People reconciled the copies by hand, and a change meant a ticket to a backend team, with no way to follow it.",
+            "Goals, budgets and allocations lived in one set of tools and the work in Jira, with nothing joining them. Each tool kept its own copy under its own names, and people reconciled them by hand.",
         },
         {
           label: "The solution",
           lead: (
             <>
-              <span className="ds-accent-text">One record and one name</span> for everything the portfolio holds.
+              A goal now runs <span className="ds-accent-text">all the way down to the work</span>.
             </>
           ),
           detail:
-            "People, Product, Initiative, Portfolio and Manager read from the same data, so a title means the same in every team. Product and initiative tie to Jira epics, so work traces back to a goal.",
+            "An OKR ties to an initiative, a product and a person, and to the Jira epic the work is tagged to, so planned allocation sits beside the story points actually worked.",
         },
         {
           label: "What I did",
           lead: (
             <>
-              I was <span className="ds-accent-text">the only designer</span>, across three product managers.
+              Three product managers, three engineering teams, <span className="ds-accent-text">one designer</span>.
             </>
           ),
           detail:
-            "I ran the sessions that set what to solve, worked a sprint ahead of three engineering teams, and persuaded each product manager to see the whole product, not only their piece.",
+            "I ran the sessions that set what to solve, worked a sprint ahead of every team, and persuaded each product manager to see the whole product, not only their piece.",
         },
       ]}
       chapters={CHAPTERS}
       hero={{
         standfirst:
-          "Where Walmart's product organisation plans its people, products, initiatives and goals — work that used to sit in five separate places.",
+          "Where Walmart's product organisation plans its people, products, initiatives and goals, and sees the work behind each one.",
         headline: (
           <>
-            Portfolio Management Platform: <span style={{ color: "var(--ds-mint)" }}>one system instead of five</span>.
+            Portfolio Management Platform: <span style={{ color: "var(--ds-mint)" }}>from a goal to the work, in one place</span>.
           </>
         ),
         stackRatio: 1.39,
@@ -200,10 +202,10 @@ export default function PortfolioManagementPage() {
           <CaseStudyChapter
             layout="stacked"
             eyebrow="In pieces"
-            heading="The work of a portfolio ran in pieces, and the data went with it"
+            heading="Nothing connected the work assigned to the work done"
             body={[
-              "A portfolio's work is one lifecycle: people become aware of a need, brainstorm, plan, execute, assess, close out and troubleshoot. In practice each stage lived wherever it happened to live. Who works on what was in one place, products and projects in another, initiatives and their budgets in a third, and goals in a fourth.",
-              "Because the work was in separate tools, the data was too. Each touch point kept its own copy, under its own names: the same product could be a product in one tool and a project in Jira, titled differently in each. Any change to any of it needed a ticket for a backend team, and the person asking could not see where it stood.",
+              "A portfolio's work is one lifecycle: people become aware of a need, brainstorm, plan, execute, assess, close out and troubleshoot. In practice each stage lived wherever it happened to live. Who works on what was in one place, products and projects in another, initiatives and their budgets in a third, goals in a fourth, and the work itself in Jira.",
+              "Because the work was in separate tools, the data was too. Each touch point kept its own copy, under its own names: the same product could be a product in one tool and a project in Jira, titled differently in each, and nothing joined them. People reconciled the copies by hand, any change needed a ticket for a backend team, and nobody could see whether assigned work was being done.",
             ]}
           />
           <CaseStudyFigure>
@@ -221,11 +223,10 @@ export default function PortfolioManagementPage() {
           <CaseStudyChapter
             layout="stacked"
             eyebrow="A decision"
-            heading="I designed one platform, not five replacements"
+            heading="I designed the line from a goal to the work"
             body={[
-              "The aim was never to rebuild each tool one for one. It was to make the platform the source of truth: one record and one name for each thing, so every title and statement means the same across teams.",
-              "Each category keeps its own capabilities, and all of them read from the same data. Product and initiative are each tied to a Jira epic, so the work is traceable from a goal to an initiative to a product to an epic to the work itself.",
-              "I kept the names to common words: People, Product, Initiative, Portfolio and Manager. The old tools went by names like team rosters, roadmaps and numbered programme codes. A name a person can say to a colleague is also a data decision, because one name for a thing is what lets two records be one.",
+              "The aim was never to rebuild each tool one for one. It was to join what is assigned to what is done. A goal ties to an initiative, which ties to a product, which ties to a person, and each product and initiative ties to a Jira epic that the work is tagged to.",
+              "That makes the platform the source of truth: one record and one name for each thing, so every title and statement means the same across teams. The old tools went by names like team rosters, roadmaps and numbered programme codes. I kept the names to common words: People, Product, Initiative, Portfolio and Manager. A name a person can say to a colleague is also a data decision, because one name for a thing is what lets two records be one.",
             ]}
           />
           <CaseStudyFigure>
@@ -239,8 +240,22 @@ export default function PortfolioManagementPage() {
               caption="The platform in one picture: five categories around one hub. A central platform for planning and workflows, team allocation and the information behind decisions. It manages entities, controls permissions and keeps data accurate, and it holds initiatives across their hierarchy so priorities and outcomes line up."
             />
           </CaseStudyFigure>
-          <CaseStudyFigure rule label="How the work is traced">
+          <CaseStudyFigure rule label="From a goal to the work">
             <DotFlow stages={TRACE} />
+          </CaseStudyFigure>
+          <CaseStudyFigure>
+            <ArtboardFigure
+              src="/work/portfolio-management/planned-actual.png"
+              width={2880}
+              height={925}
+              alt="A table of objectives with an owner, planned headcount from the platform and actual headcount from Jira side by side, and a status for each"
+              caption="The line, made visible: planned headcount, allocated on the platform, sits beside actual headcount from the story points in Jira, for every objective."
+              hotspots={[
+                { x: 29.4, y: 38.6, title: "A named owner", detail: "Every objective has an owner, so responsibility is on the page." },
+                { x: 44.2, y: 38.6, title: "Planned: the allocation made here", detail: "The headcount allocated on the platform for each objective." },
+                { x: 53.4, y: 38.6, title: "Actual: the work done in Jira", detail: "Headcount worked out from the story points in Jira, beside the plan, so a leader sees where the two part." },
+              ]}
+            />
           </CaseStudyFigure>
           <CaseStudyFigure>
             <BrowserMockup
@@ -476,7 +491,7 @@ export default function PortfolioManagementPage() {
               title="Goals sit on the same data as the work they are about"
               description={[
                 "Goals run yearly, quarterly and monthly, and tie initiatives, products and people together. At launch of the goals experience, teams created more than 1.4K goals across 14 strategic themes.",
-                "Because goals read from the same records, a goal shows the initiatives and products linked to it, and where they stand.",
+                "Because goals read from the same records, a goal shows the initiatives and products linked to it, and where they stand. A leader sets a goal at the start of the year and checks in each quarter on how much is achieved and which teams are blocking it, from data, not assumptions. People supporting different initiatives can see how their work supports those goals, with a clear definition of impact and responsibility.",
               ]}
               scrollable
               maxHeight="44rem"
@@ -630,7 +645,7 @@ export default function PortfolioManagementPage() {
       <div className="mt-16 md:mt-20">
         <Reveal>
           <PullStatement eyebrow="What I believe now" mark="seam">
-            A name is working when someone can say it to a colleague and be understood.
+            A plan is only as good as its line to the work.
           </PullStatement>
         </Reveal>
       </div>
