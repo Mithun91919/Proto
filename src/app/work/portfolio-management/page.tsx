@@ -108,31 +108,31 @@ export default function PortfolioManagementPage() {
           label: "The problem",
           lead: (
             <>
-              The same product had <span className="ds-accent-text">one name here and another in Jira</span>.
+              Every tool kept <span className="ds-accent-text">its own copy</span>, and every change was a ticket.
             </>
           ),
           detail:
-            "Every touch point kept its own copy of the portfolio, under its own names. People, products, initiatives and goals lived in separate tools, and any change was a ticket to a backend team.",
+            "A product had one name here and another in Jira. People reconciled the copies by hand, and a change meant a ticket to a backend team, with no way to follow it.",
         },
         {
           label: "The solution",
           lead: (
             <>
-              One platform, and <span className="ds-accent-text">one source of truth</span>.
+              <span className="ds-accent-text">One record and one name</span> for everything the portfolio holds.
             </>
           ),
           detail:
-            "People, Product, Initiative, Portfolio and Manager, each with its own capabilities and all reading from the same data, so every title and statement means the same thing across teams.",
+            "People, Product, Initiative, Portfolio and Manager read from the same data, so a title means the same in every team. Product and initiative tie to Jira epics, so work traces back to a goal.",
         },
         {
           label: "What I did",
           lead: (
             <>
-              I was <span className="ds-accent-text">the only designer</span>, start to finish.
+              I was <span className="ds-accent-text">the only designer</span>, across three product managers.
             </>
           ),
           detail:
-            "I ran the whiteboarding sessions that set what to solve, then worked with three product managers and their head and three engineering teams, kept every name to a word a new user could recall, and stayed through the launch of each module.",
+            "I ran the sessions that set what to solve, worked a sprint ahead of three engineering teams, and persuaded each product manager to see the whole product, not only their piece.",
         },
       ]}
       chapters={CHAPTERS}
