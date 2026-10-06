@@ -9,7 +9,6 @@ import { BrowserMockup } from "@/components/design-system/BrowserMockup";
 import { DotFlow } from "@/components/design-system/DotFlow";
 import { NoteCard } from "@/components/design-system/NoteCard";
 import { ProofStrip } from "@/components/design-system/ProofStrip";
-import { ZoomLens } from "@/components/design-system/ZoomLens";
 import { PullStatement } from "@/components/design-system/PullStatement";
 import {
   CaseStudyChapter,
@@ -208,14 +207,12 @@ export default function PortfolioManagementPage() {
             ]}
           />
           <CaseStudyFigure>
-            <ZoomLens
+            <ArtboardFigure
               src="/work/portfolio-management/journey-map.png"
               width={2880}
               height={1217}
-              zoom={2.2}
-              lensSize={260}
               alt="A journey map across seven lifecycle stages, from Awareness to Troubleshooting, with the personas at each stage, their tasks, and how often the work happens"
-              caption="The journey map from the whiteboarding sessions: seven stages, the people at each, their tasks, and how often the work happens. Finance and data quality champions (DQC) each appear in five of the seven stages. Hover to read it."
+              caption="The journey map from the whiteboarding sessions: seven stages, the people at each, their tasks, and how often the work happens. Finance and data quality champions (DQC) each appear in five of the seven stages."
             />
           </CaseStudyFigure>
         </CaseStudySection>
