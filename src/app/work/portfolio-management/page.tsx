@@ -140,7 +140,7 @@ export default function PortfolioManagementPage() {
       chapters={CHAPTERS}
       hero={{
         standfirst:
-          "Where Walmart's product organisation plans its people, products, initiatives and goals, and sees the work behind each one.",
+          "Where Walmart's product organisation plans its portfolio, and sees the work behind it.",
         headline: (
           <>
             Portfolio Management Platform: <span style={{ color: "var(--ds-mint)" }}>from a goal to the work, in one place</span>.
