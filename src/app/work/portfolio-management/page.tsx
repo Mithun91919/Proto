@@ -110,21 +110,21 @@ export default function PortfolioManagementPage() {
           label: "The problem",
           lead: (
             <>
-              A leader set a goal in January and <span className="ds-accent-text">had to guess at progress</span>.
+              People were <span className="ds-accent-text">the only link</span> between the tools.
             </>
           ),
           detail:
-            "At each quarterly check-in they wanted to know how much of the goal was done and which teams were blocked. Goals lived in the planning tools and the work in Jira, under different product names, so the answer came from assumptions.",
+            "Leaders guessed at progress each quarter. Engineers searched across platforms for one answer. Data quality champions and finance chased approvals through email and Slack, and every change needed a ticket.",
         },
         {
           label: "The solution",
           lead: (
             <>
-              A leader now opens a goal and <span className="ds-accent-text">sees the work behind it</span>.
+              The platform became <span className="ds-accent-text">the link</span>.
             </>
           ),
           detail:
-            "The goal connects to an initiative, a product and a person, then to the Jira epic the work is tagged to. Planned allocation sits beside the story points worked, so a blocked team shows up.",
+            "A goal connects to an initiative, a product and a person, then to the Jira epic the work is tagged to. Planned allocation sits beside the story points worked, so a blocked team shows up.",
         },
         {
           label: "What I did",
@@ -204,10 +204,21 @@ export default function PortfolioManagementPage() {
             eyebrow="In pieces"
             heading="Nothing connected the work assigned to the work done"
             body={[
-              "A portfolio's work is one lifecycle: people become aware of a need, brainstorm, plan, execute, assess, close out and troubleshoot. In practice each stage lived wherever it happened to live. Who works on what was in one place, products and projects in another, initiatives and their budgets in a third, goals in a fourth, and the work itself in Jira.",
-              "Because the work was in separate tools, the data was too. Each touch point kept its own copy, under its own names: the same product could be a product in one tool and a project in Jira, titled differently in each, and nothing joined them. People reconciled the copies by hand, any change needed a ticket for a backend team, and nobody could see whether assigned work was being done.",
+              "I ran three whiteboarding sessions with key stakeholders and the larger team. We plotted the stages of a portfolio's work as it happens today, who does what at each, where it hurts, and what to solve first.",
+              "A portfolio's work is one lifecycle: people become aware of a need, brainstorm, plan, execute, assess, close out and troubleshoot. The map showed every stage living somewhere different. Who works on what was in one place, products and projects in another, initiatives and their budgets in a third, goals in a fourth, and the work in Jira.",
+              "Each place kept its own copy under its own names: the same product could be a product in one tool and a project in Jira, titled differently in each. Nothing joined them, so people did, by hand.",
+              "No stage won. Each was someone's problem, so the sessions did not pick one to fix first. They pointed to a system that stitches the stages together, not one that fixes each on its own.",
             ]}
           />
+          <CaseStudyFigure>
+            <ProofStrip
+              items={[
+                { value: "3", label: "whiteboarding sessions", glyph: "layers" },
+                { value: "12", label: "people in each", glyph: "field" },
+                { value: "4 hrs", label: "for each session", glyph: "ramp" },
+              ]}
+            />
+          </CaseStudyFigure>
           <CaseStudyFigure>
             <ArtboardFigure
               src="/work/portfolio-management/journey-map.png"
@@ -286,11 +297,9 @@ export default function PortfolioManagementPage() {
         <CaseStudySection id="who">
           <ArchetypeSection
             heading="Some people read the portfolio. Others keep it right."
-            intro="Almost everyone in the organisation uses it, so I reduced the audience to two groups. Engineers, engineering managers and executive leaders consume it. Data quality champions and finance managers contribute to it, and approve the changes."
+            intro="Almost everyone in the organisation uses it, so I reduced the audience to two groups. Engineers, engineering managers and executive leaders consume it. Data quality champions and finance managers contribute to it, and approve the changes. The quotes are from the whiteboarding sessions."
             archetypes={ARCHETYPES}
             variant="cards"
-            basisLabel="3 whiteboarding sessions, 12 people each"
-            basis="I ran them with key stakeholders and the larger team, four hours each. We plotted the stages and journeys of what users do today, where it hurts, and what to solve first. The quotes here are theirs."
           />
         </CaseStudySection>
 
