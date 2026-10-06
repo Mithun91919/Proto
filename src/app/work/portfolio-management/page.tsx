@@ -224,11 +224,11 @@ export default function PortfolioManagementPage() {
         <CaseStudySection id="who">
           <ArchetypeSection
             heading="Some people read the portfolio. Others keep it right."
-            intro="Engineers, engineering managers and executive leaders consume it. Data quality champions and finance managers contribute to it, and approve the changes."
+            intro="Almost everyone in the organisation uses it, so I reduced the audience to two groups. Engineers, engineering managers and executive leaders consume it. Data quality champions and finance managers contribute to it, and approve the changes."
             archetypes={ARCHETYPES}
             variant="cards"
-            basisLabel="A whiteboarding session with stakeholders"
-            basis="I ran a design whiteboarding session with key stakeholders and the larger team on what users do today, where it hurts, and what to solve first. The quotes here are theirs."
+            basisLabel="3 whiteboarding sessions, 12 people each"
+            basis="I ran them with key stakeholders and the larger team, four hours each. We plotted the stages and journeys of what users do today, where it hurts, and what to solve first. The quotes here are theirs."
           />
         </CaseStudySection>
 
@@ -238,7 +238,7 @@ export default function PortfolioManagementPage() {
             eyebrow="A decision"
             heading="I named everything in the words people already use"
             body={[
-              "Each category was built as a place a person could name from memory: People, Product, Initiative, Portfolio and Manager. I kept the names to common words, not corporate jargon or alphabet-soup names, so a new user could recall where something lived.",
+              "Each category was built as a place a person could name from memory: People, Product, Initiative, Portfolio and Manager. The old tools went by names like team rosters, roadmaps and numbered programme codes. I kept the names to common words, not corporate jargon or alphabet-soup names, so a new user could recall where something lived.",
               "It mattered most when something was shared. When someone sends a link or a figure to be reviewed, the person receiving it has to understand what they are looking at without a glossary.",
             ]}
           />
@@ -497,7 +497,8 @@ export default function PortfolioManagementPage() {
             heading="The categories were built in parallel, a sprint at a time"
             body={[
               "People, Product and Initiative were not built one after another. Features for each arrived together, sprint by sprint, while every category kept its own capabilities and the data stayed shared between them.",
-              "I was the only designer on it, working with three product managers and their head, and three engineering teams. Parallel work only reads as one product when the parts fit as they land, and the shared names and shared data are what let them.",
+              "I was the only designer on it, working with three product managers and their head, and three engineering teams. Each product manager had their own priorities and deliverables, so I worked a sprint ahead of every team.",
+              "A weekly review with each team, and an all-hands once a month, kept the parts fitting as they landed. The harder job was persuasion: I had to influence each product manager to look at the product as a whole, not only at their own piece, whether people or product. The shared names and shared data are what let the pieces read as one.",
             ]}
           />
           <CaseStudyFigure>
@@ -516,7 +517,7 @@ export default function PortfolioManagementPage() {
             eyebrow="The pilot"
             heading="A pilot found the jargon the mockups had hidden"
             body={[
-              "We used frequent demos, research sessions, and live pilot feedback to expose the product before decisions became expensive to reverse.",
+              "We released a beta to stress-test the product with teams before the launch across the organisation. Frequent demos, research sessions and live pilot feedback exposed it before decisions became expensive to reverse.",
               "One pilot surfaced details that polished mockups had hidden: internal field terminology appearing in the interface, draft persistence problems, and validation behaviour that became frustrating in real work.",
               "Those sessions changed both the product and the release loop. Feedback moved closer to implementation, and design decisions were tested against the experience people actually used rather than only the one we intended to ship.",
             ]}
@@ -534,6 +535,7 @@ export default function PortfolioManagementPage() {
               "The platform reached more than 6K monthly users, consolidated five legacy systems into one connected product, and put six areas on one shared set of data.",
               "Documented operational outcomes also included a sustained 50% reduction in support tickets and ~800 hours of manual reconciliation reclaimed each week as more portfolio work moved into connected workflows.",
               "At launch of the goals experience, teams created more than 1.4K goals across 14 strategic themes.",
+              "If I did it again I would go further on personalisation. It is one platform for everyone today: it knows who someone is from their sign-in and shows what is relevant to them, and it could be customised much more.",
             ]}
           />
           <CaseStudyFigure>
