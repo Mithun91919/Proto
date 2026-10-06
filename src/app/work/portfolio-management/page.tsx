@@ -244,20 +244,6 @@ export default function PortfolioManagementPage() {
             <DotFlow stages={TRACE} />
           </CaseStudyFigure>
           <CaseStudyFigure>
-            <ArtboardFigure
-              src="/work/portfolio-management/planned-actual.png"
-              width={2880}
-              height={925}
-              alt="A table of objectives with an owner, planned headcount from the platform and actual headcount from Jira side by side, and a status for each"
-              caption="The line, made visible: planned headcount, allocated on the platform, sits beside actual headcount from the story points in Jira, for every objective."
-              hotspots={[
-                { x: 29.4, y: 38.6, title: "A named owner", detail: "Every objective has an owner, so responsibility is on the page." },
-                { x: 44.2, y: 38.6, title: "Planned: the allocation made here", detail: "The headcount allocated on the platform for each objective." },
-                { x: 53.4, y: 38.6, title: "Actual: the work done in Jira", detail: "Headcount worked out from the story points in Jira, beside the plan, so a leader sees where the two part." },
-              ]}
-            />
-          </CaseStudyFigure>
-          <CaseStudyFigure>
             <BrowserMockup
               route="/home"
               src="/work/portfolio-management/home.png"
