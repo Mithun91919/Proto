@@ -35,7 +35,7 @@ export default function HomePage() {
             <h1 className="display-title display-name mt-6 text-[var(--ink)]">
               Mithun Raju.
               <span className="display-name-sub mt-3 block text-[var(--ink-soft)] md:mt-4">
-                Senior UX designer turning scattered tools into <span className="text-[var(--accent-deep)]">one place to work</span>.
+                Work apps rarely talk to each other.<br />I design <span className="text-[var(--accent-deep)]">the ones that do</span>.
               </span>
             </h1>
             {/* One line, not three. The tagline above states the position —
@@ -49,10 +49,10 @@ export default function HomePage() {
                 that breaks"). The nouns are the actual work now: five
                 portfolio systems became one, three API tools became one
                 platform, 139 modules got a route through them. */}
-            <p className="lede mt-8" style={{ maxWidth: "41.6rem" }}>
-              I&apos;m based in Bengaluru and have spent {yearsActive} years designing consumer apps,
-              commerce experiences and enterprise platforms. I&apos;m currently at Walmart Global Tech,
-              working on developer tools and AI-assisted workflows.
+            <p className="lede mt-8" style={{ maxWidth: "39.25rem" }}>
+              I&apos;m a senior UX designer in Bengaluru, with {yearsActive} years designing consumer
+              apps, commerce experiences and enterprise platforms. I&apos;m currently at Walmart Global
+              Tech, working on developer tools and AI-assisted workflows.
             </p>
           </div>
 
