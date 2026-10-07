@@ -2057,7 +2057,7 @@
 }
 
 .ds-reframe-group {
-  animation: ds-reframe-settle 4.4s ease-in-out infinite;
+  animation: ds-reframe-settle 4.4s ease-in-out 2;
 }
 
 .ds-reframe-group:nth-child(2) {
@@ -2069,7 +2069,7 @@
 }
 
 .ds-reframe-arrow {
-  animation: ds-reframe-arrow-cycle 4.4s ease-in-out infinite;
+  animation: ds-reframe-arrow-cycle 4.4s ease-in-out 2;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -2140,7 +2140,7 @@
   animation-delay:
     calc(var(--i, 0) * 110ms + 180ms),
     calc((var(--i, 0) + 0.5) * (7s / var(--n, 5)) + 700ms);
-  animation-iteration-count: 1, infinite;
+  animation-iteration-count: 1, 2;
   animation-fill-mode: backwards, none;
 }
 
@@ -2166,7 +2166,7 @@
    many stages a given usage has, so the timing holds regardless of count.
    The 700ms base delay lets the entrance finish before the loop starts. */
 .reveal.is-visible .ds-dotflow-numeral {
-  animation: ds-flow-sweep-node 7s ease-in-out infinite;
+  animation: ds-flow-sweep-node 7s ease-in-out 2;
   animation-delay: calc(var(--i, 0) * (7s / var(--n, 5)) + 700ms);
 }
 
@@ -2391,7 +2391,7 @@
 }
 
 .ds-hotspot-dot {
-  animation: ds-hotspot-pulse 2.6s ease-out infinite;
+  animation: ds-hotspot-pulse 2.6s ease-out 3;
   animation-delay: calc(var(--i, 0) * 320ms);
 }
 
@@ -3447,7 +3447,7 @@ a:hover .ds-compact-mark .ds-dot {
   animation-name: ds-pull-mark-in, ds-pull-cycle-dot;
   animation-duration: 460ms, var(--ds-mark-cycle);
   animation-timing-function: cubic-bezier(0.2, 0.7, 0.3, 1), ease-in-out;
-  animation-iteration-count: 1, infinite;
+  animation-iteration-count: 1, 2;
   animation-fill-mode: backwards, none;
   animation-delay:
     calc(var(--ds-mark-lead) + var(--dot-i, 0) * 34ms),

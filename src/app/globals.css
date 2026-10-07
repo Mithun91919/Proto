@@ -1109,7 +1109,7 @@ a {
 }
 
 .mark-pulse {
-  animation: mark-glow 2.8s ease-in-out infinite;
+  animation: mark-glow 2.8s ease-in-out 3;
 }
 
 .reveal {
