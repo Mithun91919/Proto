@@ -313,7 +313,7 @@ export default function PortfolioManagementPage() {
               title="One place to find a person, and what they are working on"
               description={[
                 "Information had been spread across platforms, and people found search inadequate. People answers who someone is, who they report to, and what they are allocated to.",
-                "It opens on the person, and search narrows a whole directory by org, pillar, product, location and manager.",
+                "It opens on the person, and search narrows a whole directory by org, pillar, product, location and manager. Allocations Overview rolls a team up by product, initiative, cost centre, role and location.",
               ]}
               scrollable
               maxHeight="44rem"
@@ -332,6 +332,22 @@ export default function PortfolioManagementPage() {
                     { x: 40.8, y: 16.9, title: "Allocations, as percentages", detail: "A person's product team and initiative allocations sit in the middle column, each with a percentage." },
                     { x: 77, y: 12.9, title: "Direct reports in the same view", detail: "A manager sees their direct reports' roles, cost centres and allocated products beside their own profile." },
                     { x: 84.7, y: 24.6, title: "Changed where it is read", detail: "Update Allocations sits on the person's card, so an allocation is changed where it is read." },
+                  ],
+                },
+                {
+                  title: "A team's allocations, rolled up",
+                  route: "/people/allocations",
+                  src: "/work/portfolio-management/profile-allocations.png",
+                  width: 2880,
+                  height: 2740,
+                  alt: "Allocations Overview: donut charts and lists of a team's products and initiatives with headcount and capacity, and panels for cost centres, headcount by role, employment types and locations",
+                  caption: "Products, initiatives, cost centres, roles and locations, read at the same level.",
+                  hotspots: [
+                    { x: 19.2, y: 9.7, title: "Four views under My Profile", detail: "Profile Details, Allocations Overview, Org Chart and People Search sit side by side as tabs." },
+                    { x: 27.2, y: 13.1, title: "Products as a share", detail: "A donut and a list give each product's headcount and capacity, with the people allocated to it." },
+                    { x: 28.2, y: 60.1, title: "The same read for initiatives", detail: "Initiatives are summarised the same way, so products and initiatives can be compared." },
+                    { x: 71.6, y: 13.2, title: "Cost centres beside the products", detail: "Each cost centre shows its headcount and the people in it." },
+                    { x: 74.4, y: 35.9, title: "Role, type and place", detail: "Headcount by role, employment type and location sit beside the allocations, in the same view." },
                   ],
                 },
                 {
@@ -439,7 +455,7 @@ export default function PortfolioManagementPage() {
               title="Where the money is declared, and tied to the work"
               description={[
                 "An initiative is a yearly key result: a group of products and projects that will help reach it. Budgets and costs are declared and managed here, a year at a time, and each initiative is tied to a Jira epic.",
-                "Allocation details across products, pillars and cost centres had been tedious to produce, because they had to be generated one by one.",
+                "Allocation details across products, pillars and cost centres had been tedious to produce, because they had to be generated one by one. Each initiative opens on its details, with the Jira link, the products under it and named roles, and a second view shows the people allocated.",
               ]}
               scrollable
               maxHeight="44rem"
@@ -457,6 +473,36 @@ export default function PortfolioManagementPage() {
                     { x: 31.5, y: 18.2, title: "Narrow by org, pillar, sub-pillar or status", detail: "Four filters sit above the list, in the order the hierarchy runs." },
                     { x: 95.0, y: 18.5, title: "Start one, or upload it", detail: "New Initiative and Upload by Excel sit together, so details already in a sheet can come in as they are." },
                     { x: 68.5, y: 29.4, title: "Two statuses, side by side", detail: "Status and approval status are separate columns: an initiative can be active or inactive, and approved or rejected." },
+                  ],
+                },
+                {
+                  title: "An initiative's page ties it to the work",
+                  route: "/initiative/details",
+                  src: "/work/portfolio-management/initiative-details.png",
+                  width: 2880,
+                  height: 2820,
+                  alt: "Initiative Details: name, hierarchy, ID, Jira link, sub-initiatives and status on the left, and the description, impacted markets and businesses, a product allocation table and named roles on the right",
+                  caption: "The description, the products under the initiative, the named roles and the Jira link, on one page.",
+                  hotspots: [
+                    { x: 36, y: 7.6, title: "Three tabs, one initiative", detail: "Initiative Details, Expenses & Benefits and People & Allocations sit side by side." },
+                    { x: 21.5, y: 36.3, title: "The link to the work", detail: "The Jira link sits on the page, so the epic the initiative's work is tagged to is one click away." },
+                    { x: 40.5, y: 30.8, title: "Products under the initiative", detail: "Each product is listed with its pillar, engineering manager and status." },
+                    { x: 40, y: 57.2, title: "Named people for every role", detail: "Business owner, UX design lead, product manager and others are named, each with their title." },
+                  ],
+                },
+                {
+                  title: "People allocated, by role and capacity",
+                  route: "/initiative/people",
+                  src: "/work/portfolio-management/people-allocated.png",
+                  width: 2880,
+                  height: 2892,
+                  alt: "People Allocated for an initiative: the initiative hierarchy on the left, its roles and Jira link at the top, headcount by role as filter chips, and a table of people with role, manager and allocated capacity",
+                  caption: "Headcount by role as filters, and each person's allocated capacity.",
+                  hotspots: [
+                    { x: 97, y: 16.6, title: "The Jira link stays in view", detail: "It sits in the initiative's header, so the people listed are tied to the work." },
+                    { x: 56, y: 27.7, title: "Roles named at the top", detail: "The pillar owner, business owner, UX design lead and product manager are named above the numbers." },
+                    { x: 36.5, y: 38.5, title: "Headcount by role, as filters", detail: "Each role is a chip with its count, drawn as a filter for the people listed below." },
+                    { x: 97.5, y: 57, title: "Capacity for each person", detail: "Each person's allocation to the initiative shows as a bar and a percentage." },
                   ],
                 },
                 {
