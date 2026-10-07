@@ -50,9 +50,9 @@ export default function HomePage() {
                 portfolio systems became one, three API tools became one
                 platform, 139 modules got a route through them. */}
             <p className="lede mt-8">
-              Consumer products, enterprise platforms, and AI-assisted workflows — currently at
-              Walmart Global Tech, where I designed an organisation-wide platform from inception to
-              release.
+              I&apos;m based in Bengaluru and have spent {yearsActive} years designing consumer apps,
+              commerce experiences and enterprise platforms. I&apos;m currently at Walmart Global Tech,
+              working on developer tools and AI-assisted workflows.
             </p>
           </div>
 
