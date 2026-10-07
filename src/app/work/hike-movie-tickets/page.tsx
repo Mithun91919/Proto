@@ -68,7 +68,7 @@ export default function MovieTicketsPage() {
             </>
           ),
           detail:
-            "The design problem was less about encouraging browsing and more about removing friction between the moment someone decides and the moment they pay.",
+            "The design problem was less about encouraging browsing and more about removing friction between the moment someone decides and the moment they pay. It sat inside Hike Messenger, which had almost 100 million monthly active users in India in 2017 (TelecomTalk, July 2017).",
         },
         {
           label: "What I did",

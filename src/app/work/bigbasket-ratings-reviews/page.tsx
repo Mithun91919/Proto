@@ -63,7 +63,7 @@ export default function RatingsReviewsPage() {
             </>
           ),
           detail:
-            "The experience had to read the same whether someone was rating a product on their phone or reading reviews on the web.",
+            "The experience had to read the same whether someone was rating a product on their phone or reading reviews on the web, for a service that was in 25 Indian cities by May 2019 (Reuters).",
         },
         {
           label: "What I did",
