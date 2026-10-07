@@ -30,12 +30,12 @@ export default function HomePage() {
       <ChapterProgress chapters={CHAPTERS} />
 
       <section className="hero-stage">
-        <div className="relative z-[1] mx-auto grid w-full max-w-[80rem] gap-12 px-5 pb-12 pt-14 md:grid-cols-[1fr_24rem] md:items-center md:gap-16 md:px-8 md:pb-16 md:pt-20">
+        <div className="relative z-[1] mx-auto grid w-full max-w-[80rem] gap-12 px-5 pb-12 pt-14 md:grid-cols-[1fr_20rem] md:items-center md:gap-12 md:px-8 md:pb-16 md:pt-20">
           <div className="hero-in">
             <h1 className="display-title display-name mt-6 text-[var(--ink)]">
               Mithun Raju.
               <span className="display-name-sub mt-3 block text-[var(--ink-soft)] md:mt-4">
-                Product designer turning scattered tools into <span className="text-[var(--accent-deep)]">one place to work</span>.
+                Senior UX designer turning scattered tools into <span className="text-[var(--accent-deep)]">one place to work</span>.
               </span>
             </h1>
             {/* One line, not three. The tagline above states the position —

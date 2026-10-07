@@ -34,8 +34,9 @@ export function SiteFooter() {
               rel="noopener noreferrer"
               className="inline-block py-1 -my-1 underline underline-offset-2 transition-opacity hover:opacity-70"
             >
-              Claude.ai
+              Claude
             </a>
+            , with copy drafted there and edited by me
           </span>
         </p>
       </div>

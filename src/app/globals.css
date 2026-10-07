@@ -1281,7 +1281,7 @@ a {
 /* Name-led home hero: larger and tighter than a sentence headline. */
 /* The role line under the name: clearly secondary, still display scale. */
 .display-name-sub {
-  font-size: clamp(1.75rem, 3.4vw, 2.65rem);
+  font-size: clamp(1.75rem, 3vw, 2.35rem);
   line-height: 1.14;
   letter-spacing: -0.036em;
 }

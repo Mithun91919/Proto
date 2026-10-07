@@ -8,7 +8,7 @@ import { MediaPlaceholder } from "@/components/design-system/MediaPlaceholder";
 export const metadata: Metadata = {
   title: "About",
   description:
-    "Mithun Raju — product designer focusing on systems, complex workflows, and making ideas tangible.",
+    "Mithun Raju — senior UX designer focusing on systems, complex workflows, and making ideas tangible.",
 };
 
 const CHAPTERS = [
@@ -42,7 +42,7 @@ export default function AboutPage() {
           </h1>
           <div className="mt-10 max-w-[60ch]">
             <p className="text-lg leading-8 text-[var(--ink-soft)]">
-              I&apos;m Mithun, a product designer based in Bengaluru.
+              I&apos;m Mithun, a senior UX designer based in Bengaluru.
             </p>
             <p className="mt-4 text-lg leading-8 text-[var(--ink-soft)]">
               I started my career in visual and interaction design, then moved through consumer products, commerce, and enterprise platforms as the problems I worked on became larger and more interconnected.
