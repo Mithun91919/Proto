@@ -3,7 +3,7 @@ import Link from "next/link";
 
 export const metadata: Metadata = {
   title: "Résumé",
-  description: "Download or request Mithun Raju’s résumé.",
+  description: "Request Mithun Raju’s résumé.",
 };
 
 export default function ResumePage() {
@@ -14,19 +14,14 @@ export default function ResumePage() {
         Curriculum vitae
       </h1>
       <p className="mt-6 text-lg leading-8 text-[var(--ink-soft)]">
-        Place your latest PDF at <code className="font-mono text-sm">public/resume.pdf</code>
-        {" "}
-        and the download link below will work immediately on Vercel and locally.
+        Ask and I will send the latest copy.
       </p>
       <div className="mt-10 flex flex-wrap gap-3">
-        <a href="/resume.pdf" className="button button-primary">
-          Download résumé PDF
-        </a>
-        <a href="mailto:mithraj14@gmail.com" className="button button-secondary">
+        <a href="mailto:mithraj14@gmail.com" className="button button-primary">
           Request by email
         </a>
         <Link href="/work" className="button button-secondary">
-          View work instead
+          View work
         </Link>
       </div>
     </div>

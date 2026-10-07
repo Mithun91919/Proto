@@ -430,13 +430,6 @@ export default function AboutPage() {
                   Elsewhere
                 </p>
                 <div className="mt-3 flex flex-col gap-2">
-                  <Link
-                    href="/resume"
-                    className="font-semibold transition hover:translate-x-1"
-                    style={{ color: "var(--ds-mint)" }}
-                  >
-                    Resume
-                  </Link>
                   <a
                     href="https://linkedin.com/in/mithunrajuk"
                     target="_blank"

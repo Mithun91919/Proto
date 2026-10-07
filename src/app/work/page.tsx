@@ -103,7 +103,7 @@ export default function WorkPage() {
         <SectionHead
           eyebrow="Case studies"
           title="Selected work"
-          lede="Every project on this page, not a curated sample — consumer, commerce, enterprise, and developer work."
+          lede="The four I would start with, then the earlier work — consumer, commerce, enterprise, and developer."
         />
 
         {/* The gap carries half the separation and the boundary's own top

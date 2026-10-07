@@ -6,7 +6,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   // /components is the design system, linked from the footer as a
   // colophon. It is a real page a reader may want to find, so it belongs
   // here now that something points at it.
-  const staticRoutes = ["", "/work", "/about", "/resume", "/components"].map((path) => ({
+  const staticRoutes = ["", "/work", "/about", "/components"].map((path) => ({
     url: `${baseUrl}${path}`,
     lastModified: new Date(),
   }));
