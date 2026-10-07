@@ -107,6 +107,7 @@ export default function TotalOsLocalizationPage() {
             heading="Localisation was more than translation"
             body={[
               "The challenge was not simply converting English copy into another script. Different languages required us to preserve meaning, clarity, and product intent while accounting for the realities of multiple Indian scripts.",
+              "The first rule was to decide, string by string, whether a line needed translating or transliterating. A word with a real equivalent is translated: “Welcome” becomes स्वागत है. A word people already say in English, with no everyday term of its own, is written as it sounds: “Connect” becomes कनेक्ट.",
             ]}
           />
         </CaseStudySection>
@@ -138,14 +139,16 @@ export default function TotalOsLocalizationPage() {
             eyebrow="Validation"
             heading="Language decisions were tested in the interface"
             body={[
-              "Localised copy was implemented as XML and tested across multiple mobile devices, with internal language reviewers and with 23+ participants from a range of age groups and languages.",
-              "That allowed text length, hierarchy, context, and usability to be evaluated in the actual product rather than only inside a translation document.",
+              "Localised copy was implemented as XML and tested across multiple mobile devices. Internal language reviewers checked each string against three questions: is the wording brief, is the tone right, and does a person understand what the action does and why.",
+              "The translated and transliterated copy was then verified with 23+ participants from a range of age groups and languages, so text length, hierarchy, context and usability were judged in the actual product rather than only inside a translation document.",
+              "Size was part of it. Tamil and Malayalam can take up twice the space of the English source, so the answers were to leave about 30% room, as Material design advises, or to choose shorter wording that keeps the intent.",
             ]}
           />
           <CaseStudyFigure>
             <ProofStrip
               items={[
                 { value: "23+", label: "participants, across age groups and languages", glyph: "field" },
+                { value: "8", label: "Indian languages", glyph: "layers" },
                 { value: "5", label: "stages from English copy to a device build", glyph: "ramp" },
               ]}
             />
@@ -168,8 +171,19 @@ export default function TotalOsLocalizationPage() {
             heading="What stayed with me"
             body={[
               "Localisation changes more than copy. It affects layout, terminology, validation, implementation, and the way teams collaborate to ship a product consistently across languages.",
+              "I wrote the method up at the time, as a short guide for teams building for more than one language.",
             ]}
           />
+          <p className="body-text mt-2">
+            <a
+              href="https://medium.com/@mithunraju/building-products-for-the-next-million-7088fe9ba069"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="underline underline-offset-4"
+            >
+              Building products for the next million, on Medium
+            </a>
+          </p>
         </CaseStudySection>
       </CaseStudyColumn>
 
