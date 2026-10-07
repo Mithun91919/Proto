@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { caseStudyRobots } from "@/content/seo";
 import { ArtboardFigure } from "@/components/design-system/ArtboardFigure";
 import { DotFlow } from "@/components/design-system/DotFlow";
+import { ProofStrip } from "@/components/design-system/ProofStrip";
 import { PullStatement } from "@/components/design-system/PullStatement";
 import {
   CaseStudyChapter,
@@ -137,10 +138,18 @@ export default function TotalOsLocalizationPage() {
             eyebrow="Validation"
             heading="Language decisions were tested in the interface"
             body={[
-              "Localised copy was implemented as XML and evaluated across multiple mobile devices with internal language reviewers.",
+              "Localised copy was implemented as XML and tested across multiple mobile devices, with internal language reviewers and with 23+ participants from a range of age groups and languages.",
               "That allowed text length, hierarchy, context, and usability to be evaluated in the actual product rather than only inside a translation document.",
             ]}
           />
+          <CaseStudyFigure>
+            <ProofStrip
+              items={[
+                { value: "23+", label: "participants, across age groups and languages", glyph: "field" },
+                { value: "5", label: "stages from English copy to a device build", glyph: "ramp" },
+              ]}
+            />
+          </CaseStudyFigure>
           <CaseStudyFigure>
             <ArtboardFigure
               src="/work/total-os/hindi-screens.jpg"
