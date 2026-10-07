@@ -341,7 +341,7 @@ export default function DependencyHealthPage() {
               title="An engineer goes from what is behind to a pull request"
               description={[
                 "An engineer starts from the same product view and needs one thing: what their repository owes, and how to clear it.",
-                "A red status says something is wrong. It does not say how to recover.",
+                "Status is deliberately not red and green. A repository can stay on an older version to support a feature, and nobody has to upgrade the moment a new version arrives, so the dashboard flags and highlights in neutral colours, and the table carries a warning where a repository has drifted.",
                 "The dashboard shows what has drifted from the Unified BOM, and the remediation flow turns each finding into a pull request the engineer can raise and follow. Where automation can create the code change, it appears at the point of action rather than as a separate tool.",
               ]}
               scrollable
