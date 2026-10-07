@@ -217,6 +217,7 @@ export default function RatingsReviewsPage() {
             heading="What stayed with me"
             body={[
               "The design has to make contributing feedback lightweight while collecting enough context for that feedback to be meaningful.",
+              "Once reviews sat beside the score, they added credibility and helped shoppers decide what to buy.",
             ]}
           />
         </CaseStudySection>
