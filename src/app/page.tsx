@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { CopyEmail } from "@/components/CopyEmail";
 import { DotText } from "@/components/DotText";
 import { FeaturedWorkCard } from "@/components/FeaturedWorkCard";
 import { HeroPortrait } from "@/components/HeroPortrait";
@@ -176,6 +177,7 @@ export default function HomePage() {
                 <a href="mailto:mithraj14@gmail.com" className="button button-primary">
                   Email
                 </a>
+                <CopyEmail address="mithraj14@gmail.com" />
                 <a
                   href="https://linkedin.com/in/mithunrajuk"
                   target="_blank"

@@ -239,6 +239,28 @@
   background-size: 9px 5px;
 }
 
+/* A boundary is drawn once, as the section arrives. DrawOnView arms it only
+   when the section starts below the fold, so nothing is hidden without script
+   and a section already in view is never held back. */
+.ds-section-boundary.is-armed::before {
+  transform: scaleX(0);
+  transform-origin: left center;
+}
+
+.ds-section-boundary.is-armed::after {
+  opacity: 0;
+}
+
+.ds-section-boundary.is-armed.is-drawn::before {
+  transform: scaleX(1);
+  transition: transform 600ms cubic-bezier(0.2, 0.7, 0.3, 1);
+}
+
+.ds-section-boundary.is-armed.is-drawn::after {
+  opacity: 1;
+  transition: opacity 300ms ease-out;
+}
+
 .ds-section-boundary-minor::before {
   left: 30px;
   right: 38%;
@@ -2307,6 +2329,20 @@
    The note opens against its dot, so the screen and its explanation are in
    one glance. Placement comes from each hotspot's own coordinates, so a
    panel never needs measuring and never leaves the frame. */
+/* While a heavy screenshot is still arriving, the frame already holds its
+   place as a field of dots, so the page does not jump and the wait has a
+   shape. The image paints over it, so nothing remains once it has loaded. */
+.ds-artboard-frame,
+.ds-framebody {
+  background-color: color-mix(in oklab, var(--ds-accent) 4%, white);
+  background-image: radial-gradient(
+    circle,
+    color-mix(in oklab, var(--ds-accent) 28%, transparent) 1.3px,
+    transparent 1.5px
+  );
+  background-size: 14px 14px;
+}
+
 .ds-artboard-frame {
   position: relative;
   line-height: 0;

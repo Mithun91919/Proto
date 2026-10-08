@@ -54,6 +54,11 @@ export type DotBoardProps = {
   label?: string;
   /** Multiplies the fall/stagger/hold pace. 2 runs the whole cycle twice as fast. */
   speed?: number;
+  /**
+   * How many pour-and-drain cycles to run before resting on the assembled
+   * image. Nothing on the site loops forever, so the default is two.
+   */
+  cycles?: number;
 };
 
 type Dot = {
@@ -93,6 +98,7 @@ export function DotBoard({
   decorative = false,
   label,
   speed = 1,
+  cycles = 2,
 }: DotBoardProps) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
@@ -123,6 +129,7 @@ export function DotBoard({
     let dots: Dot[] = [];
     let frame: number | null = null;
     let cycleStart = 0;
+    let settled = false;
     let visible = false;
     let hover = 0;
     let hoverTarget = 0;
@@ -309,7 +316,9 @@ export function DotBoard({
     const draw = (now: number) => {
       if (!cycleStart) cycleStart = now;
       const elapsed = now - cycleStart;
-      const t = reducedMotion ? entryMs : elapsed % cycleMs;
+      // After the last cycle's pour it stays put, assembled.
+      settled = elapsed >= (cycles - 1) * cycleMs + entryMs;
+      const t = reducedMotion || settled ? entryMs : elapsed % cycleMs;
 
       ctx.clearRect(0, 0, width, height);
 
@@ -350,8 +359,8 @@ export function DotBoard({
       if (hoverSettled) hover = hoverTarget;
       else hover += (hoverTarget - hover) * (reducedMotion ? 1 : HOVER_SPEED);
 
-      // Loop only while on screen and unresolved; keep going mid cross-fade.
-      const looping = visible && !reducedMotion && hover < 0.999;
+      // Run only while on screen and unresolved; keep going mid cross-fade.
+      const looping = visible && !reducedMotion && !settled && hover < 0.999;
       frame = looping || !hoverSettled ? requestAnimationFrame(draw) : null;
     };
 
@@ -367,8 +376,9 @@ export function DotBoard({
     const onLeave = () => {
       if (!canHover) return;
       hoverTarget = 0;
-      // Restart the pour once the photo fades out.
-      cycleStart = 0;
+      // Restart the pour once the photo fades out, unless it has already
+      // come to rest: then the assembled board simply fades back in.
+      if (!settled) cycleStart = 0;
       request();
     };
 
@@ -444,6 +454,7 @@ export function DotBoard({
     maxPhotoAlpha,
     hoverScope,
     speed,
+    cycles,
   ]);
 
   const interactive = Boolean(src) && revealOnHover && !text && !decorative;

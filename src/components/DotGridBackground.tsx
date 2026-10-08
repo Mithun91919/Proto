@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect } from "react";
+import { usePathname } from "next/navigation";
 import { DotGrid } from "interactive-dot-grid";
 
 const SPACING = 22;
@@ -11,6 +12,10 @@ const SPACING = 22;
  * sitting on the grid rather than floating above it.
  */
 export function DotGridBackground() {
+  // Reading pages get a quieter grid: the effect is for arriving, not for
+  // the long read, so on a case study it is toned down, not removed.
+  const reading = usePathname().startsWith("/work/");
+
   useEffect(() => {
     const canHover = window.matchMedia("(pointer: fine)").matches;
     const reducedMotion = window.matchMedia(
@@ -33,9 +38,9 @@ export function DotGridBackground() {
       spacing: SPACING,
       dotMin: 1.15,
       dotMax: 6,
-      radiusEffect: 190,
-      baseAlpha: 0.05,
-      maxAlpha: 0.32,
+      radiusEffect: reading ? 140 : 190,
+      baseAlpha: reading ? 0.03 : 0.05,
+      maxAlpha: reading ? 0.14 : 0.32,
       color,
       smoothing: 0.14,
       zIndex: -1,
@@ -67,7 +72,7 @@ export function DotGridBackground() {
       root.style.removeProperty("--dot-origin-x");
       root.style.removeProperty("--dot-origin-y");
     };
-  }, []);
+  }, [reading]);
 
   return null;
 }

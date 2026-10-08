@@ -1227,8 +1227,10 @@ a {
   }
 }
 
+/* The words on a landing page are there from the first frame. A reviewer has a
+   minute or less, and nothing they need to read should wait on an entrance. */
 .hero-in > * {
-  animation: hero-in 900ms var(--ease-out) both;
+  animation: none;
 }
 
 .hero-in > *:nth-child(1) {
@@ -1664,4 +1666,50 @@ a {
 .device-frame-screen {
   border-radius: 1.1rem;
   overflow: hidden;
+}
+
+/* A return visit in the same session: every block is already there. */
+.reveal-instant,
+.reveal-instant.is-visible {
+  transition: none !important;
+}
+
+/* Route progress: a dotted line that fills across the top while a page loads,
+   shown only if the load takes longer than a beat. */
+.route-progress {
+  position: fixed;
+  inset: 0 0 auto 0;
+  z-index: 70;
+  height: 5px;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 200ms ease;
+}
+
+.route-progress.is-active {
+  opacity: 1;
+}
+
+.route-progress-fill {
+  height: 100%;
+  width: 0;
+  background-image: radial-gradient(circle, var(--ds-accent) 1.6px, transparent 1.8px);
+  background-size: 9px 5px;
+}
+
+.route-progress.is-active .route-progress-fill {
+  width: 86%;
+  transition: width 3200ms cubic-bezier(0.1, 0.7, 0.2, 1);
+}
+
+.route-progress.is-done .route-progress-fill {
+  width: 100%;
+  transition: width 180ms ease-out;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .route-progress.is-active .route-progress-fill {
+    width: 100%;
+    transition: none;
+  }
 }

@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { CopyEmail } from "@/components/CopyEmail";
 import { HeroPortrait } from "@/components/HeroPortrait";
 import { Reveal } from "@/components/Reveal";
 import { ChapterProgress } from "@/components/design-system/ChapterProgress";
@@ -401,6 +402,7 @@ export default function AboutPage() {
               <Link href="mailto:mithraj14@gmail.com" className="button button-primary">
                 Say hi →
               </Link>
+              <CopyEmail address="mithraj14@gmail.com" className="button button-secondary ml-3" />
             </div>
 
             <div

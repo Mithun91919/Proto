@@ -598,7 +598,7 @@ export default function ComponentsPage() {
           <p className="max-w-[68ch] text-[0.95rem] leading-7" style={{ color: "var(--ink-soft)" }}>
             The site&apos;s one working piece of dot animation, not a reference-guide illustration — <code className="font-mono text-[0.85em]">DotBoard</code> already
             renders the home hero portrait, the About page portrait, and the &quot;Say Hi&quot; contact wordmark. Dots pour in
-            from above, settle into the image or lettering, hold, then drain and loop. A photograph additionally
+            from above, settle into the image or lettering, hold, then drain, twice, and come to rest on the assembled image. A photograph additionally
             cross-fades in on hover — lettering has nothing to reveal, so it stays a halftone. Two thin wrappers pick
             the mode: <code className="font-mono text-[0.85em]">HeroPortrait</code> (always renders <code className="font-mono text-[0.85em]">/mithun-raju.jpg</code>) and{" "}
             <code className="font-mono text-[0.85em]">DotText</code> (renders a short string of lettering instead).
@@ -1336,12 +1336,35 @@ export default function ComponentsPage() {
           </p>
           <div className="grid grid-cols-1 gap-x-14 gap-y-1 sm:grid-cols-2">
             {[
-              { rule: "Nothing loops forever", note: "A motion plays two or three times, then rests. A reader who has seen it should not still be watched by it." },
+              { rule: "Nothing loops forever, with no exceptions", note: "A motion plays two or three times, then rests. The home portrait included: it pours twice, then stays assembled." },
               { rule: "Reveal is a fade, not an effect", note: "500ms and 14px. No parallax, no scroll-jacking, and no delay that makes someone wait for text." },
               { rule: "One thing moves at a time", note: "If two motions compete in the same view, one of them is decoration. Cut it." },
               { rule: "Video is never the only carrier", note: "Muted, paused out of view, with a poster that already says what the clip shows." },
               { rule: "Reduced motion is the safety net", note: "Reviewers do not set it, so the default has to be calm already. It is for the people who need it, not the plan for everyone else." },
               { rule: "The inventory is the test", note: "Every named movement is listed in J3d with the claim it makes. A motion that is not listed is not allowed." },
+            ].map((r) => (
+              <div key={r.rule} className="ds-rule py-4">
+                <p className="text-[0.92rem] leading-6" style={{ color: "var(--ink)" }}>{r.rule}</p>
+                <p className="mt-1 text-[0.85rem] leading-6" style={{ color: "var(--ink-soft)" }}>{r.note}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <div className="ds-rule py-11">
+          <SubLabel code="J3f · Page load and scroll" />
+          <p className="mb-7 max-w-[66ch] text-[0.95rem] leading-7" style={{ color: "var(--ink-soft)" }}>
+            What a reviewer sees in the first seconds decides whether they read on, so arrival is
+            designed in three layers, in order of importance.
+          </p>
+          <div className="grid grid-cols-1 gap-x-14 gap-y-1 sm:grid-cols-2">
+            {[
+              { rule: "Words are there from the first frame", note: "No fade, no rise, no stagger on text a reader needs. Motion touches only what is not needed to read." },
+              { rule: "Nothing waits on script", note: "A block is hidden only once the page can reveal it. With scripts blocked, as on a locked-down work laptop, everything is simply visible." },
+              { rule: "Reveal is a fade, once", note: "500ms and 14px, the first time a block is seen. A return visit in the same session shows the page as it was, with no replay." },
+              { rule: "A chapter starts with a line", note: "The dotted boundary draws once, in 600ms, as a section arrives. It marks a change of subject, and nothing else on the page draws." },
+              { rule: "Waiting has a shape", note: "A screenshot still loading holds its frame as a field of dots, then is painted over. A slow navigation shows a dotted line across the top." },
+              { rule: "Dots arrive, they do not decorate", note: "They can assemble a portrait, draw a boundary, hold a place, or show a load. They never float, trail the cursor across reading, or fill space." },
             ].map((r) => (
               <div key={r.rule} className="ds-rule py-4">
                 <p className="text-[0.92rem] leading-6" style={{ color: "var(--ink)" }}>{r.rule}</p>

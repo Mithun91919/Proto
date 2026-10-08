@@ -2,6 +2,7 @@ import Link from "next/link";
 import type { HeroStackScreen } from "./HeroScreenStack";
 import type { ReactNode } from "react";
 import { Reveal } from "@/components/Reveal";
+import { DrawOnView } from "@/components/DrawOnView";
 import { getProject } from "@/content/projects";
 import {
   projectCraft,
@@ -318,6 +319,7 @@ export function CaseStudySection({
         boundary ? "ds-section-boundary mt-20 pt-16 md:mt-24" : "mt-16 md:mt-20"
       } ${className}`.trim()}
     >
+      {boundary ? <DrawOnView /> : null}
       {children}
     </section>
   );

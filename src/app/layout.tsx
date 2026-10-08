@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import localFont from "next/font/local";
 import { ResetScrollOnNavigate } from "@/components/ResetScrollOnNavigate";
 import { DotGridBackground } from "@/components/DotGridBackground";
+import { RouteProgress } from "@/components/RouteProgress";
 import { SiteFooter } from "@/components/SiteFooter";
 import { SiteHeader } from "@/components/SiteHeader";
 import "./globals.css";
@@ -76,6 +77,11 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         <a href="#main-content" className="skip-link">
           Skip to content
         </a>
+        {/* If scripts are blocked, nothing may stay hidden waiting for them. */}
+        <noscript>
+          <style>{`.reveal,.reveal-scale{opacity:1!important;transform:none!important}`}</style>
+        </noscript>
+        <RouteProgress />
         <ResetScrollOnNavigate />
         <DotGridBackground />
         <SiteHeader />

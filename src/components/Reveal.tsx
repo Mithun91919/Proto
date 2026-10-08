@@ -16,6 +16,15 @@ type RevealProps = HTMLAttributes<HTMLDivElement> & {
   mode?: "once" | "always";
 };
 
+/**
+ * Paths already seen in this tab. A reviewer going back to a page should not
+ * be shown the entrance again, so on a return visit every block is simply
+ * there. The path is recorded a few seconds after the first visit's blocks
+ * have mounted, so that visit still plays its own entrance in full.
+ */
+const seenPaths = new Set<string>();
+const pendingPaths = new Set<string>();
+
 export function Reveal({
   children,
   className = "",
@@ -27,10 +36,24 @@ export function Reveal({
 }: RevealProps) {
   const ref = useRef<HTMLDivElement>(null);
   const [visible, setVisible] = useState(false);
+  const [instant, setInstant] = useState(false);
 
   useEffect(() => {
     const node = ref.current;
     if (!node) return;
+
+    const path = window.location.pathname;
+    if (seenPaths.has(path)) {
+      const frame = window.requestAnimationFrame(() => {
+        setInstant(true);
+        setVisible(true);
+      });
+      return () => window.cancelAnimationFrame(frame);
+    }
+    if (!pendingPaths.has(path)) {
+      pendingPaths.add(path);
+      window.setTimeout(() => seenPaths.add(path), 4000);
+    }
 
     const show = () => setVisible(true);
     const hide = () => setVisible(false);
@@ -68,7 +91,7 @@ export function Reveal({
       ref={ref}
       className={`${variant === "scale" ? "reveal-scale" : "reveal"} ${
         visible ? "is-visible" : ""
-      } ${className}`.trim()}
+      } ${instant ? "reveal-instant" : ""} ${className}`.trim()}
       style={
         {
           "--reveal-delay": `${delay}ms`,
