@@ -161,7 +161,7 @@ export default function PortfolioManagementPage() {
             route: "/product",
           },
           {
-            src: "/work/portfolio-management/okr.png",
+            src: "/work/portfolio-management/okr-management.png",
             width: 3456,
             height: 3088,
             alt: "The Portfolio page: strategic pillars across the top and a table of objectives with planned and actual headcount",
@@ -544,7 +544,7 @@ export default function PortfolioManagementPage() {
                 {
                   title: "Goals and requests on one page",
                   route: "/portfolio/okr",
-                  src: "/work/portfolio-management/okr.png",
+                  src: "/work/portfolio-management/okr-management.png",
                   width: 3456,
                   height: 3088,
                   alt: "The Portfolio page at OKR Management: directors to choose from, strategic pillars as cards, status counts, and objectives with planned and actual headcount",
@@ -574,7 +574,7 @@ export default function PortfolioManagementPage() {
                 {
                   title: "The health of every goal, in one view",
                   route: "/portfolio/kpi",
-                  src: "/work/portfolio-management/kpi.png",
+                  src: "/work/portfolio-management/kpi-management.png",
                   width: 3456,
                   height: 3504,
                   alt: "The KPI view of the Portfolio page: goals health as a ring, a bar of health for each director, goals by owner, and a table of goals with linked initiatives and products",
