@@ -79,7 +79,10 @@ export function Reveal({
         }
         if (mode === "always") hide();
       },
-      { threshold: 0.08, rootMargin: "0px 0px -4% 0px" },
+      // The bottom margin is positive, so a block starts to arrive just before
+      // it enters the screen. With the old inset, a quick scroll showed an
+      // empty space that then filled in.
+      { threshold: 0, rootMargin: "0px 0px 10% 0px" },
     );
 
     observer.observe(node);

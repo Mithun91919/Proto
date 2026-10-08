@@ -89,7 +89,7 @@ type MotionSpec = {
 const INVENTORY: MotionSpec[] = [
   {
     name: "Reveal",
-    trigger: "8% intersection",
+    trigger: "10% of a screen before it enters",
     timing: "560ms, 18px rise",
     loop: "Once per load",
     means: "A band has arrived. Everything else times itself off this, so nothing can fire off-screen.",
