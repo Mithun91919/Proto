@@ -202,7 +202,7 @@ export default function PortfolioManagementPage() {
           <CaseStudyChapter
             layout="stacked"
             eyebrow="In pieces"
-            heading="Nothing connected the work assigned to the work done"
+            heading="The plan lived in four places, and the work in a fifth"
             figure={{
               value: "3",
               label: "whiteboarding sessions",
@@ -230,7 +230,7 @@ export default function PortfolioManagementPage() {
           <CaseStudyChapter
             layout="stacked"
             eyebrow="A decision"
-            heading="I designed the line from a goal to the work"
+            heading="I designed how a goal connects to the work"
             figure={{
               value: "5",
               label: "categories, one platform",

@@ -216,7 +216,7 @@ export default function ApiLifecyclePage() {
           <CaseStudyChapter
             layout="stacked"
             eyebrow="The lifecycle"
-            heading="One place for every stage, with the controls inside the work"
+            heading="One place for every stage, with governance built in"
             body={[
               "An API moves through discovery, contract design, validation, testing, publishing, subscription, governance, and eventually change or deprecation.",
               "API Hub carries all of it. Home, My APIs, Testing, Subscriptions and Settings \u2014 areas of a product rather than products, with governance belonging to each area instead of waiting as a gate at the end of them.",
@@ -292,7 +292,7 @@ export default function ApiLifecyclePage() {
             <CaseStudyChapter
               layout="flow"
               eyebrow="The way in"
-              heading="Routes into work, not a status board"
+              heading="Three ways in, not a status board"
               body={[
                 "An engineer opening a platform is not there to read a summary of it. They have arrived to do something \u2014 and what that is varies: find a service, start a task, or reach one specific function.",
                 "So the home screen carries all three ways in rather than picking one. Search across every service, the eight tasks people most often start, and direct routes to functions like proxy and linting.",
@@ -646,7 +646,7 @@ export default function ApiLifecyclePage() {
           <CaseStudyChapter
             layout="stacked"
             eyebrow="What changed"
-            heading="Fewer translations between tools"
+            heading="Engineers carried context between tools less often"
             body={[
               "The platform established a connected API lifecycle across discovery, contract design and testing, with governance built into the work rather than waiting at the end of it.",
               "The strongest outcome was not feature count. It was reducing the number of times engineers had to translate context between disconnected tools while giving different levels of expertise a workable path through the same lifecycle.",

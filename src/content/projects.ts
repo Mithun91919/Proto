@@ -74,7 +74,7 @@ export const projects: Project[] = [
     title: "Portfolio Management Platform: from a goal to the work, in one place.",
     internalName: "Clipper",
     summary:
-      "Nothing connected the work assigned to the work done. I was the only designer, from inception to release, on one platform where a goal runs down to the work, in the words people already use.",
+      "The plan lived in four places and the work in a fifth. I was the only designer, from inception to release, on one platform where a goal runs down to the work, in the words people already use.",
     outcome:
       "6K+ monthly users · 800+ hrs a week reclaimed · $100K saved a year",
     metrics: [

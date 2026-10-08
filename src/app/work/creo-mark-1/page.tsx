@@ -104,7 +104,7 @@ export default function CreoMark1Page() {
           <CaseStudyChapter
             layout="flow"
             eyebrow="The language"
-            heading="The product stayed at the centre"
+            heading="The phone stayed the main thing on every surface"
             body={[
               "The visual language used large product imagery, high-contrast typography, and a consistent set of supporting brand elements so the phone and its evolving software features remained the dominant visual element on every surface.",
             ]}
@@ -194,7 +194,7 @@ export default function CreoMark1Page() {
           <CaseStudyChapter
             layout="flow"
             eyebrow="Reach"
-            heading="One language, different surfaces"
+            heading="One visual language across social, email and GIFs"
             body={[
               "The same visual system extended into social campaigns, email, animated GIFs, and other places customers met the brand.",
               "The value was not making every asset look identical. It was creating enough consistency that each new message still felt like part of the same brand.",

@@ -211,6 +211,7 @@ const SWAPS = [
 ];
 
 const MECHANICS = [
+  { label: "The stranger test", rule: "Can a stranger picture this? Every heading, lead and sentence is understood in one read by someone who has never heard of the project. Name the person, the object or the number. See the rule at the top of this guide." },
   { label: "Spelling", rule: "British — organised, prioritised, fulfilment, localisation, behaviour." },
   { label: "Person", rule: "First person singular for your work. “We” only for genuine team decisions." },
   { label: "Tense", rule: "Past for shipped work. Present for products you still own." },
@@ -1387,6 +1388,49 @@ export default function ComponentsPage() {
       {/* K — Copy guide */}
       <section id="copy" className="mx-auto max-w-[70rem] px-5 pt-14 scroll-mt-28 md:px-8">
         <SectionHeader letter="K" title="Copy guide" subtitle="Plain language, precise ownership, credible claims" />
+
+        <div className="py-11">
+          <SubLabel code="The first rule" />
+          <p className="display-title max-w-[34ch]" style={{ fontSize: "1.7rem", lineHeight: 1.2 }}>
+            Can a stranger picture this?
+          </p>
+          <p className="mt-5 max-w-[66ch] text-[0.95rem] leading-7" style={{ color: "var(--ink-soft)" }}>
+            This site is read by strangers, every day: reviewers who have never heard of the project and
+            give a first pass one to four minutes. Every other rule here is about style. This one is about
+            whether the sentence works at all. A heading, a lead or a sentence must be understood in one read by someone who has never
+            heard of the project, and they should be able to see something: a person doing a thing, a
+            named object, a number. It applies to all copy, and headings are where it fails most, because
+            a heading has no paragraph around it to explain itself.
+          </p>
+          <div className="mt-8 grid grid-cols-1 gap-x-14 gap-y-1 sm:grid-cols-2">
+            {[
+              { rule: "A noun repeated inside it", note: "“The work assigned to the work done” makes the reader count the work. Say each thing once." },
+              { rule: "A metaphor that has to be decoded", note: "“Fewer translations between tools” asks what is being translated. Say what the engineer actually did." },
+              { rule: "Nothing to picture", note: "“Job hunting needed continuity” has no person, object or number. “People could leave a job search and pick it up again” has all three." },
+              { rule: "It only makes sense beneath the paragraph", note: "If the heading needs the text to be understood, it is a label and not yet a heading." },
+            ].map((r) => (
+              <div key={r.rule} className="ds-rule py-4">
+                <p className="text-[0.92rem] leading-6" style={{ color: "var(--ink)" }}>Fails when: {r.rule.toLowerCase()}</p>
+                <p className="mt-1 text-[0.85rem] leading-6" style={{ color: "var(--ink-soft)" }}>{r.note}</p>
+              </div>
+            ))}
+          </div>
+          <div className="mt-7 grid grid-cols-1 gap-x-14 gap-y-5 sm:grid-cols-2">
+            <div>
+              <p className="ds-eyebrow" style={{ color: "var(--ds-dot-muted)" }}>Not</p>
+              <p className="mt-2 max-w-[40ch] leading-7" style={{ color: "var(--ds-dot-muted)" }}>Nothing connected the work assigned to the work done</p>
+            </div>
+            <div>
+              <p className="ds-eyebrow" style={{ color: "var(--ds-accent)" }}>Write</p>
+              <p className="mt-2 max-w-[40ch] leading-7">The plan lived in four places, and the work in a fifth</p>
+            </div>
+          </div>
+          <p className="mt-7 max-w-[66ch] text-[0.88rem] leading-6" style={{ color: "var(--ink-soft)" }}>
+            The check: read it aloud to someone outside the project. If they have to ask what it means,
+            rewrite it. A length limit, a banned-word list and a rule that a heading must argue can all
+            be met by a sentence that still says nothing, so none of them replaces this test.
+          </p>
+        </div>
 
         <div className="ds-rule py-11">
           <SubLabel code="Ownership ladder" />

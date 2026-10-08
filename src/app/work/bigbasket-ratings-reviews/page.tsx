@@ -112,7 +112,7 @@ export default function RatingsReviewsPage() {
           <CaseStudyChapter
             layout="stacked"
             eyebrow="The model"
-            heading="One feedback model had to work everywhere"
+            heading="Rating and reviewing had to work the same on four surfaces"
             body={[
               "The experience needed to feel consistent whether a customer was rating a product on mobile or reading reviews on the web.",
               "I defined reusable patterns for collecting ratings, writing reviews, and presenting review information rather than designing each platform independently.",

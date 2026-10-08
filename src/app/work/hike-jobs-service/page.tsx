@@ -194,7 +194,7 @@ export default function HikeJobsServicePage() {
         <CaseStudySection id="continuity">
           <CaseStudyChapter
             eyebrow="Continuity"
-            heading="Job hunting needed continuity"
+            heading="People could leave a job search and pick it up again"
             body={[
               "Finding a job is rarely a one-session task.",
               "A personalised area allowed users to save and track opportunities so they could return without starting their search again.",
