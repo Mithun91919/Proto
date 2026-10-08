@@ -1274,9 +1274,9 @@ export default function ComponentsPage() {
         <div className="ds-rule py-11">
           <SubLabel code="J3b · Mark motion" />
           <p className="max-w-[66ch] text-[0.95rem] leading-7" style={{ color: "var(--ink-soft)" }}>
-            A mark that means something can say it in the order it arrives, and keep saying it. Each
-            one draws itself on entrance, then settles into a standing loop where a single highlight
-            travels it and the mark rests for the remainder of the cycle. Both are keyed on the same{" "}
+            A mark that means something can say it in the order it arrives. Each one draws itself on
+            entrance, then a single highlight travels it twice and the mark rests. Nothing loops
+            forever: a reader who has seen it should not still be watched by it. Both are keyed on the same{" "}
             <code className="font-mono text-[0.85em]">--dot-i</code>, which is the meaning order
             rather than the DOM order — so the choreography is authored once, in the component, and
             the CSS never needs to know which mark it is running on.
@@ -1288,7 +1288,7 @@ export default function ComponentsPage() {
             the behaviour.
           </p>
           <p className="mt-2 font-mono text-[0.6rem] uppercase tracking-[0.06em]" style={{ color: "var(--muted)" }}>
-            Rule · the order is the meaning · rest is most of the cycle · off under reduced motion
+            Rule · the order is the meaning · rest is most of the cycle · nothing loops forever · off under reduced motion
           </p>
           <div className="mt-7">
             <MarkMotionGallery />
