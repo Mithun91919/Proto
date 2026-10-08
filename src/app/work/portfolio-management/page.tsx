@@ -43,7 +43,6 @@ export const metadata: Metadata = {
   robots: caseStudyRobots,
 };
 
-const FEEDBACK_LOOP = ["Product", "Users", "Issue", "Release change"];
 const TRACE = ["Goal", "Initiative", "Product", "Person", "Jira epic", "Work"];
 
 /**
@@ -93,7 +92,6 @@ const CHAPTERS = [
   { id: "portfolio", label: "Portfolio" },
   { id: "manager", label: "Manager" },
   { id: "parallel", label: "Built in parallel" },
-  { id: "beta", label: "The beta" },
   { id: "outcomes", label: "What changed" },
 ];
 
@@ -164,8 +162,8 @@ export default function PortfolioManagementPage() {
           },
           {
             src: "/work/portfolio-management/okr.png",
-            width: 2880,
-            height: 2286,
+            width: 3456,
+            height: 3088,
             alt: "The Portfolio page: strategic pillars across the top and a table of objectives with planned and actual headcount",
             route: "/portfolio",
           },
@@ -217,6 +215,8 @@ export default function PortfolioManagementPage() {
           />
           <CaseStudyFigure>
             <ArtboardFigure
+              layout="portrait"
+              portraitMax="64.5rem"
               src="/work/portfolio-management/journey-map.png"
               width={2880}
               height={1217}
@@ -245,7 +245,7 @@ export default function PortfolioManagementPage() {
           <CaseStudyFigure>
             <ArtboardFigure
               layout="portrait"
-              portraitMax="56rem"
+              portraitMax="39rem"
               src="/work/portfolio-management/diagram.png"
               width={1954}
               height={1782}
@@ -545,15 +545,15 @@ export default function PortfolioManagementPage() {
                   title: "Goals and requests on one page",
                   route: "/portfolio/okr",
                   src: "/work/portfolio-management/okr.png",
-                  width: 2880,
-                  height: 2286,
+                  width: 3456,
+                  height: 3088,
                   alt: "The Portfolio page at OKR Management: directors to choose from, strategic pillars as cards, status counts, and objectives with planned and actual headcount",
                   caption: "Objectives are read by director and by strategic pillar, with planned and actual headcount for each.",
                   hotspots: [
-                    { x: 7.4, y: 8.5, title: "Requests and goals on one page", detail: "Intake Requests, All Requests and OKR Management are tabs under Portfolio." },
-                    { x: 32.4, y: 25.6, title: "Strategic pillars as filters", detail: "Each pillar is a card with its headcount, and clicking one filters the objectives below." },
-                    { x: 22.2, y: 35.3, title: "Status counts on top", detail: "All, Behind, At Risk, On Track and Bookmarked, each with a count." },
-                    { x: 44.4, y: 42.6, title: "Planned against actual", detail: "Planned headcount and actual headcount sit side by side for every objective." },
+                    { x: 8.4, y: 8.3, title: "Requests and goals on one page", detail: "Intake Requests, All Requests and OKR Management are tabs under Portfolio." },
+                    { x: 35.6, y: 25.4, title: "Strategic pillars as filters", detail: "Each pillar is a card with its headcount, and clicking one filters the objectives below." },
+                    { x: 24.6, y: 35.1, title: "Status counts on top", detail: "All, Behind, At Risk, On Track and Bookmarked, each with a count." },
+                    { x: 51.4, y: 42.4, title: "Planned against actual", detail: "Planned headcount and actual headcount sit side by side for every objective." },
                   ],
                 },
                 {
@@ -575,14 +575,14 @@ export default function PortfolioManagementPage() {
                   title: "The health of every goal, in one view",
                   route: "/portfolio/kpi",
                   src: "/work/portfolio-management/kpi.png",
-                  width: 2880,
-                  height: 2595,
+                  width: 3456,
+                  height: 3504,
                   alt: "The KPI view of the Portfolio page: goals health as a ring, a bar of health for each director, goals by owner, and a table of goals with linked initiatives and products",
                   caption: "Goals are read by health, by director and by owner, and each goal shows the initiatives and products linked to it.",
                   hotspots: [
-                    { x: 85.0, y: 27.1, title: "Three views of the same goals", detail: "Compact, Detailed and Report switch how much each goal shows, without leaving the page." },
-                    { x: 44.5, y: 32.5, title: "Health by director", detail: "Each director's goals as a bar, split into on track, at risk and behind." },
-                    { x: 63.0, y: 64.6, title: "Goals linked to the work", detail: "Every goal lists the initiatives and the products linked to it, which is where goals meet the rest of the platform." },
+                    { x: 90.8, y: 26.8, title: "Three views of the same goals", detail: "Compact, Detailed and Report switch how much each goal shows, without leaving the page." },
+                    { x: 50.0, y: 32.4, title: "Health by director", detail: "Each director's goals as a bar, split into on track, at risk and behind." },
+                    { x: 83.7, y: 64.6, title: "Goals linked to the work", detail: "Every goal lists the initiatives and the products linked to it, which is where goals meet the rest of the platform." },
                   ],
                 },
               ]}
@@ -632,6 +632,7 @@ export default function PortfolioManagementPage() {
               "People, Product and Initiative were not built one after another. Features for each arrived together, sprint by sprint, while every category kept its own capabilities and the data stayed shared between them.",
               "I was the only designer on it, working with three product managers and their head, and three engineering teams. Each had their own priorities and deliverables, so I worked a sprint ahead of every team, with a weekly review with each team and an all-hands once a month.",
               "The harder job was persuasion. I had to influence each product manager to look at the product as a whole, not only at their own piece, whether that was People or Product. The shared names and shared data are what let the pieces read as one.",
+              "Before launch I ran a beta with teams across the organisation. It surfaced what the mockups had hidden: internal field names showing in the interface, drafts that did not save, and form checks that got in people’s way. We fixed them before the wider release.",
             ]}
           />
           <CaseStudyFigure>
@@ -642,21 +643,6 @@ export default function PortfolioManagementPage() {
                 { value: "3", label: "engineering teams", glyph: "modules" },
               ]}
             />
-          </CaseStudyFigure>
-        </CaseStudySection>
-
-        <CaseStudySection id="beta">
-          <CaseStudyChapter
-            eyebrow="The beta"
-            heading="A beta found the jargon the mockups had hidden"
-            body={[
-              "We released a beta to stress-test the product with teams before the launch across the organisation. Frequent demos, research sessions and live pilot feedback showed us the problems before they became expensive to fix.",
-              "One pilot surfaced details that polished mockups had hidden: internal field names showing up in the interface, drafts that did not save, and form checks that got in people's way.",
-              "Those sessions changed the product and how we released it: feedback reached the team sooner, and decisions were tested against what people actually used, not only what we intended to ship.",
-            ]}
-          />
-          <CaseStudyFigure rule label="The feedback loop">
-            <DotFlow stages={FEEDBACK_LOOP} />
           </CaseStudyFigure>
         </CaseStudySection>
 
