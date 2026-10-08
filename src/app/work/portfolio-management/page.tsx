@@ -110,7 +110,7 @@ export default function PortfolioManagementPage() {
           label: "The problem",
           lead: (
             <>
-              People were <span className="ds-accent-text">the only link</span> between the tools.
+              People were <span className="ds-accent-text">the only link</span> between the plan and the work.
             </>
           ),
           detail:
