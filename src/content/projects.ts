@@ -74,7 +74,7 @@ export const projects: Project[] = [
     title: "Portfolio Management Platform: from a goal to the work, in one place.",
     internalName: "Clipper",
     summary:
-      "The plan lived in four places and the work in a fifth. I was the only designer, from inception to release, on one platform where a goal runs down to the work, in the words people already use.",
+      "The plan lived in four places and the work in a fifth. I was the only designer, from first idea to release, on one platform that links a goal to the work behind it, in everyday words.",
     outcome:
       "6K+ monthly users · 800+ hrs a week reclaimed · $100K saved a year",
     metrics: [
@@ -123,13 +123,13 @@ export const projects: Project[] = [
       "API Lifecycle Platform: one place to discover, design, test, and govern APIs.",
     internalName: "API Lifecycle Manager",
     summary:
-      "API work ran on tools outside the company, with no governed way of working across them. I owned the design direction for a single platform carrying the whole lifecycle with the controls integrated, and pushed for it to be one product, not three.",
+      "Teams used tools from outside the company to find, design and test APIs, with no shared rules between them. I owned the design direction for one platform covering all of it, with the rules built in, and pushed for it to be one product, not three.",
     outcome:
-      "20K+ APIs onboarded · 10K+ monthly users · 60% less time taken by developers on API contracting",
+      "20K+ APIs onboarded · 10K+ monthly users · 60% less developer time spent defining API contracts",
     metrics: [
       { value: "20K+", label: "APIs onboarded" },
       { value: "10K+", label: "monthly users" },
-      { value: "60%", label: "less time taken by developers on API contracting" },
+      { value: "60%", label: "less developer time spent defining API contracts" },
     ],
     org: "Walmart Global Tech",
     domain: "Developer tools",
@@ -173,7 +173,7 @@ export const projects: Project[] = [
       "Dependency Health Platform: moving teams onto one Unified BOM before release.",
     internalName: "Dependency Management",
     summary:
-      "The request was a dashboard to monitor library health. I pushed for it to act as well: a pull request generated to start the upgrade, and a flag a manager can assign, so teams move onto one Unified BOM before release.",
+      "The request was a dashboard to monitor library health. I pushed for it to act as well: it generates the pull request that starts an upgrade, and a manager can assign a flag to a person, so teams move onto one approved set of libraries (the Unified BOM) before release.",
     outcome:
       "3 days to ~2 hrs to migrate a team · 40% fewer library issues during releases · 80% increase in product health",
     metrics: [
@@ -188,7 +188,7 @@ export const projects: Project[] = [
       },
       {
         value: "80%",
-        label: "increase in product health",
+        label: "increase in product health score",
       },
     ],
     org: "Walmart Global Tech",
@@ -285,12 +285,12 @@ export const projects: Project[] = [
     title:
       "Supply Chain Operations Platform: getting to the right tool faster.",
     summary:
-      "As the platform expanded, 139 operational modules became increasingly difficult to discover. I co-led the redesign of the landing page, sign-in and navigation, evaluating competing navigation models with users across multiple markets.",
+      "As the platform grew to 139 tools, people struggled to find the one they needed. I co-led the redesign of the landing page, sign-in and navigation, evaluating competing navigation models with users across multiple markets.",
     outcome: "~985K monthly unique visitors · 139 modules",
     metrics: [
       { value: "~985K", label: "monthly unique visitors" },
-      { value: "139", label: "operational modules" },
-      { value: "62%", label: "less time spent on the landing page" },
+      { value: "139", label: "tools on the platform" },
+      { value: "62%", label: "less time on the landing page before reaching a tool" },
     ],
     org: "Walmart Global Tech",
     domain: "Enterprise",

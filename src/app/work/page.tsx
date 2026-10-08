@@ -52,7 +52,7 @@ export default function WorkPage() {
           <span className="ds-accent-text">enterprise platforms</span>.
         </h1>
         <p className="lede mt-6" style={{ maxWidth: "84ch" }}>
-          Consumer, commerce, enterprise, and developer products — at CREO, Hike, bigbasket, and Walmart Global Tech. The through-line is the same throughout: large systems, fragmented tools, and dense information, redesigned into products people can actually use. The work has moved from individual screens to the workflows and architecture behind them.
+          Consumer, commerce, enterprise and developer products, at CREO, Hike, bigbasket and Walmart Global Tech. The same problem runs through all of it: too many tools, too much information, and no clear way through. I redesign them into products people can finish their work in. Over time I have moved from designing single screens to designing the workflows behind them.
         </p>
       </div>
 
@@ -61,7 +61,7 @@ export default function WorkPage() {
           <div className="min-w-0">
             <SectionHead
               eyebrow="Path"
-              title="From screens to systems, one company at a time"
+              title="Four companies, and the work got bigger each time"
             />
           </div>
           <Reveal delay={120}>
@@ -178,10 +178,7 @@ export default function WorkPage() {
                   and individual product experiences.
                 </p>
                 <p className="body-text" style={{ color: "var(--ds-dark-muted)" }}>
-                  Over time, my work moved further into the systems underneath: how
-                  information is structured, how workflows connect, how products
-                  replace established ways of working, and how those decisions
-                  survive implementation and real-world use.
+                  Over time, my work moved from the screens to what sits underneath them: how information is organised, how steps connect, how a new product replaces the way people already work, and whether the design survives being built.
                 </p>
               </div>
 

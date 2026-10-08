@@ -64,7 +64,7 @@ export default function MovieTicketsPage() {
           label: "The task",
           lead: (
             <>
-              Close the gap between <span className="ds-accent-text">intent and purchase</span>.
+              Close the gap between <span className="ds-accent-text">deciding and paying</span>.
             </>
           ),
           detail:
@@ -90,7 +90,7 @@ export default function MovieTicketsPage() {
           "Cinema ticketing inside Hike Messenger, connected to Hike Wallet so choosing a seat and paying for it happened in one place.",
         headline: (
           <>
-            Movie Ticket Booking: turning intent into <span style={{ color: "var(--ds-mint)" }}>one continuous transaction</span>.
+            Movie Ticket Booking: from picking a film to paying, <span style={{ color: "var(--ds-mint)" }}>one continuous transaction</span>.
           </>
         ),
         meta: [
@@ -113,15 +113,15 @@ export default function MovieTicketsPage() {
           <CaseStudyChapter
             layout="stacked"
             eyebrow="The research"
-            heading="Most people arrived ready to book"
+            heading="A survey of 15 people showed the decision came first"
             body={[
               "A short survey with 15 participants showed that many users already had a movie in mind when they opened a ticketing app. Nearby theatres, preferred seats, trust, and available offers then influenced where they completed the transaction.",
-              "That made the core design problem less about encouraging endless browsing and more about reducing friction between intent and purchase.",
+              "That made the core design problem less about encouraging endless browsing and more about reducing friction between deciding and paying.",
             ]}
           />
           {/* The draft's own placeholder asks for this chain, not a screenshot —
               so it reconstructs in the dot language rather than being omitted. */}
-          <CaseStudyFigure rule label="The path from intent to purchase">
+          <CaseStudyFigure rule label="The path from picking a film to paying">
             <DotFlow stages={BOOKING_FLOW} />
           </CaseStudyFigure>
         </CaseStudySection>

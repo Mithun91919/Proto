@@ -79,7 +79,7 @@ export default function TotalOsLocalizationPage() {
         src: "/work/total-os/cover.jpg",
         alt: "TOTAL, built by Hike, set over a photograph of a crowd of people in turbans and headscarves",
         standfirst:
-          "TOTAL OS was built to run without a connection, for people across India reading in their own script. Every string had to survive translation, review, build and a real handset before it counted as done.",
+          "TOTAL OS was Hike’s Android platform, built to run without a connection, for people across India reading in their own script. Every string had to survive translation, review, build and a real handset before it counted as done.",
         headline: (
           <>
             Multilingual Mobile Experience: one localisation system across <span style={{ color: "var(--ds-mint)" }}>8 Indian languages</span>.
@@ -106,7 +106,7 @@ export default function TotalOsLocalizationPage() {
             eyebrow="Not a copy task"
             heading="Localisation was more than translation"
             body={[
-              "The challenge was not simply converting English copy into another script. Different languages required us to preserve meaning, clarity, and product intent while accounting for the realities of multiple Indian scripts.",
+              "The challenge was not simply converting English copy into another script. Different languages required us to keep the meaning and clarity of each line while allowing for how each Indian script is written and laid out.",
               "The first rule was to decide, string by string, whether a line needed translating or transliterating. A word with a real equivalent is translated: “Welcome” becomes स्वागत है. A word people already say in English, with no everyday term of its own, is written as it sounds: “Connect” becomes कनेक्ट.",
             ]}
           />
@@ -124,9 +124,9 @@ export default function TotalOsLocalizationPage() {
           <CaseStudyChapter
             layout="stacked"
             eyebrow="How I worked"
-            heading="I created a repeatable path from copy to product"
+            heading="I set up the steps every string went through, from English copy to a phone"
             body={[
-              "I worked across the localisation process with a language service provider and internal language experts, helping establish a framework for translation, proofreading, implementation, and validation across eight languages and four projects.",
+              "I worked across the localisation process with a language service provider and internal language experts, helping set the steps for translating, proofreading, building and checking text across eight languages and four projects.",
             ]}
           />
           <CaseStudyFigure rule label="From English copy to a validated device build">
@@ -170,7 +170,7 @@ export default function TotalOsLocalizationPage() {
             eyebrow="Reflection"
             heading="Localisation changes the product, not just the copy"
             body={[
-              "Localisation changes more than copy. It affects layout, terminology, validation, implementation, and the way teams collaborate to ship a product consistently across languages.",
+              "A longer word breaks a layout, a borrowed English word needs a decision, and every language needs someone who can check it on a real phone.",
               "I wrote the method up at the time, as a short guide for teams building for more than one language.",
             ]}
           />

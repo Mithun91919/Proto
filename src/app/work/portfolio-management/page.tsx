@@ -60,7 +60,7 @@ const ARCHETYPES: Archetype[] = [
     wants: [
       "Find the information in one place, and search that finds it.",
       "Create a product or an initiative through one standard workflow.",
-      "See allocations across products, pillars and cost centres without generating them one by one.",
+      "See allocations across products, pillars (the main areas of the business) and cost centres without generating them one by one.",
     ],
     friction: [
       "“Accessing information was challenging since it’s spread across different platforms.”",
@@ -103,7 +103,7 @@ export default function PortfolioManagementPage() {
   return (
     <CaseStudyShell
       slug="portfolio-management"
-      evidenceCaveat="Scale during the documented period."
+      evidenceCaveat="Hours are reported by the product managers. Savings come from retiring redundant licences."
       evidenceMetricsLabel="The impact"
       evidence={[
         {
@@ -124,7 +124,7 @@ export default function PortfolioManagementPage() {
             </>
           ),
           detail:
-            "A goal connects to an initiative, a product and a person, then to the Jira epic the work is tagged to. Planned allocation sits beside the story points worked, so a blocked team shows up.",
+            "A goal connects to an initiative, a product and a person, then to the Jira epic (the group of tickets) the work is tagged to. Planned headcount sits beside the effort logged in Jira, so a blocked team shows up.",
         },
         {
           label: "What I did",
@@ -237,8 +237,8 @@ export default function PortfolioManagementPage() {
               note: "People, Product, Initiative, Portfolio and Manager.",
             }}
             body={[
-              "The aim was never to rebuild each tool one for one. It was to join what is assigned to what is done. A goal ties to an initiative, which ties to a product, which ties to a person, and each product and initiative ties to a Jira epic that the work is tagged to.",
-              "That gives each thing one record and one name, so every title and statement means the same across teams.",
+              "The aim was never to rebuild each tool one for one. It was to join what is assigned to what is done. A goal links to an initiative, an initiative to a product, a product to a person, and each product and initiative to the Jira epic the work is tagged to.",
+              "That gives each thing one record and one name, so a word means the same thing on every team.",
               "The old tools went by names like team rosters, roadmaps and numbered programme codes. I kept the names to common words: People, Product, Initiative, Portfolio and Manager. A name a person can say to a colleague is also a data decision, because one name for a thing is what lets two records be one.",
             ]}
           />
@@ -250,7 +250,7 @@ export default function PortfolioManagementPage() {
               width={1954}
               height={1782}
               alt="Pfolio at the centre, with People, Product, Initiative, Manager and Portfolio around it, each with a one-line description"
-              caption="The platform in one picture: five categories around one hub. A central platform for planning and workflows, team allocation and the information behind decisions. It manages entities, controls permissions and keeps data accurate, and it holds initiatives across their hierarchy so priorities and outcomes line up."
+              caption="The platform in one picture: five categories around one hub. The hub is where planning, workflows and team allocation happen, and where the information behind decisions is kept. It controls who can see and change what, keeps the data accurate, and holds initiatives in their hierarchy, so priorities and outcomes can be compared."
             />
           </CaseStudyFigure>
           <CaseStudyFigure rule label="From a goal to the work">
@@ -299,7 +299,7 @@ export default function PortfolioManagementPage() {
         <CaseStudySection id="who">
           <ArchetypeSection
             heading="Some people read the portfolio. Others keep it right."
-            intro="Almost everyone in the organisation uses it, so I reduced the audience to two groups. Engineers, engineering managers and executive leaders consume it. Data quality champions and finance managers contribute to it, and approve the changes. The quotes are from the whiteboarding sessions."
+            intro="Almost everyone in the organisation uses it, so I reduced the audience to two groups. Engineers, engineering managers and executive leaders read it. Data quality champions and finance managers contribute to it, and approve the changes. The quotes are from the whiteboarding sessions."
             archetypes={ARCHETYPES}
             variant="cards"
           />
@@ -312,7 +312,7 @@ export default function PortfolioManagementPage() {
               eyebrow="People"
               title="One place to find a person, and what they are working on"
               description={[
-                "Information had been spread across platforms, and people found search inadequate. People answers who someone is, who they report to, and what they are allocated to.",
+                "Information had been spread across platforms, and people found search inadequate. The People area answers three questions: who is this person, who do they report to, and what are they working on?",
                 "It opens on the person, and search narrows a whole directory by org, pillar, product, location and manager. Allocations Overview rolls a team up by product, initiative, cost centre, role and location.",
               ]}
               scrollable
@@ -391,7 +391,7 @@ export default function PortfolioManagementPage() {
               eyebrow="Product"
               title="Creating a product follows one standard workflow"
               description={[
-                "Product creation had been overly complex, with no standard workflow for an app or a service. Product answers what exists, who leads it, and how many people are on it.",
+                "Product creation had been overly complex, with no standard workflow for an app or a service. The Product area answers three questions: what exists, who leads it, and how many people are on it?",
                 "A new product is requested in four steps, and says up front where its work is tracked: each product is tied to a Jira epic, so every piece of work sits under it.",
               ]}
               scrollable
@@ -454,7 +454,7 @@ export default function PortfolioManagementPage() {
               eyebrow="Initiative"
               title="Where the money is declared, and tied to the work"
               description={[
-                "An initiative is a yearly key result: a group of products and projects that will help reach it. Budgets and costs are declared and managed here, a year at a time, and each initiative is tied to a Jira epic.",
+                "An initiative is a yearly target, called a key result, together with the group of products and projects meant to reach it. Budgets and costs are declared and managed here, a year at a time, and each initiative is tied to a Jira epic.",
                 "Allocation details across products, pillars and cost centres had been tedious to produce, because they had to be generated one by one. Each initiative opens on its details, with the Jira link, the products under it and named roles, and a second view shows the people allocated.",
               ]}
               scrollable
@@ -531,18 +531,18 @@ export default function PortfolioManagementPage() {
               layout="split"
               imageSide="left"
               eyebrow="Portfolio"
-              title="Goals sit on the same data as the work they are about"
+              title="A goal and its work now come from the same records"
               description={[
-                "Goals run yearly, quarterly and monthly, and tie initiatives, products and people together. At launch of the goals experience, teams created more than 1.4K goals across 14 strategic themes.",
+                "Goals run yearly, quarterly and monthly, and tie initiatives, products and people together. When goals launched, teams created more than 1.4K of them across 14 strategic themes.",
                 "Because goals read from the same records, a goal shows the initiatives and products linked to it, and where they stand.",
-                "A leader sets a goal at the start of the year and checks in each quarter on how much is achieved and which teams are blocking it, from data, not assumptions. People supporting different initiatives can see how their work supports those goals, with a clear definition of impact and responsibility.",
+                "A leader sets a goal at the start of the year and checks in each quarter on how much is achieved and which teams are blocking it, from data, not assumptions. People on different initiatives can see which goals their work supports, and who is responsible for each.",
               ]}
               scrollable
               maxHeight="44rem"
               label="Portfolio"
               slides={[
                 {
-                  title: "Goals sit beside the requests",
+                  title: "Goals and requests on one page",
                   route: "/portfolio/okr",
                   src: "/work/portfolio-management/okr.png",
                   width: 2880,
@@ -601,8 +601,8 @@ export default function PortfolioManagementPage() {
               note: "A sustained fall, once changes no longer needed one.",
             }}
             body={[
-              "Any change used to need a ticket raised for a backend team, which made the change. The person asking could not see where it stood, and approvals ran across email, Slack and in-person conversations.",
-              "Manager is where those requests are now made and approved: product, initiative, application and pillar requests, each with its own approval status. Changes are made directly in the platform and approvals are part of it, so the decision and the action sit together. Support tickets fell by a sustained 50%.",
+              "Any change meant raising a ticket for a backend team to make. The person asking could not see where it stood, and approvals ran across email, Slack and in-person conversations.",
+              "Manager is where those requests are now made and approved: product, initiative, application and pillar requests, each with its own approval status. Changes are made directly in the platform and approvals are part of it, so the decision and the action sit together.",
             ]}
           />
           <CaseStudyFigure>
@@ -631,7 +631,7 @@ export default function PortfolioManagementPage() {
             body={[
               "People, Product and Initiative were not built one after another. Features for each arrived together, sprint by sprint, while every category kept its own capabilities and the data stayed shared between them.",
               "I was the only designer on it, working with three product managers and their head, and three engineering teams. Each had their own priorities and deliverables, so I worked a sprint ahead of every team, with a weekly review with each team and an all-hands once a month.",
-              "The harder job was persuasion. I had to influence each product manager to look at the product as a whole, not only at their own piece, whether people or product. The shared names and shared data are what let the pieces read as one.",
+              "The harder job was persuasion. I had to influence each product manager to look at the product as a whole, not only at their own piece, whether that was People or Product. The shared names and shared data are what let the pieces read as one.",
             ]}
           />
           <CaseStudyFigure>
@@ -650,9 +650,9 @@ export default function PortfolioManagementPage() {
             eyebrow="The beta"
             heading="A beta found the jargon the mockups had hidden"
             body={[
-              "We released a beta to stress-test the product with teams before the launch across the organisation. Frequent demos, research sessions and live pilot feedback exposed it before decisions became expensive to reverse.",
-              "One pilot surfaced details that polished mockups had hidden: internal field terminology appearing in the interface, draft persistence problems, and validation behaviour that became frustrating in real work.",
-              "Those sessions changed both the product and the release loop. Feedback moved closer to implementation, and design decisions were tested against the experience people actually used rather than only the one we intended to ship.",
+              "We released a beta to stress-test the product with teams before the launch across the organisation. Frequent demos, research sessions and live pilot feedback showed us the problems before they became expensive to fix.",
+              "One pilot surfaced details that polished mockups had hidden: internal field names showing up in the interface, drafts that did not save, and form checks that got in people's way.",
+              "Those sessions changed the product and how we released it: feedback reached the team sooner, and decisions were tested against what people actually used, not only what we intended to ship.",
             ]}
           />
           <CaseStudyFigure rule label="The feedback loop">
@@ -695,7 +695,7 @@ export default function PortfolioManagementPage() {
       <div className="mt-16 md:mt-20">
         <Reveal>
           <PullStatement eyebrow="What I believe now" mark="seam">
-            A plan is only as good as its line to the work.
+            A plan is only as good as its link to the work.
           </PullStatement>
         </Reveal>
       </div>

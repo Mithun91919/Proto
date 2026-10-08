@@ -65,7 +65,7 @@ export default function CreoMark1Page() {
           label: "What I did",
           lead: (
             <>
-              I kept <span className="ds-accent-text">the product at the centre</span>.
+              I kept <span className="ds-accent-text">the phone at the centre</span>.
             </>
           ),
           detail:
@@ -78,7 +78,7 @@ export default function CreoMark1Page() {
         src: "/work/creo/banner.jpg",
         alt: "Mark 1 campaign imagery: the phone shown against the brand's high-contrast visual language",
         standfirst:
-          "CREO shipped new FUEL OS features to Mark 1 owners release after release, each one needing to be announced across web, social, email and campaign work.",
+          "CREO shipped new features of its FUEL OS software to Mark 1 owners release after release, each one needing to be announced across web, social, email and campaign work.",
         headline: (
           <>
             Mark 1: a visual language for a smartphone that <span style={{ color: "var(--ds-mint)" }}>changed every month</span>.
@@ -218,7 +218,7 @@ export default function CreoMark1Page() {
           <CaseStudyChapter
             layout="flow"
             eyebrow="Reflection"
-            heading="Consistency is not repetition"
+            heading="The brand held together without every asset looking the same"
             body={[
               "The work shipped as the digital assets for marketing and promoting the phone. I had left by then, so I have no figures to share.",
               "A useful visual system gives different surfaces enough freedom to communicate while still feeling unmistakably related.",

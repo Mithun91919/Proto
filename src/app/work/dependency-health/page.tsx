@@ -104,7 +104,7 @@ export default function DependencyHealthPage() {
             </>
           ),
           detail:
-            "Teams found library issues late, not ahead of it. Blind spots in their dependencies cost productivity, and one standard package of library versions went unused.",
+            "Teams found library problems late, close to a release, not ahead of it. Blind spots in their dependencies cost productivity, and one standard package of library versions went unused.",
         },
         {
           label: "The solution",
@@ -226,7 +226,7 @@ export default function DependencyHealthPage() {
             eyebrow="The idea"
             heading="One team builds the Unified BOM. Every other team onboards to it."
             body={[
-              "To shift that check left, the team proposed a Unified BOM, short for bill of materials: one package of approved library versions that one team builds and every other team onboards to.",
+              "To move that check earlier (engineers call this shifting left), the team proposed a Unified BOM, short for bill of materials: one package of approved library versions that one team builds and every other team onboards to.",
               "The package holds the latest version of everything, and not every system or team can move to all of them at once. So it was not forced. Java and Spring Boot are in the package too, and their individual packages stay supported until a team migrates. Some legacy systems keep running on older versions.",
               "The request was a dashboard to monitor. I pushed for it to act as well: a pull request generated to start the upgrade, and a flag a manager can assign to someone instead of only looking at it. The platform team built the scanning and pre-commit checks behind it, and the monitoring ran on existing APIs, so it needed no new work from them.",
             ]}
@@ -251,7 +251,7 @@ export default function DependencyHealthPage() {
             it costs before being shown a route through it. */}
         <CaseStudySection id="who">
           <ArchetypeSection
-            heading="The same libraries. Two very different jobs."
+            heading="One fixes the libraries. The other answers for them."
             intro="An engineer fixes the libraries in a repository. An engineer manager answers for the outdated libraries across their teams."
             archetypes={ARCHETYPES}
             basisLabel="12+ teams spoken to"
@@ -278,7 +278,7 @@ export default function DependencyHealthPage() {
               title="A bird’s-eye view that drills down to the service"
               description={[
                 "Outdated libraries used to surface when a release was already close. The dashboard shows it ahead of time, from the organisation down to a single product.",
-                "Three levels share one set of measures. The organisation view shows outdated libraries by division, the pillar view by team, and the product view by service, so an engineer manager can see where to look and go there.",
+                "Three levels share one set of measures. The organisation view shows outdated libraries by division, the pillar view (one business area) by team, and the product view by service, so an engineer manager can see where to look and go there.",
                 "Each level opens with one sentence on what the numbers add up to, then the detail behind it.",
               ]}
               scrollable
@@ -457,8 +457,8 @@ export default function DependencyHealthPage() {
             eyebrow="Current evidence"
             heading="More than 5K repositories have moved onto the Unified BOM"
             body={[
-              "The platform has shipped. More than 5K repositories have migrated, and the platform gives dependency-health visibility from individual repositories through pillar and organisation views, alongside self-service onboarding and remediation.",
-              "Product health is a score based on how many of a product\u2019s repositories are up to date. Fewer library issues arriving at release is what shifting left was for.",
+              "The platform has shipped. More than 5K repositories have migrated, and people can see library health from a single repository up to the whole organisation, while teams onboard and fix things themselves.",
+              "Product health is a score based on how many of a product\u2019s repositories are up to date. Fewer library issues arriving at release is what moving the check earlier was for.",
             ]}
           />
           <CaseStudyFigure>
@@ -466,15 +466,15 @@ export default function DependencyHealthPage() {
               items={[
                 { from: "3 days", value: "~2 hrs", label: "for a team to migrate its libraries", glyph: "ring" },
                 { value: "40%", label: "fewer library issues during releases", glyph: "bars" },
-                { value: "80%", label: "increase in product health", glyph: "ramp" },
+                { value: "80%", label: "increase in product health score", glyph: "ramp" },
               ]}
             />
           </CaseStudyFigure>
           <Reveal>
             <NoteCard
               label="Where it went"
-              heading="A skill and an MCP now check and remediate product health"
-              body="With them, someone can check a product\u2019s health, get a report, create a Jira ticket and assign it, alongside the dashboard."
+              heading="Two AI tools can now check and fix product health"
+              body="An AI skill and an MCP (a connector for AI tools) let someone check a product’s health, get a report, and create and assign a Jira ticket, alongside the dashboard."
               mark="AI"
               sparkle
             />

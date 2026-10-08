@@ -128,7 +128,7 @@ export default function StoreSupportPage() {
             </>
           ),
           detail:
-            "I rebuilt the issue taxonomy from card sorts with associates, made resolution step one of two in the submit flow, and gave work orders a loop they could track, annotate and escalate.",
+            "I rebuilt the list of issue types by having associates sort problems into groups, made the fix step one of two when reporting, and let associates track, add to and escalate their work orders.",
         },
       ]}
       chapters={CHAPTERS}
@@ -345,7 +345,7 @@ export default function StoreSupportPage() {
             heading="Migrating inside the redesign, instead of owing it afterwards"
             body={[
               "The product ran on a third-party UI library while the organisation was introducing its own enterprise design system.",
-              "Rather than treat the redesign and the migration as two projects, I rebuilt the areas I touched on Living Design — so the product belonged to the family of apps associates already used, on a more accessible component foundation, instead of paying down more design debt later.",
+              "Rather than treat the redesign and the migration as two projects, I rebuilt the areas I touched on Living Design — so the app looked and worked like the other apps associates already used, built on parts that were more accessible, with the migration done now and not left for later.",
             ]}
           />
           <CaseStudyFigure>

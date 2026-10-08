@@ -80,13 +80,13 @@ export default function SupplyChainOperationsPage() {
             </>
           ),
           detail:
-            "Capability had been added over time without structure around it. Related modules were hard to identify, everyone started from the same view, frequently used tools could not be saved, and people who already knew what they wanted still had no fast route to it.",
+            "Tools had been added over time with no structure around them. Related modules were hard to identify, everyone started from the same view, frequently used tools could not be saved, and people who already knew what they wanted still had no fast route to it.",
         },
         {
           label: "The solution",
           lead: (
             <>
-              One shell: shared structure, search, and{" "}
+              One front door: shared structure, search, and{" "}
               <span className="ds-accent-text">shortcuts to what you use</span>.
             </>
           ),
@@ -151,7 +151,7 @@ export default function SupplyChainOperationsPage() {
           },
         ],
         standfirst:
-          "The entry point to 139 operational modules used across Walmart.com, Online Grocery and international markets. Operations teams open it to get to a tool, not to spend time in it.",
+          "The entry point to 139 operational tools (modules) used across Walmart.com, Online Grocery and international markets. Operations teams open it to get to a tool, not to spend time in it.",
         alt: "Redesigned platform dashboard: grouped module categories, pinned tools, and recent modules.",
         figureNote: "Confidential internal work. Data and some product names have been replaced.\nScreens as shipped, built on Walmart’s Living Design system.",
       }}
@@ -178,7 +178,7 @@ export default function SupplyChainOperationsPage() {
             heading="The homepage had become a bottleneck"
             body={[
               "The landing page was never meant to be a destination. It was the front door to operational tools people needed to do their jobs.",
-              "Capability had been added over time without enough structure around it, and the whole cost of that landed on one screen — four problems at once, each of them a different reason someone could not reach their tool.",
+              "Tools had been added over time without enough structure around them, and the whole cost of that landed on one screen — four problems at once, each of them a different reason someone could not reach their tool.",
               "Before changing the interface, we needed to fix the structure underneath it.",
             ]}
           />

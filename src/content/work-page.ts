@@ -38,7 +38,7 @@ export const careerStages: CareerStage[] = [
     stage: "Consumer mobile",
     org: "Hike",
     logo: "/orgs/hike.svg",
-    body: "Mobile products across communication experiences and new product experiments.",
+    body: "Mobile products inside a messaging app, and new product experiments.",
     tags: ["Mobile", "Consumer"],
   },
   {
@@ -64,8 +64,8 @@ export const careerStages: CareerStage[] = [
 /** The open end of the rail: the shift from interface design to AI behaviour. */
 export const currentStage = {
   year: "Today",
-  stage: "From interfaces to AI behaviour",
-  body: "As products get more intelligent, my role has widened from designing screens to shaping the workflows, interactions, and system behaviour behind them. Two of the projects I am on now are AI-assisted; both are still in flight, which is why neither is a case study here yet.",
+  stage: "From screens to what the AI does",
+  body: "As products get smarter, my role has widened from drawing screens to deciding what the product does on its own, and how a person can see and correct it. Two of my current projects are AI-assisted. Both are still in progress, so neither is a case study yet.",
 };
 
 export type Transformation = {
@@ -145,7 +145,7 @@ export const earlierWork: EarlierWorkEntry[] = [
   {
     number: "09",
     org: "Movie Ticket Booking",
-    body: "A simpler path from movie intent to payment.",
+    body: "From picking a film to paying for it.",
     tags: ["HIKE", "Mobile", "Product Design"],
     image: "/work/hike-movie-tickets/Movie_Banner_2.jpg",
     slug: "hike-movie-tickets",

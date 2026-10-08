@@ -4,7 +4,6 @@ import { CopyEmail } from "@/components/CopyEmail";
 import { HeroPortrait } from "@/components/HeroPortrait";
 import { Reveal } from "@/components/Reveal";
 import { ChapterProgress } from "@/components/design-system/ChapterProgress";
-import { MediaPlaceholder } from "@/components/design-system/MediaPlaceholder";
 
 export const metadata: Metadata = {
   title: "About",
@@ -39,17 +38,17 @@ export default function AboutPage() {
         <Reveal>
           <p className="eyebrow">About</p>
           <h1 className="display-title display-hero mt-4 max-w-[36ch] text-[var(--ink)]">
-            I design products by understanding <span className="text-[var(--accent-deep)]">the systems behind them</span>.
+            I design products by understanding <span className="text-[var(--accent-deep)]">how the work actually happens</span>.
           </h1>
           <div className="ds-stagger mt-10 max-w-[60ch]">
             <p className="text-lg leading-8 text-[var(--ink-soft)]">
               I&apos;m Mithun, a senior UX designer based in Bengaluru.
             </p>
             <p className="mt-4 text-lg leading-8 text-[var(--ink-soft)]">
-              I started my career in visual and interaction design, then moved through consumer products, commerce, and enterprise platforms as the problems I worked on became larger and more interconnected.
+              I started my career in visual and interaction design, then moved through consumer products, commerce, and enterprise platforms as the problems got bigger and more connected.
             </p>
             <p className="mt-4 text-lg leading-8 text-[var(--ink-soft)]">
-              Today, I work mostly on enterprise platforms and AI-assisted workflows — turning fragmented tools into products people can get through quickly.
+              Today, I work mostly on enterprise platforms and AI-assisted workflows — replacing a pile of separate tools with one product people can finish their work in.
             </p>
           </div>
         </Reveal>
@@ -174,7 +173,7 @@ export default function AboutPage() {
       <section id="approach" className="mt-24 ds-section-boundary pt-16">
         <Reveal>
           <h2 className="display-title display-section text-[var(--ink)]">
-            I like making complex things understandable — and tangible.
+            I like making complex things easy to follow, and easy to try.
           </h2>
         </Reveal>
 
@@ -235,7 +234,7 @@ export default function AboutPage() {
 
             <Reveal delay={160}>
               <p>
-                I like finding the structure underneath all that and making ideas tangible early — through flows, prototypes, information models, or functional experiences that people can actually react to.
+                I like finding the structure underneath all that and building something people can react to early: a flow, a prototype, a model of the information, or a working version.
               </p>
             </Reveal>
 
@@ -289,7 +288,7 @@ export default function AboutPage() {
                 <line x1="7" y1="29" x2="16" y2="29" stroke="var(--accent)" strokeWidth="1.4" strokeLinecap="round" />
               </svg>
               <h3 className="display-title mt-5 text-[1.05rem] font-semibold leading-snug text-[var(--ink)]">
-                Make ideas tangible early.
+                Build something to react to, early.
               </h3>
               <p className="mt-3 text-[0.9rem] leading-7 text-[var(--ink-soft)]">
                 A prototype people can react to usually teaches me more than a long discussion about what might work.
@@ -308,7 +307,7 @@ export default function AboutPage() {
                 <polyline points="13,22 18,27 28,17" fill="none" stroke="var(--accent)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
               </svg>
               <h3 className="display-title mt-5 text-[1.05rem] font-semibold leading-snug text-[var(--ink)]">
-                Stay close to what ships.
+                Stay close to what gets built.
               </h3>
               <p className="mt-3 text-[0.9rem] leading-7 text-[var(--ink-soft)]">
                 The experience people eventually use matters more than the design file that preceded it.
@@ -358,25 +357,6 @@ export default function AboutPage() {
           </Reveal>
         </div>
 
-        <Reveal delay={200}>
-          <div className="mt-12 grid grid-cols-1 gap-6 sm:grid-cols-3">
-            <MediaPlaceholder
-              ratio={4 / 5}
-              needs="A frame from a reel, with the place named in the caption."
-              source="Mithun — Instagram"
-            />
-            <MediaPlaceholder
-              ratio={4 / 5}
-              needs="A second place. Somewhere the explaining had a subject — history, geology, how to get there."
-              source="Mithun — Instagram"
-            />
-            <MediaPlaceholder
-              ratio={4 / 5}
-              needs="A third. Ideally one that looks nothing like the other two."
-              source="Mithun — Instagram"
-            />
-          </div>
-        </Reveal>
       </section>
 
       {/* CTA Section — dark closing card, matching the same treatment used
@@ -394,9 +374,7 @@ export default function AboutPage() {
               The work I want more of.
             </h2>
             <p className="mt-6 max-w-[58ch]" style={{ color: "var(--ds-dark-muted)" }}>
-              Platforms where the hard part is structure rather than surface, dense
-              information that has to end in a decision, and products where an AI does
-              something on a person&apos;s behalf and has to answer for it.
+              Platforms where the hard part is how things connect, not how they look; screens full of dense information that has to end in a decision; and products where an AI acts for a person and has to explain what it did.
             </p>
             <div className="mt-8">
               <Link href="mailto:mithraj14@gmail.com" className="button button-primary">

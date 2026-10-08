@@ -41,6 +41,7 @@ export function ProjectMedia({ project, className = "", aspect, flush = false, h
           mp4={project.media.mp4}
           webm={project.media.webm}
           poster={project.media.poster}
+          alt={`${project.label}: a preview of the product`}
           aspect={aspect ?? project.media.aspect}
           playOn="hover"
           hoverScope={hoverScope}

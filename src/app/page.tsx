@@ -68,7 +68,7 @@ export default function HomePage() {
         <SectionHead
           eyebrow="Case studies"
           title="Selected work"
-          lede="Product strategy, interaction, systems thinking, research, and implementation."
+          lede="Four projects, each with the decisions I made and what changed."
         />
 
         {/* A grid, not a one-per-row stack — the media-forward card (picked
@@ -97,7 +97,7 @@ export default function HomePage() {
       >
         <SectionHead
           eyebrow="Where to next"
-          title="Every project, and the path to it."
+          title="Every project, and the career behind it."
         />
 
         <div className="ds-scope mt-10 grid gap-6 sm:grid-cols-2">
@@ -144,7 +144,7 @@ export default function HomePage() {
                   How I got here
                 </h3>
                 <p className="body-sm mt-3 flex-1" style={{ color: "var(--ink-soft)" }}>
-                  {yearsActive} years, from designing screens to designing the systems behind them.
+                  {yearsActive} years, from designing screens to designing the workflows behind them.
                 </p>
                 <span
                   className="ds-arrow mt-6 text-xl transition-transform duration-300 group-hover:translate-x-1"
@@ -169,7 +169,7 @@ export default function HomePage() {
               eyebrow="Say Hi"
               title="The work I want more of."
               measure="max-w-[47rem]"
-              lede="Platforms where the hard part is structure rather than surface, dense information that has to end in a decision, and products where an AI does something on a person's behalf and has to answer for it. If you are building one of those, I would like to hear about it."
+              lede="Platforms where the hard part is how things connect, not how they look; screens full of dense information that has to end in a decision; and products where an AI acts for a person and has to explain what it did. If you are building one of those, I would like to hear about it."
               dark
               sticky={false}
             >

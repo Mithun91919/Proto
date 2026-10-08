@@ -115,7 +115,7 @@ export default function RatingsReviewsPage() {
             heading="Rating and reviewing had to work the same on four surfaces"
             body={[
               "The experience needed to feel consistent whether a customer was rating a product on mobile or reading reviews on the web.",
-              "I defined reusable patterns for collecting ratings, writing reviews, and presenting review information rather than designing each platform independently.",
+              "I defined each piece once: how a rating is collected, how a review is written and how reviews are shown, then used them on all four surfaces.",
             ]}
           />
         </CaseStudySection>
@@ -191,9 +191,7 @@ export default function RatingsReviewsPage() {
                   understand both the summary and the detail behind it.
                 </p>
                 <p className="body-text">
-                  Email communication created another entry point by inviting customers to review products
-                  they had already purchased, while a motion prototype helped communicate interaction
-                  behaviour during implementation.
+                  An email invited customers to review what they had already bought. A motion prototype showed developers how the interactions should behave.
                 </p>
               </div>
             </Reveal>
@@ -216,7 +214,7 @@ export default function RatingsReviewsPage() {
             eyebrow="Reflection"
             heading="Feedback has to cost the contributor almost nothing"
             body={[
-              "The design has to make contributing feedback lightweight while collecting enough context for that feedback to be meaningful.",
+              "Writing a review has to take almost no effort, while still capturing enough detail to be useful.",
               "Once reviews sat beside the score, they added credibility and helped shoppers decide what to buy.",
             ]}
           />

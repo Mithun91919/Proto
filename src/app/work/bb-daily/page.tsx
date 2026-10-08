@@ -95,7 +95,7 @@ export default function BbDailyPage() {
   return (
     <CaseStudyShell
       slug="bb-daily"
-      evidenceCaveat="Scale from the documented product period — not outcomes caused by the design work."
+      evidenceCaveat="These figures describe the product when I worked on it, not results caused by the design."
       evidenceMetricsLabel="The impact"
       evidence={[
         {
@@ -163,7 +163,7 @@ export default function BbDailyPage() {
         <CaseStudySection id="product-model">
           <CaseStudyChapter
             eyebrow="The product model"
-            heading="Recurring grocery shopping is not a checkout problem"
+            heading="A standing schedule, not a one-off basket"
             body={[
               "Most grocery experiences are designed around a single order. bb daily needed to support a relationship that continued across days and weeks.",
               "bigbasket and bb daily were not the same product for the same person. One is a grocery run. The other is a standing arrangement for a household that has already decided what it needs each week. We looked at three placements: a separate app, an integrated experience, or a subscription feature inside bigbasket.",
@@ -332,8 +332,7 @@ export default function BbDailyPage() {
             <div className="grid grid-cols-1 gap-8 md:grid-cols-2 md:gap-16">
               <p className="body-text">
                 Behind every recurring order, six operational roles coordinated goods arriving from vendors,
-                inventory being sorted and packed, shipments moving to delivery locations, and executives
-                completing doorstep deliveries within a narrow morning window.
+                inventory being sorted and packed, shipments moving to delivery locations, and delivery staff completing doorstep deliveries within a narrow morning window.
               </p>
               <p className="body-text">
                 Field visits showed how much of that process depended on paperwork and manual handoffs. When
@@ -522,8 +521,8 @@ export default function BbDailyPage() {
             eyebrow="In the dark stores"
             heading="I designed the role flows after standing in them"
             body={[
-              "None of that split was obvious from a process diagram. I spent time in the dark stores and went out on deliveries with the agents before designing any of it.",
-              "A diagram gave me the order of the steps. Standing there showed me what someone was carrying while they took them, and how little attention they had to spare. Delivery executives worked a narrow morning window and moved through buildings without stopping; a route drawn on a screen accounts for neither.",
+              "None of that split was obvious from a process diagram. I spent time in the dark stores (the warehouses that fill online orders) and went out on deliveries with the agents before designing any of it.",
+              "A diagram gave me the order of the steps. Standing there showed me what someone was carrying while they took them, and how little attention they had to spare. Delivery staff worked a narrow morning window and moved through buildings without stopping; a route drawn on a screen accounts for neither.",
               "We tested by putting the prototype in the hands of the people who would use it and watching what they did with it, then building around what came back rather than around the flow we had drawn.",
             ]}
             footnote="My own photographs from the field visits. Faces are out of frame — the people in them were at work, not presenting."

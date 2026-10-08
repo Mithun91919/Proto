@@ -101,7 +101,7 @@ export default function ApiLifecyclePage() {
   return (
     <CaseStudyShell
       slug="api-lifecycle"
-      evidenceCaveat="The 60% is the reduction in time developers take on API contracting; the other two figures are scale."
+      evidenceCaveat="The 60% is the reduction in developer time spent defining API contracts; the other two figures are scale."
       evidenceMetricsLabel="The impact"
       evidence={[
         {
@@ -140,7 +140,7 @@ export default function ApiLifecyclePage() {
       chapters={CHAPTERS}
       hero={{
         standfirst:
-          "The internal platform Walmart engineers use to find a service, agree its contract, test it, and keep it governed — work that used to depend on outside tools with no governed way through them.",
+          "The internal platform Walmart engineers use to find a service, agree its contract, test it, and keep it governed — work that used to depend on outside tools with no shared rules between them.",
         headline: (
           <>
             API Lifecycle Platform: <span style={{ color: "var(--ds-mint)" }}>one place</span> to discover, design, test, and govern APIs.
@@ -202,8 +202,7 @@ export default function ApiLifecyclePage() {
             mark="connection"
             note="Like a waiter carrying an order to the kitchen and bringing the food back out."
           >
-            An API is how two pieces of software talk to each other. One asks for something, the
-            other answers.
+            An API is how two pieces of software talk to each other. One asks for something, the other answers. Its contract is the written description of what it accepts and returns.
           </PullStatement>
         </Reveal>
       </div>
@@ -235,8 +234,8 @@ export default function ApiLifecyclePage() {
             half, designing a contract the provider's. */}
         <CaseStudySection id="who">
           <ArchetypeSection
-            heading="One API contract. Two very different jobs."
-            intro="Engineers decide whether they can trust and consume it. Architects create it, evolve it, and answer for it. Often, the same person is both."
+            heading="Engineers use the contract. Architects write it."
+            intro="Engineers decide whether they can trust and use it. Architects create it, evolve it, and answer for it. Often, the same person is both."
             archetypes={ARCHETYPES}
             stages={LIFECYCLE}
             variant="cards"
@@ -255,9 +254,9 @@ export default function ApiLifecyclePage() {
           <CaseStudyChapter
             layout="stacked"
             eyebrow="A decision"
-            heading="The spec asked for three products. Teams needed one."
+            heading="The brief asked for three products. Teams needed one."
             body={[
-              "The spec was a marketplace, a Studio and testing, as separate products, in the order people needed them: find a service, then build one, then test it. With the engineering capacity available, version one was built that way.",
+              "The brief was a marketplace, a Studio and testing, as separate products, in the order people needed them: find a service, then build one, then test it. With the engineering capacity available, version one was built that way.",
               "Teams were on Swagger, Postman and Confluence, each with its own budget. To leave them, it had to be a whole package: an import that brought existing specifications across, with testing, mocking, versioning and environments inside. I pushed for one experience instead and started the work to join the three.",
             ]}
           />
@@ -295,7 +294,7 @@ export default function ApiLifecyclePage() {
               heading="Three ways in, not a status board"
               body={[
                 "An engineer opening a platform is not there to read a summary of it. They have arrived to do something \u2014 and what that is varies: find a service, start a task, or reach one specific function.",
-                "So the home screen carries all three ways in rather than picking one. Search across every service, the eight tasks people most often start, and direct routes to functions like proxy and linting.",
+                "So the home screen carries all three ways in rather than picking one. Search across every service, the eight tasks people most often start, and direct routes to functions like proxy and linting (an automatic check for errors).",
               ]}
             />
             {/* A full-page capture, held to a fixed height and scrolled in
@@ -348,7 +347,7 @@ export default function ApiLifecyclePage() {
               layout="split"
               imageSide="left"
               eyebrow="Finding a service"
-              title="A service had to be understandable before anyone consumed it"
+              title="A service had to be understandable before anyone used it"
               description={[
                 "Discovery needed to answer more than “does this API exist?” There was no single repository to search, and the documentation for the services that did exist lived in Confluence, current for some teams and stale for others.",
                 "Engineers needed to understand what a service did, whether it was appropriate for their use case, how to subscribe, and where to find the technical information required to begin using it. Search leads rather than a category tree: with this many services, browsing to a specific one took too many steps to be worth keeping.",
@@ -456,7 +455,6 @@ export default function ApiLifecyclePage() {
               eyebrow="Designing a contract"
               title="Contract design had to work for beginners and experts at the same time"
               description={[
-                "API contract design exposed one of the platform’s hardest interaction problems.",
                 "Not every team had an expert who could write a specification by hand, and at this scale a specification gets long. Some providers were comfortable working directly in YAML or JSON. Others needed to add a constant or change one small thing without breaking the structure around it.",
                 "Instead of forcing one mode on everyone, I designed two connected editors: Basic for guided, structured contract creation, and Advanced for engineers who preferred direct specification editing.",
                 "Switching between them required careful handling of validation, unsupported changes, and the risk of losing work. Around that core interaction, the Studio added linting, duplicate detection, quality feedback, versioning, imports, collaboration, code generation, and governance guidance.",
@@ -557,10 +555,10 @@ export default function ApiLifecyclePage() {
               layout="split"
               imageSide="left"
               eyebrow="Testing"
-              title="Testing kept validation inside the same product journey"
+              title="Testing stayed inside the same product, not a separate tool"
               description={[
-                "The Testing pillar reduced another handoff by bringing common API validation tasks closer to design and discovery.",
-                "Engineers could test APIs, work with authentication, use scripting and snippets, share collections, and prepare outputs for downstream security processes without treating testing as a completely separate product experience.",
+                "Testing removed another hand-off by putting common checks next to design and discovery.",
+                "Engineers could test an API, handle authentication, script checks, share collections and prepare results for security review, all without leaving for another tool.",
               ]}
               scrollable
               maxHeight="44rem"
@@ -620,7 +618,7 @@ export default function ApiLifecyclePage() {
             heading="It shipped, and for three months almost nobody came"
             body={[
               "The platform came out in batches: the marketplace first, then the Studio, then testing. Teams waited until all of it was there before moving. When it was, the assumption that it was unfinished stayed, and for the first three months adoption was low.",
-              "I interviewed teams to find out why, and took what I learned into brown-bag sessions: show the product to one team, watch where they got stuck, answer the workflow questions an announcement cannot. Whatever was stopping a team from migrating was raised and worked through in the same session.",
+              "I interviewed teams to find out why, and took what I learned into brown-bag sessions (short, informal demos): show the product to one team, watch where they got stuck, answer the workflow questions an announcement cannot. Whatever was stopping a team from migrating was raised and worked through in the same session.",
               "I have run more than a hundred of them, averaging over sixty people a session, and the sessions became a feedback channel of their own.",
             ]}
           />
@@ -649,7 +647,7 @@ export default function ApiLifecyclePage() {
             heading="Engineers carried context between tools less often"
             body={[
               "The platform established a connected API lifecycle across discovery, contract design and testing, with governance built into the work rather than waiting at the end of it.",
-              "The strongest outcome was not feature count. It was reducing the number of times engineers had to translate context between disconnected tools while giving different levels of expertise a workable path through the same lifecycle.",
+              "The strongest outcome was not the number of features. Engineers copied context between tools less often, and people with different levels of expertise had a workable path through the same process.",
             ]}
           />
           <CaseStudyFigure>
@@ -657,7 +655,7 @@ export default function ApiLifecyclePage() {
               items={[
                 { from: "0", value: "20K+", label: "APIs onboarded", glyph: "modules" },
                 { from: "600", value: "10K+", label: "monthly users", glyph: "field" },
-                { value: "60%", label: "less time taken by developers on API contracting", glyph: "drop" },
+                { value: "60%", label: "less developer time spent defining API contracts", glyph: "drop" },
               ]}
             />
           </CaseStudyFigure>
@@ -672,7 +670,7 @@ export default function ApiLifecyclePage() {
             <NoteCard
               label="Where it went"
               heading="Ready for AI because the groundwork was already there"
-              body="There is now an MCP to discover, create and manage APIs. People can use it from any AI tool, such as Copilot, to get API information and take actions without opening the platform, so it sits inside their workflow, not beside it. That was only possible because the data and workflows were already in place. If I started today I would make it agentic first, with the screens as one way in."
+              body="There is now an MCP, a connector that lets AI tools such as Copilot discover, create and manage APIs. People can use it from any AI tool to get API information and take actions without opening the platform, so it sits inside their workflow, not beside it. That was only possible because the data and workflows were already in place. If I started today I would make it AI-first, with the screens as one way in."
               mark="AI"
               sparkle
             />

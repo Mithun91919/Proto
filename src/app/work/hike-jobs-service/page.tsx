@@ -110,10 +110,10 @@ export default function HikeJobsServicePage() {
           <CaseStudyChapter
             layout="stacked"
             eyebrow="Discovery"
-            heading="Better discovery started with understanding intent"
+            heading="Better job suggestions started with asking what the person wanted"
             body={[
               "The listings came from Indeed's API. Onboarding collected preferences so the product could move beyond a generic job feed and surface the ones that were relevant to each person.",
-              "Search, categories, keywords, and recommendations then gave people different ways into the marketplace depending on how specific their intent was.",
+              "Search, categories, keywords, and recommendations then gave people different ways into the listings depending on how specific they already were.",
             ]}
           />
           <CaseStudyFigure>
@@ -129,7 +129,7 @@ export default function HikeJobsServicePage() {
                   y: 55,
                   title: "Status before anything else",
                   detail:
-                    "Fresher or experienced changes which roles are worth surfacing at all, so it is the first thing asked.",
+                    "Fresher (just starting out) or experienced changes which roles are worth surfacing at all, so it is the first thing asked.",
                 },
                 {
                   x: 50,
@@ -193,11 +193,11 @@ export default function HikeJobsServicePage() {
 
         <CaseStudySection id="continuity">
           <CaseStudyChapter
-            eyebrow="Continuity"
+            eyebrow="Coming back"
             heading="People could leave a job search and pick it up again"
             body={[
               "Finding a job is rarely a one-session task.",
-              "A personalised area allowed users to save and track opportunities so they could return without starting their search again.",
+              "A personal area let people save and track jobs, so they could come back without starting the search again.",
             ]}
           />
         </CaseStudySection>
@@ -208,8 +208,8 @@ export default function HikeJobsServicePage() {
             eyebrow="The extension"
             heading="Discovery was not enough if someone could not apply"
             body={[
-              "The resume builder became the most important extension of the experience.",
-              "For users without a ready resume, it reduced the distance between finding a relevant role and being prepared to act on it. Resume creation became part of the application journey rather than a separate utility disconnected from job search.",
+              "The resume builder became the most important addition.",
+              "For people without a resume, it meant they could go from finding a role to applying in the same place. Making a resume became part of applying, not a separate tool.",
             ]}
           />
           <CaseStudyFigure>
@@ -259,7 +259,7 @@ export default function HikeJobsServicePage() {
           <CaseStudyChapter
             layout="flow"
             eyebrow="Reflection"
-            heading="Personalisation only helps if it leads somewhere"
+            heading="Suggestions only helped because applying was in the same place"
             body={[
               "It was released as a microservice inside Hike Messenger. I had left Hike by then, so I have no usage figures to share.",
               "Recommendations helped people find relevant opportunities, while saved jobs and resume creation helped them move closer to applying.",
