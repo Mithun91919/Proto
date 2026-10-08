@@ -1337,7 +1337,7 @@ export default function ComponentsPage() {
           <div className="grid grid-cols-1 gap-x-14 gap-y-1 sm:grid-cols-2">
             {[
               { rule: "Nothing loops forever, with no exceptions", note: "A motion plays two or three times, then rests. The home portrait included: it pours twice, then stays assembled." },
-              { rule: "Reveal is a fade, not an effect", note: "500ms and 14px. No parallax, no scroll-jacking, and no delay that makes someone wait for text." },
+              { rule: "Reveal is a fade, not an effect", note: "560ms and 18px. No parallax, no scroll-jacking, and no delay that makes someone wait for text." },
               { rule: "One thing moves at a time", note: "If two motions compete in the same view, one of them is decoration. Cut it." },
               { rule: "Video is never the only carrier", note: "Muted, paused out of view, with a poster that already says what the clip shows." },
               { rule: "Reduced motion is the safety net", note: "Reviewers do not set it, so the default has to be calm already. It is for the people who need it, not the plan for everyone else." },
@@ -1360,8 +1360,9 @@ export default function ComponentsPage() {
           <div className="grid grid-cols-1 gap-x-14 gap-y-1 sm:grid-cols-2">
             {[
               { rule: "Words are there from the first frame", note: "No fade, no rise, no stagger on text a reader needs. Motion touches only what is not needed to read." },
+              { rule: "The art and the structure do the arriving", note: "On landing, the hero art rises in, the screens fan out from behind the front one, and the three evidence beats arrive in reading order, over about a second and a half, once." },
               { rule: "Nothing waits on script", note: "A block is hidden only once the page can reveal it. With scripts blocked, as on a locked-down work laptop, everything is simply visible." },
-              { rule: "Reveal is a fade, once", note: "500ms and 14px, the first time a block is seen. A return visit in the same session shows the page as it was, with no replay." },
+              { rule: "Reveal is a fade, once", note: "560ms and 18px, the first time a block is seen. A return visit in the same session shows the page as it was, with no replay." },
               { rule: "A chapter starts with a line", note: "The dotted boundary draws once, in 600ms, as a section arrives. It marks a change of subject, and nothing else on the page draws." },
               { rule: "Waiting has a shape", note: "A screenshot still loading holds its frame as a field of dots, then is painted over. A slow navigation shows a dotted line across the top." },
               { rule: "Dots arrive, they do not decorate", note: "They can assemble a portrait, draw a boundary, hold a place, or show a load. They never float, trail the cursor across reading, or fill space." },

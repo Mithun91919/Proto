@@ -90,7 +90,7 @@ const INVENTORY: MotionSpec[] = [
   {
     name: "Reveal",
     trigger: "8% intersection",
-    timing: "500ms, 14px rise",
+    timing: "560ms, 18px rise",
     loop: "Once per load",
     means: "A band has arrived. Everything else times itself off this, so nothing can fire off-screen.",
   },
@@ -99,7 +99,7 @@ const INVENTORY: MotionSpec[] = [
     trigger: "Reveal",
     timing: "460ms, after a 520ms lead",
     loop: "Once per load",
-    means: "The mark draws itself in meaning order. The lead exists because the band is still travelling for its first 500ms.",
+    means: "The mark draws itself in meaning order. The lead exists because the band is still travelling for its first 560ms.",
   },
   {
     name: "Mark loop",
@@ -135,6 +135,27 @@ const INVENTORY: MotionSpec[] = [
     timing: "2.6s period",
     loop: "Three times, then rest",
     means: "An annotation marks a point on a screenshot that would otherwise be missed.",
+  },
+  {
+    name: "Hero art",
+    trigger: "Page load",
+    timing: "800ms rise and fade, 1.4s settle for a backdrop",
+    loop: "Once per page",
+    means: "The one thing on a case study's first screen that is not needed to read. The words are already there.",
+  },
+  {
+    name: "Screen fan",
+    trigger: "Page load",
+    timing: "900ms each, 120ms apart",
+    loop: "Once per page",
+    means: "Several screens are one product: they slide out from behind the front one, so the count is seen before it is read.",
+  },
+  {
+    name: "Evidence beats",
+    trigger: "Reveal",
+    timing: "600ms each, 130ms apart",
+    loop: "Once per page",
+    means: "Problem, solution and what I did arrive in the order they are read.",
   },
   {
     name: "Portrait pour",

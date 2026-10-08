@@ -73,7 +73,7 @@ export function CaseStudyEvidence({ beats, metrics, metricsLabel, caveat }: Case
         {hasBeats ? (
           <div className="grid grid-cols-1 gap-10 p-8 md:grid-cols-3 md:gap-10 md:p-12">
             {beats!.map((b, i) => (
-              <div key={b.label}>
+              <div key={b.label} className="ds-evidence-beat" style={{ "--i": i } as React.CSSProperties}>
                 <span aria-hidden className="block">
                   <DotGrid cols={5} dots={MARKS[i] ?? MARKS[2]} size={5} gap={4} />
                 </span>

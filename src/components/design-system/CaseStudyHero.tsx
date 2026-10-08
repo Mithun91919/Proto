@@ -155,7 +155,7 @@ export function CaseStudyHero({
     return (
       <div className="ds-pull ds-cs-hero ds-cs-hero-backdrop">
         <Image
-          className="ds-cs-hero-art ds-cs-hero-art-in"
+          className="ds-cs-hero-art ds-cs-hero-backdrop-in"
           src={src as string}
           alt={alt}
           fill
@@ -187,7 +187,7 @@ export function CaseStudyHero({
                 card overlaps it. */}
             <div className="flex items-start">{copy}</div>
             <div
-              className={`ds-cs-hero-art-in relative flex justify-center ${wideArt ? "items-center" : "items-end"}`}
+              className={`${hasStack ? "" : "ds-cs-hero-art-in "}relative flex justify-center ${wideArt ? "items-center" : "items-end"}`}
               // The negative margin exists so floor-standing art can reach
               // past the band's padding. Centred art has no floor to reach,
               // and the pull would drag it below the optical middle.

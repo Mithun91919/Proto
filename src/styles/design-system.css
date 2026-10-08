@@ -4426,21 +4426,64 @@ a:hover .ds-compact-mark .ds-dot {
   }
 }
 
-/* The art arrives with a short fade, opacity only: it is the one thing on a
-   case study's first screen that is not needed to read, so it is the one thing
-   allowed to arrive. The words are already there. */
+/* Landing. The words are there from the first frame; what arrives is the art
+   and the structure around it, over about a second and a half, once. Each
+   uses the individual `translate` and `scale` properties, so none of them
+   fights a transform the element already carries. */
 @keyframes ds-hero-art-in {
   from {
     opacity: 0;
+    translate: 0 28px;
+    scale: 0.985;
+  }
+}
+
+@keyframes ds-hero-backdrop-in {
+  from {
+    opacity: 0;
+    scale: 1.06;
+  }
+}
+
+@keyframes ds-stack-fan {
+  from {
+    opacity: 0;
+    translate: calc(var(--pos, 0) * 1.7rem) calc(var(--pos, 0) * -0.7rem);
+  }
+}
+
+@keyframes ds-beat-in {
+  from {
+    opacity: 0;
+    translate: 0 20px;
   }
 }
 
 .ds-cs-hero-art-in {
-  animation: ds-hero-art-in 300ms ease-out both;
+  animation: ds-hero-art-in 800ms cubic-bezier(0.2, 0.7, 0.3, 1) 80ms both;
+}
+
+.ds-cs-hero-backdrop-in {
+  animation: ds-hero-backdrop-in 1400ms cubic-bezier(0.2, 0.7, 0.3, 1) both;
+}
+
+/* The deck fans out from behind the front screen, back cards last. */
+.ds-hero-stack-card {
+  animation: ds-stack-fan 900ms cubic-bezier(0.2, 0.7, 0.3, 1) backwards;
+  animation-delay: calc(120ms + var(--pos, 0) * 120ms);
+}
+
+/* The three beats arrive in the order they are read. */
+.reveal.is-visible .ds-evidence-beat {
+  animation: ds-beat-in 600ms cubic-bezier(0.2, 0.7, 0.3, 1) backwards;
+  animation-delay: calc(140ms + var(--i, 0) * 130ms);
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .ds-cs-hero-art-in {
+  .ds-cs-hero-art-in,
+  .ds-cs-hero-backdrop-in,
+  .ds-hero-stack-card,
+  .reveal.is-visible .ds-evidence-beat {
     animation: none;
   }
 }
