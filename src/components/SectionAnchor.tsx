@@ -41,7 +41,7 @@ export function SectionAnchor({
   measure = "",
   className = "",
   dark = false,
-  sticky = true,
+  sticky = false,
 }: SectionAnchorProps) {
   return (
     <div

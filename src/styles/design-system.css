@@ -233,7 +233,7 @@
   position: absolute;
   left: 0;
   top: -2px;
-  width: 42px;
+  width: 45px;
   height: 5px;
   background-image: radial-gradient(circle, var(--ds-accent) 1.55px, transparent 1.7px);
   background-size: 9px 5px;
@@ -247,8 +247,10 @@
   transform-origin: left center;
 }
 
+/* Five dots, one per step, so the cluster lights in order. The width is five
+   pitches wide, so each step of the clip reveals exactly one dot. */
 .ds-section-boundary.is-armed::after {
-  opacity: 0;
+  clip-path: inset(0 100% 0 0);
 }
 
 .ds-section-boundary.is-armed.is-drawn::before {
@@ -257,8 +259,8 @@
 }
 
 .ds-section-boundary.is-armed.is-drawn::after {
-  opacity: 1;
-  transition: opacity 300ms ease-out;
+  clip-path: inset(0 0 0 0);
+  transition: clip-path 400ms steps(5, end) 250ms;
 }
 
 .ds-section-boundary-minor::before {

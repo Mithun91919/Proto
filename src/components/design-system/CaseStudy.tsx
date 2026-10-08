@@ -139,7 +139,10 @@ export function CaseStudyColumn({ children }: { children: ReactNode }) {
  * don't stack into one repeated silhouette down the page — the same reason
  * B4 varies divider weight rather than repeating one rule.
  *
- * - `split`   — S4 two-column, title sticky in the left column. The default,
+ * - `split`   — S4 two-column, title in the left column. The default, and it
+ *                does not stick: with two or three paragraphs beside it there
+ *                is too little travel for sticking to read as anything but a
+ *                glitch. Nothing on a case study sticks except the site header.
  *                and the right choice when media follows the prose.
  * - `stacked` — heading runs the full width, body flows beneath in two text
  *                columns. For a text-only chapter that would otherwise leave
@@ -236,7 +239,7 @@ export function CaseStudyChapter({
   return (
     <Reveal>
       <div className="grid grid-cols-1 items-start gap-8 md:grid-cols-[0.85fr_1.15fr] md:gap-16">
-        <div className="md:sticky md:top-28 [&>h2]:max-w-[20ch]">{head}</div>
+        <div className="[&>h2]:max-w-[20ch]">{head}</div>
         <div className="space-y-5">
           {body.map((paragraph) => (
             <p key={paragraph} className="body-text">
@@ -350,7 +353,7 @@ export function CaseStudyOverview({
   return (
     <Reveal>
       <div className="grid grid-cols-1 items-start gap-8 md:grid-cols-[0.85fr_1.15fr] md:gap-16">
-        <div className="md:sticky md:top-28">
+        <div>
           <p className="eyebrow">Overview</p>
           <p
             className="display-title mt-4 max-w-[16ch] text-[var(--ink)]"

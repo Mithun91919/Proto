@@ -1363,7 +1363,8 @@ export default function ComponentsPage() {
               { rule: "The art and the structure do the arriving", note: "On landing, the hero art rises in, the screens fan out from behind the front one, and then, once the art has landed, the evidence card rises from the bottom as one piece. The whole sequence is about 1.7 seconds, once." },
               { rule: "Nothing waits on script", note: "A block is hidden only once the page can reveal it. With scripts blocked, as on a locked-down work laptop, everything is simply visible." },
               { rule: "Reveal is a fade, once", note: "560ms and 18px, the first time a block is seen. A return visit in the same session shows the page as it was, with no replay." },
-              { rule: "A chapter starts with a line", note: "The dotted boundary draws once, in 600ms, as a section arrives. It marks a change of subject, and nothing else on the page draws." },
+              { rule: "A chapter starts with a line and five dots", note: "The dotted boundary draws once, in 600ms, as a section arrives, and its five dots light in order. It marks a change of subject, and nothing else on the page draws." },
+              { rule: "Headings do not stick", note: "A heading beside two or three paragraphs has no room to travel, and sticking for a hundred pixels reads as a glitch. Chapters scroll normally; the rail and the section line carry the orientation." },
               { rule: "Waiting has a shape", note: "A screenshot still loading holds its frame as a field of dots, then is painted over. A slow navigation shows a dotted line across the top." },
               { rule: "Dots arrive, they do not decorate", note: "They can assemble a portrait, draw a boundary, hold a place, or show a load. They never float, trail the cursor across reading, or fill space." },
             ].map((r) => (

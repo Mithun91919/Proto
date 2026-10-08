@@ -167,9 +167,9 @@ const INVENTORY: MotionSpec[] = [
   {
     name: "Section line",
     trigger: "Section first seen",
-    timing: "600ms",
+    timing: "600ms line, then five dots in order over 400ms",
     loop: "Once per page",
-    means: "A new chapter has started. Armed only for a section below the fold, so nothing is hidden without script.",
+    means: "A new chapter has started. The line draws and the five dots light one by one. Armed only for a section below the fold, so nothing is hidden without script.",
   },
   {
     name: "Dot skeleton",
