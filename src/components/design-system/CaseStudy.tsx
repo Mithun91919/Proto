@@ -231,7 +231,10 @@ export function CaseStudyChapter({
       <Reveal>
         <div
           className={
-            figure ? "grid items-end gap-8 md:grid-cols-[1fr_auto] md:gap-14" : undefined
+            // Two equal columns and the same gap as the text beneath
+            // (`md:columns-2 md:gap-16`), so the figure starts exactly where
+            // the right-hand column of the body starts.
+            figure ? "grid items-end gap-8 md:grid-cols-2 md:gap-16" : undefined
           }
         >
           <div className="[&>h2]:max-w-[26ch]">{head}</div>
