@@ -259,7 +259,7 @@ export default function HikeJobsServicePage() {
           <CaseStudyChapter
             layout="flow"
             eyebrow="Reflection"
-            heading="What stayed with me"
+            heading="Personalisation only helps if it leads somewhere"
             body={[
               "Personalisation is most useful when it leads somewhere. Recommendations helped people find relevant opportunities, while saved jobs and resume creation helped them move closer to applying.",
             ]}

@@ -183,7 +183,7 @@ export default function MovieTicketsPage() {
             eyebrow="Payment"
             heading="Wallet payment stayed inside the journey"
             body={[
-              "Hike Wallet allowed payment to continue within the broader Hike ecosystem rather than feeling like a hand-off to a separate utility.",
+              "Hike Wallet allowed payment to continue within the rest of Hike rather than feeling like a hand-off to a separate utility.",
               "The booking flow was then prototyped and evaluated with users to identify friction. Findings were grouped into recurring patterns and used to refine the experience before the final design.",
             ]}
           />
@@ -193,7 +193,7 @@ export default function MovieTicketsPage() {
           <CaseStudyChapter
             layout="flow"
             eyebrow="Reflection"
-            heading="What stayed with me"
+            heading="Four systems had to feel like one task"
             body={[
               "When discovery, external integrations, seat selection, and payment belong to one task, the product has to make the underlying systems feel like one continuous experience.",
             ]}

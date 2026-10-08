@@ -124,7 +124,7 @@ export default function TotalOsLocalizationPage() {
           <CaseStudyChapter
             layout="stacked"
             eyebrow="How we worked"
-            heading="We created a repeatable path from copy to product"
+            heading="I created a repeatable path from copy to product"
             body={[
               "I worked across the localisation process with a language service provider and internal language experts, helping establish a framework for translation, proofreading, implementation, and validation across eight languages and four projects.",
             ]}
@@ -168,7 +168,7 @@ export default function TotalOsLocalizationPage() {
           <CaseStudyChapter
             layout="flow"
             eyebrow="Reflection"
-            heading="What stayed with me"
+            heading="Localisation changes the product, not just the copy"
             body={[
               "Localisation changes more than copy. It affects layout, terminology, validation, implementation, and the way teams collaborate to ship a product consistently across languages.",
               "I wrote the method up at the time, as a short guide for teams building for more than one language.",

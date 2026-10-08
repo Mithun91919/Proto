@@ -73,7 +73,7 @@ export default function RatingsReviewsPage() {
             </>
           ),
           detail:
-            "We defined reusable patterns for collecting a rating, writing a review and presenting what others had written, rather than designing each platform on its own.",
+            "I defined reusable patterns for collecting a rating, writing a review and presenting what others had written, rather than designing each platform on its own.",
         },
       ]}
       chapters={CHAPTERS}
@@ -115,7 +115,7 @@ export default function RatingsReviewsPage() {
             heading="One feedback model had to work everywhere"
             body={[
               "The experience needed to feel consistent whether a customer was rating a product on mobile or reading reviews on the web.",
-              "We defined reusable patterns for collecting ratings, writing reviews, and presenting review information rather than designing each platform independently.",
+              "I defined reusable patterns for collecting ratings, writing reviews, and presenting review information rather than designing each platform independently.",
             ]}
           />
         </CaseStudySection>
@@ -214,7 +214,7 @@ export default function RatingsReviewsPage() {
           <CaseStudyChapter
             layout="flow"
             eyebrow="Reflection"
-            heading="What stayed with me"
+            heading="Feedback has to cost the contributor almost nothing"
             body={[
               "The design has to make contributing feedback lightweight while collecting enough context for that feedback to be meaningful.",
               "Once reviews sat beside the score, they added credibility and helped shoppers decide what to buy.",

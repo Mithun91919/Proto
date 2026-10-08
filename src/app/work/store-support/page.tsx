@@ -345,7 +345,7 @@ export default function StoreSupportPage() {
             heading="Doing the migration inside the redesign, rather than owing it afterwards"
             body={[
               "The product ran on a third-party UI library while the organisation was introducing its own enterprise design system.",
-              "Rather than treat the redesign and the migration as two projects, I rebuilt the areas I touched on Living Design — so the product belonged to the ecosystem associates already used, on a more accessible component foundation, instead of paying down more design debt later.",
+              "Rather than treat the redesign and the migration as two projects, I rebuilt the areas I touched on Living Design — so the product belonged to the family of apps associates already used, on a more accessible component foundation, instead of paying down more design debt later.",
             ]}
           />
           <CaseStudyFigure>

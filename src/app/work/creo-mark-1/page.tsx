@@ -106,7 +106,7 @@ export default function CreoMark1Page() {
             eyebrow="The language"
             heading="The product stayed at the centre"
             body={[
-              "The visual language used large product imagery, high-contrast typography, and a consistent set of supporting brand elements so the phone and its evolving software features remained the dominant visual element across touchpoints.",
+              "The visual language used large product imagery, high-contrast typography, and a consistent set of supporting brand elements so the phone and its evolving software features remained the dominant visual element on every surface.",
             ]}
           />
           <CaseStudyFigure>
@@ -196,7 +196,7 @@ export default function CreoMark1Page() {
             eyebrow="Reach"
             heading="One language, different surfaces"
             body={[
-              "The same visual system extended into social campaigns, email, animated GIFs, and other customer touchpoints.",
+              "The same visual system extended into social campaigns, email, animated GIFs, and other places customers met the brand.",
               "The value was not making every asset look identical. It was creating enough consistency that each new message still felt like part of the same brand.",
             ]}
           />
@@ -218,7 +218,7 @@ export default function CreoMark1Page() {
           <CaseStudyChapter
             layout="flow"
             eyebrow="Reflection"
-            heading="What stayed with me"
+            heading="Consistency is not repetition"
             body={[
               "Consistency is not repetition. A useful visual system gives different surfaces enough freedom to communicate while still feeling unmistakably related.",
             ]}

@@ -207,7 +207,7 @@ export default function PortfolioManagementPage() {
               "I ran the sessions that plotted the stages of a portfolio's work as it happens today: who does what at each, where it hurts, and what to solve first.",
               "A portfolio's work is one lifecycle: people become aware of a need, brainstorm, plan, execute, assess, close out and troubleshoot. The map showed every stage living somewhere different. Who works on what was in one place, products and projects in another, initiatives and their budgets in a third, goals in a fourth, and the work in Jira.",
               "Each place kept its own copy under its own names: the same product could be a product in one tool and a project in Jira, titled differently in each. Nothing joined them, so people did, by hand.",
-              "No stage won. Each was someone's problem, so the sessions did not pick one to fix first. They pointed to a system that stitches the stages together, not one that fixes each on its own.",
+              "No stage won. Each was someone's problem, so the sessions did not pick one to fix first. They pointed to a system that joins the stages up, not one that fixes each on its own.",
             ]}
           />
           <CaseStudyFigure>
@@ -239,7 +239,7 @@ export default function PortfolioManagementPage() {
             heading="I designed the line from a goal to the work"
             body={[
               "The aim was never to rebuild each tool one for one. It was to join what is assigned to what is done. A goal ties to an initiative, which ties to a product, which ties to a person, and each product and initiative ties to a Jira epic that the work is tagged to.",
-              "That makes the platform the source of truth: one record and one name for each thing, so every title and statement means the same across teams. The old tools went by names like team rosters, roadmaps and numbered programme codes. I kept the names to common words: People, Product, Initiative, Portfolio and Manager. A name a person can say to a colleague is also a data decision, because one name for a thing is what lets two records be one.",
+              "That gives each thing one record and one name, so every title and statement means the same across teams. The old tools went by names like team rosters, roadmaps and numbered programme codes. I kept the names to common words: People, Product, Initiative, Portfolio and Manager. A name a person can say to a colleague is also a data decision, because one name for a thing is what lets two records be one.",
             ]}
           />
           <CaseStudyFigure>
@@ -659,7 +659,7 @@ export default function PortfolioManagementPage() {
             eyebrow="What changed"
             heading="A clearer model, not simply fewer tools"
             body={[
-              "The platform reached more than 6K monthly users and put six areas on one shared set of data, where each touch point had kept its own copy.",
+              "The platform reached more than 6K monthly users and put six areas on one shared set of data, where each tool had kept its own copy.",
               "The product managers reported ~800 hours of manual reconciliation reclaimed each week as more portfolio work moved into connected workflows, and support tickets fell by a sustained 50% once changes no longer needed one.",
               "If I did it again I would go further on personalisation. It is one platform for everyone today: it knows who someone is from their sign-in and shows what is relevant to them, and it could be customised much more.",
             ]}

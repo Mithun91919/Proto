@@ -295,7 +295,7 @@ export default function SupplyChainOperationsPage() {
         <CaseStudySection id="front-door">
           <CaseStudyChapter
             eyebrow="Personalisation"
-            heading="The problem was not making everything visible, it was making the right things easy to return to"
+            heading="The right things had to be easy to return to"
             body={[
               "The platform contained 139 modules, but most people relied on only a small working set. Treating all 139 as equally likely was the thing making the front door slow.",
               "The redesigned experience introduced three faster paths: pins for frequently used modules, recent modules for returning to ongoing work without setup, and search for users who already knew what they needed.",

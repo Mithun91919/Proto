@@ -455,7 +455,7 @@ export default function DependencyHealthPage() {
           <CaseStudyChapter
             layout="stacked"
             eyebrow="Current evidence"
-            heading="What changed once teams moved across"
+            heading="More than 5K repositories have moved onto the Unified BOM"
             body={[
               "The platform has shipped. More than 5K repositories have migrated, and the platform gives dependency-health visibility from individual repositories through pillar and organisation views, alongside self-service onboarding and remediation.",
               "Product health is a score based on how many of a product\u2019s repositories are up to date. Fewer library issues arriving at release is what shifting left was for.",

@@ -272,7 +272,7 @@ export default function ApiLifecyclePage() {
                 glyph: "modules",
                 figure: { value: "1", label: "platform, with the areas using each other" },
                 heading: "One experience",
-                body: "The touchpoints overlap, so work does not have to be carried between them.",
+                body: "The three overlap, so work does not have to be carried between them.",
               }}
             />
           </CaseStudyFigure>
