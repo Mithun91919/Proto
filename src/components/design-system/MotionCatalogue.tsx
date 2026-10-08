@@ -90,7 +90,7 @@ const INVENTORY: MotionSpec[] = [
   {
     name: "Reveal",
     trigger: "8% intersection",
-    timing: "800ms",
+    timing: "500ms, 14px rise",
     loop: "Once per load",
     means: "A band has arrived. Everything else times itself off this, so nothing can fire off-screen.",
   },
@@ -99,7 +99,7 @@ const INVENTORY: MotionSpec[] = [
     trigger: "Reveal",
     timing: "460ms, after a 520ms lead",
     loop: "Once per load",
-    means: "The mark draws itself in meaning order. The lead exists because the band is still travelling for its first 800ms.",
+    means: "The mark draws itself in meaning order. The lead exists because the band is still travelling for its first 500ms.",
   },
   {
     name: "Mark loop",

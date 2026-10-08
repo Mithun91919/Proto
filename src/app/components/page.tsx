@@ -221,6 +221,13 @@ const MECHANICS = [
   { label: "Headings", rule: "Make an argument. Never The Problem, The Process, The Solution — as a heading. As a small label above a sentence that makes the argument, they are fine; the ban is on a heading that names a section instead of claiming something." },
   { label: "Directness", rule: "Say who did what. A hidden subject or a softened claim is evasion, not modesty." },
   { label: "Plain statement", rule: "One sentence, ordinary words. Name the behaviour, not the condition: what people did, with the real objects they did it to. No adjective that is praise." },
+  { label: "Hero line", rule: "Plain role and specialism, in the words a stranger would use to find you: Senior UX designer for enterprise platforms. The argument goes in the paragraph beneath, not in a tagline. Reviewers give the first pass one to four minutes, and a clever line costs them a second look." },
+  { label: "Person in a moment", rule: "Open a problem with a named role in a specific moment, the real objects they handled, and what it cost. Where several roles share it, name each. Not “workflows were fragmented”." },
+  { label: "Buzzwords", rule: "Out: leverage, seamless, holistic, robust, ecosystem, end-to-end, touch point, pain point, source of truth, stitch, unlock. If the sentence survives without the word, cut it. Buzzwords and no personal voice are what reviewers say gives AI-written copy away." },
+  { label: "Impact", rule: "Say what happened. If it has not launched, say how success will be measured. Say whose number it is and what it measures, because a figure that sounds too good to be true is read as one. For public scale, name the source and the year, and claim no impact for your own work." },
+  { label: "Length", rule: "About 1,800 words for a case study, and the evidence cards must carry the page for a reader who stops there. Cut any paragraph that repeats its card. Dense pages are closed; 42% of reviewers say so." },
+  { label: "AI use", rule: "Say where it was used, naming the tool and the task, once, in the footer. Edit everything: a paragraph that could belong to anyone is the tell. Never present AI output as your decision." },
+  { label: "Titles", rule: "One title for yourself on every page, matching LinkedIn and the résumé. Reviewers cross-check roles and dates, and an inconsistency reads as carelessness. Past roles keep the title held at the time." },
   { label: "Evidence leads", rule: "The problem / the solution / what I did, then the impact. Keep each lead near 55 characters — the slot is a third of a card, and past about 70 it wraps to three lines and stops reading as a claim." },
 ];
 
@@ -1319,6 +1326,29 @@ export default function ComponentsPage() {
             finish that sentence is decoration and should come out.
           </p>
           <MotionInventory />
+        </div>
+
+        <div className="ds-rule py-11">
+          <SubLabel code="J3e · Motion budget" />
+          <p className="mb-7 max-w-[66ch] text-[0.95rem] leading-7" style={{ color: "var(--ink-soft)" }}>
+            A reviewer reads a portfolio in one to four minutes, and 35% close one that leans on heavy
+            animation or scroll effects. Motion earns its place by explaining something, and then it stops.
+          </p>
+          <div className="grid grid-cols-1 gap-x-14 gap-y-1 sm:grid-cols-2">
+            {[
+              { rule: "Nothing loops forever", note: "A motion plays two or three times, then rests. A reader who has seen it should not still be watched by it." },
+              { rule: "Reveal is a fade, not an effect", note: "500ms and 14px. No parallax, no scroll-jacking, and no delay that makes someone wait for text." },
+              { rule: "One thing moves at a time", note: "If two motions compete in the same view, one of them is decoration. Cut it." },
+              { rule: "Video is never the only carrier", note: "Muted, paused out of view, with a poster that already says what the clip shows." },
+              { rule: "Reduced motion is the safety net", note: "Reviewers do not set it, so the default has to be calm already. It is for the people who need it, not the plan for everyone else." },
+              { rule: "The inventory is the test", note: "Every named movement is listed in J3d with the claim it makes. A motion that is not listed is not allowed." },
+            ].map((r) => (
+              <div key={r.rule} className="ds-rule py-4">
+                <p className="text-[0.92rem] leading-6" style={{ color: "var(--ink)" }}>{r.rule}</p>
+                <p className="mt-1 text-[0.85rem] leading-6" style={{ color: "var(--ink-soft)" }}>{r.note}</p>
+              </div>
+            ))}
+          </div>
         </div>
 
         <div className="py-11">
