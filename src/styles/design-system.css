@@ -4591,3 +4591,30 @@ a:hover .ds-compact-mark .ds-dot {
     animation: none;
   }
 }
+
+/* Plain blocks. A reveal whose children are bare paragraphs, headings, lists or
+   diagrams has no class to hook, so its direct children arrive in order by
+   position. Low specificity on purpose: anything with its own rule above wins,
+   and the career timeline, which already stages itself, is left out. */
+.reveal.is-visible > :where(p, h1, h2, h3, ul) {
+  animation: ds-rise-in 640ms var(--ease-out) backwards;
+  animation-delay: calc(var(--ci, 0) * 90ms);
+}
+
+.reveal.is-visible > :where(svg) {
+  animation: ds-figure-in 760ms var(--ease-out) 100ms backwards;
+}
+
+.reveal > :nth-child(2) { --ci: 1; }
+.reveal > :nth-child(3) { --ci: 2; }
+.reveal > :nth-child(n + 4) { --ci: 3; }
+
+.reveal-instant > :where(p, h1, h2, h3, ul, svg) {
+  animation: none !important;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal.is-visible > :where(p, h1, h2, h3, ul, svg) {
+    animation: none;
+  }
+}

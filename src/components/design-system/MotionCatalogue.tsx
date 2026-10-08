@@ -169,7 +169,7 @@ const INVENTORY: MotionSpec[] = [
     trigger: "Reveal",
     timing: "Label, heading, then each paragraph 90ms apart, to about 1s",
     loop: "Once per page",
-    means: "A block that fades in whole reads flat. Its parts arrive in reading order, on every page: label, heading, lede, paragraphs. On a card or a project row the picture settles first, then the company, title, summary and metrics follow. A return visit shows all of it already in place.",
+    means: "A block that fades in whole reads flat. Its parts arrive in reading order, on every page: label, heading, lede, paragraphs. On a card or a project row the picture settles first, then the company, title, summary and metrics follow. Plain pages such as About and the résumé get the same by position: the direct children of a block arrive in order, and diagrams rise and settle like figures. A return visit shows all of it already in place.",
   },
   {
     name: "Figure rise",

@@ -41,7 +41,7 @@ export default function AboutPage() {
           <h1 className="display-title display-hero mt-4 max-w-[36ch] text-[var(--ink)]">
             I design products by understanding <span className="text-[var(--accent-deep)]">the systems behind them</span>.
           </h1>
-          <div className="mt-10 max-w-[60ch]">
+          <div className="ds-stagger mt-10 max-w-[60ch]">
             <p className="text-lg leading-8 text-[var(--ink-soft)]">
               I&apos;m Mithun, a senior UX designer based in Bengaluru.
             </p>
@@ -261,7 +261,7 @@ export default function AboutPage() {
 
           {/* Principle 1 — Understand */}
           <Reveal delay={80}>
-            <div className="border-t border-[var(--line)] pt-8">
+            <div className="ds-stagger border-t border-[var(--line)] pt-8">
               {/* Magnifying glass with inner cross — "look deeper" */}
               <svg viewBox="0 0 40 40" width="36" height="36" aria-hidden="true" style={{ overflow: "visible" }}>
                 <circle cx="16" cy="16" r="11" fill="none" stroke="var(--accent-deep)" strokeWidth="1.8" />
@@ -280,7 +280,7 @@ export default function AboutPage() {
 
           {/* Principle 2 — Make tangible */}
           <Reveal delay={160}>
-            <div className="border-t border-[var(--line)] pt-8">
+            <div className="ds-stagger border-t border-[var(--line)] pt-8">
               {/* Dashed wireframe with inner layout — "prototype" */}
               <svg viewBox="0 0 40 40" width="36" height="36" aria-hidden="true" style={{ overflow: "visible" }}>
                 <rect x="3" y="4" width="34" height="32" rx="3" fill="none" stroke="var(--accent-deep)" strokeWidth="1.6" strokeDasharray="3.5 2" />
@@ -299,7 +299,7 @@ export default function AboutPage() {
 
           {/* Principle 3 — Stay close */}
           <Reveal delay={240}>
-            <div className="border-t border-[var(--line)] pt-8">
+            <div className="ds-stagger border-t border-[var(--line)] pt-8">
               {/* App screen with checkmark — "what actually ships" */}
               <svg viewBox="0 0 40 40" width="36" height="36" aria-hidden="true" style={{ overflow: "visible" }}>
                 <rect x="6" y="4" width="28" height="32" rx="2.5" fill="none" stroke="var(--accent-deep)" strokeWidth="1.7" />

@@ -21,7 +21,7 @@ export function NextProjectNav({ href, number, label, title }: NextProjectNavPro
         hoverLift
         className="grid grid-cols-1 items-center gap-7 rounded-2xl p-8 sm:grid-cols-[1fr_auto]"
       >
-        <div>
+        <div className="ds-stagger">
           <p className="ds-eyebrow" style={{ color: "var(--ds-accent)" }}>
             Next · {number} / {label}
           </p>
