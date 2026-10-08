@@ -175,7 +175,7 @@ export default function ApiLifecyclePage() {
             route: "/api-hub/testing",
           },
         ],
-        figureNote: "Confidential internal work, with the data and some product names replaced. The screens are as shipped, on Walmart’s Living Design system.",
+        figureNote: "Confidential internal work. Data and some product names have been replaced.\nScreens as shipped, built on Walmart’s Living Design system.",
         meta: [
           { label: "Role", value: "UX Designer → Senior UX Designer" },
           { label: "Client", value: "Walmart Global Tech" },

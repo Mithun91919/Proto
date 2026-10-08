@@ -90,7 +90,7 @@ export function CaseStudyHero({
         <div>{children}</div>
         {figureNote ? (
           <p
-            className="ml-auto flex max-w-[68ch] items-start gap-2 text-[0.78rem] leading-5 [text-wrap:balance]"
+            className="ml-auto flex items-start gap-2 text-[0.78rem] leading-5"
             style={{ color: "var(--ds-dark-muted)" }}
           >
             <svg
@@ -107,7 +107,13 @@ export function CaseStudyHero({
               <path d="M8 7.3v4.1" strokeLinecap="round" />
               <circle cx="8" cy="4.8" r="0.8" fill="currentColor" stroke="none" />
             </svg>
-            <span>{figureNote}</span>
+            <span>
+              {figureNote.split("\n").map((line, i) => (
+                <span key={i} className="block">
+                  {line}
+                </span>
+              ))}
+            </span>
           </p>
         ) : null}
       </div>

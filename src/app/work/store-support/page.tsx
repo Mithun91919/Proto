@@ -154,7 +154,7 @@ export default function StoreSupportPage() {
         standfirst:
           "A cooler, a forklift, a handheld, the network — reported and fixed mid-shift, on the floor. Built for the people who find the fault, for new starters still learning their way around, and for the support desks receiving what they send.",
         alt: "Three screens from the app: the home screen with refrigeration alarms, the work-order calendar and submitted issues; the submit-an-issue screen with its five categories; and the refrigeration alarms list.",
-        figureNote: "Confidential internal work, with the data and some product names replaced. The screens are as shipped, on Walmart’s Living Design system.",
+        figureNote: "Confidential internal work. Data and some product names have been replaced.\nScreens as shipped, built on Walmart’s Living Design system.",
       }}
       next={
         onward
