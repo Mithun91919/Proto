@@ -2426,7 +2426,9 @@
   }
 }
 
-.ds-hotspot-dot {
+/* Starts when the figure is seen, not when the page loads: a pulse that has
+   already finished by the time a reader scrolls down is no use to them. */
+.reveal.is-visible .ds-hotspot-dot {
   animation: ds-hotspot-pulse 2.6s ease-out 3;
   animation-delay: calc(var(--i, 0) * 320ms);
 }
