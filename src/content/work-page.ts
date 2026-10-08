@@ -17,9 +17,12 @@ export type CareerStage = {
   tags: string[];
 };
 
+/** First paid design role, August 2015. The one place the years count comes from. */
+export const CAREER_START = 2015;
+
 export const careerStages: CareerStage[] = [
   {
-    year: "2015",
+    year: "2016",
     stage: "Digital & web",
     org: "CREO",
     logo: "/orgs/creo.png",

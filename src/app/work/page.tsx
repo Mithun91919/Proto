@@ -11,6 +11,7 @@ import { hasCaseStudyPage } from "@/content/case-study-routes";
 import { getFeaturedProjects, getRangeProjects } from "@/content/projects";
 import { Chip } from "@/components/design-system/primitives/Chip";
 import {
+  CAREER_START,
   careerStages,
   currentStage,
   earlierWork,
@@ -45,9 +46,9 @@ export default function WorkPage() {
             decorative
           />
         </div>
-        <p className="eyebrow">Portfolio · 2015–present</p>
+        <p className="eyebrow">Portfolio · {CAREER_START}–present</p>
         <h1 className="display-title display-hero mt-4 max-w-[40ch] text-[var(--ink)]">
-          11 years of product design, <span className="ds-muted-text">from consumer apps</span> to{" "}
+          {new Date().getFullYear() - CAREER_START} years of product design, <span className="ds-muted-text">from consumer apps</span> to{" "}
           <span className="ds-accent-text">enterprise platforms</span>.
         </h1>
         <p className="lede mt-6" style={{ maxWidth: "84ch" }}>

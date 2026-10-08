@@ -142,7 +142,7 @@ export default function BbDailyPage() {
           </>
         ),
         meta: [
-          { label: "Role", value: "Research & UX Design" },
+          { label: "Role", value: "UX Designer" },
           { label: "Client", value: "bigbasket" },
           { label: "Year", value: "2019–2020" },
           {

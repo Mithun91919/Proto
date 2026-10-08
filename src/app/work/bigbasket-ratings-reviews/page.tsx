@@ -89,7 +89,7 @@ export default function RatingsReviewsPage() {
           </>
         ),
         meta: [
-          { label: "Role", value: "UX Design" },
+          { label: "Role", value: "UX Designer" },
           { label: "Client", value: "bigbasket" },
           { label: "Year", value: "2019" },
           { label: "Discipline", value: "Consumer commerce · UX" },

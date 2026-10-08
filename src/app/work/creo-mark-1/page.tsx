@@ -85,7 +85,7 @@ export default function CreoMark1Page() {
           </>
         ),
         meta: [
-          { label: "Role", value: "Visual Design" },
+          { label: "Role", value: "UI Designer" },
           { label: "Client", value: "CREO" },
           { label: "Year", value: "2016" },
           { label: "Discipline", value: "Visual design · Brand" },

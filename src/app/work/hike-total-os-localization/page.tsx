@@ -86,7 +86,7 @@ export default function TotalOsLocalizationPage() {
           </>
         ),
         meta: [
-          { label: "Role", value: "Product Research" },
+          { label: "Role", value: "Product Designer" },
           { label: "Client", value: "Hike" },
           { label: "Year", value: "2017" },
           { label: "Discipline", value: "Product research · Localisation" },

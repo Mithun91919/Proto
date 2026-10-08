@@ -86,7 +86,7 @@ export default function HikeJobsServicePage() {
           </>
         ),
         meta: [
-          { label: "Role", value: "Product Design" },
+          { label: "Role", value: "Product Designer" },
           { label: "Client", value: "Hike" },
           { label: "Year", value: "2017" },
           { label: "Discipline", value: "Consumer product design" },
