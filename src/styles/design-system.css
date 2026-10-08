@@ -3195,6 +3195,19 @@ a:hover .ds-compact-mark .ds-dot {
   margin-top: 0.35rem;
 }
 
+/* On a case study's opener the facts sit in a table: two columns, one fact per
+   cell, so Role lines up over Year over Platform, and Client over Discipline
+   over Craft. Left to size themselves, the cells drifted row to row. */
+.ds-cs-hero .ds-scene-banner-meta {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1.35rem 2rem;
+}
+
+.ds-cs-hero .ds-scene-banner-meta dd {
+  line-height: 1.4;
+}
+
 /* Back nav over the image, aligned to the page's own reading column so it
    lines up with the content below rather than the raw viewport edge. */
 .ds-scene-banner-top {
