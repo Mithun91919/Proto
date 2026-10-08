@@ -4527,9 +4527,17 @@ a:hover .ds-compact-mark .ds-dot {
   animation: ds-rise-in 640ms var(--ease-out) 70ms backwards;
 }
 
-.reveal.is-visible .body-text {
+.reveal.is-visible .body-text,
+.reveal.is-visible .lede {
   animation: ds-rise-in 640ms var(--ease-out) backwards;
   animation-delay: calc(160ms + var(--si, 0) * 90ms);
+}
+
+/* The picture on a card or a project row comes first and settles; the text
+   beside or beneath it follows in order. */
+.reveal.is-visible .ds-card-media,
+.reveal.is-visible .ds-note-card-mark {
+  animation: ds-figure-in 760ms var(--ease-out) 80ms backwards;
 }
 
 .body-text:nth-child(2) { --si: 1; }
@@ -4561,6 +4569,9 @@ a:hover .ds-compact-mark .ds-dot {
 .reveal-instant .eyebrow,
 .reveal-instant .display-section,
 .reveal-instant .body-text,
+.reveal-instant .lede,
+.reveal-instant .ds-card-media,
+.reveal-instant .ds-note-card-mark,
 .reveal-instant .ds-cs-figure > *,
 .reveal-instant .ds-stagger > *,
 .reveal-instant .ds-arch-cards > * {
@@ -4571,6 +4582,9 @@ a:hover .ds-compact-mark .ds-dot {
   .reveal.is-visible .eyebrow,
   .reveal.is-visible .display-section,
   .reveal.is-visible .body-text,
+  .reveal.is-visible .lede,
+  .reveal.is-visible .ds-card-media,
+  .reveal.is-visible .ds-note-card-mark,
   .reveal.is-visible .ds-cs-figure > *,
   .reveal.is-visible .ds-stagger > *,
   .reveal.is-visible .ds-arch-cards > * {

@@ -103,7 +103,7 @@ export default function HomePage() {
         <div className="ds-scope mt-10 grid gap-6 sm:grid-cols-2">
           <Reveal delay={60} className="h-full">
             <Link href="/work" className="group block h-full no-underline">
-              <GlassPanel variant="lift" hoverLift className="flex h-full flex-col rounded-2xl p-8">
+              <GlassPanel variant="lift" hoverLift className="ds-stagger flex h-full flex-col rounded-2xl p-8">
                 {/* `modules` — discrete parts: every project, side by side. */}
                 <div className="mb-5">
                   <MetricGlyph name="modules" size={5} gap={3} />
@@ -131,7 +131,7 @@ export default function HomePage() {
 
           <Reveal delay={100} className="h-full">
             <Link href="/about" className="group block h-full no-underline">
-              <GlassPanel variant="lift" hoverLift className="flex h-full flex-col rounded-2xl p-8">
+              <GlassPanel variant="lift" hoverLift className="ds-stagger flex h-full flex-col rounded-2xl p-8">
                 {/* `ramp` — a rising stair: a path built up over time. */}
                 <div className="mb-5">
                   <MetricGlyph name="ramp" size={5} gap={3} />

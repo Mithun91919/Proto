@@ -71,7 +71,7 @@ export function WorkEntry({ project, reverse = false, emphasis = "full" }: WorkE
             : "md:grid-cols-[1fr_1.2fr]"
         }`}
       >
-        <div>
+        <div className="ds-stagger">
           {/* The org lockup, alone at the head of the row. A CompactNumeral
               used to sit beside it: a 3x5 dot font, correct by C9 and
               unreadable by design at that size, which was fine while it was
@@ -111,7 +111,7 @@ export function WorkEntry({ project, reverse = false, emphasis = "full" }: WorkE
             placeholders, fixed at 16/10, matched none of them. The featured
             cards already force this same ratio on the same assets, so
             nothing is cropped here that is not cropped there. */}
-        <div className="relative">
+        <div className="ds-card-media relative">
           <ProjectMedia project={project} aspect={16 / 10} hoverScope=".work-entry" />
           {contextFacets.length > 0 ? (
             <ul className="absolute bottom-4 left-4 flex flex-wrap items-center gap-2">

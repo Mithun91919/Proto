@@ -28,7 +28,7 @@ type NoteCardProps = {
 export function NoteCard({ label, heading, body, mark, sparkle = false }: NoteCardProps) {
   return (
     <div className="ds-note-card">
-      <div className="ds-note-card-copy">
+      <div className="ds-note-card-copy ds-stagger">
         <h3 className="ds-note-card-title display-title">
           <span>{label}</span>
           <span aria-hidden>—</span>

@@ -63,7 +63,7 @@ export function FeaturedWorkCard({ project }: { project: Project }) {
       }
     >
       <GlassPanel variant="lift" hoverLift className="flex h-full flex-col overflow-hidden rounded-2xl">
-        <div className="relative">
+        <div className="ds-card-media relative">
           <ProjectMedia project={project} aspect={16 / 10} flush hoverScope=".featured-card" />
           <Chip size="lead" className="absolute left-4 top-4">
             {project.number} · {project.label}
@@ -81,7 +81,7 @@ export function FeaturedWorkCard({ project }: { project: Project }) {
             <Chip>{project.timeframe}</Chip>
           </div>
         </div>
-        <div className="flex flex-1 flex-col p-7">
+        <div className="ds-stagger flex flex-1 flex-col p-7">
           {/* Provenance above the title, where it gets read first — who the
               work was for is the credibility signal a scanner needs before
               the headline. Same wordmark the career timeline uses. */}

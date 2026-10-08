@@ -48,7 +48,7 @@ export function WorkCardGrid({ items }: { items: WorkCard[] }) {
                  not evidence anyone reads. Every source is landscape, so a
                  16/10 slot — the same ratio FeaturedWorkCard uses — trims
                  almost nothing. */
-              <div className="relative aspect-[16/10] w-full overflow-hidden">
+              <div className="ds-card-media relative aspect-[16/10] w-full overflow-hidden">
                 <Image
                   src={item.image}
                   alt=""
@@ -62,7 +62,7 @@ export function WorkCardGrid({ items }: { items: WorkCard[] }) {
               </div>
             ) : null}
 
-            <div className="flex flex-1 flex-col p-7">
+            <div className="ds-stagger flex flex-1 flex-col p-7">
               {!item.image ? (
                 <p
                   className="font-mono text-[0.7rem] uppercase tracking-[0.14em]"
