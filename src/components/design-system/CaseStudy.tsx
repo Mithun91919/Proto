@@ -102,7 +102,7 @@ export function CaseStudyShell({
       <CaseStudyHero {...heroWithAxes}>
         <Link
           href="/work"
-          className="ds-scene-banner-back inline-flex text-sm font-medium transition hover:translate-x-[-2px]"
+          className="ds-scene-banner-back inline-flex items-center gap-2 text-[1.05rem] font-semibold transition hover:translate-x-[-2px]"
         >
           ← All Work
         </Link>

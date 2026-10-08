@@ -81,6 +81,38 @@ export function CaseStudyHero({
   // The artefact's own proportions decide it — they are already declared.
   const wideArt = hasStack || (width ?? 2400) / (height ?? 1380) >= 1.2;
 
+  // The note is about the screens, which sit on the right, so it sits at the top
+  // right, in the row with the back link. In the copy column under the facts it
+  // crowded them; in mono caps across the band it read as a kicker.
+  const topRow =
+    children || figureNote ? (
+      <div className="mb-5 flex flex-wrap items-start justify-between gap-x-10 gap-y-3">
+        <div>{children}</div>
+        {figureNote ? (
+          <p
+            className="ml-auto flex items-start gap-2 text-[0.78rem] leading-5 lg:whitespace-nowrap"
+            style={{ color: "var(--ds-dark-muted)" }}
+          >
+            <svg
+              className="mt-[3px] shrink-0"
+              width="12"
+              height="12"
+              viewBox="0 0 16 16"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="1.3"
+              aria-hidden
+            >
+              <circle cx="8" cy="8" r="6.6" />
+              <path d="M8 7.3v4.1" strokeLinecap="round" />
+              <circle cx="8" cy="4.8" r="0.8" fill="currentColor" stroke="none" />
+            </svg>
+            <span>{figureNote}</span>
+          </p>
+        ) : null}
+      </div>
+    ) : null;
+
   const copy = (
     <div>
       <span className="ds-pull-dots" aria-hidden />
@@ -123,31 +155,6 @@ export function CaseStudyHero({
           ))}
         </dl>
       ) : null}
-      {/* A disclosure is a footnote. Set across the top of the band in mono
-          caps it had the position of a kicker and read as a caveat on the
-          work; under the meta it reads as one more fact about it. */}
-      {figureNote ? (
-        <p
-          className="mt-7 flex max-w-[56ch] items-start gap-2.5 text-[0.8rem] leading-6"
-          style={{ color: "#6f929c" }}
-        >
-          <svg
-            className="mt-[4px] shrink-0"
-            width="13"
-            height="13"
-            viewBox="0 0 16 16"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="1.3"
-            aria-hidden
-          >
-            <circle cx="8" cy="8" r="6.6" />
-            <path d="M8 7.3v4.1" strokeLinecap="round" />
-            <circle cx="8" cy="4.8" r="0.8" fill="currentColor" stroke="none" />
-          </svg>
-          <span>{figureNote}</span>
-        </p>
-      ) : null}
     </div>
   );
 
@@ -164,7 +171,7 @@ export function CaseStudyHero({
         />
         <span className="ds-cs-hero-scrim" aria-hidden />
         <div className="ds-pull-inner relative w-full">
-          {children ? <div className="mb-5">{children}</div> : null}
+          {topRow}
           <div className="max-w-[46rem]">{copy}</div>
         </div>
       </div>
@@ -174,7 +181,7 @@ export function CaseStudyHero({
   return (
     <div className="ds-pull ds-cs-hero">
       <div className="ds-pull-inner" style={hasArt && !wideArt ? { paddingBottom: FLOOR } : undefined}>
-        {children ? <div className="mb-5">{children}</div> : null}
+        {topRow}
 
         {hasArt ? (
           <div className="grid items-stretch gap-10 lg:grid-cols-[0.82fr_1.4fr] lg:gap-12">
