@@ -14,11 +14,19 @@ export default function ResumePage() {
         Curriculum vitae
       </h1>
       <p className="mt-6 text-lg leading-8 text-[var(--ink-soft)]">
-        Ask and I will send the latest copy.
+        Ask and I will send the latest copy. My full work history is on LinkedIn.
       </p>
       <div className="mt-10 flex flex-wrap gap-3">
         <a href="mailto:mithraj14@gmail.com" className="button button-primary">
           Request by email
+        </a>
+        <a
+          href="https://www.linkedin.com/in/mithunrajuk"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="button button-secondary"
+        >
+          LinkedIn
         </a>
         <Link href="/work" className="button button-secondary">
           View work

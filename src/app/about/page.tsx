@@ -433,7 +433,7 @@ export default function AboutPage() {
                 </p>
                 <div className="mt-3 flex flex-col gap-2">
                   <a
-                    href="https://linkedin.com/in/mithunrajuk"
+                    href="https://www.linkedin.com/in/mithunrajuk"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="font-semibold transition hover:translate-x-1"

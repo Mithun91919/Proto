@@ -16,6 +16,14 @@ export function SiteFooter() {
             place on the site where the systems thinking is applied to
             something entirely Mithun's. */}
         <p className="flex flex-wrap items-center gap-x-5 gap-y-2 font-[family-name:var(--font-mono)] text-[0.72rem] uppercase tracking-[0.14em]">
+          <a
+            href="https://www.linkedin.com/in/mithunrajuk"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-block py-1 -my-1 underline underline-offset-2 transition-opacity hover:opacity-70"
+          >
+            LinkedIn
+          </a>
           <Link
             href="/components"
             className="inline-block py-1 -my-1 underline underline-offset-2 transition-opacity hover:opacity-70"

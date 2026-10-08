@@ -179,7 +179,7 @@ export default function HomePage() {
                 </a>
                 <CopyEmail address="mithraj14@gmail.com" />
                 <a
-                  href="https://linkedin.com/in/mithunrajuk"
+                  href="https://www.linkedin.com/in/mithunrajuk"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="button button-secondary"
