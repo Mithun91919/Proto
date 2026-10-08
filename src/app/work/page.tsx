@@ -71,7 +71,7 @@ export default function WorkPage() {
               rel="noopener noreferrer"
               className="button button-secondary"
             >
-              Full history on LinkedIn ↗
+              LinkedIn ↗
             </a>
           </Reveal>
         </div>
