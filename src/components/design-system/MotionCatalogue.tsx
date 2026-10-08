@@ -139,23 +139,23 @@ const INVENTORY: MotionSpec[] = [
   {
     name: "Hero art",
     trigger: "Page load",
-    timing: "800ms rise and fade, 1.4s settle for a backdrop",
+    timing: "650ms rise and fade, 1s settle for a backdrop",
     loop: "Once per page",
     means: "The one thing on a case study's first screen that is not needed to read. The words are already there.",
   },
   {
     name: "Screen fan",
     trigger: "Page load",
-    timing: "900ms each, 120ms apart",
+    timing: "700ms each, 90ms apart",
     loop: "Once per page",
     means: "Several screens are one product: they slide out from behind the front one, so the count is seen before it is read.",
   },
   {
     name: "Evidence card",
     trigger: "Page load",
-    timing: "900ms rise from the bottom, after 380ms",
+    timing: "800ms rise from the bottom, starting at 900ms",
     loop: "Once per page",
-    means: "Problem, solution and what I did arrive as one piece, rising into the overlap with the hero, after the art has started.",
+    means: "Problem, solution and what I did arrive as one piece, rising into the overlap with the hero once the art has landed.",
   },
   {
     name: "Portrait pour",

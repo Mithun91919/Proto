@@ -4460,28 +4460,29 @@ a:hover .ds-compact-mark .ds-dot {
 }
 
 .ds-cs-hero-art-in {
-  animation: ds-hero-art-in 800ms cubic-bezier(0.2, 0.7, 0.3, 1) 80ms both;
+  animation: ds-hero-art-in 650ms cubic-bezier(0.2, 0.7, 0.3, 1) 60ms both;
 }
 
 .ds-cs-hero-backdrop-in {
-  animation: ds-hero-backdrop-in 1400ms cubic-bezier(0.2, 0.7, 0.3, 1) both;
+  animation: ds-hero-backdrop-in 1000ms cubic-bezier(0.2, 0.7, 0.3, 1) both;
 }
 
 /* The deck fans out from behind the front screen, back cards last. */
 .ds-hero-stack-card {
-  animation: ds-stack-fan 900ms cubic-bezier(0.2, 0.7, 0.3, 1) backwards;
-  animation-delay: calc(120ms + var(--pos, 0) * 120ms);
+  animation: ds-stack-fan 700ms cubic-bezier(0.2, 0.7, 0.3, 1) backwards;
+  animation-delay: calc(60ms + var(--pos, 0) * 90ms);
 }
 
-/* The evidence card rises from the bottom as one piece, after the art has
-   started. It owns its own entrance, so the generic fade is switched off for
+/* The evidence card rises from the bottom as one piece, once the art has
+   landed: the hero finishes at about 900ms and the card starts then, so the
+   two never compete. It owns its own entrance, so the generic fade is switched off for
    it; the Reveal wrapper stays, because the glyphs inside ride its
    is-visible. */
 .reveal.ds-evidence-rise {
   opacity: 1;
   transform: none;
   transition: none;
-  animation: ds-card-rise 900ms cubic-bezier(0.2, 0.7, 0.3, 1) 380ms backwards;
+  animation: ds-card-rise 800ms cubic-bezier(0.2, 0.7, 0.3, 1) 900ms backwards;
 }
 
 @media (prefers-reduced-motion: reduce) {
