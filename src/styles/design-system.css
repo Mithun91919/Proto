@@ -2329,11 +2329,14 @@
    The note opens against its dot, so the screen and its explanation are in
    one glance. Placement comes from each hotspot's own coordinates, so a
    panel never needs measuring and never leaves the frame. */
-/* While a heavy screenshot is still arriving, the frame already holds its
-   place as a field of dots, so the page does not jump and the wait has a
-   shape. The image paints over it, so nothing remains once it has loaded. */
-.ds-artboard-frame,
-.ds-framebody {
+/* While a heavy screenshot is still arriving, a field of dots holds its
+   place, so the page does not jump and the wait has a shape. DotSkeleton
+   removes it the moment the image has loaded, so it never shows through a
+   transparent image. */
+.ds-skeleton {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
   background-color: color-mix(in oklab, var(--ds-accent) 4%, white);
   background-image: radial-gradient(
     circle,
@@ -2341,6 +2344,15 @@
     transparent 1.5px
   );
   background-size: 14px 14px;
+}
+
+.ds-skeleton[hidden] {
+  display: none;
+}
+
+.ds-artboard-img {
+  position: relative;
+  z-index: 1;
 }
 
 .ds-artboard-frame {
@@ -4411,5 +4423,24 @@ a:hover .ds-compact-mark .ds-dot {
   .ds-arch-ledger-head,
   .ds-arch-ledger-row {
     min-width: 58rem;
+  }
+}
+
+/* The art arrives with a short fade, opacity only: it is the one thing on a
+   case study's first screen that is not needed to read, so it is the one thing
+   allowed to arrive. The words are already there. */
+@keyframes ds-hero-art-in {
+  from {
+    opacity: 0;
+  }
+}
+
+.ds-cs-hero-art-in {
+  animation: ds-hero-art-in 300ms ease-out both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ds-cs-hero-art-in {
+    animation: none;
   }
 }

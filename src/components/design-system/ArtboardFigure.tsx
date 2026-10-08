@@ -1,6 +1,7 @@
 import type React from "react";
 import Image from "next/image";
 import { AnnotationToggle } from "./AnnotationToggle";
+import { DotSkeleton } from "./DotSkeleton";
 import { ImageHotspots, type Hotspot } from "./ImageHotspots";
 
 type ArtboardFigureProps = {
@@ -74,6 +75,7 @@ export function ArtboardFigure({
       style={portrait ? ({ "--artboard-max": portraitMax } as React.CSSProperties) : undefined}
     >
       <div className="ds-artboard-frame">
+        <DotSkeleton />
         <Image
           src={src}
           width={width}

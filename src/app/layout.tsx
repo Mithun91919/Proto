@@ -79,7 +79,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         </a>
         {/* If scripts are blocked, nothing may stay hidden waiting for them. */}
         <noscript>
-          <style>{`.reveal,.reveal-scale{opacity:1!important;transform:none!important}`}</style>
+          <style>{`.reveal,.reveal-scale{opacity:1!important;transform:none!important}.ds-skeleton{display:none}`}</style>
         </noscript>
         <RouteProgress />
         <ResetScrollOnNavigate />

@@ -1,6 +1,7 @@
 import Image from "next/image";
 import type { CSSProperties, ReactNode } from "react";
 import { AnnotationToggle } from "./AnnotationToggle";
+import { DotSkeleton } from "./DotSkeleton";
 import { ImageHotspots, type Hotspot } from "./ImageHotspots";
 import { ScrollFrame } from "./ScrollFrame";
 
@@ -124,13 +125,14 @@ export function BrowserMockup({
                 outside the scrolled content, they would not have travelled
                 with the screenshot either. */}
             <div className="relative">
+            <DotSkeleton />
             <Image
               src={src}
               width={width}
               height={height}
               alt={alt}
               sizes="(max-width: 900px) 100vw, 900px"
-              className="block h-auto w-full"
+              className="relative z-[1] block h-auto w-full"
             />
             {hotspots?.length ? <ImageHotspots hotspots={hotspots} /> : null}
             </div>
