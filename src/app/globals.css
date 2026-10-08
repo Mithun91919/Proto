@@ -521,8 +521,15 @@ a {
   object-position: left center;
 }
 
+.timeline-role {
+  margin-top: 0.2rem;
+  font-size: 0.82rem;
+  line-height: 1.35;
+  color: var(--ink-soft);
+}
+
 .timeline-word {
-  margin-top: 0.15rem;
+  margin-top: 0.35rem;
   font-family: var(--font-display), ui-sans-serif, system-ui, sans-serif;
   font-weight: 500;
   font-size: clamp(0.92rem, 1.05vw, 1.02rem);
@@ -547,11 +554,11 @@ a {
 }
 
 @media (min-width: 768px) {
-  /* Align year, rail, stage and company. Body and tags stay grouped so shorter
+  /* Align year, rail, company, title, stage and body. Body and tags stay grouped so shorter
      descriptions don't leave a large blank row before their tags. */
   .timeline {
     grid-template-columns: repeat(4, minmax(0, 1fr));
-    grid-template-rows: repeat(5, auto);
+    grid-template-rows: repeat(6, auto);
     gap: 0 var(--timeline-gap);
   }
 
@@ -562,7 +569,7 @@ a {
 
   .timeline-stage {
     display: grid;
-    grid-row: span 5;
+    grid-row: span 6;
     grid-template-rows: subgrid;
     padding-left: 0;
     animation: timeline-stage-reveal 0.6s ease-out both;

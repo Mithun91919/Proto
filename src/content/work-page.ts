@@ -8,6 +8,8 @@
 
 export type CareerStage = {
   year: string;
+  /** The title held there, as on LinkedIn. */
+  title: string;
   /** The dominant word. Read across the stages these form the progression. */
   stage: string;
   org: string;
@@ -22,7 +24,8 @@ export const CAREER_START = 2015;
 
 export const careerStages: CareerStage[] = [
   {
-    year: "2016",
+    year: "2016–2017",
+    title: "UI Designer",
     stage: "Digital & web",
     org: "CREO",
     logo: "/orgs/creo.png",
@@ -30,7 +33,8 @@ export const careerStages: CareerStage[] = [
     tags: ["Visual Design", "Web"],
   },
   {
-    year: "2017",
+    year: "2017–2018",
+    title: "Product Designer",
     stage: "Consumer mobile",
     org: "Hike",
     logo: "/orgs/hike.svg",
@@ -38,7 +42,8 @@ export const careerStages: CareerStage[] = [
     tags: ["Mobile", "Consumer"],
   },
   {
-    year: "2018",
+    year: "2018–2020",
+    title: "UX Designer",
     stage: "Commerce & delivery",
     org: "bigbasket",
     logo: "/orgs/bigbasket.svg",
@@ -47,6 +52,7 @@ export const careerStages: CareerStage[] = [
   },
   {
     year: "2020–Today",
+    title: "UX Designer → Senior UX Designer",
     stage: "Enterprise products",
     org: "Walmart Global Tech",
     logo: "/orgs/walmart.svg",

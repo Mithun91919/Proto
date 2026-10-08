@@ -73,6 +73,7 @@ export default function WorkPage() {
                   <img className="timeline-logo" src={stage.logo} alt="" />
                   <span>{stage.org}</span>
                 </p>
+                <p className="timeline-role">{stage.title}</p>
                 <p className="timeline-word">{stage.stage}</p>
                 <div className="timeline-detail">
                   <p className="timeline-body">{stage.body}</p>
@@ -87,6 +88,19 @@ export default function WorkPage() {
               </li>
             ))}
           </ol>
+          <p className="mt-10 text-[0.95rem]" style={{ color: "var(--ink-soft)" }}>
+            The full history, with dates, is on{" "}
+            <a
+              href="https://www.linkedin.com/in/mithunrajuk"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="underline underline-offset-4 transition-opacity hover:opacity-70"
+              style={{ color: "var(--ink)" }}
+            >
+              LinkedIn
+            </a>
+            .
+          </p>
         </Reveal>
 
         <Reveal delay={140}>
