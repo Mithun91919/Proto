@@ -157,6 +157,7 @@ export function CaseStudyChapter({
   body,
   footnote,
   links,
+  figure,
   layout = "split",
 }: {
   eyebrow?: string;
@@ -170,6 +171,14 @@ export function CaseStudyChapter({
    * because the claim has to land before the proof is worth offering.
    */
   links?: { href: string; label: string }[];
+  /**
+   * One true figure for the chapter, set at the right of its heading in the
+   * full-width layout, where that space is otherwise empty: the number, what
+   * it counts, and at most one line of context. Only where the chapter has a
+   * real figure of its own, and not one already on the cards at the top of the
+   * page. It gives a reader scanning the headings something to hold.
+   */
+  figure?: { value: string; label: string; note?: string };
   layout?: ChapterLayout;
 }) {
   const head = (
@@ -220,7 +229,22 @@ export function CaseStudyChapter({
   if (layout === "stacked") {
     return (
       <Reveal>
-        <div className="[&>h2]:max-w-[26ch]">{head}</div>
+        <div
+          className={
+            figure ? "grid items-end gap-8 md:grid-cols-[1fr_auto] md:gap-14" : undefined
+          }
+        >
+          <div className="[&>h2]:max-w-[26ch]">{head}</div>
+          {figure ? (
+            <div className="ds-chapter-figure">
+              <p className="ds-stat-row">
+                <span className="ds-stat-figure">{figure.value}</span>
+                <span className="ds-stat-label">{figure.label}</span>
+              </p>
+              {figure.note ? <p className="ds-arch-basis-text">{figure.note}</p> : null}
+            </div>
+          ) : null}
+        </div>
         {/* Real text columns rather than a two-cell grid, so the shape holds
             whatever number of paragraphs a chapter carries. */}
         <div className="mt-9 md:columns-2 md:gap-16">

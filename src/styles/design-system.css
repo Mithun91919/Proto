@@ -4632,3 +4632,38 @@ a:hover .ds-compact-mark .ds-dot {
   }
 }
 
+
+/* A chapter's figure: the same block as the archetype basis, set beside the
+   heading. It arrives just after the heading, in the same stagger. */
+.ds-chapter-figure {
+  max-width: 31rem;
+  padding-left: 1.1rem;
+  border-left: 2px solid color-mix(in oklab, var(--ds-accent) 45%, transparent);
+  font-size: 0.95rem;
+  line-height: 1.55;
+  color: var(--ink-soft);
+}
+
+.ds-chapter-figure .ds-stat-row {
+  margin-bottom: 0.4rem;
+}
+
+/* Smaller than the archetype basis: here the figure supports a heading, it does
+   not compete with it. */
+.ds-chapter-figure .ds-stat-figure {
+  font-size: 2.1rem;
+}
+
+.reveal.is-visible .ds-chapter-figure {
+  animation: ds-rise-in 640ms var(--ease-out) 200ms backwards;
+}
+
+.reveal-instant .ds-chapter-figure {
+  animation: none !important;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal.is-visible .ds-chapter-figure {
+    animation: none;
+  }
+}

@@ -203,6 +203,11 @@ export default function PortfolioManagementPage() {
             layout="stacked"
             eyebrow="In pieces"
             heading="Nothing connected the work assigned to the work done"
+            figure={{
+              value: "3",
+              label: "whiteboarding sessions",
+              note: "12 people each, four hours each, with key stakeholders and the larger team.",
+            }}
             body={[
               "I ran the sessions that plotted the stages of a portfolio's work as it happens today: who does what at each, where it hurts, and what to solve first.",
               "A portfolio's work is one lifecycle: people become aware of a need, brainstorm, plan, execute, assess, close out and troubleshoot. The map showed every stage living somewhere different. Who works on what was in one place, products and projects in another, initiatives and their budgets in a third, goals in a fourth, and the work in Jira.",
@@ -210,17 +215,6 @@ export default function PortfolioManagementPage() {
               "No stage won. Each was someone's problem, so the sessions did not pick one to fix first. They pointed to a system that joins the stages up, not one that fixes each on its own.",
             ]}
           />
-          <CaseStudyFigure>
-            <div className="ds-arch-basis" style={{ marginTop: 0 }}>
-              <p className="ds-stat-row">
-                <span className="ds-stat-figure">3</span>
-                <span className="ds-stat-label">whiteboarding sessions, 12 people each</span>
-              </p>
-              <p className="ds-arch-basis-text">
-                Four hours each, with key stakeholders and the larger team.
-              </p>
-            </div>
-          </CaseStudyFigure>
           <CaseStudyFigure>
             <ArtboardFigure
               src="/work/portfolio-management/journey-map.png"
@@ -237,6 +231,11 @@ export default function PortfolioManagementPage() {
             layout="stacked"
             eyebrow="A decision"
             heading="I designed the line from a goal to the work"
+            figure={{
+              value: "5",
+              label: "categories, one platform",
+              note: "People, Product, Initiative, Portfolio and Manager.",
+            }}
             body={[
               "The aim was never to rebuild each tool one for one. It was to join what is assigned to what is done. A goal ties to an initiative, which ties to a product, which ties to a person, and each product and initiative ties to a Jira epic that the work is tagged to.",
               "That gives each thing one record and one name, so every title and statement means the same across teams.",
@@ -596,6 +595,11 @@ export default function PortfolioManagementPage() {
             layout="stacked"
             eyebrow="Manager"
             heading="Changes stopped being tickets to a backend team"
+            figure={{
+              value: "50%",
+              label: "fewer support tickets",
+              note: "A sustained fall, once changes no longer needed one.",
+            }}
             body={[
               "Any change used to need a ticket raised for a backend team, which made the change. The person asking could not see where it stood, and approvals ran across email, Slack and in-person conversations.",
               "Manager is where those requests are now made and approved: product, initiative, application and pillar requests, each with its own approval status. Changes are made directly in the platform and approvals are part of it, so the decision and the action sit together. Support tickets fell by a sustained 50%.",
