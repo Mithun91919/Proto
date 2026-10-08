@@ -79,7 +79,7 @@ export default function TotalOsLocalizationPage() {
         src: "/work/total-os/cover.jpg",
         alt: "TOTAL, built by Hike, set over a photograph of a crowd of people in turbans and headscarves",
         standfirst:
-          "TOTAL OS was Hike’s Android platform, built to run without a connection, for people across India reading in their own script. Every string had to survive translation, review, build and a real handset before it counted as done.",
+          "TOTAL OS was Hike’s mobile operating system, built to run without a connection, for people across India reading in their own script. Every string had to survive translation, review, build and a real handset before it counted as done.",
         headline: (
           <>
             Multilingual Mobile Experience: one localisation system across <span style={{ color: "var(--ds-mint)" }}>8 Indian languages</span>.
@@ -189,7 +189,7 @@ export default function TotalOsLocalizationPage() {
 
       <div className="mt-16 md:mt-20">
         <PullStatement eyebrow="What it came down to" mark="connection">
-          Eight languages is a coordination problem before it&apos;s a copy problem.
+          A string was only finished once someone had read it on a real phone.
         </PullStatement>
       </div>
     </CaseStudyShell>

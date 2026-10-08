@@ -196,7 +196,7 @@ export default function MovieTicketsPage() {
             heading="Four systems had to feel like one task"
             body={[
               "Booking was released as a microservice inside Hike Messenger. I had left Hike by then, so I have no usage figures to share.",
-              "When discovery, external integrations, seat selection, and payment belong to one task, the product has to make the underlying systems feel like one continuous experience.",
+              "Showtimes, seats and payment came from separate services. I put them in one flow, so choosing a seat and paying felt like one step.",
             ]}
           />
         </CaseStudySection>
@@ -206,7 +206,7 @@ export default function MovieTicketsPage() {
       <div className="mt-16 md:mt-20">
         <Reveal>
           <PullStatement eyebrow="Where it is decided" mark="seam">
-            Transaction experiences are often won or lost between steps.
+            Each step was simple. The work was in what joined them.
           </PullStatement>
         </Reveal>
       </div>

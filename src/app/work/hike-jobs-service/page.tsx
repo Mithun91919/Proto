@@ -262,7 +262,7 @@ export default function HikeJobsServicePage() {
             heading="Suggestions only helped because applying was in the same place"
             body={[
               "It was released as a microservice inside Hike Messenger. I had left Hike by then, so I have no usage figures to share.",
-              "Recommendations helped people find relevant opportunities, while saved jobs and resume creation helped them move closer to applying.",
+              "Recommendations got people to a relevant role. Saved jobs and the resume builder got them from that role to an application.",
             ]}
           />
         </CaseStudySection>
@@ -270,7 +270,7 @@ export default function HikeJobsServicePage() {
 
       <div className="mt-16 md:mt-20">
         <PullStatement eyebrow="What it came down to" mark="seam">
-          Finding something and being ready to act on it are two different problems.
+          A good suggestion did not help someone with no resume to send.
         </PullStatement>
       </div>
     </CaseStudyShell>

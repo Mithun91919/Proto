@@ -214,7 +214,7 @@ export default function RatingsReviewsPage() {
             eyebrow="Reflection"
             heading="Feedback has to cost the contributor almost nothing"
             body={[
-              "Writing a review has to take almost no effort, while still capturing enough detail to be useful.",
+              "The star rating stays the first step because it takes a second. Texture, effects and photos are asked after it, so even a shopper who stops early leaves a score.",
               "Once reviews sat beside the score, they added credibility and helped shoppers decide what to buy.",
             ]}
           />
@@ -226,8 +226,7 @@ export default function RatingsReviewsPage() {
       <div className="mt-16 md:mt-20">
         <Reveal>
           <PullStatement eyebrow="Two audiences at once" mark="exchange">
-            A useful review system serves the person sharing an experience and the person trying to make a
-            decision from it.
+            A review has two readers: the person writing it, and the next shopper deciding what to buy.
           </PullStatement>
         </Reveal>
       </div>

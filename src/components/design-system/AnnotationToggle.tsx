@@ -74,7 +74,7 @@ export function AnnotationToggle({ variant = "frame" }: { variant?: "frame" | "c
       className={`ds-annotation-toggle ds-annotation-toggle-${variant}`}
       onClick={() => set(!on)}
     >
-      <span className="ds-annotation-toggle-label">Callouts</span>
+      <span className="ds-annotation-toggle-label">Numbered notes</span>
       <span className="ds-annotation-toggle-track" aria-hidden>
         <span className="ds-annotation-toggle-thumb" />
       </span>

@@ -221,7 +221,7 @@ export default function CreoMark1Page() {
             heading="The brand held together without every asset looking the same"
             body={[
               "The work shipped as the digital assets for marketing and promoting the phone. I had left by then, so I have no figures to share.",
-              "A useful visual system gives different surfaces enough freedom to communicate while still feeling unmistakably related.",
+              "The large product image, the high-contrast type and the fixed supporting elements stayed the same each month. Only the message changed, so a feature update and a Flipkart page still read as the same phone.",
             ]}
           />
         </CaseStudySection>
@@ -229,7 +229,7 @@ export default function CreoMark1Page() {
 
       <div className="mt-16 md:mt-20">
         <PullStatement eyebrow="What it came down to" mark="rhythm">
-          Recognisable isn&apos;t the same as identical.
+          The phone, the type and the supporting elements stayed fixed. Only the message changed.
         </PullStatement>
       </div>
     </CaseStudyShell>
