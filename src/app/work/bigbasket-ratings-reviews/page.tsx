@@ -46,7 +46,7 @@ export default function RatingsReviewsPage() {
       slug="bigbasket-ratings-reviews"
       evidence={[
         {
-          label: "Problem",
+          label: "The problem",
           lead: (
             <>
               A star rating is quick to give and <span className="ds-accent-text">hard to act on</span>.
@@ -56,7 +56,7 @@ export default function RatingsReviewsPage() {
             "The score arrives without the reason behind it, and the reason is the part the next shopper actually needs before buying.",
         },
         {
-          label: "Task",
+          label: "The task",
           lead: (
             <>
               Design one feedback system for <span className="ds-accent-text">every surface</span>.

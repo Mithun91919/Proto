@@ -43,7 +43,7 @@ export default function TotalOsLocalizationPage() {
       slug="hike-total-os-localization"
       evidence={[
         {
-          label: "Problem",
+          label: "The problem",
           lead: (
             <>
               Translation is <span className="ds-accent-text">not localisation</span>.
@@ -53,7 +53,7 @@ export default function TotalOsLocalizationPage() {
             "Eight scripts, each with its own demands on meaning, clarity and layout. Converting English word for word would have preserved the words and lost the intent.",
         },
         {
-          label: "Task",
+          label: "The task",
           lead: (
             <>
               Build a repeatable process across <span className="ds-accent-text">eight languages</span>.
@@ -114,7 +114,7 @@ export default function TotalOsLocalizationPage() {
       </CaseStudyColumn>
 
       <div className="mt-16 md:mt-20">
-        <PullStatement eyebrow="What we were after" mark="exchange">
+        <PullStatement eyebrow="What I was after" mark="exchange">
           To communicate the same intent, not just the same words.
         </PullStatement>
       </div>
@@ -123,7 +123,7 @@ export default function TotalOsLocalizationPage() {
         <CaseStudySection id="pipeline" boundary={false} className="pt-16 md:pt-20">
           <CaseStudyChapter
             layout="stacked"
-            eyebrow="How we worked"
+            eyebrow="How I worked"
             heading="I created a repeatable path from copy to product"
             body={[
               "I worked across the localisation process with a language service provider and internal language experts, helping establish a framework for translation, proofreading, implementation, and validation across eight languages and four projects.",

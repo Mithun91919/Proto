@@ -43,7 +43,7 @@ export default function HikeJobsServicePage() {
       slug="hike-jobs-service"
       evidence={[
         {
-          label: "Problem",
+          label: "The problem",
           lead: (
             <>
               Finding a job is only <span className="ds-accent-text">half of applying</span>.
@@ -53,7 +53,7 @@ export default function HikeJobsServicePage() {
             "A generic feed surfaced opportunities without knowing what someone wanted, and the step after discovery — actually being ready to apply — sat outside the product.",
         },
         {
-          label: "Task",
+          label: "The task",
           lead: (
             <>
               Take someone from discovery to <span className="ds-accent-text">ready to apply</span>.

@@ -42,7 +42,7 @@ export default function CreoMark1Page() {
       slug="creo-mark-1"
       evidence={[
         {
-          label: "Problem",
+          label: "The problem",
           lead: (
             <>
               The product changed <span className="ds-accent-text">every month</span>.
@@ -52,10 +52,10 @@ export default function CreoMark1Page() {
             "Announcing each release on its own terms would have left the brand as a run of unrelated campaigns with nothing holding them together.",
         },
         {
-          label: "Task",
+          label: "The task",
           lead: (
             <>
-              Build one visual language across <span className="ds-accent-text">every touchpoint</span>.
+              Build one visual language across <span className="ds-accent-text">every surface</span>.
             </>
           ),
           detail:

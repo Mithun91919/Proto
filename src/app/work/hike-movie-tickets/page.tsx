@@ -51,7 +51,7 @@ export default function MovieTicketsPage() {
       slug="hike-movie-tickets"
       evidence={[
         {
-          label: "Problem",
+          label: "The problem",
           lead: (
             <>
               Most people arrived <span className="ds-accent-text">already knowing the film</span>.
@@ -61,7 +61,7 @@ export default function MovieTicketsPage() {
             "A survey with 15 participants found the decision was usually made before the app opened. Nearby theatres, preferred seats, trust and available offers then decided where the booking completed.",
         },
         {
-          label: "Task",
+          label: "The task",
           lead: (
             <>
               Close the gap between <span className="ds-accent-text">intent and purchase</span>.

@@ -255,7 +255,7 @@ export default function DependencyHealthPage() {
             intro="An engineer fixes the libraries in a repository. An engineer manager answers for the outdated libraries across their teams."
             archetypes={ARCHETYPES}
             basisLabel="12+ teams spoken to"
-            basis="We spoke to them to understand how they find and fix library problems today."
+            basis="I spoke to them to understand how they find and fix library problems today."
           />
         </CaseStudySection>
 

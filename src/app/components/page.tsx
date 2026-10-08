@@ -1435,7 +1435,7 @@ export default function ComponentsPage() {
           <p className="max-w-[66ch] text-[0.95rem] leading-7" style={{ color: "var(--ink-soft)" }}>
             The shortest shape that still argues. A small label says what kind of sentence is
             coming; the sentence does the work. This is the one place{" "}
-            <em>The problem</em> and <em>The solution</em> are allowed — demoted to labels, they
+            <em>The problem</em>, <em>The solution</em> and <em>The task</em> are allowed — demoted to labels, they
             signpost without pretending to be the claim.
           </p>
           <div className="mt-8 grid grid-cols-1 gap-x-14 gap-y-9 md:grid-cols-2">

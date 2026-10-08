@@ -47,15 +47,15 @@ const mono = localFont({
 export const metadata: Metadata = {
   metadataBase: new URL("https://mithunraju.in"),
   title: {
-    default: "Mithun Raju, Designer",
+    default: "Mithun Raju, Senior UX Designer",
     template: "%s · Mithun Raju",
   },
   description:
-    "Senior UX designer for enterprise platforms, developer tools, and agentic workflows. Based in Bengaluru.",
+    "Senior UX designer for enterprise platforms, developer tools and AI-assisted workflows. Based in Bengaluru.",
   openGraph: {
-    title: "Mithun Raju, Designer",
+    title: "Mithun Raju, Senior UX Designer",
     description:
-      "I turn fragmented enterprise workflows into unified, scalable product experiences.",
+      "Senior UX designer for enterprise platforms and developer tools, based in Bengaluru.",
     url: "https://mithunraju.in",
     siteName: "Mithun Raju",
     locale: "en_IN",

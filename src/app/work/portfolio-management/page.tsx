@@ -239,7 +239,8 @@ export default function PortfolioManagementPage() {
             heading="I designed the line from a goal to the work"
             body={[
               "The aim was never to rebuild each tool one for one. It was to join what is assigned to what is done. A goal ties to an initiative, which ties to a product, which ties to a person, and each product and initiative ties to a Jira epic that the work is tagged to.",
-              "That gives each thing one record and one name, so every title and statement means the same across teams. The old tools went by names like team rosters, roadmaps and numbered programme codes. I kept the names to common words: People, Product, Initiative, Portfolio and Manager. A name a person can say to a colleague is also a data decision, because one name for a thing is what lets two records be one.",
+              "That gives each thing one record and one name, so every title and statement means the same across teams.",
+              "The old tools went by names like team rosters, roadmaps and numbered programme codes. I kept the names to common words: People, Product, Initiative, Portfolio and Manager. A name a person can say to a colleague is also a data decision, because one name for a thing is what lets two records be one.",
             ]}
           />
           <CaseStudyFigure>
@@ -534,7 +535,8 @@ export default function PortfolioManagementPage() {
               title="Goals sit on the same data as the work they are about"
               description={[
                 "Goals run yearly, quarterly and monthly, and tie initiatives, products and people together. At launch of the goals experience, teams created more than 1.4K goals across 14 strategic themes.",
-                "Because goals read from the same records, a goal shows the initiatives and products linked to it, and where they stand. A leader sets a goal at the start of the year and checks in each quarter on how much is achieved and which teams are blocking it, from data, not assumptions. People supporting different initiatives can see how their work supports those goals, with a clear definition of impact and responsibility.",
+                "Because goals read from the same records, a goal shows the initiatives and products linked to it, and where they stand.",
+                "A leader sets a goal at the start of the year and checks in each quarter on how much is achieved and which teams are blocking it, from data, not assumptions. People supporting different initiatives can see how their work supports those goals, with a clear definition of impact and responsibility.",
               ]}
               scrollable
               maxHeight="44rem"

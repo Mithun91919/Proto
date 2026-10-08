@@ -458,7 +458,7 @@ export default function ApiLifecyclePage() {
               description={[
                 "API contract design exposed one of the platform’s hardest interaction problems.",
                 "Not every team had an expert who could write a specification by hand, and at this scale a specification gets long. Some providers were comfortable working directly in YAML or JSON. Others needed to add a constant or change one small thing without breaking the structure around it.",
-                "Instead of forcing one mode on everyone, we designed two connected editors: Basic for guided, structured contract creation, and Advanced for engineers who preferred direct specification editing.",
+                "Instead of forcing one mode on everyone, I designed two connected editors: Basic for guided, structured contract creation, and Advanced for engineers who preferred direct specification editing.",
                 "Switching between them required careful handling of validation, unsupported changes, and the risk of losing work. Around that core interaction, the Studio added linting, duplicate detection, quality feedback, versioning, imports, collaboration, code generation, and governance guidance.",
               ]}
               scrollable
@@ -543,7 +543,7 @@ export default function ApiLifecyclePage() {
 
       <div className="mt-16 md:mt-20">
         <Reveal>
-          <PullStatement eyebrow="What we were after" mark="rhythm">
+          <PullStatement eyebrow="What I was after" mark="rhythm">
             Not to hide technical complexity, but to reveal the right amount of it for the person
             doing the work.
           </PullStatement>
@@ -672,7 +672,7 @@ export default function ApiLifecyclePage() {
             <NoteCard
               label="Where it went"
               heading="Ready for AI because the groundwork was already there"
-              body="There is now an MCP to discover, create and manage APIs. People can use it from any AI tool, such as Copilot, to get API information and take actions without opening the platform, so it sits inside their workflow instead of beside it. That was only possible because the data and the workflows were already in place. If I started today I would go further and make it agentic first, with the screens as one way in instead of the only one."
+              body="There is now an MCP to discover, create and manage APIs. People can use it from any AI tool, such as Copilot, to get API information and take actions without opening the platform, so it sits inside their workflow, not beside it. That was only possible because the data and workflows were already in place. If I started today I would make it agentic first, with the screens as one way in."
               mark="AI"
               sparkle
             />

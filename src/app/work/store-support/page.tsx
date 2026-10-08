@@ -240,7 +240,7 @@ export default function StoreSupportPage() {
               eyebrow: "Fix it",
               title: "The alarm carries its own way out",
               body:
-                "An associate opens the refrigeration alarm and the next control is Fix it, not Report. It answers with the steps to clear that alarm — photographic where the repair is physical, so the associate matches a picture to the case in front of them rather than translating a sentence into a piece of equipment. Every fix comes with clear steps and pictures, which also works as a first check that the associate is equipped to do it. Where the steps cannot clear it, the work order is raised automatically with the technician already dispatched.",
+                "An associate opens the refrigeration alarm and the next control is Fix it, not Report. It answers with the steps to clear that alarm, in photographs where the repair is physical, so the associate matches a picture to the case in front of them. The steps also work as a first check that they are equipped to do it. Where they cannot clear it, the work order is raised automatically and the technician is already dispatched.",
               media: (
                 <ClipFigure
                   variant="beside"
@@ -257,7 +257,7 @@ export default function StoreSupportPage() {
               eyebrow: "Step 2 of 2",
               title: "The ticket only exists if the fix did not hold",
               body:
-                "Where an associate starts from scratch rather than from an alarm, the same order applies: say what happened, get the resolution, and answer one question — did that resolve your issue? Yes ends it. No opens step two, which collects the photographs and contacts, and carries the failed attempt with it so the technician arrives knowing what has already been tried. The five categories it starts from came out of card sorts I ran with associates afterwards, grouping problems by where they occur rather than by which team receives them.",
+                "Where an associate starts from scratch, the same order applies: say what happened, get the resolution, and answer one question: did that resolve your issue? Yes ends it. No opens step two, which collects photographs and contacts and carries the failed attempt with it, so the technician arrives knowing what has been tried. The five starting categories came from card sorts I ran with associates, grouping problems by where they occur, not by which team receives them.",
               media: (
                 <ClipFigure
                   variant="beside"
@@ -299,7 +299,7 @@ export default function StoreSupportPage() {
               eyebrow: "Track and escalate",
               title: "A work order you can follow, add to and chase",
               body:
-                "A raised issue becomes a work order carrying its trade, equipment, problem code and status. For an alarm the system raises it automatically, with priority and affected units already attached. The associate can see it scheduled and who is coming, and add photographs and notes as things change. When a repair does not hold, they have three routes out \u2014 recall the technician, escalate through the help desk, or call facilities \u2014 and none of them opens a second ticket that loses the history of the first.",
+                "A raised issue becomes a work order carrying its trade, equipment, problem code and status. For an alarm the system raises it automatically, with priority and affected units attached. The associate can see it scheduled and who is coming, and add photographs and notes. When a repair does not hold they have three routes out: recall the technician, escalate through the help desk, or call facilities. None opens a second ticket that loses the first one\u2019s history.",
               media: (
                 <ClipFigure
                   variant="beside"
@@ -342,7 +342,7 @@ export default function StoreSupportPage() {
           <CaseStudyChapter
             layout="stacked"
             eyebrow="The migration"
-            heading="Doing the migration inside the redesign, rather than owing it afterwards"
+            heading="Migrating inside the redesign, instead of owing it afterwards"
             body={[
               "The product ran on a third-party UI library while the organisation was introducing its own enterprise design system.",
               "Rather than treat the redesign and the migration as two projects, I rebuilt the areas I touched on Living Design — so the product belonged to the family of apps associates already used, on a more accessible component foundation, instead of paying down more design debt later.",
