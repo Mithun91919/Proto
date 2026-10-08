@@ -76,11 +76,11 @@ export const projects: Project[] = [
     summary:
       "Nothing connected the work assigned to the work done. I was the only designer, from inception to release, on one platform where a goal runs down to the work, in the words people already use.",
     outcome:
-      "6K+ monthly users · 5→1 platform consolidation · 6 connected modules",
+      "6K+ monthly users · 800+ hrs a week reclaimed · $100K saved a year",
     metrics: [
       { value: "6K+", label: "monthly users" },
-      { value: "5→1", label: "platform consolidation" },
-      { value: "6", label: "connected modules" },
+      { value: "800+ hrs", label: "reclaimed every week", glyph: "field" },
+      { value: "$100K", label: "saved a year on licences", glyph: "drop" },
     ],
     org: "Walmart Global Tech",
     domain: "Enterprise",
