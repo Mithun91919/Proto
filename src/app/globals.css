@@ -521,15 +521,21 @@ a {
   object-position: left center;
 }
 
+/* The title held there: a quiet mono caption in the year's voice, so the
+   company stays the label and the stage of practice stays the line that
+   carries the column. */
 .timeline-role {
-  margin-top: 0.2rem;
-  font-size: 0.82rem;
-  line-height: 1.35;
-  color: var(--ink-soft);
+  margin-top: 0.4rem;
+  font-family: var(--font-mono), ui-monospace, monospace;
+  font-size: 0.66rem;
+  line-height: 1.55;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--muted);
 }
 
 .timeline-word {
-  margin-top: 0.35rem;
+  margin-top: 0.95rem;
   font-family: var(--font-display), ui-sans-serif, system-ui, sans-serif;
   font-weight: 500;
   font-size: clamp(0.92rem, 1.05vw, 1.02rem);
