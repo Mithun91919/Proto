@@ -1127,7 +1127,7 @@ a {
 
 .reveal {
   opacity: 0;
-  transform: translateY(18px);
+  transform: translateY(12px);
   transition:
     opacity 560ms var(--ease-out),
     transform 560ms var(--ease-out);

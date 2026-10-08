@@ -23,7 +23,7 @@ type ProofStripProps = {
 /** S2 · Proof strip — a metric row where each figure carries its own semantic glyph. */
 export function ProofStrip({ items }: ProofStripProps) {
   return (
-    <GlassPanel className="grid overflow-hidden rounded-2xl" style={{ gridTemplateColumns: `repeat(${items.length}, 1fr)` }}>
+    <GlassPanel className="ds-stagger grid overflow-hidden rounded-2xl" style={{ gridTemplateColumns: `repeat(${items.length}, 1fr)` }}>
       {items.map((item, index) => (
         <div
           key={item.label}

@@ -165,6 +165,27 @@ const INVENTORY: MotionSpec[] = [
     means: "Dots arriving as one image says the argument without words: separate pieces joining. Then it stops on the assembled image.",
   },
   {
+    name: "Block parts",
+    trigger: "Reveal",
+    timing: "Label, heading, then each paragraph 90ms apart, to about 1s",
+    loop: "Once per page",
+    means: "A block that fades in whole reads flat. Its parts arrive in reading order, and a return visit shows them already in place.",
+  },
+  {
+    name: "Figure rise",
+    trigger: "Reveal",
+    timing: "760ms, 32px, settling from 98.5%",
+    loop: "Once per page",
+    means: "A figure arrives differently from text: it rises further and settles, so the page has two kinds of thing on it.",
+  },
+  {
+    name: "Group stagger",
+    trigger: "Reveal",
+    timing: "600ms each, 120ms apart, up to four",
+    loop: "Once per page",
+    means: "Cards in a set, metrics in a strip, before and after: they come one after another, in the order they are read.",
+  },
+  {
     name: "Section line",
     trigger: "Section first seen",
     timing: "600ms line, then five dots in order over 400ms",

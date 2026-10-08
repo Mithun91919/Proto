@@ -64,7 +64,7 @@ function CardLead({ card, muted = false }: { card: StateCard; muted?: boolean })
 /** E2 · Before / after model — compares mental models or system structure, not just screenshots. */
 export function BeforeAfterModel({ before, after }: BeforeAfterModelProps) {
   return (
-    <div className="grid grid-cols-1 items-stretch gap-5 md:grid-cols-[1fr_auto_1fr]">
+    <div className="ds-stagger grid grid-cols-1 items-stretch gap-5 md:grid-cols-[1fr_auto_1fr]">
       <GlassPanel variant="soft" className="rounded-2xl p-7">
         <CardLead card={before} muted />
         <p className="ds-eyebrow" style={{ color: "var(--muted)" }}>

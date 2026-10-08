@@ -4495,3 +4495,85 @@ a:hover .ds-compact-mark .ds-dot {
     animation: none;
   }
 }
+
+/* ── Arrival inside a block ──────────────────────────────────────────────────
+   A block fading in as one slab reads flat. Inside it, the parts arrive in
+   reading order: the label, then the heading, then each paragraph; figures
+   arrive differently from text, rising further and settling; and groups of
+   cards come one after another. All of it rides the same is-visible as the
+   block, plays once, and is capped so nothing waits more than about a second.
+   The words are never hidden without script: the animation only starts once
+   the block has been marked visible. */
+@keyframes ds-rise-in {
+  from {
+    opacity: 0;
+    translate: 0 16px;
+  }
+}
+
+@keyframes ds-figure-in {
+  from {
+    opacity: 0;
+    translate: 0 32px;
+    scale: 0.985;
+  }
+}
+
+.reveal.is-visible .eyebrow {
+  animation: ds-rise-in 520ms var(--ease-out) backwards;
+}
+
+.reveal.is-visible .display-section {
+  animation: ds-rise-in 640ms var(--ease-out) 70ms backwards;
+}
+
+.reveal.is-visible .body-text {
+  animation: ds-rise-in 640ms var(--ease-out) backwards;
+  animation-delay: calc(160ms + var(--si, 0) * 90ms);
+}
+
+.body-text:nth-child(2) { --si: 1; }
+.body-text:nth-child(3) { --si: 2; }
+.body-text:nth-child(n + 4) { --si: 3; }
+
+.reveal.is-visible .ds-cs-figure > .ds-cs-figure-label {
+  animation: ds-rise-in 520ms var(--ease-out) backwards;
+}
+
+.reveal.is-visible .ds-cs-figure > :not(.ds-stagger):not(.ds-cs-figure-label):not(.ds-dotflow) {
+  animation: ds-figure-in 760ms var(--ease-out) 140ms backwards;
+}
+
+.reveal.is-visible .ds-stagger > *,
+.reveal.is-visible .ds-arch-cards > * {
+  animation: ds-rise-in 640ms var(--ease-out) backwards;
+  animation-delay: calc(120ms + var(--gi, 0) * 120ms);
+}
+
+.ds-stagger > :nth-child(2),
+.ds-arch-cards > :nth-child(2) { --gi: 1; }
+.ds-stagger > :nth-child(3),
+.ds-arch-cards > :nth-child(3) { --gi: 2; }
+.ds-stagger > :nth-child(n + 4),
+.ds-arch-cards > :nth-child(n + 4) { --gi: 3; }
+
+/* A return visit shows the page as it was. */
+.reveal-instant .eyebrow,
+.reveal-instant .display-section,
+.reveal-instant .body-text,
+.reveal-instant .ds-cs-figure > *,
+.reveal-instant .ds-stagger > *,
+.reveal-instant .ds-arch-cards > * {
+  animation: none !important;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal.is-visible .eyebrow,
+  .reveal.is-visible .display-section,
+  .reveal.is-visible .body-text,
+  .reveal.is-visible .ds-cs-figure > *,
+  .reveal.is-visible .ds-stagger > *,
+  .reveal.is-visible .ds-arch-cards > * {
+    animation: none;
+  }
+}
