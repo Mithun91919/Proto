@@ -57,10 +57,24 @@ export default function WorkPage() {
       </div>
 
       <section id="path" className="work-section ds-section-boundary">
-        <SectionHead
-          eyebrow="Path"
-          title="From screens to systems, one company at a time"
-        />
+        <div className="flex flex-wrap items-end justify-between gap-x-10 gap-y-6">
+          <div className="min-w-0">
+            <SectionHead
+              eyebrow="Path"
+              title="From screens to systems, one company at a time"
+            />
+          </div>
+          <Reveal delay={120}>
+            <a
+              href="https://www.linkedin.com/in/mithunrajuk"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="button button-secondary"
+            >
+              Full history on LinkedIn ↗
+            </a>
+          </Reveal>
+        </div>
 
         <Reveal delay={80}>
           <ol className="timeline">
@@ -88,16 +102,6 @@ export default function WorkPage() {
               </li>
             ))}
           </ol>
-          <div className="mt-10">
-            <a
-              href="https://www.linkedin.com/in/mithunrajuk"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="button button-secondary"
-            >
-              Full history on LinkedIn ↗
-            </a>
-          </div>
         </Reveal>
 
         <Reveal delay={140}>
