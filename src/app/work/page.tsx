@@ -88,19 +88,16 @@ export default function WorkPage() {
               </li>
             ))}
           </ol>
-          <p className="mt-10 text-[0.95rem]" style={{ color: "var(--ink-soft)" }}>
-            The full history, with dates, is on{" "}
+          <div className="mt-10">
             <a
               href="https://www.linkedin.com/in/mithunrajuk"
               target="_blank"
               rel="noopener noreferrer"
-              className="underline underline-offset-4 transition-opacity hover:opacity-70"
-              style={{ color: "var(--ink)" }}
+              className="button button-secondary"
             >
-              LinkedIn
+              Full history on LinkedIn ↗
             </a>
-            .
-          </p>
+          </div>
         </Reveal>
 
         <Reveal delay={140}>
