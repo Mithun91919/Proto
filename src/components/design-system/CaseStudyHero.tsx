@@ -90,7 +90,7 @@ export function CaseStudyHero({
         <div>{children}</div>
         {figureNote ? (
           <p
-            className="ml-auto flex items-start gap-2 text-[0.78rem] leading-5 lg:whitespace-nowrap"
+            className="ml-auto flex max-w-[68ch] items-start gap-2 text-[0.78rem] leading-5 [text-wrap:balance]"
             style={{ color: "var(--ds-dark-muted)" }}
           >
             <svg

@@ -170,7 +170,7 @@ export default function PortfolioManagementPage() {
             route: "/portfolio",
           },
         ],
-        figureNote: "The interface is as it shipped, built on Living Design — Walmart's design system. I have replaced the data and some product names, because the work is internal.",
+        figureNote: "Confidential internal work, with the data and some product names replaced. The screens are as shipped, on Walmart’s Living Design system.",
         meta: [
           { label: "Role", value: "Senior UX Designer" },
           { label: "Client", value: "Walmart Global Tech" },
