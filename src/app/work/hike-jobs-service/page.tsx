@@ -70,7 +70,7 @@ export default function HikeJobsServicePage() {
             </>
           ),
           detail:
-            "Onboarding collected preferences so recommendations could be relevant, then search, categories and keywords gave people different ways in depending on how specific they already were.",
+            "Onboarding collected preferences so recommendations could be relevant, then search, categories and keywords gave people different ways in depending on how specific they already were. It shipped as a microservice inside Hike Messenger.",
         },
       ]}
       chapters={CHAPTERS}
@@ -112,7 +112,7 @@ export default function HikeJobsServicePage() {
             eyebrow="Discovery"
             heading="Better discovery started with understanding intent"
             body={[
-              "Onboarding collected preferences so the product could move beyond a generic job feed and surface more relevant opportunities.",
+              "The listings came from Indeed's API. Onboarding collected preferences so the product could move beyond a generic job feed and surface the ones that were relevant to each person.",
               "Search, categories, keywords, and recommendations then gave people different ways into the marketplace depending on how specific their intent was.",
             ]}
           />
@@ -261,7 +261,8 @@ export default function HikeJobsServicePage() {
             eyebrow="Reflection"
             heading="Personalisation only helps if it leads somewhere"
             body={[
-              "Personalisation is most useful when it leads somewhere. Recommendations helped people find relevant opportunities, while saved jobs and resume creation helped them move closer to applying.",
+              "It was released as a microservice inside Hike Messenger. I had left Hike by then, so I have no usage figures to share.",
+              "Recommendations helped people find relevant opportunities, while saved jobs and resume creation helped them move closer to applying.",
             ]}
           />
         </CaseStudySection>

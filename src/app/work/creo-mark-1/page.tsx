@@ -69,7 +69,7 @@ export default function CreoMark1Page() {
             </>
           ),
           detail:
-            "Large product imagery, high-contrast typography and a fixed set of supporting elements kept the phone and its software the dominant thing wherever it appeared.",
+            "Large product imagery, high-contrast typography and a fixed set of supporting elements kept the phone and its software the dominant thing wherever it appeared. The result was a set of digital assets for the marketing and promotion of the CREO Mark 1.",
         },
       ]}
       chapters={CHAPTERS}
@@ -220,7 +220,8 @@ export default function CreoMark1Page() {
             eyebrow="Reflection"
             heading="Consistency is not repetition"
             body={[
-              "Consistency is not repetition. A useful visual system gives different surfaces enough freedom to communicate while still feeling unmistakably related.",
+              "The work shipped as the digital assets for marketing and promoting the phone. I had left by then, so I have no figures to share.",
+              "A useful visual system gives different surfaces enough freedom to communicate while still feeling unmistakably related.",
             ]}
           />
         </CaseStudySection>

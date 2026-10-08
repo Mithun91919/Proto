@@ -78,7 +78,7 @@ export default function MovieTicketsPage() {
             </>
           ),
           detail:
-            "I put showtime, seat and wallet payment in a single flow, rather than handing off between a ticketing service and a payment one.",
+            "I put showtime, seat and wallet payment in a single flow, rather than handing off between a ticketing service and a payment one. It shipped as a microservice inside Hike Messenger.",
         },
       ]}
       chapters={CHAPTERS}
@@ -195,6 +195,7 @@ export default function MovieTicketsPage() {
             eyebrow="Reflection"
             heading="Four systems had to feel like one task"
             body={[
+              "Booking was released as a microservice inside Hike Messenger. I had left Hike by then, so I have no usage figures to share.",
               "When discovery, external integrations, seat selection, and payment belong to one task, the product has to make the underlying systems feel like one continuous experience.",
             ]}
           />
