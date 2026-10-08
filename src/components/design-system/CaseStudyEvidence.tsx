@@ -57,7 +57,7 @@ export function CaseStudyEvidence({ beats, metrics, metricsLabel, caveat }: Case
     /* The shell renders this card directly, never inside a Reveal, so the
        metric glyphs in it had no `is-visible` to ride and never animated.
        It brings its own rather than asking every shell to remember. */
-    <Reveal>
+    <Reveal className="ds-evidence-rise">
       <div className="mx-auto w-full max-w-[85rem] px-5 md:px-8">
       <div
         className="relative z-[1] overflow-hidden rounded-2xl"
@@ -73,7 +73,7 @@ export function CaseStudyEvidence({ beats, metrics, metricsLabel, caveat }: Case
         {hasBeats ? (
           <div className="grid grid-cols-1 gap-10 p-8 md:grid-cols-3 md:gap-10 md:p-12">
             {beats!.map((b, i) => (
-              <div key={b.label} className="ds-evidence-beat" style={{ "--i": i } as React.CSSProperties}>
+              <div key={b.label}>
                 <span aria-hidden className="block">
                   <DotGrid cols={5} dots={MARKS[i] ?? MARKS[2]} size={5} gap={4} />
                 </span>

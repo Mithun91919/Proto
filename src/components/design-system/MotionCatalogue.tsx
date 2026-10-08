@@ -151,11 +151,11 @@ const INVENTORY: MotionSpec[] = [
     means: "Several screens are one product: they slide out from behind the front one, so the count is seen before it is read.",
   },
   {
-    name: "Evidence beats",
-    trigger: "Reveal",
-    timing: "600ms each, 130ms apart",
+    name: "Evidence card",
+    trigger: "Page load",
+    timing: "900ms rise from the bottom, after 380ms",
     loop: "Once per page",
-    means: "Problem, solution and what I did arrive in the order they are read.",
+    means: "Problem, solution and what I did arrive as one piece, rising into the overlap with the hero, after the art has started.",
   },
   {
     name: "Portrait pour",

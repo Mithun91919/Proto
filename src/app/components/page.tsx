@@ -1360,7 +1360,7 @@ export default function ComponentsPage() {
           <div className="grid grid-cols-1 gap-x-14 gap-y-1 sm:grid-cols-2">
             {[
               { rule: "Words are there from the first frame", note: "No fade, no rise, no stagger on text a reader needs. Motion touches only what is not needed to read." },
-              { rule: "The art and the structure do the arriving", note: "On landing, the hero art rises in, the screens fan out from behind the front one, and the three evidence beats arrive in reading order, over about a second and a half, once." },
+              { rule: "The art and the structure do the arriving", note: "On landing, the hero art rises in, the screens fan out from behind the front one, and the evidence card rises from the bottom as one piece, over about a second and a half, once." },
               { rule: "Nothing waits on script", note: "A block is hidden only once the page can reveal it. With scripts blocked, as on a locked-down work laptop, everything is simply visible." },
               { rule: "Reveal is a fade, once", note: "560ms and 18px, the first time a block is seen. A return visit in the same session shows the page as it was, with no replay." },
               { rule: "A chapter starts with a line", note: "The dotted boundary draws once, in 600ms, as a section arrives. It marks a change of subject, and nothing else on the page draws." },

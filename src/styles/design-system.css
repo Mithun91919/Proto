@@ -4452,10 +4452,10 @@ a:hover .ds-compact-mark .ds-dot {
   }
 }
 
-@keyframes ds-beat-in {
+@keyframes ds-card-rise {
   from {
     opacity: 0;
-    translate: 0 20px;
+    translate: 0 130px;
   }
 }
 
@@ -4473,17 +4473,22 @@ a:hover .ds-compact-mark .ds-dot {
   animation-delay: calc(120ms + var(--pos, 0) * 120ms);
 }
 
-/* The three beats arrive in the order they are read. */
-.reveal.is-visible .ds-evidence-beat {
-  animation: ds-beat-in 600ms cubic-bezier(0.2, 0.7, 0.3, 1) backwards;
-  animation-delay: calc(140ms + var(--i, 0) * 130ms);
+/* The evidence card rises from the bottom as one piece, after the art has
+   started. It owns its own entrance, so the generic fade is switched off for
+   it; the Reveal wrapper stays, because the glyphs inside ride its
+   is-visible. */
+.reveal.ds-evidence-rise {
+  opacity: 1;
+  transform: none;
+  transition: none;
+  animation: ds-card-rise 900ms cubic-bezier(0.2, 0.7, 0.3, 1) 380ms backwards;
 }
 
 @media (prefers-reduced-motion: reduce) {
   .ds-cs-hero-art-in,
   .ds-cs-hero-backdrop-in,
   .ds-hero-stack-card,
-  .reveal.is-visible .ds-evidence-beat {
+  .reveal.ds-evidence-rise {
     animation: none;
   }
 }
