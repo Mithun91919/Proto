@@ -7,7 +7,6 @@ import { ArtboardCarousel } from "@/components/design-system/ArtboardCarousel";
 import { ArtboardFigure } from "@/components/design-system/ArtboardFigure";
 import { BrowserMockup } from "@/components/design-system/BrowserMockup";
 import { DotFlow } from "@/components/design-system/DotFlow";
-import { NoteCard } from "@/components/design-system/NoteCard";
 import { ProofStrip } from "@/components/design-system/ProofStrip";
 import { PullStatement } from "@/components/design-system/PullStatement";
 import {
@@ -93,6 +92,7 @@ const CHAPTERS = [
   { id: "manager", label: "Manager" },
   { id: "parallel", label: "Built in parallel" },
   { id: "outcomes", label: "What changed" },
+  { id: "coach", label: "Where it went" },
 ];
 
 export default function PortfolioManagementPage() {
@@ -257,44 +257,6 @@ export default function PortfolioManagementPage() {
           </div>
           <CaseStudyFigure rule label="From a goal to the work">
             <DotFlow stages={TRACE} />
-          </CaseStudyFigure>
-          <CaseStudyFigure>
-            <BrowserMockup
-              route="/home"
-              src="/work/portfolio-management/home.png"
-              width={2880}
-              height={2210}
-              crop
-              maxHeight="40rem"
-              alt="The platform's home screen: a search field, alerts, quick links for new requests, a profile card and an assistant"
-              caption="Five categories down the side, one search, and the first requests, all in common words."
-              hotspots={[
-                {
-                  x: 2.6,
-                  y: 28.2,
-                  title: "Categories in plain words",
-                  detail: "People, Initiative, Product, Portfolio and Manager, each named for the thing someone is looking for, with Home above them.",
-                },
-                {
-                  x: 52.5,
-                  y: 17.3,
-                  title: "One search, or ask in a sentence",
-                  detail: "Search by name, title, org or pillar, or just ask in full sentences, from the first screen.",
-                },
-                {
-                  x: 17.5,
-                  y: 57.9,
-                  title: "Requests start from home",
-                  detail: "New Product Request and New Initiative Request are the first two quick links.",
-                },
-                {
-                  x: 82.0,
-                  y: 47.8,
-                  title: "An assistant for finding things",
-                  detail: "A chat that starts from four prompts, such as finding people by name, position or ID, or the details of a product or initiative.",
-                },
-              ]}
-            />
           </CaseStudyFigure>
         </CaseStudySection>
 
@@ -668,15 +630,60 @@ export default function PortfolioManagementPage() {
               ]}
             />
           </CaseStudyFigure>
-          <Reveal>
-            <NoteCard
-              label="Where it went"
+        </CaseStudySection>
+
+        <CaseStudySection id="coach">
+          {/* Copy left, the home screen right, as in the API chapter. The screen
+              is where Pfolio Coach is visible, so its note comes first. */}
+          <div className="ds-cs-split" style={{ "--split-copy": "26rem" } as React.CSSProperties}>
+            <CaseStudyChapter
+              layout="flow"
+              eyebrow="Where it went"
               heading="The same data now answers questions in plain sentences"
-              body="The home screen has an assistant that finds people, products and initiatives from a question, and an Ask Pfolio button on the Portfolio page opens the same one. A product page opens with a written summary above its numbers. The surface is changing, and the problem is the same: structure complex information so someone can understand it and act."
-              mark="AI"
-              sparkle
+              body={[
+                "Pfolio Coach sits on the home screen. Ask it for a person, product or initiative in a sentence and it finds the record. The Ask Pfolio button on the Portfolio page opens the same one.",
+                "A product page now opens with a written summary above its numbers.",
+              ]}
             />
-          </Reveal>
+            <CaseStudyFigure>
+              <BrowserMockup
+                route="/home"
+                src="/work/portfolio-management/home.png"
+                width={2880}
+                height={2210}
+                crop
+                maxHeight="40rem"
+                alt="The platform's home screen: a search field, alerts, quick links for new requests, a profile card and the Pfolio Coach assistant"
+                caption="Pfolio Coach opens from the home screen, beside search and the first requests."
+                hotspots={[
+                  {
+                    x: 82.0,
+                    y: 47.8,
+                    title: "Pfolio Coach",
+                    detail: "A chat that starts from four prompts, such as finding people by name, position or ID, or the details of a product or initiative.",
+                  },
+                  {
+                    x: 52.5,
+                    y: 17.3,
+                    title: "One search, or ask in a sentence",
+                    detail: "Search by name, title, org or pillar, or just ask in full sentences, from the first screen.",
+                  },
+                  {
+                    x: 17.5,
+                    y: 57.9,
+                    title: "Requests start from home",
+                    detail: "New Product Request and New Initiative Request are the first two quick links.",
+                  },
+                  {
+                    x: 2.6,
+                    y: 28.2,
+                    title: "Categories in plain words",
+                    detail: "People, Initiative, Product, Portfolio and Manager, each named for the thing someone is looking for, with Home above them.",
+                  },
+                ]}
+              />
+            </CaseStudyFigure>
+          </div>
         </CaseStudySection>
       </CaseStudyColumn>
 
