@@ -485,12 +485,11 @@ export default function DependencyHealthPage() {
 
       <div className="mt-16 md:mt-20">
         <Reveal>
-          <PullStatement eyebrow="What I believe now" mark="seam">
+          <PullStatement eyebrow="What I believe now" mark="seam" note={<ConfidentialNote />}>
             A status should always say what to do next, not only what is wrong.
           </PullStatement>
         </Reveal>
       </div>
-      <ConfidentialNote />
     </CaseStudyShell>
   );
 }

@@ -684,12 +684,11 @@ export default function PortfolioManagementPage() {
 
       <div className="mt-16 md:mt-20">
         <Reveal>
-          <PullStatement eyebrow="What I believe now" mark="seam">
+          <PullStatement eyebrow="What I believe now" mark="seam" note={<ConfidentialNote />}>
             A plan is only as good as its link to the work.
           </PullStatement>
         </Reveal>
       </div>
-      <ConfidentialNote />
     </CaseStudyShell>
   );
 }

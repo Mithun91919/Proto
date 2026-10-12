@@ -380,11 +380,10 @@ export default function SupplyChainOperationsPage() {
       </CaseStudyColumn>
 
       <div className="mt-16 md:mt-20">
-        <PullStatement eyebrow="What I believe now" mark="rhythm">
+        <PullStatement eyebrow="What I believe now" mark="rhythm" note={<ConfidentialNote />}>
           Sometimes lower engagement is the better experience.
         </PullStatement>
       </div>
-      <ConfidentialNote />
     </CaseStudyShell>
   );
 }
