@@ -10,6 +10,7 @@ import type { Archetype } from "@/components/design-system/ArchetypeFigure";
 import { ProofStrip } from "@/components/design-system/ProofStrip";
 import { NoteCard } from "@/components/design-system/NoteCard";
 import { PullStatement } from "@/components/design-system/PullStatement";
+import { ConfidentialNote } from "@/components/design-system/ConfidentialNote";
 import {
   CaseStudyChapter,
   CaseStudyColumn,
@@ -489,6 +490,7 @@ export default function DependencyHealthPage() {
           </PullStatement>
         </Reveal>
       </div>
+      <ConfidentialNote />
     </CaseStudyShell>
   );
 }

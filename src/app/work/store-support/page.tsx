@@ -5,6 +5,7 @@ import { AlternatingTextMedia } from "@/components/design-system/AlternatingText
 import { ClipFigure } from "@/components/design-system/ClipFigure";
 import { BeforeAfterModel } from "@/components/design-system/BeforeAfterModel";
 import { PullStatement } from "@/components/design-system/PullStatement";
+import { ConfidentialNote } from "@/components/design-system/ConfidentialNote";
 import { ProofStrip } from "@/components/design-system/ProofStrip";
 import { ReframeBlock } from "@/components/design-system/ReframeBlock";
 import { ArchetypeSection } from "@/components/design-system/ArchetypeSection";
@@ -387,6 +388,7 @@ export default function StoreSupportPage() {
           all.
         </PullStatement>
       </div>
+      <ConfidentialNote />
     </CaseStudyShell>
   );
 }

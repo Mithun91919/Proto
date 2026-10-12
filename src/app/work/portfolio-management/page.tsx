@@ -8,6 +8,7 @@ import { ArtboardFigure } from "@/components/design-system/ArtboardFigure";
 import { BrowserMockup } from "@/components/design-system/BrowserMockup";
 import { ProofStrip } from "@/components/design-system/ProofStrip";
 import { PullStatement } from "@/components/design-system/PullStatement";
+import { ConfidentialNote } from "@/components/design-system/ConfidentialNote";
 import {
   CaseStudyChapter,
   CaseStudyColumn,
@@ -688,6 +689,7 @@ export default function PortfolioManagementPage() {
           </PullStatement>
         </Reveal>
       </div>
+      <ConfidentialNote />
     </CaseStudyShell>
   );
 }

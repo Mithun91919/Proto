@@ -8,6 +8,7 @@ import { BeforeAfterModel } from "@/components/design-system/BeforeAfterModel";
 import { ArtboardCarousel } from "@/components/design-system/ArtboardCarousel";
 import { BrowserMockup } from "@/components/design-system/BrowserMockup";
 import { PullStatement } from "@/components/design-system/PullStatement";
+import { ConfidentialNote } from "@/components/design-system/ConfidentialNote";
 import { ArchetypeSection } from "@/components/design-system/ArchetypeSection";
 import type { Archetype } from "@/components/design-system/ArchetypeFigure";
 import {
@@ -685,6 +686,7 @@ export default function ApiLifecyclePage() {
           </PullStatement>
         </Reveal>
       </div>
+      <ConfidentialNote />
     </CaseStudyShell>
   );
 }

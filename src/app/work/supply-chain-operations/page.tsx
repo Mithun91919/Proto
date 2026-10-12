@@ -9,6 +9,7 @@ import { ReframeBlock } from "@/components/design-system/ReframeBlock";
 import { ArchetypeSection } from "@/components/design-system/ArchetypeSection";
 import type { Archetype } from "@/components/design-system/ArchetypeFigure";
 import { PullStatement } from "@/components/design-system/PullStatement";
+import { ConfidentialNote } from "@/components/design-system/ConfidentialNote";
 import {
   CaseStudyChapter,
   CaseStudyColumn,
@@ -383,6 +384,7 @@ export default function SupplyChainOperationsPage() {
           Sometimes lower engagement is the better experience.
         </PullStatement>
       </div>
+      <ConfidentialNote />
     </CaseStudyShell>
   );
 }
