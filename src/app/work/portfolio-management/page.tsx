@@ -227,32 +227,35 @@ export default function PortfolioManagementPage() {
         </CaseStudySection>
 
         <CaseStudySection id="platform">
-          <CaseStudyChapter
-            layout="stacked"
-            eyebrow="A decision"
-            heading="I designed how a goal connects to the work"
-            figure={{
-              value: "5",
-              label: "categories, one platform",
-              note: "People, Product, Initiative, Portfolio and Manager.",
-            }}
-            body={[
-              "The aim was never to rebuild each tool one for one. It was to join what is assigned to what is done. A goal links to an initiative, an initiative to a product, a product to a person, and each product and initiative to the Jira epic the work is tagged to.",
-              "That gives each thing one record and one name, so a word means the same thing on every team.",
-              "The old tools went by names like team rosters, roadmaps and numbered programme codes. I kept the names to common words: People, Product, Initiative, Portfolio and Manager. A name a person can say to a colleague is also a data decision, because one name for a thing is what lets two records be one.",
-            ]}
-          />
-          <CaseStudyFigure>
-            <ArtboardFigure
-              layout="portrait"
-              portraitMax="39rem"
-              src="/work/portfolio-management/diagram.png"
-              width={1954}
-              height={1782}
-              alt="Pfolio at the centre, with People, Product, Initiative, Manager and Portfolio around it, each with a one-line description"
-              caption="The platform in one picture: five categories around one hub. The hub is where planning, workflows and team allocation happen, and where the information behind decisions is kept. It controls who can see and change what, keeps the data accurate, and holds initiatives in their hierarchy, so priorities and outcomes can be compared."
+          {/* Copy left, the platform diagram right, so the claim and its picture
+              read together. The diagram is held to a column of its own width. */}
+          <div className="ds-cs-split" style={{ "--split-copy": "28rem" } as React.CSSProperties}>
+            <CaseStudyChapter
+              layout="flow"
+              eyebrow="A decision"
+              heading="I designed how a goal connects to the work"
+              figure={{
+                value: "5",
+                label: "categories, one platform",
+                note: "People, Product, Initiative, Portfolio and Manager.",
+              }}
+              body={[
+                "The aim was to join what is assigned to what is done. A goal links to an initiative, an initiative to a product, a product to a person, and products and initiatives to the Jira epic their work is tagged to.",
+                "Each thing gets one record and one name, in common words. The old tools used names like team rosters, roadmaps and programme codes. One name for a thing is what lets two records be one.",
+              ]}
             />
-          </CaseStudyFigure>
+            <CaseStudyFigure>
+              <ArtboardFigure
+                layout="portrait"
+                portraitMax="39rem"
+                src="/work/portfolio-management/diagram.png"
+                width={1954}
+                height={1782}
+                alt="Pfolio at the centre, with People, Product, Initiative, Manager and Portfolio around it, each with a one-line description"
+                caption="The platform in one picture: five categories around one hub. The hub is where planning, workflows and team allocation happen, and where the information behind decisions is kept. It controls who can see and change what, keeps the data accurate, and holds initiatives in their hierarchy, so priorities and outcomes can be compared."
+              />
+            </CaseStudyFigure>
+          </div>
           <CaseStudyFigure rule label="From a goal to the work">
             <DotFlow stages={TRACE} />
           </CaseStudyFigure>

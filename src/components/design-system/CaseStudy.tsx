@@ -212,6 +212,15 @@ export function CaseStudyChapter({
       <Reveal>
         <div className="max-w-[46rem]">
           <div className="[&>h2]:max-w-[22ch]">{head}</div>
+          {figure ? (
+            <div className="ds-chapter-figure mt-6">
+              <p className="ds-stat-row">
+                <span className="ds-stat-figure">{figure.value}</span>
+                <span className="ds-stat-label">{figure.label}</span>
+              </p>
+              {figure.note ? <p className="ds-arch-basis-text">{figure.note}</p> : null}
+            </div>
+          ) : null}
           <div className="mt-6 space-y-5">
             {body.map((paragraph) => (
               <p key={paragraph} className="body-text">
