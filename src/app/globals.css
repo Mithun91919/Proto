@@ -1047,6 +1047,11 @@ a {
   .section-head-split .lede {
     max-width: none;
   }
+
+  .section-head-action {
+    grid-template-columns: minmax(0, 1fr) auto;
+    align-items: baseline;
+  }
 }
 
 @media (min-width: 768px) {

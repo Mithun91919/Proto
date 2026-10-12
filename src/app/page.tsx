@@ -34,9 +34,9 @@ export default function HomePage() {
         <div className="relative z-[1] mx-auto grid w-full max-w-[80rem] gap-12 px-5 pb-12 pt-14 md:grid-cols-[1fr_20rem] md:items-center md:gap-12 md:px-8 md:pb-16 md:pt-20">
           <div className="hero-in">
             <h1 className="display-title display-name mt-6 text-[var(--ink)]">
-              Mithun Raju.
+              Mithun Raju
               <span className="display-name-sub mt-3 block text-[var(--ink-soft)] md:mt-4">
-                Senior UX designer for <span className="text-[var(--accent-deep)]">enterprise platforms</span> and developer tools.
+                Senior UX designer working across <span className="text-[var(--accent-deep)]">enterprise platforms</span>, developer tools and AI-enabled products.
               </span>
             </h1>
             {/* One line, not three. The tagline above states the position —
@@ -51,9 +51,10 @@ export default function HomePage() {
                 portfolio systems became one, three API tools became one
                 platform, 139 modules got a route through them. */}
             <p className="lede mt-8" style={{ maxWidth: "39.25rem" }}>
-              Work apps rarely talk to each other. I design the ones that do. I&apos;m based in
-              Bengaluru, with {yearsActive} years across consumer apps, commerce and enterprise, and
-              I&apos;m now at Walmart Global Tech, working on developer tools and AI-assisted workflows.
+              Work apps rarely work alone. I design experiences that help them work better together.
+              Based in Bengaluru, with {yearsActive} years across consumer products, commerce and
+              enterprise. Currently at Walmart Global Tech, working on developer tools and AI-assisted
+              workflows.
             </p>
           </div>
 
@@ -67,8 +68,8 @@ export default function HomePage() {
       >
         <SectionHead
           eyebrow="Case studies"
-          title="Selected work"
-          lede="Four projects, each with the decisions I made and what changed."
+          title="Four projects, and what changed in each"
+          action={{ href: "/work", label: "All work →" }}
         />
 
         {/* A grid, not a one-per-row stack — the media-forward card (picked
