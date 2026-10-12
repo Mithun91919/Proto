@@ -6,7 +6,6 @@ import type { Archetype } from "@/components/design-system/ArchetypeFigure";
 import { ArtboardCarousel } from "@/components/design-system/ArtboardCarousel";
 import { ArtboardFigure } from "@/components/design-system/ArtboardFigure";
 import { BrowserMockup } from "@/components/design-system/BrowserMockup";
-import { DotFlow } from "@/components/design-system/DotFlow";
 import { ProofStrip } from "@/components/design-system/ProofStrip";
 import { PullStatement } from "@/components/design-system/PullStatement";
 import {
@@ -41,8 +40,6 @@ export const metadata: Metadata = {
     "One platform where a goal runs down to the work: OKRs tied to initiatives, products, people and Jira, so planned allocation sits beside the work being done.",
   robots: caseStudyRobots,
 };
-
-const TRACE = ["Goal", "Initiative", "Product", "Person", "Jira epic", "Work"];
 
 /**
  * The two groups from the focus-group board of the design whiteboarding
@@ -255,9 +252,6 @@ export default function PortfolioManagementPage() {
               />
             </CaseStudyFigure>
           </div>
-          <CaseStudyFigure rule label="From a goal to the work">
-            <DotFlow stages={TRACE} />
-          </CaseStudyFigure>
         </CaseStudySection>
 
         <CaseStudySection id="who">
