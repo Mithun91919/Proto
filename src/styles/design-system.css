@@ -658,7 +658,7 @@
   overflow: hidden;
 }
 
-/* ── Callouts switch ─────────────────────────────────────────────────────
+/* ── Show notes switch ─────────────────────────────────────────────────────
    Takes every hotspot marker off the screen so the interface can be read
    as it shipped. One preference for the whole site (see AnnotationToggle).
    State is the thumb's position and the track's fill, not colour alone. */

@@ -1887,7 +1887,7 @@ export default function ComponentsPage() {
         </div>
 
         <div className="ds-rule py-11">
-          <SubLabel code="M4b · Callouts switch" />
+          <SubLabel code="M4b · Show notes switch" />
           <p className="mb-7 max-w-[68ch] text-[0.95rem] leading-7" style={{ color: "var(--ink-soft)" }}>
             Any figure that lays numbered markers over a screen carries a switch to take them off, so the
             interface can be read as it shipped. It is part of the component, not something a page adds:{" "}
