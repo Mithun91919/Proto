@@ -8,6 +8,7 @@ import { ArtboardFigure } from "@/components/design-system/ArtboardFigure";
 import { BrowserMockup } from "@/components/design-system/BrowserMockup";
 import { ProofStrip } from "@/components/design-system/ProofStrip";
 import { PullStatement } from "@/components/design-system/PullStatement";
+import { PlatformExplainer } from "@/components/design-system/PlatformExplainer";
 import { ConfidentialNote } from "@/components/design-system/ConfidentialNote";
 import {
   CaseStudyChapter,
@@ -193,6 +194,11 @@ export default function PortfolioManagementPage() {
       </div>
 
       <CaseStudyColumn>
+        <div className="pt-6 md:pt-10">
+          <CaseStudyFigure label="The case in twenty seconds">
+            <PlatformExplainer />
+          </CaseStudyFigure>
+        </div>
         <CaseStudySection id="pieces" boundary={false} className="pt-14 md:pt-20">
           <CaseStudyChapter
             layout="stacked"
