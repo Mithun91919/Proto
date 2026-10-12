@@ -187,10 +187,9 @@ export default function PortfolioManagementPage() {
           <PullStatement
             eyebrow="What is a portfolio"
             mark="connection"
-            note="Like a household budget for the year: who is in it, what is bought, and what it is meant to get done."
+            note="The people, products and initiatives it pays for, and the goals each one is meant to reach. Like a household budget for the year: who lives there, what gets bought, and what the money is meant to achieve."
           >
-            A portfolio is the people, products and initiatives an organisation spends on, and the
-            goals it spends them for.
+            A portfolio is what an organisation funds, and why.
           </PullStatement>
         </Reveal>
       </div>
