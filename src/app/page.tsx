@@ -68,7 +68,7 @@ export default function HomePage() {
       >
         <SectionHead
           eyebrow="Case studies"
-          title="Four projects, and what changed in each"
+          title="Selected work"
           action={{ href: "/work", label: "All work →" }}
         />
 
