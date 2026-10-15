@@ -51,7 +51,7 @@ const SCENES = [
   {
     title: "The result: 800+ hours a week reclaimed.",
     detail:
-      "6K+ monthly users, and $100K a year saved by retiring redundant licences. The hours are reported by the product managers.",
+      "6K+ monthly users, and $100K a year saved by retiring redundant licences, their average yearly cost. The hours are reported by the product managers.",
   },
 ];
 
