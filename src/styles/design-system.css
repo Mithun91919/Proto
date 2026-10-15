@@ -4735,7 +4735,7 @@ a:hover .ds-compact-mark .ds-dot {
 .ds-xp-text {
   position: relative;
   z-index: 1;
-  min-height: 9.5rem;
+  min-height: 10.5rem;
   padding: 1.5rem 2rem 0.5rem;
   border-top: 1px solid rgba(234, 243, 245, 0.12);
 }
@@ -4781,7 +4781,7 @@ a:hover .ds-compact-mark .ds-dot {
 .ds-xp-steps {
   display: flex;
   gap: 0.35rem;
-  width: 9rem;
+  width: 11rem;
 }
 
 .ds-xp-step {

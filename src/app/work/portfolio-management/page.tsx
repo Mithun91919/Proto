@@ -195,7 +195,7 @@ export default function PortfolioManagementPage() {
 
       <CaseStudyColumn>
         <div className="pt-6 md:pt-10">
-          <CaseStudyFigure label="The case in twenty seconds">
+          <CaseStudyFigure label="The case at a glance">
             <PlatformExplainer />
           </CaseStudyFigure>
         </div>
