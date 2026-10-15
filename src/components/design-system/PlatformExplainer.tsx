@@ -20,13 +20,29 @@ import { useCallback, useEffect, useRef, useState, useSyncExternalStore } from "
 const BEFORE = ["Who works on what", "Products and projects", "Initiatives and budgets", "Goals", "Work, in Jira"];
 const AFTER = ["People", "Product", "Initiative", "Portfolio", "Manager"];
 const CHAIN = ["Goal", "Initiative", "Product", "Person", "Jira epic", "Work"];
-const CAPTIONS = [
-  "Five places, each keeping its own copy.",
-  "One platform, five categories, one name for each thing.",
-  "A goal now links to the work behind it.",
-  "What changed",
+const SCENES = [
+  {
+    title: "The plan lived in five separate places.",
+    detail:
+      "Who works on what, products and projects, initiatives and budgets, goals, and the work in Jira each kept their own copy, under their own names.",
+  },
+  {
+    title: "One platform now holds all five, under common names.",
+    detail:
+      "People, Product, Initiative, Portfolio and Manager. Each thing has one record and one name, so a word means the same thing on every team.",
+  },
+  {
+    title: "A goal links to the work behind it.",
+    detail:
+      "A goal links to an initiative, an initiative to a product, a product to a person, and each product and initiative to the Jira epic its work is tagged to.",
+  },
+  {
+    title: "The result: 800+ hours a week reclaimed.",
+    detail:
+      "6K+ monthly users, and $100K a year saved by retiring redundant licences. The hours are reported by the product managers.",
+  },
 ];
-const CAP_AT = [0, 5800, 11800, 17600];
+const HUES = ["#5eead4", "#7dd3fc", "#fcd34d", "#fda4af", "#c4b5fd"];
 const END = 23000;
 
 /* A scene "begins" when its change starts and "rests" on its last frame.
@@ -73,7 +89,7 @@ function subscribeReduced(notify: () => void) {
   return () => mq.removeEventListener("change", notify);
 }
 
-type Palette = { accent: string; ink: string; soft: string; line: string; border: string; card: string; font: string };
+type Palette = { accent: string; ink: string; soft: string; border: string; card: string; solid: string; font: string };
 
 export function PlatformExplainer() {
   const wrap = useRef<HTMLDivElement>(null);
@@ -180,7 +196,7 @@ export function PlatformExplainer() {
       const dist = Math.hypot(x - hub[0], y - hub[1]);
       const shine = wave > 0 && wave < 1 ? Math.max(0, 1 - Math.abs(wave * 520 - dist) / 70) : 0;
       alpha *= (toLine > 0 ? lineFade : 1) * hideDots;
-      dot(x, y, clamp(alpha * (0.78 + 0.22 * shine)), R + shine * 1.2);
+      dot(x, y, clamp(alpha * (0.85 + 0.15 * shine)), R + shine * 1.2, HUES[k]);
     }
 
     /* ── labels and spokes of scene 1–2 ── */
@@ -196,7 +212,7 @@ export function PlatformExplainer() {
       const ly = cy + 2 * gap + 12;
       const appear = out(seg(t, 700 + k * 260, 1300 + k * 260));
       text(BEFORE[k], cx, ly, 12.5, pal.soft, appear * fadeBefore * placesAlpha);
-      text(AFTER[k], cx, ly, 13, pal.accent, showAfter * placesAlpha * (1 - seg(t, 16800, 17300)), 600);
+      text(AFTER[k], cx, ly, 13, HUES[k], showAfter * placesAlpha * (1 - seg(t, 16800, 17300)), 600);
     }
 
     // hub and spokes
@@ -212,8 +228,8 @@ export function PlatformExplainer() {
         const sy = hub[1] + Math.sin(ang) * (rr + 4);
         const ex = b0[0] - Math.cos(ang) * 46;
         const ey = b0[1] - Math.sin(ang) * 30;
-        ctx.globalAlpha = 0.5 * hubOut;
-        ctx.strokeStyle = pal.accent;
+        ctx.globalAlpha = 0.65 * hubOut;
+        ctx.strokeStyle = HUES[k];
         ctx.lineWidth = 1;
         ctx.setLineDash([1, 5]);
         ctx.lineCap = "round";
@@ -234,7 +250,7 @@ export function PlatformExplainer() {
         ctx.stroke();
       }
       ctx.globalAlpha = hubIn * hubOut;
-      ctx.fillStyle = pal.card;
+      ctx.fillStyle = pal.solid;
       ctx.strokeStyle = pal.accent;
       ctx.lineWidth = 1.5;
       ctx.beginPath();
@@ -276,7 +292,7 @@ export function PlatformExplainer() {
           }
         }
         ctx.globalAlpha = chainIn * chainOut;
-        ctx.fillStyle = ig ? pal.accent : pal.card;
+        ctx.fillStyle = ig ? pal.accent : pal.solid;
         ctx.strokeStyle = ig ? pal.accent : pal.border;
         ctx.lineWidth = 1.5;
         ctx.beginPath();
@@ -324,30 +340,32 @@ export function PlatformExplainer() {
           const ty = cy0;
           const mx = (sx + tx) / 2 + 20;
           const my = Math.min(sy, ty) - 70 - c * 14;
-          dot(quad(sx, mx, tx, e), quad(sy, my, ty, e), 0.9 * (1 - q / 11), 4 - q * 0.25);
+          dot(quad(sx, mx, tx, e), quad(sy, my, ty, e), 0.9 * (1 - q / 11), 4 - q * 0.25, HUES[c]);
         }
       }
       const show = out(seg(t, land - 150, land + 600));
       if (show > 0) {
         const rise = (1 - show) * 12;
         ctx.globalAlpha = show;
-        ctx.fillStyle = pal.card;
-        ctx.strokeStyle = pal.border;
+        ctx.fillStyle = pal.solid;
+        ctx.strokeStyle = HUES[c];
         ctx.lineWidth = 1;
         const rx = cxm - cardW / 2;
         const ry = cy0 - cardH / 2 + rise;
         ctx.beginPath();
         ctx.roundRect(rx, ry, cardW, cardH, 12);
         ctx.fill();
+        ctx.fillStyle = pal.card;
+        ctx.fill();
         ctx.stroke();
         const cnt = out(seg(t, land, land + 1400));
-        text(m.fmt(Math.round(m.to * cnt)), cxm, ry + 36, 28, pal.ink, show, 500);
+        text(m.fmt(Math.round(m.to * cnt)), cxm, ry + 36, 28, HUES[c], show, 600);
         text(m.label, cxm, ry + 68, 13, pal.soft, show);
         // a settle ripple on arrival
         const rp = seg(t, land, land + 700);
         if (rp > 0 && rp < 1) {
           ctx.globalAlpha = 0.4 * (1 - rp);
-          ctx.strokeStyle = pal.accent;
+          ctx.strokeStyle = HUES[c];
           ctx.lineWidth = 1.5;
           ctx.beginPath();
           ctx.roundRect(rx - rp * 8, ry - rp * 8, cardW + rp * 16, cardH + rp * 16, 12 + rp * 6);
@@ -356,12 +374,6 @@ export function PlatformExplainer() {
       }
     });
 
-    /* ── caption ── */
-    let ci = 0;
-    for (let c = 0; c < CAP_AT.length; c++) if (t >= CAP_AT[c]) ci = c;
-    const into = seg(t, CAP_AT[ci], CAP_AT[ci] + 450);
-    const next = ci < CAP_AT.length - 1 ? 1 - seg(t, CAP_AT[ci + 1] - 350, CAP_AT[ci + 1]) : 1;
-    text(CAPTIONS[ci], W / 2, H - 28, 15.5, pal.ink, into * next, 600);
     ctx.globalAlpha = 1;
   }, []);
 
@@ -425,12 +437,12 @@ export function PlatformExplainer() {
     const cs = getComputedStyle(el);
     const get = (name: string, fallback: string) => cs.getPropertyValue(name).trim() || fallback;
     palette.current = {
-      accent: get("--ds-accent-deep", "#155e75"),
-      ink: get("--ink", "#0c171c"),
-      soft: get("--ink-soft", "#243942"),
-      line: get("--line", "#cbd5da"),
-      border: get("--ds-solid-border", "#d5dde0"),
-      card: "#ffffff",
+      accent: get("--ds-mint", "#5eead4"),
+      ink: get("--ds-dark-ink", "#eaf3f5"),
+      soft: get("--ds-dark-muted", "#8fb3bc"),
+      border: "rgba(234, 243, 245, 0.22)",
+      card: "rgba(234, 243, 245, 0.06)",
+      solid: get("--ds-dark", "#0c1f26"),
       font: cs.fontFamily || "sans-serif",
     };
     if (reduced) {
@@ -462,11 +474,7 @@ export function PlatformExplainer() {
   const atEnd = reduced || done;
 
   return (
-    <div ref={wrap} className="ds-xp">
-      <p className="ds-xp-lead">
-        Five tools that each kept their own copy of the plan became one platform, where a goal now links to the
-        work behind it.
-      </p>
+    <div ref={wrap} className="ds-xp ds-env-dark">
       <div className="ds-xp-stage">
         <canvas
           ref={canvas}
@@ -501,22 +509,30 @@ export function PlatformExplainer() {
           </>
         ) : null}
       </div>
+
+      <div className="ds-xp-text" aria-live="polite">
+        <p className="ds-xp-eyebrow">Scene {current + 1} of 4</p>
+        <p className="ds-xp-title" key={`t${current}`}>
+          {SCENES[current].title}
+        </p>
+        <p className="ds-xp-detail" key={`d${current}`}>
+          {SCENES[current].detail}
+        </p>
+      </div>
+
       <div className="ds-xp-foot">
         <span className="ds-xp-steps">
-          {CAPTIONS.map((c, i) => (
+          {SCENES.map((sc, i) => (
             <button
-              key={c}
+              key={sc.title}
               type="button"
               className={`ds-xp-step${current > i || atEnd ? " is-done" : current === i ? " is-cur" : ""}`}
-              aria-label={`Scene ${i + 1}: ${c}`}
+              aria-label={`Scene ${i + 1}: ${sc.title}`}
               aria-current={current === i ? "step" : undefined}
               disabled={reduced || !started}
               onClick={() => goTo(i)}
             />
           ))}
-        </span>
-        <span className="ds-note">
-          Hours are reported by the product managers. Savings come from retiring redundant licences.
         </span>
         {!reduced ? (
           <button type="button" className="ds-xp-replay" onClick={play} disabled={!started}>

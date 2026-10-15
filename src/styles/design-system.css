@@ -4669,16 +4669,24 @@ a:hover .ds-compact-mark .ds-dot {
 }
 
 /* ── Platform explainer ───────────────────────────────────────────────
-   A twenty-second film drawn on one canvas, played once as it arrives.
-   Nothing loops; Replay is the reader's. */
-.ds-xp-lead {
-  max-width: 46rem;
-  margin: 0 0 1.25rem;
-  font-size: 1.2rem;
-  font-weight: 600;
-  line-height: 1.45;
-  color: var(--ink);
-  text-wrap: pretty;
+   A twenty-second film on the dark accent ground, drawn on one canvas and
+   played once as it arrives. The words for each scene sit below it, so the
+   picture always has its explanation. Nothing loops; Replay is the
+   reader's. */
+.ds-xp {
+  border-radius: var(--radius-lg);
+}
+
+.ds-xp-stage {
+  position: relative;
+  z-index: 1;
+  height: 21.5rem;
+}
+
+.ds-xp-canvas {
+  display: block;
+  width: 100%;
+  height: 100%;
 }
 
 .ds-xp-arrow {
@@ -4690,9 +4698,9 @@ a:hover .ds-compact-mark .ds-dot {
   width: 2.25rem;
   height: 2.25rem;
   margin-top: -1.125rem;
-  color: var(--ink);
-  background: #fff;
-  border: 1px solid var(--ds-solid-border);
+  color: var(--ds-dark-ink);
+  background: var(--ds-dark);
+  border: 1px solid rgba(234, 243, 245, 0.28);
   border-radius: 50%;
   cursor: pointer;
   transition:
@@ -4701,60 +4709,79 @@ a:hover .ds-compact-mark .ds-dot {
 }
 
 .ds-xp-arrow.is-prev {
-  left: 0.75rem;
+  left: 0.9rem;
 }
 
 .ds-xp-arrow.is-next {
-  right: 0.75rem;
+  right: 0.9rem;
 }
 
 .ds-xp-arrow:hover:not(:disabled) {
-  border-color: var(--ds-accent-deep);
+  border-color: var(--ds-mint);
 }
 
 .ds-xp-arrow:disabled {
-  opacity: 0.35;
+  opacity: 0.3;
   cursor: default;
 }
 
 .ds-xp-arrow:focus-visible,
 .ds-xp-step:focus-visible,
 .ds-xp-replay:focus-visible {
-  outline: 2px solid var(--ds-accent-deep);
+  outline: 2px solid var(--ds-mint);
   outline-offset: 2px;
 }
 
-.ds-xp-stage {
+.ds-xp-text {
   position: relative;
-  height: 24rem;
-  overflow: hidden;
-  border: 1px solid var(--ds-solid-border);
-  border-radius: var(--radius-lg);
-  background: var(--ds-solid-bg);
+  z-index: 1;
+  min-height: 9.5rem;
+  padding: 1.5rem 2rem 0.5rem;
+  border-top: 1px solid rgba(234, 243, 245, 0.12);
 }
 
-.ds-xp-canvas {
-  display: block;
-  width: 100%;
-  height: 100%;
+.ds-xp-eyebrow {
+  margin: 0 0 0.6rem;
+  font-family: var(--font-mono, ui-monospace, monospace);
+  font-size: 0.68rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ds-mint);
+}
+
+.ds-xp-title {
+  max-width: 44rem;
+  margin: 0;
+  font-size: 1.3rem;
+  font-weight: 600;
+  line-height: 1.35;
+  color: var(--ds-dark-ink);
+  animation: ds-rise-in 520ms var(--ease-out) backwards;
+}
+
+.ds-xp-detail {
+  max-width: 44rem;
+  margin: 0.5rem 0 0;
+  font-size: 1.02rem;
+  line-height: 1.6;
+  color: var(--ds-dark-muted);
+  animation: ds-rise-in 520ms var(--ease-out) 80ms backwards;
 }
 
 .ds-xp-foot {
+  position: relative;
+  z-index: 1;
   display: flex;
   align-items: center;
+  justify-content: space-between;
   gap: 1.25rem;
-  margin-top: 0.9rem;
-}
-
-.ds-xp-foot .ds-note {
-  flex: 1;
-  margin: 0;
+  padding: 0.5rem 2rem 1.4rem;
 }
 
 .ds-xp-steps {
   display: flex;
-  gap: 0.3rem;
-  width: 7rem;
+  gap: 0.35rem;
+  width: 9rem;
 }
 
 .ds-xp-step {
@@ -4776,12 +4803,12 @@ a:hover .ds-compact-mark .ds-dot {
   height: 3px;
   margin-top: -1.5px;
   border-radius: 2px;
-  background: var(--line);
+  background: rgba(234, 243, 245, 0.2);
 }
 
 .ds-xp-step.is-cur::before,
 .ds-xp-step.is-done::before {
-  background: var(--ds-accent-deep);
+  background: var(--ds-mint);
 }
 
 .ds-xp-step:disabled {
@@ -4792,14 +4819,21 @@ a:hover .ds-compact-mark .ds-dot {
   font: inherit;
   font-size: 0.86rem;
   font-weight: 600;
-  color: var(--ink);
+  color: var(--ds-dark-ink);
   background: none;
-  border: 1px solid var(--ds-solid-border);
+  border: 1px solid rgba(234, 243, 245, 0.28);
   border-radius: 999px;
   padding: 0.35rem 0.9rem;
   cursor: pointer;
 }
 
 .ds-xp-replay:hover:not(:disabled) {
-  border-color: var(--ds-accent-deep);
+  border-color: var(--ds-mint);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ds-xp-title,
+  .ds-xp-detail {
+    animation: none;
+  }
 }
