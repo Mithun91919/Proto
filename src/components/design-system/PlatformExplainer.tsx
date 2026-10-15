@@ -29,8 +29,21 @@ const CAPTIONS = [
 const CAP_AT = [0, 5800, 11800, 17600];
 const END = 23000;
 
-/* where each scene begins, for the progress marks */
-const SCENE_AT = [0, 5200, 11000, 17000];
+/* A scene "begins" when its change starts and "rests" on its last frame.
+   The arrows play a scene from its beginning to its rest, then wait. */
+const BEGIN_AT = [0, 5200, 11000, 16200];
+const REST_AT = [5200, 10900, 16200, END];
+
+/* On the auto-play the platform holds still for a beat once its wave has
+   passed, so the picture can be read before the film moves on. */
+const HOLD_AT = 10600;
+const HOLD_MS = 2200;
+
+const sceneAt = (t: number) => {
+  let s = 0;
+  for (let i = 1; i < BEGIN_AT.length; i++) if (t > BEGIN_AT[i]) s = i;
+  return s;
+};
 
 const SPREAD: [number, number][] = [[0.12, 0.6], [0.3, 0.3], [0.5, 0.64], [0.7, 0.32], [0.88, 0.58]];
 const RING: [number, number][] = [[0.5, 0.17], [0.2, 0.46], [0.8, 0.46], [0.3, 0.76], [0.7, 0.76]];
@@ -69,6 +82,7 @@ export function PlatformExplainer() {
   const raf = useRef(0);
   const [scene, setScene] = useState(0);
   const [done, setDone] = useState(false);
+  const [playing, setPlaying] = useState(false);
   const [started, setStarted] = useState(false);
   const reduced = useSyncExternalStore(
     subscribeReduced,
@@ -189,7 +203,7 @@ export function PlatformExplainer() {
     const hubIn = out(seg(t, 6300, 7200));
     const hubOut = 1 - seg(t, 11000, 11800);
     if (hubIn > 0 && hubOut > 0) {
-      const rr = 40 * (0.6 + 0.4 * hubIn);
+      const rr = 46 * (0.6 + 0.4 * hubIn);
       for (let k = 0; k < 5; k++) {
         const b0 = px(RING[k]);
         const ang = Math.atan2(b0[1] - hub[1], b0[0] - hub[0]);
@@ -257,7 +271,7 @@ export function PlatformExplainer() {
             ctx.strokeStyle = pal.accent;
             ctx.lineWidth = 1.5;
             ctx.beginPath();
-            ctx.arc(nx, lineY, 8 + rp * 22, 0, Math.PI * 2);
+            ctx.arc(nx, lineY, 9 + rp * 38, 0, Math.PI * 2);
             ctx.stroke();
           }
         }
@@ -273,12 +287,19 @@ export function PlatformExplainer() {
       }
       // the pulse and its trail
       if (t > 12700 && t < 17400) {
-        for (let q = 0; q < 12; q++) {
-          const back = q * 9;
+        for (let q = 0; q < 16; q++) {
+          const back = q * 10;
           const tx = pulseX - back;
           if (tx < x0) continue;
-          dot(tx, lineY, (1 - q / 12) * 0.9 * chainOut, 5 - q * 0.3);
+          dot(tx, lineY, (1 - q / 16) * 0.95 * chainOut, 7 - q * 0.35);
         }
+        // a halo on the head of the pulse
+        ctx.globalAlpha = 0.28 * chainOut;
+        ctx.strokeStyle = pal.accent;
+        ctx.lineWidth = 1.5;
+        ctx.beginPath();
+        ctx.arc(pulseX, lineY, 13, 0, Math.PI * 2);
+        ctx.stroke();
       }
     }
 
@@ -340,25 +361,62 @@ export function PlatformExplainer() {
     for (let c = 0; c < CAP_AT.length; c++) if (t >= CAP_AT[c]) ci = c;
     const into = seg(t, CAP_AT[ci], CAP_AT[ci] + 450);
     const next = ci < CAP_AT.length - 1 ? 1 - seg(t, CAP_AT[ci + 1] - 350, CAP_AT[ci + 1]) : 1;
-    text(CAPTIONS[ci], W / 2, H - 28, 15, pal.soft, into * next);
+    text(CAPTIONS[ci], W / 2, H - 28, 15.5, pal.ink, into * next, 600);
     ctx.globalAlpha = 1;
   }, []);
 
-  const play = useCallback(() => {
-    window.cancelAnimationFrame(raf.current);
-    setDone(false);
-    const start = performance.now();
-    const tick = (now: number) => {
-      const t = Math.min(END, now - start);
+  const tNow = useRef(0);
+
+  /* Plays internal time from `from` to `to`, then waits. `hold` adds the
+     pause on the platform, for the auto-play only. */
+  const run = useCallback(
+    (from: number, to: number, hold = false) => {
+      window.cancelAnimationFrame(raf.current);
+      setDone(false);
+      setPlaying(true);
+      const start = performance.now();
+      const tick = (now: number) => {
+        let t = from + (now - start);
+        if (hold && from < HOLD_AT && t > HOLD_AT) t = t - HOLD_AT < HOLD_MS ? HOLD_AT : t - HOLD_MS;
+        t = Math.min(to, t);
+        tNow.current = t;
+        draw(t);
+        setScene(sceneAt(t));
+        if (t < to) {
+          raf.current = window.requestAnimationFrame(tick);
+        } else {
+          setPlaying(false);
+          setDone(to >= END);
+        }
+      };
+      raf.current = window.requestAnimationFrame(tick);
+    },
+    [draw],
+  );
+
+  const seek = useCallback(
+    (t: number) => {
+      window.cancelAnimationFrame(raf.current);
+      setPlaying(false);
+      tNow.current = t;
       draw(t);
-      let s = 0;
-      for (let i = 0; i < SCENE_AT.length; i++) if (t >= SCENE_AT[i]) s = i;
-      setScene(s);
-      if (t < END) raf.current = window.requestAnimationFrame(tick);
-      else setDone(true);
-    };
-    raf.current = window.requestAnimationFrame(tick);
-  }, [draw]);
+      setScene(sceneAt(t));
+      setDone(t >= END);
+    },
+    [draw],
+  );
+
+  const play = useCallback(() => run(0, END, true), [run]);
+
+  const goTo = useCallback(
+    (target: number) => {
+      if (target < 0 || target > 3) return;
+      const current = sceneAt(tNow.current);
+      if (target === current + 1 || (target === current && playing)) run(BEGIN_AT[target], REST_AT[target]);
+      else seek(REST_AT[target]);
+    },
+    [run, seek, playing],
+  );
 
   // colours come from the page's own tokens, read once the stage is mounted
   useEffect(() => {
@@ -376,6 +434,7 @@ export function PlatformExplainer() {
       font: cs.fontFamily || "sans-serif",
     };
     if (reduced) {
+      tNow.current = END;
       draw(END);
       return;
     }
@@ -390,22 +449,24 @@ export function PlatformExplainer() {
       { threshold: 0.6 },
     );
     io.observe(el);
-    const ro = new ResizeObserver(() => {
-      if (!raf.current || done) draw(done ? END : 0);
-    });
+    const ro = new ResizeObserver(() => draw(tNow.current));
     ro.observe(el);
     return () => {
       io.disconnect();
       ro.disconnect();
       window.cancelAnimationFrame(raf.current);
     };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [reduced, draw, play]);
 
-  const lastScene = reduced ? 3 : scene;
+  const current = reduced ? 3 : scene;
+  const atEnd = reduced || done;
 
   return (
     <div ref={wrap} className="ds-xp">
+      <p className="ds-xp-lead">
+        Five tools that each kept their own copy of the plan became one platform, where a goal now links to the
+        work behind it.
+      </p>
       <div className="ds-xp-stage">
         <canvas
           ref={canvas}
@@ -413,11 +474,45 @@ export function PlatformExplainer() {
           role="img"
           aria-label="Animated explainer: five separate places become one platform of five categories. A pulse then carries a goal through initiative, product, person and Jira epic to the work. The results are 800+ hours reclaimed every week, 6K+ monthly users and $100K saved a year on licences."
         />
+        {!reduced ? (
+          <>
+            <button
+              type="button"
+              className="ds-xp-arrow is-prev"
+              aria-label="Previous scene"
+              disabled={!started || current === 0}
+              onClick={() => goTo(current - 1)}
+            >
+              <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden>
+                <path d="M15 5l-7 7 7 7" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+              </svg>
+            </button>
+            <button
+              type="button"
+              className="ds-xp-arrow is-next"
+              aria-label="Next scene"
+              disabled={!started || current === 3}
+              onClick={() => goTo(current + 1)}
+            >
+              <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden>
+                <path d="M9 5l7 7-7 7" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+              </svg>
+            </button>
+          </>
+        ) : null}
       </div>
       <div className="ds-xp-foot">
-        <span className="ds-xp-steps" aria-hidden>
-          {CAPTIONS.map((_, i) => (
-            <i key={i} className={lastScene > i || done || reduced ? "is-done" : lastScene === i ? "is-cur" : ""} />
+        <span className="ds-xp-steps">
+          {CAPTIONS.map((c, i) => (
+            <button
+              key={c}
+              type="button"
+              className={`ds-xp-step${current > i || atEnd ? " is-done" : current === i ? " is-cur" : ""}`}
+              aria-label={`Scene ${i + 1}: ${c}`}
+              aria-current={current === i ? "step" : undefined}
+              disabled={reduced || !started}
+              onClick={() => goTo(i)}
+            />
           ))}
         </span>
         <span className="ds-note">

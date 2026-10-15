@@ -4671,6 +4671,59 @@ a:hover .ds-compact-mark .ds-dot {
 /* ── Platform explainer ───────────────────────────────────────────────
    A twenty-second film drawn on one canvas, played once as it arrives.
    Nothing loops; Replay is the reader's. */
+.ds-xp-lead {
+  max-width: 46rem;
+  margin: 0 0 1.25rem;
+  font-size: 1.2rem;
+  font-weight: 600;
+  line-height: 1.45;
+  color: var(--ink);
+  text-wrap: pretty;
+}
+
+.ds-xp-arrow {
+  position: absolute;
+  top: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.25rem;
+  height: 2.25rem;
+  margin-top: -1.125rem;
+  color: var(--ink);
+  background: #fff;
+  border: 1px solid var(--ds-solid-border);
+  border-radius: 50%;
+  cursor: pointer;
+  transition:
+    border-color 200ms,
+    opacity 200ms;
+}
+
+.ds-xp-arrow.is-prev {
+  left: 0.75rem;
+}
+
+.ds-xp-arrow.is-next {
+  right: 0.75rem;
+}
+
+.ds-xp-arrow:hover:not(:disabled) {
+  border-color: var(--ds-accent-deep);
+}
+
+.ds-xp-arrow:disabled {
+  opacity: 0.35;
+  cursor: default;
+}
+
+.ds-xp-arrow:focus-visible,
+.ds-xp-step:focus-visible,
+.ds-xp-replay:focus-visible {
+  outline: 2px solid var(--ds-accent-deep);
+  outline-offset: 2px;
+}
+
 .ds-xp-stage {
   position: relative;
   height: 24rem;
@@ -4704,16 +4757,35 @@ a:hover .ds-compact-mark .ds-dot {
   width: 7rem;
 }
 
-.ds-xp-steps i {
+.ds-xp-step {
   flex: 1;
+  height: 0.9rem;
+  padding: 0;
+  border: 0;
+  background: none;
+  cursor: pointer;
+  position: relative;
+}
+
+.ds-xp-step::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 50%;
   height: 3px;
+  margin-top: -1.5px;
   border-radius: 2px;
   background: var(--line);
 }
 
-.ds-xp-steps i.is-cur,
-.ds-xp-steps i.is-done {
+.ds-xp-step.is-cur::before,
+.ds-xp-step.is-done::before {
   background: var(--ds-accent-deep);
+}
+
+.ds-xp-step:disabled {
+  cursor: default;
 }
 
 .ds-xp-replay {
