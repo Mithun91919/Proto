@@ -51,7 +51,7 @@ const SCENES = [
   {
     title: "The result: 800+ hours a week reclaimed.",
     detail:
-      "6K+ monthly users, and $100K a year saved by retiring redundant licences, their average yearly cost. The hours are reported by the product managers.",
+      "6K+ monthly users, and $100K* a year saved by retiring redundant licences. *Average yearly cost. The hours are reported by the product managers.",
   },
 ];
 
@@ -77,7 +77,7 @@ const N = PER * 5;
 const METRICS = [
   { to: 800, fmt: (n: number) => `${n}+ hrs`, label: "reclaimed every week" },
   { to: 6, fmt: (n: number) => `${n}K+`, label: "monthly users" },
-  { to: 100, fmt: (n: number) => `$${n}K`, label: "saved a year on licences" },
+  { to: 100, fmt: (n: number) => `$${n}K*`, label: "average yearly licence cost saved" },
 ];
 
 const clamp = (v: number, a = 0, b = 1) => Math.min(b, Math.max(a, v));
@@ -589,7 +589,7 @@ export function PlatformExplainer() {
           ref={canvas}
           className="ds-xp-canvas"
           role="img"
-          aria-label="Animated explainer: plan and work were kept apart in four external tools, each with a licence. Pfolio replaced them with one platform of People, Product, Initiative and Portfolio, with Jira feeding in actual headcount. People, work, initiatives and goals are linked, and decisions are documented in Manager. The results are 800+ hours reclaimed every week, 6K+ monthly users and $100K saved a year on licences."
+          aria-label="Animated explainer: plan and work were kept apart in four external tools, each with a licence. Pfolio replaced them with one platform of People, Product, Initiative and Portfolio, with Jira feeding in actual headcount. People, work, initiatives and goals are linked, and decisions are documented in Manager. The results are 800+ hours reclaimed every week, 6K+ monthly users and $100K average yearly licence cost saved."
         />
         {!reduced ? (
           <>

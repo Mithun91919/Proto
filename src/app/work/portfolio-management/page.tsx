@@ -100,7 +100,7 @@ export default function PortfolioManagementPage() {
   return (
     <CaseStudyShell
       slug="portfolio-management"
-      evidenceCaveat="Hours are reported by the product managers. The $100K is the average yearly cost of the redundant licences retired."
+      evidenceCaveat="Hours are reported by the product managers. *Average yearly cost saved by retiring redundant licences."
       evidenceMetricsLabel="The impact"
       evidence={[
         {
@@ -160,7 +160,7 @@ export default function PortfolioManagementPage() {
             route: "/product",
           },
           {
-            src: "/work/portfolio-management/okr-management.png",
+            src: "/work/portfolio-management/okr-management-v2.png",
             width: 3456,
             height: 3088,
             alt: "The Portfolio page: strategic pillars across the top and a table of objectives with planned and actual headcount",
@@ -509,7 +509,7 @@ export default function PortfolioManagementPage() {
                 {
                   title: "Goals and requests on one page",
                   route: "/portfolio/okr",
-                  src: "/work/portfolio-management/okr-management.png",
+                  src: "/work/portfolio-management/okr-management-v2.png",
                   width: 3456,
                   height: 3088,
                   alt: "The Portfolio page at OKR Management: directors to choose from, strategic pillars as cards, status counts, and objectives with planned and actual headcount",
@@ -539,7 +539,7 @@ export default function PortfolioManagementPage() {
                 {
                   title: "The health of every goal, in one view",
                   route: "/portfolio/kpi",
-                  src: "/work/portfolio-management/kpi-management.png",
+                  src: "/work/portfolio-management/kpi-management-v2.png",
                   width: 3456,
                   height: 3504,
                   alt: "The KPI view of the Portfolio page: goals health as a ring, a bar of health for each director, goals by owner, and a table of goals with linked initiatives and products",
@@ -617,7 +617,7 @@ export default function PortfolioManagementPage() {
             heading="800+ hours a week stopped going on reconciliation"
             body={[
               "The platform reached more than 6K monthly users and replaced four external tools with one platform, so the plan and the work sit on one shared set of records.",
-              "That ended the manual reconciliation and the copying of data between tools. The product managers report 800+ hours a week reclaimed, and over 3,500 days of manual effort were eliminated in 2025. Retiring redundant licences saves $100K a year, their average yearly cost, and support tickets fell by a sustained 50% once changes no longer needed one.",
+              "That ended the manual reconciliation and the copying of data between tools. The product managers report 800+ hours a week reclaimed, and over 3,500 days of manual effort were eliminated in 2025. Retiring redundant licences saves $100K a year on average, and support tickets fell by a sustained 50% once changes no longer needed one.",
               "If I did it again I would go further on personalisation. It is one platform for everyone today: it knows who someone is from their sign-in and shows what is relevant to them, and it could be customised much more.",
             ]}
           />
@@ -626,7 +626,7 @@ export default function PortfolioManagementPage() {
               items={[
                 { value: "800+ hrs", label: "reclaimed every week", glyph: "field" },
                 { value: "3,500+ days", label: "of manual effort eliminated in 2025", glyph: "layers" },
-                { value: "$100K", label: "saved a year on redundant licences", glyph: "drop" },
+                { value: "$100K", label: "average yearly licence cost saved", glyph: "drop" },
                 { value: "50%", label: "fewer support tickets", glyph: "bars" },
               ]}
             />

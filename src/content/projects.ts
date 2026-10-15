@@ -76,11 +76,11 @@ export const projects: Project[] = [
     summary:
       "Four external tools and Jira kept the plan and the work apart. I was the only designer, from first idea to release, on the one platform that replaced the four and links a goal to the work behind it, in everyday words.",
     outcome:
-      "6K+ monthly users · 800+ hrs a week reclaimed · $100K saved a year",
+      "6K+ monthly users · 800+ hrs a week reclaimed · $100K average yearly licence cost saved",
     metrics: [
       { value: "6K+", label: "monthly users" },
       { value: "800+ hrs", label: "reclaimed every week", glyph: "field" },
-      { value: "$100K", label: "saved a year on licences", glyph: "drop" },
+      { value: "$100K*", label: "average yearly licence cost saved", glyph: "drop" },
     ],
     org: "Walmart Global Tech",
     domain: "Enterprise",
