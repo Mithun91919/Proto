@@ -121,7 +121,7 @@ export default function PortfolioManagementPage() {
             </>
           ),
           detail:
-            "A goal connects to an initiative, a product and a person, then to the Jira epic (the group of tickets) the work is tagged to. Planned headcount sits beside the effort logged in Jira, so a blocked team shows up.",
+            "Pfolio replaced four external tools with one platform. A goal connects to an initiative, a product and a person, then to the Jira epic (the group of tickets) the work is tagged to. Planned headcount sits beside actual headcount from Jira, so a blocked team shows up.",
         },
         {
           label: "What I did",
@@ -211,7 +211,7 @@ export default function PortfolioManagementPage() {
             }}
             body={[
               "I ran the sessions that plotted the stages of a portfolio's work as it happens today: who does what at each, where it hurts, and what to solve first.",
-              "A portfolio's work is one lifecycle: people become aware of a need, brainstorm, plan, execute, assess, close out and troubleshoot. The map showed every stage living somewhere different. Who works on what was in one place, products and projects in another, initiatives and their budgets in a third, goals in a fourth, and the work in Jira.",
+              "A portfolio's work is one lifecycle: people become aware of a need, brainstorm, plan, execute, assess, close out and troubleshoot. The map showed every stage living somewhere different. Who works on what was in one place, products and projects in another, initiatives and their budgets in a third, goals in a fourth, and the work in Jira. Four of the five were external tools, each with its own licence.",
               "Each place kept its own copy under its own names: the same product could be a product in one tool and a project in Jira, titled differently in each. Nothing joined them, so people did, by hand.",
               "No stage won. Each was someone's problem, so the sessions did not pick one to fix first. They pointed to a system that joins the stages up, not one that fixes each on its own.",
             ]}
@@ -567,7 +567,7 @@ export default function PortfolioManagementPage() {
             }}
             body={[
               "Any change meant raising a ticket for a backend team to make. The person asking could not see where it stood, and approvals ran across email, Slack and in-person conversations.",
-              "Manager is where those requests are now made and approved: product, initiative, application and pillar requests, each with its own approval status. Changes are made directly in the platform and approvals are part of it, so the decision and the action sit together.",
+              "Manager is where those requests are now made and approved: product, initiative, application and pillar requests, each with its own approval status. Changes are made directly in the platform and approvals are part of it, so the decision and the action sit together, and every decision is documented.",
             ]}
           />
           <CaseStudyFigure>
@@ -616,7 +616,7 @@ export default function PortfolioManagementPage() {
             eyebrow="What changed"
             heading="800+ hours a week stopped going on reconciliation"
             body={[
-              "The platform reached more than 6K monthly users and put six areas on one shared set of data, where each tool had kept its own copy.",
+              "The platform reached more than 6K monthly users and replaced four external tools with one platform, so the plan and the work sit on one shared set of records.",
               "That ended the manual reconciliation and the copying of data between tools. The product managers report 800+ hours a week reclaimed, and over 3,500 days of manual effort were eliminated in 2025. Retiring redundant licences saves $100K a year, and support tickets fell by a sustained 50% once changes no longer needed one.",
               "If I did it again I would go further on personalisation. It is one platform for everyone today: it knows who someone is from their sign-in and shows what is relevant to them, and it could be customised much more.",
             ]}
