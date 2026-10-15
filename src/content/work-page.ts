@@ -145,7 +145,7 @@ export const earlierWork: EarlierWorkEntry[] = [
   {
     number: "09",
     org: "Movie Ticket Booking",
-    body: "From picking a film to paying for it.",
+    body: "An end-to-end booking app, built on Hike Messenger.",
     tags: ["HIKE", "Mobile", "Product Design"],
     image: "/work/hike-movie-tickets/Movie_Banner_2.jpg",
     slug: "hike-movie-tickets",

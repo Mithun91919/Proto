@@ -30,18 +30,19 @@ import {
  */
 
 export const metadata: Metadata = {
-  title: "Movie Ticket Booking — Turning intent into one continuous transaction",
+  title: "Movie Ticket Booking — An end-to-end booking app built on Hike Messenger",
   description:
-    "An aggregator ticketing experience inside Hike Messenger, connecting cinema ticketing services with Hike Wallet payments.",  robots: caseStudyRobots,
+    "An end-to-end movie ticket booking app built on Hike Messenger: showtimes, seats, Hike Wallet payment and the ticket, in one place.",
+  robots: caseStudyRobots,
 };
 
-/** The journey the draft names, in the order it names it. */
-const BOOKING_FLOW = ["Movie in mind", "Theatre", "Showtime", "Seats", "Payment"];
+/** The booking, from the first decision to the ticket. */
+const BOOKING_FLOW = ["Movie in mind", "Theatre", "Showtime", "Seats", "Payment", "Ticket"];
 
 const CHAPTERS = [
-  { id: "intent", label: "Arriving ready" },
-  { id: "one-flow", label: "One flow" },
-  { id: "wallet", label: "Wallet" },
+  { id: "intent", label: "Research" },
+  { id: "one-flow", label: "The booking" },
+  { id: "wallet", label: "Payment" },
   { id: "reflection", label: "Reflection" },
 ];
 
@@ -64,21 +65,21 @@ export default function MovieTicketsPage() {
           label: "The task",
           lead: (
             <>
-              Close the gap between <span className="ds-accent-text">deciding and paying</span>.
+              Build the booking <span className="ds-accent-text">end to end</span>.
             </>
           ),
           detail:
-            "The design problem was less about encouraging browsing and more about removing friction between the moment someone decides and the moment they pay. It sat inside Hike Messenger, which had almost 100 million monthly active users in India in 2017 (TelecomTalk, July 2017).",
+            "Everything from choosing a theatre to holding the ticket had to work inside Hike Messenger, which had almost 100 million monthly active users in India in 2017 (TelecomTalk, July 2017). The design problem was less about browsing and more about removing friction between deciding and paying.",
         },
         {
           label: "What I did",
           lead: (
             <>
-              I made booking <span className="ds-accent-text">one continuous transaction</span>.
+              I designed the booking <span className="ds-accent-text">from first screen to ticket</span>.
             </>
           ),
           detail:
-            "I put showtime, seat and wallet payment in a single flow, rather than handing off between a ticketing service and a payment one. It shipped as a microservice inside Hike Messenger.",
+            "I put theatre, showtime, seat and wallet payment in one flow, instead of handing off between a ticketing service and a payment one. It shipped as a microservice inside Hike Messenger.",
         },
       ]}
       chapters={CHAPTERS}
@@ -87,10 +88,10 @@ export default function MovieTicketsPage() {
         src: "/work/hike-movie-tickets/Movie_Banner_2.jpg",
         alt: "The Hike movie ticketing experience over a wall of film posters: a browse screen listing showings in Bengaluru beside a booked ticket with its QR code",
         standfirst:
-          "Cinema ticketing inside Hike Messenger, connected to Hike Wallet so choosing a seat and paying for it happened in one place.",
+          "People could find a film, pick a theatre, showtime and seats, pay from Hike Wallet and get the ticket without leaving Hike Messenger.",
         headline: (
           <>
-            Movie Ticket Booking: from picking a film to paying, <span style={{ color: "var(--ds-mint)" }}>one continuous transaction</span>.
+            Movie Ticket Booking: <span style={{ color: "var(--ds-mint)" }}>an end-to-end booking app</span>, built on Hike Messenger.
           </>
         ),
         meta: [
@@ -121,7 +122,7 @@ export default function MovieTicketsPage() {
           />
           {/* The draft's own placeholder asks for this chain, not a screenshot —
               so it reconstructs in the dot language rather than being omitted. */}
-          <CaseStudyFigure rule label="The path from picking a film to paying">
+          <CaseStudyFigure rule label="The booking, start to finish">
             <DotFlow stages={BOOKING_FLOW} />
           </CaseStudyFigure>
         </CaseStudySection>
@@ -129,10 +130,10 @@ export default function MovieTicketsPage() {
         <CaseStudySection id="one-flow">
           <CaseStudyChapter
             eyebrow="The integration"
-            heading="Multiple systems needed to feel like one flow"
+            heading="Ticketing, seats and payment worked as one app"
             body={[
-              "The experience brought together ticketing through Just Tickets and INOX APIs, seat selection, and payment while presenting the journey as one coherent product inside Hike.",
-              "The design focused on making each transition feel expected: choosing a movie, selecting a theatre and showtime, picking seats, paying, and receiving confirmation.",
+              "The app brought together ticketing through Just Tickets and INOX APIs, seat selection and payment, and presented them as one product inside Hike.",
+              "Each step leads to the next: choosing a movie, selecting a theatre and showtime, picking seats, paying, and receiving the ticket.",
             ]}
           />
           <CaseStudyFigure>
@@ -142,8 +143,8 @@ export default function MovieTicketsPage() {
               src="/work/hike-movie-tickets/Screens_JT.png"
               width={2000}
               height={2250}
-              alt="Six screens from the booking journey: browsing showings, theatre showtimes, the seat map, booking summary, wallet payment, and the resulting ticket"
-              caption="The booking journey end to end — separate services behind it, one transaction in front of it"
+              alt="Six screens from the booking: browsing showings, theatre showtimes, the seat map, booking summary, wallet payment, and the resulting ticket"
+              caption="The booking from browse to ticket: separate services behind it, one transaction in front of it"
               hotspots={[
                 {
                   x: 50.1,
@@ -162,7 +163,7 @@ export default function MovieTicketsPage() {
                 {
                   x: 20.4,
                   y: 72.8,
-                  title: "Payment stays inside the journey",
+                  title: "Payment stays inside the app",
                   detail:
                     "The wallet balance and the bill appear in the booking flow, so paying does not read as a hand-off to a separate utility.",
                 },
@@ -181,9 +182,9 @@ export default function MovieTicketsPage() {
         <CaseStudySection id="wallet">
           <CaseStudyChapter
             eyebrow="Payment"
-            heading="Wallet payment stayed inside the journey"
+            heading="Wallet payment stayed inside the app"
             body={[
-              "Hike Wallet allowed payment to continue within the rest of Hike rather than feeling like a hand-off to a separate utility.",
+              "Hike Wallet let people pay inside Hike, without a hand-off to a separate payment screen.",
               "The booking flow was then prototyped and evaluated with users to identify friction. Findings were grouped into recurring patterns and used to refine the experience before the final design.",
             ]}
           />
@@ -193,7 +194,7 @@ export default function MovieTicketsPage() {
           <CaseStudyChapter
             layout="flow"
             eyebrow="Reflection"
-            heading="Four systems had to feel like one task"
+            heading="A booking app works only if every step leads to the next"
             body={[
               "Booking was released as a microservice inside Hike Messenger. I had left Hike by then, so I have no usage figures to share.",
               "Showtimes, seats and payment came from separate services. I put them in one flow, so choosing a seat and paying felt like one step.",
