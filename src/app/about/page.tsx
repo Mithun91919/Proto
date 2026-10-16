@@ -377,13 +377,10 @@ export default function AboutPage() {
               Platforms where the hard part is how things connect, not how they look; screens full of dense information that has to end in a decision; and products where an AI acts for a person and has to explain what it did.
             </p>
             <div className="mt-8">
-              <Link href="mailto:mithraj14@gmail.com" className="button button-primary">
-                Say hi →
+              <Link href="/resume" className="button button-primary">
+                Résumé →
               </Link>
               <CopyEmail address="mithraj14@gmail.com" className="button button-secondary ml-3" />
-              <Link href="/resume" className="button button-secondary ml-3">
-                Résumé
-              </Link>
             </div>
 
             <div
