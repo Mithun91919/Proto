@@ -24,19 +24,18 @@ export const resume = {
     { label: "mithunraju.in", href: "https://mithunraju.in" },
   ],
   summary:
-    "Senior UX designer with 11 years across consumer apps, commerce and enterprise. At Walmart Global Tech I design enterprise platforms, developer tools and AI-assisted workflows, from first idea to release, and I prototype in code with Cursor and Claude Code.",
+    "Senior UX designer with 11 years across consumer apps, commerce and enterprise. At Walmart Global Tech I design enterprise platforms, developer tools and AI-assisted workflows from first idea to release, and I specialise in replacing several tools with one. I prototype in code with Cursor and Claude Code.",
   roles: [
     {
       org: "Walmart Global Tech",
       place: "Bengaluru",
       titles: [
-        { title: "Senior UX Designer", dates: "Oct 2022 – present" },
-        { title: "UX Designer", dates: "Aug 2020 – Oct 2022" },
+        { title: "UX Designer → Senior UX Designer", dates: "Aug 2020 – present" },
       ],
       scope:
         "Design owner for enterprise platforms and developer tools, from first idea to release, across five products.",
       bullets: [
-        "Enterprise portfolio platform (2023–present). Sole designer. Ran three whiteboarding sessions of 12 people each, then replaced four external tools with one platform that links goals, initiatives, products and people, and persuaded three product managers to plan for the whole product. Worked a sprint ahead of three engineering teams, with weekly reviews and a monthly all-hands. 800+ hours a week reclaimed* and about $100K a year in licence cost saved*.",
+        "Enterprise portfolio platform (2023–present). Sole designer. Ran three whiteboarding sessions of 12 people each, then replaced four external tools with one platform that links goals, initiatives, products and people, and persuaded three product managers to plan for the whole product. Worked a sprint ahead of three engineering teams, with weekly reviews and a monthly all-hands. 800+ hours a week reclaimed, per the product managers, and about $100K a year in average licence cost saved.",
         "API lifecycle platform (2022–present). Owned the design direction for one platform to discover, design, test and govern APIs, built as one product, not three. 20K+ APIs onboarded and 60% less developer time spent defining API contracts.",
         "Dependency health platform (2025–present). Turned a requested dashboard into one that acts: it starts the upgrade and assigns a flag to a person. Team migration fell from 3 days to about 2 hours, with 40% fewer library issues in releases.",
         "Earlier at Walmart. Co-led the supply chain platform redesign, testing navigation models with users (139 tools, 62% less time to reach one), and designed the store associate support app (tickets closed in 1 day, from 3).",
@@ -48,6 +47,7 @@ export const resume = {
       titles: [{ title: "UX Designer", dates: "Aug 2018 – Aug 2020" }],
       bullets: [
         "bb daily. Designed the customer and delivery apps end to end, from research and flows to prototypes, for a product in 10+ cities with 1.5M+ users and 120K daily deliveries on average.",
+        "Established and promoted design guidelines and standards for the team.",
         "Ratings & Reviews. One feedback system across Android, iOS, web and mobile web, with a configurable questionnaire for each product category.",
       ],
     },
@@ -92,5 +92,4 @@ export const resume = {
     "Interaction Design: Interface",
   ],
   languages: "English and Hindi (professional); Kannada and Telugu (limited working); Tamil (elementary).",
-  footnote: "*Hours reported by the product managers. The licence figure is an average yearly cost.",
 };

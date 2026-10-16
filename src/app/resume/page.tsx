@@ -107,7 +107,6 @@ export default function ResumePage() {
           </section>
         </div>
 
-        <p className="resume-foot">{resume.footnote}</p>
       </article>
     </div>
   );
