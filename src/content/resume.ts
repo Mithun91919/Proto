@@ -24,7 +24,7 @@ export const resume = {
     { label: "mithunraju.in", href: "https://mithunraju.in" },
   ],
   summary:
-    "Senior UX designer with 11 years across consumer apps, commerce and enterprise. At Walmart Global Tech I design enterprise platforms, developer tools and AI-assisted workflows from first idea to release, and I specialise in replacing several tools with one. I prototype in code with Cursor and Claude Code.",
+    "Senior UX designer with 11 years across consumer apps, commerce and enterprise. I design platforms that replace several tools with one, from first idea to release, and I prototype in code with Cursor and Claude Code.",
   roles: [
     {
       org: "Walmart Global Tech",
