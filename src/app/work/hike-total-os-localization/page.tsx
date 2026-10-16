@@ -41,6 +41,12 @@ export default function TotalOsLocalizationPage() {
   return (
     <CaseStudyShell
       slug="hike-total-os-localization"
+      evidenceMetricsLabel="Hike at the time"
+      evidenceMetrics={[
+        { value: "100M", label: "registered users on Hike Messenger, as Hike stated in 2017" },
+        { value: "42%+", label: "of the telecom market covered by Total’s launch carriers: Airtel, Aircel and BSNL" },
+      ]}
+      evidenceCaveat="Hike’s own figures from 2017 press, not audited. They describe the platform at the time, not results caused by the design."
       evidence={[
         {
           label: "The problem",
