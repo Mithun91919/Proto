@@ -57,7 +57,8 @@ export const resume = {
       titles: [{ title: "Product Designer", dates: "Aug 2017 – Jul 2018" }],
       bullets: [
         "Movie ticket booking. An end-to-end booking app built on Hike Messenger, with Hike Wallet payment and ticketing through Just Tickets and INOX.",
-        "Job discovery and resume builder, and a localisation process across 8 Indian languages for Total OS, checked with 23+ participants.",
+        "Job discovery and resume builder. An end-to-end jobs app built on Hike Messenger, with listings from Indeed’s API.",
+        "Total OS. A localisation process across 8 Indian languages, checked with 23+ participants.",
       ],
     },
     {

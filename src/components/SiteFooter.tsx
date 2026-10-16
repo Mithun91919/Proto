@@ -39,6 +39,13 @@ export function SiteFooter() {
         </p>
 
         <p className={`${mono} flex flex-wrap items-center gap-x-5 gap-y-2 md:justify-self-end`}>
+          <Link
+            href="/about"
+            className="inline-block py-1 -my-1 transition-opacity hover:opacity-70"
+            style={underlined}
+          >
+            About
+          </Link>
           <a
             href="https://www.linkedin.com/in/mithunrajuk"
             target="_blank"

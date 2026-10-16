@@ -137,7 +137,7 @@ export const earlierWork: EarlierWorkEntry[] = [
   {
     number: "08",
     org: "Job Discovery & Resume Builder",
-    body: "From finding a job to being ready to apply.",
+    body: "An end-to-end jobs app, built on Hike Messenger.",
     tags: ["HIKE", "Mobile", "Product Design"],
     image: "/work/hike-jobs-service/Jobs_Banner.jpg",
     slug: "hike-jobs-service",

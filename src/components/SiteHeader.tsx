@@ -4,15 +4,11 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 
-const links = [
-  { href: "/work", label: "Work" },
-  { href: "/about", label: "About" },
-];
+const links = [{ href: "/work", label: "Work" }];
 
 export function SiteHeader() {
   const pathname = usePathname();
   const [scrolled, setScrolled] = useState(false);
-  const onHome = pathname === "/";
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 12);
@@ -61,11 +57,8 @@ export function SiteHeader() {
               </Link>
             );
           })}
-          <Link
-            href={onHome ? "/#contact" : "/about#contact"}
-            className="button button-primary button-sm"
-          >
-            Say Hi
+          <Link href="/resume" className="button button-primary button-sm">
+            Résumé
           </Link>
         </nav>
       </div>

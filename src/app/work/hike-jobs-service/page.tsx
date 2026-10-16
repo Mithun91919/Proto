@@ -22,9 +22,10 @@ import {
  */
 
 export const metadata: Metadata = {
-  title: "Job Discovery & Resume Builder — From finding a job to being ready to apply",
+  title: "Job Discovery & Resume Builder — An end-to-end jobs app built on Hike Messenger",
   description:
-    "An aggregator job-discovery experience inside Hike Messenger, with personalised recommendations and a built-in resume builder.",  robots: caseStudyRobots,
+    "An end-to-end jobs app built on Hike Messenger: personalised recommendations, listings from Indeed and a built-in resume builder.",
+  robots: caseStudyRobots,
 };
 
 const JOURNEY = ["Preferences", "Discover", "Save", "Build resume", "Apply"];
@@ -82,10 +83,10 @@ export default function HikeJobsServicePage() {
         src: "/work/hike-jobs-service/Jobs_Banner.jpg",
         alt: "The Jobs Service experience: job listings and the resume builder shown on phone screens",
         standfirst:
-          "A jobs aggregator built into Hike Messenger — for people who needed both the opportunity and something to send with it.",
+          "For people who needed both the opportunity and something to send with it: personalised listings and a resume builder in one place.",
         headline: (
           <>
-            Job Discovery & Resume Builder: from finding a job to <span style={{ color: "var(--ds-mint)" }}>being ready to apply</span>.
+            Job Discovery & Resume Builder: <span style={{ color: "var(--ds-mint)" }}>an end-to-end jobs app</span>, built on Hike Messenger.
           </>
         ),
         meta: [

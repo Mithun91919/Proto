@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 import { Reveal } from "@/components/Reveal";
 import { PrintButton } from "@/components/PrintButton";
 import { resume } from "@/content/resume";
@@ -13,21 +12,16 @@ export default function ResumePage() {
   return (
     <div className="resume-wrap mx-auto w-full max-w-[56rem] px-5 py-14 md:px-8 md:py-20">
       <Reveal>
-        <div className="no-print mb-8 flex flex-wrap items-end justify-between gap-4">
-          <div>
-            <p className="eyebrow">Résumé · first draft</p>
-            <p className="mt-2 max-w-[34rem] text-[0.98rem] leading-7 text-[var(--ink-soft)]">
-              One page, for senior UX roles. Print it or save it as a PDF from here.
-            </p>
-          </div>
+        <div className="no-print mb-8 flex flex-wrap items-center justify-between gap-4">
+          <p className="eyebrow">Résumé</p>
           <div className="flex flex-wrap gap-3">
+            <a href="/Mithun-Raju-Resume.pdf" download className="button button-primary">
+              Download PDF
+            </a>
             <PrintButton />
             <a href="mailto:mithraj14@gmail.com" className="button button-secondary">
-              Request by email
+              Email me
             </a>
-            <Link href="/work" className="button button-secondary">
-              View work
-            </Link>
           </div>
         </div>
       </Reveal>
