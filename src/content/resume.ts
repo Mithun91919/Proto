@@ -76,12 +76,12 @@ export const resume = {
     { what: "Bachelor of Computer Applications", where: "St. Claret College, Bengaluru", dates: "2011 – 2014" },
   ],
   skills: [
-    "Research, workshops and usability studies",
+    "Research and usability studies",
     "User flows, wireframes, prototypes",
     "Interaction design",
     "Design systems (Walmart Living Design)",
-    "AI-assisted prototyping",
-    "Prompt engineering for design",
+    "Tools: Figma, Cursor, Claude Code, VS Code",
+    "AI-assisted prototyping and prompts",
   ],
   certifications: [
     "UX Research for Agile Teams",
