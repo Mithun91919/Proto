@@ -64,6 +64,7 @@ export default function ResumePage() {
                   <span className="resume-dates">{t.dates}</span>
                 </p>
               ))}
+              {r.scope ? <p className="resume-scope">{r.scope}</p> : null}
               <ul className="resume-bullets">
                 {r.bullets.map((b) => (
                   <li key={b}>{b}</li>

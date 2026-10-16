@@ -8,6 +8,8 @@ export type ResumeRole = {
   org: string;
   place: string;
   note?: string;
+  /** One line on what the role covered, above the bullets. */
+  scope?: string;
   titles: { title: string; dates: string }[];
   bullets: string[];
 };
@@ -31,13 +33,13 @@ export const resume = {
         { title: "Senior UX Designer", dates: "Oct 2022 – present" },
         { title: "UX Designer", dates: "Aug 2020 – Oct 2022" },
       ],
+      scope:
+        "Design owner for enterprise platforms and developer tools, from first idea to release, across five products.",
       bullets: [
-        "Enterprise portfolio platform (2023–present). Sole designer from first idea to release. Ran three whiteboarding sessions of 12 people each, then replaced four external tools with one platform that links goals, initiatives, products and people, and persuaded three product managers to plan for the whole product. 6K+ monthly users, 800+ hours a week reclaimed*, about $100K a year in licence cost saved*.",
+        "Enterprise portfolio platform (2023–present). Sole designer. Ran three whiteboarding sessions of 12 people each, then replaced four external tools with one platform that links goals, initiatives, products and people, and persuaded three product managers to plan for the whole product. Worked a sprint ahead of three engineering teams, with weekly reviews and a monthly all-hands. 800+ hours a week reclaimed* and about $100K a year in licence cost saved*.",
         "API lifecycle platform (2022–present). Owned the design direction for one platform to discover, design, test and govern APIs, built as one product, not three. 20K+ APIs onboarded and 60% less developer time spent defining API contracts.",
         "Dependency health platform (2025–present). Turned a requested dashboard into one that acts: it starts the upgrade and assigns a flag to a person. Team migration fell from 3 days to about 2 hours, with 40% fewer library issues in releases.",
-        "Supply chain operations platform (2021–2022). Co-led the redesign of the landing page, sign-in and navigation for 139 tools, testing navigation models with users. About 985K monthly unique visitors, and 62% less time on the landing page before reaching a tool.",
-        "Store associate app (2020–2021). Design owner, start to finish, for a phone app that offers the fix before the form. Tickets closed in 1 day, from 3, with 40% fewer tickets raised.",
-        "Portfolio platform, how I worked: a weekly design review with each of three engineering teams and a monthly all-hands, working a sprint ahead of every team.",
+        "Earlier at Walmart. Co-led the supply chain platform redesign, testing navigation models with users (139 tools, 62% less time to reach one), and designed the store associate support app (tickets closed in 1 day, from 3).",
       ],
     },
     {

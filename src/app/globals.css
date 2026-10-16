@@ -1819,6 +1819,12 @@ a {
   color: var(--ink-soft);
 }
 
+.resume-scope {
+  margin: 0.35rem 0 0;
+  font-style: italic;
+  color: var(--ink-soft);
+}
+
 .resume-bullets {
   margin: 0.4rem 0 0;
   padding-left: 1.1rem;
