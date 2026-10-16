@@ -3,6 +3,7 @@ import { HeroPortrait } from "@/components/HeroPortrait";
 import { DotText } from "@/components/DotText";
 import { Reveal } from "@/components/Reveal";
 import { PullStatement } from "@/components/design-system/PullStatement";
+import { ProgressiveSections } from "@/components/design-system/ProgressiveSections";
 import { Chip } from "@/components/design-system/primitives/Chip";
 import { SectionHeader, SubLabel } from "@/components/design-system/primitives/SectionHeader";
 import { GlassPanel } from "@/components/design-system/primitives/GlassPanel";
@@ -1006,6 +1007,7 @@ export default function ComponentsPage() {
         </div>
       </section>
 
+      <ProgressiveSections sections={["D · Typography", "E · Narrative components", "F · Product media", "G · Evidence", "H · Navigation and closing", "I · Composition recipes", "J · Motion and interaction", "K · Copy guide", "L · Anti-patterns", "Case-study media"]}>
       {/* D — Typography & emphasis */}
       <section id="typography" className="mx-auto max-w-[70rem] px-5 pt-14 scroll-mt-28 md:px-8">
         <SectionHeader letter="D" title="Typography & emphasis" subtitle="Colour highlights the idea; dots stay out of the letters" />
@@ -2289,6 +2291,7 @@ export default function ComponentsPage() {
           />
         </div>
       </section>
+      </ProgressiveSections>
     </div>
   );
 }
