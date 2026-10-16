@@ -381,6 +381,9 @@ export default function AboutPage() {
                 Say hi →
               </Link>
               <CopyEmail address="mithraj14@gmail.com" className="button button-secondary ml-3" />
+              <Link href="/resume" className="button button-secondary ml-3">
+                Résumé
+              </Link>
             </div>
 
             <div
@@ -426,6 +429,13 @@ export default function AboutPage() {
                   >
                     Email
                   </a>
+                  <Link
+                    href="/resume"
+                    className="font-semibold transition hover:translate-x-1"
+                    style={{ color: "var(--ds-mint)" }}
+                  >
+                    Résumé
+                  </Link>
                 </div>
               </div>
             </div>

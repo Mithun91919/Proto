@@ -187,6 +187,9 @@ export default function HomePage() {
                 >
                   LinkedIn
                 </a>
+                <Link href="/resume" className="button button-secondary">
+                  Résumé
+                </Link>
               </div>
             </SectionAnchor>
 
