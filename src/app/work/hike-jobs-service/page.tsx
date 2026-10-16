@@ -41,6 +41,9 @@ export default function HikeJobsServicePage() {
   return (
     <CaseStudyShell
       slug="hike-jobs-service"
+      evidenceMetricsLabel="Hike at the time"
+      evidenceMetrics={[{ value: "100M", label: "registered users on Hike Messenger, as Hike stated in June 2017" }]}
+      evidenceCaveat="Hike’s own figure from 2017 press, not audited. It describes the platform at the time, not results caused by the design."
       evidence={[
         {
           label: "The problem",
@@ -60,7 +63,7 @@ export default function HikeJobsServicePage() {
             </>
           ),
           detail:
-            "The product had to carry someone from a set of suggestions worth reading through to an application they were ready to send. It sat inside Hike Messenger, which had almost 100 million monthly active users in India in 2017 (TelecomTalk, July 2017).",
+            "The product had to carry someone from a set of suggestions worth reading through to an application they were ready to send. It sat inside Hike Messenger, which Hike said had 100 million registered users in June 2017 (Business Today).",
         },
         {
           label: "What I did",

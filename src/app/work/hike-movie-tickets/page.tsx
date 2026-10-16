@@ -50,6 +50,12 @@ export default function MovieTicketsPage() {
   return (
     <CaseStudyShell
       slug="hike-movie-tickets"
+      evidenceMetricsLabel="Hike at the time"
+      evidenceMetrics={[
+        { value: "100M", label: "registered users on Hike Messenger, as Hike stated in June 2017" },
+        { value: "10M", label: "Hike Wallet transactions a month, by December 2017" },
+      ]}
+      evidenceCaveat="Hike’s own figures from 2017 press, not audited. They describe the platform at the time, not results caused by the design."
       evidence={[
         {
           label: "The problem",
@@ -69,7 +75,7 @@ export default function MovieTicketsPage() {
             </>
           ),
           detail:
-            "Everything from choosing a theatre to holding the ticket had to work inside Hike Messenger, which had almost 100 million monthly active users in India in 2017 (TelecomTalk, July 2017). The design problem was less about browsing and more about removing friction between deciding and paying.",
+            "Everything from choosing a theatre to holding the ticket had to work inside Hike Messenger, which Hike said had 100 million registered users in June 2017 (Business Today). The design problem was less about browsing and more about removing friction between deciding and paying.",
         },
         {
           label: "What I did",
