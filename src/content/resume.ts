@@ -37,7 +37,7 @@ export const resume = {
         "Dependency health platform (2025–present). Turned a requested dashboard into one that acts: it starts the upgrade and assigns a flag to a person. Team migration fell from 3 days to about 2 hours, with 40% fewer library issues in releases.",
         "Supply chain operations platform (2021–2022). Co-led the redesign of the landing page, sign-in and navigation for 139 tools, testing navigation models with users. About 985K monthly unique visitors, and 62% less time on the landing page before reaching a tool.",
         "Store associate app (2020–2021). Design owner, start to finish, for a phone app that offers the fix before the form. Tickets closed in 1 day, from 3, with 40% fewer tickets raised.",
-        "Across these: a weekly design review with each of three engineering teams and a monthly all-hands, working a sprint ahead of every team.",
+        "Portfolio platform, how I worked: a weekly design review with each of three engineering teams and a monthly all-hands, working a sprint ahead of every team.",
       ],
     },
     {
