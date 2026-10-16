@@ -59,7 +59,7 @@ export default function CreoMark1Page() {
             </>
           ),
           detail:
-            "One visual system had to carry every channel and still absorb a change of subject each month.",
+            "One visual system had to carry every channel and still absorb a change of subject each month. I supported it for 12 months, with a new campaign around each month’s update.",
         },
         {
           label: "What I did",
@@ -130,7 +130,7 @@ export default function CreoMark1Page() {
             heading="The system had to change every month without losing itself"
             body={[
               "Because new software features were released regularly, web and commerce surfaces had to evolve with them.",
-              "Software pages and Flipkart content were updated to explain what had changed while keeping each release connected to the same product story.",
+              "Software pages and Flipkart content were updated to explain what had changed while keeping each release connected to the same product story. Over the 12 months I supported it, each monthly update got its own campaign on the same system.",
             ]}
           />
           <CaseStudyFigure label="Six messages, one system">
@@ -220,7 +220,7 @@ export default function CreoMark1Page() {
             eyebrow="Reflection"
             heading="The brand held together without every asset looking the same"
             body={[
-              "The work shipped as the digital assets for marketing and promoting the phone. I had left by then, so I have no figures to share.",
+              "The work shipped as the digital assets for marketing and promoting the phone, a new campaign each month for 12 months. I have no performance figures to share, as I had left by then.",
               "The large product image, the high-contrast type and the fixed supporting elements stayed the same each month. Only the message changed, so a feature update and a Flipkart page still read as the same phone.",
             ]}
           />
