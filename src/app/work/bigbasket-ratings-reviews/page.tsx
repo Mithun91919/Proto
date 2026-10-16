@@ -44,6 +44,13 @@ export default function RatingsReviewsPage() {
   return (
     <CaseStudyShell
       slug="bigbasket-ratings-reviews"
+      evidenceMetricsLabel="bigbasket today"
+      evidenceMetrics={[
+        { value: "300+", label: "cities and towns delivered to" },
+        { value: "10M+", label: "customers, as bigbasket states it" },
+        { value: "4.7", label: "Google Play rating, from 2.6M ratings" },
+      ]}
+      evidenceCaveat="Figures from bigbasket’s store listings, October 2026; the App Store shows 4.8 from 618K ratings. They describe the app today, not results caused by the design. Ratings & Reviews is still part of it."
       evidence={[
         {
           label: "The problem",

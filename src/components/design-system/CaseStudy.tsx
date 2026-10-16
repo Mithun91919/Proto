@@ -62,6 +62,7 @@ export function CaseStudyShell({
   evidence,
   evidenceCaveat,
   evidenceMetricsLabel,
+  evidenceMetrics,
   children,
 }: {
   hero: HeroProps;
@@ -79,6 +80,8 @@ export function CaseStudyShell({
   evidenceCaveat?: string;
   /** Names the metric footer of the evidence card, e.g. "The impact". */
   evidenceMetricsLabel?: string;
+  /** Metrics for a page whose project is not in `projects.ts`. */
+  evidenceMetrics?: { value: string; label: string }[];
   children: ReactNode;
 }) {
   // Append the three classification axes to whatever meta the page passed,
@@ -112,7 +115,7 @@ export function CaseStudyShell({
         slug={slug}
         beats={evidence}
         metricsLabel={evidenceMetricsLabel}
-        metrics={slug ? getProject(slug)?.metrics : undefined}
+        metrics={evidenceMetrics ?? (slug ? getProject(slug)?.metrics : undefined)}
         caveat={evidenceCaveat}
       />
 
