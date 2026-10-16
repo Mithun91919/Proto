@@ -425,7 +425,7 @@ export default function BbDailyPage() {
                         y: 76.1,
                         title: "Grouped by drop point, with a bag count",
                         detail:
-                          "Each drop point carries its own total, so what belongs at a building is countable before the executive leaves the vehicle.",
+                          "Each drop point carries its own total, so what belongs at a building is countable before the delivery executive leaves the vehicle.",
                       },
                       {
                         x: 81.1,
@@ -469,7 +469,7 @@ export default function BbDailyPage() {
                         y: 48.9,
                         title: "A day-by-day record to check against",
                         detail:
-                          "The breakdown is per date and totalled at the foot, so an executive can reconcile the figure against their own count of the work.",
+                          "The breakdown is per date and totalled at the foot, so a delivery executive can check the figure against their own count of the work.",
                       },
                     ],
                   },

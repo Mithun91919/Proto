@@ -145,9 +145,9 @@ export default function HikeJobsServicePage() {
                 {
                   x: 82,
                   y: 55,
-                  title: "More than one city",
+                  title: "You can pick several cities",
                   detail:
-                    "Location is multi-select, because someone open to several cities should not have to run the same search repeatedly.",
+                    "Someone open to several cities shouldn’t have to run the same search again and again.",
                 },
               ]}
             />
@@ -172,7 +172,7 @@ export default function HikeJobsServicePage() {
                 {
                   x: 81,
                   y: 18,
-                  title: "Type-ahead for a specific intent",
+                  title: "Type to find a specific role",
                   detail:
                     "Someone who already knows the role they want gets there by typing, without working through categories first.",
                 },

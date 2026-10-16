@@ -157,7 +157,7 @@ export default function MovieTicketsPage() {
                   y: 24,
                   title: "Showtimes grouped by theatre, with distance",
                   detail:
-                    "Nearby theatres influenced where people completed the transaction, so distance sits on the same row as the times rather than a screen away.",
+                    "Theatres near you influenced where people booked, so distance sits on the same row as the times, not a screen away.",
                 },
                 {
                   x: 79.7,
@@ -171,14 +171,14 @@ export default function MovieTicketsPage() {
                   y: 72.8,
                   title: "Payment stays inside the app",
                   detail:
-                    "The wallet balance and the bill appear in the booking flow, so paying does not read as a hand-off to a separate utility.",
+                    "The wallet balance and the bill appear in the booking flow, so paying does not feel like a hand-off to a separate payment screen.",
                 },
                 {
                   x: 79.7,
                   y: 67.5,
                   title: "The ticket is where the booking ends",
                   detail:
-                    "Confirmation and booking history share one place, so a completed transaction has somewhere to live rather than only an email.",
+                    "Confirmation and booking history share one place, so a finished booking has somewhere to live, not only an email.",
                 },
               ]}
             />

@@ -317,18 +317,18 @@ export default function SupplyChainOperationsPage() {
                   x: 50,
                   y: 7,
                   title: "Search",
-                  detail: "A direct route for people who already know the module they want and don’t need to browse at all.",
+                  detail: "A direct route for people who already know the tool they want and don’t need to browse at all.",
                 },
                 {
                   x: 16,
                   y: 40,
-                  title: "Recent modules",
-                  detail: "Returning to ongoing work without setup — the platform remembers where you last were.",
+                  title: "Recent tools",
+                  detail: "Returning to ongoing work without setup: the platform remembers where you last were.",
                 },
                 {
                   x: 16,
                   y: 72,
-                  title: "Pinned modules",
+                  title: "Pinned tools",
                   detail: "A saved set of frequently used tools, so the small working set most people rely on is always one click away.",
                 },
               ]}

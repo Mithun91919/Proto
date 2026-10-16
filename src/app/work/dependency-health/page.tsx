@@ -295,23 +295,23 @@ export default function DependencyHealthPage() {
                   alt: "An organisation view: stale artifacts and repositories, version distribution for the Unified BOM, Java and Spring Boot, and a table of divisions",
                   caption: "The organisation view rolls the measures up by division, with a filter for the ones that need attention.",
                   hotspots: [
-                    { x: 28.3, y: 43.6, title: "The same sentence at organisation scale", detail: "Artifacts, repositories and enrolment, summarised in one line before any table." },
-                    { x: 70, y: 35.3, title: "Version distribution across repositories", detail: "Not onboarded, then each version in use, for the Unified BOM, Java and Spring Boot." },
-                    { x: 25.1, y: 56.2, title: "Needs attention, as a filter", detail: "The divisions that need attention are one click from the full list." },
+                    { x: 28.3, y: 43.6, title: "A one-line summary first", detail: "How many libraries and code repositories there are, and how many have joined, in one line before any table." },
+                    { x: 70, y: 35.3, title: "Which versions are in use", detail: "For the Unified BOM (the one approved set of libraries), Java and Spring Boot: those not yet joined, then each version in use." },
+                    { x: 25.1, y: 56.2, title: "Jump to what needs attention", detail: "The divisions that need attention are one click away from the full list." },
                   ],
                 },
                 {
-                  title: "The pillar: which teams are behind?",
+                  title: "The business area: which teams are behind?",
                   route: "/stacklift/home",
                   src: "/work/dependency-health/pillar.png",
                   width: 2880,
                   height: 2960,
                   alt: "A pillar view: three health measures with version distribution for the Unified BOM, Java and Spring Boot beside them, then every team’s services against the same measures",
-                  caption: "The pillar view lists every team’s services against the same three measures, so who is furthest behind is a sort away.",
+                  caption: "The business-area view lists every team’s services against the same three measures, so who is furthest behind is a sort away.",
                   hotspots: [
-                    { x: 27.8, y: 36.4, title: "The health, in one sentence", detail: "The three measures are followed by a plain statement of what they add up to." },
-                    { x: 66.8, y: 30, title: "The Unified BOM beside Java and Spring Boot", detail: "One bar each for the versions in use across the pillar’s services, the outdated releases in orange." },
-                    { x: 45.7, y: 61.9, title: "Every team, same measures", detail: "Services and their leads against deprecated dependencies, outdated runtimes and services not registered in the catalogue." },
+                    { x: 27.8, y: 36.4, title: "Health, in one sentence", detail: "Three measures are followed by a plain statement of what they add up to." },
+                    { x: 66.8, y: 30, title: "Three bars, one per technology", detail: "Each bar shows the versions in use across the business area’s services, with outdated releases in orange." },
+                    { x: 45.7, y: 61.9, title: "Every team, same measures", detail: "Each team’s services and leads are set against deprecated libraries, outdated runtimes and services missing from the catalogue (the company’s list of services)." },
                   ],
                 },
                 {
@@ -323,9 +323,9 @@ export default function DependencyHealthPage() {
                   alt: "A product’s development view: services with deprecated dependencies, version distribution by library, and a table of services with their version drift",
                   caption: "At a product the view opens on the state, then the signals behind it, then the services and the button that acts on them.",
                   hotspots: [
-                    { x: 28.3, y: 35.2, title: "The state, first", detail: "Two counts and one sentence say how the product stands before anything else is read." },
-                    { x: 69.9, y: 29, title: "The signals behind it", detail: "Unified BOM, Java and Spring Boot versions as distributions, the outdated releases in orange." },
-                    { x: 93.8, y: 43.4, title: "The action, close by", detail: "Remediate sits at the head of the services it acts on, with the line “Click to remediate and create PR”." },
+                    { x: 28.3, y: 35.2, title: "How the product stands, first", detail: "Two counts and one sentence say where the product stands before anything else is read." },
+                    { x: 69.9, y: 29, title: "What sits behind it", detail: "Unified BOM, Java and Spring Boot versions as bars, with the outdated releases in orange." },
+                    { x: 93.8, y: 43.4, title: "The fix sits beside the problem", detail: "Remediate (fix by upgrading) sits at the head of the services it acts on, with the line “Click to remediate and create PR”, a pull request being a proposed code change." },
                   ],
                 },
               ]}
@@ -359,8 +359,8 @@ export default function DependencyHealthPage() {
                   caption: "An engineer starts from their own products: the same measures as everyone else’s view, filtered to what they own.",
                   hotspots: [
                     { x: 63.6, y: 13.5, title: "Only my products", detail: "One switch narrows the view from everything to what this engineer owns." },
-                    { x: 70.2, y: 31.7, title: "The same versions, for their products", detail: "The Unified BOM, Java and Spring Boot distributions, scoped to the products they own." },
-                    { x: 25, y: 62.4, title: "Their products, listed", detail: "Each product against the same measures, with a filter for the ones that need attention." },
+                    { x: 70.2, y: 31.7, title: "The same bars, for my products", detail: "The Unified BOM, Java and Spring Boot bars, limited to the products they own." },
+                    { x: 25, y: 62.4, title: "My products, listed", detail: "Each product against the same measures, with a filter for the ones that need attention." },
                   ],
                 },
                 {
@@ -370,11 +370,11 @@ export default function DependencyHealthPage() {
                   width: 2880,
                   height: 2128,
                   alt: "A product’s production view: artifacts with outdated dependencies and artifacts not registered in the dependency graph, then a table of artifacts with their versions",
-                  caption: "Production keeps the shape, counts first and then the list, with the measures that apply to artifacts rather than services.",
+                  caption: "Production keeps the shape, counts first and then the list, with the measures that apply to artifacts (built packages) rather than services.",
                   hotspots: [
-                    { x: 37.5, y: 24.7, title: "The same shape", detail: "A count, a share and a bar for each measure, as on the development tab." },
-                    { x: 63.3, y: 47.4, title: "State on the value itself", detail: "A missing registration or a drift is marked on the row it belongs to." },
-                    { x: 26, y: 39.6, title: "Filter by library family", detail: "All, Dep Graph, Kotlin or Spring Boot, so the list narrows to one family." },
+                    { x: 37.5, y: 24.7, title: "Same layout as the other tab", detail: "A count, a share and a bar for each measure, as on the development tab." },
+                    { x: 63.3, y: 47.4, title: "Problems marked on the row", detail: "A missing registration, or a version that has drifted from the approved one, is marked on the row it belongs to." },
+                    { x: 26, y: 39.6, title: "Filter by library", detail: "All, Dep Graph, Kotlin or Spring Boot, so the list narrows to one family." },
                   ],
                 },
                 {
@@ -386,9 +386,9 @@ export default function DependencyHealthPage() {
                   alt: "Version details for one repository: its libraries grouped by patch and major, each beside the expected version",
                   caption: "A repository’s libraries sit beside the version each should be on, grouped by how big the move is.",
                   hotspots: [
-                    { x: 91.8, y: 13.9, title: "Status in the header", detail: "The repository’s standing against the Unified BOM is stated where the page begins." },
-                    { x: 33.1, y: 20.6, title: "Narrow to what matters", detail: "All, outdated libraries, or only those where drift was detected." },
-                    { x: 76.1, y: 31.4, title: "The version to move to", detail: "The expected version sits beside the one in use, under Patch and Major." },
+                    { x: 91.8, y: 13.9, title: "Where it stands, at the top", detail: "The repository’s standing against the Unified BOM is stated where the page begins." },
+                    { x: 33.1, y: 20.6, title: "Narrow to what matters", detail: "Show all, only outdated libraries, or only those that have drifted from the approved version." },
+                    { x: 76.1, y: 31.4, title: "The version to move to", detail: "The expected version sits next to the one in use, under Patch and Major (small and big updates)." },
                   ],
                 },
                 {
@@ -400,9 +400,9 @@ export default function DependencyHealthPage() {
                   alt: "Remediations: every repository with its current stage, point of contact, ticket and pull-request status",
                   caption: "Each repository shows its current stage, who to talk to, its ticket and the state of its pull request.",
                   hotspots: [
-                    { x: 21.4, y: 39.2, title: "Every repository, in one list", detail: "Each repository with a pull request, filterable by open, merged or closed." },
-                    { x: 52.7, y: 49.3, title: "The current step is explicit", detail: "Analysis, then each stage in turn, with an info control beside each." },
-                    { x: 87.4, y: 49.3, title: "Pull-request status", detail: "Open, merged or closed on each row, with the pull request one click away." },
+                    { x: 21.4, y: 39.2, title: "Every repository, one list", detail: "Each repository with a pull request (a proposed code change), filterable by open, merged or closed." },
+                    { x: 52.7, y: 49.3, title: "The current step is clear", detail: "Analysis, then each stage in turn, with an info control beside each." },
+                    { x: 87.4, y: 49.3, title: "Status of each pull request", detail: "Open, merged or closed on each row, with the pull request one click away." },
                   ],
                 },
                 {
@@ -414,8 +414,8 @@ export default function DependencyHealthPage() {
                   alt: "Confirmation of remediation: repository analysis in progress, with the repositories, their stage, point of contact and tickets marked ready for review",
                   caption: "The confirmation says what is happening and what comes next, rather than leaving a button pressed and nothing said.",
                   hotspots: [
-                    { x: 30.7, y: 21.7, title: "Says what is happening", detail: "Repository analysis in progress, with a line on how you will be told and that you are the point of contact." },
-                    { x: 79.8, y: 22.6, title: "The next step beside it", detail: "View Remediation PRs is the first action, with the platform team one control away." },
+                    { x: 30.7, y: 21.7, title: "It says what is happening", detail: "Repository analysis is in progress, with a line on how you will be told and that you are the point of contact." },
+                    { x: 79.8, y: 22.6, title: "The next step is beside it", detail: "View Remediation PRs is the first action, with the platform team one control away." },
                     { x: 92.2, y: 33.3, title: "A ticket for each repository", detail: "Each repository has its own ticket, marked ready for review." },
                   ],
                 },
@@ -444,9 +444,9 @@ export default function DependencyHealthPage() {
               scrollable
               maxHeight="34rem"
               hotspots={[
-                { x: 26.7, y: 20.3, title: "The current version, named", detail: "The latest version of the BOM sits beside its title." },
-                { x: 85.6, y: 24.2, title: "How far adoption has got", detail: "Repositories and artifacts not yet onboarded, each as a count, a share and a bar." },
-                { x: 55, y: 54.2, title: "Every managed dependency", detail: "Group, artifact and version for the selected release, searchable by any of the three." },
+                { x: 26.7, y: 20.3, title: "The current version is named", detail: "The latest version of the Unified BOM sits beside its title." },
+                { x: 85.6, y: 24.2, title: "How far adoption has got", detail: "Repositories and libraries that haven’t joined yet, each as a count, a share and a bar." },
+                { x: 55, y: 54.2, title: "Every library it manages", detail: "Group, name and version for the chosen release, searchable by any of the three." },
               ]}
             />
           </CaseStudyFigure>

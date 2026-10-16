@@ -158,14 +158,14 @@ export default function RatingsReviewsPage() {
                     y: 38.5,
                     title: "Asked in the product’s own terms",
                     detail:
-                      "Texture is a question that only makes sense for this category. The questionnaire is configurable so each product can ask what matters to it.",
+                      "Texture is a question that only makes sense for this category. The questions can be set for each product, so each asks what matters to it.",
                   },
                   {
                     x: 73.2,
                     y: 38,
-                    title: "Multi-select where more than one thing is true",
+                    title: "Pick several when several are true",
                     detail:
-                      "Effects are not mutually exclusive, so the input allows several — a single-select here would force a false choice.",
+                      "Effects aren’t mutually exclusive, so the question lets you choose more than one. A single choice would force a false answer.",
                   },
                   {
                     x: 21.6,
