@@ -225,7 +225,7 @@ const MECHANICS = [
   { label: "Chapter figure", rule: "One true figure beside a full-width chapter heading: the number, what it counts, one line of context. Only where that chapter has a figure of its own, never one already on the cards at the top of the page, and three or four to a page. A chapter with no real number gets none." },
   { label: "Hero line", rule: "Plain role and specialism, in the words a stranger would use to find you: Senior UX designer for enterprise platforms. The argument goes in the paragraph beneath, not in a tagline. Reviewers give the first pass one to four minutes, and a clever line costs them a second look." },
   { label: "Person in a moment", rule: "Open a problem with a named role in a specific moment, the real objects they handled, and what it cost. Where several roles share it, name each. Not “workflows were fragmented”." },
-  { label: "Buzzwords", rule: "Out: leverage, seamless, holistic, robust, ecosystem, end-to-end, touch point, pain point, source of truth, stitch, unlock. If the sentence survives without the word, cut it. Buzzwords and no personal voice are what reviewers say gives AI-written copy away." },
+  { label: "Buzzwords", rule: "Out: leverage, seamless, holistic, robust, ecosystem, touch point, pain point, source of truth, stitch, unlock. “End-to-end” is allowed only for a literal scope, such as an app that covers the whole path from the first screen to the ticket, and never as a filler adjective. If the sentence survives without the word, cut it. Buzzwords and no personal voice are what reviewers say gives AI-written copy away." },
   { label: "Impact", rule: "Say what happened. If it has not launched, say how success will be measured. Say whose number it is and what it measures, because a figure that sounds too good to be true is read as one. For public scale, name the source and the year, and claim no impact for your own work." },
   { label: "Length", rule: "About 1,800 words for a case study, and the evidence cards must carry the page for a reader who stops there. Cut any paragraph that repeats its card. Dense pages are closed; 42% of reviewers say so." },
   { label: "AI use", rule: "Say where it was used, naming the tool and the task, once, in the footer. Edit everything: a paragraph that could belong to anyone is the tell. Never present AI output as your decision." },
@@ -247,8 +247,8 @@ export default function ComponentsPage() {
     <div className="ds-scope pb-32">
       <header className="mx-auto max-w-[70rem] px-5 pt-14 md:px-8">
         <div className="ds-section-rule flex flex-wrap gap-8 pb-5 font-mono text-[0.65rem] uppercase tracking-[0.14em]" style={{ color: "var(--muted)" }}>
-          <span>Pattern library</span>
-          <span>Cool Lab</span>
+          <span>Design system</span>
+          <span>The system behind this site</span>
           <span className="ml-auto" style={{ color: "var(--ds-accent)" }}>
             v6
           </span>
@@ -273,6 +273,61 @@ export default function ComponentsPage() {
           ))}
         </div>
       </header>
+
+      {/* Start here — the front door. The page below is reference; this is the
+          minute a visitor needs before deciding whether to read it. */}
+      <section id="start" className="mx-auto max-w-[70rem] px-5 pt-16 scroll-mt-28 md:px-8">
+        <div className="ds-rule py-10">
+          <p className="eyebrow">Start here</p>
+          <h2 className="display-title mt-3 max-w-[26ch]" style={{ fontSize: "1.9rem", lineHeight: 1.2 }}>
+            The rules and parts that make eleven case studies read as one body of work.
+          </h2>
+          <p className="mt-4 max-w-[62ch] text-base leading-7" style={{ color: "var(--ink-soft)" }}>
+            The work I show is complex, so the page should spend a reader&apos;s attention on the work, not on the
+            layout. This is how that is decided: what each visual layer is for, how things move, and how the
+            words are written. Three places to start, then the rest is reference.
+          </p>
+          <div className="mt-8 grid grid-cols-1 gap-4 md:grid-cols-3">
+            {[
+              {
+                href: "#dots",
+                label: "C · Dot language",
+                title: "A dot always means something",
+                note: "How the site draws quantity, grouping, connection and change, and what it never uses a dot for.",
+              },
+              {
+                href: "#interaction",
+                label: "J · Motion",
+                title: "Movement explains change",
+                note: "Every movement has a reason, nothing loops forever, and reduced motion is respected.",
+              },
+              {
+                href: "#copy",
+                label: "K · Copy guide",
+                title: "Can a stranger picture this?",
+                note: "The first rule of the copy guide, and the others that keep claims plain and credible.",
+              },
+            ].map((c) => (
+              <a
+                key={c.href}
+                href={c.href}
+                className="block rounded-xl border p-6 no-underline transition-colors"
+                style={{ borderColor: "var(--ds-solid-border)", background: "var(--ds-solid-bg)", color: "var(--ink)" }}
+              >
+                <p className="font-mono text-[0.65rem] uppercase tracking-[0.12em]" style={{ color: "var(--ds-accent)" }}>
+                  {c.label}
+                </p>
+                <p className="display-title mt-3" style={{ fontSize: "1.25rem", lineHeight: 1.25 }}>
+                  {c.title}
+                </p>
+                <p className="mt-2 text-[0.92rem] leading-6" style={{ color: "var(--ink-soft)" }}>
+                  {c.note}
+                </p>
+              </a>
+            ))}
+          </div>
+        </div>
+      </section>
 
       {/* A — Principles */}
       <section id="principles" className="mx-auto max-w-[70rem] px-5 pt-20 scroll-mt-28 md:px-8">
