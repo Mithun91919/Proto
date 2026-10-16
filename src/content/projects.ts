@@ -15,6 +15,9 @@ export type SystemMapStep = {
 export type ProjectMetric = {
   value: string;
   label: string;
+  /** A shorter label for the cards, where a long one wraps to three lines.
+      The case study shows the full `label`. */
+  short?: string;
   /**
    * Names the mark outright, for the metric whose label would be read as
    * something else: "for a team to migrate" says people to the label rules
@@ -79,8 +82,8 @@ export const projects: Project[] = [
       "6K+ monthly users · 800+ hrs a week reclaimed · $100K average yearly licence cost saved",
     metrics: [
       { value: "6K+", label: "monthly users" },
-      { value: "800+ hrs", label: "reclaimed every week", glyph: "field" },
-      { value: "$100K*", label: "average yearly licence cost saved", glyph: "drop" },
+      { value: "800+ hrs", label: "reclaimed every week", short: "a week reclaimed", glyph: "field" },
+      { value: "$100K*", label: "average yearly licence cost saved", short: "avg licence saving", glyph: "drop" },
     ],
     org: "Walmart Global Tech",
     domain: "Enterprise",
@@ -129,7 +132,7 @@ export const projects: Project[] = [
     metrics: [
       { value: "20K+", label: "APIs onboarded" },
       { value: "10K+", label: "monthly users" },
-      { value: "60%", label: "less developer time spent defining API contracts" },
+      { value: "60%", label: "less developer time spent defining API contracts", short: "less contract time" },
     ],
     org: "Walmart Global Tech",
     domain: "Developer tools",
@@ -180,15 +183,18 @@ export const projects: Project[] = [
       {
         value: "~2 hrs",
         label: "for a team to migrate its libraries, from 3 days",
+        short: "per team, from 3 days",
         glyph: "ring",
       },
       {
         value: "40%",
         label: "fewer library issues during releases",
+        short: "fewer library issues",
       },
       {
         value: "80%",
         label: "increase in product health score",
+        short: "higher health score",
       },
     ],
     org: "Walmart Global Tech",
@@ -239,9 +245,9 @@ export const projects: Project[] = [
     outcome:
       "Tickets closed in 1 day, from 3 · 40% fewer tickets raised · 40 do-it-yourself fixes created",
     metrics: [
-      { value: "1 day", label: "to close a ticket, from 3 days", glyph: "ring" },
-      { value: "40%", label: "fewer tickets raised", glyph: "drop" },
-      { value: "40", label: "do-it-yourself fixes created, from none", glyph: "ramp" },
+      { value: "1 day", label: "to close a ticket, from 3 days", short: "to close a ticket", glyph: "ring" },
+      { value: "40%", label: "fewer tickets raised", short: "fewer tickets", glyph: "drop" },
+      { value: "40", label: "do-it-yourself fixes created, from none", short: "self-serve fixes", glyph: "ramp" },
     ],
     org: "Walmart Global Tech",
     domain: "Frontline ops",
@@ -288,9 +294,9 @@ export const projects: Project[] = [
       "As the platform grew to 139 tools, people struggled to find the one they needed. I co-led the redesign of the landing page, sign-in and navigation, evaluating competing navigation models with users across multiple markets.",
     outcome: "~985K monthly unique visitors · 139 modules",
     metrics: [
-      { value: "~985K", label: "monthly unique visitors" },
+      { value: "~985K", label: "monthly unique visitors", short: "monthly visitors" },
       { value: "139", label: "tools on the platform" },
-      { value: "62%", label: "less time on the landing page before reaching a tool" },
+      { value: "62%", label: "less time on the landing page before reaching a tool", short: "less time to a tool" },
     ],
     org: "Walmart Global Tech",
     domain: "Enterprise",
@@ -339,7 +345,7 @@ export const projects: Project[] = [
     metrics: [
       { value: "10+", label: "cities" },
       { value: "1.5M+", label: "users" },
-      { value: "120K", label: "average daily deliveries" },
+      { value: "120K", label: "average daily deliveries", short: "avg daily deliveries" },
     ],
     org: "bigbasket",
     domain: "Commerce",

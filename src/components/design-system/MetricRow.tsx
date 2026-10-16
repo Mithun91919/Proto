@@ -37,7 +37,7 @@ export function MetricRow({ project, max = 3, className = "" }: MetricRowProps) 
               {m.value}
             </dt>
             <dd className="text-[0.75rem]" style={{ color: "var(--ink-soft)" }}>
-              {m.label}
+              {m.short ?? m.label}
             </dd>
           </div>
         </div>
