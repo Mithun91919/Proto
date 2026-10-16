@@ -175,7 +175,10 @@ export default function HomePage() {
               sticky={false}
             >
               <div className="mt-10 flex flex-wrap gap-3">
-                <a href="mailto:mithraj14@gmail.com" className="button button-primary">
+                <Link href="/resume" className="button button-primary">
+                  Résumé →
+                </Link>
+                <a href="mailto:mithraj14@gmail.com" className="button button-secondary">
                   Email
                 </a>
                 <CopyEmail address="mithraj14@gmail.com" />
@@ -187,9 +190,6 @@ export default function HomePage() {
                 >
                   LinkedIn
                 </a>
-                <Link href="/resume" className="button button-secondary">
-                  Résumé
-                </Link>
               </div>
             </SectionAnchor>
 
