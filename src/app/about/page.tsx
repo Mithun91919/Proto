@@ -12,8 +12,7 @@ export const metadata: Metadata = {
 };
 
 const CHAPTERS = [
-  { id: "interface", label: "The interface" },
-  { id: "approach", label: "The approach" },
+  { id: "interface", label: "My path" },
   { id: "principles", label: "Principles" },
   { id: "away", label: "Away from work" },
   { id: "contact", label: "Contact" },
@@ -65,29 +64,11 @@ export default function AboutPage() {
         {/* Text + diagram in a two-column layout on desktop */}
         <div className="mt-12 flex flex-col gap-10 md:flex-row md:items-start md:gap-12">
 
-          {/* Left: narrative paragraphs + key statement */}
-          <div className="flex-1 space-y-6 text-[1.05rem] leading-8 text-[var(--ink-soft)]">
+          {/* One paragraph: how the questions grew, and the one that stays the same. */}
+          <div className="flex-1 text-[1.05rem] leading-8 text-[var(--ink-soft)]">
             <Reveal delay={80}>
               <p>
-                Early on, the work was the interface itself — typography, composition, interaction, and how something felt to use.
-              </p>
-            </Reveal>
-
-            <Reveal delay={140}>
-              <p>
-                Consumer and commerce products pushed me past single screens, to the whole path a customer takes and the delivery work behind each order.
-              </p>
-            </Reveal>
-
-            <Reveal delay={200}>
-              <p>
-                Enterprise software widened it again: a product had to fit the tools people already used, who was allowed to see what, and how a whole organisation worked.
-              </p>
-            </Reveal>
-
-            <Reveal delay={240}>
-              <p className="pt-2 text-[1.15rem] font-medium leading-8 text-[var(--ink)]">
-                Over time, I became less interested in designing isolated screens and more interested in understanding the system behind them.
+                Early on, the work was the interface itself: typography, composition, and how something felt to use. Consumer and commerce products pushed me past single screens, to the whole path a customer takes and the delivery work behind each order. Enterprise software widened it again: a product had to fit the tools people already used, who was allowed to see what, and how a whole organisation worked. Now that products act on a person&apos;s behalf, the questions stay the same: what is this for, who is accountable when it is wrong, and how does someone see what it did.
               </p>
             </Reveal>
           </div>
@@ -165,85 +146,6 @@ export default function AboutPage() {
               <text x="155" y="316" textAnchor="middle" fontSize="7" fill="var(--muted)" style={{ fontFamily: "var(--font-mono)", letterSpacing: "0.06em", opacity: 0.6 }}>People, Tools &amp; Data</text>
             </svg>
           </Reveal>
-
-        </div>
-      </section>
-
-      {/* Section: Making complex things understandable */}
-      <section id="approach" className="mt-24 ds-section-boundary pt-16">
-        <Reveal>
-          <h2 className="display-title display-section text-[var(--ink)]">
-            I like making complex things easy to follow, and easy to try.
-          </h2>
-        </Reveal>
-
-        <div className="mt-12 flex flex-col gap-10 md:flex-row md:items-start md:gap-16">
-
-          {/* Left: network diagram */}
-          <Reveal delay={80} className="shrink-0">
-            <svg
-              viewBox="0 0 400 400"
-              width="300"
-              height="300"
-              role="img"
-              aria-label="Design process diagram: Complexity → Design → Clarity, Structure, Something to try"
-              style={{ overflow: "visible" }}
-            >
-              <title>Complexity → Structure → Clarity → Something to try, through design</title>
-
-              {/* ── Lines rendered first (behind nodes) ── */}
-
-              {/* Accent lines: from Clarity (top) */}
-              <line x1="200" y1="65" x2="60" y2="210" stroke="var(--accent)" strokeWidth="1.4" />
-              <line x1="200" y1="65" x2="340" y2="210" stroke="var(--accent)" strokeWidth="1.4" />
-              <line x1="200" y1="65" x2="200" y2="185" stroke="var(--accent)" strokeWidth="1.4" />
-
-              {/* Accent-deep lines: Design (center) connections */}
-              <line x1="200" y1="185" x2="60" y2="210" stroke="var(--accent-deep)" strokeWidth="1.4" />
-              <line x1="200" y1="185" x2="340" y2="210" stroke="var(--accent-deep)" strokeWidth="1.4" />
-              <line x1="60" y1="210" x2="340" y2="210" stroke="var(--accent-deep)" strokeWidth="1.4" />
-
-              {/* Muted lines: to Tangible (bottom) */}
-              <line x1="60" y1="210" x2="200" y2="355" stroke="var(--ink-soft)" strokeWidth="1.4" opacity="0.35" />
-              <line x1="340" y1="210" x2="200" y2="355" stroke="var(--ink-soft)" strokeWidth="1.4" opacity="0.35" />
-              <line x1="200" y1="185" x2="200" y2="355" stroke="var(--ink-soft)" strokeWidth="1.4" opacity="0.35" />
-
-              {/* ── Node dots ── */}
-              <circle cx="200" cy="65"  r="6" fill="var(--ink)" />
-              <circle cx="60"  cy="210" r="6" fill="var(--ink)" />
-              <circle cx="340" cy="210" r="6" fill="var(--ink)" />
-              <circle cx="200" cy="355" r="6" fill="var(--ink)" />
-              <circle cx="200" cy="185" r="6" fill="var(--ink)" />
-
-              {/* ── Labels ── */}
-              <text x="200" y="44"  textAnchor="middle" fontSize="13" fill="var(--ink-soft)" style={{ fontFamily: "var(--font-sans)" }}>Clarity</text>
-              <text x="60"  y="238" textAnchor="middle" fontSize="13" fill="var(--ink-soft)" style={{ fontFamily: "var(--font-sans)" }}>Complexity</text>
-              <text x="340" y="238" textAnchor="middle" fontSize="13" fill="var(--ink-soft)" style={{ fontFamily: "var(--font-sans)" }}>Structure</text>
-              <text x="200" y="384" textAnchor="middle" fontSize="13" fill="var(--ink-soft)" style={{ fontFamily: "var(--font-sans)" }}>Something to try</text>
-              <text x="212" y="181" textAnchor="start"  fontSize="13" fill="var(--ink-soft)" style={{ fontFamily: "var(--font-sans)" }}>Design</text>
-            </svg>
-          </Reveal>
-
-          {/* Right: text */}
-          <div className="flex-1 space-y-6 text-[1.05rem] leading-8 text-[var(--ink-soft)]">
-            <Reveal delay={120}>
-              <p>
-                The problems I work on rarely arrive as a clean brief. They arrive as several tools that each hold part of the picture, or screens full of information that nobody knows how to act on.
-              </p>
-            </Reveal>
-
-            <Reveal delay={160}>
-              <p>
-                I like finding the structure underneath all that and building something people can react to early: a flow, a prototype, a model of the information, or a working version.
-              </p>
-            </Reveal>
-
-            <Reveal delay={200}>
-              <p>
-                As products move past screens into automation and AI-assisted interactions, the surface changes but the questions do not: what is this for, who is accountable when it is wrong, and how does someone see what it did on their behalf.
-              </p>
-            </Reveal>
-          </div>
 
         </div>
       </section>
