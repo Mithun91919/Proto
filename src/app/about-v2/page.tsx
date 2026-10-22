@@ -1,21 +1,73 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { CopyEmail } from "@/components/CopyEmail";
 import { HeroPortrait } from "@/components/HeroPortrait";
 import { Reveal } from "@/components/Reveal";
 import { caseStudyRobots } from "@/content/seo";
 
 /**
- * A human version of About. The work page and the case studies explain the
- * work; this page says who the person is: how design started, how they work
- * with other people, and what they do away from it. Everything here is in the
- * person's own words. Kept out of search while it is compared.
+ * About, in the person's own words. The text is set exactly as written; the
+ * page only decides how it is laid out. Each part is a row: the heading on
+ * the left, the story on the right, so a reader scans the headings and reads
+ * what interests them. Kept out of search while it is compared with /about.
  */
 export const metadata: Metadata = {
   title: "About",
-  description: "Mithun Raju, a designer in Bengaluru: how design started, how I work with people, and what I explore.",
+  description: "Mithun Raju, a senior UX designer in Bengaluru: how design started, how I work with people, and what I explore.",
   robots: caseStudyRobots,
 };
+
+type Part = {
+  heading: string;
+  /** Paragraphs in order. A `lead` paragraph is set larger, as the line to remember. */
+  paragraphs: { text: string; lead?: boolean; accent?: boolean }[];
+};
+
+const PARTS: Part[] = [
+  {
+    heading: "It started with posters and a college magazine.",
+    paragraphs: [
+      { text: "In college, I was the person designing posters for events and putting together the monthly magazine." },
+      {
+        text: "I enjoyed making things look good, but I became curious about why some designs worked better than others. That curiosity took me from a degree in computer applications to a diploma in design.",
+      },
+      { text: "What started as an interest slowly became something I wanted to build a career around." },
+    ],
+  },
+  {
+    heading: "I didn’t learn design alone.",
+    paragraphs: [
+      { text: "I don’t consider myself self-taught.", lead: true },
+      {
+        text: "I’ve been fortunate to work with mentors and talented people who challenged my thinking, shared what they knew, and helped me see things differently.",
+      },
+      {
+        text: "A lot of what I know today came from those conversations and experiences. And I’m still learning from the people I work with.",
+      },
+    ],
+  },
+  {
+    heading: "I think out loud.",
+    paragraphs: [
+      {
+        text: "I enjoy talking through ideas, exploring possibilities with others, and sharing work before it feels finished.",
+      },
+      {
+        text: "I’m comfortable being challenged. Feedback and criticism often reveal something I hadn’t considered, and I’d rather discover that early than spend time perfecting the wrong idea.",
+      },
+      { text: "For me, good design has always been a conversation.", lead: true, accent: true },
+    ],
+  },
+  {
+    heading: "Away from work, I’m usually exploring something.",
+    paragraphs: [
+      { text: "I love discovering places through their food, culture, architecture, and people." },
+      {
+        text: "I document some of those experiences through short videos. Partly because I enjoy sharing what I discover, and partly because I like having something to look back on.",
+      },
+      { text: "Sometimes it’s an interesting place. Sometimes it’s a small detail or story I hadn’t noticed before." },
+    ],
+  },
+];
 
 export default function AboutV2Page() {
   return (
@@ -36,98 +88,67 @@ export default function AboutV2Page() {
             I learned design from <span className="text-[var(--accent-deep)]">the people around me</span>.
           </h1>
           <div className="ds-stagger mt-10 max-w-[58ch]">
-            <p className="text-lg leading-8 text-[var(--ink-soft)]">I&apos;m Mithun, a designer in Bengaluru.</p>
+            <p className="text-lg leading-8 text-[var(--ink)]">I’m Mithun, a senior UX designer based in Bengaluru.</p>
             <p className="mt-4 text-lg leading-8 text-[var(--ink-soft)]">
-              The work I do is on the work pages. This page is about the person doing it.
+              Today, I work on complex digital products at Walmart Global Tech. But there’s more to how I got here
+              than the projects on this site.
             </p>
           </div>
         </Reveal>
       </div>
 
-      <section className="mt-24 ds-section-boundary pt-16">
-        <Reveal>
-          <h2 className="display-title display-section max-w-[24ch] text-[var(--ink)]">How it started.</h2>
-        </Reveal>
-        <div className="mt-8 max-w-[62ch] space-y-5 text-[1.05rem] leading-8 text-[var(--ink-soft)]">
-          <Reveal delay={80}>
-            <p>
-              I was always drawn to making things on a screen. In college I made the posters for events and
-              designed the monthly college magazine. I wanted to know how and why those things worked, so I started
-              researching, and that took me from a computer applications degree to a diploma in design.
-            </p>
-          </Reveal>
-          <Reveal delay={140}>
-            <p>
-              People often say they are self-taught. I am not. I was taught and refined by a lot of mentors, the
-              talented people I got to work with, and design became part of me through what I learned from them.
-              I like to say so.
-            </p>
-          </Reveal>
-        </div>
-      </section>
-
-      <section className="mt-24 ds-section-boundary pt-16">
-        <Reveal>
-          <h2 className="display-title display-section max-w-[24ch] text-[var(--ink)]">
-            I think out loud, with other people.
-          </h2>
-        </Reveal>
-        <div className="mt-8 max-w-[62ch] space-y-5 text-[1.05rem] leading-8 text-[var(--ink-soft)]">
-          <Reveal delay={80}>
-            <p>
-              I am a vocal person. I like to talk an idea through and explore a new direction with other people, not
-              build alone in a corner.
-            </p>
-          </Reveal>
-          <Reveal delay={140}>
-            <p>
-              I am not shy about showing my work or a half-formed idea, and I welcome feedback and criticism. That
-              is how an idea gets better.
-            </p>
-          </Reveal>
-        </div>
-      </section>
-
-      <section className="mt-24 ds-section-boundary pt-16">
-        <Reveal>
-          <h2 className="display-title display-section max-w-[24ch] text-[var(--ink)]">
-            Away from work, I explore and document.
-          </h2>
-        </Reveal>
-        <div className="mt-8 max-w-[62ch] space-y-5 text-[1.05rem] leading-8 text-[var(--ink-soft)]">
-          <Reveal delay={80}>
-            <p>
-              I love culture, food, architecture and people, and I explore them wherever I go. I document what I
-              find in short videos: partly to share it with other people, and partly so I have something to come
-              back to.
-            </p>
-          </Reveal>
-          <Reveal delay={140}>
-            <p>I speak English and Hindi comfortably, Kannada and Telugu a little, and Tamil a few words.</p>
-          </Reveal>
-        </div>
-      </section>
+      {PARTS.map((part) => (
+        <section key={part.heading} className="mt-20 ds-section-boundary pt-14 md:mt-24 md:pt-16">
+          <div className="grid grid-cols-1 gap-8 md:grid-cols-[minmax(0,24rem)_minmax(0,1fr)] md:gap-16">
+            <Reveal>
+              <h2 className="display-title display-section text-[var(--ink)]">{part.heading}</h2>
+            </Reveal>
+            <div className="max-w-[58ch] space-y-5">
+              {part.paragraphs.map((p, i) => (
+                <Reveal key={p.text} delay={80 + i * 60}>
+                  {p.lead ? (
+                    <p
+                      className="display-title text-[1.55rem] leading-snug"
+                      style={{ color: p.accent ? "var(--accent-deep)" : "var(--ink)" }}
+                    >
+                      {p.text}
+                    </p>
+                  ) : (
+                    <p className="text-[1.08rem] leading-8 text-[var(--ink-soft)]">{p.text}</p>
+                  )}
+                </Reveal>
+              ))}
+            </div>
+          </div>
+        </section>
+      ))}
 
       <section id="contact" className="mt-24">
         <Reveal>
           <div className="ds-env-dark rounded-sm p-12 md:p-16">
             <h2 className="display-title display-section max-w-[30ch]">Say hello.</h2>
-            <p className="mt-6 max-w-[58ch]" style={{ color: "var(--ds-dark-muted)" }}>
-              If something here made you want to talk, I would like that.
+            <p className="mt-6 max-w-[58ch] text-[1.08rem] leading-8" style={{ color: "var(--ds-dark-muted)" }}>
+              Whether it’s about design, something you’re building, or an interesting place you’ve discovered, I’d
+              enjoy the conversation.
             </p>
-            <div className="mt-8">
+            <div className="mt-8 flex flex-wrap items-center gap-3">
               <Link href="/resume" className="button button-primary">
                 Résumé →
               </Link>
-              <CopyEmail address="mithraj14@gmail.com" className="button button-secondary ml-3" />
               <a
                 href="https://www.linkedin.com/in/mithunrajuk"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="button button-secondary ml-3"
+                className="button button-secondary"
               >
-                LinkedIn
+                LinkedIn →
               </a>
+              <a href="mailto:mithraj14@gmail.com" className="button button-secondary">
+                Email →
+              </a>
+              <span className="ml-1 text-[0.95rem]" style={{ color: "var(--ds-dark-muted)" }}>
+                mithraj14@gmail.com
+              </span>
             </div>
           </div>
         </Reveal>
