@@ -6,35 +6,16 @@ import { Reveal } from "@/components/Reveal";
 import { caseStudyRobots } from "@/content/seo";
 
 /**
- * A second version of About, written from the case studies rather than from
- * the older page: a claim, the evidence for it, how the work gets done, and
- * the question that is changing. No diagrams. Every fact here is on a case
- * study or on the résumé. Kept out of search while it is compared.
+ * A human version of About. The work page and the case studies explain the
+ * work; this page says who the person is: how design started, how they work
+ * with other people, and what they do away from it. Everything here is in the
+ * person's own words. Kept out of search while it is compared.
  */
 export const metadata: Metadata = {
   title: "About",
-  description: "Mithun Raju, senior UX designer in Bengaluru: platforms that replace several tools with one.",
+  description: "Mithun Raju, a designer in Bengaluru: how design started, how I work with people, and what I explore.",
   robots: caseStudyRobots,
 };
-
-const HABITS = [
-  {
-    title: "I start with the people doing the work.",
-    body: "On the portfolio platform I ran three whiteboarding sessions of 12 people each before drawing a screen: who does what at each stage, where it hurts, and what to solve first.",
-  },
-  {
-    title: "I make something to react to, early.",
-    body: "A prototype teaches me more than a long discussion. I build mine in code with Cursor and Claude Code, so people react to something that behaves like the real thing.",
-  },
-  {
-    title: "I stay a sprint ahead of the engineers.",
-    body: "I worked a sprint ahead of three engineering teams, with a weekly review with each, so what I designed is what got built.",
-  },
-  {
-    title: "I treat the words as design.",
-    body: "I kept the platform’s names to common words, because one name for a thing is what lets two records be one.",
-  },
-];
 
 export default function AboutV2Page() {
   return (
@@ -51,17 +32,13 @@ export default function AboutV2Page() {
         />
         <Reveal>
           <p className="eyebrow">About</p>
-          <h1 className="display-title display-hero mt-4 max-w-[30ch] text-[var(--ink)]">
-            I design the part where <span className="text-[var(--accent-deep)]">separate tools become one product</span>.
+          <h1 className="display-title display-hero mt-4 max-w-[26ch] text-[var(--ink)]">
+            I learned design from <span className="text-[var(--accent-deep)]">the people around me</span>.
           </h1>
-          <div className="ds-stagger mt-10 max-w-[60ch]">
-            <p className="text-lg leading-8 text-[var(--ink-soft)]">
-              I&apos;m Mithun, a senior UX designer in Bengaluru. For eleven years I have worked on the problem under
-              most products: the work is spread across tools, screens and people, and nothing joins it up.
-            </p>
+          <div className="ds-stagger mt-10 max-w-[58ch]">
+            <p className="text-lg leading-8 text-[var(--ink-soft)]">I&apos;m Mithun, a designer in Bengaluru.</p>
             <p className="mt-4 text-lg leading-8 text-[var(--ink-soft)]">
-              At Walmart Global Tech I replaced four external tools with one platform, turned a set of API tools into
-              one product, and co-led the redesign that made 139 tools easier to find.
+              The work I do is on the work pages. This page is about the person doing it.
             </p>
           </div>
         </Reveal>
@@ -69,53 +46,74 @@ export default function AboutV2Page() {
 
       <section className="mt-24 ds-section-boundary pt-16">
         <Reveal>
-          <h2 className="display-title display-section max-w-[24ch] text-[var(--ink)]">How I work.</h2>
+          <h2 className="display-title display-section max-w-[24ch] text-[var(--ink)]">How it started.</h2>
         </Reveal>
-        <div className="mt-12 grid grid-cols-1 gap-x-12 gap-y-10 md:grid-cols-2">
-          {HABITS.map((h, i) => (
-            <Reveal key={h.title} delay={80 + i * 60}>
-              <h3 className="display-title text-[1.35rem] leading-snug text-[var(--ink)]">{h.title}</h3>
-              <p className="mt-3 max-w-[46ch] text-[1.02rem] leading-8 text-[var(--ink-soft)]">{h.body}</p>
-            </Reveal>
-          ))}
+        <div className="mt-8 max-w-[62ch] space-y-5 text-[1.05rem] leading-8 text-[var(--ink-soft)]">
+          <Reveal delay={80}>
+            <p>
+              I was always drawn to making things on a screen. In college I made the posters for events and
+              designed the monthly college magazine. I wanted to know how and why those things worked, so I started
+              researching, and that took me from a computer applications degree to a diploma in design.
+            </p>
+          </Reveal>
+          <Reveal delay={140}>
+            <p>
+              People often say they are self-taught. I am not. I was taught and refined by a lot of mentors, the
+              talented people I got to work with, and design became part of me through what I learned from them.
+              I like to say so.
+            </p>
+          </Reveal>
         </div>
       </section>
 
       <section className="mt-24 ds-section-boundary pt-16">
         <Reveal>
-          <h2 className="display-title display-section max-w-[26ch] text-[var(--ink)]">
-            What I am asking now that products act for people.
+          <h2 className="display-title display-section max-w-[24ch] text-[var(--ink)]">
+            I think out loud, with other people.
           </h2>
         </Reveal>
-        <Reveal delay={80}>
-          <p className="mt-8 max-w-[60ch] text-[1.05rem] leading-8 text-[var(--ink-soft)]">
-            What is it for, who is accountable when it is wrong, and how does someone see what it did on their behalf.
-            Those questions do not change when the screen does, and they are the ones I want to work on next.
-          </p>
-        </Reveal>
+        <div className="mt-8 max-w-[62ch] space-y-5 text-[1.05rem] leading-8 text-[var(--ink-soft)]">
+          <Reveal delay={80}>
+            <p>
+              I am a vocal person. I like to talk an idea through and explore a new direction with other people, not
+              build alone in a corner.
+            </p>
+          </Reveal>
+          <Reveal delay={140}>
+            <p>
+              I am not shy about showing my work or a half-formed idea, and I welcome feedback and criticism. That
+              is how an idea gets better.
+            </p>
+          </Reveal>
+        </div>
       </section>
 
       <section className="mt-24 ds-section-boundary pt-16">
         <Reveal>
           <h2 className="display-title display-section max-w-[24ch] text-[var(--ink)]">
-            Away from the laptop, I am still explaining things.
+            Away from work, I explore and document.
           </h2>
         </Reveal>
-        <Reveal delay={80}>
-          <p className="mt-8 max-w-[62ch] text-[1.05rem] leading-8 text-[var(--ink-soft)]">
-            I travel, and I make short videos about the places I end up in: what is there, how it works, and what is
-            worth knowing before you go. A reel is a harder brief than a case study. Thirty seconds, no scrolling back.
-          </p>
-        </Reveal>
+        <div className="mt-8 max-w-[62ch] space-y-5 text-[1.05rem] leading-8 text-[var(--ink-soft)]">
+          <Reveal delay={80}>
+            <p>
+              I love culture, food, architecture and people, and I explore them wherever I go. I document what I
+              find in short videos: partly to share it with other people, and partly so I have something to come
+              back to.
+            </p>
+          </Reveal>
+          <Reveal delay={140}>
+            <p>I speak English and Hindi comfortably, Kannada and Telugu a little, and Tamil a few words.</p>
+          </Reveal>
+        </div>
       </section>
 
       <section id="contact" className="mt-24">
         <Reveal>
           <div className="ds-env-dark rounded-sm p-12 md:p-16">
-            <h2 className="display-title display-section max-w-[30ch]">The work I want more of.</h2>
+            <h2 className="display-title display-section max-w-[30ch]">Say hello.</h2>
             <p className="mt-6 max-w-[58ch]" style={{ color: "var(--ds-dark-muted)" }}>
-              Platforms where the hard part is how things connect, not how they look; screens full of dense information
-              that has to end in a decision; and products where an AI acts for a person and has to explain what it did.
+              If something here made you want to talk, I would like that.
             </p>
             <div className="mt-8">
               <Link href="/resume" className="button button-primary">
