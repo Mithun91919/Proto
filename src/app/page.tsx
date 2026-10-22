@@ -51,7 +51,6 @@ export default function HomePage() {
                 portfolio systems became one, three API tools became one
                 platform, 139 modules got a route through them. */}
             <p className="lede mt-8" style={{ maxWidth: "39.25rem" }}>
-              Work apps rarely work alone. I design experiences that help them work better together.
               Based in Bengaluru, with {yearsActive} years across consumer products, commerce and
               enterprise. Currently at Walmart Global Tech, working on developer tools and AI-assisted
               workflows.
