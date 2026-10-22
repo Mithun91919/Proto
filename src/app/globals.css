@@ -373,6 +373,9 @@ a {
     bottom: 0;
     right: 0;
     width: auto;
+    /* The base rule centres it with translateY(-50%); with top and bottom both
+       set that pushed the whole portrait half its height up, behind the header. */
+    transform: none;
     opacity: 0.22;
   }
 

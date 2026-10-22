@@ -75,13 +75,13 @@ export default function AboutPage() {
 
             <Reveal delay={140}>
               <p>
-                Consumer and commerce products pushed past individual screens into journeys, behaviour, and the delivery and fulfilment operations on the other side of them.
+                Consumer and commerce products pushed me past single screens, to the whole path a customer takes and the delivery work behind each order.
               </p>
             </Reveal>
 
             <Reveal delay={200}>
               <p>
-                Enterprise software expanded that again: products now sat inside workflows, data, permissions, other tools, and whole organisations.
+                Enterprise software widened it again: a product had to fit the tools people already used, who was allowed to see what, and how a whole organisation worked.
               </p>
             </Reveal>
 
@@ -129,7 +129,7 @@ export default function AboutPage() {
                 <polyline points="4,1 7,4 4.5,7" fill="none" stroke="var(--accent)" strokeWidth="1.3" strokeLinecap="round" strokeLinejoin="round" />
               </g>
               <text x="50" y="197" textAnchor="middle" fontSize="8.5" fill="var(--muted)" style={{ fontFamily: "var(--font-mono)", letterSpacing: "0.14em" }}>PRODUCT</text>
-              <text x="50" y="211" textAnchor="middle" fontSize="7" fill="var(--muted)" style={{ fontFamily: "var(--font-mono)", letterSpacing: "0.06em", opacity: 0.6 }}>End to End Experience</text>
+              <text x="50" y="211" textAnchor="middle" fontSize="7" fill="var(--muted)" style={{ fontFamily: "var(--font-mono)", letterSpacing: "0.06em", opacity: 0.6 }}>The whole experience</text>
 
               {/* ── Workflow — right (stacked tasks / checklist) ── */}
               <g transform="translate(260, 155)">
@@ -186,10 +186,10 @@ export default function AboutPage() {
               width="300"
               height="300"
               role="img"
-              aria-label="Design process diagram: Complexity → Design → Clarity, Structure, Tangible"
+              aria-label="Design process diagram: Complexity → Design → Clarity, Structure, Something to try"
               style={{ overflow: "visible" }}
             >
-              <title>Complexity → Structure → Clarity → Tangible via Design</title>
+              <title>Complexity → Structure → Clarity → Something to try, through design</title>
 
               {/* ── Lines rendered first (behind nodes) ── */}
 
@@ -219,7 +219,7 @@ export default function AboutPage() {
               <text x="200" y="44"  textAnchor="middle" fontSize="13" fill="var(--ink-soft)" style={{ fontFamily: "var(--font-sans)" }}>Clarity</text>
               <text x="60"  y="238" textAnchor="middle" fontSize="13" fill="var(--ink-soft)" style={{ fontFamily: "var(--font-sans)" }}>Complexity</text>
               <text x="340" y="238" textAnchor="middle" fontSize="13" fill="var(--ink-soft)" style={{ fontFamily: "var(--font-sans)" }}>Structure</text>
-              <text x="200" y="384" textAnchor="middle" fontSize="13" fill="var(--ink-soft)" style={{ fontFamily: "var(--font-sans)" }}>Tangible</text>
+              <text x="200" y="384" textAnchor="middle" fontSize="13" fill="var(--ink-soft)" style={{ fontFamily: "var(--font-sans)" }}>Something to try</text>
               <text x="212" y="181" textAnchor="start"  fontSize="13" fill="var(--ink-soft)" style={{ fontFamily: "var(--font-sans)" }}>Design</text>
             </svg>
           </Reveal>
@@ -228,7 +228,7 @@ export default function AboutPage() {
           <div className="flex-1 space-y-6 text-[1.05rem] leading-8 text-[var(--ink-soft)]">
             <Reveal delay={120}>
               <p>
-                A lot of the problems I work on don&apos;t begin with a clean product brief. They often start with fragmented workflows, technical constraints, disconnected products, or information that people can see but don&apos;t know how to act on.
+                The problems I work on rarely arrive as a clean brief. They arrive as several tools that each hold part of the picture, or screens full of information that nobody knows how to act on.
               </p>
             </Reveal>
 
