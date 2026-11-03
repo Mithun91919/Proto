@@ -7,8 +7,11 @@ import { caseStudyRobots } from "@/content/seo";
 /**
  * About, in the person's own words. The text is set exactly as written; the
  * page only decides how it is laid out. Each part is a row: the heading on
- * the left, the story on the right, so a reader scans the headings and reads
- * what interests them. Kept out of search while it is compared with /about.
+ * the left, the story on the right. The two lines worth remembering are set
+ * as statements rather than body text, and the facts the story mentions
+ * (the path from college to today, what is explored) get their own small
+ * visual, built only from what the résumé and the text already say.
+ * Kept out of search while it is compared with /about.
  */
 export const metadata: Metadata = {
   title: "About",
@@ -19,8 +22,21 @@ export const metadata: Metadata = {
 type Part = {
   heading: string;
   /** Paragraphs in order. A `lead` paragraph is set larger, as the line to remember. */
-  paragraphs: { text: string; lead?: boolean; accent?: boolean }[];
+  paragraphs: { text: string; lead?: boolean; accent?: boolean; band?: boolean }[];
+  /** A small visual under the row, from facts already in the text or résumé. */
+  extra?: "path" | "places";
 };
+
+/** The path the first part describes, from the résumé. */
+const PATH = [
+  { when: "2011 – 2014", what: "Bachelor of Computer Applications", where: "St. Claret College, Bengaluru" },
+  { when: "2014 – 2015", what: "Diploma in Graphic & Web Designing", where: "Zee Institute of Creative Arts" },
+  { when: "2015", what: "First design work", where: "Teewe.in and NexusNovus" },
+  { when: "Today", what: "Senior UX Designer", where: "Walmart Global Tech" },
+];
+
+/** What the last part says I look at when I travel. */
+const PLACES = ["Food", "Culture", "Architecture", "People"];
 
 const PARTS: Part[] = [
   {
@@ -32,6 +48,7 @@ const PARTS: Part[] = [
       },
       { text: "What started as an interest slowly became something I wanted to build a career around." },
     ],
+    extra: "path",
   },
   {
     heading: "I didn’t learn design alone.",
@@ -54,7 +71,7 @@ const PARTS: Part[] = [
       {
         text: "I’m comfortable being challenged. Feedback and criticism often reveal something I hadn’t considered, and I’d rather discover that early than spend time perfecting the wrong idea.",
       },
-      { text: "For me, good design has always been a conversation.", lead: true, accent: true },
+      { text: "For me, good design has always been a conversation.", lead: true, accent: true, band: true },
     ],
   },
   {
@@ -66,6 +83,7 @@ const PARTS: Part[] = [
       },
       { text: "Sometimes it’s an interesting place. Sometimes it’s a small detail or story I hadn’t noticed before." },
     ],
+    extra: "places",
   },
 ];
 
@@ -97,31 +115,74 @@ export default function AboutV2Page() {
         </Reveal>
       </div>
 
-      {PARTS.map((part) => (
-        <section key={part.heading} className="mt-20 ds-section-boundary pt-14 md:mt-24 md:pt-16">
-          <div className="grid grid-cols-1 gap-8 md:grid-cols-[minmax(0,24rem)_minmax(0,1fr)] md:gap-16">
-            <Reveal>
-              <h2 className="display-title display-section text-[var(--ink)]">{part.heading}</h2>
-            </Reveal>
-            <div className="max-w-[58ch] space-y-5">
-              {part.paragraphs.map((p, i) => (
-                <Reveal key={p.text} delay={80 + i * 60}>
-                  {p.lead ? (
-                    <p
-                      className="display-title text-[1.55rem] leading-snug"
-                      style={{ color: p.accent ? "var(--accent-deep)" : "var(--ink)" }}
-                    >
-                      {p.text}
-                    </p>
-                  ) : (
-                    <p className="text-[1.08rem] leading-8 text-[var(--ink-soft)]">{p.text}</p>
-                  )}
-                </Reveal>
-              ))}
+      {PARTS.map((part) => {
+        const body = part.paragraphs.filter((p) => !p.band);
+        const band = part.paragraphs.find((p) => p.band);
+        return (
+          <section key={part.heading} className="mt-16 ds-section-boundary pt-12 md:mt-20 md:pt-14">
+            <div className="grid grid-cols-1 gap-8 md:grid-cols-[minmax(0,24rem)_minmax(0,1fr)] md:gap-16">
+              <Reveal>
+                <h2 className="display-title display-section text-[var(--ink)] md:sticky md:top-24">{part.heading}</h2>
+              </Reveal>
+              <div className="max-w-[58ch] space-y-5">
+                {body.map((p, i) => (
+                  <Reveal key={p.text} delay={80 + i * 60}>
+                    {p.lead ? (
+                      <p className="display-title border-l-2 border-[var(--accent-deep)] pl-6 text-[2rem] leading-[1.15] text-[var(--ink)]">
+                        {p.text}
+                      </p>
+                    ) : (
+                      <p className="text-[1.08rem] leading-8 text-[var(--ink-soft)]">{p.text}</p>
+                    )}
+                  </Reveal>
+                ))}
+              </div>
             </div>
-          </div>
-        </section>
-      ))}
+
+            {part.extra === "path" ? (
+              <Reveal delay={120}>
+                <ol className="mt-12 grid grid-cols-1 gap-8 border-t border-[var(--line)] pt-8 md:grid-cols-4 md:gap-6" aria-label="Path from college to today">
+                  {PATH.map((step, i) => (
+                    <li key={step.what} className="relative">
+                      <span
+                        aria-hidden
+                        className="absolute -top-[2.4rem] left-0 h-2.5 w-2.5 rounded-full"
+                        style={{
+                          background: i === PATH.length - 1 ? "var(--accent-deep)" : "var(--paper)",
+                          border: "2px solid var(--accent-deep)",
+                        }}
+                      />
+                      <p className="font-mono text-[0.78rem] uppercase tracking-[0.08em] text-[var(--accent-deep)]">{step.when}</p>
+                      <p className="display-title mt-2 text-[1.15rem] leading-snug text-[var(--ink)]">{step.what}</p>
+                      <p className="mt-1 text-[0.95rem] leading-6 text-[var(--ink-soft)]">{step.where}</p>
+                    </li>
+                  ))}
+                </ol>
+              </Reveal>
+            ) : null}
+
+            {part.extra === "places" ? (
+              <Reveal delay={120}>
+                <ul className="mt-12 grid grid-cols-2 gap-px overflow-hidden rounded-sm border border-[var(--line)] bg-[var(--line)] md:grid-cols-4" aria-label="What I look at when I travel">
+                  {PLACES.map((place) => (
+                    <li key={place} className="bg-[var(--paper)] px-6 py-8">
+                      <span className="display-title text-[1.6rem] text-[var(--ink)]">{place}</span>
+                    </li>
+                  ))}
+                </ul>
+              </Reveal>
+            ) : null}
+
+            {band ? (
+              <Reveal delay={120}>
+                <p className="display-title mt-12 border-y border-[var(--line)] py-12 text-center text-[clamp(1.8rem,3.4vw,2.8rem)] leading-[1.15] text-[var(--accent-deep)]">
+                  {band.text}
+                </p>
+              </Reveal>
+            ) : null}
+          </section>
+        );
+      })}
 
       <section id="contact" className="mt-24">
         <Reveal>
