@@ -29,22 +29,8 @@ type Part = {
     band?: boolean;
   }[];
   /** A small visual under the row, from facts already in the text or résumé. */
-  extra?: "education" | "places";
+  extra?: "places";
 };
-
-/** The education the first part mentions, from the résumé. Work is covered by the case studies and the résumé. */
-const EDUCATION = [
-  {
-    what: "Diploma in Graphic & Web Designing",
-    where: "Zee Institute of Creative Arts",
-    years: "2014 – 2015",
-  },
-  {
-    what: "Bachelor of Computer Applications",
-    where: "St. Claret College, Bengaluru",
-    years: "2011 – 2014",
-  },
-];
 
 /** What the last part says I look at when I travel. */
 const PLACES = ["Food", "Culture", "Architecture", "People"];
@@ -63,7 +49,6 @@ const PARTS: Part[] = [
         text: "What started as an interest slowly became something I wanted to build a career around.",
       },
     ],
-    extra: "education",
   },
   {
     heading: "I didn’t learn design alone.",
@@ -130,6 +115,10 @@ export default function AboutV2Page() {
                 I’m Mithun, a senior UX designer based in Bengaluru.
               </p>
               <p className="mt-4 text-lg leading-8 text-[var(--ink-soft)]">
+                I studied computer applications at St. Claret College and design
+                at the Zee Institute of Creative Arts.
+              </p>
+              <p className="mt-4 text-lg leading-8 text-[var(--ink-soft)]">
                 Today, I work on complex digital products at Walmart Global
                 Tech. But there’s more to how I got here than the projects on
                 this site.
@@ -186,36 +175,6 @@ export default function AboutV2Page() {
                 ))}
               </div>
             </div>
-
-            {part.extra === "education" ? (
-              <Reveal delay={120}>
-                <div className="mt-12 grid grid-cols-1 md:grid-cols-[minmax(0,24rem)_minmax(0,1fr)] md:gap-16">
-                  <div className="md:col-start-2 md:max-w-[58ch]">
-                    <p className="eyebrow">Education</p>
-                    <ul className="mt-4 border-t border-[var(--line)]">
-                      {EDUCATION.map((e) => (
-                        <li
-                          key={e.what}
-                          className="flex flex-wrap items-baseline justify-between gap-x-6 gap-y-1 border-b border-[var(--line)] py-4"
-                        >
-                          <div>
-                            <p className="display-title text-[1.15rem] leading-snug text-[var(--ink)]">
-                              {e.what}
-                            </p>
-                            <p className="mt-0.5 text-[0.95rem] text-[var(--ink-soft)]">
-                              {e.where}
-                            </p>
-                          </div>
-                          <p className="font-mono text-[0.8rem] tracking-[0.04em] text-[var(--accent-deep)]">
-                            {e.years}
-                          </p>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                </div>
-              </Reveal>
-            ) : null}
 
             {part.extra === "places" ? (
               <Reveal delay={120}>
