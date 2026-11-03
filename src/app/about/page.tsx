@@ -1,342 +1,309 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { CopyEmail } from "@/components/CopyEmail";
-import { HeroPortrait } from "@/components/HeroPortrait";
+import { AboutGallery } from "@/components/AboutGallery";
+import { MetricGlyph } from "@/components/design-system/MetricGlyph";
+import type { MetricMarkName } from "@/components/design-system/dotPatterns";
 import { Reveal } from "@/components/Reveal";
-import { ChapterProgress } from "@/components/design-system/ChapterProgress";
 
+/**
+ * About, in the person's own words. The text is set exactly as written; the
+ * page only decides how it is laid out. Each part is a row: a dot glyph and
+ * the heading on the left, the story on the right. The two lines worth
+ * remembering are set as statements rather than body text, and the travel
+ * section carries a row of photographs and one clip.
+ */
 export const metadata: Metadata = {
   title: "About",
   description:
-    "Mithun Raju — senior UX designer focusing on systems, complex workflows, and making ideas tangible.",
+    "Mithun Raju, a senior UX designer in Bengaluru: how design started, how I work with people, and what I explore.",
 };
 
-const CHAPTERS = [
-  { id: "interface", label: "My path" },
-  { id: "principles", label: "Principles" },
-  { id: "away", label: "Away from work" },
-  { id: "contact", label: "Contact" },
+type Part = {
+  heading: string;
+  /** A glyph from the dot library, chosen for what it means (see `GLYPHS`). */
+  glyph: MetricMarkName;
+  /** Paragraphs in order. A `lead` paragraph is set larger, as the line to remember. */
+  paragraphs: {
+    text: string;
+    lead?: boolean;
+    accent?: boolean;
+  }[];
+  /** Replaces the paragraphs with a ruled list, for the qualifications. */
+  education?: { what: string; where: string; years: string }[];
+  /** A small visual under the row, from facts already in the text or résumé. */
+  extra?: "places";
+};
+
+/** Travel photographs and one clip for the last part. Captions state only what is in the frame or is known. */
+const TRAVEL = [
+  {
+    kind: "image" as const,
+    src: "/about/daruma.jpg",
+    alt: "Hundreds of red daruma dolls, each marked with the character for victory, stacked on temple shelves",
+    caption: "Daruma dolls, Japan",
+  },
+  {
+    kind: "image" as const,
+    src: "/about/buddha.jpg",
+    alt: "Two people standing in front of the Great Buddha, a large bronze statue, under a blue sky",
+    caption: "The Great Buddha, Kamakura",
+  },
+  {
+    kind: "video" as const,
+    src: "/about/light-show.mp4",
+    poster: "/about/light-show.jpg",
+    alt: "Two people sitting on the floor of an immersive light installation, with flowers projected around them, at teamLab in Japan",
+    caption: "teamLab, Japan",
+  },
+  {
+    kind: "image" as const,
+    src: "/about/python.jpg",
+    alt: "Mithun smiling in sunglasses with a large python around his shoulders, in Vietnam",
+    caption: "A python around my shoulders, Vietnam",
+  },
+];
+
+const PARTS: Part[] = [
+  {
+    heading: "It started with posters and a college magazine.",
+    glyph: "ramp",
+    paragraphs: [
+      {
+        text: "In college, I was the person designing posters for events and putting together the monthly magazine.",
+      },
+      {
+        text: "I enjoyed making things look good, but I became curious about why some designs worked better than others. That curiosity took me from a degree in computer applications to a diploma in design.",
+      },
+      {
+        text: "What started as an interest slowly became something I wanted to build a career around.",
+      },
+    ],
+  },
+  {
+    heading: "I didn’t learn design alone.",
+    glyph: "field",
+    paragraphs: [
+      { text: "I don’t consider myself self-taught.", lead: true },
+      {
+        text: "I’ve been fortunate to work with mentors and talented people who challenged my thinking, shared what they knew, and helped me see things differently.",
+      },
+      {
+        text: "A lot of what I know today came from those conversations and experiences. And I’m still learning from the people I work with.",
+      },
+    ],
+  },
+  {
+    heading: "I think out loud.",
+    glyph: "modules",
+    paragraphs: [
+      {
+        text: "I enjoy talking through ideas, exploring possibilities with others, and sharing work before it feels finished.",
+      },
+      {
+        text: "I’m comfortable being challenged. Feedback and criticism often reveal something I hadn’t considered, and I’d rather discover that early than spend time perfecting the wrong idea.",
+      },
+      {
+        text: "For me, good design has always been a conversation.",
+        lead: true,
+        accent: true,
+      },
+    ],
+  },
+  {
+    heading: "Education.",
+    glyph: "layers",
+    paragraphs: [],
+    education: [
+      {
+        what: "Diploma in Graphic & Web Designing",
+        where: "Zee Institute of Creative Arts",
+        years: "2014 – 2015",
+      },
+      {
+        what: "Bachelor of Computer Applications",
+        where: "St. Claret College, Bengaluru",
+        years: "2011 – 2014",
+      },
+    ],
+  },
+  {
+    heading: "Away from work, I’m usually exploring something.",
+    glyph: "ring",
+    paragraphs: [
+      {
+        text: "I love discovering places through their food, culture, architecture, and people.",
+      },
+      {
+        text: "I document some of those experiences through short videos. Partly because I enjoy sharing what I discover, and partly because I like having something to look back on.",
+      },
+      {
+        text: "Sometimes it’s an interesting place. Sometimes it’s a small detail or story I hadn’t noticed before.",
+      },
+    ],
+    extra: "places",
+  },
 ];
 
 export default function AboutPage() {
   return (
     <div className="mx-auto w-full max-w-[80rem] px-5 pb-16 pt-6 md:px-8 md:pb-24 md:pt-10">
-      <ChapterProgress chapters={CHAPTERS} />
-
-      {/* Hero Section */}
       <div className="page-hero hero-in">
-        <HeroPortrait
-          className="page-hero-backdrop"
-          aspect={1}
-          pitch={9}
-          zoom={1.2}
-          hoverScope=".page-hero"
-          maxPhotoAlpha={0.3}
-          label="Portrait of Mithun Raju as a halftone of falling dots; hover to see the photograph"
-        />
-        <Reveal>
-          <p className="eyebrow">About</p>
-          <h1 className="display-title display-hero mt-4 max-w-[36ch] text-[var(--ink)]">
-            I design products by understanding <span className="text-[var(--accent-deep)]">how the work actually happens</span>.
-          </h1>
-          <div className="ds-stagger mt-10 max-w-[60ch]">
-            <p className="text-lg leading-8 text-[var(--ink-soft)]">
-              I&apos;m Mithun, a senior UX designer based in Bengaluru.
-            </p>
-            <p className="mt-4 text-lg leading-8 text-[var(--ink-soft)]">
-              I started my career in visual and interaction design, then moved through consumer products, commerce, and enterprise platforms as the problems got bigger and more connected.
-            </p>
-            <p className="mt-4 text-lg leading-8 text-[var(--ink-soft)]">
-              Today, I work mostly on enterprise platforms and AI-assisted workflows — replacing a pile of separate tools with one product people can finish their work in.
-            </p>
-          </div>
-        </Reveal>
+        <div className="grid grid-cols-1 items-center gap-10 md:grid-cols-[minmax(0,1fr)_minmax(0,26rem)] md:gap-16">
+          <Reveal>
+            <p className="eyebrow">About</p>
+            <h1 className="display-title display-hero mt-4 max-w-[18ch] text-[var(--ink)]">
+              I learned design from{" "}
+              <span className="text-[var(--accent-deep)]">
+                the people around me
+              </span>
+              .
+            </h1>
+            <div className="ds-stagger mt-10 max-w-[48ch]">
+              <p className="text-lg leading-8 text-[var(--ink)]">
+                I’m Mithun, a senior UX designer based in Bengaluru.
+              </p>
+              <p className="mt-4 text-lg leading-8 text-[var(--ink-soft)]">
+                Today, I work on complex digital products at Walmart Global
+                Tech. But there’s more to how I got here than the projects on
+                this site.
+              </p>
+              <p className="mt-6">
+                <Link href="/work" className="button button-secondary">
+                  See the work →
+                </Link>
+              </p>
+            </div>
+          </Reveal>
+          <Reveal delay={120}>
+            <figure className="overflow-hidden rounded-sm border border-[var(--line)]">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src="/mithun-raju.jpg"
+                alt="Mithun Raju, smiling, wearing glasses and a dark blazer"
+                width={1024}
+                height={903}
+                className="block h-auto w-[108%] max-w-none"
+              />
+            </figure>
+          </Reveal>
+        </div>
       </div>
 
-      {/* Section: I started with the interface */}
-      <section id="interface" className="mt-24 ds-section-boundary pt-16">
-        <Reveal>
-          <h2 className="display-title display-section text-[var(--ink)]">
-            I started with the interface. The questions kept getting bigger.
-          </h2>
-        </Reveal>
-
-        {/* Text + diagram in a two-column layout on desktop */}
-        <div className="mt-12 flex flex-col gap-10 md:flex-row md:items-start md:gap-12">
-
-          {/* One paragraph: how the questions grew, and the one that stays the same. */}
-          <div className="flex-1 text-[1.05rem] leading-8 text-[var(--ink-soft)]">
-            <Reveal delay={80}>
-              <p>
-                Early on, the work was the interface itself: typography, composition, and how something felt to use. Consumer and commerce products pushed me past single screens, to the whole path a customer takes and the delivery work behind each order. Enterprise software widened it again: a product had to fit the tools people already used, who was allowed to see what, and how a whole organisation worked. Now that products act on a person&apos;s behalf, the questions stay the same: what is this for, who is accountable when it is wrong, and how does someone see what it did.
-              </p>
-            </Reveal>
-          </div>
-
-          {/* Right: diamond progression diagram */}
-          <Reveal delay={280} className="shrink-0 md:pt-2">
-            <svg
-              viewBox="0 0 310 325"
-              width="300"
-              height="315"
-              role="img"
-              aria-label="Career progression: Interface → Product → Workflow → System"
-              style={{ overflow: "visible" }}
-            >
-              <title>Interface → Product → Workflow → System</title>
-
-              {/* Connecting lines (rendered behind nodes) */}
-              <line x1="155" y1="50" x2="50" y2="155" stroke="var(--line)" strokeWidth="1.2" strokeDasharray="3 4" />
-              <line x1="155" y1="50" x2="260" y2="155" stroke="var(--line)" strokeWidth="1.2" strokeDasharray="3 4" />
-              <line x1="50" y1="155" x2="155" y2="260" stroke="var(--line)" strokeWidth="1.2" strokeDasharray="3 4" />
-              <line x1="260" y1="155" x2="155" y2="260" stroke="var(--line)" strokeWidth="1.2" strokeDasharray="3 4" />
-
-              {/* ── Interface — top (screen / UI frame) ── */}
-              <g transform="translate(155, 50)">
-                <polygon points="0,-28 28,0 0,28 -28,0" fill="var(--paper)" stroke="var(--accent-deep)" strokeWidth="1.5" />
-                <rect x="-11" y="-9" width="22" height="13" rx="2" fill="none" stroke="var(--accent-deep)" strokeWidth="1.3" />
-                <line x1="-4" y1="4" x2="4" y2="4" stroke="var(--accent-deep)" strokeWidth="1.3" />
-                <line x1="0" y1="4" x2="0" y2="8" stroke="var(--accent-deep)" strokeWidth="1.3" />
-              </g>
-              <text x="155" y="92" textAnchor="middle" fontSize="8.5" fill="var(--muted)" style={{ fontFamily: "var(--font-mono)", letterSpacing: "0.14em" }}>INTERFACE</text>
-              <text x="155" y="106" textAnchor="middle" fontSize="7" fill="var(--muted)" style={{ fontFamily: "var(--font-mono)", letterSpacing: "0.06em", opacity: 0.6 }}>Screens &amp; Interactions</text>
-
-              {/* ── Product — left (end-to-end path arrow) ── */}
-              <g transform="translate(50, 155)">
-                <polygon points="0,-28 28,0 0,28 -28,0" fill="var(--paper)" stroke="var(--accent)" strokeWidth="1.5" />
-                {/* Path: dot → curved line → arrowhead */}
-                <circle cx="-8" cy="-2" r="2.5" fill="var(--accent)" />
-                <path d="M-5.5,-2 C0,-2 2,6 7,4" fill="none" stroke="var(--accent)" strokeWidth="1.3" strokeLinecap="round" />
-                <polyline points="4,1 7,4 4.5,7" fill="none" stroke="var(--accent)" strokeWidth="1.3" strokeLinecap="round" strokeLinejoin="round" />
-              </g>
-              <text x="50" y="197" textAnchor="middle" fontSize="8.5" fill="var(--muted)" style={{ fontFamily: "var(--font-mono)", letterSpacing: "0.14em" }}>PRODUCT</text>
-              <text x="50" y="211" textAnchor="middle" fontSize="7" fill="var(--muted)" style={{ fontFamily: "var(--font-mono)", letterSpacing: "0.06em", opacity: 0.6 }}>The whole experience</text>
-
-              {/* ── Workflow — right (stacked tasks / checklist) ── */}
-              <g transform="translate(260, 155)">
-                <polygon points="0,-28 28,0 0,28 -28,0" fill="var(--paper)" stroke="var(--accent)" strokeWidth="1.5" />
-                {/* Three rows: checkbox + line */}
-                <rect x="-10" y="-9" width="5" height="5" rx="1" fill="none" stroke="var(--accent)" strokeWidth="1.2" />
-                <line x1="-3" y1="-6.5" x2="8" y2="-6.5" stroke="var(--accent)" strokeWidth="1.2" strokeLinecap="round" />
-                <rect x="-10" y="-2" width="5" height="5" rx="1" fill="none" stroke="var(--accent)" strokeWidth="1.2" />
-                <line x1="-3" y1="0.5" x2="8" y2="0.5" stroke="var(--accent)" strokeWidth="1.2" strokeLinecap="round" />
-                <rect x="-10" y="5" width="5" height="5" rx="1" fill="none" stroke="var(--accent)" strokeWidth="1.2" />
-                <line x1="-3" y1="7.5" x2="8" y2="7.5" stroke="var(--accent)" strokeWidth="1.2" strokeLinecap="round" />
-              </g>
-              <text x="260" y="197" textAnchor="middle" fontSize="8.5" fill="var(--muted)" style={{ fontFamily: "var(--font-mono)", letterSpacing: "0.14em" }}>WORKFLOW</text>
-              <text x="260" y="211" textAnchor="middle" fontSize="7" fill="var(--muted)" style={{ fontFamily: "var(--font-mono)", letterSpacing: "0.06em", opacity: 0.6 }}>Tasks &amp; Information</text>
-
-              {/* ── System — bottom (hub-and-spoke: people, tools, data) ── */}
-              <g transform="translate(155, 260)">
-                <polygon points="0,-28 28,0 0,28 -28,0" fill="var(--paper)" stroke="var(--accent-deep)" strokeWidth="1.5" />
-                {/* Central hub */}
-                <circle cx="0" cy="0" r="3" fill="var(--accent-deep)" />
-                {/* 4 spokes at 45° */}
-                <line x1="0" y1="0" x2="8" y2="-8" stroke="var(--accent-deep)" strokeWidth="1.2" strokeLinecap="round" />
-                <line x1="0" y1="0" x2="8" y2="8" stroke="var(--accent-deep)" strokeWidth="1.2" strokeLinecap="round" />
-                <line x1="0" y1="0" x2="-8" y2="8" stroke="var(--accent-deep)" strokeWidth="1.2" strokeLinecap="round" />
-                <line x1="0" y1="0" x2="-8" y2="-8" stroke="var(--accent-deep)" strokeWidth="1.2" strokeLinecap="round" />
-                {/* Endpoint nodes */}
-                <circle cx="8" cy="-8" r="2.2" fill="none" stroke="var(--accent-deep)" strokeWidth="1.2" />
-                <circle cx="8" cy="8" r="2.2" fill="none" stroke="var(--accent-deep)" strokeWidth="1.2" />
-                <circle cx="-8" cy="8" r="2.2" fill="none" stroke="var(--accent-deep)" strokeWidth="1.2" />
-                <circle cx="-8" cy="-8" r="2.2" fill="none" stroke="var(--accent-deep)" strokeWidth="1.2" />
-              </g>
-              <text x="155" y="302" textAnchor="middle" fontSize="8.5" fill="var(--muted)" style={{ fontFamily: "var(--font-mono)", letterSpacing: "0.14em" }}>SYSTEM</text>
-              <text x="155" y="316" textAnchor="middle" fontSize="7" fill="var(--muted)" style={{ fontFamily: "var(--font-mono)", letterSpacing: "0.06em", opacity: 0.6 }}>People, Tools &amp; Data</text>
-            </svg>
-          </Reveal>
-
-        </div>
-      </section>
-
-      {/* Section: Three Principles */}
-      <section id="principles" className="mt-24 ds-section-boundary pt-16">
-        <Reveal>
-          <h2 className="display-title display-section text-[var(--ink)]">
-            A few principles I keep coming back to.
-          </h2>
-        </Reveal>
-
-        <div className="mt-16 grid grid-cols-1 gap-10 md:grid-cols-3 md:gap-8">
-
-          {/* Principle 1 — Understand */}
-          <Reveal delay={80}>
-            <div className="ds-stagger border-t border-[var(--line)] pt-8">
-              {/* Magnifying glass with inner cross — "look deeper" */}
-              <svg viewBox="0 0 40 40" width="36" height="36" aria-hidden="true" style={{ overflow: "visible" }}>
-                <circle cx="16" cy="16" r="11" fill="none" stroke="var(--accent-deep)" strokeWidth="1.8" />
-                <line x1="24" y1="24" x2="33" y2="33" stroke="var(--accent-deep)" strokeWidth="1.8" strokeLinecap="round" />
-                <line x1="11" y1="16" x2="21" y2="16" stroke="var(--accent)" strokeWidth="1.4" strokeLinecap="round" />
-                <line x1="16" y1="11" x2="16" y2="21" stroke="var(--accent)" strokeWidth="1.4" strokeLinecap="round" />
-              </svg>
-              <h3 className="display-title mt-5 text-[1.05rem] font-semibold leading-snug text-[var(--ink)]">
-                Understand before simplifying.
-              </h3>
-              <p className="mt-3 text-[0.9rem] leading-7 text-[var(--ink-soft)]">
-                Complexity isn&apos;t always something to remove. First, I want to understand why it exists and which parts actually matter.
-              </p>
+      {PARTS.map((part) => {
+        return (
+          <section
+            key={part.heading}
+            className="mt-16 ds-section-boundary pt-12 md:mt-20 md:pt-14"
+          >
+            <div className="grid grid-cols-1 gap-8 md:grid-cols-[minmax(0,24rem)_minmax(0,1fr)] md:gap-16">
+              <Reveal>
+                <div className="md:sticky md:top-24">
+                  <MetricGlyph name={part.glyph} size={5} gap={3} />
+                  <h2 className="display-title display-section mt-6 text-[var(--ink)]">
+                    {part.heading}
+                  </h2>
+                </div>
+              </Reveal>
+              <div className="max-w-[58ch] space-y-5">
+                {part.paragraphs.map((p, i) => (
+                  <Reveal key={p.text} delay={80 + i * 60}>
+                    {p.lead ? (
+                      <p className="display-title border-l-2 border-[var(--accent-deep)] pl-6 text-[2rem] leading-[1.15] text-[var(--ink)]">
+                        {p.text}
+                      </p>
+                    ) : (
+                      <p className="text-[1.08rem] leading-8 text-[var(--ink-soft)]">
+                        {p.text}
+                      </p>
+                    )}
+                  </Reveal>
+                ))}
+                {part.education ? (
+                  <Reveal delay={80}>
+                    <ul className="border-t border-[var(--line)]">
+                      {part.education.map((e) => (
+                        <li
+                          key={e.what}
+                          className="flex flex-wrap items-baseline justify-between gap-x-6 gap-y-1 border-b border-[var(--line)] py-5"
+                        >
+                          <div>
+                            <p className="display-title text-[1.3rem] leading-snug text-[var(--ink)]">
+                              {e.what}
+                            </p>
+                            <p className="mt-1 text-[1.02rem] text-[var(--ink-soft)]">
+                              {e.where}
+                            </p>
+                          </div>
+                          <p className="font-mono text-[0.85rem] tracking-[0.04em] text-[var(--accent-deep)]">
+                            {e.years}
+                          </p>
+                        </li>
+                      ))}
+                    </ul>
+                  </Reveal>
+                ) : null}
+              </div>
             </div>
-          </Reveal>
 
-          {/* Principle 2 — Make tangible */}
-          <Reveal delay={160}>
-            <div className="ds-stagger border-t border-[var(--line)] pt-8">
-              {/* Dashed wireframe with inner layout — "prototype" */}
-              <svg viewBox="0 0 40 40" width="36" height="36" aria-hidden="true" style={{ overflow: "visible" }}>
-                <rect x="3" y="4" width="34" height="32" rx="3" fill="none" stroke="var(--accent-deep)" strokeWidth="1.6" strokeDasharray="3.5 2" />
-                <rect x="7" y="8" width="26" height="11" rx="1.5" fill="none" stroke="var(--accent)" strokeWidth="1.4" />
-                <line x1="7" y1="24" x2="22" y2="24" stroke="var(--accent)" strokeWidth="1.4" strokeLinecap="round" />
-                <line x1="7" y1="29" x2="16" y2="29" stroke="var(--accent)" strokeWidth="1.4" strokeLinecap="round" />
-              </svg>
-              <h3 className="display-title mt-5 text-[1.05rem] font-semibold leading-snug text-[var(--ink)]">
-                Build something to react to, early.
-              </h3>
-              <p className="mt-3 text-[0.9rem] leading-7 text-[var(--ink-soft)]">
-                A prototype people can react to usually teaches me more than a long discussion about what might work.
-              </p>
-            </div>
-          </Reveal>
+            {part.extra === "places" ? (
+              <Reveal delay={120}>
+                <div className="mt-12">
+                  <AboutGallery items={TRAVEL} />
+                  <p className="mt-6 text-[0.95rem] text-[var(--ink-soft)]">
+                    More on Instagram:{" "}
+                    <a
+                      href="https://www.instagram.com/the_humble_beee/"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-[var(--accent-deep)] underline underline-offset-4"
+                    >
+                      @the_humble_beee ↗
+                    </a>
+                  </p>
+                </div>
+              </Reveal>
+            ) : null}
+          </section>
+        );
+      })}
 
-          {/* Principle 3 — Stay close */}
-          <Reveal delay={240}>
-            <div className="ds-stagger border-t border-[var(--line)] pt-8">
-              {/* App screen with checkmark — "what actually ships" */}
-              <svg viewBox="0 0 40 40" width="36" height="36" aria-hidden="true" style={{ overflow: "visible" }}>
-                <rect x="6" y="4" width="28" height="32" rx="2.5" fill="none" stroke="var(--accent-deep)" strokeWidth="1.7" />
-                <line x1="6" y1="11" x2="34" y2="11" stroke="var(--accent-deep)" strokeWidth="1.4" />
-                <circle cx="20" cy="8" r="1.5" fill="var(--accent-deep)" />
-                <polyline points="13,22 18,27 28,17" fill="none" stroke="var(--accent)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-              </svg>
-              <h3 className="display-title mt-5 text-[1.05rem] font-semibold leading-snug text-[var(--ink)]">
-                Stay close to what gets built.
-              </h3>
-              <p className="mt-3 text-[0.9rem] leading-7 text-[var(--ink-soft)]">
-                The experience people eventually use matters more than the design file that preceded it.
-              </p>
-            </div>
-          </Reveal>
-
-        </div>
-      </section>
-
-      {/* Section: Away from work.
-          
-          Framed around the reels rather than around travelling, on purpose.
-          "When I am not working I travel" is the commonest line in a design
-          portfolio and says nothing; someone whose response to an unfamiliar
-          place is to explain it to people is doing the same thing this page
-          already claims — making things understandable — in another medium.
-          That is the only reason this section earns a place on a portfolio.
-
-          PENDING, all of it needs Mithun:
-            - 3 frames (stills, or pulled from the reels) + the places
-            - the Instagram handle for the link below
-            - what the reels actually explain, so the copy can stop hedging.
-              The body below is written to be true without knowing; it will
-              be better once it can name the subject. */}
-      <section id="away" className="mt-24 ds-section-boundary pt-16">
-        <Reveal>
-          <h2 className="display-title display-section max-w-[24ch] text-[var(--ink)]">
-            Away from the laptop, I am still explaining things.
-          </h2>
-        </Reveal>
-
-        <div className="mt-8 max-w-[62ch] space-y-5">
-          <Reveal delay={80}>
-            <p>
-              I travel, and I make short videos about the places I end up in — what is
-              there, how it works, and what is worth knowing before you go.
-            </p>
-          </Reveal>
-          <Reveal delay={140}>
-            <p>
-              It is the same instinct as the work on this page in a different medium:
-              take something unfamiliar, find the part that matters, and make it land
-              in the time someone is willing to give it. A reel is a harder brief than
-              a case study — thirty seconds, no scrolling back.
-            </p>
-          </Reveal>
-        </div>
-
-      </section>
-
-      {/* CTA Section — dark closing card, matching the same treatment used
-          to close /work and the homepage. "A little more" used to be its
-          own section right above this — folded in here instead, since it
-          was really the same closing moment split across two consecutive
-          blocks rather than a distinct part of the page. */}
       <section id="contact" className="mt-24">
         <Reveal>
           <div className="ds-env-dark rounded-sm p-12 md:p-16">
-            {/* Names the problem rather than asking after the reader's, and
-                does not touch availability: the current employer is three
-                lines below this on the same page. */}
             <h2 className="display-title display-section max-w-[30ch]">
-              The work I want more of.
+              Say hello.
             </h2>
-            <p className="mt-6 max-w-[58ch]" style={{ color: "var(--ds-dark-muted)" }}>
-              Platforms where the hard part is how things connect, not how they look; screens full of dense information that has to end in a decision; and products where an AI acts for a person and has to explain what it did.
+            <p
+              className="mt-6 max-w-[58ch] text-[1.08rem] leading-8"
+              style={{ color: "var(--ds-dark-muted)" }}
+            >
+              Whether it’s about design, something you’re building, or an
+              interesting place you’ve discovered, I’d enjoy the conversation.
             </p>
-            <div className="mt-8">
+            <div className="mt-8 flex flex-wrap items-center gap-3">
               <Link href="/resume" className="button button-primary">
                 Résumé →
               </Link>
-              <CopyEmail address="mithraj14@gmail.com" className="button button-secondary ml-3" />
-            </div>
-
-            <div
-              className="mt-14 grid gap-8 pt-10 sm:grid-cols-3"
-              style={{ borderTop: "1px solid rgba(234, 243, 245, 0.14)" }}
-            >
-              <div>
-                <p className="eyebrow" style={{ color: "var(--ds-mint)" }}>
-                  Based in
-                </p>
-                <p className="mt-2 text-lg" style={{ color: "var(--ds-dark-ink)" }}>
-                  Bengaluru, India
-                </p>
-              </div>
-
-              <div>
-                <p className="eyebrow" style={{ color: "var(--ds-mint)" }}>
-                  Currently
-                </p>
-                <p className="mt-2 text-lg" style={{ color: "var(--ds-dark-ink)" }}>
-                  Senior UX Designer · Walmart Global Tech
-                </p>
-              </div>
-
-              <div>
-                <p className="eyebrow" style={{ color: "var(--ds-mint)" }}>
-                  Elsewhere
-                </p>
-                <div className="mt-3 flex flex-col gap-2">
-                  <a
-                    href="https://www.linkedin.com/in/mithunrajuk"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="font-semibold transition hover:translate-x-1"
-                    style={{ color: "var(--ds-mint)" }}
-                  >
-                    LinkedIn
-                  </a>
-                  <a
-                    href="mailto:mithraj14@gmail.com"
-                    className="font-semibold transition hover:translate-x-1"
-                    style={{ color: "var(--ds-mint)" }}
-                  >
-                    Email
-                  </a>
-                  <Link
-                    href="/resume"
-                    className="font-semibold transition hover:translate-x-1"
-                    style={{ color: "var(--ds-mint)" }}
-                  >
-                    Résumé
-                  </Link>
-                </div>
-              </div>
+              <a
+                href="https://www.linkedin.com/in/mithunrajuk"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="button button-secondary"
+              >
+                LinkedIn →
+              </a>
+              <a
+                href="mailto:mithraj14@gmail.com"
+                className="button button-secondary"
+              >
+                Email →
+              </a>
+              <span
+                className="ml-1 text-[0.95rem]"
+                style={{ color: "var(--ds-dark-muted)" }}
+              >
+                mithraj14@gmail.com
+              </span>
             </div>
           </div>
         </Reveal>
