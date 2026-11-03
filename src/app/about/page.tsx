@@ -42,9 +42,9 @@ type Part = {
 const TRAVEL: PhotoRowItem[] = [
   {
     kind: "image" as const,
-    src: "/about/daruma.jpg",
-    alt: "Hundreds of red daruma dolls, each marked with the character for victory, stacked on temple shelves",
-    caption: "Daruma dolls, Japan",
+    src: "/about/bamboo.jpg",
+    alt: "Two people in kimonos, one pink and one red, standing in a bamboo grove",
+    caption: "Bamboo grove, Japan",
   },
   {
     kind: "image" as const,

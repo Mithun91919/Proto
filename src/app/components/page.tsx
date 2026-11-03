@@ -1675,7 +1675,7 @@ export default function ComponentsPage() {
           </p>
           <PhotoRow
             items={[
-              { kind: "image", src: "/about/daruma.jpg", alt: "Hundreds of red daruma dolls stacked on temple shelves", caption: "Daruma dolls, Japan" },
+              { kind: "image", src: "/about/bamboo.jpg", alt: "Two people in kimonos standing in a bamboo grove", caption: "Bamboo grove, Japan" },
               { kind: "image", src: "/about/buddha.jpg", alt: "Two people standing in front of the Great Buddha under a blue sky", caption: "The Great Buddha, Kamakura, Japan" },
               { kind: "clip", mp4: "/about/light-show.mp4", poster: "/about/light-show.jpg", alt: "Two people sitting in an immersive light installation", caption: "teamLab, Japan" },
               { kind: "image", src: "/about/python.jpg", alt: "A man in sunglasses with a python around his shoulders", caption: "A python around my shoulders, Vietnam" },
