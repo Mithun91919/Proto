@@ -56,14 +56,14 @@ const TRAVEL = [
     kind: "video" as const,
     src: "/about/light-show.mp4",
     poster: "/about/light-show.jpg",
-    alt: "Two people sitting on the floor of an immersive light installation, with flowers projected around them",
-    caption: "An immersive light installation",
+    alt: "Two people sitting on the floor of an immersive light installation, with flowers projected around them, at teamLab in Japan",
+    caption: "teamLab, Japan",
   },
   {
     kind: "image" as const,
     src: "/about/python.jpg",
-    alt: "Mithun smiling in sunglasses with a large python around his shoulders",
-    caption: "A python around my shoulders",
+    alt: "Mithun smiling in sunglasses with a large python around his shoulders, in Vietnam",
+    caption: "A python around my shoulders, Vietnam",
   },
 ];
 
