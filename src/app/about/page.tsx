@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import type { ReactNode } from "react";
 import Link from "next/link";
 import { FullWidthStatement } from "@/components/design-system/FullWidthStatement";
 import { GlyphSectionRow } from "@/components/design-system/GlyphSectionRow";
@@ -33,7 +34,7 @@ type Part = {
     lead?: boolean;
   }[];
   /** Replaces the paragraphs with a ruled list, for the qualifications. */
-  education?: { label: string; value: string }[];
+  education?: { label: string; value: ReactNode }[];
   /** A small visual under the row, from facts already in the text or résumé. */
   extra?: "places";
 };
@@ -90,13 +91,31 @@ const PARTS: Part[] = [
     education: [
       {
         label: "2014 – 2015",
-        value:
-          "Diploma in Graphic & Web Designing, Zee Institute of Creative Arts",
+        value: (
+          <>
+            <span className="text-[var(--ink)]">
+              Diploma in Graphic & Web Designing
+            </span>
+            <br />
+            <span className="text-[var(--ink-soft)]">
+              Zee Institute of Creative Arts
+            </span>
+          </>
+        ),
       },
       {
         label: "2011 – 2014",
-        value:
-          "Bachelor of Computer Applications, St. Claret College, Bengaluru",
+        value: (
+          <>
+            <span className="text-[var(--ink)]">
+              Bachelor of Computer Applications
+            </span>
+            <br />
+            <span className="text-[var(--ink-soft)]">
+              St. Claret College, Bengaluru
+            </span>
+          </>
+        ),
       },
     ],
   },
@@ -188,7 +207,7 @@ export default function AboutPage() {
                 alt="Mithun Raju, smiling, wearing glasses and a dark blazer"
                 width={1024}
                 height={903}
-                className="block h-auto w-[108%] max-w-none"
+                className="ml-[-8.7%] block h-auto w-[117.4%] max-w-none"
               />
             </figure>
           </Reveal>
@@ -214,7 +233,7 @@ export default function AboutPage() {
             ))}
             {part.education ? (
               <Reveal delay={80}>
-                <SpecList facts={part.education} />
+                <SpecList facts={part.education} valueFirst accentLabel />
               </Reveal>
             ) : null}
           </GlyphSectionRow>
