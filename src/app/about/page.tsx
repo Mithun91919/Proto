@@ -169,8 +169,8 @@ export default function AboutPage() {
                 I’m Mithun, a senior UX designer based in Bengaluru.
               </p>
               <p className="mt-4 text-lg leading-8 text-[var(--ink-soft)]">
-                Today, I work on complex digital products, and the internal
-                tools behind them, at Walmart Global Tech. But there’s more to
+                Today, I work across enterprise platforms, developer tools and
+                AI-enabled products at Walmart Global Tech. But there’s more to
                 how I got here than the projects on this site.
               </p>
               <p className="mt-6">
