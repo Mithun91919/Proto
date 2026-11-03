@@ -44,7 +44,7 @@ const TRAVEL: PhotoRowItem[] = [
     kind: "image" as const,
     src: "/about/bamboo.jpg",
     alt: "Two people in kimonos, one pink and one red, standing in a bamboo grove",
-    caption: "Bamboo grove, Japan",
+    caption: "Arashiyama, Kyoto, Japan",
   },
   {
     kind: "image" as const,
