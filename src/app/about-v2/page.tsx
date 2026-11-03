@@ -67,9 +67,6 @@ const TRAVEL = [
   },
 ];
 
-/** What the last part says I look at when I travel. */
-const PLACES = ["Food", "Culture", "Architecture", "People"];
-
 const PARTS: Part[] = [
   {
     heading: "It started with posters and a college magazine.",
@@ -268,18 +265,6 @@ export default function AboutV2Page() {
                     </a>
                   </p>
                 </div>
-                <ul
-                  className="mt-12 grid grid-cols-2 gap-px overflow-hidden rounded-sm border border-[var(--line)] bg-[var(--line)] md:grid-cols-4"
-                  aria-label="What I look at when I travel"
-                >
-                  {PLACES.map((place) => (
-                    <li key={place} className="bg-[var(--paper)] px-6 py-8">
-                      <span className="display-title text-[1.6rem] text-[var(--ink)]">
-                        {place}
-                      </span>
-                    </li>
-                  ))}
-                </ul>
               </Reveal>
             ) : null}
           </section>
