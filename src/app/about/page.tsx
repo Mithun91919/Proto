@@ -57,7 +57,7 @@ const TRAVEL: PhotoRowItem[] = [
     mp4: "/about/light-show.mp4",
     poster: "/about/light-show.jpg",
     alt: "Two people sitting on the floor of an immersive light installation, with flowers projected around them, at teamLab in Japan",
-    caption: "teamLab, Japan",
+    caption: "teamLab light installation, Japan",
   },
   {
     kind: "image" as const,
@@ -84,7 +84,7 @@ const PARTS: Part[] = [
     ],
   },
   {
-    heading: "Education.",
+    heading: "I studied computer applications, then design.",
     glyph: "layers",
     paragraphs: [],
     education: [
@@ -106,7 +106,7 @@ const PARTS: Part[] = [
     paragraphs: [
       { text: "I don’t consider myself self-taught.", lead: true },
       {
-        text: "I’ve been fortunate to work with mentors and talented people who challenged my thinking, shared what they knew, and helped me see things differently.",
+        text: "I’ve been fortunate to work with mentors and colleagues who challenged my thinking, shared what they knew, and helped me see things differently.",
       },
       {
         text: "A lot of what I know today came from those conversations and experiences. And I’m still learning from the people I work with.",
@@ -143,7 +143,7 @@ const PARTS: Part[] = [
         text: "I document some of those experiences through short videos. Partly because I enjoy sharing what I discover, and partly because I like having something to look back on.",
       },
       {
-        text: "Sometimes it’s an interesting place. Sometimes it’s a small detail or story I hadn’t noticed before.",
+        text: "Sometimes it’s a place. Sometimes it’s a small detail or story I hadn’t noticed before.",
       },
     ],
     extra: "places",
@@ -250,8 +250,8 @@ export default function AboutPage() {
               className="mt-6 max-w-[58ch] text-[1.08rem] leading-8"
               style={{ color: "var(--ds-dark-muted)" }}
             >
-              Whether it’s about design, something you’re building, or an
-              interesting place you’ve discovered, I’d enjoy the conversation.
+              Whether it’s about design, something you’re building, or a place
+              you’ve discovered, I’d enjoy the conversation.
             </p>
             <div className="mt-8 flex flex-wrap items-center gap-3">
               <Link href="/resume" className="button button-primary">

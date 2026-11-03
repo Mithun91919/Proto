@@ -1677,7 +1677,7 @@ export default function ComponentsPage() {
             items={[
               { kind: "image", src: "/about/bamboo.jpg", alt: "Two people in kimonos standing in a bamboo grove", caption: "Arashiyama, Kyoto, Japan" },
               { kind: "image", src: "/about/buddha.jpg", alt: "Two people standing in front of the Great Buddha under a blue sky", caption: "The Great Buddha, Kamakura, Japan" },
-              { kind: "clip", mp4: "/about/light-show.mp4", poster: "/about/light-show.jpg", alt: "Two people sitting in an immersive light installation", caption: "teamLab, Japan" },
+              { kind: "clip", mp4: "/about/light-show.mp4", poster: "/about/light-show.jpg", alt: "Two people sitting in an immersive light installation", caption: "teamLab light installation, Japan" },
               { kind: "image", src: "/about/python.jpg", alt: "A man in sunglasses with a python around his shoulders", caption: "A python around my shoulders, Vietnam" },
             ]}
           />
