@@ -14,24 +14,36 @@ import { caseStudyRobots } from "@/content/seo";
  */
 export const metadata: Metadata = {
   title: "About",
-  description: "Mithun Raju, a senior UX designer in Bengaluru: how design started, how I work with people, and what I explore.",
+  description:
+    "Mithun Raju, a senior UX designer in Bengaluru: how design started, how I work with people, and what I explore.",
   robots: caseStudyRobots,
 };
 
 type Part = {
   heading: string;
   /** Paragraphs in order. A `lead` paragraph is set larger, as the line to remember. */
-  paragraphs: { text: string; lead?: boolean; accent?: boolean; band?: boolean }[];
+  paragraphs: {
+    text: string;
+    lead?: boolean;
+    accent?: boolean;
+    band?: boolean;
+  }[];
   /** A small visual under the row, from facts already in the text or résumé. */
   extra?: "path" | "places";
 };
 
-/** The path the first part describes, from the résumé. */
+/** The education the first part describes, from the résumé. Work is covered by the case studies and the résumé. */
 const PATH = [
-  { when: "2011 – 2014", what: "Bachelor of Computer Applications", where: "St. Claret College, Bengaluru" },
-  { when: "2014 – 2015", what: "Diploma in Graphic & Web Designing", where: "Zee Institute of Creative Arts" },
-  { when: "2015", what: "First design work", where: "Teewe.in and NexusNovus" },
-  { when: "Today", what: "Senior UX Designer", where: "Walmart Global Tech" },
+  {
+    when: "2011 – 2014",
+    what: "Bachelor of Computer Applications",
+    where: "St. Claret College, Bengaluru",
+  },
+  {
+    when: "2014 – 2015",
+    what: "Diploma in Graphic & Web Designing",
+    where: "Zee Institute of Creative Arts",
+  },
 ];
 
 /** What the last part says I look at when I travel. */
@@ -41,11 +53,15 @@ const PARTS: Part[] = [
   {
     heading: "It started with posters and a college magazine.",
     paragraphs: [
-      { text: "In college, I was the person designing posters for events and putting together the monthly magazine." },
+      {
+        text: "In college, I was the person designing posters for events and putting together the monthly magazine.",
+      },
       {
         text: "I enjoyed making things look good, but I became curious about why some designs worked better than others. That curiosity took me from a degree in computer applications to a diploma in design.",
       },
-      { text: "What started as an interest slowly became something I wanted to build a career around." },
+      {
+        text: "What started as an interest slowly became something I wanted to build a career around.",
+      },
     ],
     extra: "path",
   },
@@ -70,17 +86,26 @@ const PARTS: Part[] = [
       {
         text: "I’m comfortable being challenged. Feedback and criticism often reveal something I hadn’t considered, and I’d rather discover that early than spend time perfecting the wrong idea.",
       },
-      { text: "For me, good design has always been a conversation.", lead: true, accent: true, band: true },
+      {
+        text: "For me, good design has always been a conversation.",
+        lead: true,
+        accent: true,
+        band: true,
+      },
     ],
   },
   {
     heading: "Away from work, I’m usually exploring something.",
     paragraphs: [
-      { text: "I love discovering places through their food, culture, architecture, and people." },
+      {
+        text: "I love discovering places through their food, culture, architecture, and people.",
+      },
       {
         text: "I document some of those experiences through short videos. Partly because I enjoy sharing what I discover, and partly because I like having something to look back on.",
       },
-      { text: "Sometimes it’s an interesting place. Sometimes it’s a small detail or story I hadn’t noticed before." },
+      {
+        text: "Sometimes it’s an interesting place. Sometimes it’s a small detail or story I hadn’t noticed before.",
+      },
     ],
     extra: "places",
   },
@@ -94,13 +119,20 @@ export default function AboutV2Page() {
           <Reveal>
             <p className="eyebrow">About</p>
             <h1 className="display-title display-hero mt-4 max-w-[18ch] text-[var(--ink)]">
-              I learned design from <span className="text-[var(--accent-deep)]">the people around me</span>.
+              I learned design from{" "}
+              <span className="text-[var(--accent-deep)]">
+                the people around me
+              </span>
+              .
             </h1>
             <div className="ds-stagger mt-10 max-w-[48ch]">
-              <p className="text-lg leading-8 text-[var(--ink)]">I’m Mithun, a senior UX designer based in Bengaluru.</p>
+              <p className="text-lg leading-8 text-[var(--ink)]">
+                I’m Mithun, a senior UX designer based in Bengaluru.
+              </p>
               <p className="mt-4 text-lg leading-8 text-[var(--ink-soft)]">
-                Today, I work on complex digital products at Walmart Global Tech. But there’s more to how I got here
-                than the projects on this site.
+                Today, I work on complex digital products at Walmart Global
+                Tech. But there’s more to how I got here than the projects on
+                this site.
               </p>
             </div>
           </Reveal>
@@ -123,10 +155,15 @@ export default function AboutV2Page() {
         const body = part.paragraphs.filter((p) => !p.band);
         const band = part.paragraphs.find((p) => p.band);
         return (
-          <section key={part.heading} className="mt-16 ds-section-boundary pt-12 md:mt-20 md:pt-14">
+          <section
+            key={part.heading}
+            className="mt-16 ds-section-boundary pt-12 md:mt-20 md:pt-14"
+          >
             <div className="grid grid-cols-1 gap-8 md:grid-cols-[minmax(0,24rem)_minmax(0,1fr)] md:gap-16">
               <Reveal>
-                <h2 className="display-title display-section text-[var(--ink)] md:sticky md:top-24">{part.heading}</h2>
+                <h2 className="display-title display-section text-[var(--ink)] md:sticky md:top-24">
+                  {part.heading}
+                </h2>
               </Reveal>
               <div className="max-w-[58ch] space-y-5">
                 {body.map((p, i) => (
@@ -136,7 +173,9 @@ export default function AboutV2Page() {
                         {p.text}
                       </p>
                     ) : (
-                      <p className="text-[1.08rem] leading-8 text-[var(--ink-soft)]">{p.text}</p>
+                      <p className="text-[1.08rem] leading-8 text-[var(--ink-soft)]">
+                        {p.text}
+                      </p>
                     )}
                   </Reveal>
                 ))}
@@ -145,32 +184,48 @@ export default function AboutV2Page() {
 
             {part.extra === "path" ? (
               <Reveal delay={120}>
-                <ol className="mt-12 grid grid-cols-1 gap-8 border-t border-[var(--line)] pt-8 md:grid-cols-4 md:gap-6" aria-label="Path from college to today">
-                  {PATH.map((step, i) => (
-                    <li key={step.what} className="relative">
-                      <span
-                        aria-hidden
-                        className="absolute -top-[2.4rem] left-0 h-2.5 w-2.5 rounded-full"
-                        style={{
-                          background: i === PATH.length - 1 ? "var(--accent-deep)" : "var(--paper)",
-                          border: "2px solid var(--accent-deep)",
-                        }}
-                      />
-                      <p className="font-mono text-[0.78rem] uppercase tracking-[0.08em] text-[var(--accent-deep)]">{step.when}</p>
-                      <p className="display-title mt-2 text-[1.15rem] leading-snug text-[var(--ink)]">{step.what}</p>
-                      <p className="mt-1 text-[0.95rem] leading-6 text-[var(--ink-soft)]">{step.where}</p>
-                    </li>
-                  ))}
-                </ol>
+                <div className="mt-12 grid grid-cols-1 md:grid-cols-[minmax(0,24rem)_minmax(0,1fr)] md:gap-16">
+                  <ol
+                    className="grid grid-cols-1 gap-8 border-t border-[var(--line)] pt-8 sm:grid-cols-2 md:col-start-2 md:max-w-[58ch] md:gap-6"
+                    aria-label="Education"
+                  >
+                    {PATH.map((step, i) => (
+                      <li key={step.what} className="relative">
+                        <span
+                          aria-hidden
+                          className="absolute -top-[2.4rem] left-0 h-2.5 w-2.5 rounded-full"
+                          style={{
+                            background: "var(--paper)",
+                            border: "2px solid var(--accent-deep)",
+                          }}
+                        />
+                        <p className="font-mono text-[0.78rem] uppercase tracking-[0.08em] text-[var(--accent-deep)]">
+                          {step.when}
+                        </p>
+                        <p className="display-title mt-2 text-[1.15rem] leading-snug text-[var(--ink)]">
+                          {step.what}
+                        </p>
+                        <p className="mt-1 text-[0.95rem] leading-6 text-[var(--ink-soft)]">
+                          {step.where}
+                        </p>
+                      </li>
+                    ))}
+                  </ol>
+                </div>
               </Reveal>
             ) : null}
 
             {part.extra === "places" ? (
               <Reveal delay={120}>
-                <ul className="mt-12 grid grid-cols-2 gap-px overflow-hidden rounded-sm border border-[var(--line)] bg-[var(--line)] md:grid-cols-4" aria-label="What I look at when I travel">
+                <ul
+                  className="mt-12 grid grid-cols-2 gap-px overflow-hidden rounded-sm border border-[var(--line)] bg-[var(--line)] md:grid-cols-4"
+                  aria-label="What I look at when I travel"
+                >
                   {PLACES.map((place) => (
                     <li key={place} className="bg-[var(--paper)] px-6 py-8">
-                      <span className="display-title text-[1.6rem] text-[var(--ink)]">{place}</span>
+                      <span className="display-title text-[1.6rem] text-[var(--ink)]">
+                        {place}
+                      </span>
                     </li>
                   ))}
                 </ul>
@@ -191,10 +246,15 @@ export default function AboutV2Page() {
       <section id="contact" className="mt-24">
         <Reveal>
           <div className="ds-env-dark rounded-sm p-12 md:p-16">
-            <h2 className="display-title display-section max-w-[30ch]">Say hello.</h2>
-            <p className="mt-6 max-w-[58ch] text-[1.08rem] leading-8" style={{ color: "var(--ds-dark-muted)" }}>
-              Whether it’s about design, something you’re building, or an interesting place you’ve discovered, I’d
-              enjoy the conversation.
+            <h2 className="display-title display-section max-w-[30ch]">
+              Say hello.
+            </h2>
+            <p
+              className="mt-6 max-w-[58ch] text-[1.08rem] leading-8"
+              style={{ color: "var(--ds-dark-muted)" }}
+            >
+              Whether it’s about design, something you’re building, or an
+              interesting place you’ve discovered, I’d enjoy the conversation.
             </p>
             <div className="mt-8 flex flex-wrap items-center gap-3">
               <Link href="/resume" className="button button-primary">
@@ -208,10 +268,16 @@ export default function AboutV2Page() {
               >
                 LinkedIn →
               </a>
-              <a href="mailto:mithraj14@gmail.com" className="button button-secondary">
+              <a
+                href="mailto:mithraj14@gmail.com"
+                className="button button-secondary"
+              >
                 Email →
               </a>
-              <span className="ml-1 text-[0.95rem]" style={{ color: "var(--ds-dark-muted)" }}>
+              <span
+                className="ml-1 text-[0.95rem]"
+                style={{ color: "var(--ds-dark-muted)" }}
+              >
                 mithraj14@gmail.com
               </span>
             </div>
