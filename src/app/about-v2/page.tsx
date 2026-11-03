@@ -126,6 +126,11 @@ export default function AboutV2Page() {
                 Tech. But there’s more to how I got here than the projects on
                 this site.
               </p>
+              <p className="mt-6">
+                <Link href="/work" className="button button-secondary">
+                  See the work →
+                </Link>
+              </p>
             </div>
           </Reveal>
           <Reveal delay={120}>
