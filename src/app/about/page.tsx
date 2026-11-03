@@ -124,7 +124,10 @@ const PARTS: Part[] = [
         text: "I’m comfortable being challenged. Feedback and criticism often reveal something I hadn’t considered, and I’d rather discover that early than spend time perfecting the wrong idea.",
       },
       {
-        text: "For me, good design has always been a conversation.",
+        text: "In my work, that looks like running workshops with the people who live with the problem, showing a product to one team and watching where they get stuck, and reviewing weekly with the teams building it.",
+      },
+      {
+        text: "For me, good design has always been a conversation, and it doesn’t stop at launch.",
         lead: true,
       },
     ],
