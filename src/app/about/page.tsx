@@ -46,7 +46,7 @@ const TRAVEL = [
     kind: "image" as const,
     src: "/about/buddha.jpg",
     alt: "Two people standing in front of the Great Buddha, a large bronze statue, under a blue sky",
-    caption: "The Great Buddha, Kamakura",
+    caption: "The Great Buddha, Kamakura, Japan",
   },
   {
     kind: "video" as const,
@@ -80,6 +80,23 @@ const PARTS: Part[] = [
     ],
   },
   {
+    heading: "Education.",
+    glyph: "layers",
+    paragraphs: [],
+    education: [
+      {
+        what: "Diploma in Graphic & Web Designing",
+        where: "Zee Institute of Creative Arts",
+        years: "2014 – 2015",
+      },
+      {
+        what: "Bachelor of Computer Applications",
+        where: "St. Claret College, Bengaluru",
+        years: "2011 – 2014",
+      },
+    ],
+  },
+  {
     heading: "I didn’t learn design alone.",
     glyph: "field",
     paragraphs: [
@@ -106,23 +123,6 @@ const PARTS: Part[] = [
         text: "For me, good design has always been a conversation.",
         lead: true,
         accent: true,
-      },
-    ],
-  },
-  {
-    heading: "Education.",
-    glyph: "layers",
-    paragraphs: [],
-    education: [
-      {
-        what: "Diploma in Graphic & Web Designing",
-        where: "Zee Institute of Creative Arts",
-        years: "2014 – 2015",
-      },
-      {
-        what: "Bachelor of Computer Applications",
-        where: "St. Claret College, Bengaluru",
-        years: "2011 – 2014",
       },
     ],
   },
@@ -163,9 +163,9 @@ export default function AboutPage() {
                 I’m Mithun, a senior UX designer based in Bengaluru.
               </p>
               <p className="mt-4 text-lg leading-8 text-[var(--ink-soft)]">
-                Today, I work on complex digital products at Walmart Global
-                Tech. But there’s more to how I got here than the projects on
-                this site.
+                Today, I work on complex digital products, and the internal
+                tools behind them, at Walmart Global Tech. But there’s more to
+                how I got here than the projects on this site.
               </p>
               <p className="mt-6">
                 <Link href="/work" className="button button-secondary">
