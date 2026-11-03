@@ -51,11 +51,11 @@ export const metadata: Metadata = {
     template: "%s · Mithun Raju",
   },
   description:
-    "Senior UX designer for enterprise platforms, developer tools and AI-assisted workflows. Based in Bengaluru.",
+    "Senior UX designer for enterprise platforms, developer tools and AI-enabled products. Based in Bengaluru.",
   openGraph: {
     title: "Mithun Raju, Senior UX Designer",
     description:
-      "Senior UX designer for enterprise platforms and developer tools, based in Bengaluru.",
+      "Senior UX designer for enterprise platforms, developer tools and AI-enabled products. Based in Bengaluru.",
     url: "https://mithunraju.in",
     siteName: "Mithun Raju",
     locale: "en_IN",
