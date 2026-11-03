@@ -34,8 +34,16 @@ type Part = {
 
 /** The education the first part mentions, from the résumé. Work is covered by the case studies and the résumé. */
 const EDUCATION = [
-  "Bachelor of Computer Applications, St. Claret College, 2011–2014",
-  "Diploma in Graphic & Web Designing, Zee Institute of Creative Arts, 2014–2015",
+  {
+    what: "Diploma in Graphic & Web Designing",
+    where: "Zee Institute of Creative Arts",
+    years: "2014 – 2015",
+  },
+  {
+    what: "Bachelor of Computer Applications",
+    where: "St. Claret College, Bengaluru",
+    years: "2011 – 2014",
+  },
 ];
 
 /** What the last part says I look at when I travel. */
@@ -181,12 +189,30 @@ export default function AboutV2Page() {
 
             {part.extra === "education" ? (
               <Reveal delay={120}>
-                <div className="mt-8 grid grid-cols-1 md:grid-cols-[minmax(0,24rem)_minmax(0,1fr)] md:gap-16">
-                  <ul className="space-y-1 font-mono text-[0.78rem] leading-6 text-[var(--muted)] md:col-start-2">
-                    {EDUCATION.map((line) => (
-                      <li key={line}>{line}</li>
-                    ))}
-                  </ul>
+                <div className="mt-12 grid grid-cols-1 md:grid-cols-[minmax(0,24rem)_minmax(0,1fr)] md:gap-16">
+                  <div className="md:col-start-2 md:max-w-[58ch]">
+                    <p className="eyebrow">Education</p>
+                    <ul className="mt-4 border-t border-[var(--line)]">
+                      {EDUCATION.map((e) => (
+                        <li
+                          key={e.what}
+                          className="flex flex-wrap items-baseline justify-between gap-x-6 gap-y-1 border-b border-[var(--line)] py-4"
+                        >
+                          <div>
+                            <p className="display-title text-[1.15rem] leading-snug text-[var(--ink)]">
+                              {e.what}
+                            </p>
+                            <p className="mt-0.5 text-[0.95rem] text-[var(--ink-soft)]">
+                              {e.where}
+                            </p>
+                          </div>
+                          <p className="font-mono text-[0.8rem] tracking-[0.04em] text-[var(--accent-deep)]">
+                            {e.years}
+                          </p>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
                 </div>
               </Reveal>
             ) : null}
