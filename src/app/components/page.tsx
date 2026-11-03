@@ -63,6 +63,8 @@ import { ArchetypeSection } from "@/components/design-system/ArchetypeSection";
 import { ArtboardFigure } from "@/components/design-system/ArtboardFigure";
 import { ArtboardCarousel } from "@/components/design-system/ArtboardCarousel";
 import { ClipFigure } from "@/components/design-system/ClipFigure";
+import { GlyphSectionRow } from "@/components/design-system/GlyphSectionRow";
+import { PhotoRow } from "@/components/design-system/PhotoRow";
 import { SceneBanner } from "@/components/design-system/SceneBanner";
 import { BrowserMockup } from "@/components/design-system/BrowserMockup";
 import { BrowserFlow } from "@/components/design-system/BrowserFlow";
@@ -1147,6 +1149,10 @@ export default function ComponentsPage() {
         <div className="ds-rule py-11">
           <SubLabel code="S7 · Pull statement" />
           <FullWidthStatement>The architecture mattered more than any single module.</FullWidthStatement>
+          <p className="mt-2 max-w-[68ch] text-[0.95rem] leading-7" style={{ color: "var(--ink-soft)" }}>
+            Inside a section that already has its own boundary, pass <code className="font-mono text-[0.85em]">bare</code> to drop
+            the top rule and padding. Otherwise the statement draws a second line under the section&rsquo;s own.
+          </p>
         </div>
 
         <div className="ds-rule py-11">
@@ -1159,6 +1165,20 @@ export default function ComponentsPage() {
               { label: "Scope", value: "Navigation, information architecture, migration" },
             ]}
           />
+        </div>
+
+        <div className="ds-rule py-11">
+          <SubLabel code="S14 · Glyph section row" />
+          <p className="mb-7 max-w-[68ch] text-[0.95rem] leading-7" style={{ color: "var(--ink-soft)" }}>
+            A dot glyph and a sentence heading on the left, the story on the right. Use it under a section
+            boundary and let the boundary be the only line: the row draws none of its own. The glyph is chosen
+            from the dot library for what it means, never for how it looks.
+          </p>
+          <GlyphSectionRow glyph="field" heading="I didn’t learn design alone.">
+            <p className="text-[1.08rem] leading-8" style={{ color: "var(--ink-soft)" }}>
+              I’ve been fortunate to work with mentors and talented people who challenged my thinking, shared what they knew, and helped me see things differently.
+            </p>
+          </GlyphSectionRow>
         </div>
 
         <div className="py-11">
@@ -1642,6 +1662,24 @@ export default function ComponentsPage() {
             mp4="/work/bbdaily/recurring-order.mp4"
             alt="Starting a recurring order in the bb daily customer app"
             caption="bb daily customer app · starting a recurring order"
+          />
+        </div>
+
+        <div className="ds-rule py-11">
+          <SubLabel code="M15 · Photo row" />
+          <p className="mb-7 max-w-[68ch] text-[0.95rem] leading-7" style={{ color: "var(--ink-soft)" }}>
+            A short row of photographs and at most one clip, all cropped to the same portrait frame with a
+            caption beneath. For personal pages, where the pictures are the point. Captions state only what is
+            in the frame or is known. The clip is a Clip figure, so it plays muted while on screen and holds
+            its poster under reduced motion.
+          </p>
+          <PhotoRow
+            items={[
+              { kind: "image", src: "/about/daruma.jpg", alt: "Hundreds of red daruma dolls stacked on temple shelves", caption: "Daruma dolls, Japan" },
+              { kind: "image", src: "/about/buddha.jpg", alt: "Two people standing in front of the Great Buddha under a blue sky", caption: "The Great Buddha, Kamakura, Japan" },
+              { kind: "clip", mp4: "/about/light-show.mp4", poster: "/about/light-show.jpg", alt: "Two people sitting in an immersive light installation", caption: "teamLab, Japan" },
+              { kind: "image", src: "/about/python.jpg", alt: "A man in sunglasses with a python around his shoulders", caption: "A python around my shoulders, Vietnam" },
+            ]}
           />
         </div>
 

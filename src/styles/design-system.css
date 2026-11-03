@@ -3127,6 +3127,17 @@ a:hover .ds-compact-mark .ds-dot {
   height: auto;
 }
 
+/* A clip in a row of equal tiles: the slot sets the width, the file ratio sets
+   the height. */
+.ds-clip-fill {
+  width: 100%;
+}
+
+.ds-clip-fill .ds-clip-video {
+  width: 100%;
+  height: auto;
+}
+
 /* The one media role where cropping is intended. */
 .ds-scene-banner {
   overflow: hidden;

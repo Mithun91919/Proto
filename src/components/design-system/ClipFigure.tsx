@@ -26,9 +26,10 @@ type ClipFigureProps = {
   /**
    * `standalone` centres the clip in its own band. `beside` shortens it so it
    * can sit next to a column of text — a portrait clip below a paragraph
-   * leaves most of the page width empty.
+   * leaves most of the page width empty. `fill` takes the width of whatever
+   * slot it is placed in, for a row of equal tiles.
    */
-  variant?: "standalone" | "beside";
+  variant?: "standalone" | "beside" | "fill";
 };
 
 /**
@@ -76,11 +77,15 @@ export function ClipFigure({
   }, []);
 
   return (
-    <figure className={`ds-clip${variant === "beside" ? " ds-clip-beside" : ""}`}>
+    <figure
+      className={`ds-clip${variant === "beside" ? " ds-clip-beside" : ""}${variant === "fill" ? " ds-clip-fill" : ""}`}
+    >
       <video
         ref={videoRef}
         className="ds-clip-video"
-        style={width && height ? { aspectRatio: `${width} / ${height}` } : undefined}
+        style={
+          width && height ? { aspectRatio: `${width} / ${height}` } : undefined
+        }
         poster={poster}
         muted
         loop
@@ -95,7 +100,9 @@ export function ClipFigure({
         {mp4 ? <source src={mp4} type="video/mp4" /> : null}
         {mov ? <source src={mov} /> : null}
       </video>
-      {caption ? <figcaption className="ds-media-caption">{caption}</figcaption> : null}
+      {caption ? (
+        <figcaption className="ds-media-caption">{caption}</figcaption>
+      ) : null}
     </figure>
   );
 }

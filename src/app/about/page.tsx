@@ -1,7 +1,12 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { AboutGallery } from "@/components/AboutGallery";
-import { MetricGlyph } from "@/components/design-system/MetricGlyph";
+import { FullWidthStatement } from "@/components/design-system/FullWidthStatement";
+import { GlyphSectionRow } from "@/components/design-system/GlyphSectionRow";
+import {
+  PhotoRow,
+  type PhotoRowItem,
+} from "@/components/design-system/PhotoRow";
+import { SpecList } from "@/components/design-system/SpecList";
 import type { MetricMarkName } from "@/components/design-system/dotPatterns";
 import { Reveal } from "@/components/Reveal";
 
@@ -26,16 +31,15 @@ type Part = {
   paragraphs: {
     text: string;
     lead?: boolean;
-    accent?: boolean;
   }[];
   /** Replaces the paragraphs with a ruled list, for the qualifications. */
-  education?: { what: string; where: string; years: string }[];
+  education?: { label: string; value: string }[];
   /** A small visual under the row, from facts already in the text or résumé. */
   extra?: "places";
 };
 
 /** Travel photographs and one clip for the last part. Captions state only what is in the frame or is known. */
-const TRAVEL = [
+const TRAVEL: PhotoRowItem[] = [
   {
     kind: "image" as const,
     src: "/about/daruma.jpg",
@@ -49,8 +53,8 @@ const TRAVEL = [
     caption: "The Great Buddha, Kamakura, Japan",
   },
   {
-    kind: "video" as const,
-    src: "/about/light-show.mp4",
+    kind: "clip" as const,
+    mp4: "/about/light-show.mp4",
     poster: "/about/light-show.jpg",
     alt: "Two people sitting on the floor of an immersive light installation, with flowers projected around them, at teamLab in Japan",
     caption: "teamLab, Japan",
@@ -85,14 +89,14 @@ const PARTS: Part[] = [
     paragraphs: [],
     education: [
       {
-        what: "Diploma in Graphic & Web Designing",
-        where: "Zee Institute of Creative Arts",
-        years: "2014 – 2015",
+        label: "2014 – 2015",
+        value:
+          "Diploma in Graphic & Web Designing, Zee Institute of Creative Arts",
       },
       {
-        what: "Bachelor of Computer Applications",
-        where: "St. Claret College, Bengaluru",
-        years: "2011 – 2014",
+        label: "2011 – 2014",
+        value:
+          "Bachelor of Computer Applications, St. Claret College, Bengaluru",
       },
     ],
   },
@@ -122,7 +126,6 @@ const PARTS: Part[] = [
       {
         text: "For me, good design has always been a conversation.",
         lead: true,
-        accent: true,
       },
     ],
   },
@@ -189,83 +192,50 @@ export default function AboutPage() {
         </div>
       </div>
 
-      {PARTS.map((part) => {
-        return (
-          <section
-            key={part.heading}
-            className="mt-16 ds-section-boundary pt-12 md:mt-20 md:pt-14"
-          >
-            <div className="grid grid-cols-1 gap-8 md:grid-cols-[minmax(0,24rem)_minmax(0,1fr)] md:gap-16">
-              <Reveal>
-                <div className="md:sticky md:top-24">
-                  <MetricGlyph name={part.glyph} size={5} gap={3} />
-                  <h2 className="display-title display-section mt-6 text-[var(--ink)]">
-                    {part.heading}
-                  </h2>
-                </div>
-              </Reveal>
-              <div className="max-w-[58ch] space-y-5">
-                {part.paragraphs.map((p, i) => (
-                  <Reveal key={p.text} delay={80 + i * 60}>
-                    {p.lead ? (
-                      <p className="display-title border-l-2 border-[var(--accent-deep)] pl-6 text-[2rem] leading-[1.15] text-[var(--ink)]">
-                        {p.text}
-                      </p>
-                    ) : (
-                      <p className="text-[1.08rem] leading-8 text-[var(--ink-soft)]">
-                        {p.text}
-                      </p>
-                    )}
-                  </Reveal>
-                ))}
-                {part.education ? (
-                  <Reveal delay={80}>
-                    <ul className="border-t border-[var(--line)]">
-                      {part.education.map((e) => (
-                        <li
-                          key={e.what}
-                          className="flex flex-wrap items-baseline justify-between gap-x-6 gap-y-1 border-b border-[var(--line)] py-5"
-                        >
-                          <div>
-                            <p className="display-title text-[1.3rem] leading-snug text-[var(--ink)]">
-                              {e.what}
-                            </p>
-                            <p className="mt-1 text-[1.02rem] text-[var(--ink-soft)]">
-                              {e.where}
-                            </p>
-                          </div>
-                          <p className="font-mono text-[0.85rem] tracking-[0.04em] text-[var(--accent-deep)]">
-                            {e.years}
-                          </p>
-                        </li>
-                      ))}
-                    </ul>
-                  </Reveal>
-                ) : null}
-              </div>
-            </div>
-
-            {part.extra === "places" ? (
-              <Reveal delay={120}>
-                <div className="mt-12">
-                  <AboutGallery items={TRAVEL} />
-                  <p className="mt-6 text-[0.95rem] text-[var(--ink-soft)]">
-                    More on Instagram:{" "}
-                    <a
-                      href="https://www.instagram.com/the_humble_beee/"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-[var(--accent-deep)] underline underline-offset-4"
-                    >
-                      @the_humble_beee ↗
-                    </a>
+      {PARTS.map((part) => (
+        <section
+          key={part.heading}
+          className="mt-16 ds-section-boundary pt-12 md:mt-20 md:pt-14"
+        >
+          <GlyphSectionRow glyph={part.glyph} heading={part.heading}>
+            {part.paragraphs.map((p, i) => (
+              <Reveal key={p.text} delay={80 + i * 60}>
+                {p.lead ? (
+                  <FullWidthStatement bare>{p.text}</FullWidthStatement>
+                ) : (
+                  <p className="text-[1.08rem] leading-8 text-[var(--ink-soft)]">
+                    {p.text}
                   </p>
-                </div>
+                )}
+              </Reveal>
+            ))}
+            {part.education ? (
+              <Reveal delay={80}>
+                <SpecList facts={part.education} />
               </Reveal>
             ) : null}
-          </section>
-        );
-      })}
+          </GlyphSectionRow>
+
+          {part.extra === "places" ? (
+            <Reveal delay={120}>
+              <div className="mt-12">
+                <PhotoRow items={TRAVEL} />
+                <p className="mt-6 text-[0.95rem] text-[var(--ink-soft)]">
+                  More on Instagram:{" "}
+                  <a
+                    href="https://www.instagram.com/the_humble_beee/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-[var(--accent-deep)] underline underline-offset-4"
+                  >
+                    @the_humble_beee ↗
+                  </a>
+                </p>
+              </div>
+            </Reveal>
+          ) : null}
+        </section>
+      ))}
 
       <section id="contact" className="mt-24">
         <Reveal>
