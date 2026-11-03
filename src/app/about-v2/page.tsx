@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { DotIcon, type DotIconName } from "@/components/DotIcon";
+import { MetricGlyph } from "@/components/design-system/MetricGlyph";
+import type { MetricMarkName } from "@/components/design-system/dotPatterns";
 import { Reveal } from "@/components/Reveal";
 import { caseStudyRobots } from "@/content/seo";
 
@@ -22,7 +23,8 @@ export const metadata: Metadata = {
 
 type Part = {
   heading: string;
-  icon: DotIconName;
+  /** A glyph from the dot library, chosen for what it means (see `GLYPHS`). */
+  glyph: MetricMarkName;
   /** Paragraphs in order. A `lead` paragraph is set larger, as the line to remember. */
   paragraphs: {
     text: string;
@@ -41,7 +43,7 @@ const PLACES = ["Food", "Culture", "Architecture", "People"];
 const PARTS: Part[] = [
   {
     heading: "It started with posters and a college magazine.",
-    icon: "poster",
+    glyph: "ramp",
     paragraphs: [
       {
         text: "In college, I was the person designing posters for events and putting together the monthly magazine.",
@@ -56,7 +58,7 @@ const PARTS: Part[] = [
   },
   {
     heading: "I didn’t learn design alone.",
-    icon: "people",
+    glyph: "field",
     paragraphs: [
       { text: "I don’t consider myself self-taught.", lead: true },
       {
@@ -69,7 +71,7 @@ const PARTS: Part[] = [
   },
   {
     heading: "I think out loud.",
-    icon: "speech",
+    glyph: "modules",
     paragraphs: [
       {
         text: "I enjoy talking through ideas, exploring possibilities with others, and sharing work before it feels finished.",
@@ -86,7 +88,7 @@ const PARTS: Part[] = [
   },
   {
     heading: "Education.",
-    icon: "book",
+    glyph: "layers",
     paragraphs: [],
     education: [
       {
@@ -103,7 +105,7 @@ const PARTS: Part[] = [
   },
   {
     heading: "Away from work, I’m usually exploring something.",
-    icon: "pin",
+    glyph: "ring",
     paragraphs: [
       {
         text: "I love discovering places through their food, culture, architecture, and people.",
@@ -173,7 +175,7 @@ export default function AboutV2Page() {
             <div className="grid grid-cols-1 gap-8 md:grid-cols-[minmax(0,24rem)_minmax(0,1fr)] md:gap-16">
               <Reveal>
                 <div className="md:sticky md:top-24">
-                  <DotIcon name={part.icon} />
+                  <MetricGlyph name={part.glyph} size={8} gap={6} />
                   <h2 className="display-title display-section mt-6 text-[var(--ink)]">
                     {part.heading}
                   </h2>
