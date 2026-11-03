@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { AboutGallery } from "@/components/AboutGallery";
 import { MetricGlyph } from "@/components/design-system/MetricGlyph";
 import type { MetricMarkName } from "@/components/design-system/dotPatterns";
 import { Reveal } from "@/components/Reveal";
@@ -36,6 +37,35 @@ type Part = {
   /** A small visual under the row, from facts already in the text or résumé. */
   extra?: "places";
 };
+
+/** Travel photographs and one clip for the last part. Captions state only what is in the frame or is known. */
+const TRAVEL = [
+  {
+    kind: "image" as const,
+    src: "/about/daruma.jpg",
+    alt: "Hundreds of red daruma dolls, each marked with the character for victory, stacked on temple shelves",
+    caption: "Daruma dolls, Japan",
+  },
+  {
+    kind: "image" as const,
+    src: "/about/buddha.jpg",
+    alt: "Two people standing in front of the Great Buddha, a large bronze statue, under a blue sky",
+    caption: "The Great Buddha, Kamakura",
+  },
+  {
+    kind: "video" as const,
+    src: "/about/light-show.mp4",
+    poster: "/about/light-show.jpg",
+    alt: "Two people sitting on the floor of an immersive light installation, with flowers projected around them",
+    caption: "An immersive light installation",
+  },
+  {
+    kind: "image" as const,
+    src: "/about/python.jpg",
+    alt: "Mithun smiling in sunglasses with a large python around his shoulders",
+    caption: "A python around my shoulders",
+  },
+];
 
 /** What the last part says I look at when I travel. */
 const PLACES = ["Food", "Culture", "Architecture", "People"];
@@ -224,6 +254,20 @@ export default function AboutV2Page() {
 
             {part.extra === "places" ? (
               <Reveal delay={120}>
+                <div className="mt-12">
+                  <AboutGallery items={TRAVEL} />
+                  <p className="mt-6 text-[0.95rem] text-[var(--ink-soft)]">
+                    More on Instagram:{" "}
+                    <a
+                      href="https://www.instagram.com/the_humble_beee/"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-[var(--accent-deep)] underline underline-offset-4"
+                    >
+                      @the_humble_beee ↗
+                    </a>
+                  </p>
+                </div>
                 <ul
                   className="mt-12 grid grid-cols-2 gap-px overflow-hidden rounded-sm border border-[var(--line)] bg-[var(--line)] md:grid-cols-4"
                   aria-label="What I look at when I travel"
