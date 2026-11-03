@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { HeroPortrait } from "@/components/HeroPortrait";
 import { Reveal } from "@/components/Reveal";
 import { caseStudyRobots } from "@/content/seo";
 
@@ -91,28 +90,33 @@ export default function AboutV2Page() {
   return (
     <div className="mx-auto w-full max-w-[80rem] px-5 pb-16 pt-6 md:px-8 md:pb-24 md:pt-10">
       <div className="page-hero hero-in">
-        <HeroPortrait
-          className="page-hero-backdrop"
-          aspect={1}
-          pitch={9}
-          zoom={1.2}
-          hoverScope=".page-hero"
-          maxPhotoAlpha={0.3}
-          label="Portrait of Mithun Raju as a halftone of falling dots; hover to see the photograph"
-        />
-        <Reveal>
-          <p className="eyebrow">About</p>
-          <h1 className="display-title display-hero mt-4 max-w-[26ch] text-[var(--ink)]">
-            I learned design from <span className="text-[var(--accent-deep)]">the people around me</span>.
-          </h1>
-          <div className="ds-stagger mt-10 max-w-[58ch]">
-            <p className="text-lg leading-8 text-[var(--ink)]">I’m Mithun, a senior UX designer based in Bengaluru.</p>
-            <p className="mt-4 text-lg leading-8 text-[var(--ink-soft)]">
-              Today, I work on complex digital products at Walmart Global Tech. But there’s more to how I got here
-              than the projects on this site.
-            </p>
-          </div>
-        </Reveal>
+        <div className="grid grid-cols-1 items-center gap-10 md:grid-cols-[minmax(0,1fr)_minmax(0,26rem)] md:gap-16">
+          <Reveal>
+            <p className="eyebrow">About</p>
+            <h1 className="display-title display-hero mt-4 max-w-[18ch] text-[var(--ink)]">
+              I learned design from <span className="text-[var(--accent-deep)]">the people around me</span>.
+            </h1>
+            <div className="ds-stagger mt-10 max-w-[48ch]">
+              <p className="text-lg leading-8 text-[var(--ink)]">I’m Mithun, a senior UX designer based in Bengaluru.</p>
+              <p className="mt-4 text-lg leading-8 text-[var(--ink-soft)]">
+                Today, I work on complex digital products at Walmart Global Tech. But there’s more to how I got here
+                than the projects on this site.
+              </p>
+            </div>
+          </Reveal>
+          <Reveal delay={120}>
+            <figure className="overflow-hidden rounded-sm border border-[var(--line)]">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src="/mithun-raju.jpg"
+                alt="Mithun Raju, smiling, wearing glasses and a dark blazer"
+                width={1024}
+                height={903}
+                className="block h-auto w-[108%] max-w-none"
+              />
+            </figure>
+          </Reveal>
+        </div>
       </div>
 
       {PARTS.map((part) => {
