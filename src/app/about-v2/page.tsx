@@ -29,21 +29,13 @@ type Part = {
     band?: boolean;
   }[];
   /** A small visual under the row, from facts already in the text or résumé. */
-  extra?: "path" | "places";
+  extra?: "education" | "places";
 };
 
-/** The education the first part describes, from the résumé. Work is covered by the case studies and the résumé. */
-const PATH = [
-  {
-    when: "2011 – 2014",
-    what: "Bachelor of Computer Applications",
-    where: "St. Claret College, Bengaluru",
-  },
-  {
-    when: "2014 – 2015",
-    what: "Diploma in Graphic & Web Designing",
-    where: "Zee Institute of Creative Arts",
-  },
+/** The education the first part mentions, from the résumé. Work is covered by the case studies and the résumé. */
+const EDUCATION = [
+  "Bachelor of Computer Applications, St. Claret College, 2011–2014",
+  "Diploma in Graphic & Web Designing, Zee Institute of Creative Arts, 2014–2015",
 ];
 
 /** What the last part says I look at when I travel. */
@@ -63,7 +55,7 @@ const PARTS: Part[] = [
         text: "What started as an interest slowly became something I wanted to build a career around.",
       },
     ],
-    extra: "path",
+    extra: "education",
   },
   {
     heading: "I didn’t learn design alone.",
@@ -182,35 +174,14 @@ export default function AboutV2Page() {
               </div>
             </div>
 
-            {part.extra === "path" ? (
+            {part.extra === "education" ? (
               <Reveal delay={120}>
-                <div className="mt-12 grid grid-cols-1 md:grid-cols-[minmax(0,24rem)_minmax(0,1fr)] md:gap-16">
-                  <ol
-                    className="grid grid-cols-1 gap-8 border-t border-[var(--line)] pt-8 sm:grid-cols-2 md:col-start-2 md:max-w-[58ch] md:gap-6"
-                    aria-label="Education"
-                  >
-                    {PATH.map((step, i) => (
-                      <li key={step.what} className="relative">
-                        <span
-                          aria-hidden
-                          className="absolute -top-[2.4rem] left-0 h-2.5 w-2.5 rounded-full"
-                          style={{
-                            background: "var(--paper)",
-                            border: "2px solid var(--accent-deep)",
-                          }}
-                        />
-                        <p className="font-mono text-[0.78rem] uppercase tracking-[0.08em] text-[var(--accent-deep)]">
-                          {step.when}
-                        </p>
-                        <p className="display-title mt-2 text-[1.15rem] leading-snug text-[var(--ink)]">
-                          {step.what}
-                        </p>
-                        <p className="mt-1 text-[0.95rem] leading-6 text-[var(--ink-soft)]">
-                          {step.where}
-                        </p>
-                      </li>
+                <div className="mt-8 grid grid-cols-1 md:grid-cols-[minmax(0,24rem)_minmax(0,1fr)] md:gap-16">
+                  <ul className="space-y-1 font-mono text-[0.78rem] leading-6 text-[var(--muted)] md:col-start-2">
+                    {EDUCATION.map((line) => (
+                      <li key={line}>{line}</li>
                     ))}
-                  </ol>
+                  </ul>
                 </div>
               </Reveal>
             ) : null}
