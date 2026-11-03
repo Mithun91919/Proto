@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { DotIcon, type DotIconName } from "@/components/DotIcon";
 import { Reveal } from "@/components/Reveal";
 import { caseStudyRobots } from "@/content/seo";
 
@@ -21,13 +22,15 @@ export const metadata: Metadata = {
 
 type Part = {
   heading: string;
+  icon: DotIconName;
   /** Paragraphs in order. A `lead` paragraph is set larger, as the line to remember. */
   paragraphs: {
     text: string;
     lead?: boolean;
     accent?: boolean;
-    band?: boolean;
   }[];
+  /** Replaces the paragraphs with a ruled list, for the qualifications. */
+  education?: { what: string; where: string; years: string }[];
   /** A small visual under the row, from facts already in the text or résumé. */
   extra?: "places";
 };
@@ -38,6 +41,7 @@ const PLACES = ["Food", "Culture", "Architecture", "People"];
 const PARTS: Part[] = [
   {
     heading: "It started with posters and a college magazine.",
+    icon: "poster",
     paragraphs: [
       {
         text: "In college, I was the person designing posters for events and putting together the monthly magazine.",
@@ -52,6 +56,7 @@ const PARTS: Part[] = [
   },
   {
     heading: "I didn’t learn design alone.",
+    icon: "people",
     paragraphs: [
       { text: "I don’t consider myself self-taught.", lead: true },
       {
@@ -64,6 +69,7 @@ const PARTS: Part[] = [
   },
   {
     heading: "I think out loud.",
+    icon: "speech",
     paragraphs: [
       {
         text: "I enjoy talking through ideas, exploring possibilities with others, and sharing work before it feels finished.",
@@ -75,12 +81,29 @@ const PARTS: Part[] = [
         text: "For me, good design has always been a conversation.",
         lead: true,
         accent: true,
-        band: true,
+      },
+    ],
+  },
+  {
+    heading: "Education.",
+    icon: "book",
+    paragraphs: [],
+    education: [
+      {
+        what: "Diploma in Graphic & Web Designing",
+        where: "Zee Institute of Creative Arts",
+        years: "2014 – 2015",
+      },
+      {
+        what: "Bachelor of Computer Applications",
+        where: "St. Claret College, Bengaluru",
+        years: "2011 – 2014",
       },
     ],
   },
   {
     heading: "Away from work, I’m usually exploring something.",
+    icon: "pin",
     paragraphs: [
       {
         text: "I love discovering places through their food, culture, architecture, and people.",
@@ -115,10 +138,6 @@ export default function AboutV2Page() {
                 I’m Mithun, a senior UX designer based in Bengaluru.
               </p>
               <p className="mt-4 text-lg leading-8 text-[var(--ink-soft)]">
-                I studied computer applications at St. Claret College and design
-                at the Zee Institute of Creative Arts.
-              </p>
-              <p className="mt-4 text-lg leading-8 text-[var(--ink-soft)]">
                 Today, I work on complex digital products at Walmart Global
                 Tech. But there’s more to how I got here than the projects on
                 this site.
@@ -146,8 +165,6 @@ export default function AboutV2Page() {
       </div>
 
       {PARTS.map((part) => {
-        const body = part.paragraphs.filter((p) => !p.band);
-        const band = part.paragraphs.find((p) => p.band);
         return (
           <section
             key={part.heading}
@@ -155,12 +172,15 @@ export default function AboutV2Page() {
           >
             <div className="grid grid-cols-1 gap-8 md:grid-cols-[minmax(0,24rem)_minmax(0,1fr)] md:gap-16">
               <Reveal>
-                <h2 className="display-title display-section text-[var(--ink)] md:sticky md:top-24">
-                  {part.heading}
-                </h2>
+                <div className="md:sticky md:top-24">
+                  <DotIcon name={part.icon} />
+                  <h2 className="display-title display-section mt-6 text-[var(--ink)]">
+                    {part.heading}
+                  </h2>
+                </div>
               </Reveal>
               <div className="max-w-[58ch] space-y-5">
-                {body.map((p, i) => (
+                {part.paragraphs.map((p, i) => (
                   <Reveal key={p.text} delay={80 + i * 60}>
                     {p.lead ? (
                       <p className="display-title border-l-2 border-[var(--accent-deep)] pl-6 text-[2rem] leading-[1.15] text-[var(--ink)]">
@@ -173,6 +193,30 @@ export default function AboutV2Page() {
                     )}
                   </Reveal>
                 ))}
+                {part.education ? (
+                  <Reveal delay={80}>
+                    <ul className="border-t border-[var(--line)]">
+                      {part.education.map((e) => (
+                        <li
+                          key={e.what}
+                          className="flex flex-wrap items-baseline justify-between gap-x-6 gap-y-1 border-b border-[var(--line)] py-5"
+                        >
+                          <div>
+                            <p className="display-title text-[1.3rem] leading-snug text-[var(--ink)]">
+                              {e.what}
+                            </p>
+                            <p className="mt-1 text-[1.02rem] text-[var(--ink-soft)]">
+                              {e.where}
+                            </p>
+                          </div>
+                          <p className="font-mono text-[0.85rem] tracking-[0.04em] text-[var(--accent-deep)]">
+                            {e.years}
+                          </p>
+                        </li>
+                      ))}
+                    </ul>
+                  </Reveal>
+                ) : null}
               </div>
             </div>
 
@@ -190,14 +234,6 @@ export default function AboutV2Page() {
                     </li>
                   ))}
                 </ul>
-              </Reveal>
-            ) : null}
-
-            {band ? (
-              <Reveal delay={120}>
-                <p className="display-title mt-12 border-y border-[var(--line)] py-12 text-center text-[clamp(1.8rem,3.4vw,2.8rem)] leading-[1.15] text-[var(--accent-deep)]">
-                  {band.text}
-                </p>
               </Reveal>
             ) : null}
           </section>
