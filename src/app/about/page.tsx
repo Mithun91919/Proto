@@ -220,21 +220,22 @@ export default function AboutPage() {
           className="mt-16 ds-section-boundary pt-12 md:mt-20 md:pt-14"
         >
           <GlyphSectionRow glyph={part.glyph} heading={part.heading}>
-            {part.paragraphs.map((p, i) => (
-              <Reveal key={p.text} delay={80 + i * 60}>
-                {p.lead ? (
-                  <FullWidthStatement bare>{p.text}</FullWidthStatement>
-                ) : (
-                  <p className="text-[1.08rem] leading-8 text-[var(--ink-soft)]">
-                    {p.text}
-                  </p>
-                )}
-              </Reveal>
-            ))}
+            {part.paragraphs.map((p) =>
+              p.lead ? (
+                <FullWidthStatement key={p.text} bare>
+                  {p.text}
+                </FullWidthStatement>
+              ) : (
+                <p
+                  key={p.text}
+                  className="text-[1.08rem] leading-8 text-[var(--ink-soft)]"
+                >
+                  {p.text}
+                </p>
+              ),
+            )}
             {part.education ? (
-              <Reveal delay={80}>
-                <SpecList facts={part.education} valueFirst accentLabel />
-              </Reveal>
+              <SpecList facts={part.education} valueFirst accentLabel />
             ) : null}
           </GlyphSectionRow>
 

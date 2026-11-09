@@ -14,6 +14,7 @@ type GlyphSectionRowProps = {
  * S14 · Glyph section row — a dot glyph and a sentence heading on the left, the
  * story on the right. Sits under its own section boundary, so the row draws no
  * rule of its own. The left column holds while a long story scrolls past.
+ * Pass the story as direct paragraphs, not wrapped in reveals of their own.
  */
 export function GlyphSectionRow({
   glyph,
@@ -30,7 +31,11 @@ export function GlyphSectionRow({
           </h2>
         </div>
       </Reveal>
-      <div className="max-w-[58ch] space-y-5">{children}</div>
+      {/* One reveal for the whole story, so its paragraphs arrive in order by
+          position through the plain-blocks rule, as on every other page. */}
+      <Reveal delay={80} className="max-w-[58ch] space-y-5">
+        {children}
+      </Reveal>
     </div>
   );
 }
