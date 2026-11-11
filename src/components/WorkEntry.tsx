@@ -100,9 +100,11 @@ export function WorkEntry({ project, reverse = false, emphasis = "full" }: WorkE
           {emphasis === "full" ? (
             <MetricRow project={project} className="mt-6" />
           ) : (
-            <p className="metric-line mt-6">
-              {project.metrics.map((metric) => `${metric.value} ${metric.label}`).join(" · ")}
-            </p>
+            project.metrics.length > 0 ? (
+              <p className="metric-line mt-6">
+                {project.metrics.map((metric) => `${metric.value} ${metric.label}`).join(" · ")}
+              </p>
+            ) : null
           )}
         </div>
         {/* One aspect for every row. Left to their own, the media ran 1.097

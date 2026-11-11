@@ -22,6 +22,7 @@ export const CASE_STUDY_PAGES: ReadonlySet<string> = new Set([
   "hike-jobs-service",
   "hike-total-os-localization",
   "creo-mark-1",
+  "ai-studio",
 ]);
 
 export function hasCaseStudyPage(slug: string | undefined): slug is string {

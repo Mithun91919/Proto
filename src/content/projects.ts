@@ -378,6 +378,43 @@ export const projects: Project[] = [
     ],
     tags: ["Mobile", "Operations", "E-commerce"],
   },
+  {
+    slug: "ai-studio",
+    number: "07",
+    label: "AI Studio",
+    title:
+      "Studio: one place to build, host and share AI skills, MCPs, agents, APIs and plugins.",
+    summary:
+      "People kept the AI skills, agents and MCPs they built on their own machines, and shared them only through a repo. I defined the experience with a staff designer for one place in the internal AI portal to build, host and share all five kinds of asset, and we built the front end in code.",
+    outcome: "Live since August · five kinds of AI asset in one place",
+    metrics: [],
+    org: "Walmart Global Tech",
+    domain: "Developer tools",
+    ownership: "Co-designer, with a staff designer",
+    timeframe: "2026–Present",
+    role: "Senior UX Designer",
+    tier: "range",
+    featured: false,
+    reconstructed: true,
+    accent: "#0f766e",
+    accentSoft: "#ccfbf1",
+    contentPath: "projects/ai-studio/web/ai-studio-web.md",
+    systemMap: [
+      {
+        label: "Before",
+        detail: "Skills, agents and MCPs on one person\u2019s machine, shared only through a repo",
+      },
+      {
+        label: "Intervention",
+        detail: "One place in the AI portal to create, manage, publish and share all five kinds of asset",
+      },
+      {
+        label: "After",
+        detail: "Assets that are hosted and published, built from a front end designed in code",
+      },
+    ],
+    tags: ["AI Platform", "Design in Code", "Developer Tools"],
+  },
 ];
 
 /** Legacy internal-name slugs → public slugs. Used for redirects. */
