@@ -1,6 +1,6 @@
 # Studio
 
-## One place to build, host and share AI skills, MCPs, agents, APIs and plugins
+## From agents on one engineer's machine to one place to build, host and share them
 
 **Walmart Global Tech · 2026-Present · AI platform · Product design · Design in code**
 
@@ -32,17 +32,17 @@ Studio is a section on the left panel of Wibey, for the engineers who build arti
 
 ## A chat can do almost anything, so the interface has to add what it can't
 
-Until Studio, the products I designed did what a person told them, one step at a time. Studio is different. A person can ask a chat for almost anything, and an agent will do it.
+Until Studio, the products I designed did what a person told them, one step at a time. Studio is different: a person asks a chat for almost anything, and an agent does it.
 
 So my question changed. It was no longer which screens a person needs, but what a chat can't give them: a way to see how the agent works, to change it, and to test it before anyone relies on it.
 
-## Useful work stayed on the machine it was built on
+## An agent that worked for one engineer stayed on that engineer's machine
 
-People were building agents, skills and MCPs for themselves and their teams. Each one lived on its owner's machine. None was hosted, shared across the company or open to anyone else.
+Engineers were building agents, skills and MCPs for themselves and their teams. Each one lived on its owner's machine. None was hosted, and none was open to the rest of the company.
 
-The only way to use one was through a repo its owner chose to share. The owner decided who could reach it.
+To use one, a colleague needed the owner to share its repo. The owner decided who could reach it, one repo at a time.
 
-[VISUAL - BEFORE: files on one machine, shared by repo -> AFTER: one hosted place]
+[VISUAL - BEFORE: a repo, shared by hand -> AFTER: one hosted place in Wibey]
 
 ## An agent is a workflow a person can see, edit and test
 
@@ -60,7 +60,7 @@ We soon saw it the other way round. Building by conversation is the new way, so 
 
 [MEDIA - pending. The first version, with the chat as one panel among others, beside the later version where the chat leads and the preview shows what was built.]
 
-## A person could build an agent in the chat alone. Engineers still need the preview.
+## The chat could build an agent alone. Engineers still need the preview.
 
 Technically, a person can create an agent without ever leaving the chat. But engineers need a container where they can see the thing as it is built, so they can make decisions as it takes shape.
 
@@ -78,7 +78,7 @@ So the shared registry holds only verified agents. Anyone can build whatever the
 
 > A chat can do almost anything. The interface is what lets a person see it, change it and trust it.
 
-## In code, everything can be clicked, so I built the path for a reviewer to follow
+## Everything could be clicked, so I built a path for reviewers to follow
 
 I came from Figma, where everything is frozen in time. A coded interface was new to me: everything can be clicked and tried. So I built demo flows and orchestrated flows that walk a reviewer along the happy path, for stakeholder and user reviews.
 
@@ -104,7 +104,7 @@ Counts of what people have created and published in Studio are not on this page 
 
 ## Closing
 
-> Work that can only be shared by passing a repo stays with the person who built it.
+> An agent is only useful to the company once another engineer can find it, trust it and use it.
 
 *Confidential internal work. Product names are generic.*
 

@@ -383,7 +383,7 @@ export const projects: Project[] = [
     number: "07",
     label: "AI Studio",
     title:
-      "Studio: one place to build, host and share AI skills, MCPs, agents, APIs and plugins.",
+      "Studio: from agents on one engineer\u2019s machine to one place to build, host and share them.",
     summary:
       "People kept the AI skills, agents and MCPs they built on their own machines, and shared them only through a repo. My first agentic product: I owned the entire experience for one place in Wibey, Walmart\u2019s internal AI portal, to build, host and share all five kinds of artifact, designed around what a chat can\u2019t do, and built the front end in code.",
     outcome: "Live since August · five kinds of AI artifact in one place",

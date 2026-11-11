@@ -29,7 +29,7 @@ import { getAdjacentProjects } from "@/content/projects";
  */
 
 export const metadata: Metadata = {
-  title: "Studio — One place to build, host and share AI skills, MCPs, agents, APIs and plugins",
+  title: "Studio — From agents on one engineer’s machine to one place to build, host and share them",
   description:
     "My first agentic product: a place inside Wibey, Walmart’s internal AI portal, to build, host and share agents, MCPs and skills, designed around what a chat can’t do, and built in code.",
   robots: caseStudyRobots,
@@ -59,42 +59,42 @@ export default function AiStudioPage() {
           label: "The problem",
           lead: (
             <>
-              A useful skill could only be shared by{" "}
-              <span className="ds-accent-text">passing someone a repo</span>.
+              An agent one engineer built{" "}
+              <span className="ds-accent-text">stayed on their machine</span>.
             </>
           ),
           detail:
-            "People built agents, skills and MCPs on their own machines. None was hosted, shared across the company or open. To use one, you needed its owner to share the repo with you.",
+            "Engineers built agents, skills and MCPs for themselves and their teams. None was hosted or open to the rest of the company. To use one, a colleague needed its owner to share the repo.",
         },
         {
           label: "The solution",
           lead: (
             <>
-              One place to <span className="ds-accent-text">build, host and share</span> them.
+              One place in Wibey to <span className="ds-accent-text">build, host and share</span> them.
             </>
           ),
           detail:
-            "Studio sits inside Wibey, Walmart’s internal AI portal. Engineers create, manage and publish all five kinds of artifact there: skills, MCPs, agents, APIs and plugins.",
+            "Engineers describe what they need in a chat and see what the AI built. Teams publish verified artifacts to a shared registry, so others can use them without asking for a repo.",
         },
         {
           label: "What I did",
           lead: (
             <>
-              I designed what <span className="ds-accent-text">a chat can’t do</span>, and built it in code.
+              I designed <span className="ds-accent-text">what a chat can’t do</span>, and built it in code.
             </>
           ),
           detail:
-            "My first agentic product. A chat can do almost anything, so I owned the entire experience around it: a workflow a person can see, edit and test. Developers used the coded front end as their reference.",
+            "My first agentic product, and I owned the entire experience. I designed the workflow an engineer can see, edit and test around the chat, and built the front end in code. Developers used it as their reference.",
         },
       ]}
       chapters={CHAPTERS}
       hero={{
         standfirst:
-          "The part of Wibey, Walmart’s internal AI portal, where engineers create, manage, publish and share artifacts: the skills, MCPs, agents, APIs and plugins that make an AI assistant useful at a job.",
+          "Studio is the part of Wibey, Walmart’s internal AI portal, where engineers create, manage, publish and share artifacts: agents, skills, MCPs, APIs and plugins.",
         headline: (
           <>
-            Studio: <span style={{ color: "var(--ds-mint)" }}>one place</span> to build, host and share AI skills, MCPs,
-            agents, APIs and plugins.
+            Studio: from agents on one engineer’s machine to <span style={{ color: "var(--ds-mint)" }}>one place</span> to
+            build, host and share them.
           </>
         ),
         figureNote: "Confidential internal work. Screens are from the coded prototype, with sample data.",
@@ -135,7 +135,7 @@ export default function AiStudioPage() {
             eyebrow="The context"
             heading="AI became part of everyday work, so Walmart built its own place for it"
             body={[
-              "As AI tools became part of how engineers work, data security and compliance became a concern. Walmart restricted the use of outside tools such as Cursor, Claude and Bolt on personal licences, which had also become a higher cost.",
+              "As AI tools became part of how engineers work, data security and compliance became a concern. Walmart restricted outside tools such as Cursor, Claude and Bolt on personal licences, which had also become a higher cost.",
               "So Walmart built an internal AI portal for its engineers, Wibey. It is built on Claude, and it keeps the work inside the company so company data stays secure.",
               "Studio is a section on the left panel of Wibey, for the engineers who build artifacts: agents, skills and MCPs. It is where they build, host and share them.",
             ]}
@@ -148,7 +148,7 @@ export default function AiStudioPage() {
             eyebrow="What was new"
             heading="A chat can do almost anything, so the interface has to add what it can’t"
             body={[
-              "Until Studio, the products I designed did what a person told them, one step at a time. Studio is different. A person can ask a chat for almost anything, and an agent will do it.",
+              "Until Studio, the products I designed did what a person told them, one step at a time. Studio is different: a person asks a chat for almost anything, and an agent does it.",
               "So my question changed. It was no longer which screens a person needs, but what a chat can’t give them: a way to see how the agent works, to change it, and to test it before anyone relies on it.",
             ]}
           />
@@ -158,22 +158,22 @@ export default function AiStudioPage() {
           <CaseStudyChapter
             layout="stacked"
             eyebrow="Before Studio"
-            heading="Useful work stayed on the machine it was built on"
+            heading="An agent that worked for one engineer stayed on that engineer’s machine"
             body={[
-              "People were building agents, skills and MCPs for themselves and their teams. Each one lived on its owner’s machine. None was hosted, shared across the company or open to anyone else.",
-              "The only way to use one was through a repo its owner chose to share. The owner decided who could reach it.",
+              "Engineers were building agents, skills and MCPs for themselves and their teams. Each one lived on its owner’s machine. None was hosted, and none was open to the rest of the company.",
+              "To use one, a colleague needed the owner to share its repo. The owner decided who could reach it, one repo at a time.",
             ]}
           />
           <CaseStudyFigure rule label="Where an artifact lived">
             <BeforeAfterModel
               before={{
-                heading: "Files on one machine, shared by repo",
-                body: "Each artifact stayed on its builder’s machine and reached other people only through a repo its owner shared.",
+                heading: "A repo, shared by hand",
+                body: "Each artifact stayed on its builder’s machine and reached other engineers only when its owner shared the repo.",
               }}
               after={{
                 glyph: "funnel",
-                heading: "One hosted place",
-                body: "Studio hosts all five kinds of artifact in Wibey, where an engineer creates, manages and publishes them.",
+                heading: "One hosted place in Wibey",
+                body: "Studio hosts all five kinds of artifact, where an engineer creates, manages and publishes them, and others can find the verified ones.",
               }}
             />
           </CaseStudyFigure>
@@ -244,7 +244,7 @@ export default function AiStudioPage() {
           <CaseStudyChapter
             layout="stacked"
             eyebrow="A decision I would defend"
-            heading="A person could build an agent in the chat alone. Engineers still need the preview."
+            heading="The chat could build an agent alone. Engineers still need the preview."
             body={[
               "Technically, a person can create an agent without ever leaving the chat. But engineers need a container where they can see the thing as it is built, so they can make decisions as it takes shape.",
               "So the preview stays, and the chat feeds it. For an MCP, it lists each generated tool with what it can change, and a box to keep or drop it.",
@@ -336,7 +336,7 @@ export default function AiStudioPage() {
           <CaseStudyChapter
             layout="stacked"
             eyebrow="Built in code"
-            heading="In code, everything can be clicked, so I built the path for a reviewer to follow"
+            heading="Everything could be clicked, so I built a path for reviewers to follow"
             body={[
               "I came from Figma, where everything is frozen in time. A coded interface was new to me: everything can be clicked and tried. So I built demo flows and orchestrated flows that walk a reviewer along the happy path, for stakeholder and user reviews.",
               "I built the front end in Cursor and VS Code, in several versions, and hosted it on GitHub Pages so people could use it and tell me what to change. Developers used it as their front-end reference, so they could spend their time on the backend and the integrations.",
@@ -384,7 +384,7 @@ export default function AiStudioPage() {
       <div className="mt-16 md:mt-20">
         <Reveal>
           <PullStatement eyebrow="Why Studio exists" mark="exchange" note={<ConfidentialNote />}>
-            Work that can only be shared by passing a repo stays with the person who built it.
+            An agent is only useful to the company once another engineer can find it, trust it and use it.
           </PullStatement>
         </Reveal>
       </div>
