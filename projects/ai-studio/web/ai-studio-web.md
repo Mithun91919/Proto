@@ -40,6 +40,26 @@ Skills, MCPs, agents, APIs and plugins are all in. A person creates, manages and
 
 *Pending: the one or two design decisions that mattered most, with the screen for each.*
 
+## A person assembles an agent team, watches it run, then publishes it
+
+The builder is visual. A person drags components into a team, or writes the configuration as JSON. A gallery lists pre-built agents, models and other components to start from.
+
+Each agent in the team has a name, a description, a system message and a model. An MCP server that is already registered can be attached to an agent from a panel, and the agent then has the tools that server offers.
+
+A team can run three ways: in a fixed order, with one agent choosing who acts next, or with explicit handoffs from one agent to another.
+
+[MEDIA - pending. The builder with a team of agents on the canvas and one agent's settings open.]
+
+## A playground shows which agent is acting while the team runs
+
+Before publishing, a person runs the team in a playground. It streams the messages between agents and draws a graph of which agent has control, so the person can see the work move from one to the next. A run can be paused or stopped.
+
+The tool-call trace shows whether the intended tool was called. A separate playground tests MCP servers on their own.
+
+A finished agent can be published and deployed through a production-ready starter kit, or exported as a configuration to run elsewhere.
+
+[MEDIA - pending. The playground mid-run: the messages between agents and the graph of which agent is acting.]
+
 ## Two designers, one point of view
 
 I worked on Studio with a staff designer. We defined the experience point of view together. We each took a field of the product, and each of us refined part of the flow or all of it.
@@ -83,6 +103,9 @@ Counts of what people have created and published in Studio are not on this page 
 ---
 
 Source notes (not for the page)
+- Second source, the Studio product documentation, summarised by the author's tooling: the builder, gallery, agent patterns, attaching a registered MCP server, the two playgrounds, publish and export. Used for the "build, watch, publish" chapter only, with internal product and system names left out.
+- CONFLICT TO RESOLVE: that documentation describes building agents and attaching existing MCP servers. It does not describe creating skills, MCP servers, APIs or plugins in Studio, and says Skills are documented separately. The page currently says all five kinds of asset are in Studio, as the author told me. Confirm which is right before this goes further.
+- Not used: the roadmap and the v0.1 use-case list (examples, not proof of what is live), the pattern examples as live use cases, and every internal system name.
 - Facts from the author: shared project with a staff designer; started April, live since August; five asset types in; before Studio assets were local, not hosted, not shared, reached only through a repo shared by the owner; multiple iterations across UX, interactions and workflows; built in code with Cursor.
 - Facts from the Confluence write-up the author pasted: Figma to coded prototype in Cursor and VS Code; hosted on GitHub Pages for feedback; developers used it as the front-end reference and focused on backend and integration.
 - Not used: the Wibey-wide usage figures (active users, MCP servers, tool calls, plugin sub-agents). They are not Studio figures.

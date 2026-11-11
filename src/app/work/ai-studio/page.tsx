@@ -34,6 +34,7 @@ export const metadata: Metadata = {
 const CHAPTERS = [
   { id: "problem", label: "Before Studio" },
   { id: "assets", label: "Five kinds of asset" },
+  { id: "flow", label: "Build, test, publish" },
   { id: "team", label: "Two designers" },
   { id: "code", label: "Built in code" },
   { id: "versions", label: "Versions" },
@@ -180,6 +181,45 @@ export default function AiStudioPage() {
               kind="image"
               ratio={16 / 10}
               needs="A Studio screen showing the five kinds of asset, from a real anonymised capture."
+              source="Studio, as built"
+            />
+          </CaseStudyFigure>
+        </CaseStudySection>
+
+        <CaseStudySection id="flow">
+          <CaseStudyChapter
+            layout="stacked"
+            eyebrow="What people do in Studio"
+            heading="A person assembles an agent team, watches it run, then publishes it"
+            body={[
+              "The builder is visual. A person drags components into a team, or writes the configuration as JSON. A gallery lists pre-built agents, models and other components to start from.",
+              "Each agent in the team has a name, a description, a system message and a model. An MCP server that is already registered can be attached to an agent from a panel, and the agent then has the tools that server offers.",
+              "A team can run three ways: in a fixed order, with one agent choosing who acts next, or with explicit handoffs from one agent to another.",
+            ]}
+          />
+          <CaseStudyFigure>
+            <MediaPlaceholder
+              kind="image"
+              ratio={16 / 10}
+              needs="The builder with a team of agents on the canvas and one agent’s settings open, from a real anonymised capture."
+              source="Studio, as built"
+            />
+          </CaseStudyFigure>
+          <CaseStudyChapter
+            layout="stacked"
+            eyebrow="Before it goes live"
+            heading="A playground shows which agent is acting while the team runs"
+            body={[
+              "Before publishing, a person runs the team in a playground. It streams the messages between agents and draws a graph of which agent has control, so the person can see the work move from one to the next. A run can be paused or stopped.",
+              "The tool-call trace shows whether the intended tool was called. A separate playground tests MCP servers on their own.",
+              "A finished agent can be published and deployed through a production-ready starter kit, or exported as a configuration to run elsewhere.",
+            ]}
+          />
+          <CaseStudyFigure>
+            <MediaPlaceholder
+              kind="image"
+              ratio={16 / 10}
+              needs="The playground mid-run: the messages between agents and the graph showing which agent is acting."
               source="Studio, as built"
             />
           </CaseStudyFigure>
