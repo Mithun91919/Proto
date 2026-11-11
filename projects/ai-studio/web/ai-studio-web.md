@@ -6,9 +6,9 @@
 
 Studio is part of an internal AI portal. People use it to create, manage, publish and share skills, MCPs, agents, APIs and plugins. Before it, the people who built these kept them on their own machines.
 
-I worked on it with a staff designer. We defined the experience point of view together, each took a field of the product, and each of us refined part of the flow or all of it. We built the front end in code, in Cursor and VS Code.
+Studio was a shared project. I owned the entire experience of this version, from the first idea to a working front end in code, built in Cursor and VS Code.
 
-**Role:** Senior UX Designer, with a staff designer
+**Role:** Senior UX Designer, owner of the entire experience
 **Status:** Started in April, live since August
 
 > **At a glance**
@@ -40,43 +40,45 @@ Skills, MCPs, agents, APIs and plugins are all in. A person creates, manages and
 
 *Pending: the one or two design decisions that mattered most, with the screen for each.*
 
-## A person assembles an agent team, watches it run, then publishes it
+## Everything people build sits in one library, with a status
 
-The builder is visual. A person drags components into a team, or writes the configuration as JSON. A gallery lists pre-built agents, models and other components to start from.
+Each person has a private workspace, and teams have shared ones. Every asset in them shows its type, its status and its owner, so a person can filter to the skills or the MCPs and see whether one is a draft, in review or approved.
 
-Each agent in the team has a name, a description, a system message and a model. An MCP server that is already registered can be attached to an agent from a panel, and the agent then has the tools that server offers.
+This replaced sharing by repo. An asset sits where the people in a workspace can see it, with its status beside it.
 
-A team can run three ways: in a fixed order, with one agent choosing who acts next, or with explicit handoffs from one agent to another.
+[SCREEN - library, from the coded prototype. Sample data; two workspace names blurred.]
 
-[MEDIA - pending. The builder with a team of agents on the canvas and one agent's settings open.]
+## A person describes what they want, and Studio drafts it
 
-## A playground shows which agent is acting while the team runs
+Create New opens a chat. A person writes what they need, such as an agent that helps new teammates settle in, and Studio replies with what it will create: a name, what it does, its trigger and its tools. It offers next steps, such as adding error handling, and the result opens as a draft.
 
-Before publishing, a person runs the team in a playground. It streams the messages between agents and draws a graph of which agent has control, so the person can see the work move from one to the next. A run can be paused or stopped.
+An agent then opens as a canvas of linked nodes: an orchestrator with sub-agents, each with a model, MCP servers and tools. A palette beside it adds a sub-agent, an MCP server, tools, a human handoff or a termination.
 
-The tool-call trace shows whether the intended tool was called. A separate playground tests MCP servers on their own.
+[SCREEN - agent canvas, from the coded prototype. Sample data.]
 
-A finished agent can be published and deployed through a production-ready starter kit, or exported as a configuration to run elsewhere.
+## Every type opens with the chat on the left and the asset on the right
 
-[MEDIA - pending. The playground mid-run: the messages between agents and the graph of which agent is acting.]
+An MCP opens as a set of generated files. Each tool is listed with its method, its endpoint and what it can change, and has a checkbox to keep or drop it.
 
-## Two designers, one point of view
+An agent and an MCP end in the same actions: Save, Run and Publish. An MCP can also be validated, tested in its own playground and deployed.
 
-I worked on Studio with a staff designer. We defined the experience point of view together. We each took a field of the product, and each of us refined part of the flow or all of it.
+[SCREEN - MCP review, from the coded prototype. Sample data.]
 
-*Pending: the one or two parts I led myself, so the page says who did what.*
+## I owned the entire experience
+
+Studio was a shared project. I designed this version end to end, from the first idea to a working front end in code.
 
 ## The design was a working front end, not a set of screens
 
 The scope called for something close to development. A set of Figma screens shows layout and visual direction, but not how an interface behaves while an AI agent runs.
 
-So we built the front end in code, in Cursor and VS Code, in several versions, and hosted it on GitHub Pages so stakeholders and users could use it and tell us what to change.
+So I built the front end in code, in Cursor and VS Code, in several versions, and hosted it on GitHub Pages so stakeholders and users could use it and tell me what to change.
 
 Developers used it as their front-end reference. They did not have to interpret static screens, so they could spend their time on the backend and the integrations.
 
 *Pending confirmation: whether the whole front end or a lightweight prototype was built in code, and how much developers reused.*
 
-[MEDIA - pending. A short clip of the working front end: building a workflow and running it.]
+[CLIP - the coded prototype, an agent being opened and edited; 15 seconds, from the July recording. A better recording is coming.]
 
 > A screen shows what an interface looks like. Code shows what it does.
 
@@ -103,8 +105,10 @@ Counts of what people have created and published in Studio are not on this page 
 ---
 
 Source notes (not for the page)
+- Third source, a screen recording of the coded prototype (July, before launch, sample data), supplied by the author. Used for the library, creating, and one-layout chapters, the three screens and the clip. The author confirmed: this is the prototype, all five asset types are live, the data is sample data, and this version was owned end to end by the author. A better recording is coming.
+- Seen in the recording but not on the page: asset types Prototype and PDLC (not in the author's five), a model name in the chat panel, and two workspace names that were blurred.
 - Second source, the Studio product documentation, summarised by the author's tooling: the builder, gallery, agent patterns, attaching a registered MCP server, the two playgrounds, publish and export. Used for the "build, watch, publish" chapter only, with internal product and system names left out.
-- CONFLICT TO RESOLVE: that documentation describes building agents and attaching existing MCP servers. It does not describe creating skills, MCP servers, APIs or plugins in Studio, and says Skills are documented separately. The page currently says all five kinds of asset are in Studio, as the author told me. Confirm which is right before this goes further.
+- That documentation covers building agents and attaching existing MCP servers only. The recording and the author show MCP creation and all five types, so the page follows them.
 - Not used: the roadmap and the v0.1 use-case list (examples, not proof of what is live), the pattern examples as live use cases, and every internal system name.
 - Facts from the author: shared project with a staff designer; started April, live since August; five asset types in; before Studio assets were local, not hosted, not shared, reached only through a repo shared by the owner; multiple iterations across UX, interactions and workflows; built in code with Cursor.
 - Facts from the Confluence write-up the author pasted: Figma to coded prototype in Cursor and VS Code; hosted on GitHub Pages for feedback; developers used it as the front-end reference and focused on backend and integration.

@@ -385,12 +385,12 @@ export const projects: Project[] = [
     title:
       "Studio: one place to build, host and share AI skills, MCPs, agents, APIs and plugins.",
     summary:
-      "People kept the AI skills, agents and MCPs they built on their own machines, and shared them only through a repo. I defined the experience with a staff designer for one place in the internal AI portal to build, host and share all five kinds of asset, and we built the front end in code.",
+      "People kept the AI skills, agents and MCPs they built on their own machines, and shared them only through a repo. I owned the entire experience for one place in the internal AI portal to build, host and share all five kinds of asset, and built the front end in code.",
     outcome: "Live since August · five kinds of AI asset in one place",
     metrics: [],
     org: "Walmart Global Tech",
     domain: "Developer tools",
-    ownership: "Co-designer, with a staff designer",
+    ownership: "Design owner, start to finish",
     timeframe: "2026–Present",
     role: "Senior UX Designer",
     tier: "range",
