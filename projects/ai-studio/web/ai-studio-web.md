@@ -4,7 +4,7 @@
 
 **Walmart Global Tech · 2026-Present · AI platform · Product design · Design in code**
 
-Studio is part of an internal AI portal. People use it to create, manage, publish and share skills, MCPs, agents, APIs and plugins. Before it, the people who built these kept them on their own machines.
+Studio is part of Wibey, Walmart's internal AI portal. Engineers use it to create, manage, publish and share artifacts: skills, MCPs, agents, APIs and plugins. Before it, the people who built these kept them on their own machines.
 
 It was my first agentic product. Studio was a shared project, and I owned the entire experience of this version, from the first idea to a working front end in code, built in Cursor and VS Code.
 
@@ -12,15 +12,23 @@ It was my first agentic product. Studio was a shared project, and I owned the en
 **Status:** Started in April, live since August
 
 > **At a glance**
-> **Five kinds of asset in one place** · **Live since August** · Counts of what has been created and published: **pending**
+> **Five kinds of artifact in one place** · **Live since August** · Counts of what has been created and published: **pending**
 
 [MEDIA - HERO: pending. A screen of Studio. The coded prototype screens are used for now.]
 
-## What the assets are
+## What the artifacts are
 
-A skill teaches an AI assistant how to do one job. An MCP (a connector for AI tools) lets it use another system. An agent carries out a task in steps. Plugins bundle these for others to install, and APIs let other software use what they do.
+Engineers build artifacts here. A skill teaches an AI assistant how to do one job. An MCP (a connector for AI tools) lets it use another system. An agent carries out a task in steps. Plugins bundle these for others to install, and APIs let other software use what they do.
 
 *Pending confirmation: the plain definitions of plugin and API as used in the portal.*
+
+## AI became part of everyday work, so Walmart built its own place for it
+
+As AI tools became part of how engineers work, data security and compliance became a concern. Walmart restricted the use of outside tools such as Cursor, Claude and Bolt on personal licences, which had also become a higher cost.
+
+So Walmart built an internal AI portal for its engineers, Wibey. It is built on Claude, and it keeps the work inside the company so company data stays secure.
+
+Studio is a section on the left panel of Wibey, for the engineers who build artifacts: agents, skills and MCPs. It is where they build, host and share them.
 
 ## A chat can do almost anything, so the interface has to add what it can't
 
@@ -60,9 +68,9 @@ So the preview stays, and the chat feeds it. For an MCP, it lists each generated
 
 [SCREEN - MCP review, from the coded prototype. Sample data.]
 
-## I assumed one owner. It became a team's asset.
+## I assumed one owner. It became a team's artifact.
 
-I assumed each agent or MCP would belong to one person, and that any team could build agents on any MCP. Neither held. An agent or an MCP quickly becomes a team's shared asset, and only the teams that own the APIs and MCPs can publish an approved agent.
+I assumed each agent or MCP would belong to one person, and that any team could build agents on any MCP. Neither held. An agent or an MCP quickly becomes a team's shared artifact, and only the teams that own the APIs and MCPs can publish an approved agent.
 
 So the shared registry holds only verified agents. Anyone can build whatever they like in their own playground or on their own machine, but they can't publish it there.
 
@@ -104,8 +112,11 @@ Counts of what people have created and published in Studio are not on this page 
 
 Source notes (not for the page)
 - The author's own answers (November 2026): what was new about designing for an agent; the chat placed as one panel first and then leading; why the preview stays for engineers; the wrong assumption about single ownership and who can publish; building in code after Figma, demo and orchestrated flows for stakeholder and user reviews, teaching Cursor a design system, visual polish as the hardest part; what to do differently (HTML first, markdown context files). The agent builder follows the node-based style of workflow tools such as n8n.
-- Facts from the author earlier: started in April, live since August; five asset types live; before Studio assets were local, not hosted, not shared, reached only through a repo shared by the owner; multiple iterations across UX, interactions and workflows; built in code with Cursor; owned the entire experience of this version.
+- Facts from the author earlier: started in April, live since August; five artifact types live; before Studio artifacts were local, not hosted, not shared, reached only through a repo shared by the owner; multiple iterations across UX, interactions and workflows; built in code with Cursor; owned the entire experience of this version.
 - Facts from the Confluence write-up: hosted on GitHub Pages for feedback; developers used it as the front-end reference and focused on backend and integration.
 - Screens come from a screen recording of the coded prototype (July, before launch, sample data). A better recording and an early screen of the first version are coming.
-- Seen in the recording but not on the page: asset types Prototype and PDLC, a model name in the chat panel, and two workspace names that were blurred.
+- Seen in the recording but not on the page: artifact types Prototype and PDLC, a model name in the chat panel, and two workspace names that were blurred.
 - Not used: the Wibey-wide usage figures; the roadmap and the v0.1 use-case list; every internal system name.
+
+- Names, updated: Wibey is public (Walmart Global Tech announced it in 2025, with press coverage), so it is named. The author confirmed it is built on Claude and that it can be said. Internal systems behind it (the LLM gateway, registries, deployment platforms) stay unnamed. "Artifacts" is the term the prototype uses, defined once as agents, skills and MCPs (and APIs and plugins).
+- Context facts from the author: the company restricted personal licences for outside tools such as Cursor, Claude and Bolt, which had also become a higher cost, and the portal keeps company data secure; the main users are engineers; Studio is on the left panel of the portal.

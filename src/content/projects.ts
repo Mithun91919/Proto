@@ -385,8 +385,8 @@ export const projects: Project[] = [
     title:
       "Studio: one place to build, host and share AI skills, MCPs, agents, APIs and plugins.",
     summary:
-      "People kept the AI skills, agents and MCPs they built on their own machines, and shared them only through a repo. My first agentic product: I owned the entire experience for one place in the internal AI portal to build, host and share all five kinds of asset, designed around what a chat can\u2019t do, and built the front end in code.",
-    outcome: "Live since August · five kinds of AI asset in one place",
+      "People kept the AI skills, agents and MCPs they built on their own machines, and shared them only through a repo. My first agentic product: I owned the entire experience for one place in Wibey, Walmart\u2019s internal AI portal, to build, host and share all five kinds of artifact, designed around what a chat can\u2019t do, and built the front end in code.",
+    outcome: "Live since August · five kinds of AI artifact in one place",
     metrics: [],
     org: "Walmart Global Tech",
     domain: "Developer tools",
@@ -406,11 +406,11 @@ export const projects: Project[] = [
       },
       {
         label: "Intervention",
-        detail: "One place in the AI portal to create, manage, publish and share all five kinds of asset",
+        detail: "One place in Wibey to create, manage, publish and share all five kinds of artifact",
       },
       {
         label: "After",
-        detail: "Assets that are hosted and published, built from a front end designed in code",
+        detail: "Artifacts that are hosted and published, built from a front end designed in code",
       },
     ],
     tags: ["AI Platform", "Design in Code", "Developer Tools"],

@@ -31,11 +31,12 @@ import { getAdjacentProjects } from "@/content/projects";
 export const metadata: Metadata = {
   title: "Studio — One place to build, host and share AI skills, MCPs, agents, APIs and plugins",
   description:
-    "My first agentic product: a place inside an internal AI portal to build, host and share AI agents, MCPs and skills, designed around what a chat can’t do, and built in code.",
+    "My first agentic product: a place inside Wibey, Walmart’s internal AI portal, to build, host and share agents, MCPs and skills, designed around what a chat can’t do, and built in code.",
   robots: caseStudyRobots,
 };
 
 const CHAPTERS = [
+  { id: "context", label: "The context" },
   { id: "new", label: "What was new" },
   { id: "problem", label: "Before Studio" },
   { id: "workflow", label: "The controls" },
@@ -73,7 +74,7 @@ export default function AiStudioPage() {
             </>
           ),
           detail:
-            "Studio sits inside the internal AI portal. People create, manage and publish all five kinds of asset there: skills, MCPs, agents, APIs and plugins.",
+            "Studio sits inside Wibey, Walmart’s internal AI portal. Engineers create, manage and publish all five kinds of artifact there: skills, MCPs, agents, APIs and plugins.",
         },
         {
           label: "What I did",
@@ -89,7 +90,7 @@ export default function AiStudioPage() {
       chapters={CHAPTERS}
       hero={{
         standfirst:
-          "The part of the internal AI portal where people create, manage, publish and share the skills, MCPs, agents, APIs and plugins that make an AI assistant useful at a job.",
+          "The part of Wibey, Walmart’s internal AI portal, where engineers create, manage, publish and share artifacts: the skills, MCPs, agents, APIs and plugins that make an AI assistant useful at a job.",
         headline: (
           <>
             Studio: <span style={{ color: "var(--ds-mint)" }}>one place</span> to build, host and share AI skills, MCPs,
@@ -121,14 +122,27 @@ export default function AiStudioPage() {
             mark="connection"
             note="Plugins bundle these for others to install, and APIs let other software use what they do."
           >
-            A skill teaches an AI assistant how to do one job. An MCP (a connector for AI tools) lets it use another
-            system. An agent carries out a task in steps.
+            Engineers build artifacts here. A skill teaches an AI assistant how to do one job. An MCP (a connector for AI
+            tools) lets it use another system. An agent carries out a task in steps.
           </PullStatement>
         </Reveal>
       </div>
 
       <CaseStudyColumn>
-        <CaseStudySection id="new" boundary={false} className="pt-14 md:pt-20">
+        <CaseStudySection id="context" boundary={false} className="pt-14 md:pt-20">
+          <CaseStudyChapter
+            layout="stacked"
+            eyebrow="The context"
+            heading="AI became part of everyday work, so Walmart built its own place for it"
+            body={[
+              "As AI tools became part of how engineers work, data security and compliance became a concern. Walmart restricted the use of outside tools such as Cursor, Claude and Bolt on personal licences, which had also become a higher cost.",
+              "So Walmart built an internal AI portal for its engineers, Wibey. It is built on Claude, and it keeps the work inside the company so company data stays secure.",
+              "Studio is a section on the left panel of Wibey, for the engineers who build artifacts: agents, skills and MCPs. It is where they build, host and share them.",
+            ]}
+          />
+        </CaseStudySection>
+
+        <CaseStudySection id="new">
           <CaseStudyChapter
             layout="stacked"
             eyebrow="What was new"
@@ -150,16 +164,16 @@ export default function AiStudioPage() {
               "The only way to use one was through a repo its owner chose to share. The owner decided who could reach it.",
             ]}
           />
-          <CaseStudyFigure rule label="Where an asset lived">
+          <CaseStudyFigure rule label="Where an artifact lived">
             <BeforeAfterModel
               before={{
                 heading: "Files on one machine, shared by repo",
-                body: "Each asset stayed on its builder’s machine and reached other people only through a repo its owner shared.",
+                body: "Each artifact stayed on its builder’s machine and reached other people only through a repo its owner shared.",
               }}
               after={{
                 glyph: "funnel",
                 heading: "One hosted place",
-                body: "Studio hosts all five kinds of asset in the AI portal, where a person creates, manages and publishes them.",
+                body: "Studio hosts all five kinds of artifact in Wibey, where an engineer creates, manages and publishes them.",
               }}
             />
           </CaseStudyFigure>
@@ -271,9 +285,9 @@ export default function AiStudioPage() {
           <CaseStudyChapter
             layout="stacked"
             eyebrow="An assumption that was wrong"
-            heading="I assumed one owner. It became a team’s asset."
+            heading="I assumed one owner. It became a team’s artifact."
             body={[
-              "I assumed each agent or MCP would belong to one person, and that any team could build agents on any MCP. Neither held. An agent or an MCP quickly becomes a team’s shared asset, and only the teams that own the APIs and MCPs can publish an approved agent.",
+              "I assumed each agent or MCP would belong to one person, and that any team could build agents on any MCP. Neither held. An agent or an MCP quickly becomes a team’s shared artifact, and only the teams that own the APIs and MCPs can publish an approved agent.",
               "So the shared registry holds only verified agents. Anyone can build whatever they like in their own playground or on their own machine, but they can’t publish it there.",
             ]}
           />
@@ -282,20 +296,20 @@ export default function AiStudioPage() {
               src="/work/ai-studio/library.jpg"
               width={2400}
               height={1385}
-              alt="A workspace library: filters by type, then cards for each asset showing its type, a status of draft, in review or approved, and its owner"
+              alt="A workspace library: filters by type, then cards for each artifact showing its type, a status of draft, in review or approved, and its owner"
               caption="A workspace in the coded prototype. Sample data; two workspace names are blurred."
               hotspots={[
                 {
                   x: 47.5,
                   y: 26.2,
-                  title: "A status on every asset",
-                  detail: "Draft, in review or approved, beside the asset, so its state is clear before it is opened.",
+                  title: "A status on every artifact",
+                  detail: "Draft, in review or approved, beside the artifact, so its state is clear before it is opened.",
                 },
                 {
                   x: 25.3,
                   y: 16.7,
                   title: "Filter by type",
-                  detail: "Every asset has a type, so a person can narrow the library to the kind they came for.",
+                  detail: "Every artifact has a type, so a person can narrow the library to the kind they came for.",
                 },
                 {
                   x: 9.3,
