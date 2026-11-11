@@ -43,9 +43,59 @@ const CHAPTERS = [
   { id: "chat", label: "The chat" },
   { id: "preview", label: "The preview" },
   { id: "shared", label: "Who owns it" },
+  { id: "artifacts", label: "Five editors" },
   { id: "code", label: "Built in code" },
   { id: "next", label: "Next time" },
   { id: "live", label: "Live" },
+];
+
+/**
+ * One block per kind of artifact: what is specific to its editor. Agent and
+ * MCP use crops of the recorded prototype; the other three wait for captures
+ * and say what they need. Nothing is written for a type the author has not
+ * described yet.
+ */
+type ArtifactBlock = {
+  name: string;
+  note?: string;
+  src?: string;
+  width?: number;
+  height?: number;
+  alt?: string;
+  needs?: string;
+};
+
+const ARTIFACTS: ArtifactBlock[] = [
+  {
+    name: "Agent",
+    note: "A workflow of linked nodes: an orchestrator, its sub-agents, and each one’s model, MCP servers and tools. An engineer runs it and sees the result before publishing.",
+    src: "/work/ai-studio/agent-crop.jpg",
+    width: 1550,
+    height: 870,
+    alt: "An agent as a workflow: an orchestrator card linked to two sub-agent cards, each showing its model, MCP servers and tools",
+  },
+  {
+    name: "MCP",
+    note: "A set of generated tools, each shown with its method, its endpoint and what it can change, with a box to keep or drop it. It has its own playground, validation and deploy.",
+    src: "/work/ai-studio/mcp-crop.jpg",
+    width: 1400,
+    height: 700,
+    alt: "Generated MCP tools, each with its method and endpoint, a description, a read only and idempotent label, and a checkbox",
+  },
+  {
+    name: "Skill",
+    note: "A short instruction file, drafted by the chat.",
+    needs: "The skill editor: the instruction file the chat drafted, and how an engineer tests it.",
+  },
+  {
+    name: "API",
+    note: "Designed and scaffolded as REST endpoints.",
+    needs: "The API editor, and how it differs from the API platform I designed before.",
+  },
+  {
+    name: "Plugin",
+    needs: "The plugin editor: what a plugin bundles, and how an engineer assembles and publishes one.",
+  },
 ];
 
 export default function AiStudioPage() {
@@ -320,6 +370,37 @@ export default function AiStudioPage() {
               ]}
             />
           </CaseStudyFigure>
+        </CaseStudySection>
+
+        <CaseStudySection id="artifacts">
+          <CaseStudyChapter
+            layout="stacked"
+            eyebrow="Five artifacts"
+            heading="One frame, and a different editor for each artifact"
+            body={[
+              "Every artifact opens with the chat on the left and the artifact on the right, with a status and the same Save, Run and Publish. What changes is the editor, because each kind of artifact is built, tested and trusted in its own way.",
+            ]}
+          />
+          {ARTIFACTS.map((artifact) => (
+            <CaseStudyFigure key={artifact.name} rule label={artifact.name}>
+              {artifact.note ? <p className="body-text mb-6 max-w-[62ch]">{artifact.note}</p> : null}
+              {artifact.src ? (
+                <ArtboardFigure
+                  src={artifact.src}
+                  width={artifact.width as number}
+                  height={artifact.height as number}
+                  alt={artifact.alt as string}
+                />
+              ) : (
+                <MediaPlaceholder
+                  kind="image"
+                  ratio={16 / 8}
+                  needs={artifact.needs as string}
+                  source="Studio, as built"
+                />
+              )}
+            </CaseStudyFigure>
+          ))}
         </CaseStudySection>
       </CaseStudyColumn>
 

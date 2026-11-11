@@ -76,6 +76,22 @@ So the shared registry holds only verified agents. Anyone can build whatever the
 
 [SCREEN - library, from the coded prototype. Sample data; two workspace names blurred.]
 
+## One frame, and a different editor for each artifact
+
+Every artifact opens with the chat on the left and the artifact on the right, with a status and the same Save, Run and Publish. What changes is the editor, because each kind of artifact is built, tested and trusted in its own way.
+
+**Agent.** A workflow of linked nodes: an orchestrator, its sub-agents, and each one's model, MCP servers and tools. An engineer runs it and sees the result before publishing.
+
+**MCP.** A set of generated tools, each shown with its method, its endpoint and what it can change, with a box to keep or drop it. It has its own playground, validation and deploy.
+
+**Skill.** A short instruction file, drafted by the chat. *Pending: the editor and how it is tested.*
+
+**API.** Designed and scaffolded as REST endpoints. *Pending: the editor, and how it differs from the API platform case study.*
+
+**Plugin.** *Pending: everything. What a plugin bundles, and how an engineer assembles and publishes one.*
+
+[SCREENS - agent and MCP are crops of the July recording. Skill, API and plugin wait for the updated recording.]
+
 > A chat can do almost anything. The interface is what lets a person see it, change it and trust it.
 
 ## Everything could be clicked, so I built a path for reviewers to follow
