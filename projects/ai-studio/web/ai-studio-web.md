@@ -6,7 +6,7 @@
 
 Studio is part of an internal AI portal. People use it to create, manage, publish and share skills, MCPs, agents, APIs and plugins. Before it, the people who built these kept them on their own machines.
 
-Studio was a shared project. I owned the entire experience of this version, from the first idea to a working front end in code, built in Cursor and VS Code.
+It was my first agentic product. Studio was a shared project, and I owned the entire experience of this version, from the first idea to a working front end in code, built in Cursor and VS Code.
 
 **Role:** Senior UX Designer, owner of the entire experience
 **Status:** Started in April, live since August
@@ -14,7 +14,7 @@ Studio was a shared project. I owned the entire experience of this version, from
 > **At a glance**
 > **Five kinds of asset in one place** · **Live since August** · Counts of what has been created and published: **pending**
 
-[MEDIA - HERO: pending. A screen of Studio showing the five kinds of asset. Needs real, anonymised captures.]
+[MEDIA - HERO: pending. A screen of Studio. The coded prototype screens are used for now.]
 
 ## What the assets are
 
@@ -22,71 +22,69 @@ A skill teaches an AI assistant how to do one job. An MCP (a connector for AI to
 
 *Pending confirmation: the plain definitions of plugin and API as used in the portal.*
 
+## A chat can do almost anything, so the interface has to add what it can't
+
+Until Studio, the products I designed did what a person told them, one step at a time. Studio is different. A person can ask a chat for almost anything, and an agent will do it.
+
+So my question changed. It was no longer which screens a person needs, but what a chat can't give them: a way to see how the agent works, to change it, and to test it before anyone relies on it.
+
 ## Useful work stayed on the machine it was built on
 
 People were building agents, skills and MCPs for themselves and their teams. Each one lived on its owner's machine. None was hosted, shared across the company or open to anyone else.
 
 The only way to use one was through a repo its owner chose to share. The owner decided who could reach it.
 
-Studio sits inside the AI portal and hosts all five kinds of asset. A person creates, manages and publishes them there.
+[VISUAL - BEFORE: files on one machine, shared by repo -> AFTER: one hosted place]
 
-[VISUAL - BEFORE: local files shared by repo -> AFTER: one hosted place]
+## An agent is a workflow a person can see, edit and test
 
-## Five kinds of asset, one product
+The agent builder uses the node-based style of workflow tools such as n8n. An agent is not a block of settings. It is an orchestrator with sub-agents, and each one shows its model, its MCP servers and its tools.
 
-Skills, MCPs, agents, APIs and plugins are all in. A person creates, manages and publishes each of them from the same place.
-
-[MEDIA - pending. The Studio home or asset list showing the five kinds.]
-
-*Pending: the one or two design decisions that mattered most, with the screen for each.*
-
-## Everything people build sits in one library, with a status
-
-Each person has a private workspace, and teams have shared ones. Every asset in them shows its type, its status and its owner, so a person can filter to the skills or the MCPs and see whether one is a draft, in review or approved.
-
-This replaced sharing by repo. An asset sits where the people in a workspace can see it, with its status beside it.
-
-[SCREEN - library, from the coded prototype. Sample data; two workspace names blurred.]
-
-## A person describes what they want, and Studio drafts it
-
-Create New opens a chat. A person writes what they need, such as an agent that helps new teammates settle in, and Studio replies with what it will create: a name, what it does, its trigger and its tools. It offers next steps, such as adding error handling, and the result opens as a draft.
-
-An agent then opens as a canvas of linked nodes: an orchestrator with sub-agents, each with a model, MCP servers and tools. A palette beside it adds a sub-agent, an MCP server, tools, a human handoff or a termination.
+A person builds the agent as a workflow, runs it, sees the result straight away, and tweaks it as often as they need. That is the control a chat does not give them on its own.
 
 [SCREEN - agent canvas, from the coded prototype. Sample data.]
 
-## Every type opens with the chat on the left and the asset on the right
+## I had the chat in the wrong place
 
-An MCP opens as a set of generated files. Each tool is listed with its method, its endpoint and what it can change, and has a checkbox to keep or drop it.
+We first built an elaborate interface and treated the chat as one item in it, like any other panel. That is how interfaces have always been built.
 
-An agent and an MCP end in the same actions: Save, Run and Publish. An MCP can also be validated, tested in its own playground and deployed.
+We soon saw it the other way round. Building by conversation is the new way, so the chat leads, and the preview shows the person what the AI built for them.
+
+[MEDIA - pending. The first version, with the chat as one panel among others, beside the later version where the chat leads and the preview shows what was built.]
+
+## A person could build an agent in the chat alone. Engineers still need the preview.
+
+Technically, a person can create an agent without ever leaving the chat. But engineers need a container where they can see the thing as it is built, so they can make decisions as it takes shape.
+
+So the preview stays, and the chat feeds it. For an MCP, it lists each generated tool with what it can change, and a box to keep or drop it.
 
 [SCREEN - MCP review, from the coded prototype. Sample data.]
 
-## I owned the entire experience
+## I assumed one owner. It became a team's asset.
 
-Studio was a shared project. I designed this version end to end, from the first idea to a working front end in code.
+I assumed each agent or MCP would belong to one person, and that any team could build agents on any MCP. Neither held. An agent or an MCP quickly becomes a team's shared asset, and only the teams that own the APIs and MCPs can publish an approved agent.
 
-## The design was a working front end, not a set of screens
+So the shared registry holds only verified agents. Anyone can build whatever they like in their own playground or on their own machine, but they can't publish it there.
 
-The scope called for something close to development. A set of Figma screens shows layout and visual direction, but not how an interface behaves while an AI agent runs.
+[SCREEN - library, from the coded prototype. Sample data; two workspace names blurred.]
 
-So I built the front end in code, in Cursor and VS Code, in several versions, and hosted it on GitHub Pages so stakeholders and users could use it and tell me what to change.
+> A chat can do almost anything. The interface is what lets a person see it, change it and trust it.
 
-Developers used it as their front-end reference. They did not have to interpret static screens, so they could spend their time on the backend and the integrations.
+## In code, everything can be clicked, so I built the path for a reviewer to follow
 
-*Pending confirmation: whether the whole front end or a lightweight prototype was built in code, and how much developers reused.*
+I came from Figma, where everything is frozen in time. A coded interface was new to me: everything can be clicked and tried. So I built demo flows and orchestrated flows that walk a reviewer along the happy path, for stakeholder and user reviews.
+
+I built the front end in Cursor and VS Code, in several versions, and hosted it on GitHub Pages so people could use it and tell me what to change. Developers used it as their front-end reference, so they could spend their time on the backend and the integrations.
+
+To keep the screens consistent, I taught Cursor a design system: a set of guides and common elements. Visual polish was the hardest part. Getting things to look right took many rounds.
 
 [CLIP - the coded prototype, an agent being opened and edited; 15 seconds, from the July recording. A better recording is coming.]
 
-> A screen shows what an interface looks like. Code shows what it does.
+## I would prove the flows in HTML first, and write down the context
 
-## It went through several versions
+I would build an HTML prototype first and get every flow right before moving to React.
 
-The front end changed over many versions, in three groups: the UX, the interactions and the workflows. Versions were shared with stakeholders and users for feedback.
-
-[MEDIA - pending. Two or three before/after pairs: an early and a later screen of the same view, with the feedback that changed it.]
+And I would write more of the context in markdown files, so the AI does not make things up, and I spend my time designing instead of explaining an idea it finds hard to follow.
 
 ## Live since August
 
@@ -105,12 +103,9 @@ Counts of what people have created and published in Studio are not on this page 
 ---
 
 Source notes (not for the page)
-- Third source, a screen recording of the coded prototype (July, before launch, sample data), supplied by the author. Used for the library, creating, and one-layout chapters, the three screens and the clip. The author confirmed: this is the prototype, all five asset types are live, the data is sample data, and this version was owned end to end by the author. A better recording is coming.
-- Seen in the recording but not on the page: asset types Prototype and PDLC (not in the author's five), a model name in the chat panel, and two workspace names that were blurred.
-- Second source, the Studio product documentation, summarised by the author's tooling: the builder, gallery, agent patterns, attaching a registered MCP server, the two playgrounds, publish and export. Used for the "build, watch, publish" chapter only, with internal product and system names left out.
-- That documentation covers building agents and attaching existing MCP servers only. The recording and the author show MCP creation and all five types, so the page follows them.
-- Not used: the roadmap and the v0.1 use-case list (examples, not proof of what is live), the pattern examples as live use cases, and every internal system name.
-- Facts from the author: shared project with a staff designer; started April, live since August; five asset types in; before Studio assets were local, not hosted, not shared, reached only through a repo shared by the owner; multiple iterations across UX, interactions and workflows; built in code with Cursor.
-- Facts from the Confluence write-up the author pasted: Figma to coded prototype in Cursor and VS Code; hosted on GitHub Pages for feedback; developers used it as the front-end reference and focused on backend and integration.
-- Not used: the Wibey-wide usage figures (active users, MCP servers, tool calls, plugin sub-agents). They are not Studio figures.
-- Names: "Wibey", "Wibey Web", the LLM gateway and the deployment platforms are internal and are not named. Claude is not named.
+- The author's own answers (November 2026): what was new about designing for an agent; the chat placed as one panel first and then leading; why the preview stays for engineers; the wrong assumption about single ownership and who can publish; building in code after Figma, demo and orchestrated flows for stakeholder and user reviews, teaching Cursor a design system, visual polish as the hardest part; what to do differently (HTML first, markdown context files). The agent builder follows the node-based style of workflow tools such as n8n.
+- Facts from the author earlier: started in April, live since August; five asset types live; before Studio assets were local, not hosted, not shared, reached only through a repo shared by the owner; multiple iterations across UX, interactions and workflows; built in code with Cursor; owned the entire experience of this version.
+- Facts from the Confluence write-up: hosted on GitHub Pages for feedback; developers used it as the front-end reference and focused on backend and integration.
+- Screens come from a screen recording of the coded prototype (July, before launch, sample data). A better recording and an early screen of the first version are coming.
+- Seen in the recording but not on the page: asset types Prototype and PDLC, a model name in the chat panel, and two workspace names that were blurred.
+- Not used: the Wibey-wide usage figures; the roadmap and the v0.1 use-case list; every internal system name.

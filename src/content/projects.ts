@@ -385,7 +385,7 @@ export const projects: Project[] = [
     title:
       "Studio: one place to build, host and share AI skills, MCPs, agents, APIs and plugins.",
     summary:
-      "People kept the AI skills, agents and MCPs they built on their own machines, and shared them only through a repo. I owned the entire experience for one place in the internal AI portal to build, host and share all five kinds of asset, and built the front end in code.",
+      "People kept the AI skills, agents and MCPs they built on their own machines, and shared them only through a repo. My first agentic product: I owned the entire experience for one place in the internal AI portal to build, host and share all five kinds of asset, designed around what a chat can\u2019t do, and built the front end in code.",
     outcome: "Live since August · five kinds of AI asset in one place",
     metrics: [],
     org: "Walmart Global Tech",
