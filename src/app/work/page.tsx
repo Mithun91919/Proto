@@ -120,7 +120,7 @@ export default function WorkPage() {
           eyebrow="Case studies"
           title="Selected work"
           stacked
-          lede="Start with the first five. My earlier consumer and brand work is below the list."
+          lede="Start with the first four. My earlier consumer and brand work is below the list."
         />
 
         {/* The gap carries half the separation and the boundary's own top
