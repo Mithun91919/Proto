@@ -14,7 +14,6 @@ export const CASE_STUDY_PAGES: ReadonlySet<string> = new Set([
   "portfolio-management",
   "api-lifecycle",
   "dependency-health",
-  "store-support",
   "supply-chain-operations",
   "bb-daily",
   "bigbasket-ratings-reviews",

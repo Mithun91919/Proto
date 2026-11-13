@@ -90,7 +90,7 @@ const CHAPTERS = [
 ];
 
 export default function DependencyHealthPage() {
-  const onward = getProject("store-support");
+  const onward = getProject("supply-chain-operations");
 
   return (
     <CaseStudyShell

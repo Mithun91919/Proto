@@ -20,7 +20,6 @@ export const PROJECT_SHAPE: Record<string, SystemShape> = {
   "portfolio-management": "converge",
   "api-lifecycle": "connect",
   "dependency-health": "translate",
-  "store-support": "resolve",
   "supply-chain-operations": "organise",
 };
 
