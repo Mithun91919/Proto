@@ -273,8 +273,61 @@ export const projects: Project[] = [
     tags: ["Developer Tools", "Information Architecture", "Governance"],
   },
   {
-    slug: "supply-chain-operations",
+    slug: "store-support",
     number: "05",
+    // Named by what it is rather than by either of its product names —
+    // the internal one is out under the copy guide, and the public one
+    // adds nothing a reader outside Walmart can use.
+    label: "Store associate app",
+    title:
+      "Store associate app: fix everything that breaks.",
+    summary:
+      "Support used to start at a manager\u2019s desk. I rebuilt it as a phone app that offers the fix before the form, with a ticket only if the steps do not work, and a work order the associate can follow.",
+    outcome:
+      "Tickets closed in 1 day, from 3 · 40% fewer tickets raised · 40 do-it-yourself fixes created",
+    metrics: [
+      { value: "1 day", label: "to close a ticket, from 3 days", short: "to close a ticket", glyph: "ring" },
+      { value: "40%", label: "fewer tickets raised", short: "fewer tickets", glyph: "drop" },
+      { value: "40", label: "do-it-yourself fixes created, from none", short: "self-serve fixes", glyph: "ramp" },
+    ],
+    org: "Walmart Global Tech",
+    domain: "Frontline ops",
+    ownership: "Design owner, start to finish",
+    timeframe: "2020–2021",
+    role: "UX Designer",
+    tier: "range",
+    featured: false,
+    reconstructed: true,
+    accent: "#4A3428",
+    accentSoft: "#EDE4DC",
+    // A still, not a clip: every recording of this app is a portrait phone
+    // capture (~0.49) and would sit badly in a landscape row. The composite
+    // is the only asset that reads across, at its true ratio so the three
+    // screens are not cropped.
+    media: {
+      poster: "/work/store-support/hero-composite.png",
+      aspect: 2400 / 2188,
+    },
+    contentPath: "projects/fixit/web/fixit-web.md",
+    systemMap: [
+      {
+        label: "Before",
+        detail: "Issue occurs with little guidance before ticket creation",
+      },
+      {
+        label: "Intervention",
+        detail: "Diagnose, self-resolve, or escalate with clearer context",
+      },
+      {
+        label: "After",
+        detail: "Faster support paths across mobile and web",
+      },
+    ],
+    tags: ["Mobile Product", "Research", "Service Design"],
+  },
+  {
+    slug: "supply-chain-operations",
+    number: "06",
     label: "Supply Chain Operations Platform",
     title:
       "Supply Chain Operations Platform: getting to the right tool faster.",
@@ -322,7 +375,7 @@ export const projects: Project[] = [
   },
   {
     slug: "bb-daily",
-    number: "06",
+    number: "07",
     label: "bb daily",
     title: "bb daily: both sides of a recurring delivery service.",
     internalName: "bb daily",
@@ -373,6 +426,7 @@ export const projectSlugRedirects: Record<string, string> = {
   clipper: "portfolio-management",
   "api-lifecycle-manager": "api-lifecycle",
   "dependency-management": "dependency-health",
+  fixit: "store-support",
 };
 
 export function getProject(slug: string) {
