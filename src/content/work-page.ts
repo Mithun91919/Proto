@@ -64,7 +64,7 @@ export const careerStages: CareerStage[] = [
 /** The open end of the rail: the shift from interface design to AI behaviour. */
 export const currentStage = {
   year: "Today",
-  stage: "From screens to what the AI does",
+  stage: "Designing for AI with AI",
   body: "I design AI products, such as Studio, where engineers build AI agents. I also use AI coding tools, Cursor and Claude Code, to build what I design, so people can click through something that works.",
 };
 
