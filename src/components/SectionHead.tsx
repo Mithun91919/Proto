@@ -17,6 +17,7 @@ export function SectionHead({
   title,
   lede,
   action,
+  stacked = false,
   dark = false,
 }: {
   eyebrow: string;
@@ -25,6 +26,10 @@ export function SectionHead({
   /** A link in the right-hand slot, on the title's baseline, in place of a
       lede. Gives the empty space a job: the way on to the rest of the work. */
   action?: { href: string; label: string };
+  /** Puts the lede under the title at reading width, left-aligned, instead of
+      in the narrow right-hand slot. For a section whose lede is a sentence
+      or two that a reader should take in before the list it introduces. */
+  stacked?: boolean;
   /** Set on a `.ds-env-dark` background — swaps the hardcoded light-mode
       ink tokens for the dark-safe equivalents used elsewhere in the v6
       dark sections (`ChapterTransition`, `ClosingCTA`). */
@@ -35,7 +40,7 @@ export function SectionHead({
       <p className="eyebrow" style={dark ? { color: "var(--ds-mint)" } : undefined}>
         {eyebrow}
       </p>
-      <div className={`section-head mt-3 ${lede ? "section-head-split" : action ? "section-head-action" : ""}`}>
+      <div className={`section-head mt-3 ${lede ? (stacked ? "section-head-stacked" : "section-head-split") : action ? "section-head-action" : ""}`}>
         <h2 className={`section-head-title display-title display-section${dark ? "" : " text-[var(--ink)]"}`}>
           {title}
         </h2>

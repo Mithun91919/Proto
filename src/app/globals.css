@@ -1041,6 +1041,10 @@ a {
   max-width: 46ch;
 }
 
+.section-head-stacked .lede {
+  max-width: 52ch;
+}
+
 @media (min-width: 900px) {
   .section-head-split {
     grid-template-columns: minmax(0, 1fr) minmax(0, 17rem);

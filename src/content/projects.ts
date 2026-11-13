@@ -119,8 +119,49 @@ export const projects: Project[] = [
     tags: ["0→1 Platform", "Systems Design", "Enterprise UX"],
   },
   {
-    slug: "api-lifecycle",
+    slug: "ai-studio",
     number: "02",
+    label: "AI Studio",
+    title:
+      "Studio: from agents on one engineer\u2019s machine to one place to build, host and share them.",
+    summary:
+      "People kept the AI skills, agents and MCPs they built on their own machines, and shared them only through a repo. My first agentic product: I owned the entire experience for one place in Wibey, Walmart\u2019s internal AI portal, to build, host and share all five kinds of artifact, designed around what a chat can\u2019t do, and built the front end in code.",
+    outcome: "Live since August · five kinds of AI artifact in one place",
+    metrics: [],
+    org: "Walmart Global Tech",
+    domain: "Developer tools",
+    ownership: "Design owner, start to finish",
+    timeframe: "2026–Present",
+    role: "Senior UX Designer",
+    tier: "featured",
+    featured: true,
+    reconstructed: true,
+    accent: "#0f766e",
+    accentSoft: "#ccfbf1",
+    contentPath: "projects/ai-studio/web/ai-studio-web.md",
+    media: {
+      poster: "/work/ai-studio/prototype-poster.jpg",
+      aspect: 1600 / 923,
+    },
+    systemMap: [
+      {
+        label: "Before",
+        detail: "Skills, agents and MCPs on one person\u2019s machine, shared only through a repo",
+      },
+      {
+        label: "Intervention",
+        detail: "One place in Wibey to create, manage, publish and share all five kinds of artifact",
+      },
+      {
+        label: "After",
+        detail: "Artifacts that are hosted and published, built from a front end designed in code",
+      },
+    ],
+    tags: ["AI Platform", "Design in Code", "Developer Tools"],
+  },
+  {
+    slug: "api-lifecycle",
+    number: "03",
     label: "API Lifecycle Platform",
     title:
       "API Lifecycle Platform: one place to discover, design, test, and govern APIs.",
@@ -170,7 +211,7 @@ export const projects: Project[] = [
   },
   {
     slug: "dependency-health",
-    number: "03",
+    number: "04",
     label: "Dependency Health Platform",
     title:
       "Dependency Health Platform: moving teams onto one Unified BOM before release.",
@@ -233,7 +274,7 @@ export const projects: Project[] = [
   },
   {
     slug: "store-support",
-    number: "04",
+    number: "05",
     // Named by what it is rather than by either of its product names —
     // the internal one is out under the copy guide, and the public one
     // adds nothing a reader outside Walmart can use.
@@ -286,7 +327,7 @@ export const projects: Project[] = [
   },
   {
     slug: "supply-chain-operations",
-    number: "05",
+    number: "06",
     label: "Supply Chain Operations Platform",
     title:
       "Supply Chain Operations Platform: getting to the right tool faster.",
@@ -334,7 +375,7 @@ export const projects: Project[] = [
   },
   {
     slug: "bb-daily",
-    number: "06",
+    number: "07",
     label: "bb daily",
     title: "bb daily: both sides of a recurring delivery service.",
     internalName: "bb daily",
@@ -377,43 +418,6 @@ export const projects: Project[] = [
       },
     ],
     tags: ["Mobile", "Operations", "E-commerce"],
-  },
-  {
-    slug: "ai-studio",
-    number: "07",
-    label: "AI Studio",
-    title:
-      "Studio: from agents on one engineer\u2019s machine to one place to build, host and share them.",
-    summary:
-      "People kept the AI skills, agents and MCPs they built on their own machines, and shared them only through a repo. My first agentic product: I owned the entire experience for one place in Wibey, Walmart\u2019s internal AI portal, to build, host and share all five kinds of artifact, designed around what a chat can\u2019t do, and built the front end in code.",
-    outcome: "Live since August · five kinds of AI artifact in one place",
-    metrics: [],
-    org: "Walmart Global Tech",
-    domain: "Developer tools",
-    ownership: "Design owner, start to finish",
-    timeframe: "2026–Present",
-    role: "Senior UX Designer",
-    tier: "range",
-    featured: false,
-    reconstructed: true,
-    accent: "#0f766e",
-    accentSoft: "#ccfbf1",
-    contentPath: "projects/ai-studio/web/ai-studio-web.md",
-    systemMap: [
-      {
-        label: "Before",
-        detail: "Skills, agents and MCPs on one person\u2019s machine, shared only through a repo",
-      },
-      {
-        label: "Intervention",
-        detail: "One place in Wibey to create, manage, publish and share all five kinds of artifact",
-      },
-      {
-        label: "After",
-        detail: "Artifacts that are hosted and published, built from a front end designed in code",
-      },
-    ],
-    tags: ["AI Platform", "Design in Code", "Developer Tools"],
   },
 ];
 

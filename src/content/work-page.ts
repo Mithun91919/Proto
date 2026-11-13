@@ -127,7 +127,7 @@ export type EarlierWorkEntry = {
  */
 export const earlierWork: EarlierWorkEntry[] = [
   {
-    number: "07",
+    number: "08",
     org: "Ratings & Reviews",
     body: "One feedback system across mobile and web.",
     tags: ["BIGBASKET", "Mobile", "Product Design"],
@@ -135,7 +135,7 @@ export const earlierWork: EarlierWorkEntry[] = [
     slug: "bigbasket-ratings-reviews",
   },
   {
-    number: "08",
+    number: "09",
     org: "Job Discovery & Resume Builder",
     body: "An end-to-end jobs app, built on Hike Messenger.",
     tags: ["HIKE", "Mobile", "Product Design"],
@@ -143,7 +143,7 @@ export const earlierWork: EarlierWorkEntry[] = [
     slug: "hike-jobs-service",
   },
   {
-    number: "09",
+    number: "10",
     org: "Movie Ticket Booking",
     body: "An end-to-end booking app, built on Hike Messenger.",
     tags: ["HIKE", "Mobile", "Product Design"],
@@ -151,7 +151,7 @@ export const earlierWork: EarlierWorkEntry[] = [
     slug: "hike-movie-tickets",
   },
   {
-    number: "10",
+    number: "11",
     org: "Multilingual Mobile Experience",
     body: "One localisation system across 8 Indian languages.",
     tags: ["HIKE", "Mobile", "Localisation"],
@@ -159,7 +159,7 @@ export const earlierWork: EarlierWorkEntry[] = [
     slug: "hike-total-os-localization",
   },
   {
-    number: "11",
+    number: "12",
     org: "Smartphone Brand & Digital Experience",
     body: "A visual language for a smartphone that changed every month.",
     tags: ["CREO", "Visual Design", "Web"],

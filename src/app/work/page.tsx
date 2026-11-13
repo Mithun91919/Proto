@@ -119,7 +119,8 @@ export default function WorkPage() {
         <SectionHead
           eyebrow="Case studies"
           title="Selected work"
-          lede="The four I would start with, then the earlier work — consumer, commerce, enterprise, and developer."
+          stacked
+          lede="Start with the first five. My earlier consumer and brand work is below the list."
         />
 
         {/* The gap carries half the separation and the boundary's own top

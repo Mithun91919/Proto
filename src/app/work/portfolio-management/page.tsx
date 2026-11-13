@@ -94,7 +94,7 @@ const CHAPTERS = [
 ];
 
 export default function PortfolioManagementPage() {
-  const onward = getProject("api-lifecycle");
+  const onward = getProject("ai-studio");
 
   return (
     <CaseStudyShell
