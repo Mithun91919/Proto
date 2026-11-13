@@ -65,7 +65,7 @@ export const careerStages: CareerStage[] = [
 export const currentStage = {
   year: "Today",
   stage: "From screens to what the AI does",
-  body: "As products get smarter, my role has widened from drawing screens to deciding what the product does on its own, and how a person can see and correct it. Two of my current projects are AI-assisted. Both are still in progress, so neither is a case study yet.",
+  body: "I design AI products, such as Studio, where engineers build AI agents. I also use AI coding tools, Cursor and Claude Code, to build what I design, so people can click through something that works.",
 };
 
 export type Transformation = {
