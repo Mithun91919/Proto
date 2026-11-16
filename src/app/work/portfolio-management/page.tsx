@@ -8,7 +8,6 @@ import { ArtboardFigure } from "@/components/design-system/ArtboardFigure";
 import { BrowserMockup } from "@/components/design-system/BrowserMockup";
 import { ProofStrip } from "@/components/design-system/ProofStrip";
 import { PullStatement } from "@/components/design-system/PullStatement";
-import { PlatformExplainer } from "@/components/design-system/PlatformExplainer";
 import { ConfidentialNote } from "@/components/design-system/ConfidentialNote";
 import {
   CaseStudyChapter,
@@ -18,6 +17,7 @@ import {
   CaseStudyShell,
 } from "@/components/design-system/CaseStudy";
 import { getProject } from "@/content/projects";
+import { PortfolioSummaryBody } from "./summary-body";
 
 /**
  * Portfolio Management Platform — on the locked case-study template.
@@ -99,7 +99,7 @@ export default function PortfolioManagementPage() {
   return (
     <CaseStudyShell
       slug="portfolio-management"
-      summary={{ visual: <PlatformExplainer />, visualLabel: "The case at a glance" }}
+      summary={{ body: <PortfolioSummaryBody /> }}
       evidenceCaveat="Hours are reported by the product managers. *Average yearly cost saved by retiring redundant licences."
       evidenceMetricsLabel="The impact"
       evidence={[

@@ -86,7 +86,13 @@ export function CaseStudyShell({
   evidenceMetrics?: { value: string; label: string }[];
   /** The key visual shown in the summary view, chosen by the page. It can also
       appear in the full page, or only here. */
-  summary?: { visual?: ReactNode; visualLabel?: string };
+  summary?: {
+    visual?: ReactNode;
+    visualLabel?: string;
+    /** A summary the page lays out itself. It replaces the evidence card and the
+        generated blocks, and sits under the page's own hero. */
+    body?: ReactNode;
+  };
   children: ReactNode;
 }) {
   // Append the three classification axes to whatever meta the page passed,
@@ -110,6 +116,7 @@ export function CaseStudyShell({
       <CaseStudyHero {...heroWithAxes} />
 
       <CaseStudyEvidence
+        keepInSummary={!summary?.body}
         slug={slug}
         beats={evidence}
         metricsLabel={evidenceMetricsLabel}
@@ -117,7 +124,11 @@ export function CaseStudyShell({
         caveat={evidenceCaveat}
       />
 
-      <SummaryBlocks slug={slug} visual={summary?.visual} visualLabel={summary?.visualLabel} />
+      {summary?.body ? (
+        <div className="ds-cs-keep ds-cs-summary">{summary.body}</div>
+      ) : (
+        <SummaryBlocks slug={slug} visual={summary?.visual} visualLabel={summary?.visualLabel} />
+      )}
 
       <SummaryCta />
 

@@ -1,29 +1,18 @@
-import type { Metadata } from "next";
-import Link from "next/link";
 import { Reveal } from "@/components/Reveal";
 import { ArtboardCarousel, type ArtboardSlide } from "@/components/design-system/ArtboardCarousel";
-import { ConfidentialNote } from "@/components/design-system/ConfidentialNote";
-import { FullWidthStatement } from "@/components/design-system/FullWidthStatement";
 import { GlassPanel } from "@/components/design-system/primitives/GlassPanel";
-import { HeroScreenStack } from "@/components/design-system/HeroScreenStack";
 import { MetricGlyph } from "@/components/design-system/MetricGlyph";
 import { ProofStrip } from "@/components/design-system/ProofStrip";
-import { SpecList } from "@/components/design-system/SpecList";
 import type { MetricMarkName } from "@/components/design-system/dotPatterns";
 
 /**
- * A summary designed as a page of its own, not as the case study with its
- * chapters hidden. Preview only: unlinked, and not indexed.
- *
- * Read top to bottom in about a minute: what it is, why it was needed, what was
- * built, what I did, the screens paged through from a goal down to the people
- * and the changes behind it, and then whether it worked. Every line is the case
- * study's own wording; nothing here is new.
+ * What the Portfolio Management summary shows under the case study's own hero:
+ * the problem, the solution and what I did; the platform's screens, paged
+ * through from a goal down to the people; and what changed. The hero above it,
+ * and the closing statement and way into the full page below it, are the
+ * page's own, so switching to the summary changes nothing but what sits
+ * between them. Every line is the case study's own wording.
  */
-export const metadata: Metadata = {
-  title: "Portfolio Management Platform — Summary",
-  robots: { index: false, follow: false },
-};
 
 /**
  * One screen for each place a goal runs through, in the order it runs: the
@@ -142,129 +131,58 @@ const BEATS: { label: string; glyph: MetricMarkName; lead: string; detail: strin
 
 const SECTION = "mt-16 ds-section-boundary pt-12 md:mt-20 md:pt-14";
 
-export default function PortfolioManagementSummaryV2() {
+export function PortfolioSummaryBody() {
   return (
-    <div className="ds-scope">
-      <div className="mx-auto w-full max-w-[80rem] px-5 pb-16 pt-6 md:px-8 md:pb-24 md:pt-10">
-        <div className="page-hero hero-in">
-          <div className="grid grid-cols-1 items-center gap-10 lg:grid-cols-[minmax(0,0.8fr)_minmax(0,1.3fr)] lg:gap-14">
-            <Reveal>
-              <p className="eyebrow">Summary · Portfolio Management Platform</p>
-              <h1 className="display-title display-hero mt-4 max-w-[14ch] text-[var(--ink)]">
-                From a goal to the work,{" "}
-                <span className="text-[var(--accent-deep)]">in one place</span>.
-              </h1>
-              <p className="mt-6 max-w-[40ch] text-lg leading-8 text-[var(--ink-soft)]">
-                Where Walmart’s product organisation plans its portfolio, and sees the work behind it.
+    <div className="mx-auto w-full max-w-[85rem] px-5 md:px-8">
+      <section className="pt-16 md:pt-20">
+        <Reveal className="ds-stagger grid grid-cols-1 gap-4 md:grid-cols-3">
+          {BEATS.map((beat) => (
+            <GlassPanel key={beat.label} variant="soft" className="rounded-2xl p-7">
+              <MetricGlyph name={beat.glyph} size={5} gap={3} />
+              <p className="eyebrow mt-6" style={{ color: "var(--ds-accent-deep)" }}>
+                {beat.label}
               </p>
-              <div className="mt-6">
-                <SpecList
-                  facts={[
-                    { label: "Role", value: "Senior UX Designer" },
-                    { label: "Client", value: "Walmart Global Tech" },
-                    { label: "Year", value: "2023–Present" },
-                    { label: "Discipline", value: "Enterprise platform · Product design" },
-                  ]}
-                />
-              </div>
-            </Reveal>
-            <Reveal delay={120}>
-              <HeroScreenStack
-                ratio={1.39}
-                label="Three screens of the platform: the home screen, a product page and the Portfolio page"
-                screens={[
-                  {
-                    src: "/work/portfolio-management/home.png",
-                    width: 2880,
-                    height: 2210,
-                    alt: "The platform's home screen: a search field, alerts, quick links for new requests, a profile card and an assistant",
-                    name: "the home screen",
-                    route: "/home",
-                  },
-                  {
-                    src: "/work/portfolio-management/products.png",
-                    width: 2880,
-                    height: 2633,
-                    alt: "A product page: its leaders, a written summary, headcount by type and by role, and the people allocated",
-                    name: "a product page",
-                    route: "/product",
-                  },
-                  {
-                    src: "/work/portfolio-management/okr-management-v2.png",
-                    width: 3456,
-                    height: 3088,
-                    alt: "The Portfolio page: strategic pillars across the top and a table of objectives with planned and actual headcount",
-                    name: "the Portfolio page",
-                    route: "/portfolio",
-                  },
-                ]}
-              />
-            </Reveal>
-          </div>
-        </div>
+              <p className="display-title mt-3 text-[var(--ink)]" style={{ fontSize: "1.35rem", lineHeight: 1.3 }}>
+                {beat.lead}
+              </p>
+              <p className="mt-4 text-[0.98rem] leading-7 text-[var(--ink-soft)]">{beat.detail}</p>
+            </GlassPanel>
+          ))}
+        </Reveal>
+      </section>
 
-        <section className={SECTION}>
-          <Reveal className="ds-stagger grid grid-cols-1 gap-4 md:grid-cols-3">
-            {BEATS.map((beat) => (
-              <GlassPanel key={beat.label} variant="soft" className="rounded-2xl p-7">
-                <MetricGlyph name={beat.glyph} size={5} gap={3} />
-                <p className="eyebrow mt-6" style={{ color: "var(--ds-accent-deep)" }}>
-                  {beat.label}
-                </p>
-                <p className="display-title mt-3 text-[var(--ink)]" style={{ fontSize: "1.35rem", lineHeight: 1.3 }}>
-                  {beat.lead}
-                </p>
-                <p className="mt-4 text-[0.98rem] leading-7 text-[var(--ink-soft)]">{beat.detail}</p>
-              </GlassPanel>
-            ))}
-          </Reveal>
-        </section>
+      <section className={SECTION}>
+        <Reveal>
+          <ArtboardCarousel
+            layout="split"
+            eyebrow="The platform"
+            title="A goal runs down to the work"
+            description="Five screens follow one goal: the goal itself, the initiative it funds, the product that delivers it, the people on it, and the requests that change them. Open the notes on any screen to see what each part does."
+            label="The platform, from a goal to the work"
+            scrollable
+            maxHeight="44rem"
+            slides={SLIDES}
+          />
+        </Reveal>
+      </section>
 
-        <section className={SECTION}>
-          <Reveal>
-            <ArtboardCarousel
-              layout="split"
-              eyebrow="The platform"
-              title="A goal runs down to the work"
-              description="Five screens follow one goal: the goal itself, the initiative it funds, the product that delivers it, the people on it, and the requests that change them. Open the notes on any screen to see what each part does."
-              label="The platform, from a goal to the work"
-              scrollable
-              maxHeight="44rem"
-              slides={SLIDES}
-            />
-          </Reveal>
-        </section>
-
-        <section className={SECTION}>
-          <Reveal>
-            <p className="eyebrow mb-6">What changed</p>
-            <ProofStrip
-              items={[
-                { value: "800+ hrs", label: "reclaimed every week", glyph: "field" },
-                { value: "3,500+ days", label: "of manual effort eliminated in 2025", glyph: "layers" },
-                { value: "$100K", label: "average yearly licence cost saved", glyph: "drop" },
-                { value: "50%", label: "fewer support tickets", glyph: "bars" },
-              ]}
-            />
-            <p className="mt-4 text-[0.85rem] text-[var(--muted)]">
-              Hours are reported by the product managers. Licence figure is the average yearly cost saved by retiring
-              redundant licences.
-            </p>
-          </Reveal>
-        </section>
-
-        <section className={SECTION}>
-          <Reveal>
-            <FullWidthStatement bare>A plan is only as good as its link to the work.</FullWidthStatement>
-            <div className="mt-8 flex flex-wrap items-center gap-4">
-              <Link href="/work/portfolio-management" className="button button-primary">
-                Read the full case study →
-              </Link>
-              <ConfidentialNote />
-            </div>
-          </Reveal>
-        </section>
-      </div>
+      <section className={SECTION}>
+        <Reveal>
+          <p className="eyebrow mb-6">What changed</p>
+          <ProofStrip
+            items={[
+              { value: "800+ hrs", label: "reclaimed every week", glyph: "field" },
+              { value: "3,500+ days", label: "of manual effort eliminated in 2025", glyph: "layers" },
+              { value: "$100K", label: "average yearly licence cost saved", glyph: "drop" },
+              { value: "50%", label: "fewer support tickets", glyph: "bars" },
+            ]}
+          />
+          <p className="mt-4 text-[0.85rem] text-[var(--muted)]">
+            Hours are reported by the product managers. Licence figure is the average yearly cost saved by retiring
+            redundant licences.
+          </p>
+        </Reveal>
+      </section>
     </div>
   );
 }
