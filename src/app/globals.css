@@ -1984,10 +1984,22 @@ a {
   --dock-soft: var(--ds-dark-muted);
 }
 
+/* A hairline light-grey outline and a deeper shadow, so the three pieces lift
+   clearly off the page behind them. */
+.site-dock .nav-dock {
+  border: 0.5px solid rgb(168 178 182 / 0.75);
+  box-shadow:
+    0 22px 50px -8px rgb(12 23 28 / 0.28),
+    0 6px 16px rgb(12 23 28 / 0.14),
+    inset 0 1px 0 rgb(255 255 255 / 0.7);
+}
+
 .site-dock[data-tone="dark"] .ds-glass-lift {
   background: color-mix(in oklab, var(--ds-dark) 72%, transparent);
-  border-color: color-mix(in oklab, var(--ds-dark-ink) 20%, transparent);
-  box-shadow: 0 8px 28px rgb(0 0 0 / 0.35);
+  border-color: rgb(214 224 227 / 0.4);
+  box-shadow:
+    0 22px 50px -8px rgb(0 0 0 / 0.6),
+    0 6px 16px rgb(0 0 0 / 0.35);
 }
 
 .nav-switch-link {
