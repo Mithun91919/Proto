@@ -82,8 +82,8 @@ export function SayHiDialog({ open, onClose }: { open: boolean; onClose: () => v
         <ul className="say-hi-cards">
           <li>
             <Link href="/resume" className="say-hi-card say-hi-card-a" style={{ "--n": 0 } as CSSProperties} onClick={onClose} {...tilt}>
-              <span className="say-hi-card-label">Résumé</span>
-              <span className="say-hi-card-title">One page, as a web page and a PDF</span>
+              <span className="say-hi-card-name display-title">Résumé</span>
+              <span className="say-hi-card-desc">One page, as a web page and a PDF.</span>
               <span className="say-hi-card-go" aria-hidden>
                 Read →
               </span>
@@ -91,8 +91,8 @@ export function SayHiDialog({ open, onClose }: { open: boolean; onClose: () => v
           </li>
           <li>
             <a href={LINKEDIN} target="_blank" rel="noopener noreferrer" className="say-hi-card say-hi-card-b" style={{ "--n": 1 } as CSSProperties} {...tilt}>
-              <span className="say-hi-card-label">LinkedIn</span>
-              <span className="say-hi-card-title">in/mithunrajuk</span>
+              <span className="say-hi-card-name display-title">LinkedIn</span>
+              <span className="say-hi-card-desc">Find me there as in/mithunrajuk.</span>
               <span className="say-hi-card-go" aria-hidden>
                 Open ↗
               </span>
@@ -100,8 +100,8 @@ export function SayHiDialog({ open, onClose }: { open: boolean; onClose: () => v
           </li>
           <li>
             <div className="say-hi-card say-hi-card-c" style={{ "--n": 2 } as CSSProperties} {...tilt}>
-              <span className="say-hi-card-label">Email</span>
-              <a href={`mailto:${EMAIL}`} className="say-hi-card-title say-hi-card-link">
+              <span className="say-hi-card-name display-title">Email</span>
+              <a href={`mailto:${EMAIL}`} className="say-hi-card-desc say-hi-card-link">
                 {EMAIL}
               </a>
               <CopyEmail address={EMAIL} className="say-hi-copy" />

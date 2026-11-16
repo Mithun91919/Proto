@@ -2,20 +2,27 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useEffect, useState, type CSSProperties } from "react";
 import { SayHiDialog } from "@/components/SayHiDialog";
 
 const links = [
-  { href: "/work", label: "Work" },
-  { href: "/about", label: "About" },
+  { href: "/", label: "Home", exact: true },
+  { href: "/work", label: "Work", exact: false },
+  { href: "/about", label: "About", exact: false },
 ];
 
+/**
+ * A glass dock floating at the top of the page, in place of a full-width bar:
+ * Home, Work and About in one switcher whose highlight slides to the page you
+ * are on, then Say Hi, which opens the contact dialog. The wrapper keeps the
+ * height the old bar had, so every page's top spacing is unchanged.
+ */
 export function SiteHeader() {
   const pathname = usePathname();
   const [scrolled, setScrolled] = useState(false);
   const [sayHiOpen, setSayHiOpen] = useState(false);
-  const activeIndex = links.findIndex(
-    (link) => pathname === link.href || pathname.startsWith(`${link.href}/`),
+  const activeIndex = links.findIndex((link) =>
+    link.exact ? pathname === link.href : pathname === link.href || pathname.startsWith(`${link.href}/`),
   );
 
   useEffect(() => {
@@ -26,27 +33,13 @@ export function SiteHeader() {
   }, []);
 
   return (
-    <header
-      className={`sticky top-0 z-50 border-b transition-[background-color,border-color,box-shadow,backdrop-filter] duration-300 ${
-        scrolled
-          ? "border-[var(--line)] bg-[color-mix(in_oklab,var(--paper)_72%,transparent)] shadow-[var(--shadow-header)] backdrop-blur-2xl"
-          : "border-transparent bg-[color-mix(in_oklab,var(--paper)_40%,transparent)] backdrop-blur-xl"
-      }`}
-    >
-      <div className="mx-auto flex w-full max-w-[80rem] items-center justify-between gap-4 px-5 py-4 md:gap-6 md:px-8">
-        <Link
-          href="/"
-          className="display-title group flex items-center gap-2 text-[1.15rem] text-[var(--ink)]"
+    <header className="relative z-50 h-[4.5rem]">
+      <div className="pointer-events-none fixed inset-x-0 top-3 z-50 flex justify-center">
+        <nav
+          aria-label="Primary"
+          className={`nav-dock pointer-events-auto${scrolled ? " is-scrolled" : ""}`}
         >
-          <span
-            aria-hidden
-            className="mark-pulse inline-block h-2.5 w-2.5 rounded-sm bg-[var(--accent)] shadow-[var(--shadow-mark)] transition-transform duration-300 group-hover:scale-125"
-          />
-          Mithun.
-        </Link>
-
-        <nav aria-label="Primary" className="flex items-center gap-3 sm:gap-4 md:gap-5">
-          <div className="nav-switch" style={{ "--i": Math.max(activeIndex, 0) } as React.CSSProperties}>
+          <div className="nav-switch" style={{ "--i": Math.max(activeIndex, 0) } as CSSProperties}>
             <span className="nav-switch-thumb" aria-hidden data-on={activeIndex >= 0 ? "true" : "false"} />
             {links.map((link, index) => (
               <Link
@@ -55,6 +48,12 @@ export function SiteHeader() {
                 aria-current={index === activeIndex ? "page" : undefined}
                 className="nav-switch-link"
               >
+                {index === 0 ? (
+                  <span
+                    aria-hidden
+                    className="mark-pulse mr-2 inline-block h-2 w-2 rounded-sm bg-[var(--accent)] align-middle"
+                  />
+                ) : null}
                 {link.label}
               </Link>
             ))}
@@ -68,8 +67,8 @@ export function SiteHeader() {
             Say Hi
           </button>
         </nav>
-        <SayHiDialog open={sayHiOpen} onClose={() => setSayHiOpen(false)} />
       </div>
+      <SayHiDialog open={sayHiOpen} onClose={() => setSayHiOpen(false)} />
     </header>
   );
 }
