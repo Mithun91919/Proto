@@ -1937,3 +1937,218 @@ a {
     max-width: none;
   }
 }
+
+/* ── Header switcher: Work | About in one pill, the highlight sliding to the
+   page you are on. Nothing is highlighted on the home page. ───────────── */
+.nav-switch {
+  position: relative;
+  display: inline-flex;
+  padding: 4px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: color-mix(in oklab, var(--paper) 70%, transparent);
+}
+
+.nav-switch-link {
+  position: relative;
+  z-index: 1;
+  min-width: 5.25rem;
+  padding: 0.4rem 1rem;
+  text-align: center;
+  font-size: 0.875rem;
+  font-weight: 500;
+  line-height: 1.25rem;
+  color: var(--muted);
+  transition: color 200ms ease;
+}
+
+.nav-switch-link:hover,
+.nav-switch-link[aria-current="page"] {
+  color: var(--ink);
+}
+
+.nav-switch-thumb {
+  position: absolute;
+  top: 4px;
+  bottom: 4px;
+  left: 4px;
+  width: calc((100% - 8px) / 2);
+  border-radius: 999px;
+  background: var(--paper);
+  box-shadow: 0 1px 2px rgb(12 23 28 / 0.1), 0 0 0 1px var(--line);
+  transform: translateX(calc(var(--i, 0) * 100%));
+  transition:
+    transform 280ms cubic-bezier(0.2, 0.7, 0.3, 1),
+    opacity 200ms ease;
+}
+
+.nav-switch-thumb[data-on="false"] {
+  opacity: 0;
+}
+
+/* ── Say hello dialog ─────────────────────────────────────────────────── */
+html:has(dialog.say-hi[open]) {
+  overflow: hidden;
+}
+
+dialog.say-hi {
+  width: min(52rem, calc(100vw - 3rem));
+  max-height: calc(100vh - 3rem);
+  margin: auto;
+  padding: 0;
+  border: 1px solid var(--line);
+  border-radius: 1rem;
+  background: var(--paper);
+  color: var(--ink);
+  box-shadow: 0 24px 80px rgb(12 23 28 / 0.22);
+  overflow: auto;
+}
+
+dialog.say-hi::backdrop {
+  background: color-mix(in oklab, var(--ink) 38%, transparent);
+  backdrop-filter: blur(6px);
+}
+
+dialog.say-hi[open] {
+  animation: say-hi-in 220ms cubic-bezier(0.2, 0.7, 0.3, 1);
+}
+
+@keyframes say-hi-in {
+  from {
+    opacity: 0;
+    transform: translateY(10px) scale(0.985);
+  }
+}
+
+.say-hi-inner {
+  position: relative;
+  padding: 3rem;
+}
+
+.say-hi-close {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  display: grid;
+  width: 2.25rem;
+  height: 2.25rem;
+  place-items: center;
+  border-radius: 999px;
+  font-size: 1.4rem;
+  line-height: 1;
+  color: var(--muted);
+}
+
+.say-hi-close:hover {
+  color: var(--ink);
+  background: color-mix(in oklab, var(--ink) 6%, transparent);
+}
+
+.say-hi-cards {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1.25rem;
+  margin-top: 2.5rem;
+  list-style: none;
+  padding: 0;
+}
+
+.say-hi-card {
+  display: flex;
+  height: 100%;
+  min-height: 11rem;
+  flex-direction: column;
+  gap: 0.6rem;
+  padding: 1.25rem;
+  border: 1px solid var(--line);
+  border-radius: 0.5rem;
+  background: color-mix(in oklab, var(--paper) 92%, var(--cyan-50, var(--paper)));
+  box-shadow: 0 6px 18px rgb(12 23 28 / 0.08);
+  text-decoration: none;
+  color: var(--ink);
+  transition:
+    transform 220ms cubic-bezier(0.2, 0.7, 0.3, 1),
+    box-shadow 220ms ease;
+}
+
+.say-hi-card-a {
+  transform: rotate(-1.4deg);
+}
+
+.say-hi-card-b {
+  transform: rotate(0.9deg);
+}
+
+.say-hi-card-c {
+  transform: rotate(-0.7deg);
+}
+
+a.say-hi-card:hover,
+a.say-hi-card:focus-visible,
+.say-hi-card-c:hover,
+.say-hi-card-c:focus-within {
+  transform: translateY(-4px) rotate(0deg);
+  box-shadow: 0 14px 30px rgb(12 23 28 / 0.14);
+}
+
+.say-hi-card-label {
+  font-family: var(--font-mono, ui-monospace, monospace);
+  font-size: 0.72rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--accent-deep);
+}
+
+.say-hi-card-title {
+  font-size: 1rem;
+  line-height: 1.45;
+  font-weight: 500;
+  word-break: break-word;
+}
+
+.say-hi-card-link {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.say-hi-card-go {
+  margin-top: auto;
+  font-size: 0.9rem;
+  color: var(--accent-deep);
+}
+
+.say-hi-copy {
+  margin-top: auto;
+  align-self: flex-start;
+  padding: 0.35rem 0.8rem;
+  border: 1px solid var(--line-strong, var(--line));
+  border-radius: 999px;
+  font-size: 0.85rem;
+  color: var(--ink);
+  background: var(--paper);
+}
+
+.say-hi-copy:hover {
+  border-color: var(--accent-deep);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .nav-switch-thumb,
+  .say-hi-card {
+    transition: none;
+  }
+
+  dialog.say-hi[open] {
+    animation: none;
+  }
+
+  .say-hi-card-a,
+  .say-hi-card-b,
+  .say-hi-card-c,
+  a.say-hi-card:hover,
+  a.say-hi-card:focus-visible,
+  .say-hi-card-c:hover,
+  .say-hi-card-c:focus-within {
+    transform: none;
+  }
+}

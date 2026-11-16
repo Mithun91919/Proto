@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
+import { SayHiDialog } from "@/components/SayHiDialog";
 
 const links = [
   { href: "/work", label: "Work" },
@@ -12,7 +13,10 @@ const links = [
 export function SiteHeader() {
   const pathname = usePathname();
   const [scrolled, setScrolled] = useState(false);
-  const onHome = pathname === "/";
+  const [sayHiOpen, setSayHiOpen] = useState(false);
+  const activeIndex = links.findIndex(
+    (link) => pathname === link.href || pathname.startsWith(`${link.href}/`),
+  );
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 12);
@@ -41,33 +45,30 @@ export function SiteHeader() {
           Mithun.
         </Link>
 
-        <nav
-          aria-label="Primary"
-          className="flex items-center gap-4 sm:gap-6 md:gap-7"
-        >
-          {links.map((link) => {
-            const active =
-              pathname === link.href || pathname.startsWith(`${link.href}/`);
-            return (
+        <nav aria-label="Primary" className="flex items-center gap-3 sm:gap-4 md:gap-5">
+          <div className="nav-switch" style={{ "--i": Math.max(activeIndex, 0) } as React.CSSProperties}>
+            <span className="nav-switch-thumb" aria-hidden data-on={activeIndex >= 0 ? "true" : "false"} />
+            {links.map((link, index) => (
               <Link
                 key={link.href}
                 href={link.href}
-                aria-current={active ? "page" : undefined}
-                className={`nav-link text-sm font-medium transition-colors hover:text-[var(--ink)] ${
-                  active ? "text-[var(--ink)]" : "text-[var(--muted)]"
-                }`}
+                aria-current={index === activeIndex ? "page" : undefined}
+                className="nav-switch-link"
               >
                 {link.label}
               </Link>
-            );
-          })}
-          <Link
-            href={onHome ? "/#contact" : "/about#contact"}
+            ))}
+          </div>
+          <button
+            type="button"
             className="button button-primary button-sm"
+            aria-haspopup="dialog"
+            onClick={() => setSayHiOpen(true)}
           >
             Say Hi
-          </Link>
+          </button>
         </nav>
+        <SayHiDialog open={sayHiOpen} onClose={() => setSayHiOpen(false)} />
       </div>
     </header>
   );
