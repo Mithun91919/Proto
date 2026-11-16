@@ -10,6 +10,7 @@ import {
 import { CaseStudyHero } from "./CaseStudyHero";
 import { CaseStudyEvidence, type EvidenceBeat } from "./CaseStudyEvidence";
 import { NextProjectNav } from "./NextProjectNav";
+import { SummaryHero } from "./SummaryHero";
 import { SummaryBlocks } from "./SummaryBlocks";
 import { SummaryCta } from "./SummaryCta";
 import { ChapterProgress, type ChapterRef } from "./ChapterProgress";
@@ -89,6 +90,9 @@ export function CaseStudyShell({
   summary?: {
     visual?: ReactNode;
     visualLabel?: string;
+    /** The short summary under the headline in the summary view. Falls back to
+        the page's own standfirst. */
+    standfirst?: string;
     /** A summary the page lays out itself. It replaces the evidence card and the
         generated blocks, and sits under the page's own hero. */
     body?: ReactNode;
@@ -114,6 +118,15 @@ export function CaseStudyShell({
       {/* The band is the top-level item on the page. The way back, and the
           confidentiality note, live in the header. */}
       <CaseStudyHero {...heroWithAxes} />
+
+      <SummaryHero
+        headline={hero.headline}
+        standfirst={summary?.standfirst ?? hero.standfirst}
+        meta={hero.meta}
+        art={hero.stack?.[0] ?? (hero.src ? { src: hero.src, width: hero.width ?? 2400, height: hero.height ?? 1380, alt: hero.alt } : undefined)}
+        artRatio={hero.stackRatio}
+        label={hero.alt}
+      />
 
       <CaseStudyEvidence
         keepInSummary={!summary?.body}

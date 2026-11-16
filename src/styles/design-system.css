@@ -4888,3 +4888,16 @@ html[data-cs-view="summary"] main > .ds-scope > .ds-cs-summary {
 html[data-cs-view="summary"] main > .ds-scope:has(> .ds-cs-hero) > :not(.ds-cs-hero):not(.ds-cs-keep) {
   display: none;
 }
+
+/* The summary has its own opener: the case study's is hidden and it is shown. */
+.ds-cs-summary-hero {
+  display: none;
+}
+
+html[data-cs-view="summary"] main > .ds-scope > .ds-cs-summary-hero {
+  display: block;
+}
+
+html[data-cs-view="summary"] main > .ds-scope > .ds-cs-hero:not(.ds-cs-summary-hero) {
+  display: none;
+}
