@@ -90,6 +90,8 @@ export function CaseStudyShell({
   summary?: {
     visual?: ReactNode;
     visualLabel?: string;
+    /** A shorter title than the page's headline, for the summary's opener. */
+    title?: ReactNode;
     /** The short summary under the headline in the summary view. Falls back to
         the page's own standfirst. */
     standfirst?: string;
@@ -120,7 +122,7 @@ export function CaseStudyShell({
       <CaseStudyHero {...heroWithAxes} />
 
       <SummaryHero
-        headline={hero.headline}
+        headline={summary?.title ?? hero.headline}
         standfirst={summary?.standfirst ?? hero.standfirst}
         meta={hero.meta}
         art={hero.stack?.[0] ?? (hero.src ? { src: hero.src, width: hero.width ?? 2400, height: hero.height ?? 1380, alt: hero.alt } : undefined)}

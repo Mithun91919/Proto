@@ -4901,3 +4901,38 @@ html[data-cs-view="summary"] main > .ds-scope > .ds-cs-summary-hero {
 html[data-cs-view="summary"] main > .ds-scope > .ds-cs-hero:not(.ds-cs-summary-hero) {
   display: none;
 }
+
+/* ── Switching between the case study and its summary ──────────────────────
+   The old view dissolves while the new one rises into place. The dock keeps
+   its own layer, so the header holds still while the page changes under it.
+   The default cross-fade adds the two layers' light, so the dark opener of
+   one view meeting the dark opener of the other never flashes between them. */
+html.cs-view-changing .site-dock {
+  view-transition-name: site-dock;
+}
+
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation-duration: 0.45s;
+  animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+::view-transition-new(root) {
+  animation-name: cs-view-in;
+}
+
+@keyframes cs-view-in {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  ::view-transition-group(*),
+  ::view-transition-old(*),
+  ::view-transition-new(*) {
+    animation: none;
+  }
+}
+

@@ -99,7 +99,12 @@ export default function PortfolioManagementPage() {
   return (
     <CaseStudyShell
       slug="portfolio-management"
-      summary={{ body: <PortfolioSummaryBody /> }}
+      summary={{
+        title: "Portfolio Management Platform",
+        standfirst:
+          "I designed the platform where Walmart’s product organisation connects goals to initiatives, products, people and Jira. It replaced four external tools and reclaims 800+ hours a week.",
+        body: <PortfolioSummaryBody />,
+      }}
       evidenceCaveat="Hours are reported by the product managers. *Average yearly cost saved by retiring redundant licences."
       evidenceMetricsLabel="The impact"
       evidence={[

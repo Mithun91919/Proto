@@ -38,14 +38,38 @@ function getSnapshot(): CaseStudyView {
 }
 
 export function setCaseStudyView(next: CaseStudyView) {
-  view = next;
-  document.documentElement.dataset.csView = next;
-  try {
-    window.localStorage.setItem(KEY, next);
-  } catch {
-    // Not remembered; still applies to this page view.
+  if (next === view) return;
+  const apply = () => {
+    view = next;
+    document.documentElement.dataset.csView = next;
+    try {
+      window.localStorage.setItem(KEY, next);
+    } catch {
+      // Not remembered; still applies to this page view.
+    }
+    listeners.forEach((l) => l());
+  };
+
+  // The two views are different pages' worth of height, so the change starts
+  // from the top and the old view dissolves into the new one (see
+  // `::view-transition-*` in design-system.css). Without the browser support,
+  // or for a reader who asked for less motion, it is an instant swap.
+  const doc = document as Document & {
+    startViewTransition?: (update: () => void) => { finished: Promise<unknown> };
+  };
+  const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  if (!doc.startViewTransition || reduced) {
+    apply();
+    return;
   }
-  listeners.forEach((l) => l());
+  const root = document.documentElement;
+  root.classList.add("cs-view-changing");
+  const transition = doc.startViewTransition(() => {
+    window.scrollTo({ top: 0, behavior: "instant" });
+    apply();
+  });
+  const done = () => root.classList.remove("cs-view-changing");
+  transition.finished.then(done, done);
 }
 
 export function useCaseStudyView(): CaseStudyView {
