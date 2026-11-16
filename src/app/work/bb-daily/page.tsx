@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { caseStudyRobots } from "@/content/seo";
+import { BbDailySummary } from "./summary";
 import { Reveal } from "@/components/Reveal";
 import { AlternatingTextMedia } from "@/components/design-system/AlternatingTextMedia";
 import { ArtboardCarousel } from "@/components/design-system/ArtboardCarousel";
@@ -95,6 +96,12 @@ export default function BbDailyPage() {
   return (
     <CaseStudyShell
       slug="bb-daily"
+      summary={{
+        title: "bb daily",
+        standfirst:
+          "I ran research and UX for both sides of bigbasket’s recurring delivery service: the customer app, and the operations app behind each delivery. It reached 10+ cities and 1.5M+ users.",
+        body: <BbDailySummary />,
+      }}
       evidenceCaveat="These figures describe the product when I worked on it, not results caused by the design."
       evidenceMetricsLabel="The impact"
       evidence={[

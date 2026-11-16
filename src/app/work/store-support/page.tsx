@@ -18,6 +18,7 @@ import {
   CaseStudyShell,
 } from "@/components/design-system/CaseStudy";
 import { getProject } from "@/content/projects";
+import { StoreSupportSummary } from "./summary";
 
 /**
  * Store associate app — Walmart Global Tech, on the locked case-study template.
@@ -98,6 +99,12 @@ export default function StoreSupportPage() {
   return (
     <CaseStudyShell
       slug="store-support"
+      summary={{
+        title: "Store associate app",
+        standfirst:
+          "I designed the app where store associates report and fix faults from the floor, with the fix coming before the ticket. Tickets now close in 1 day instead of 3, and 40% fewer are raised.",
+        body: <StoreSupportSummary />,
+      }}
       evidenceMetricsLabel="The impact"
       evidence={[
         {

@@ -18,6 +18,7 @@ import {
   CaseStudyShell,
 } from "@/components/design-system/CaseStudy";
 import { getProject } from "@/content/projects";
+import { SupplyChainSummary } from "./summary";
 
 /**
  * Supply Chain Operations Platform — on the locked case-study template.
@@ -70,6 +71,12 @@ export default function SupplyChainOperationsPage() {
   return (
     <CaseStudyShell
       slug="supply-chain-operations"
+      summary={{
+        title: "Supply Chain Operations Platform",
+        standfirst:
+          "I co-led the redesign of the entry point to 139 operational tools used across Walmart.com, Online Grocery and international markets. Time spent on its landing page fell by 62%.",
+        body: <SupplyChainSummary />,
+      }}
       evidenceCaveat="Less time on the landing page was the goal here — it is a route into the work, not a place to hold people."
       evidenceMetricsLabel="The impact"
       evidence={[

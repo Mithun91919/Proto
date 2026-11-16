@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { caseStudyRobots } from "@/content/seo";
+import { TotalOsSummary } from "./summary";
 import { ArtboardFigure } from "@/components/design-system/ArtboardFigure";
 import { DotFlow } from "@/components/design-system/DotFlow";
 import { ProofStrip } from "@/components/design-system/ProofStrip";
@@ -41,6 +42,12 @@ export default function TotalOsLocalizationPage() {
   return (
     <CaseStudyShell
       slug="hike-total-os-localization"
+      summary={{
+        title: "Multilingual Mobile Experience",
+        standfirst:
+          "I ran the research and the process that took TOTAL OS strings from English copy to a checked device build in eight Indian languages.",
+        body: <TotalOsSummary />,
+      }}
       evidenceMetricsLabel="Hike at the time"
       evidenceMetrics={[
         { value: "100M", label: "registered users on Hike Messenger, as Hike stated in 2017" },

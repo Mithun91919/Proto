@@ -19,6 +19,7 @@ import {
   CaseStudyShell,
 } from "@/components/design-system/CaseStudy";
 import { getProject } from "@/content/projects";
+import { ApiLifecycleSummary } from "./summary";
 
 /**
  * API Lifecycle Platform — on the locked case-study template.
@@ -102,6 +103,12 @@ export default function ApiLifecyclePage() {
   return (
     <CaseStudyShell
       slug="api-lifecycle"
+      summary={{
+        title: "API Lifecycle Platform",
+        standfirst:
+          "I joined at inception and shaped the product model of the platform where Walmart engineers find, design, test and govern APIs. It has onboarded 20K+ APIs and reaches 10K+ monthly users.",
+        body: <ApiLifecycleSummary />,
+      }}
       evidenceCaveat="The 60% is the reduction in developer time spent defining API contracts; the other two figures are scale."
       evidenceMetricsLabel="The impact"
       evidence={[

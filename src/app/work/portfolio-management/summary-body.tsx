@@ -1,9 +1,5 @@
-import { Reveal } from "@/components/Reveal";
-import { ArtboardCarousel, type ArtboardSlide } from "@/components/design-system/ArtboardCarousel";
-import { GlassPanel } from "@/components/design-system/primitives/GlassPanel";
-import { MetricGlyph } from "@/components/design-system/MetricGlyph";
-import { ProofStrip } from "@/components/design-system/ProofStrip";
-import type { MetricMarkName } from "@/components/design-system/dotPatterns";
+import type { ArtboardSlide } from "@/components/design-system/ArtboardCarousel";
+import { SummaryStory } from "@/components/design-system/SummaryStory";
 
 /**
  * What the Portfolio Management summary shows under the case study's own hero:
@@ -104,82 +100,41 @@ const SLIDES: ArtboardSlide[] = [
   },
 ];
 
-/** The problem, the solution and what I did, each cut to one sentence of the case study's own words. */
-const BEATS: { label: string; glyph: MetricMarkName; lead: string; detail: string }[] = [
-  {
-    label: "The problem",
-    glyph: "field",
-    lead: "People were the only link between the plan and the work.",
-    detail: "Leaders guessed at progress each quarter, and every change needed a ticket.",
-  },
-  {
-    label: "The solution",
-    glyph: "funnel",
-    lead: "The platform became the link.",
-    detail: "A goal connects to an initiative, a product and a person, then to the Jira epic the work is tagged to.",
-  },
-  {
-    label: "What I did",
-    glyph: "modules",
-    lead: "Three product managers, three engineering teams, one designer.",
-    detail: "I ran the sessions that set the problem and designed a sprint ahead of each team.",
-  },
-];
-
-const SECTION = "mt-16 ds-section-boundary pt-12 md:mt-20 md:pt-14";
-
 export function PortfolioSummaryBody() {
   return (
-    <div className="mx-auto w-full max-w-[85rem] px-5 md:px-8">
-      <section className="pt-16 md:pt-20">
-        <Reveal className="ds-stagger grid grid-cols-1 gap-4 md:grid-cols-3">
-          {BEATS.map((beat) => (
-            <GlassPanel key={beat.label} variant="soft" className="rounded-2xl p-7">
-              <MetricGlyph name={beat.glyph} size={5} gap={3} />
-              <p className="eyebrow mt-6" style={{ color: "var(--ds-accent-deep)" }}>
-                {beat.label}
-              </p>
-              <p className="display-title mt-3 text-[var(--ink)]" style={{ fontSize: "1.35rem", lineHeight: 1.3 }}>
-                {beat.lead}
-              </p>
-              <p className="mt-4 text-[0.98rem] leading-7 text-[var(--ink-soft)]">{beat.detail}</p>
-            </GlassPanel>
-          ))}
-        </Reveal>
-      </section>
-
-      <section className={SECTION}>
-        <Reveal>
-          <ArtboardCarousel
-            layout="split"
-            eyebrow="The platform"
-            title="A goal runs down to the work"
-            description="Five screens follow one goal: the goal itself, the initiative it funds, the product that delivers it, the people on it, and the requests that change them. Open the notes on any screen to see what each part does."
-            label="The platform, from a goal to the work"
-            scrollable
-            maxHeight="44rem"
-            slides={SLIDES}
-          />
-        </Reveal>
-      </section>
-
-      <section className={SECTION}>
-        <Reveal>
-          <p className="eyebrow mb-6">What changed</p>
-          <ProofStrip
-            items={[
-              { value: "800+ hrs", label: "reclaimed every week", glyph: "field" },
-              { value: "3,500+ days", label: "of manual effort eliminated in 2025", glyph: "layers" },
-              { value: "$100K", label: "average yearly licence cost saved", glyph: "drop" },
-              { value: "50%", label: "fewer support tickets", glyph: "bars" },
-            ]}
-          />
-          <p className="mt-4 text-[0.85rem] text-[var(--muted)]">
-            Hours are reported by the product managers. Licence figure is the average yearly cost saved by retiring
-            redundant licences.
-          </p>
-        </Reveal>
-      </section>
-    </div>
+    <SummaryStory
+      beats={[
+        {
+          label: "The problem",
+          lead: "People were the only link between the plan and the work.",
+          detail: "Leaders guessed at progress each quarter, and every change needed a ticket.",
+        },
+        {
+          label: "The solution",
+          lead: "The platform became the link.",
+          detail: "A goal connects to an initiative, a product and a person, then to the Jira epic the work is tagged to.",
+        },
+        {
+          label: "What I did",
+          lead: "Three product managers, three engineering teams, one designer.",
+          detail: "I ran the sessions that set the problem and designed a sprint ahead of each team.",
+        },
+      ]}
+      carousel={{
+        eyebrow: "The platform",
+        title: "A goal runs down to the work",
+        description:
+          "Five screens follow one goal: the goal itself, the initiative it funds, the product that delivers it, the people on it, and the requests that change them. Open the notes on any screen to see what each part does.",
+        label: "The platform, from a goal to the work",
+        slides: SLIDES,
+      }}
+      results={[
+        { value: "800+ hrs", label: "reclaimed every week", glyph: "field" },
+        { value: "3,500+ days", label: "of manual effort eliminated in 2025", glyph: "layers" },
+        { value: "$100K", label: "average yearly licence cost saved", glyph: "drop" },
+        { value: "50%", label: "fewer support tickets", glyph: "bars" },
+      ]}
+      caveat="Hours are reported by the product managers. Licence figure is the average yearly cost saved by retiring redundant licences."
+    />
   );
 }

@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { caseStudyRobots } from "@/content/seo";
+import { MovieTicketsSummary } from "./summary";
 import { Reveal } from "@/components/Reveal";
 import { ArtboardFigure } from "@/components/design-system/ArtboardFigure";
 import { DotFlow } from "@/components/design-system/DotFlow";
@@ -50,6 +51,12 @@ export default function MovieTicketsPage() {
   return (
     <CaseStudyShell
       slug="hike-movie-tickets"
+      summary={{
+        title: "Movie Ticket Booking",
+        standfirst:
+          "I designed the booking from first screen to ticket inside Hike Messenger: theatre, showtime, seat and Hike Wallet payment in one flow.",
+        body: <MovieTicketsSummary />,
+      }}
       evidenceMetricsLabel="Hike at the time"
       evidenceMetrics={[
         { value: "100M", label: "registered users on Hike Messenger, as Hike stated in June 2017" },

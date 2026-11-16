@@ -11,6 +11,7 @@ import {
   CaseStudyShell,
 } from "@/components/design-system/CaseStudy";
 import { getProject } from "@/content/projects";
+import { RatingsReviewsSummary } from "./summary";
 
 /**
  * Ratings & Reviews — built on the case-study template established by bb daily.
@@ -44,6 +45,12 @@ export default function RatingsReviewsPage() {
   return (
     <CaseStudyShell
       slug="bigbasket-ratings-reviews"
+      summary={{
+        title: "Ratings & Reviews",
+        standfirst:
+          "I defined one feedback system for bigbasket shoppers to rate products and read reviews across Android, iOS, web and mobile web.",
+        body: <RatingsReviewsSummary />,
+      }}
       evidenceMetricsLabel="bigbasket today"
       evidenceMetrics={[
         { value: "300+", label: "cities and towns delivered to" },

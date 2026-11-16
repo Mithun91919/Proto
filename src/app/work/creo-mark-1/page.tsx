@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { caseStudyRobots } from "@/content/seo";
+import { CreoMark1Summary } from "./summary";
 import { BrowserMockup } from "@/components/design-system/BrowserMockup";
 import { ArtboardCarousel } from "@/components/design-system/ArtboardCarousel";
 import { PullStatement } from "@/components/design-system/PullStatement";
@@ -40,6 +41,12 @@ export default function CreoMark1Page() {
   return (
     <CaseStudyShell
       slug="creo-mark-1"
+      summary={{
+        title: "Mark 1 brand",
+        standfirst:
+          "I built the visual language for the CREO Mark 1, a smartphone that changed every month, and supported it for 12 months with a new campaign around each update.",
+        body: <CreoMark1Summary />,
+      }}
       evidence={[
         {
           label: "The problem",

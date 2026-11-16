@@ -19,6 +19,7 @@ import {
   CaseStudyShell,
 } from "@/components/design-system/CaseStudy";
 import { getProject } from "@/content/projects";
+import { DependencyHealthSummary } from "./summary";
 
 /**
  * Dependency Health Platform — on the locked case-study template.
@@ -95,6 +96,12 @@ export default function DependencyHealthPage() {
   return (
     <CaseStudyShell
       slug="dependency-health"
+      summary={{
+        title: "Dependency Health Platform",
+        standfirst:
+          "I designed the dashboard where Walmart developers see which dependencies need attention, and a remediation flow that ends in a pull request. A team now migrates its libraries in about 2 hours, down from 3 days.",
+        body: <DependencyHealthSummary />,
+      }}
       evidenceMetricsLabel="The impact"
       evidence={[
         {

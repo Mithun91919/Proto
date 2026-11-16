@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { caseStudyRobots } from "@/content/seo";
+import { JobDiscoverySummary } from "./summary";
 import { ArtboardFigure } from "@/components/design-system/ArtboardFigure";
 import { DotFlow } from "@/components/design-system/DotFlow";
 import { PullStatement } from "@/components/design-system/PullStatement";
@@ -42,6 +43,12 @@ export default function HikeJobsServicePage() {
   return (
     <CaseStudyShell
       slug="hike-jobs-service"
+      summary={{
+        title: "Job Discovery & Resume Builder",
+        standfirst:
+          "I designed an end-to-end jobs app that took people from personalised listings to a resume ready to send, as a microservice inside Hike Messenger.",
+        body: <JobDiscoverySummary />,
+      }}
       evidenceMetricsLabel="Hike at the time"
       evidenceMetrics={[{ value: "100M", label: "registered users on Hike Messenger, as Hike stated in June 2017" }]}
       evidenceCaveat="Hike’s own figure from 2017 press, not audited. It describes the platform at the time, not results caused by the design."
