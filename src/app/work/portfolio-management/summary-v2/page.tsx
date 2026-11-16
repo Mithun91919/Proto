@@ -222,8 +222,16 @@ export default function PortfolioManagementSummaryV2() {
 
         <section className={SECTION}>
           <Reveal>
-            <p className="eyebrow mb-6">The screens</p>
-            <ArtboardCarousel label="The platform, from a goal to the work" scrollable maxHeight="44rem" slides={SLIDES} />
+            <ArtboardCarousel
+              layout="split"
+              eyebrow="The platform"
+              title="A goal runs down to the work"
+              description="Five screens follow one goal: the goal itself, the initiative it funds, the product that delivers it, the people on it, and the requests that change them. Open the notes on any screen to see what each part does."
+              label="The platform, from a goal to the work"
+              scrollable
+              maxHeight="44rem"
+              slides={SLIDES}
+            />
           </Reveal>
         </section>
 
