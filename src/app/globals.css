@@ -2081,7 +2081,8 @@ button.nav-switch-link {
   bottom: 0;
   left: 0;
   width: calc(100% / var(--n, 3));
-  border-radius: 999px;
+  border: 1px solid transparent;
+  border-radius: var(--button-radius);
   overflow: hidden;
   background: var(--button-primary-bg);
   box-shadow: var(--button-primary-shadow), var(--glass-inset);
