@@ -11,6 +11,7 @@ import {
 import { CaseStudyHero } from "./CaseStudyHero";
 import { CaseStudyEvidence, type EvidenceBeat } from "./CaseStudyEvidence";
 import { NextProjectNav } from "./NextProjectNav";
+import { SummaryCta } from "./SummaryCta";
 import { ChapterProgress, type ChapterRef } from "./ChapterProgress";
 
 /**
@@ -119,15 +120,17 @@ export function CaseStudyShell({
         caveat={evidenceCaveat}
       />
 
+      <SummaryCta />
+
       {children}
 
-      <CaseStudyColumn>
+      <div className="ds-cs-column ds-cs-keep mx-auto w-full max-w-[85rem] px-5 md:px-8">
         <section className="mt-20 pt-4 md:mt-24 md:pb-24">
           <Reveal>
             <NextProjectNav {...next} />
           </Reveal>
         </section>
-      </CaseStudyColumn>
+      </div>
     </article>
   );
 }

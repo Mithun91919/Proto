@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Script from "next/script";
 import localFont from "next/font/local";
 import { ResetScrollOnNavigate } from "@/components/ResetScrollOnNavigate";
 import { DotGridBackground } from "@/components/DotGridBackground";
@@ -74,6 +75,11 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         className="site-shell font-[family-name:var(--font-sans)]"
         suppressHydrationWarning
       >
+        {/* Applies a remembered Summary choice before the first paint, so a
+            case study does not flash in full and then collapse. */}
+        <Script id="cs-view" strategy="beforeInteractive">
+          {"try{if(localStorage.getItem('cs-view')==='summary')document.documentElement.dataset.csView='summary'}catch(e){}"}
+        </Script>
         <a href="#main-content" className="skip-link">
           Skip to content
         </a>
