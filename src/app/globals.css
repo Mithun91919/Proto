@@ -2038,8 +2038,8 @@ button.nav-switch-link {
 .nav-meta {
   padding-left: 0.75rem;
   border-left: 1px solid color-mix(in oklab, var(--dock-ink) 22%, transparent);
-  font-size: 0.875rem;
-  color: var(--dock-soft);
+  font-size: 0.75rem;
+  color: color-mix(in oklab, var(--dock-soft) 80%, transparent);
   white-space: nowrap;
 }
 
