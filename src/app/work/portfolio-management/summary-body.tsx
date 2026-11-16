@@ -104,28 +104,25 @@ const SLIDES: ArtboardSlide[] = [
   },
 ];
 
-/** The problem, the solution and what I did, in the case study's own words. */
+/** The problem, the solution and what I did, each cut to one sentence of the case study's own words. */
 const BEATS: { label: string; glyph: MetricMarkName; lead: string; detail: string }[] = [
   {
     label: "The problem",
     glyph: "field",
     lead: "People were the only link between the plan and the work.",
-    detail:
-      "Leaders guessed at progress each quarter. Engineers searched across platforms for one answer. Data quality champions and finance chased approvals through email and Slack, and every change needed a ticket.",
+    detail: "Leaders guessed at progress each quarter, and every change needed a ticket.",
   },
   {
     label: "The solution",
     glyph: "funnel",
     lead: "The platform became the link.",
-    detail:
-      "Pfolio replaced four external tools with one platform. A goal connects to an initiative, a product and a person, then to the Jira epic (the group of tickets) the work is tagged to. Planned headcount sits beside actual headcount from Jira, so a blocked team shows up.",
+    detail: "A goal connects to an initiative, a product and a person, then to the Jira epic the work is tagged to.",
   },
   {
     label: "What I did",
     glyph: "modules",
     lead: "Three product managers, three engineering teams, one designer.",
-    detail:
-      "I ran the sessions that set the problem, designed a sprint ahead of each team, and got every product manager to plan for the whole product, not only their piece.",
+    detail: "I ran the sessions that set the problem and designed a sprint ahead of each team.",
   },
 ];
 
