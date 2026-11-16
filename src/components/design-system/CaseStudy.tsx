@@ -86,7 +86,7 @@ export function CaseStudyShell({
   evidenceMetrics?: { value: string; label: string }[];
   /** The key visual shown in the summary view, chosen by the page. It can also
       appear in the full page, or only here. */
-  summary?: { visual?: ReactNode; visualLabel?: string; showSteps?: boolean };
+  summary?: { visual?: ReactNode; visualLabel?: string };
   children: ReactNode;
 }) {
   // Append the three classification axes to whatever meta the page passed,
@@ -117,12 +117,7 @@ export function CaseStudyShell({
         caveat={evidenceCaveat}
       />
 
-      <SummaryBlocks
-        slug={slug}
-        visual={summary?.visual}
-        visualLabel={summary?.visualLabel}
-        showSteps={summary?.showSteps}
-      />
+      <SummaryBlocks slug={slug} visual={summary?.visual} visualLabel={summary?.visualLabel} />
 
       <SummaryCta />
 

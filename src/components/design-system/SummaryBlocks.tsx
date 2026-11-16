@@ -17,15 +17,12 @@ export function SummaryBlocks({
   slug,
   visual,
   visualLabel,
-  showSteps = true,
 }: {
   slug?: string;
   visual?: ReactNode;
   visualLabel?: string;
-  /** Off when the key visual already tells the before and the after. */
-  showSteps?: boolean;
 }) {
-  const steps = slug && showSteps ? getProject(slug)?.systemMap : undefined;
+  const steps = slug ? getProject(slug)?.systemMap : undefined;
   if (!steps?.length && !visual) return null;
 
   return (
