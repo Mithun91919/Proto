@@ -596,7 +596,7 @@ export default function BbDailyPage() {
         </CaseStudySection>
       </CaseStudyColumn>
 
-      <div className="mt-16 md:mt-20">
+      <div className="ds-cs-keep mt-16 md:mt-20">
         <Reveal>
           <PullStatement eyebrow="What I believe now" mark="connection">
             A customer action on one screen is an instruction to someone else. The product was never the

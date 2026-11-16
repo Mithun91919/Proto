@@ -379,7 +379,7 @@ export default function SupplyChainOperationsPage() {
         </CaseStudySection>
       </CaseStudyColumn>
 
-      <div className="mt-16 md:mt-20">
+      <div className="ds-cs-keep mt-16 md:mt-20">
         <PullStatement eyebrow="What I believe now" mark="rhythm" note={<ConfidentialNote />}>
           Sometimes lower engagement is the better experience.
         </PullStatement>

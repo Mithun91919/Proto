@@ -580,7 +580,7 @@ export default function AiStudioPage() {
         </CaseStudySection>
       </CaseStudyColumn>
 
-      <div className="mt-16 md:mt-20">
+      <div className="ds-cs-keep mt-16 md:mt-20">
         <Reveal>
           <PullStatement eyebrow="Why Studio exists" mark="exchange" note={<ConfidentialNote />}>
             An agent is only useful to the company once another engineer can find it, trust it and use it.

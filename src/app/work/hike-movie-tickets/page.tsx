@@ -210,7 +210,7 @@ export default function MovieTicketsPage() {
       </CaseStudyColumn>
 
       {/* Open steps, filled joins — the claim is about the gaps, not the steps. */}
-      <div className="mt-16 md:mt-20">
+      <div className="ds-cs-keep mt-16 md:mt-20">
         <Reveal>
           <PullStatement eyebrow="Where it is decided" mark="seam">
             Each step was simple. The work was in what joined them.

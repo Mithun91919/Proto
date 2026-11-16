@@ -4866,11 +4866,13 @@ a:hover .ds-compact-mark .ds-dot {
    statements and the chapter rail are hidden. Keyed to the root element so it
    needs no state in the page, and scoped to a case study's own article so the
    components page's demos are untouched. */
-.ds-cs-summary-cta {
+.ds-cs-summary-cta,
+.ds-cs-summary {
   display: none;
 }
 
-html[data-cs-view="summary"] main > .ds-scope > .ds-cs-summary-cta {
+html[data-cs-view="summary"] main > .ds-scope > .ds-cs-summary-cta,
+html[data-cs-view="summary"] main > .ds-scope > .ds-cs-summary {
   display: block;
 }
 

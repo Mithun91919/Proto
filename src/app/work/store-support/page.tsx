@@ -382,7 +382,7 @@ export default function StoreSupportPage() {
         </CaseStudySection>
       </CaseStudyColumn>
 
-      <div className="mt-16 md:mt-20">
+      <div className="ds-cs-keep mt-16 md:mt-20">
         <PullStatement eyebrow="What I believe now" mark="exchange" note={<ConfidentialNote />}>
           Sometimes the most useful thing a product can do is help someone avoid entering the support system at
           all.

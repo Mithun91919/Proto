@@ -99,6 +99,7 @@ export default function PortfolioManagementPage() {
   return (
     <CaseStudyShell
       slug="portfolio-management"
+      summary={{ visual: <PlatformExplainer />, visualLabel: "The case at a glance" }}
       evidenceCaveat="Hours are reported by the product managers. *Average yearly cost saved by retiring redundant licences."
       evidenceMetricsLabel="The impact"
       evidence={[
@@ -193,12 +194,7 @@ export default function PortfolioManagementPage() {
       </div>
 
       <CaseStudyColumn>
-        <div className="pt-6 md:pt-10">
-          <CaseStudyFigure label="The case at a glance">
-            <PlatformExplainer />
-          </CaseStudyFigure>
-        </div>
-        <CaseStudySection id="pieces" boundary={false} className="pt-14 md:pt-20">
+        <CaseStudySection id="pieces" boundary={false} className="pt-6 md:pt-10">
           <CaseStudyChapter
             layout="stacked"
             eyebrow="In pieces"
@@ -653,7 +649,7 @@ export default function PortfolioManagementPage() {
         </CaseStudySection>
       </CaseStudyColumn>
 
-      <div className="mt-16 md:mt-20">
+      <div className="ds-cs-keep mt-16 md:mt-20">
         <Reveal>
           <PullStatement eyebrow="What I believe now" mark="seam" note={<ConfidentialNote />}>
             A plan is only as good as its link to the work.

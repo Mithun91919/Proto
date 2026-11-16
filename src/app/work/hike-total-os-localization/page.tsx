@@ -193,7 +193,7 @@ export default function TotalOsLocalizationPage() {
         </CaseStudySection>
       </CaseStudyColumn>
 
-      <div className="mt-16 md:mt-20">
+      <div className="ds-cs-keep mt-16 md:mt-20">
         <PullStatement eyebrow="What it came down to" mark="connection">
           A string was only finished once someone had read it on a real phone.
         </PullStatement>

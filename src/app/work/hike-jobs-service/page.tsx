@@ -272,7 +272,7 @@ export default function HikeJobsServicePage() {
         </CaseStudySection>
       </CaseStudyColumn>
 
-      <div className="mt-16 md:mt-20">
+      <div className="ds-cs-keep mt-16 md:mt-20">
         <PullStatement eyebrow="What it came down to" mark="seam">
           A good suggestion did not help someone with no resume to send.
         </PullStatement>

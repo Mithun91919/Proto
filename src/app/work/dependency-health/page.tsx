@@ -483,7 +483,7 @@ export default function DependencyHealthPage() {
         </CaseStudySection>
       </CaseStudyColumn>
 
-      <div className="mt-16 md:mt-20">
+      <div className="ds-cs-keep mt-16 md:mt-20">
         <Reveal>
           <PullStatement eyebrow="What I believe now" mark="seam" note={<ConfidentialNote />}>
             A status should always say what to do next, not only what is wrong.
