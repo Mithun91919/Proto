@@ -6,6 +6,8 @@ import { ArtboardFigure } from "@/components/design-system/ArtboardFigure";
 import { BeforeAfterModel } from "@/components/design-system/BeforeAfterModel";
 import { ClipFigure } from "@/components/design-system/ClipFigure";
 import { ConfidentialNote } from "@/components/design-system/ConfidentialNote";
+import { DotFlow } from "@/components/design-system/DotFlow";
+import { EditorialNumberedRows } from "@/components/design-system/EditorialNumberedRow";
 import { MediaPlaceholder } from "@/components/design-system/MediaPlaceholder";
 import { PullStatement } from "@/components/design-system/PullStatement";
 import {
@@ -142,6 +144,34 @@ export default function AiStudioPage() {
               "Studio is a section on the left panel of Wibey, for the engineers who build artifacts: agents, skills and MCPs. It is where they build, host and share them.",
             ]}
           />
+          <CaseStudyFigure rule label="What the design had to work with">
+            <EditorialNumberedRows
+              rows={[
+                {
+                  number: "01",
+                  title: "Company data stays inside",
+                  detail:
+                    "Walmart restricted outside AI tools on personal licences, and the portal keeps the work inside the company.",
+                },
+                {
+                  number: "02",
+                  title: "A new kind of builder",
+                  detail: "Engineers who build artifacts, meaning agents, skills and MCPs, as well as code.",
+                },
+                {
+                  number: "03",
+                  title: "Five artifacts, five ways of working",
+                  detail: "Agents, MCPs, skills, APIs and plugins differ in how they are built, tested and trusted.",
+                },
+                {
+                  number: "04",
+                  title: "Only some teams can publish",
+                  detail:
+                    "Only the teams that own the APIs and MCPs can publish an approved agent, so the registry holds only verified ones.",
+                },
+              ]}
+            />
+          </CaseStudyFigure>
         </CaseStudySection>
 
         <CaseStudySection id="new">
@@ -178,6 +208,9 @@ export default function AiStudioPage() {
                 body: "Studio hosts all five kinds of artifact, where an engineer creates, manages and publishes them, and others can find the verified ones.",
               }}
             />
+          </CaseStudyFigure>
+          <CaseStudyFigure rule label="The path an artifact takes in Studio">
+            <DotFlow stages={["Built in chat", "Tested", "Reviewed", "Published", "Found in the registry"]} />
           </CaseStudyFigure>
         </CaseStudySection>
 
