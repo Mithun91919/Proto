@@ -2013,7 +2013,7 @@ html:has(dialog.say-hi[open]) {
 }
 
 dialog.say-hi {
-  width: min(52rem, calc(100vw - 3rem));
+  width: min(60rem, calc(100vw - 3rem));
   max-height: calc(100vh - 3rem);
   margin: auto;
   padding: 0;
@@ -2067,7 +2067,7 @@ dialog.say-hi[open] {
 
 .say-hi-cards {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: 1.25rem;
   margin-top: 2.5rem;
   list-style: none;
@@ -2108,30 +2108,35 @@ dialog.say-hi[open] {
 
 .say-hi-card-a {
   --rot: -1.4deg;
-  --from: 105%;
+  --from: 160%;
 }
 
 .say-hi-card-b {
   --rot: 0.9deg;
-  --from: 0%;
+  --from: 55%;
 }
 
 .say-hi-card-c {
-  --rot: -0.7deg;
-  --from: -105%;
+  --rot: -0.8deg;
+  --from: -55%;
+}
+
+.say-hi-card-d {
+  --rot: 1.2deg;
+  --from: -160%;
 }
 
 a.say-hi-card:hover,
 a.say-hi-card:focus-visible,
-.say-hi-card-c:hover,
-.say-hi-card-c:focus-within {
+.say-hi-card-d:hover,
+.say-hi-card-d:focus-within {
   --rot: 0deg;
   translate: 0 -4px;
   box-shadow: 0 14px 30px rgb(12 23 28 / 0.14);
 }
 
 a.say-hi-card:hover::after,
-.say-hi-card-c:hover::after {
+.say-hi-card-d:hover::after {
   opacity: 1;
 }
 

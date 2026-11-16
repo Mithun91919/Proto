@@ -8,6 +8,7 @@ import type { CSSProperties, PointerEvent } from "react";
 
 const EMAIL = "mithraj14@gmail.com";
 const LINKEDIN = "https://www.linkedin.com/in/mithunrajuk";
+const INSTAGRAM = "https://www.instagram.com/the_humble_beee/";
 
 /**
  * Each card leans toward the pointer and catches a little light there. Set as
@@ -83,7 +84,7 @@ export function SayHiDialog({ open, onClose }: { open: boolean; onClose: () => v
           <li>
             <Link href="/resume" className="say-hi-card say-hi-card-a" style={{ "--n": 0 } as CSSProperties} onClick={onClose} {...tilt}>
               <span className="say-hi-card-name display-title">Résumé</span>
-              <span className="say-hi-card-desc">One page, as a web page and a PDF.</span>
+              <span className="say-hi-card-desc">Hiring? Start here.</span>
               <span className="say-hi-card-go" aria-hidden>
                 Read →
               </span>
@@ -92,15 +93,25 @@ export function SayHiDialog({ open, onClose }: { open: boolean; onClose: () => v
           <li>
             <a href={LINKEDIN} target="_blank" rel="noopener noreferrer" className="say-hi-card say-hi-card-b" style={{ "--n": 1 } as CSSProperties} {...tilt}>
               <span className="say-hi-card-name display-title">LinkedIn</span>
-              <span className="say-hi-card-desc">Find me there as in/mithunrajuk.</span>
+              <span className="say-hi-card-desc">Curious? Have a look.</span>
               <span className="say-hi-card-go" aria-hidden>
                 Open ↗
               </span>
             </a>
           </li>
           <li>
-            <div className="say-hi-card say-hi-card-c" style={{ "--n": 2 } as CSSProperties} {...tilt}>
+            <a href={INSTAGRAM} target="_blank" rel="noopener noreferrer" className="say-hi-card say-hi-card-c" style={{ "--n": 2 } as CSSProperties} {...tilt}>
+              <span className="say-hi-card-name display-title">Instagram</span>
+              <span className="say-hi-card-desc">Want to follow along?</span>
+              <span className="say-hi-card-go" aria-hidden>
+                Follow ↗
+              </span>
+            </a>
+          </li>
+          <li>
+            <div className="say-hi-card say-hi-card-d" style={{ "--n": 3 } as CSSProperties} {...tilt}>
               <span className="say-hi-card-name display-title">Email</span>
+              <span className="say-hi-card-desc">Want to talk? Write to me.</span>
               <a href={`mailto:${EMAIL}`} className="say-hi-card-desc say-hi-card-link">
                 {EMAIL}
               </a>
