@@ -4,9 +4,12 @@ import { Reveal } from "@/components/Reveal";
 import { ArtboardCarousel, type ArtboardSlide } from "@/components/design-system/ArtboardCarousel";
 import { ConfidentialNote } from "@/components/design-system/ConfidentialNote";
 import { FullWidthStatement } from "@/components/design-system/FullWidthStatement";
-import { GlyphSectionRow } from "@/components/design-system/GlyphSectionRow";
+import { GlassPanel } from "@/components/design-system/primitives/GlassPanel";
+import { HeroScreenStack } from "@/components/design-system/HeroScreenStack";
+import { MetricGlyph } from "@/components/design-system/MetricGlyph";
 import { ProofStrip } from "@/components/design-system/ProofStrip";
 import { SpecList } from "@/components/design-system/SpecList";
+import type { MetricMarkName } from "@/components/design-system/dotPatterns";
 
 /**
  * A summary designed as a page of its own, not as the case study with its
@@ -111,36 +114,95 @@ const SLIDES: ArtboardSlide[] = [
   },
 ];
 
+/** The problem, the solution and what I did, in the case study's own words. */
+const BEATS: { label: string; glyph: MetricMarkName; lead: string; detail: string }[] = [
+  {
+    label: "The problem",
+    glyph: "field",
+    lead: "People were the only link between the plan and the work.",
+    detail:
+      "Leaders guessed at progress each quarter. Engineers searched across platforms for one answer. Data quality champions and finance chased approvals through email and Slack, and every change needed a ticket.",
+  },
+  {
+    label: "The solution",
+    glyph: "funnel",
+    lead: "The platform became the link.",
+    detail:
+      "Pfolio replaced four external tools with one platform. A goal connects to an initiative, a product and a person, then to the Jira epic (the group of tickets) the work is tagged to. Planned headcount sits beside actual headcount from Jira, so a blocked team shows up.",
+  },
+  {
+    label: "What I did",
+    glyph: "modules",
+    lead: "Three product managers, three engineering teams, one designer.",
+    detail:
+      "I ran the sessions that set the problem, designed a sprint ahead of each team, and got every product manager to plan for the whole product, not only their piece.",
+  },
+];
+
+const SECTION = "mt-16 ds-section-boundary pt-12 md:mt-20 md:pt-14";
+
 export default function PortfolioManagementSummaryV2() {
   return (
     <div className="ds-scope">
       <div className="mx-auto w-full max-w-[80rem] px-5 pb-16 pt-6 md:px-8 md:pb-24 md:pt-10">
         <div className="page-hero hero-in">
-          <div className="grid grid-cols-1 items-end gap-10 md:grid-cols-[minmax(0,1fr)_minmax(0,24rem)] md:gap-16">
+          <div className="grid grid-cols-1 items-center gap-10 lg:grid-cols-[minmax(0,0.8fr)_minmax(0,1.3fr)] lg:gap-14">
             <Reveal>
               <p className="eyebrow">Summary · Portfolio Management Platform</p>
-              <h1 className="display-title display-hero mt-4 max-w-[18ch] text-[var(--ink)]">
+              <h1 className="display-title display-hero mt-4 max-w-[14ch] text-[var(--ink)]">
                 From a goal to the work,{" "}
                 <span className="text-[var(--accent-deep)]">in one place</span>.
               </h1>
-              <p className="mt-8 max-w-[44ch] text-lg leading-8 text-[var(--ink-soft)]">
+              <p className="mt-6 max-w-[40ch] text-lg leading-8 text-[var(--ink-soft)]">
                 Where Walmart’s product organisation plans its portfolio, and sees the work behind it.
               </p>
+              <div className="mt-6">
+                <SpecList
+                  facts={[
+                    { label: "Role", value: "Senior UX Designer" },
+                    { label: "Client", value: "Walmart Global Tech" },
+                    { label: "Year", value: "2023–Present" },
+                    { label: "Discipline", value: "Enterprise platform · Product design" },
+                  ]}
+                />
+              </div>
             </Reveal>
             <Reveal delay={120}>
-              <SpecList
-                facts={[
-                  { label: "Role", value: "Senior UX Designer" },
-                  { label: "Client", value: "Walmart Global Tech" },
-                  { label: "Year", value: "2023–Present" },
-                  { label: "Discipline", value: "Enterprise platform · Product design" },
+              <HeroScreenStack
+                ratio={1.39}
+                label="Three screens of the platform: the home screen, a product page and the Portfolio page"
+                screens={[
+                  {
+                    src: "/work/portfolio-management/home.png",
+                    width: 2880,
+                    height: 2210,
+                    alt: "The platform's home screen: a search field, alerts, quick links for new requests, a profile card and an assistant",
+                    name: "the home screen",
+                    route: "/home",
+                  },
+                  {
+                    src: "/work/portfolio-management/products.png",
+                    width: 2880,
+                    height: 2633,
+                    alt: "A product page: its leaders, a written summary, headcount by type and by role, and the people allocated",
+                    name: "a product page",
+                    route: "/product",
+                  },
+                  {
+                    src: "/work/portfolio-management/okr-management-v2.png",
+                    width: 3456,
+                    height: 3088,
+                    alt: "The Portfolio page: strategic pillars across the top and a table of objectives with planned and actual headcount",
+                    name: "the Portfolio page",
+                    route: "/portfolio",
+                  },
                 ]}
               />
             </Reveal>
           </div>
         </div>
 
-        <section className="mt-16 ds-section-boundary pt-12 md:mt-20 md:pt-14">
+        <section className={SECTION}>
           <Reveal>
             <p className="eyebrow mb-6">What changed</p>
             <ProofStrip
@@ -158,42 +220,31 @@ export default function PortfolioManagementSummaryV2() {
           </Reveal>
         </section>
 
-        <section className="mt-16 ds-section-boundary pt-12 md:mt-20 md:pt-14">
-          <GlyphSectionRow glyph="field" heading="People were the only link between the plan and the work.">
-            <p className="text-[1.08rem] leading-8 text-[var(--ink-soft)]">
-              Leaders guessed at progress each quarter. Engineers searched across platforms for one answer. Data quality
-              champions and finance chased approvals through email and Slack, and every change needed a ticket.
-            </p>
-          </GlyphSectionRow>
+        <section className={SECTION}>
+          <Reveal className="ds-stagger grid grid-cols-1 gap-4 md:grid-cols-3">
+            {BEATS.map((beat) => (
+              <GlassPanel key={beat.label} variant="soft" className="rounded-2xl p-7">
+                <MetricGlyph name={beat.glyph} size={5} gap={3} />
+                <p className="eyebrow mt-6" style={{ color: "var(--ds-accent-deep)" }}>
+                  {beat.label}
+                </p>
+                <p className="display-title mt-3 text-[var(--ink)]" style={{ fontSize: "1.35rem", lineHeight: 1.3 }}>
+                  {beat.lead}
+                </p>
+                <p className="mt-4 text-[0.98rem] leading-7 text-[var(--ink-soft)]">{beat.detail}</p>
+              </GlassPanel>
+            ))}
+          </Reveal>
         </section>
 
-        <section className="mt-16 ds-section-boundary pt-12 md:mt-20 md:pt-14">
-          <GlyphSectionRow glyph="funnel" heading="The platform became the link.">
-            <p className="text-[1.08rem] leading-8 text-[var(--ink-soft)]">
-              Pfolio replaced four external tools with one platform. A goal connects to an initiative, a product and a
-              person, then to the Jira epic (the group of tickets) the work is tagged to. Planned headcount sits beside
-              actual headcount from Jira, so a blocked team shows up.
-            </p>
-          </GlyphSectionRow>
-        </section>
-
-        <section className="mt-16 ds-section-boundary pt-12 md:mt-20 md:pt-14">
-          <GlyphSectionRow glyph="modules" heading="Three product managers, three engineering teams, one designer.">
-            <p className="text-[1.08rem] leading-8 text-[var(--ink-soft)]">
-              I ran the sessions that set the problem, designed a sprint ahead of each team, and got every product
-              manager to plan for the whole product, not only their piece.
-            </p>
-          </GlyphSectionRow>
-        </section>
-
-        <section className="mt-16 ds-section-boundary pt-12 md:mt-20 md:pt-14">
+        <section className={SECTION}>
           <Reveal>
             <p className="eyebrow mb-6">The screens</p>
             <ArtboardCarousel label="The platform, from a goal to the work" scrollable maxHeight="44rem" slides={SLIDES} />
           </Reveal>
         </section>
 
-        <section className="mt-16 ds-section-boundary pt-12 md:mt-20 md:pt-14">
+        <section className={SECTION}>
           <Reveal>
             <FullWidthStatement bare>A plan is only as good as its link to the work.</FullWidthStatement>
             <div className="mt-8 flex flex-wrap items-center gap-4">
