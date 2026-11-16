@@ -1980,7 +1980,7 @@ a {
   font-size: 0.875rem;
   font-weight: 500;
   line-height: 1.25rem;
-  color: var(--muted);
+  color: var(--ink-soft);
   transition: color 220ms ease;
 }
 
@@ -1990,7 +1990,6 @@ a {
 
 .nav-switch-link[aria-current="page"] {
   color: var(--button-primary-fg);
-  font-weight: 700;
 }
 
 /* The selected page is a filled pill that slides between the three. */

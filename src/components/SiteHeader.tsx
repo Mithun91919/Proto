@@ -51,7 +51,7 @@ export function SiteHeader() {
   }, []);
 
   return (
-    <header className="relative z-50 h-[4.5rem]">
+    <header className="site-spacer relative z-50 h-[4.5rem]">
       <div
         className={`site-dock pointer-events-none fixed inset-x-0 top-3 z-50${hidden ? " is-hidden" : ""}`}
         onFocusCapture={() => setHidden(false)}

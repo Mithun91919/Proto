@@ -2014,6 +2014,18 @@
   padding-top: clamp(1.25rem, 2.2vw, 2rem);
 }
 
+/* On a case study the dark band runs up under the floating header, so the
+   page does not open on a strip of dotted background above it. The header's
+   spacer gives its height back to the band, and the band's own top padding
+   takes it up, so nothing in the hero moves. */
+body:has(main > .ds-scope > .ds-cs-hero) .site-spacer {
+  height: 0;
+}
+
+main > .ds-scope > .ds-cs-hero > .ds-pull-inner {
+  padding-top: calc(clamp(1.25rem, 2.2vw, 2rem) + 4.5rem);
+}
+
 /* The dot marker is 5px tall and was clearing 28px under it — the same
    margin it uses in a pull band, where it opens a standalone statement.
    Here it sits between a back link and the title, so it needs less. */
