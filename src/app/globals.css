@@ -1949,6 +1949,17 @@ a {
   border-radius: 999px;
 }
 
+.site-dock {
+  transition:
+    transform 260ms cubic-bezier(0.2, 0.7, 0.3, 1),
+    opacity 200ms ease;
+}
+
+.site-dock.is-hidden {
+  transform: translateY(-140%);
+  opacity: 0;
+}
+
 .nav-brand {
   gap: 0.6rem;
   padding: 0.6rem 1.1rem;
@@ -1979,6 +1990,7 @@ a {
 
 .nav-switch-link[aria-current="page"] {
   color: var(--button-primary-fg);
+  font-weight: 700;
 }
 
 /* The selected page is a filled pill that slides between the three. */
@@ -2190,6 +2202,7 @@ a.say-hi-card:hover .say-hi-card-go {
 
 @media (prefers-reduced-motion: reduce) {
   .nav-switch-thumb,
+  .site-dock,
   .say-hi-card {
     transition: none;
   }

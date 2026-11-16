@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useState, type CSSProperties } from "react";
+import { useEffect, useState, type CSSProperties } from "react";
 import { GlassPanel } from "@/components/design-system/primitives/GlassPanel";
 import { SayHiDialog } from "@/components/SayHiDialog";
 
@@ -22,13 +22,40 @@ const links = [
 export function SiteHeader() {
   const pathname = usePathname();
   const [sayHiOpen, setSayHiOpen] = useState(false);
+  const [hidden, setHidden] = useState(false);
   const activeIndex = links.findIndex((link) =>
     link.exact ? pathname === link.href : pathname === link.href || pathname.startsWith(`${link.href}/`),
   );
 
+  // Out of the way while reading down, back on the first scroll up. Always
+  // there near the top of a page, and whenever focus moves into it.
+  useEffect(() => {
+    let last = window.scrollY;
+    let frame = 0;
+    const update = () => {
+      frame = 0;
+      const y = window.scrollY;
+      if (y < 120) setHidden(false);
+      else if (y > last + 6) setHidden(true);
+      else if (y < last - 6) setHidden(false);
+      if (Math.abs(y - last) > 6) last = y;
+    };
+    const onScroll = () => {
+      if (!frame) frame = window.requestAnimationFrame(update);
+    };
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+      window.cancelAnimationFrame(frame);
+    };
+  }, []);
+
   return (
     <header className="relative z-50 h-[4.5rem]">
-      <div className="pointer-events-none fixed inset-x-0 top-3 z-50">
+      <div
+        className={`site-dock pointer-events-none fixed inset-x-0 top-3 z-50${hidden ? " is-hidden" : ""}`}
+        onFocusCapture={() => setHidden(false)}
+      >
         <div className="mx-auto grid w-full max-w-[80rem] grid-cols-[1fr_auto_1fr] items-center gap-4 px-5 md:px-8">
           <GlassPanel variant="lift" className="nav-dock nav-brand pointer-events-auto justify-self-start">
             <Link href="/" className="flex items-center gap-2.5 no-underline">
