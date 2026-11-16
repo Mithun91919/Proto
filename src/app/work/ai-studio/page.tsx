@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { caseStudyRobots } from "@/content/seo";
 import { Reveal } from "@/components/Reveal";
+import { ArtboardCarousel } from "@/components/design-system/ArtboardCarousel";
 import { ArtboardFigure } from "@/components/design-system/ArtboardFigure";
 import { BeforeAfterModel } from "@/components/design-system/BeforeAfterModel";
 import { ClipFigure } from "@/components/design-system/ClipFigure";
@@ -47,61 +48,6 @@ const CHAPTERS = [
   { id: "code", label: "Built in code" },
   { id: "next", label: "Next time" },
   { id: "live", label: "Live" },
-];
-
-/**
- * One block per kind of artifact: what is specific to its editor. Agent and
- * MCP use crops of the recorded prototype; the other three wait for captures
- * and say what they need. Nothing is written for a type the author has not
- * described yet.
- */
-type ArtifactBlock = {
-  name: string;
-  note?: string;
-  src?: string;
-  width?: number;
-  height?: number;
-  alt?: string;
-  needs?: string;
-};
-
-const ARTIFACTS: ArtifactBlock[] = [
-  {
-    name: "Agent",
-    note: "A workflow of linked nodes: an orchestrator, its sub-agents, and each one’s model, MCP servers and tools. An engineer runs it and sees the result before publishing.",
-    src: "/work/ai-studio/agent-crop.jpg",
-    width: 1550,
-    height: 870,
-    alt: "An agent as a workflow: an orchestrator card linked to two sub-agent cards, each showing its model, MCP servers and tools",
-  },
-  {
-    name: "MCP",
-    note: "A set of generated tools, each shown with its method, its endpoint and what it can change, with a box to keep or drop it. It has its own playground, validation and deploy.",
-    src: "/work/ai-studio/mcp-crop.jpg",
-    width: 1400,
-    height: 700,
-    alt: "Generated MCP tools, each with its method and endpoint, a description, a read only and idempotent label, and a checkbox",
-  },
-  {
-    name: "Skill",
-    note: "A set of generated files: the instruction file, its code and its tests. An engineer reviews them, can regenerate them or approve them all, then validates, tests and publishes.",
-    src: "/work/ai-studio/skill-review.jpg",
-    width: 2400,
-    height: 1368,
-    alt: "A skill open in Studio: the chat on the left, and on the right a tree of generated files, with the instruction file open and buttons to regenerate, approve all, validate, test and publish",
-  },
-  {
-    name: "API",
-    note: "An overview of the API’s owner, domain, consumers, status and version, with its endpoints, datatypes and responses as a form or as JSON. Each endpoint can be run from the editor. Unlike the others, an API goes to review before it is published.",
-    src: "/work/ai-studio/api-editor.jpg",
-    width: 2400,
-    height: 1368,
-    alt: "An API open in Studio: the chat on the left, and on the right an overview of its owner, domain and status, a list of endpoints with their methods, and a form for the selected endpoint, with a Submit for Review button",
-  },
-  {
-    name: "Plugin",
-    needs: "The plugin editor: what a plugin bundles, and how an engineer assembles and publishes one.",
-  },
 ];
 
 export default function AiStudioPage() {
@@ -396,29 +342,147 @@ export default function AiStudioPage() {
             eyebrow="Five artifacts"
             heading="One frame, and a different editor for each artifact"
             body={[
-              "Every artifact opens with the chat on the left and the artifact on the right, with a status and the same Save, Run and Publish. What changes is the editor, because each kind of artifact is built, tested and trusted in its own way.",
+              "Every artifact opens with the chat on the left and the artifact on the right, with a status and the same Save, Run and Publish.",
+              "What changes is the editor, because each kind of artifact is built, tested and trusted in its own way.",
             ]}
           />
-          {ARTIFACTS.map((artifact) => (
-            <CaseStudyFigure key={artifact.name} rule label={artifact.name}>
-              {artifact.note ? <p className="body-text mb-6 max-w-[62ch]">{artifact.note}</p> : null}
-              {artifact.src ? (
-                <ArtboardFigure
-                  src={artifact.src}
-                  width={artifact.width as number}
-                  height={artifact.height as number}
-                  alt={artifact.alt as string}
-                />
-              ) : (
-                <MediaPlaceholder
-                  kind="image"
-                  ratio={16 / 8}
-                  needs={artifact.needs as string}
-                  source="Studio, as built"
-                />
-              )}
-            </CaseStudyFigure>
-          ))}
+          <Reveal>
+            <ArtboardCarousel
+              label="The editors for each kind of artifact"
+              slides={[
+                {
+                  title: "Agent",
+                  src: "/work/ai-studio/agent-slide.jpg",
+                  width: 2400,
+                  height: 1368,
+                  alt: "An agent as a workflow: an orchestrator card linked to two sub-agent cards, each showing its model, MCP servers and tools",
+                  caption:
+                    "A workflow of linked nodes: an orchestrator, its sub-agents, and each one’s model, MCP servers and tools. An engineer runs it and sees the result before publishing.",
+                  hotspots: [
+                    {
+                      x: 33.7,
+                      y: 28.2,
+                      title: "An orchestrator and its sub-agents",
+                      detail: "The orchestrator lists its model and its sub-agents, so how the work is divided is visible.",
+                    },
+                    {
+                      x: 72,
+                      y: 35,
+                      title: "Each sub-agent has its own model",
+                      detail: "Every agent card shows its model, MCP servers and tools.",
+                    },
+                    {
+                      x: 73,
+                      y: 72.1,
+                      title: "Drop in an MCP server",
+                      detail: "An empty slot for an MCP server or tools sits on every agent.",
+                    },
+                  ],
+                },
+                {
+                  title: "MCP",
+                  src: "/work/ai-studio/mcp-slide.jpg",
+                  width: 2400,
+                  height: 1368,
+                  alt: "Generated MCP tools, each with its method and endpoint, a description, a read only and idempotent label, and a checkbox",
+                  caption:
+                    "A set of generated tools, each shown with its method, its endpoint and what it can change, with a box to keep or drop it. It has its own playground, validation and deploy.",
+                  hotspots: [
+                    {
+                      x: 6.2,
+                      y: 19.2,
+                      title: "Generated files",
+                      detail: "Tools, overview, structure and endpoints, then install, clients and integrations.",
+                    },
+                    {
+                      x: 27.1,
+                      y: 36.3,
+                      title: "What each tool can change",
+                      detail: "Read only, idempotent or not, beside each tool.",
+                    },
+                    {
+                      x: 97.1,
+                      y: 19.5,
+                      title: "Keep or drop",
+                      detail: "A checkbox on every tool, with select all and deselect all above.",
+                    },
+                    {
+                      x: 81.7,
+                      y: 4.2,
+                      title: "Test, validate, publish, deploy",
+                      detail: "The playground, validation, publishing and deployment sit in one row at the top.",
+                    },
+                  ],
+                },
+                {
+                  title: "Skill",
+                  src: "/work/ai-studio/skill-review.jpg",
+                  width: 2400,
+                  height: 1368,
+                  alt: "A skill open in Studio: the chat on the left, and on the right a tree of generated files, with the instruction file open and buttons to regenerate, approve all, validate, test and publish",
+                  caption:
+                    "A set of generated files: the instruction file, its code and its tests. An engineer reviews them, can regenerate them or approve them all, then validates, tests and publishes.",
+                  hotspots: [
+                    {
+                      x: 32.8,
+                      y: 34.1,
+                      title: "The generated files",
+                      detail: "The instruction file, the code behind it and its tests, each marked new.",
+                    },
+                    {
+                      x: 91.1,
+                      y: 9.3,
+                      title: "Review before it counts",
+                      detail: "Regenerate the files, or approve them all.",
+                    },
+                    {
+                      x: 90.6,
+                      y: 3.4,
+                      title: "Validate, test, publish",
+                      detail: "The checks and the way out sit together at the top.",
+                    },
+                  ],
+                },
+                {
+                  title: "API",
+                  src: "/work/ai-studio/api-editor.jpg",
+                  width: 2400,
+                  height: 1368,
+                  alt: "An API open in Studio: the chat on the left, and on the right an overview of its owner, domain and status, a list of endpoints with their methods, and a form for the selected endpoint, with a Submit for Review button",
+                  caption:
+                    "An overview of the API’s owner, domain, consumers, status and version, with its endpoints, datatypes and responses as a form or as JSON. Unlike the others, an API goes to review before it is published.",
+                  hotspots: [
+                    {
+                      x: 35,
+                      y: 24.6,
+                      title: "Who owns it, and where it stands",
+                      detail: "Owner, domain, consumers, status and version, before any endpoint.",
+                    },
+                    {
+                      x: 57.8,
+                      y: 42.5,
+                      title: "Run an endpoint from the editor",
+                      detail: "A run control beside every endpoint.",
+                    },
+                    {
+                      x: 94.3,
+                      y: 3.3,
+                      title: "Submit for review",
+                      detail: "An API is submitted for review, and is published after it.",
+                    },
+                  ],
+                },
+              ]}
+            />
+          </Reveal>
+          <CaseStudyFigure rule label="Plugin">
+            <MediaPlaceholder
+              kind="image"
+              ratio={16 / 8}
+              needs="The plugin editor: what a plugin bundles, and how an engineer assembles and publishes one."
+              source="Studio, as built"
+            />
+          </CaseStudyFigure>
         </CaseStudySection>
       </CaseStudyColumn>
 
