@@ -15,9 +15,10 @@ import type { MetricMarkName } from "@/components/design-system/dotPatterns";
  * A summary designed as a page of its own, not as the case study with its
  * chapters hidden. Preview only: unlinked, and not indexed.
  *
- * Read top to bottom in about a minute: what it is, whether it worked, why it
- * was needed, what was built, what I did, and the screens, paged through from
- * a goal down to the people and the changes behind it. Every line is the case study's own wording; nothing here is new.
+ * Read top to bottom in about a minute: what it is, why it was needed, what was
+ * built, what I did, the screens paged through from a goal down to the people
+ * and the changes behind it, and then whether it worked. Every line is the case
+ * study's own wording; nothing here is new.
  */
 export const metadata: Metadata = {
   title: "Portfolio Management Platform — Summary",
@@ -203,24 +204,6 @@ export default function PortfolioManagementSummaryV2() {
         </div>
 
         <section className={SECTION}>
-          <Reveal>
-            <p className="eyebrow mb-6">What changed</p>
-            <ProofStrip
-              items={[
-                { value: "800+ hrs", label: "reclaimed every week", glyph: "field" },
-                { value: "3,500+ days", label: "of manual effort eliminated in 2025", glyph: "layers" },
-                { value: "$100K", label: "average yearly licence cost saved", glyph: "drop" },
-                { value: "50%", label: "fewer support tickets", glyph: "bars" },
-              ]}
-            />
-            <p className="mt-4 text-[0.85rem] text-[var(--muted)]">
-              Hours are reported by the product managers. Licence figure is the average yearly cost saved by retiring
-              redundant licences.
-            </p>
-          </Reveal>
-        </section>
-
-        <section className={SECTION}>
           <Reveal className="ds-stagger grid grid-cols-1 gap-4 md:grid-cols-3">
             {BEATS.map((beat) => (
               <GlassPanel key={beat.label} variant="soft" className="rounded-2xl p-7">
@@ -241,6 +224,24 @@ export default function PortfolioManagementSummaryV2() {
           <Reveal>
             <p className="eyebrow mb-6">The screens</p>
             <ArtboardCarousel label="The platform, from a goal to the work" scrollable maxHeight="44rem" slides={SLIDES} />
+          </Reveal>
+        </section>
+
+        <section className={SECTION}>
+          <Reveal>
+            <p className="eyebrow mb-6">What changed</p>
+            <ProofStrip
+              items={[
+                { value: "800+ hrs", label: "reclaimed every week", glyph: "field" },
+                { value: "3,500+ days", label: "of manual effort eliminated in 2025", glyph: "layers" },
+                { value: "$100K", label: "average yearly licence cost saved", glyph: "drop" },
+                { value: "50%", label: "fewer support tickets", glyph: "bars" },
+              ]}
+            />
+            <p className="mt-4 text-[0.85rem] text-[var(--muted)]">
+              Hours are reported by the product managers. Licence figure is the average yearly cost saved by retiring
+              redundant licences.
+            </p>
           </Reveal>
         </section>
 
