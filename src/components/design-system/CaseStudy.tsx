@@ -3,6 +3,7 @@ import type { ReactNode } from "react";
 import { Reveal } from "@/components/Reveal";
 import { DrawOnView } from "@/components/DrawOnView";
 import { getProject } from "@/content/projects";
+import { readTime } from "@/content/read-time";
 import {
   projectCraft,
   projectPlatforms,
@@ -119,7 +120,7 @@ export function CaseStudyShell({
       {chapters.length > 0 ? <ChapterProgress chapters={chapters} /> : null}
       {/* The band is the top-level item on the page. The way back, and the
           confidentiality note, live in the header. */}
-      <CaseStudyHero {...heroWithAxes} />
+      <CaseStudyHero {...heroWithAxes} readTime={readTime(slug, "full")} />
 
       <SummaryHero
         headline={summary?.title ?? hero.headline}
@@ -128,6 +129,7 @@ export function CaseStudyShell({
         art={hero.stack?.[0] ?? (hero.src ? { src: hero.src, width: hero.width ?? 2400, height: hero.height ?? 1380, alt: hero.alt } : undefined)}
         artRatio={hero.stackRatio}
         label={hero.alt}
+        readTime={readTime(slug, "summary")}
       />
 
       <CaseStudyEvidence
