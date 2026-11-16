@@ -70,7 +70,7 @@ const TRAVEL: PhotoRowItem[] = [
 
 const PARTS: Part[] = [
   {
-    heading: "It started with posters and a college magazine.",
+    heading: "Curiosity drove me into design.",
     glyph: "ramp",
     paragraphs: [
       {
