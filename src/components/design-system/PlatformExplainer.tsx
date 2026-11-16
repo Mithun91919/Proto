@@ -7,13 +7,20 @@ import { useCallback, useEffect, useRef, useState, useSyncExternalStore } from "
  *
  * 1. Plan and work were kept apart, in four external tools, each with a
  *    licence, and the work itself in Jira.
- * 2. Pfolio replaced the four with one platform. Jira stays, and feeds actual
+ * 2. Three whiteboarding sessions mapped seven stages, and none stood out.
+ * 3. Pfolio replaced the four with one platform. Jira stays, and feeds actual
  *    headcount in through its API.
- * 3. People, their work, initiatives and goals are linked in one set of
+ * 4. People, their work, initiatives and goals are linked in one set of
  *    records.
- * 4. Decisions are documented in Manager, where requests are made and
+ * 5. Decisions are documented in Manager, where requests are made and
  *    approved.
- * 5. The results.
+ * 6. Design ran a sprint ahead of three engineering teams.
+ * 7. The results.
+ *
+ * Scenes 2 and 6 were added to a film that was already timed, so they sit in
+ * their own stretches of the timeline: the original film is played through
+ * `oldTime`, which skips over them, and the canvas dips to nothing at each
+ * join so no frame is cut mid-picture.
  *
  * It is one pure function of time: `draw(t)` paints the whole frame, so the
  * film can be replayed, stepped with the arrows, and rest on its last frame
@@ -34,6 +41,11 @@ const SCENES = [
       "Who works on what, products and projects, initiatives and budgets, and goals each lived in an external tool, and each tool carried its own licence. The work itself was tracked in Jira.",
   },
   {
+    title: "Three sessions found no single stage to fix.",
+    detail:
+      "I ran three whiteboarding sessions, 12 people each and four hours each, and mapped seven lifecycle stages. Every stage lived somewhere different and every one was someone's problem, so the answer had to be a system that joins the stages up.",
+  },
+  {
     title: "Pfolio replaced the four tools with one platform.",
     detail:
       "People, Product, Initiative and Portfolio now hold in one place what the four tools did. Planned headcount is entered in Pfolio, and actual headcount comes from Jira through its API.",
@@ -49,6 +61,11 @@ const SCENES = [
       "Requests used to run across email, Slack and conversations. Product, initiative, application and pillar requests are now made and approved in Manager, each with its own status, so the decision and the action sit together.",
   },
   {
+    title: "I worked a sprint ahead of every team.",
+    detail:
+      "I was the only designer, with three product managers and three engineering teams. Design ran one sprint ahead, with a weekly review with each team and a monthly all-hands, and each product manager planned for the whole product, not only their piece.",
+  },
+  {
     title: "The result: 800+ hours a week reclaimed.",
     detail:
       "6K+ monthly users, and $100K* a year saved by retiring redundant licences. *Average yearly cost. The hours are reported by the product managers.",
@@ -58,16 +75,43 @@ const SCENES = [
 const HUES = ["#5eead4", "#7dd3fc", "#fcd34d", "#fda4af", "#a8bcc4"];
 const METRIC_HUES = ["#5eead4", "#7dd3fc", "#fcd34d"];
 
+/* Two scenes were added to a film that was already timed. `DA` and `DB` are the
+   lengths of the added stretches. The original film's own clock runs 0 to
+   28200 and is mapped onto the whole by `oldTime`; `CUTS` are the joins. */
+const DA = 5200;
+const DB = 5200;
+const OLD_A = 5600;
+const OLD_B = 22000;
+const C1 = OLD_A;
+const C2 = OLD_A + DA;
+const C3 = OLD_B + DA;
+const C4 = OLD_B + DA + DB;
+const CUTS = [C1, C2, C3, C4];
+const DIP = 280;
+const END = 28200 + DA + DB;
+
 /* A scene "begins" when its change starts and "rests" on its last frame.
-   The arrows play a scene from its beginning to its rest, then wait. */
-const END = 28200;
-const BEGIN_AT = [0, 5600, 11400, 17000, 22200];
-const REST_AT = [5600, 11200, 16800, 22000, END];
+   The arrows play a scene from its beginning to its rest, then wait. A rest is
+   never inside a dip. */
+const BEGIN_AT = [0, C1, C2, 11400 + DA, 17000 + DA, C3, 22200 + DA + DB];
+const REST_AT = [5200, C2 - 400, 11200 + DA, 16800 + DA, C3 - 400, C4 - 400, END];
 
 /* On the auto-play the platform holds still for a beat once Jira's headcount
    has flowed in, so the picture can be read before the film moves on. */
-const HOLD_AT = 11000;
+const HOLD_AT = 11000 + DA;
 const HOLD_MS = 1600;
+
+/** The original film's own time for a point on the whole timeline. */
+const oldTime = (t: number) => {
+  if (t <= OLD_A) return t;
+  if (t < C2) return OLD_A;
+  if (t <= C3) return t - DA;
+  if (t < C4) return OLD_B;
+  return t - DA - DB;
+};
+
+const STAGES = ["Awareness", "Brainstorm", "Plan", "Execute", "Assess", "Close out", "Troubleshoot"];
+const LANES = ["Design", "Engineering team 1", "Engineering team 2", "Engineering team 3"];
 
 const SPREAD: [number, number][] = [[0.1, 0.58], [0.27, 0.28], [0.46, 0.66], [0.64, 0.3], [0.9, 0.6]];
 const RING: [number, number][] = [[0.45, 0.15], [0.15, 0.47], [0.28, 0.82], [0.62, 0.82], [0.9, 0.47]];
@@ -121,7 +165,7 @@ export function PlatformExplainer() {
     () => false,
   );
 
-  const draw = useCallback((t: number) => {
+  const drawFilm = useCallback((t: number) => {
     const cv = canvas.current;
     const pal = palette.current;
     if (!cv || !pal) return;
@@ -487,6 +531,185 @@ export function PlatformExplainer() {
     ctx.globalAlpha = 1;
   }, []);
 
+  /* Sets the canvas up for one of the added scenes and returns its pen. */
+  const stage = useCallback(() => {
+    const cv = canvas.current;
+    const pal = palette.current;
+    if (!cv || !pal) return null;
+    const ctx = cv.getContext("2d");
+    if (!ctx) return null;
+    const W = cv.clientWidth;
+    const H = cv.clientHeight;
+    const dpr = window.devicePixelRatio || 1;
+    if (cv.width !== Math.round(W * dpr) || cv.height !== Math.round(H * dpr)) {
+      cv.width = Math.round(W * dpr);
+      cv.height = Math.round(H * dpr);
+    }
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    ctx.clearRect(0, 0, W, H);
+    ctx.textBaseline = "middle";
+    const dot = (x: number, y: number, a: number, r: number, color: string) => {
+      if (a <= 0.01) return;
+      ctx.globalAlpha = a;
+      ctx.fillStyle = color;
+      ctx.beginPath();
+      ctx.arc(x, y, r, 0, Math.PI * 2);
+      ctx.fill();
+    };
+    const text = (s: string, x: number, y: number, size: number, color: string, a: number, weight = 400, align: CanvasTextAlign = "center") => {
+      if (a <= 0.01) return;
+      ctx.globalAlpha = a;
+      ctx.fillStyle = color;
+      ctx.textAlign = align;
+      ctx.font = `${weight} ${size}px ${pal.font}`;
+      ctx.fillText(s, x, y);
+    };
+    const block = (x: number, y: number, w: number, h: number, a: number, stroke: string, fill: string) => {
+      if (a <= 0.01) return;
+      ctx.globalAlpha = a;
+      ctx.beginPath();
+      ctx.roundRect(x, y, w, h, 8);
+      ctx.fillStyle = fill;
+      ctx.fill();
+      ctx.strokeStyle = stroke;
+      ctx.lineWidth = 1;
+      ctx.stroke();
+    };
+    return { ctx, W, H, pal, dot, text, block };
+  }, []);
+
+  /* Scene 2: three sessions, seven stages, and none stood out. */
+  const drawInsight = useCallback(
+    (u: number) => {
+      const g = stage();
+      if (!g) return;
+      const { ctx, W, H, pal, dot, text } = g;
+      const x0 = W * 0.09;
+      const x1 = W * 0.91;
+      const lineY = H * 0.66;
+      const nodeX = (k: number) => x0 + ((x1 - x0) * k) / (STAGES.length - 1);
+
+      // the three sessions: twelve people each
+      for (let sIdx = 0; sIdx < 3; sIdx++) {
+        const cx = W * (0.34 + sIdx * 0.16);
+        const cy = H * 0.15;
+        for (let j = 0; j < 12; j++) {
+          const a = out(seg(u, 150 + sIdx * 220 + j * 22, 650 + sIdx * 220 + j * 22));
+          dot(cx + ((j % 4) - 1.5) * 10, cy + (Math.floor(j / 4) - 1) * 10, 0.9 * a, 3, pal.accent);
+        }
+      }
+      text("3 sessions · 12 people each · 4 hours each", W * 0.5, H * 0.3, 12.5, pal.soft, out(seg(u, 1000, 1600)));
+
+      // the stages, lit one after another
+      const lineP = out(seg(u, 1500, 3000));
+      ctx.globalAlpha = 0.5 * lineP;
+      ctx.strokeStyle = pal.border;
+      ctx.lineWidth = 1.5;
+      ctx.beginPath();
+      ctx.moveTo(x0, lineY);
+      ctx.lineTo(x0 + (x1 - x0) * lineP, lineY);
+      ctx.stroke();
+      STAGES.forEach((label, k) => {
+        const nx = nodeX(k);
+        const lit = out(seg(u, 1500 + k * 260, 2000 + k * 260));
+        ctx.globalAlpha = lit;
+        ctx.fillStyle = lit > 0.5 ? pal.accent : pal.solid;
+        ctx.strokeStyle = pal.accent;
+        ctx.lineWidth = 1.5;
+        ctx.beginPath();
+        ctx.arc(nx, lineY, 7, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.stroke();
+        text(label, nx, lineY + 28, 12.5, pal.ink, lit);
+        // every stage hurts about as much as the next: the same column of dots
+        for (let j = 0; j < 6; j++) {
+          const a = out(seg(u, 2700 + k * 120 + j * 60, 3200 + k * 120 + j * 60));
+          dot(nx, lineY - 22 - j * 14, 0.9 * a, 4, HUES[2]);
+        }
+      });
+      text("Seven stages. None stood out.", W * 0.5, H * 0.92, 15, pal.accent, out(seg(u, 4000, 4700)), 600);
+      ctx.globalAlpha = 1;
+    },
+    [stage],
+  );
+
+  /* Scene 6: design a sprint ahead of three engineering teams. */
+  const drawSprint = useCallback(
+    (u: number) => {
+      const g = stage();
+      if (!g) return;
+      const { ctx, W, H, pal, dot, text, block } = g;
+      const labelX = W * 0.07;
+      const colX = (c: number) => W * (0.3 + c * 0.14);
+      const bw = Math.min(112, W * 0.12);
+      const bh = 30;
+      const laneY = (r: number) => H * (0.3 + r * 0.17);
+
+      for (let c = 0; c < 5; c++) {
+        text(`Sprint ${c + 1}`, colX(c), H * 0.12, 12, pal.soft, out(seg(u, 100 + c * 100, 600 + c * 100)));
+      }
+      LANES.forEach((label, r) => {
+        text(label, labelX, laneY(r), 12.5, r === 0 ? pal.accent : pal.soft, out(seg(u, 200 + r * 150, 800 + r * 150)), r === 0 ? 600 : 400, "left");
+      });
+
+      // design blocks run one column ahead of each team's
+      for (let c = 0; c < 4; c++) {
+        const a = out(seg(u, 700 + c * 650, 1200 + c * 650));
+        block(colX(c) - bw / 2, laneY(0) - bh / 2 + (1 - a) * 8, bw, bh, a, pal.accent, "rgba(94, 234, 212, 0.14)");
+        for (let r = 1; r < 4; r++) {
+          const t0 = 1300 + c * 650 + r * 90;
+          const b = out(seg(u, t0, t0 + 500));
+          block(colX(c + 1) - bw / 2, laneY(r) - bh / 2 + (1 - b) * 8, bw, bh, b, pal.border, pal.card);
+          // the hand-off, from the design block to each team a sprint later
+          const hp = seg(u, t0 - 450, t0 + 50);
+          if (hp > 0 && hp < 1) {
+            const e = inOut(hp);
+            dot(
+              quad(colX(c) + bw / 2, (colX(c) + colX(c + 1)) / 2, colX(c + 1) - bw / 2, e),
+              quad(laneY(0), (laneY(0) + laneY(r)) / 2, laneY(r), e),
+              0.95,
+              3.2,
+              pal.accent,
+            );
+          }
+        }
+      }
+
+      // the monthly all-hands, across every lane
+      const ah = out(seg(u, 3600, 4200));
+      if (ah > 0) {
+        ctx.globalAlpha = 0.6 * ah;
+        ctx.strokeStyle = pal.soft;
+        ctx.lineWidth = 1;
+        ctx.setLineDash([2, 5]);
+        ctx.beginPath();
+        ctx.moveTo((colX(2) + colX(3)) / 2, H * 0.2);
+        ctx.lineTo((colX(2) + colX(3)) / 2, laneY(3) + 24);
+        ctx.stroke();
+        ctx.setLineDash([]);
+        text("Monthly all-hands", (colX(2) + colX(3)) / 2, laneY(3) + 40, 12, pal.soft, ah);
+      }
+      text("A weekly review with each team", W * 0.5, H * 0.94, 13, pal.accent, out(seg(u, 4200, 4800)), 600);
+      ctx.globalAlpha = 1;
+    },
+    [stage],
+  );
+
+  /* The whole film: the original, with the two added scenes in their own
+     stretches. The canvas dips to nothing at each join. */
+  const draw = useCallback(
+    (t: number) => {
+      const cv = canvas.current;
+      if (!cv) return;
+      const dip = Math.max(...CUTS.map((c) => 1 - clamp(Math.abs(t - c) / DIP)));
+      cv.style.opacity = String(1 - dip);
+      if (t >= C1 && t < C2) drawInsight(t - C1);
+      else if (t >= C3 && t < C4) drawSprint(t - C3);
+      else drawFilm(oldTime(t));
+    },
+    [drawFilm, drawInsight, drawSprint],
+  );
+
   /* Plays internal time from `from` to `to`, then waits. `hold` adds the
      pause on the platform, for the auto-play only. */
   const run = useCallback(
@@ -589,7 +812,7 @@ export function PlatformExplainer() {
           ref={canvas}
           className="ds-xp-canvas"
           role="img"
-          aria-label="Animated explainer: plan and work were kept apart in four external tools, each with a licence. Pfolio replaced them with one platform of People, Product, Initiative and Portfolio, with Jira feeding in actual headcount. People, work, initiatives and goals are linked, and decisions are documented in Manager. The results are 800+ hours reclaimed every week, 6K+ monthly users and $100K average yearly licence cost saved."
+          aria-label="Animated explainer: plan and work were kept apart in four external tools, each with a licence. Three whiteboarding sessions mapped seven stages and none stood out. Pfolio replaced them with one platform of People, Product, Initiative and Portfolio, with Jira feeding in actual headcount. People, work, initiatives and goals are linked, and decisions are documented in Manager. Design ran a sprint ahead of three engineering teams. The results are 800+ hours reclaimed every week, 6K+ monthly users and $100K average yearly licence cost saved."
         />
         {!reduced ? (
           <>

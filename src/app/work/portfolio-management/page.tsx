@@ -99,7 +99,7 @@ export default function PortfolioManagementPage() {
   return (
     <CaseStudyShell
       slug="portfolio-management"
-      summary={{ visual: <PlatformExplainer />, visualLabel: "The case at a glance" }}
+      summary={{ visual: <PlatformExplainer />, visualLabel: "The case at a glance", showSteps: false }}
       evidenceCaveat="Hours are reported by the product managers. *Average yearly cost saved by retiring redundant licences."
       evidenceMetricsLabel="The impact"
       evidence={[
