@@ -12,10 +12,11 @@ const links = [
 ];
 
 /**
- * A glass dock floating at the top of the page, in place of a full-width bar:
- * Home, Work and About in one switcher whose highlight slides to the page you
- * are on, then Say Hi, which opens the contact dialog. The wrapper keeps the
- * height the old bar had, so every page's top spacing is unchanged.
+ * Three floating pieces in place of a full-width bar: the name at the left in
+ * a glass pill, Home, Work and About in a glass switcher in the middle whose
+ * filled highlight slides to the page you are on, and Say Hi at the right,
+ * which opens the contact dialog. The wrapper keeps the height the old bar
+ * had, so every page's top spacing is unchanged.
  */
 export function SiteHeader() {
   const pathname = usePathname();
@@ -34,39 +35,47 @@ export function SiteHeader() {
 
   return (
     <header className="relative z-50 h-[4.5rem]">
-      <div className="pointer-events-none fixed inset-x-0 top-3 z-50 flex justify-center">
-        <nav
-          aria-label="Primary"
-          className={`nav-dock pointer-events-auto${scrolled ? " is-scrolled" : ""}`}
-        >
-          <div className="nav-switch" style={{ "--i": Math.max(activeIndex, 0) } as CSSProperties}>
-            <span className="nav-switch-thumb" aria-hidden data-on={activeIndex >= 0 ? "true" : "false"} />
-            {links.map((link, index) => (
-              <Link
-                key={link.href}
-                href={link.href}
-                aria-current={index === activeIndex ? "page" : undefined}
-                className="nav-switch-link"
-              >
-                {index === 0 ? (
-                  <span
-                    aria-hidden
-                    className="mark-pulse mr-2 inline-block h-2 w-2 rounded-sm bg-[var(--accent)] align-middle"
-                  />
-                ) : null}
-                {link.label}
-              </Link>
-            ))}
-          </div>
+      <div className="pointer-events-none fixed inset-x-0 top-3 z-50">
+        <div className="mx-auto grid w-full max-w-[80rem] grid-cols-[1fr_auto_1fr] items-center gap-4 px-5 md:px-8">
+          <Link
+            href="/"
+            className={`nav-dock nav-brand pointer-events-auto justify-self-start${scrolled ? " is-scrolled" : ""}`}
+          >
+            <span
+              aria-hidden
+              className="mark-pulse inline-block h-2.5 w-2.5 rounded-sm bg-[var(--accent)] shadow-[var(--shadow-mark)]"
+            />
+            <span className="display-title text-[1.05rem] text-[var(--ink)]">Mithun.</span>
+          </Link>
+
+          <nav
+            aria-label="Primary"
+            className={`nav-dock pointer-events-auto${scrolled ? " is-scrolled" : ""}`}
+          >
+            <div className="nav-switch" style={{ "--i": Math.max(activeIndex, 0) } as CSSProperties}>
+              <span className="nav-switch-thumb" aria-hidden data-on={activeIndex >= 0 ? "true" : "false"} />
+              {links.map((link, index) => (
+                <Link
+                  key={link.href}
+                  href={link.href}
+                  aria-current={index === activeIndex ? "page" : undefined}
+                  className="nav-switch-link"
+                >
+                  {link.label}
+                </Link>
+              ))}
+            </div>
+          </nav>
+
           <button
             type="button"
-            className="button button-primary button-sm"
+            className="button button-primary button-sm pointer-events-auto justify-self-end"
             aria-haspopup="dialog"
             onClick={() => setSayHiOpen(true)}
           >
             Say Hi
           </button>
-        </nav>
+        </div>
       </div>
       <SayHiDialog open={sayHiOpen} onClose={() => setSayHiOpen(false)} />
     </header>
