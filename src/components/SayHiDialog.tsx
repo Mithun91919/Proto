@@ -3,9 +3,35 @@
 import Link from "next/link";
 import { useEffect, useRef } from "react";
 import { CopyEmail } from "@/components/CopyEmail";
+import { DotText } from "@/components/DotText";
+import type { CSSProperties, PointerEvent } from "react";
 
 const EMAIL = "mithraj14@gmail.com";
 const LINKEDIN = "https://www.linkedin.com/in/mithunrajuk";
+
+/**
+ * Each card leans toward the pointer and catches a little light there. Set as
+ * custom properties on the card, so the resting tilt and the hover lift are
+ * plain CSS. Does nothing under reduced motion.
+ */
+const tilt = {
+  onPointerMove(event: PointerEvent<HTMLElement>) {
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    const el = event.currentTarget;
+    const box = el.getBoundingClientRect();
+    const x = (event.clientX - box.left) / box.width;
+    const y = (event.clientY - box.top) / box.height;
+    el.style.setProperty("--ry", `${(x - 0.5) * 12}deg`);
+    el.style.setProperty("--rx", `${(0.5 - y) * 12}deg`);
+    el.style.setProperty("--mx", `${x * 100}%`);
+    el.style.setProperty("--my", `${y * 100}%`);
+  },
+  onPointerLeave(event: PointerEvent<HTMLElement>) {
+    const el = event.currentTarget;
+    el.style.removeProperty("--ry");
+    el.style.removeProperty("--rx");
+  },
+};
 
 /**
  * "Say hello", opened from the header button. A native dialog, so the browser
@@ -39,6 +65,11 @@ export function SayHiDialog({ open, onClose }: { open: boolean; onClose: () => v
         <button type="button" className="say-hi-close" aria-label="Close" onClick={onClose}>
           <span aria-hidden>×</span>
         </button>
+        {open ? (
+          <div className="say-hi-dots" aria-hidden>
+            <DotText aspect={1} pitch={8} text="Hi" decorative />
+          </div>
+        ) : null}
         <p className="eyebrow">Contact</p>
         <h2 id="say-hi-title" className="display-title display-section mt-3 text-[var(--ink)]">
           Say hello.
@@ -50,7 +81,7 @@ export function SayHiDialog({ open, onClose }: { open: boolean; onClose: () => v
 
         <ul className="say-hi-cards">
           <li>
-            <Link href="/resume" className="say-hi-card say-hi-card-a" onClick={onClose}>
+            <Link href="/resume" className="say-hi-card say-hi-card-a" style={{ "--n": 0 } as CSSProperties} onClick={onClose} {...tilt}>
               <span className="say-hi-card-label">Résumé</span>
               <span className="say-hi-card-title">One page, as a web page and a PDF</span>
               <span className="say-hi-card-go" aria-hidden>
@@ -59,7 +90,7 @@ export function SayHiDialog({ open, onClose }: { open: boolean; onClose: () => v
             </Link>
           </li>
           <li>
-            <a href={LINKEDIN} target="_blank" rel="noopener noreferrer" className="say-hi-card say-hi-card-b">
+            <a href={LINKEDIN} target="_blank" rel="noopener noreferrer" className="say-hi-card say-hi-card-b" style={{ "--n": 1 } as CSSProperties} {...tilt}>
               <span className="say-hi-card-label">LinkedIn</span>
               <span className="say-hi-card-title">in/mithunrajuk</span>
               <span className="say-hi-card-go" aria-hidden>
@@ -68,7 +99,7 @@ export function SayHiDialog({ open, onClose }: { open: boolean; onClose: () => v
             </a>
           </li>
           <li>
-            <div className="say-hi-card say-hi-card-c">
+            <div className="say-hi-card say-hi-card-c" style={{ "--n": 2 } as CSSProperties} {...tilt}>
               <span className="say-hi-card-label">Email</span>
               <a href={`mailto:${EMAIL}`} className="say-hi-card-title say-hi-card-link">
                 {EMAIL}
