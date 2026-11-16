@@ -1,4 +1,3 @@
-import Link from "next/link";
 import type { HeroStackScreen } from "./HeroScreenStack";
 import type { ReactNode } from "react";
 import { Reveal } from "@/components/Reveal";
@@ -101,16 +100,9 @@ export function CaseStudyShell({
   return (
     <article className="ds-scope">
       {chapters.length > 0 ? <ChapterProgress chapters={chapters} /> : null}
-      {/* The band is the top-level item on the page, with the back link
-          over it rather than pushing it down. */}
-      <CaseStudyHero {...heroWithAxes}>
-        <Link
-          href="/work"
-          className="ds-scene-banner-back inline-flex items-center gap-2 text-[1.05rem] font-semibold transition hover:translate-x-[-2px]"
-        >
-          ← All Work
-        </Link>
-      </CaseStudyHero>
+      {/* The band is the top-level item on the page. The way back, and the
+          confidentiality note, live in the header. */}
+      <CaseStudyHero {...heroWithAxes} />
 
       <CaseStudyEvidence
         slug={slug}

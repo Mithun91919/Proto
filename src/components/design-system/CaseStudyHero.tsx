@@ -22,10 +22,9 @@ export type CaseStudyHeroProps = {
    * and which these projects composed with a dark copy area already in it.
    */
   artMode?: "panel" | "backdrop";
-  /** Mono footnote over the art, e.g. "UI as shipped. Mock data, some names
-      changed — internal work." Required on any case study whose client work
-      is internal: it says what is real (the interface) and what was altered
-      to show it (the data, some product names). */
+  /** Not drawn any more. The header's Confidential note says what is real and
+      what was altered, so each page no longer repeats it above the band. Kept
+      so the pages that still pass it keep compiling. */
   figureNote?: string;
   /** A fanned deck instead of one screen. Only for openers that have several
       real screens — the perspective is earned by quantity, not applied as
@@ -66,11 +65,9 @@ export function CaseStudyHero({
   alt = "",
   width,
   height,
-  figureNote,
   stack,
   stackRatio,
   artMode = "panel",
-  children,
 }: CaseStudyHeroProps) {
   const hasStack = Boolean(stack?.length) && artMode !== "backdrop";
   const hasArt = Boolean(src) || hasStack;
@@ -80,44 +77,6 @@ export function CaseStudyHero({
   // above it, because the column is sized for artwork that is nearly square.
   // The artefact's own proportions decide it — they are already declared.
   const wideArt = hasStack || (width ?? 2400) / (height ?? 1380) >= 1.2;
-
-  // The note is about the screens, which sit on the right, so it sits at the top
-  // right, in the row with the back link. In the copy column under the facts it
-  // crowded them; in mono caps across the band it read as a kicker.
-  const topRow =
-    children || figureNote ? (
-      <div className="mb-5 flex flex-wrap items-start justify-between gap-x-10 gap-y-3">
-        <div>{children}</div>
-        {figureNote ? (
-          <p
-            className="ml-auto flex items-start gap-2 text-[0.78rem] leading-5"
-            style={{ color: "var(--ds-dark-muted)" }}
-          >
-            <svg
-              className="mt-[3px] shrink-0"
-              width="12"
-              height="12"
-              viewBox="0 0 16 16"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="1.3"
-              aria-hidden
-            >
-              <circle cx="8" cy="8" r="6.6" />
-              <path d="M8 7.3v4.1" strokeLinecap="round" />
-              <circle cx="8" cy="4.8" r="0.8" fill="currentColor" stroke="none" />
-            </svg>
-            <span>
-              {figureNote.split("\n").map((line, i) => (
-                <span key={i} className="block">
-                  {line}
-                </span>
-              ))}
-            </span>
-          </p>
-        ) : null}
-      </div>
-    ) : null;
 
   const copy = (
     <div>
@@ -177,7 +136,6 @@ export function CaseStudyHero({
         />
         <span className="ds-cs-hero-scrim" aria-hidden />
         <div className="ds-pull-inner relative w-full">
-          {topRow}
           <div className="max-w-[46rem]">{copy}</div>
         </div>
       </div>
@@ -187,7 +145,6 @@ export function CaseStudyHero({
   return (
     <div className="ds-pull ds-cs-hero">
       <div className="ds-pull-inner" style={hasArt && !wideArt ? { paddingBottom: FLOOR } : undefined}>
-        {topRow}
 
         {hasArt ? (
           <div className="grid items-stretch gap-10 lg:grid-cols-[0.82fr_1.4fr] lg:gap-12">
