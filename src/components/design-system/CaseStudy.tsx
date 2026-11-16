@@ -145,9 +145,11 @@ export function CaseStudyShell({
         <SummaryBlocks slug={slug} visual={summary?.visual} visualLabel={summary?.visualLabel} />
       )}
 
-      <SummaryCta />
-
       {children}
+
+      {/* After the page's own closing statement, so the summary ends on that and
+          then offers the way into the full page. */}
+      <SummaryCta />
 
       <div className="ds-cs-column ds-cs-keep mx-auto w-full max-w-[85rem] px-5 md:px-8">
         <section className="mt-20 pt-4 md:mt-24 md:pb-24">
