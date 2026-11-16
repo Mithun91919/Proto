@@ -16,7 +16,7 @@ import {
   CaseStudySection,
   CaseStudyShell,
 } from "@/components/design-system/CaseStudy";
-import { getProject } from "@/content/projects";
+import { getAdjacentProjects } from "@/content/projects";
 import { PortfolioSummaryBody } from "./summary-body";
 
 /**
@@ -94,7 +94,7 @@ const CHAPTERS = [
 ];
 
 export default function PortfolioManagementPage() {
-  const onward = getProject("ai-studio");
+  const onward = getAdjacentProjects("portfolio-management").next;
 
   return (
     <CaseStudyShell

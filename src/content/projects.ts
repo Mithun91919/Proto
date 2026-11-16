@@ -60,6 +60,8 @@ export type Project = {
   role: string;
   tier: ProjectTier;
   featured: boolean;
+  /** Kept as a record and a route, but left out of the listings and the next/previous links, such as while a case study is being rewritten. */
+  unlisted?: boolean;
   reconstructed: boolean;
   accent: string;
   accentSoft: string;
@@ -135,6 +137,7 @@ export const projects: Project[] = [
     role: "Senior UX Designer",
     tier: "featured",
     featured: true,
+    unlisted: true,
     reconstructed: true,
     accent: "#0f766e",
     accentSoft: "#ccfbf1",
@@ -434,18 +437,19 @@ export function getProject(slug: string) {
 }
 
 export function getFeaturedProjects() {
-  return projects.filter((project) => project.featured);
+  return projects.filter((project) => project.featured && !project.unlisted);
 }
 
 export function getRangeProjects() {
-  return projects.filter((project) => !project.featured);
+  return projects.filter((project) => !project.featured && !project.unlisted);
 }
 
 export function getAdjacentProjects(slug: string) {
-  const index = projects.findIndex((project) => project.slug === slug);
+  const listed = projects.filter((project) => !project.unlisted);
+  const index = listed.findIndex((project) => project.slug === slug);
   if (index === -1) return { prev: undefined, next: undefined };
   return {
-    prev: index > 0 ? projects[index - 1] : undefined,
-    next: index < projects.length - 1 ? projects[index + 1] : undefined,
+    prev: index > 0 ? listed[index - 1] : undefined,
+    next: index < listed.length - 1 ? listed[index + 1] : undefined,
   };
 }
