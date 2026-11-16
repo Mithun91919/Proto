@@ -2035,6 +2035,14 @@ button.nav-switch-link {
   text-underline-offset: 3px;
 }
 
+.nav-meta {
+  padding-left: 0.75rem;
+  border-left: 1px solid color-mix(in oklab, var(--dock-ink) 22%, transparent);
+  font-size: 0.875rem;
+  color: var(--dock-soft);
+  white-space: nowrap;
+}
+
 .nav-title {
   max-width: 14rem;
   padding-left: 0.75rem;

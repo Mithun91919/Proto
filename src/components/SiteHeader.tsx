@@ -8,6 +8,7 @@ import { GlassPanel } from "@/components/design-system/primitives/GlassPanel";
 import { SayHiDialog } from "@/components/SayHiDialog";
 import { setCaseStudyView, useCaseStudyView } from "@/components/caseStudyView";
 import { caseStudySlug, shortTitle } from "@/content/case-study-nav";
+import { readTime } from "@/content/read-time";
 
 const links = [
   { href: "/", label: "Home", exact: true },
@@ -27,7 +28,7 @@ const views = [
  * the middle, and Say Hi at the right.
  *
  * Inside a case study the same three places change to suit it: a back pill
- * with the project's short name, a switch between the full case study and its
+ * with the project's short name and how long the current view takes to read, a switch between the full case study and its
  * summary, and the confidentiality note beside Say Hi. The highlight in the
  * switcher is the primary-button accent and slides to the current choice.
  *
@@ -92,6 +93,7 @@ export function SiteHeader() {
                 <span aria-hidden>←</span> Work
               </Link>
               <span className="nav-title">{shortTitle(slug)}</span>
+              {readTime(slug, view) ? <span className="nav-meta">{readTime(slug, view)}</span> : null}
             </GlassPanel>
           ) : (
             <GlassPanel variant="lift" className="nav-dock nav-brand pointer-events-auto justify-self-start">

@@ -32,8 +32,6 @@ export type CaseStudyHeroProps = {
   stack?: HeroStackScreen[];
   /** Deck aspect ratio. Defaults to the first screen's own. */
   stackRatio?: number;
-  /** "10 min read", set as a small label above the headline. */
-  readTime?: string;
   /** The back link, placed above everything. */
   children?: ReactNode;
 };
@@ -70,7 +68,6 @@ export function CaseStudyHero({
   stack,
   stackRatio,
   artMode = "panel",
-  readTime,
 }: CaseStudyHeroProps) {
   const hasStack = Boolean(stack?.length) && artMode !== "backdrop";
   const hasArt = Boolean(src) || hasStack;
@@ -84,11 +81,6 @@ export function CaseStudyHero({
   const copy = (
     <div>
       <span className="ds-pull-dots" aria-hidden />
-      {readTime ? (
-        <p className="ds-eyebrow mb-4" style={{ color: "#8fb3bc" }}>
-          {readTime}
-        </p>
-      ) : null}
       <h1
         className={`display-title ${hasArt ? "max-w-[18ch]" : "max-w-[24ch]"}`}
         style={{

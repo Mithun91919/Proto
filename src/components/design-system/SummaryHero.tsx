@@ -18,7 +18,6 @@ export function SummaryHero({
   art,
   artRatio,
   label,
-  readTime,
 }: {
   headline: ReactNode;
   standfirst?: string;
@@ -28,19 +27,12 @@ export function SummaryHero({
   artRatio?: number;
   /** Describes the image as a whole. */
   label?: string;
-  /** "2 min read", set as a small label above the headline. */
-  readTime?: string;
 }) {
   const facts = MAIN_FACTS.flatMap((name) => meta.filter((item) => item.label === name));
 
   const copy = (
     <div>
       <span className="ds-pull-dots" aria-hidden />
-      {readTime ? (
-        <p className="ds-eyebrow mb-4" style={{ color: "#8fb3bc" }}>
-          {readTime}
-        </p>
-      ) : null}
       <h1
         className={`display-title ${art ? "max-w-[22ch]" : "max-w-[24ch]"}`}
         style={{
