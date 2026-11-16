@@ -147,8 +147,8 @@ export function CaseStudyShell({
 
       {children}
 
-      {/* After the page's own closing statement, so the summary ends on that and
-          then offers the way into the full page. */}
+      {/* The summary ends here, with the way into the full page. The page's own
+          closing statement belongs to the full case study and is hidden. */}
       <SummaryCta />
 
       <div className="ds-cs-column ds-cs-keep mx-auto w-full max-w-[85rem] px-5 md:px-8">

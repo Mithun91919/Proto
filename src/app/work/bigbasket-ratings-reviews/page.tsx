@@ -230,7 +230,7 @@ export default function RatingsReviewsPage() {
 
       {/* One contributor feeding many readers — asymmetric, and distinct from the
           symmetric two-cluster mark bb daily closes on. */}
-      <div className="ds-cs-keep mt-16 md:mt-20">
+      <div className="mt-16 md:mt-20">
         <Reveal>
           <PullStatement eyebrow="Two audiences at once" mark="exchange">
             A review has two readers: the person writing it, and the next shopper deciding what to buy.

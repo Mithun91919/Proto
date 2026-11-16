@@ -654,7 +654,7 @@ export default function PortfolioManagementPage() {
         </CaseStudySection>
       </CaseStudyColumn>
 
-      <div className="ds-cs-keep mt-16 md:mt-20">
+      <div className="mt-16 md:mt-20">
         <Reveal>
           <PullStatement eyebrow="What I believe now" mark="seam" note={<ConfidentialNote />}>
             A plan is only as good as its link to the work.

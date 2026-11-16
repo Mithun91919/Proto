@@ -10,8 +10,8 @@ import { GlassPanel } from "./primitives/GlassPanel";
  * record, so every page has it), and the one key visual the page chooses.
  * Hidden unless the reader has chosen the summary, in CSS.
  *
- * The problem / solution / what-I-did card above it and the closing statement
- * below it are the page's own, kept visible rather than repeated here.
+ * The problem / solution / what-I-did card above it is the page's own, kept
+ * visible rather than repeated here.
  */
 export function SummaryBlocks({
   slug,

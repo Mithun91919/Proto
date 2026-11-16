@@ -227,7 +227,7 @@ export default function CreoMark1Page() {
         </CaseStudySection>
       </CaseStudyColumn>
 
-      <div className="ds-cs-keep mt-16 md:mt-20">
+      <div className="mt-16 md:mt-20">
         <PullStatement eyebrow="What it came down to" mark="rhythm">
           The phone, the type and the supporting elements stayed fixed. Only the message changed.
         </PullStatement>
