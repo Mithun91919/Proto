@@ -84,13 +84,19 @@ const ARTIFACTS: ArtifactBlock[] = [
   },
   {
     name: "Skill",
-    note: "A short instruction file, drafted by the chat.",
-    needs: "The skill editor: the instruction file the chat drafted, and how an engineer tests it.",
+    note: "A set of generated files: the instruction file, its code and its tests. An engineer reviews them, can regenerate them or approve them all, then validates, tests and publishes.",
+    src: "/work/ai-studio/skill-review.jpg",
+    width: 2400,
+    height: 1368,
+    alt: "A skill open in Studio: the chat on the left, and on the right a tree of generated files, with the instruction file open and buttons to regenerate, approve all, validate, test and publish",
   },
   {
     name: "API",
-    note: "Designed and scaffolded as REST endpoints.",
-    needs: "The API editor, and how it differs from the API platform I designed before.",
+    note: "An overview of the API’s owner, domain, consumers, status and version, with its endpoints, datatypes and responses as a form or as JSON. Each endpoint can be run from the editor. Unlike the others, an API goes to review before it is published.",
+    src: "/work/ai-studio/api-editor.jpg",
+    width: 2400,
+    height: 1368,
+    alt: "An API open in Studio: the chat on the left, and on the right an overview of its owner, domain and status, a list of endpoints with their methods, and a form for the selected endpoint, with a Submit for Review button",
   },
   {
     name: "Plugin",
@@ -278,8 +284,20 @@ export default function AiStudioPage() {
             body={[
               "We first built an elaborate interface and treated the chat as one item in it, like any other panel. That is how interfaces have always been built.",
               "We soon saw it the other way round. Building by conversation is the new way, so the chat leads, and the preview shows the person what the AI built for them.",
+              "In the demo flow below, an engineer asks for an agent that watches Jira tickets stuck in review and sends Slack reminders. Before creating anything, the chat checks the Meta Registry, the marketplace where engineers find artifacts, for agents that already do something similar, and offers to clone one. If none fits, it asks a few short questions that can be skipped, decides what to build (an agent here, not a single command or a skill) and opens the draft on a canvas. The same chat starts every kind of artifact.",
             ]}
           />
+          <CaseStudyFigure label="A demo flow: asking the chat for an agent">
+            <ClipFigure
+              mp4="/work/ai-studio/chat-create.mp4"
+              poster="/work/ai-studio/chat-create-poster.jpg"
+              alt="A recording of the coded prototype: a request for an agent, the chat checking the registry and offering three similar agents, a short form of questions, then the new agent opening on a canvas"
+              caption="Scripted for the prototype, to show how the chat helps with creation."
+              width={1600}
+              height={912}
+              variant="fill"
+            />
+          </CaseStudyFigure>
           <CaseStudyFigure label="The first version, and the one that replaced it">
             <MediaPlaceholder
               kind="image"
@@ -338,7 +356,7 @@ export default function AiStudioPage() {
             heading="I assumed one owner. It became a team’s artifact."
             body={[
               "I assumed each agent or MCP would belong to one person, and that any team could build agents on any MCP. Neither held. An agent or an MCP quickly becomes a team’s shared artifact, and only the teams that own the APIs and MCPs can publish an approved agent.",
-              "So the shared registry holds only verified agents. Anyone can build whatever they like in their own playground or on their own machine, but they can’t publish it there.",
+              "So the Meta Registry, the marketplace where engineers find artifacts, holds only verified agents. Anyone can build whatever they like in their own playground or on their own machine, but they can’t publish it there.",
             ]}
           />
           <CaseStudyFigure>
