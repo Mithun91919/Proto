@@ -7,7 +7,8 @@ import { BeforeAfterModel } from "@/components/design-system/BeforeAfterModel";
 import { ClipFigure } from "@/components/design-system/ClipFigure";
 import { ConfidentialNote } from "@/components/design-system/ConfidentialNote";
 import { DotFlow } from "@/components/design-system/DotFlow";
-import { EditorialNumberedRows } from "@/components/design-system/EditorialNumberedRow";
+import { CompactNumeral } from "@/components/design-system/CompactNumeral";
+import { PrincipleCard } from "@/components/design-system/PrincipleCard";
 import { MediaPlaceholder } from "@/components/design-system/MediaPlaceholder";
 import { PullStatement } from "@/components/design-system/PullStatement";
 import {
@@ -145,32 +146,32 @@ export default function AiStudioPage() {
             ]}
           />
           <CaseStudyFigure rule label="What the design had to work with">
-            <EditorialNumberedRows
-              rows={[
-                {
-                  number: "01",
-                  title: "Company data stays inside",
-                  detail:
-                    "Walmart restricted outside AI tools on personal licences, and the portal keeps the work inside the company.",
-                },
-                {
-                  number: "02",
-                  title: "A new kind of builder",
-                  detail: "Engineers who build artifacts, meaning agents, skills and MCPs, as well as code.",
-                },
-                {
-                  number: "03",
-                  title: "Five artifacts, five ways of working",
-                  detail: "Agents, MCPs, skills, APIs and plugins differ in how they are built, tested and trusted.",
-                },
-                {
-                  number: "04",
-                  title: "Only some teams can publish",
-                  detail:
-                    "Only the teams that own the APIs and MCPs can publish an approved agent, so the registry holds only verified ones.",
-                },
-              ]}
-            />
+            <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
+              <PrincipleCard
+                icon={<CompactNumeral value="1" />}
+                role="Security"
+                title="Company data stays inside"
+                note="Walmart restricted outside AI tools on personal licences, and the portal keeps the work inside the company."
+              />
+              <PrincipleCard
+                icon={<CompactNumeral value="2" />}
+                role="The builder"
+                title="A new kind of builder"
+                note="Engineers who build artifacts, meaning agents, skills and MCPs, as well as code."
+              />
+              <PrincipleCard
+                icon={<CompactNumeral value="3" />}
+                role="The artifacts"
+                title="Five artifacts, five ways of working"
+                note="Agents, MCPs, skills, APIs and plugins differ in how they are built, tested and trusted."
+              />
+              <PrincipleCard
+                icon={<CompactNumeral value="4" />}
+                role="Publishing"
+                title="Only some teams can publish"
+                note="Only the teams that own the APIs and MCPs can publish an approved agent, so the registry holds only verified ones."
+              />
+            </div>
           </CaseStudyFigure>
         </CaseStudySection>
 
