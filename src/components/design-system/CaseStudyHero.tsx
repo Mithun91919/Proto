@@ -1,6 +1,11 @@
 import Image from "next/image";
 import { HeroScreenStack, type HeroStackScreen } from "./HeroScreenStack";
 import type { ReactNode } from "react";
+import { SpecList } from "./SpecList";
+
+/** The facts a case study opener carries: who, for whom, when. The rest sit on
+    the page and in the work list's filters. */
+const MAIN_FACTS = ["Role", "Client", "Year"];
 
 export type CaseStudyHeroProps = {
   headline: ReactNode;
@@ -78,14 +83,16 @@ export function CaseStudyHero({
   // The artefact's own proportions decide it — they are already declared.
   const wideArt = hasStack || (width ?? 2400) / (height ?? 1380) >= 1.2;
 
+  const mainMeta = MAIN_FACTS.flatMap((label) => meta.filter((item) => item.label === label));
+
   const copy = (
     <div>
       <span className="ds-pull-dots" aria-hidden />
       <h1
-        className={`display-title ${hasArt ? "max-w-[18ch]" : "max-w-[24ch]"}`}
+        className={`display-title ${hasArt ? "max-w-[22ch]" : "max-w-[24ch]"}`}
         style={{
           color: "var(--ds-dark-ink)",
-          fontSize: hasArt ? "clamp(1.6rem, 2.72vw, 2.32rem)" : "clamp(2rem, 4.2vw, 3.1rem)",
+          fontSize: hasArt ? "clamp(1.9rem, 3.1vw, 2.7rem)" : "clamp(2rem, 4.2vw, 3.1rem)",
           lineHeight: 1.06,
           letterSpacing: "-0.015em",
         }}
@@ -102,23 +109,16 @@ export function CaseStudyHero({
           // standfirst ranked under the meta values on both size and
           // contrast, so the client and the year out-ranked the sentence
           // that says what the product is.
-          className={`mt-6 max-w-[46ch] ${hasArt ? "text-[0.94rem] leading-[1.7]" : "text-base leading-7"}`}
+          className={`mt-6 max-w-[46ch] ${hasArt ? "text-base leading-7" : "text-base leading-7"}`}
           style={{ color: "var(--ds-dark-muted)" }}
         >
           {standfirst}
         </p>
       ) : null}
-      {meta.length ? (
-        <dl className="ds-scene-banner-meta">
-          {meta.map((item) => (
-            <div key={item.label}>
-              <dt className="ds-eyebrow" style={{ color: "#8fb3bc" }}>
-                {item.label}
-              </dt>
-              <dd style={{ margin: 0, color: "var(--ds-dark-ink)" }}>{item.value}</dd>
-            </div>
-          ))}
-        </dl>
+      {mainMeta.length ? (
+        <div className="mt-8">
+          <SpecList tone="dark" facts={mainMeta} />
+        </div>
       ) : null}
     </div>
   );
@@ -165,7 +165,7 @@ export function CaseStudyHero({
             >
               {hasStack ? (
                 <div style={{ width: "92%", maxWidth: "46rem" }}>
-                  <HeroScreenStack screens={stack as HeroStackScreen[]} ratio={stackRatio} label={alt} />
+                  <HeroScreenStack screens={(stack as HeroStackScreen[]).slice(0, 1)} ratio={stackRatio} label={alt} />
                 </div>
               ) : (
                 <Image

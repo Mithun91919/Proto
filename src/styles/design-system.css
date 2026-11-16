@@ -342,6 +342,15 @@
   opacity: 0.58;
 }
 
+/* On a dark band the rule and its dots read light, not accent. */
+.ds-pull .ds-rule::before {
+  background: linear-gradient(90deg, rgb(234 243 245 / 0.22), rgb(234 243 245 / 0.08) 72%, transparent);
+}
+
+.ds-pull .ds-rule::after {
+  background-image: radial-gradient(circle, rgb(234 243 245 / 0.7) 1.35px, transparent 1.5px);
+}
+
 /* ── Page environments (B6) ──────────────────────────────────────────── */
 
 .ds-env-paper {

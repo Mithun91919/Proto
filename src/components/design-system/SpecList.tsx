@@ -10,6 +10,8 @@ type SpecListProps = {
   valueFirst?: boolean;
   /** Sets the label in the accent colour, so it reads as a tag and not as grey metadata. */
   accentLabel?: boolean;
+  /** `dark` for a list on a dark band, such as a case study's opener. */
+  tone?: "light" | "dark";
 };
 
 /** S8 · Spec list — a compact label/value list for facts that don't need a card. */
@@ -17,6 +19,7 @@ export function SpecList({
   facts,
   valueFirst = false,
   accentLabel = false,
+  tone = "light",
 }: SpecListProps) {
   return (
     <dl className="max-w-[480px]">
@@ -27,13 +30,13 @@ export function SpecList({
         >
           <dt
             className={`ds-eyebrow ${valueFirst ? "order-2 text-right" : ""}`}
-            style={accentLabel ? { color: "var(--ds-accent-deep)" } : undefined}
+            style={tone === "dark" ? { color: "#8fb3bc" } : accentLabel ? { color: "var(--ds-accent-deep)" } : undefined}
           >
             {f.label}
           </dt>
           <dd
             className={`text-base leading-6 ${valueFirst ? "order-1" : ""}`}
-            style={{ margin: 0 }}
+            style={{ margin: 0, color: tone === "dark" ? "var(--ds-dark-ink)" : undefined }}
           >
             {f.value}
           </dd>
