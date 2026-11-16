@@ -8,7 +8,7 @@ import { ClipFigure } from "@/components/design-system/ClipFigure";
 import { ConfidentialNote } from "@/components/design-system/ConfidentialNote";
 import { DotFlow } from "@/components/design-system/DotFlow";
 import { CompactNumeral } from "@/components/design-system/CompactNumeral";
-import { PrincipleCard } from "@/components/design-system/PrincipleCard";
+import { GlassPanel } from "@/components/design-system/primitives/GlassPanel";
 import { MediaPlaceholder } from "@/components/design-system/MediaPlaceholder";
 import { PullStatement } from "@/components/design-system/PullStatement";
 import {
@@ -147,30 +147,32 @@ export default function AiStudioPage() {
           />
           <CaseStudyFigure rule label="What the design had to work with">
             <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
-              <PrincipleCard
-                icon={<CompactNumeral value="1" />}
-                role="Security"
-                title="Company data stays inside"
-                note="Walmart restricted outside AI tools on personal licences, and the portal keeps the work inside the company."
-              />
-              <PrincipleCard
-                icon={<CompactNumeral value="2" />}
-                role="The builder"
-                title="A new kind of builder"
-                note="Engineers who build artifacts, meaning agents, skills and MCPs, as well as code."
-              />
-              <PrincipleCard
-                icon={<CompactNumeral value="3" />}
-                role="The artifacts"
-                title="Five artifacts, five ways of working"
-                note="Agents, MCPs, skills, APIs and plugins differ in how they are built, tested and trusted."
-              />
-              <PrincipleCard
-                icon={<CompactNumeral value="4" />}
-                role="Publishing"
-                title="Only some teams can publish"
-                note="Only the teams that own the APIs and MCPs can publish an approved agent, so the registry holds only verified ones."
-              />
+              {[
+                {
+                  title: "Company data stays inside",
+                  note: "Walmart restricted outside AI tools on personal licences, and the portal keeps the work inside the company.",
+                },
+                {
+                  title: "A new kind of builder",
+                  note: "Engineers who build artifacts, meaning agents, skills and MCPs, as well as code.",
+                },
+                {
+                  title: "Five artifacts, five ways of working",
+                  note: "Agents, MCPs, skills, APIs and plugins differ in how they are built, tested and trusted.",
+                },
+                {
+                  title: "Only some teams can publish",
+                  note: "Only the teams that own the APIs and MCPs can publish an approved agent, so the registry holds only verified ones.",
+                },
+              ].map((item, i) => (
+                <GlassPanel key={item.title} className="rounded-2xl p-7">
+                  <CompactNumeral value={String(i + 1)} />
+                  <h4 className="display-title mt-5" style={{ fontSize: "1.35rem" }}>
+                    {item.title}
+                  </h4>
+                  <p className="ds-note">{item.note}</p>
+                </GlassPanel>
+              ))}
             </div>
           </CaseStudyFigure>
         </CaseStudySection>
