@@ -89,7 +89,8 @@ export default function AiStudioPage() {
           "In Wibey, Walmart’s internal AI platform, engineers find what already exists, build what doesn’t, test it and publish it for others. I co-designed the workbenches and the conversation.",
         headline: (
           <>
-            Studio: taking AI capabilities <span style={{ color: "var(--ds-mint)" }}>from an idea towards production</span>.
+            Studio: taking AI capabilities from an <span style={{ color: "var(--ds-mint)" }}>idea</span> towards{" "}
+            <span style={{ color: "var(--ds-mint)" }}>production</span>.
           </>
         ),
         meta: [
