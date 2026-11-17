@@ -1656,7 +1656,7 @@ export default function ComponentsPage() {
           <SubLabel code="M2 · Clip figure" />
           <p className="mb-7 max-w-[68ch] text-[0.95rem] leading-7" style={{ color: "var(--ink-soft)" }}>
             A portrait screen recording (~0.54), sized by height rather than width. Stretching a phone clip to
-            a full-bleed container renders it thousands of pixels tall.
+            a full-bleed container renders it thousands of pixels tall. For a landscape desktop recording, see M4c.
           </p>
           <ClipFigure
             mp4="/work/bbdaily/recurring-order.mp4"
@@ -2008,6 +2008,28 @@ export default function ComponentsPage() {
                 { x: 90.7, y: 7.9, title: "Two ways in", detail: "Register New API or Import API, side by side at the top." },
                 { x: 88, y: 30.3, title: "Status on every row", detail: "Published, Deprecated or Retired, readable without opening the service." },
               ]}
+            />
+          </div>
+        </div>
+
+        <div className="ds-rule py-11">
+          <SubLabel code="M4c · Browser mockup, recording" />
+          <p className="mb-7 max-w-[68ch] text-[0.95rem] leading-7" style={{ color: "var(--ink-soft)" }}>
+            A desktop screen recording in the same frame as a desktop screenshot. Pass{" "}
+            <code className="font-mono text-[0.85em]">mp4</code> and the still becomes its poster, so a
+            frame from the clip goes in <code className="font-mono text-[0.85em]">src</code>. It plays muted
+            and looping while on screen, and holds the poster under reduced motion. Use this, not M2, for a
+            landscape recording: M2 is sized by height for a portrait phone clip.
+          </p>
+          <div className="max-w-[56rem]">
+            <BrowserMockup
+              route="Wibey"
+              src="/work/ai-studio/conversation-chat-poster.jpg"
+              mp4="/work/ai-studio/conversation-chat.mp4"
+              width={1920}
+              height={1104}
+              alt="A request in Wibey chat to build an agent, checked against similar agents, followed by a directed set of questions and the resulting agent open in the workbench"
+              caption="Wibey · a desktop recording, in the browser frame"
             />
           </div>
         </div>

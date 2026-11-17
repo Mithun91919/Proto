@@ -32,25 +32,25 @@ type ClipFigureProps = {
   variant?: "standalone" | "beside" | "fill";
 };
 
+type ClipVideoProps = {
+  mov?: string;
+  mp4?: string;
+  webm?: string;
+  poster?: string;
+  alt: string;
+  width?: number;
+  height?: number;
+  className?: string;
+};
+
 /**
- * A portrait screen recording (~0.54). Sized by height, not width — a phone
- * clip stretched to a full-bleed container renders thousands of pixels tall,
- * which is what made the old full-width treatment unusable.
- *
- * Holds on the poster frame under `prefers-reduced-motion`, and only plays
- * while on screen so a long page isn't decoding several clips at once.
+ * The playing part of a clip, without a figure or caption around it: muted,
+ * looping, started only while on screen, and held on its poster under
+ * `prefers-reduced-motion`. `ClipFigure` wraps it for portrait phone
+ * recordings; `BrowserMockup` wraps it for a desktop recording, so a screen
+ * recording and a screenshot of the same product get the same frame.
  */
-export function ClipFigure({
-  mov,
-  mp4,
-  webm,
-  poster,
-  alt,
-  caption,
-  width,
-  height,
-  variant = "standalone",
-}: ClipFigureProps) {
+export function ClipVideo({ mov, mp4, webm, poster, alt, width, height, className }: ClipVideoProps) {
   const videoRef = useRef<HTMLVideoElement>(null);
 
   useEffect(() => {
@@ -77,29 +77,60 @@ export function ClipFigure({
   }, []);
 
   return (
+    <video
+      ref={videoRef}
+      className={className}
+      style={width && height ? { aspectRatio: `${width} / ${height}` } : undefined}
+      poster={poster}
+      muted
+      loop
+      playsInline
+      /* `metadata`, not `none`: without intrinsic dimensions a height-sized
+         video falls back to the browser's default 300px width and renders
+         at the wrong ratio until the file loads. */
+      preload="metadata"
+      aria-label={alt}
+    >
+      {webm ? <source src={webm} type="video/webm" /> : null}
+      {mp4 ? <source src={mp4} type="video/mp4" /> : null}
+      {mov ? <source src={mov} /> : null}
+    </video>
+  );
+}
+
+/**
+ * A portrait screen recording (~0.54). Sized by height, not width — a phone
+ * clip stretched to a full-bleed container renders thousands of pixels tall,
+ * which is what made the old full-width treatment unusable.
+ *
+ * Holds on the poster frame under `prefers-reduced-motion`, and only plays
+ * while on screen so a long page isn't decoding several clips at once.
+ */
+export function ClipFigure({
+  mov,
+  mp4,
+  webm,
+  poster,
+  alt,
+  caption,
+  width,
+  height,
+  variant = "standalone",
+}: ClipFigureProps) {
+  return (
     <figure
       className={`ds-clip${variant === "beside" ? " ds-clip-beside" : ""}${variant === "fill" ? " ds-clip-fill" : ""}`}
     >
-      <video
-        ref={videoRef}
+      <ClipVideo
         className="ds-clip-video"
-        style={
-          width && height ? { aspectRatio: `${width} / ${height}` } : undefined
-        }
+        mov={mov}
+        mp4={mp4}
+        webm={webm}
         poster={poster}
-        muted
-        loop
-        playsInline
-        /* `metadata`, not `none`: without intrinsic dimensions a height-sized
-           video falls back to the browser's default 300px width and renders
-           at the wrong ratio until the file loads. */
-        preload="metadata"
-        aria-label={alt}
-      >
-        {webm ? <source src={webm} type="video/webm" /> : null}
-        {mp4 ? <source src={mp4} type="video/mp4" /> : null}
-        {mov ? <source src={mov} /> : null}
-      </video>
+        alt={alt}
+        width={width}
+        height={height}
+      />
       {caption ? (
         <figcaption className="ds-media-caption">{caption}</figcaption>
       ) : null}

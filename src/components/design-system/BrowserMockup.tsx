@@ -1,6 +1,7 @@
 import Image from "next/image";
 import type { CSSProperties, ReactNode } from "react";
 import { AnnotationToggle } from "./AnnotationToggle";
+import { ClipVideo } from "./ClipFigure";
 import { DotSkeleton } from "./DotSkeleton";
 import { ImageHotspots, type Hotspot } from "./ImageHotspots";
 import { ScrollFrame } from "./ScrollFrame";
@@ -17,6 +18,13 @@ type BrowserMockupProps = {
   width: number;
   height: number;
   alt: string;
+  /**
+   * A screen recording of the same product, played in the frame in place of
+   * the still. `src` then becomes its poster frame, so it should be a frame
+   * from the clip. Muted, looping, and only playing while on screen; a
+   * desktop recording gets the same chrome as a desktop screenshot.
+   */
+  mp4?: string;
   /** Rendered below the frame in page type, never overlaid on the screenshot. */
   caption?: string;
   /**
@@ -91,6 +99,7 @@ export function BrowserMockup({
   width,
   height,
   alt,
+  mp4,
   caption,
   scrollable = false,
   crop = false,
@@ -126,14 +135,25 @@ export function BrowserMockup({
                 with the screenshot either. */}
             <div className="relative">
             <DotSkeleton />
-            <Image
-              src={src}
-              width={width}
-              height={height}
-              alt={alt}
-              sizes="(max-width: 900px) 100vw, 900px"
-              className="relative z-[1] block h-auto w-full"
-            />
+            {mp4 ? (
+              <ClipVideo
+                mp4={mp4}
+                poster={src}
+                alt={alt}
+                width={width}
+                height={height}
+                className="relative z-[1] block h-auto w-full"
+              />
+            ) : (
+              <Image
+                src={src}
+                width={width}
+                height={height}
+                alt={alt}
+                sizes="(max-width: 900px) 100vw, 900px"
+                className="relative z-[1] block h-auto w-full"
+              />
+            )}
             {hotspots?.length ? <ImageHotspots hotspots={hotspots} /> : null}
             </div>
           </FrameWrapper>

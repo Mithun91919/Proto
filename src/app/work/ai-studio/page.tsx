@@ -4,7 +4,6 @@ import { caseStudyRobots } from "@/content/seo";
 import { Reveal } from "@/components/Reveal";
 import { BrowserMockup } from "@/components/design-system/BrowserMockup";
 import { BeforeAfterModel } from "@/components/design-system/BeforeAfterModel";
-import { ClipFigure } from "@/components/design-system/ClipFigure";
 import { CompositionDiagram } from "@/components/design-system/CompositionDiagram";
 import { ConfidentialNote } from "@/components/design-system/ConfidentialNote";
 import { MediaPlaceholder } from "@/components/design-system/MediaPlaceholder";
@@ -40,7 +39,6 @@ const CHAPTERS = [
   { id: "wibey", label: "What is Wibey" },
   { id: "problem", label: "The problem" },
   { id: "approach", label: "The approach" },
-  { id: "exists", label: "What exists" },
   { id: "path", label: "The conversation" },
   { id: "workbenches", label: "Workbenches" },
   { id: "testing", label: "Testing" },
@@ -212,32 +210,6 @@ export default function AiStudioPage() {
           </CaseStudyFigure>
         </CaseStudySection>
 
-        <CaseStudySection id="exists">
-          <div className="ds-cs-split" style={{ "--split-copy": "18rem" } as CSSProperties}>
-            <CaseStudyChapter
-              layout="flow"
-              eyebrow="Reuse"
-              heading="Start by looking at what already exists"
-              body={[
-                "A user might arrive with an idea and ask Wibey to create something. Given the duplication we had seen across teams, we designed the conversation to check existing artifacts first and suggest relevant matches.",
-                "The user could open a suggested artifact in its workbench, inspect it and test it before deciding how to proceed. If it was a useful starting point, they could create a copy and iterate privately. If it did not meet their needs, they could start from scratch.",
-                "This decision brought reuse into the moment of creation. Instead of asking users to independently search elsewhere before starting, the workflow made existing work part of the conversation.",
-              ]}
-            />
-            <CaseStudyFigure>
-              <ClipFigure
-                variant="fill"
-                mp4="/work/ai-studio/reuse-chat.mp4"
-                poster="/work/ai-studio/reuse-chat-poster.jpg"
-                width={1920}
-                height={1104}
-                alt="A request in Wibey chat to build an agent that monitors Jira tickets stuck in review and sends Slack reminders. Wibey checks its registry first, lists three similar agents with Try now and Learn more, then asks whether to clone and modify one or create from scratch."
-                caption="A request to build an agent. Wibey checks for similar agents first, then offers to clone one or start from scratch."
-              />
-            </CaseStudyFigure>
-          </div>
-        </CaseStudySection>
-
         <CaseStudySection id="path">
           <CaseStudyChapter
             eyebrow="The conversation"
@@ -249,10 +221,14 @@ export default function AiStudioPage() {
             ]}
           />
           <CaseStudyFigure>
-            <MediaPlaceholder
-              kind="video"
-              needs="A recording of a directed conversation: the assistant asking questions as the user progresses, suggested next steps such as adding error handling or tests, and the artifact open in the workbench beside the chat."
-              source="Fresh recording to come."
+            <BrowserMockup
+              route="Wibey"
+              src="/work/ai-studio/conversation-chat-poster.jpg"
+              mp4="/work/ai-studio/conversation-chat.mp4"
+              width={1920}
+              height={1104}
+              alt="A request in Wibey chat to build an agent that monitors Jira tickets stuck in review and sends Slack reminders. Wibey checks for similar agents and offers to clone one or start from scratch, then asks questions about the stuck threshold, Slack delivery, language and scheduling. The agent then opens as a flow in the workbench beside the chat."
+              caption="A request to build an agent, a directed set of questions, and the resulting agent open in the workbench beside the chat."
             />
           </CaseStudyFigure>
         </CaseStudySection>
