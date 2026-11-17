@@ -125,14 +125,14 @@ export const projects: Project[] = [
     number: "02",
     label: "AI Studio",
     title:
-      "Studio: from agents on one engineer\u2019s machine to one place to build, host and share them.",
+      "Studio: making AI capabilities reusable, not just easy to build.",
     summary:
-      "People kept the AI skills, agents and MCPs they built on their own machines, and shared them only through a repo. My first agentic product: I owned the entire experience for one place in Wibey, Walmart\u2019s internal AI portal, to build, host and share all five kinds of artifact, designed around what a chat can\u2019t do, and built the front end in code.",
-    outcome: "Live since August · five kinds of AI artifact in one place",
+      "Studio is the part of Wibey, Walmart\u2019s internal AI platform, where engineers find what already exists, build what doesn\u2019t, test it and publish it for others. I co-designed the workbenches and the conversation with a staff designer, and delivered a coded prototype.",
+    outcome: "Discovery, creation, testing and publishing in one workflow",
     metrics: [],
     org: "Walmart Global Tech",
     domain: "Developer tools",
-    ownership: "Design owner, start to finish",
+    ownership: "Co-designer, with a staff designer",
     timeframe: "2026–Present",
     role: "Senior UX Designer",
     tier: "featured",
@@ -149,15 +149,15 @@ export const projects: Project[] = [
     systemMap: [
       {
         label: "Before",
-        detail: "Skills, agents and MCPs on one person\u2019s machine, shared only through a repo",
+        detail: "AI capabilities built with market tools, and similar ones rebuilt by different teams",
       },
       {
         label: "Intervention",
-        detail: "One place in Wibey to create, manage, publish and share all five kinds of artifact",
+        detail: "Discovery, conversational creation, workbenches, testing and publishing in one connected workflow",
       },
       {
         label: "After",
-        detail: "Artifacts that are hosted and published, built from a front end designed in code",
+        detail: "Existing work found first, and a path from an idea towards production",
       },
     ],
     tags: ["AI Platform", "Design in Code", "Developer Tools"],
