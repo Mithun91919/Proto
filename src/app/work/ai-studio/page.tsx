@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { caseStudyRobots } from "@/content/seo";
 import { Reveal } from "@/components/Reveal";
+import { CompositionDiagram } from "@/components/design-system/CompositionDiagram";
 import { ConfidentialNote } from "@/components/design-system/ConfidentialNote";
 import { MediaPlaceholder } from "@/components/design-system/MediaPlaceholder";
 import { PullStatement } from "@/components/design-system/PullStatement";
@@ -130,12 +131,7 @@ export default function AiStudioPage() {
             ]}
           />
           <CaseStudyFigure label="How these building blocks can work together">
-            <MediaPlaceholder
-              kind="diagram"
-              ratio={16 / 7}
-              needs="A diagram of one possible composition: an agent carries out a task and can use a skill (instructions for a capability) and connect through an MCP server (which exposes tools); the tools may call an API, which connects to an external system or data."
-              source="From the brief's flowchart."
-            />
+            <CompositionDiagram />
             <p className="ds-media-caption">
               For example, an agent helping with onboarding could use a skill for its instructions and an MCP tool to
               retrieve information from another system. That tool may rely on an API to access the service. This is one
