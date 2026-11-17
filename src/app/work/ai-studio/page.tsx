@@ -23,7 +23,7 @@ import { getProject } from "@/content/projects";
  * The prose is the brief's own. Every screen and recording is a stated
  * placeholder until the fresh recordings arrive, and there are no figures yet:
  * the numbers are to come, and the page leaves their place open rather than
- * stating any. The route is unlisted from Home and Work until the media is in.
+ * stating any. It is listed on Home and Work while the recordings are pending.
  */
 
 export const metadata: Metadata = {
@@ -127,8 +127,8 @@ export default function AiStudioPage() {
             eyebrow="Wibey"
             heading="First, what is Wibey?"
             body={[
-              "Wibey is Walmart’s internal AI platform, designed to help engineers with their day-to-day work. Alongside using AI to assist with tasks, engineers can build capabilities for their teams. Studio is the part of Wibey we designed for creating, managing, testing and publishing those capabilities.",
-              "An engineer might need several of them for one project. For example, an agent may use tools to retrieve information and perform actions. Each piece needs to be created and reviewed, but it also needs to work within a larger ecosystem.",
+              "Wibey is Walmart’s internal AI platform, designed to help engineers with their day-to-day work. Alongside using AI to assist with tasks, engineers can build capabilities for their teams. Studio is the part of Wibey we designed for creating, managing, testing and publishing those capabilities. In this case study, I call them artifacts: agents, skills, MCP servers and APIs.",
+              "An engineer might need several artifacts for one project. For example, an agent may use tools to retrieve information and perform actions. Each piece needs to be created and reviewed, but it also needs to work within a larger ecosystem.",
             ]}
           />
           <CaseStudyFigure label="One possible way these building blocks can work together">

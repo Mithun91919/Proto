@@ -137,7 +137,6 @@ export const projects: Project[] = [
     role: "Senior UX Designer",
     tier: "featured",
     featured: true,
-    unlisted: true,
     reconstructed: true,
     accent: "#0f766e",
     accentSoft: "#ccfbf1",
