@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { caseStudyRobots } from "@/content/seo";
 import { Reveal } from "@/components/Reveal";
+import { ArtboardFigure } from "@/components/design-system/ArtboardFigure";
 import { BeforeAfterModel } from "@/components/design-system/BeforeAfterModel";
 import { CompositionDiagram } from "@/components/design-system/CompositionDiagram";
 import { ConfidentialNote } from "@/components/design-system/ConfidentialNote";
@@ -131,6 +132,15 @@ export default function AiStudioPage() {
               "An engineer might need several artifacts for one project. For example, an agent may use tools to retrieve information and perform actions. Each piece needs to be created and reviewed, but it also needs to work within a larger ecosystem.",
             ]}
           />
+          <CaseStudyFigure>
+            <ArtboardFigure
+              src="/work/ai-studio/wibey-chat.webp"
+              width={2000}
+              height={1156}
+              alt="Wibey: a list of workspaces and conversations on the left, and on the right a chat in which the assistant has answered a request and offers three follow-up options below the message box"
+              caption="Wibey. Workspaces and conversations sit on the left. The chat is on the right, with suggested next steps above the message box."
+            />
+          </CaseStudyFigure>
         </CaseStudySection>
 
         <CaseStudySection id="problem">
