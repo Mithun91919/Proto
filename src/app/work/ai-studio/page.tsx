@@ -130,8 +130,7 @@ export default function AiStudioPage() {
               eyebrow="Wibey"
               heading="First, what is Wibey?"
               body={[
-                "Wibey is Walmart’s internal AI platform, designed to help engineers with their day-to-day work. Alongside using AI to assist with tasks, engineers can build capabilities for their teams. Studio is the part of Wibey we designed for creating, managing, testing and publishing those capabilities. In this case study, I call them artifacts: agents, skills, MCP servers and APIs.",
-                "An engineer might need several artifacts for one project. For example, an agent may use tools to retrieve information and perform actions. Each piece needs to be created and reviewed, but it also needs to work within a larger ecosystem.",
+                "Wibey is Walmart’s internal AI platform for engineers. Studio is where they create, manage, test and publish capabilities for their teams. I call these artifacts: agents, skills, MCP servers and APIs. A project often needs several, and they have to work together.",
               ]}
             />
             <CaseStudyFigure>
