@@ -111,9 +111,9 @@ export default function AiStudioPage() {
           <PullStatement
             eyebrow="Where this started"
             mark="connection"
-            note="Making an agent secure, useful and available for others to reuse is a different challenge."
+            note="Security and other limits kept engineers’ work from reaching production, or from being usable by other teams."
           >
-            Creating an AI agent is becoming easier.
+            Building was the easy part. Shipping and sharing were not.
           </PullStatement>
         </Reveal>
       </div>
