@@ -126,7 +126,6 @@ export default function AiStudioPage() {
             heading="First, what is Wibey?"
             body={[
               "Wibey is Walmart’s internal AI platform, designed to help engineers with their day-to-day work. Alongside using AI to assist with tasks, engineers can build capabilities for their teams. Studio is the part of Wibey we designed for creating, managing, testing and publishing those capabilities.",
-              "Those building blocks serve different purposes. An agent can carry out a task; a skill describes a capability it can use; an MCP provides a way to connect AI experiences with tools and external systems; and an API lets software systems communicate. In this case study, I use artifact as a shorthand for any of these things.",
               "An engineer might need several of them for one project. For example, an agent may use tools to retrieve information and perform actions. Each piece needs to be created and reviewed, but it also needs to work within a larger ecosystem.",
             ]}
           />
