@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { caseStudyRobots } from "@/content/seo";
 import { Reveal } from "@/components/Reveal";
+import { BeforeAfterModel } from "@/components/design-system/BeforeAfterModel";
 import { CompositionDiagram } from "@/components/design-system/CompositionDiagram";
 import { ConfidentialNote } from "@/components/design-system/ConfidentialNote";
 import { MediaPlaceholder } from "@/components/design-system/MediaPlaceholder";
@@ -147,11 +148,21 @@ export default function AiStudioPage() {
             eyebrow="The problem"
             heading="The problem extended beyond creation"
             body={[
-              "Before Studio, engineers could use tools available in the market to build these artifacts. But data security and other limitations made it difficult to take what they created into production or make it consumable by other teams.",
-              "There was a second problem: teams often worked on similar needs independently. Over time, multiple versions of similar capabilities accumulated, making it harder to understand what already existed and which option to use.",
-              "We needed an experience that helped engineers move from concept towards production while working within Wibey’s protection layer. It also needed to make existing work easier to find and reuse, so every request did not automatically become a new build.",
+              "Before Studio, engineers could use tools available in the market to build these artifacts.",
             ]}
           />
+          <CaseStudyFigure>
+            <BeforeAfterModel
+              before={{
+                heading: "Hard to take further",
+                body: "Data security and other limitations made it difficult to take what they created into production or make it consumable by other teams. Teams also worked on similar needs independently, so multiple versions of similar capabilities accumulated, and it was harder to understand what already existed and which option to use.",
+              }}
+              after={{
+                heading: "From concept towards production",
+                body: "An experience that worked within Wibey’s protection layer, and made existing work easier to find and reuse, so every request did not automatically become a new build.",
+              }}
+            />
+          </CaseStudyFigure>
         </CaseStudySection>
 
         <CaseStudySection id="approach">
