@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import { caseStudyRobots } from "@/content/seo";
 import { Reveal } from "@/components/Reveal";
 import { BeforeAfterModel } from "@/components/design-system/BeforeAfterModel";
-import { DotFlow } from "@/components/design-system/DotFlow";
 import { CompositionDiagram } from "@/components/design-system/CompositionDiagram";
 import { ConfidentialNote } from "@/components/design-system/ConfidentialNote";
 import { MediaPlaceholder } from "@/components/design-system/MediaPlaceholder";
@@ -132,15 +131,6 @@ export default function AiStudioPage() {
               "An engineer might need several artifacts for one project. For example, an agent may use tools to retrieve information and perform actions. Each piece needs to be created and reviewed, but it also needs to work within a larger ecosystem.",
             ]}
           />
-          <CaseStudyFigure label="One possible way these building blocks can work together">
-            <CompositionDiagram />
-            <p className="ds-media-caption">
-              For example, an agent helping with onboarding could use a skill for its instructions and an MCP tool to
-              retrieve information from another system. That tool may rely on an API to access the service. This is one
-              possible composition, not an inheritance hierarchy or a required recipe: agents can use different
-              combinations of skills and tools, and APIs can also be used independently.
-            </p>
-          </CaseStudyFigure>
         </CaseStudySection>
 
         <CaseStudySection id="problem">
@@ -172,22 +162,16 @@ export default function AiStudioPage() {
             eyebrow="The approach"
             heading="Connect discovery, creation and reuse"
             body={[
-              "We designed Studio around the journey an engineer takes, and let conversation and a workbench share it.",
+              "We designed Studio around the journey an engineer would take: describe a need, explore what already exists, inspect or build an artifact, test and refine it, and prepare it for publishing.",
             ]}
           />
-          <CaseStudyFigure label="The journey an engineer takes">
-            <DotFlow
-              stages={[
-                "Describe a need",
-                "Explore what already exists",
-                "Inspect or build an artifact",
-                "Test and refine it",
-                "Prepare it for publishing",
-              ]}
-            />
+          <CaseStudyFigure label="One possible way these building blocks can work together">
+            <CompositionDiagram />
             <p className="ds-media-caption">
-              Conversation described intent. The workbench showed the structure and controls, and changed with what was
-              being built.
+              For example, an agent helping with onboarding could use a skill for its instructions and an MCP tool to
+              retrieve information from another system. That tool may rely on an API to access the service. This is one
+              possible composition, not an inheritance hierarchy or a required recipe: agents can use different
+              combinations of skills and tools, and APIs can also be used independently.
             </p>
           </CaseStudyFigure>
         </CaseStudySection>
