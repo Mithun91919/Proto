@@ -72,6 +72,53 @@ const CONVERSATION_SLIDES: ArtboardSlide[] = [
   },
 ];
 
+const WORKBENCH_SLIDES: ArtboardSlide[] = [
+  {
+    title: "Agents: see the pieces working together",
+    route: "Wibey",
+    src: "/work/ai-studio/workbench-agent-poster.jpg",
+    mp4: "/work/ai-studio/workbench-agent.mp4",
+    width: 1920,
+    height: 1104,
+    alt: "The agent workbench: a canvas showing an orchestrator and two connected agents, with a menu to add a sub-agent, an MCP server, tools, a human handoff or a termination, and the chat beside it.",
+    caption:
+      "A canvas shows an orchestrator and its connected agents, with their models, MCP servers and tools. A menu adds a sub-agent, an MCP server, tools, a human handoff or a termination.",
+  },
+  {
+    title: "APIs: work with the contract directly",
+    route: "Wibey",
+    src: "/work/ai-studio/workbench-api-poster.jpg",
+    mp4: "/work/ai-studio/workbench-api.mp4",
+    width: 1920,
+    height: 1104,
+    alt: "The API workbench: an overview of a service with its endpoints, datatypes and responses in tabs, a form for the selected endpoint, and the chat beside it.",
+    caption:
+      "Endpoints, datatypes and responses sit in a structured view beside the chat, so the engineer can inspect each detail and move towards review.",
+  },
+  {
+    title: "MCPs: review the generated tools",
+    route: "Wibey",
+    src: "/work/ai-studio/workbench-mcp-poster.jpg",
+    mp4: "/work/ai-studio/workbench-mcp.mp4",
+    width: 1920,
+    height: 1104,
+    alt: "The MCP workbench: a list of generated tools, each with its method, name, description and annotations, and a toolbar with MCP Playground, Validate, Publish and Deploy.",
+    caption:
+      "The generated tools are listed for review, each with its description and annotations. MCP Playground, Validate, Publish and Deploy are in the toolbar.",
+  },
+  {
+    title: "Skills: inspect the generated files",
+    route: "Wibey",
+    src: "/work/ai-studio/workbench-skill-poster.jpg",
+    mp4: "/work/ai-studio/workbench-skill.mp4",
+    width: 1920,
+    height: 1104,
+    alt: "The skill workbench: a tree of generated files beside the contents of the selected file, with Save, Validate, Test and Publish in the toolbar.",
+    caption:
+      "The generated files sit in a tree beside their contents. The engineer can inspect them, then test and validate before publishing.",
+  },
+];
+
 const CHAPTERS = [
   { id: "wibey", label: "What is Wibey" },
   { id: "problem", label: "The problem" },
@@ -263,62 +310,17 @@ export default function AiStudioPage() {
         </CaseStudySection>
 
         <CaseStudySection id="workbenches">
-          <CaseStudyChapter
-            layout="stacked"
+          <ArtboardCarousel
+            layout="split"
+            label="The workbenches for agents, APIs, MCPs and skills"
             eyebrow="Workbenches"
-            heading="One Studio, different workbenches"
-            body={[
+            title="One Studio, different workbenches"
+            description={[
               "An agent, an API and an MCP do not all have the same structure. We therefore designed dedicated workbenches that shared a conversational approach but presented the details relevant to each type of artifact.",
-            ]}
-          />
-
-          <CaseStudyChapter
-            eyebrow="Agents"
-            heading="Agents: see the pieces working together"
-            body={[
-              "The agent workbench used a visual canvas to show an orchestrator and its connected agents. The prototype exposed details such as models, sub-agents, MCP servers and tools, with controls to add or adjust components.",
-              "This gave engineers a way to inspect the relationships within an agent setup while continuing to refine it through conversation. They could run and review the work as they developed it.",
-            ]}
-          />
-          <CaseStudyFigure>
-            <MediaPlaceholder
-              kind="video"
-              needs="The agent workbench: the canvas showing an orchestrator and its connected agents, with models, sub-agents, MCP servers and tools, and the controls to add or adjust components."
-              source="Fresh recording to come."
-            />
-          </CaseStudyFigure>
-
-          <CaseStudyChapter
-            eyebrow="APIs"
-            heading="APIs: work with the contract directly"
-            body={[
-              "An API is defined through details such as endpoints, datatypes and responses. The API workbench brought these into a structured interface alongside chat.",
-              "In the prototype, engineers could inspect endpoint details, work with form and JSON views, and move towards review. Chat could help propose or refine a change; the workbench made the details visible for direct inspection.",
-            ]}
-          />
-          <CaseStudyFigure>
-            <MediaPlaceholder
-              kind="video"
-              needs="The API workbench: endpoint details, the form and JSON views, and the step towards review, beside the chat."
-              source="Fresh recording to come."
-            />
-          </CaseStudyFigure>
-
-          <CaseStudyChapter
-            eyebrow="MCPs and skills"
-            heading="MCPs and skills: inspect what was generated"
-            body={[
-              "The MCP workbench presented generated tools for review, along with actions such as validation and access to a playground. The skill workbench exposed generated files so an engineer could inspect the contents, test and validate the work before publishing.",
               "Across these experiences, the common idea was to make the result of the conversation tangible. Engineers needed to see what they were creating and have ways to work with it directly.",
             ]}
+            slides={WORKBENCH_SLIDES}
           />
-          <CaseStudyFigure>
-            <MediaPlaceholder
-              kind="video"
-              needs="The MCP workbench with its generated tools, validation and playground, and the skill workbench with its generated files."
-              source="Fresh recording to come."
-            />
-          </CaseStudyFigure>
         </CaseStudySection>
 
         <CaseStudySection id="testing">
