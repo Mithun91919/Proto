@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import type { CSSProperties } from "react";
 import { caseStudyRobots } from "@/content/seo";
 import { Reveal } from "@/components/Reveal";
 import { BrowserMockup } from "@/components/design-system/BrowserMockup";
@@ -123,45 +124,47 @@ export default function AiStudioPage() {
 
       <CaseStudyColumn>
         <CaseStudySection id="wibey" boundary={false} className="pt-14 md:pt-20">
-          <CaseStudyChapter
-            layout="stacked"
-            eyebrow="Wibey"
-            heading="First, what is Wibey?"
-            body={[
-              "Wibey is Walmart’s internal AI platform, designed to help engineers with their day-to-day work. Alongside using AI to assist with tasks, engineers can build capabilities for their teams. Studio is the part of Wibey we designed for creating, managing, testing and publishing those capabilities. In this case study, I call them artifacts: agents, skills, MCP servers and APIs.",
-              "An engineer might need several artifacts for one project. For example, an agent may use tools to retrieve information and perform actions. Each piece needs to be created and reviewed, but it also needs to work within a larger ecosystem.",
-            ]}
-          />
-          <CaseStudyFigure>
-            <BrowserMockup
-              route="Wibey"
-              src="/work/ai-studio/wibey-chat.webp"
-              width={2000}
-              height={1156}
-              alt="Wibey: a list of workspaces and conversations on the left, and on the right a chat in which the assistant has answered a request and offers three follow-up options above the message box"
-              caption="Wibey, where Studio lives: conversations on the right, grouped into workspaces on the left."
-              hotspots={[
-                {
-                  x: 15,
-                  y: 35.4,
-                  title: "Work grouped into workspaces",
-                  detail: "Conversations sit under named workspaces, each with a count and, where it is shared, the people in it.",
-                },
-                {
-                  x: 61,
-                  y: 74,
-                  title: "Suggested next steps",
-                  detail: "After an answer, Wibey offers follow-up options, so the next step is one click rather than a new prompt.",
-                },
-                {
-                  x: 46,
-                  y: 88,
-                  title: "Tools and model, at the message box",
-                  detail: "Tools and the model are chosen where the message is written.",
-                },
+          <div className="ds-cs-split" style={{ "--split-copy": "26rem" } as CSSProperties}>
+            <CaseStudyChapter
+              layout="flow"
+              eyebrow="Wibey"
+              heading="First, what is Wibey?"
+              body={[
+                "Wibey is Walmart’s internal AI platform, designed to help engineers with their day-to-day work. Alongside using AI to assist with tasks, engineers can build capabilities for their teams. Studio is the part of Wibey we designed for creating, managing, testing and publishing those capabilities. In this case study, I call them artifacts: agents, skills, MCP servers and APIs.",
+                "An engineer might need several artifacts for one project. For example, an agent may use tools to retrieve information and perform actions. Each piece needs to be created and reviewed, but it also needs to work within a larger ecosystem.",
               ]}
             />
-          </CaseStudyFigure>
+            <CaseStudyFigure>
+              <BrowserMockup
+                route="Wibey"
+                src="/work/ai-studio/wibey-chat.webp"
+                width={2000}
+                height={1156}
+                alt="Wibey: a list of workspaces and conversations on the left, and on the right a chat in which the assistant has answered a request and offers three follow-up options above the message box"
+                caption="Wibey, where Studio lives: conversations on the right, grouped into workspaces on the left."
+                hotspots={[
+                  {
+                    x: 15,
+                    y: 35.4,
+                    title: "Work grouped into workspaces",
+                    detail: "Conversations sit under named workspaces, each with a count and, where it is shared, the people in it.",
+                  },
+                  {
+                    x: 61,
+                    y: 74,
+                    title: "Suggested next steps",
+                    detail: "After an answer, Wibey offers follow-up options, so the next step is one click rather than a new prompt.",
+                  },
+                  {
+                    x: 46,
+                    y: 88,
+                    title: "Tools and model, at the message box",
+                    detail: "Tools and the model are chosen where the message is written.",
+                  },
+                ]}
+              />
+            </CaseStudyFigure>
+          </div>
         </CaseStudySection>
 
         <CaseStudySection id="problem">
