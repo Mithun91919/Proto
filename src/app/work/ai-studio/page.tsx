@@ -124,7 +124,7 @@ export default function AiStudioPage() {
 
       <CaseStudyColumn>
         <CaseStudySection id="wibey" boundary={false} className="pt-14 md:pt-20">
-          <div className="ds-cs-split" style={{ "--split-copy": "26rem" } as CSSProperties}>
+          <div className="ds-cs-split" style={{ "--split-copy": "18rem" } as CSSProperties}>
             <CaseStudyChapter
               layout="flow"
               eyebrow="Wibey"
