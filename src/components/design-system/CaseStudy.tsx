@@ -192,10 +192,17 @@ export function CaseStudyChapter({
   links,
   figure,
   layout = "split",
+  fullWidth = false,
 }: {
   eyebrow?: string;
   heading: string;
   body: string[];
+  /**
+   * `stacked` only: run the body across the full width in one column instead
+   * of two. For a chapter whose body is a single short lead-in, which would
+   * otherwise sit in the left half with the right half empty.
+   */
+  fullWidth?: boolean;
   /** Small note under the body — the source or limit of a figure stated above. */
   footnote?: string;
   /**
@@ -292,9 +299,13 @@ export function CaseStudyChapter({
         </div>
         {/* Real text columns rather than a two-cell grid, so the shape holds
             whatever number of paragraphs a chapter carries. */}
-        <div className="mt-9 md:columns-2 md:gap-16">
+        <div className={`mt-9${fullWidth ? "" : " md:columns-2 md:gap-16"}`}>
           {body.map((paragraph) => (
-            <p key={paragraph} className="body-text mb-5 break-inside-avoid last:mb-0">
+            <p
+              key={paragraph}
+              className="body-text mb-5 break-inside-avoid last:mb-0"
+              style={fullWidth ? { maxWidth: "none" } : undefined}
+            >
               {paragraph}
             </p>
           ))}

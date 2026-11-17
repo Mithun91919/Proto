@@ -137,6 +137,7 @@ export default function AiStudioPage() {
           <CaseStudyChapter
             layout="stacked"
             eyebrow="The problem"
+            fullWidth
             heading="The problem extended beyond creation"
             body={[
               "Before Studio, engineers could use tools available in the market to build these artifacts.",
@@ -160,9 +161,10 @@ export default function AiStudioPage() {
           <CaseStudyChapter
             layout="stacked"
             eyebrow="The approach"
+            fullWidth
             heading="Connect discovery, creation and reuse"
             body={[
-              "We designed Studio around the journey an engineer would take: describe a need, explore what already exists, inspect or build an artifact, test and refine it, and prepare it for publishing.",
+              "An engineer rarely builds just one artifact. We designed Studio around how they fit together, from describing a need to preparing it for publishing.",
             ]}
           />
           <CaseStudyFigure label="One possible way these building blocks can work together">

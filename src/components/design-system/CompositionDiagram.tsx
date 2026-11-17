@@ -1,19 +1,78 @@
 import type { CSSProperties, ReactNode } from "react";
+import { DotGrid } from "./primitives/DotGrid";
 import { GlassPanel } from "./primitives/GlassPanel";
+
+/**
+ * One 3×3 pictogram per piece, drawn in the dot language the rest of the site
+ * uses rather than as stock icons. Nine cells keeps each one to a handful of
+ * full-size dots. Same tones as the metric glyphs: `#` lit · `+` 0.6 ·
+ * `.` unlit (drawn small, as the grid).
+ *
+ * Each reads from what the piece does, not from a brand mark:
+ * - agent      a hub reaching out in four directions: it acts
+ * - skill      lines of instruction, the last one shorter
+ * - mcp        two servers, each with a tool it exposes
+ * - api        two systems joined by a bridge
+ * - external   a closed system: the thing at the far end
+ */
+const PICTOGRAMS = {
+  agent: `
+    .#.
+    ###
+    .#.
+  `,
+  skill: `
+    ###
+    ...
+    ##.
+  `,
+  mcp: `
+    ##+
+    ...
+    ##+
+  `,
+  api: `
+    #.#
+    ###
+    #.#
+  `,
+  external: `
+    ###
+    #.#
+    ###
+  `,
+} as const;
+
+type Pictogram = keyof typeof PICTOGRAMS;
+
+function pictogramDots(name: Pictogram): number[] {
+  return PICTOGRAMS[name]
+    .replace(/[^#+.]/g, "")
+    .split("")
+    .map((c) => (c === "#" ? 1 : c === "+" ? 0.6 : 0));
+}
 
 type NodeProps = {
   kind: string;
   note?: string;
+  pictogram: Pictogram;
   /** Grid placement, as 1-based column and row (or row span). */
   col: number;
   row: number | string;
   tone?: "dark" | "glass" | "soft";
 };
 
-function Node({ kind, note, col, row, tone = "glass" }: NodeProps) {
+function Node({ kind, note, pictogram, col, row, tone = "glass" }: NodeProps) {
   const place: CSSProperties = { gridColumn: col, gridRow: row };
   const body: ReactNode = (
     <>
+      <div
+        className="mb-3"
+        aria-hidden="true"
+        style={tone === "dark" ? ({ "--ds-accent": "var(--ds-mint)" } as CSSProperties) : undefined}
+      >
+        <DotGrid cols={3} size={5} gap={3} dots={pictogramDots(pictogram)} offStyle="small" />
+      </div>
       <p
         className="display-title"
         style={{ fontSize: "1.2rem", color: tone === "dark" ? "var(--ds-mint)" : undefined }}
@@ -76,15 +135,15 @@ export function CompositionDiagram() {
       className="grid list-none items-stretch gap-y-4 p-0"
       style={{ gridTemplateColumns: "1.1fr 6.5rem 1fr 7rem 1fr 6rem 1fr" }}
     >
-      <Node tone="dark" kind="Agent" note="Carries out a task" col={1} row="1 / span 2" />
+      <Node tone="dark" pictogram="agent" kind="Agent" note="Carries out a task" col={1} row="1 / span 2" />
       <Link label="can use" col={2} row={1} />
-      <Node kind="Skill" note="Instructions for a capability" col={3} row={1} />
+      <Node pictogram="skill" kind="Skill" note="Instructions for a capability" col={3} row={1} />
       <Link label="connects through" col={2} row={2} />
-      <Node kind="MCP server" note="Exposes tools" col={3} row={2} />
+      <Node pictogram="mcp" kind="MCP server" note="Exposes tools" col={3} row={2} />
       <Link label="its tools may call" col={4} row={2} />
-      <Node kind="API" note="Lets software systems communicate" col={5} row={2} />
+      <Node pictogram="api" kind="API" note="Lets software systems communicate" col={5} row={2} />
       <Link label="connects to" col={6} row={2} />
-      <Node tone="soft" kind="External system or data" col={7} row={2} />
+      <Node tone="soft" pictogram="external" kind="External system or data" col={7} row={2} />
     </ol>
   );
 }
