@@ -125,7 +125,7 @@ export const projects: Project[] = [
     number: "02",
     label: "AI Studio",
     title:
-      "Studio: making AI capabilities reusable, not just easy to build.",
+      "Studio: taking AI capabilities from an idea towards production.",
     summary:
       "Studio is the part of Wibey, Walmart\u2019s internal AI platform, where engineers find what already exists, build what doesn\u2019t, test it and publish it for others. I co-designed the workbenches and the conversation with a staff designer, and delivered a coded prototype.",
     outcome: "Discovery, creation, testing and publishing in one workflow",

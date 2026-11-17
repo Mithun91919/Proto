@@ -25,7 +25,7 @@ import { getProject } from "@/content/projects";
  */
 
 export const metadata: Metadata = {
-  title: "Studio — Making AI capabilities reusable, not just easy to build",
+  title: "Studio — Taking AI capabilities from an idea towards production",
   description:
     "Studio is the part of Wibey, Walmart’s internal AI platform, where engineers find what already exists, build what doesn’t, test it and publish it for others.",
   robots: caseStudyRobots,
@@ -89,8 +89,7 @@ export default function AiStudioPage() {
           "In Wibey, Walmart’s internal AI platform, engineers find what already exists, build what doesn’t, test it and publish it for others. I co-designed the workbenches and the conversation.",
         headline: (
           <>
-            Studio: making AI capabilities <span style={{ color: "var(--ds-mint)" }}>reusable</span>, not just easy to
-            build.
+            Studio: taking AI capabilities <span style={{ color: "var(--ds-mint)" }}>from an idea towards production</span>.
           </>
         ),
         meta: [
