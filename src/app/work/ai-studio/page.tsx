@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import type { CSSProperties } from "react";
 import { caseStudyRobots } from "@/content/seo";
 import { Reveal } from "@/components/Reveal";
+import { ArtboardCarousel, type ArtboardSlide } from "@/components/design-system/ArtboardCarousel";
 import { BrowserMockup } from "@/components/design-system/BrowserMockup";
 import { BeforeAfterModel } from "@/components/design-system/BeforeAfterModel";
 import { CompositionDiagram } from "@/components/design-system/CompositionDiagram";
@@ -34,6 +35,42 @@ export const metadata: Metadata = {
     "Studio is the part of Wibey, Walmart’s internal AI platform, where engineers find what already exists, build what doesn’t, test it and publish it for others.",
   robots: caseStudyRobots,
 };
+
+const CONVERSATION_SLIDES: ArtboardSlide[] = [
+  {
+    title: "Check what already exists",
+    route: "Wibey",
+    src: "/work/ai-studio/conversation-1-check-poster.jpg",
+    mp4: "/work/ai-studio/conversation-1-check.mp4",
+    width: 1920,
+    height: 1104,
+    alt: "A request in Wibey chat to build an agent that monitors Jira tickets stuck in review and sends Slack reminders. Wibey checks its registry, lists three similar agents, and asks whether to clone and modify one or create from scratch.",
+    caption:
+      "Before building, the assistant looks for similar agents and lists the matches. The engineer chooses to clone and modify one, or to start from scratch.",
+  },
+  {
+    title: "Ask for the details that matter",
+    route: "Wibey",
+    src: "/work/ai-studio/conversation-2-questions-poster.jpg",
+    mp4: "/work/ai-studio/conversation-2-questions.mp4",
+    width: 1920,
+    height: 1104,
+    alt: "Wibey asking questions about the stuck threshold, how Slack reminders are sent, the language and the scheduling, then setting out a plan with two sub-agents and offering to create the agent.",
+    caption:
+      "It asks about the stuck threshold, how reminders are sent, the language and the schedule, then sets out a plan and offers to create the agent.",
+  },
+  {
+    title: "Inspect it in the workbench",
+    route: "Wibey",
+    src: "/work/ai-studio/conversation-3-workbench-poster.jpg",
+    mp4: "/work/ai-studio/conversation-3-workbench.mp4",
+    width: 1920,
+    height: 1104,
+    alt: "The agent open as a flow in the workbench, an orchestrator with two sub-agents, with the chat in a narrow panel beside it.",
+    caption:
+      "The agent opens as a flow beside the chat, where the engineer can inspect it and keep refining it through conversation.",
+  },
+];
 
 const CHAPTERS = [
   { id: "wibey", label: "What is Wibey" },
@@ -211,26 +248,18 @@ export default function AiStudioPage() {
         </CaseStudySection>
 
         <CaseStudySection id="path">
-          <CaseStudyChapter
+          <ArtboardCarousel
+            layout="split"
+            label="The conversation, from a request to the agent in its workbench"
             eyebrow="The conversation"
-            heading="Give the conversation a clearer path"
-            body={[
+            title="Give the conversation a clearer path"
+            description={[
               "Starting with a prompt is convenient, but an open-ended conversation may not gather all the information needed to produce a useful artifact. We needed the interaction to remain conversational while asking for the details that matter.",
               "I worked with the staff designer and developers to refine these workflows so the session followed a more directed path. The assistant would ask relevant questions as the user progressed, helping establish context and reduce the risk of hallucinations.",
               "The conversation also gave users a way to continue refining their work. Suggestions in the prototype offered possible next steps, such as adding error handling or tests. The engineer could guide the outcome through chat and inspect the artifact in the adjacent workbench.",
             ]}
+            slides={CONVERSATION_SLIDES}
           />
-          <CaseStudyFigure>
-            <BrowserMockup
-              route="Wibey"
-              src="/work/ai-studio/conversation-chat-poster.jpg"
-              mp4="/work/ai-studio/conversation-chat.mp4"
-              width={1920}
-              height={1104}
-              alt="A request in Wibey chat to build an agent that monitors Jira tickets stuck in review and sends Slack reminders. Wibey checks for similar agents and offers to clone one or start from scratch, then asks questions about the stuck threshold, Slack delivery, language and scheduling. The agent then opens as a flow in the workbench beside the chat."
-              caption="A request to build an agent, a directed set of questions, and the resulting agent open in the workbench beside the chat."
-            />
-          </CaseStudyFigure>
         </CaseStudySection>
 
         <CaseStudySection id="workbenches">

@@ -2019,13 +2019,15 @@ export default function ComponentsPage() {
             <code className="font-mono text-[0.85em]">mp4</code> and the still becomes its poster, so a
             frame from the clip goes in <code className="font-mono text-[0.85em]">src</code>. It plays muted
             and looping while on screen, and holds the poster under reduced motion. Use this, not M2, for a
-            landscape recording: M2 is sized by height for a portrait phone clip.
+            landscape recording: M2 is sized by height for a portrait phone clip. In an Artboard carousel
+            (M2b) a slide takes an <code className="font-mono text-[0.85em]">mp4</code> the same way, so a
+            recording can be cut into steps with a title and a line for each.
           </p>
           <div className="max-w-[56rem]">
             <BrowserMockup
               route="Wibey"
-              src="/work/ai-studio/conversation-chat-poster.jpg"
-              mp4="/work/ai-studio/conversation-chat.mp4"
+              src="/work/ai-studio/conversation-1-check-poster.jpg"
+              mp4="/work/ai-studio/conversation-1-check.mp4"
               width={1920}
               height={1104}
               alt="A request in Wibey chat to build an agent, checked against similar agents, followed by a directed set of questions and the resulting agent open in the workbench"

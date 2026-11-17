@@ -9,6 +9,14 @@ import { PagingArrows } from "./PagingArrows";
 
 export type ArtboardSlide = {
   src: string;
+  /**
+   * A screen recording for this slide, in place of the still. `src` is then
+   * its poster frame, so it should be a frame from the clip. The slide plays
+   * in the browser frame (`BrowserMockup`), muted and looping while on
+   * screen; the slide is unmounted when the reader moves on, so each clip
+   * starts from its beginning when it is paged back to.
+   */
+  mp4?: string;
   width: number;
   height: number;
   alt: string;
@@ -210,7 +218,17 @@ export function ArtboardCarousel({
       aria-labelledby={`${baseId}-tab-${active}`}
       className="ds-artboard-enter"
     >
-      {scrollable ? (
+      {current.mp4 ? (
+        <BrowserMockup
+          key={current.src}
+          route={current.route ?? label}
+          src={current.src}
+          mp4={current.mp4}
+          width={current.width}
+          height={current.height}
+          alt={current.alt}
+        />
+      ) : scrollable ? (
         <BrowserMockup
           key={current.src}
           route={current.route ?? label}
