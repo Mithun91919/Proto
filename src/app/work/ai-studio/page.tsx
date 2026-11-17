@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { caseStudyRobots } from "@/content/seo";
 import { Reveal } from "@/components/Reveal";
-import { ArtboardFigure } from "@/components/design-system/ArtboardFigure";
+import { BrowserMockup } from "@/components/design-system/BrowserMockup";
 import { BeforeAfterModel } from "@/components/design-system/BeforeAfterModel";
 import { CompositionDiagram } from "@/components/design-system/CompositionDiagram";
 import { ConfidentialNote } from "@/components/design-system/ConfidentialNote";
@@ -133,12 +133,33 @@ export default function AiStudioPage() {
             ]}
           />
           <CaseStudyFigure>
-            <ArtboardFigure
+            <BrowserMockup
+              route="Wibey"
               src="/work/ai-studio/wibey-chat.webp"
               width={2000}
               height={1156}
-              alt="Wibey: a list of workspaces and conversations on the left, and on the right a chat in which the assistant has answered a request and offers three follow-up options below the message box"
-              caption="Wibey. Workspaces and conversations sit on the left. The chat is on the right, with suggested next steps above the message box."
+              alt="Wibey: a list of workspaces and conversations on the left, and on the right a chat in which the assistant has answered a request and offers three follow-up options above the message box"
+              caption="Wibey, where Studio lives: conversations on the right, grouped into workspaces on the left."
+              hotspots={[
+                {
+                  x: 15,
+                  y: 35.4,
+                  title: "Work grouped into workspaces",
+                  detail: "Conversations sit under named workspaces, each with a count and, where it is shared, the people in it.",
+                },
+                {
+                  x: 61,
+                  y: 74,
+                  title: "Suggested next steps",
+                  detail: "After an answer, Wibey offers follow-up options, so the next step is one click rather than a new prompt.",
+                },
+                {
+                  x: 46,
+                  y: 88,
+                  title: "Tools and model, at the message box",
+                  detail: "Tools and the model are chosen where the message is written.",
+                },
+              ]}
             />
           </CaseStudyFigure>
         </CaseStudySection>
