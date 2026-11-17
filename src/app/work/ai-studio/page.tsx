@@ -154,12 +154,12 @@ export default function AiStudioPage() {
           <CaseStudyFigure>
             <BeforeAfterModel
               before={{
-                heading: "Hard to take further",
-                body: "Data security and other limitations made it difficult to take what they created into production or make it consumable by other teams. Teams also worked on similar needs independently, so multiple versions of similar capabilities accumulated, and it was harder to understand what already existed and which option to use.",
+                heading: "Two problems after building",
+                body: "First, work was hard to take into production or share, because of data security and other limits. Second, teams built similar things separately, so it was hard to see what already existed and which to use.",
               }}
               after={{
-                heading: "From concept towards production",
-                body: "An experience that worked within Wibey’s protection layer, and made existing work easier to find and reuse, so every request did not automatically become a new build.",
+                heading: "What Studio needed to do",
+                body: "Take work from an idea towards production inside Wibey’s protection layer. Make existing work easy to find and reuse, so not every request became a new build.",
               }}
             />
           </CaseStudyFigure>
