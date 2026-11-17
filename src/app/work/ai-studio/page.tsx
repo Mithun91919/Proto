@@ -130,7 +130,7 @@ export default function AiStudioPage() {
               "An engineer might need several of them for one project. For example, an agent may use tools to retrieve information and perform actions. Each piece needs to be created and reviewed, but it also needs to work within a larger ecosystem.",
             ]}
           />
-          <CaseStudyFigure label="How these building blocks can work together">
+          <CaseStudyFigure label="One possible way these building blocks can work together">
             <CompositionDiagram />
             <p className="ds-media-caption">
               For example, an agent helping with onboarding could use a skill for its instructions and an MCP tool to

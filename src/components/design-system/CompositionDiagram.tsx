@@ -3,7 +3,7 @@ import { GlassPanel } from "./primitives/GlassPanel";
 
 type NodeProps = {
   kind: string;
-  note: string;
+  note?: string;
   /** Grid placement, as 1-based column and row (or row span). */
   col: number;
   row: number | string;
@@ -20,12 +20,14 @@ function Node({ kind, note, col, row, tone = "glass" }: NodeProps) {
       >
         {kind}
       </p>
-      <p
-        className="mt-2 text-sm leading-6"
-        style={{ color: tone === "dark" ? "var(--ds-dark-muted)" : "var(--ink-soft)" }}
-      >
-        {note}
-      </p>
+      {note ? (
+        <p
+          className="mt-2 text-sm leading-6"
+          style={{ color: tone === "dark" ? "var(--ds-dark-muted)" : "var(--ink-soft)" }}
+        >
+          {note}
+        </p>
+      ) : null}
     </>
   );
 
@@ -84,7 +86,7 @@ export function CompositionDiagram() {
       <Link label="may call" col={6} row={2} />
       <Node kind="API" note="Lets software systems communicate" col={7} row={2} />
       <Link label="connects to" col={8} row={2} />
-      <Node tone="soft" kind="External system or data" note="Where the service or information lives" col={9} row={2} />
+      <Node tone="soft" kind="External system or data" col={9} row={2} />
     </ol>
   );
 }
