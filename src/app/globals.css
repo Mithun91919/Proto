@@ -2090,7 +2090,10 @@ button.nav-switch-link {
   left: 0;
   width: calc(100% / var(--n, 3));
   border: 1px solid transparent;
-  border-radius: var(--button-radius);
+  /* The dock around it is a full pill with 5px of padding, so the thumb is a
+     full pill too: the corners stay concentric instead of the thumb's tighter
+     radius showing a gap at each end. */
+  border-radius: 999px;
   overflow: hidden;
   background: var(--button-primary-bg);
   box-shadow: var(--button-primary-shadow), var(--glass-inset);
