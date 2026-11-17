@@ -66,27 +66,25 @@ function Link({ label, col, row }: { label: string; col: number; row: number }) 
  *
  * Reads left to right. The agent carries out the task and can use a skill
  * (top) or connect through an MCP server (bottom); the server exposes
- * tools, a tool may call an API, and the API connects to an external
+ * tools, which may call an API, and the API connects to an external
  * system or data.
  */
 export function CompositionDiagram() {
   return (
     <ol
-      aria-label="One possible composition: an agent can use a skill and connect through an MCP server; the server exposes tools, a tool may call an API, and the API connects to an external system or data"
+      aria-label="One possible composition: an agent can use a skill and connect through an MCP server; the server exposes tools that may call an API, and the API connects to an external system or data"
       className="grid list-none items-stretch gap-y-4 p-0"
-      style={{ gridTemplateColumns: "1.1fr 6.5rem 1fr 5.5rem 1fr 5.5rem 1fr 5.5rem 1fr" }}
+      style={{ gridTemplateColumns: "1.1fr 6.5rem 1fr 7rem 1fr 6rem 1fr" }}
     >
       <Node tone="dark" kind="Agent" note="Carries out a task" col={1} row="1 / span 2" />
       <Link label="can use" col={2} row={1} />
       <Node kind="Skill" note="Instructions for a capability" col={3} row={1} />
       <Link label="connects through" col={2} row={2} />
       <Node kind="MCP server" note="Exposes tools" col={3} row={2} />
-      <Link label="exposes" col={4} row={2} />
-      <Node kind="Tool" note="Retrieves information or performs an action" col={5} row={2} />
-      <Link label="may call" col={6} row={2} />
-      <Node kind="API" note="Lets software systems communicate" col={7} row={2} />
-      <Link label="connects to" col={8} row={2} />
-      <Node tone="soft" kind="External system or data" col={9} row={2} />
+      <Link label="its tools may call" col={4} row={2} />
+      <Node kind="API" note="Lets software systems communicate" col={5} row={2} />
+      <Link label="connects to" col={6} row={2} />
+      <Node tone="soft" kind="External system or data" col={7} row={2} />
     </ol>
   );
 }
