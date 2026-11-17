@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { caseStudyRobots } from "@/content/seo";
 import { Reveal } from "@/components/Reveal";
 import { BeforeAfterModel } from "@/components/design-system/BeforeAfterModel";
+import { DotFlow } from "@/components/design-system/DotFlow";
 import { CompositionDiagram } from "@/components/design-system/CompositionDiagram";
 import { ConfidentialNote } from "@/components/design-system/ConfidentialNote";
 import { MediaPlaceholder } from "@/components/design-system/MediaPlaceholder";
@@ -171,10 +172,24 @@ export default function AiStudioPage() {
             eyebrow="The approach"
             heading="Connect discovery, creation and reuse"
             body={[
-              "We designed Studio around the journey an engineer would take: describe a need, explore what already exists, inspect or build an artifact, test and refine it, and prepare it for publishing.",
-              "The experience combined two ways of working. Engineers could use conversation to describe their intent and refine an artifact, while a dedicated workbench gave them a direct view of its structure and controls. The workbench changed according to what they were building.",
+              "We designed Studio around the journey an engineer takes, and let conversation and a workbench share it.",
             ]}
           />
+          <CaseStudyFigure label="The journey an engineer takes">
+            <DotFlow
+              stages={[
+                "Describe a need",
+                "Explore what already exists",
+                "Inspect or build an artifact",
+                "Test and refine it",
+                "Prepare it for publishing",
+              ]}
+            />
+            <p className="ds-media-caption">
+              Conversation described intent. The workbench showed the structure and controls, and changed with what was
+              being built.
+            </p>
+          </CaseStudyFigure>
         </CaseStudySection>
 
         <CaseStudySection id="exists">
