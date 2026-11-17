@@ -130,7 +130,7 @@ export default function AiStudioPage() {
               eyebrow="Wibey"
               heading="First, what is Wibey?"
               body={[
-                "Wibey is Walmart’s internal AI platform for engineers. Studio is where they create, manage, test and publish capabilities for their teams. I call these artifacts: agents, skills, MCP servers and APIs. A project often needs several, and they have to work together.",
+                "Wibey is Walmart’s internal AI platform for engineers. They use it for everyday work, such as designing REST API endpoints, summarising release notes or refining an onboarding workflow. They can also build capabilities for their teams: agents, skills, MCP servers and APIs, which I call artifacts.",
               ]}
             />
             <CaseStudyFigure>
@@ -140,7 +140,7 @@ export default function AiStudioPage() {
                 width={2000}
                 height={1156}
                 alt="Wibey: a list of workspaces and conversations on the left, and on the right a chat in which the assistant has answered a request and offers three follow-up options above the message box"
-                caption="Wibey, where Studio lives: conversations on the right, grouped into workspaces on the left."
+                caption="Wibey: conversations on the right, grouped into workspaces on the left."
                 hotspots={[
                   {
                     x: 15,
