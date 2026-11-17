@@ -135,15 +135,15 @@ export function CompositionDiagram() {
       className="grid list-none items-stretch gap-y-4 p-0"
       style={{ gridTemplateColumns: "1.1fr 6.5rem 1fr 7rem 1fr 6rem 1fr" }}
     >
-      <Node tone="dark" pictogram="agent" kind="Agent" note="Carries out a task" col={1} row="1 / span 2" />
+      <Node tone="dark" pictogram="agent" kind="Agent" note="An AI that plans and acts to complete a task." col={1} row="1 / span 2" />
       <Link label="can use" col={2} row={1} />
-      <Node pictogram="skill" kind="Skill" note="Instructions for a capability" col={3} row={1} />
+      <Node pictogram="skill" kind="Skill" note="Packaged instructions for a specific job." col={3} row={1} />
       <Link label="connects through" col={2} row={2} />
-      <Node pictogram="mcp" kind="MCP server" note="Exposes tools" col={3} row={2} />
+      <Node pictogram="mcp" kind="MCP server" note="Exposes tools and data to AI over a standard protocol." col={3} row={2} />
       <Link label="its tools may call" col={4} row={2} />
-      <Node pictogram="api" kind="API" note="Lets software systems communicate" col={5} row={2} />
+      <Node pictogram="api" kind="API" note="An interface that lets software call other software." col={5} row={2} />
       <Link label="connects to" col={6} row={2} />
-      <Node tone="soft" pictogram="external" kind="External system or data" col={7} row={2} />
+      <Node tone="soft" pictogram="external" kind="External system or data" note="The service or data an API reaches." col={7} row={2} />
     </ol>
   );
 }
