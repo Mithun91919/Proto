@@ -354,7 +354,7 @@ export default function AiStudioPage() {
             <CaseStudyFigure>
               <BrowserMockup
                 route="Wibey"
-                src="/work/ai-studio/wibey-chat.webp"
+                src="/work/ai-studio/wibey-chat.jpg"
                 width={2000}
                 height={1156}
                 alt="Wibey: a list of workspaces and conversations on the left, and on the right a chat in which the assistant has answered a request and offers three follow-up options above the message box"
