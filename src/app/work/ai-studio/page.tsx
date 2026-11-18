@@ -234,11 +234,11 @@ export default function AiStudioPage() {
           label: "The solution",
           lead: (
             <>
-              One workflow, from <span className="ds-accent-text">an idea towards production</span>.
+              Discovery, creation, testing and publishing in <span className="ds-accent-text">one workflow</span>.
             </>
           ),
           detail:
-            "Studio brings discovery, conversational creation, hands-on editing, testing and publishing together inside Wibey’s protection layer, and makes existing work part of the conversation.",
+            "Studio brings them together inside Wibey’s protection layer, with conversational creation and hands-on editing, and makes existing work part of the conversation.",
         },
         {
           label: "What I did",
