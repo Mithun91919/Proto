@@ -233,6 +233,46 @@ export default function AiStudioPage() {
           { label: "Year", value: "2026–Present" },
           { label: "Discipline", value: "AI platform · Product design · Design in code" },
         ],
+        alt: "Studio in Wibey: the agent workbench, the chat that checks for similar agents, the MCP workbench and the API workbench",
+        stackRatio: 1.6,
+        stack: [
+          {
+            src: "/work/ai-studio/workbench-agent-poster.jpg",
+            width: 1920,
+            height: 1104,
+            name: "the agent workbench",
+            alt: "The agent workbench: a canvas showing an orchestrator and two connected agents, with the chat beside it",
+            route: "Wibey",
+            focus: "top",
+          },
+          {
+            src: "/work/ai-studio/conversation-1-check-poster.jpg",
+            width: 1920,
+            height: 1104,
+            name: "the chat",
+            alt: "A request in Wibey chat, with similar agents listed and a choice to clone one or start from scratch",
+            route: "Wibey",
+            focus: "top",
+          },
+          {
+            src: "/work/ai-studio/workbench-mcp-poster.jpg",
+            width: 1920,
+            height: 1104,
+            name: "the MCP workbench",
+            alt: "The MCP workbench: a list of generated tools for review, with Playground, Validate and Publish in the toolbar",
+            route: "Wibey",
+            focus: "top",
+          },
+          {
+            src: "/work/ai-studio/workbench-api-poster.jpg",
+            width: 1920,
+            height: 1104,
+            name: "the API workbench",
+            alt: "The API workbench: an overview of a service with its endpoints in a structured view beside the chat",
+            route: "Wibey",
+            focus: "top",
+          },
+        ],
       }}
       next={
         onward
