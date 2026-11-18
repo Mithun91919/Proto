@@ -5,6 +5,7 @@ import { Reveal } from "@/components/Reveal";
 import { ArtboardCarousel, type ArtboardSlide } from "@/components/design-system/ArtboardCarousel";
 import { BrowserMockup } from "@/components/design-system/BrowserMockup";
 import { BeforeAfterModel } from "@/components/design-system/BeforeAfterModel";
+import { EditorialNumberedRows } from "@/components/design-system/EditorialNumberedRow";
 import { CompositionDiagram } from "@/components/design-system/CompositionDiagram";
 import { ConfidentialNote } from "@/components/design-system/ConfidentialNote";
 import { MediaPlaceholder } from "@/components/design-system/MediaPlaceholder";
@@ -454,15 +455,32 @@ export default function AiStudioPage() {
 
       <CaseStudyColumn>
         <CaseStudySection id="learned">
-          <CaseStudyChapter
-            layout="stacked"
-            eyebrow="Reflection"
-            heading="What I learned"
-            body={[
-              "This project changed how I thought about designing AI-assisted experiences. A successful workflow needed to support the full journey around an artifact: finding related work, providing context, inspecting what was generated, testing it and preparing it for others to use.",
-              "It also changed how I approached prototyping. Working in code gave me a way to explore and communicate an evolving interaction, and to bring designers, developers and stakeholders into the same experience as we made decisions.",
-            ]}
-          />
+          <Reveal>
+            <div className="[&>h2]:max-w-[26ch]">
+              <p className="eyebrow">Reflection</p>
+              <h2 className="display-title display-section mt-3 text-[var(--ink)]">What I learned</h2>
+            </div>
+          </Reveal>
+          <div className="mt-6">
+            <Reveal delay={80}>
+              <EditorialNumberedRows
+                rows={[
+                  {
+                    number: "01",
+                    title: "Design the whole journey around what AI generates",
+                    detail:
+                      "Finding related work, providing context, inspecting what was generated, testing it and preparing it for others to use.",
+                  },
+                  {
+                    number: "02",
+                    title: "Prototype in code",
+                    detail:
+                      "Working in code let me explore and communicate an evolving interaction, and bring designers, developers and stakeholders into the same experience as we made decisions.",
+                  },
+                ]}
+              />
+            </Reveal>
+          </div>
         </CaseStudySection>
 
         {/* Numbers to come. Their place is left open on purpose: nothing is
