@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import type { CSSProperties } from "react";
 import { caseStudyRobots } from "@/content/seo";
 import { Reveal } from "@/components/Reveal";
+import { AiStudioSummary } from "./summary";
 import { ArchetypeSection } from "@/components/design-system/ArchetypeSection";
 import type { Archetype } from "@/components/design-system/ArchetypeFigure";
 import { ArtboardCarousel, type ArtboardSlide } from "@/components/design-system/ArtboardCarousel";
@@ -275,6 +276,12 @@ export default function AiStudioPage() {
             "I worked with a staff designer on the workbenches and the conversational workflows, and with developers on the end-to-end experience. The deliverable was a coded prototype, built through multiple iterations in Cursor and VS Code.",
         },
       ]}
+      summary={{
+        title: "Studio",
+        standfirst:
+          "In Wibey, Walmart’s internal AI platform, I co-designed Studio, where engineers and builders find what exists, build what doesn’t, test it and publish it for others.",
+        body: <AiStudioSummary />,
+      }}
       hero={{
         standfirst:
           "In Wibey, Walmart’s internal AI platform, engineers find what already exists, build what doesn’t, test it and publish it for others. I co-designed the workbenches and the conversation.",
