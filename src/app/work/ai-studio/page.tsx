@@ -434,24 +434,25 @@ export default function AiStudioPage() {
           </CaseStudyFigure>
         </CaseStudySection>
 
-        <CaseStudySection id="prototype">
-          <CaseStudyChapter
-            eyebrow="The prototype"
-            heading="A coded prototype became the shared reference"
-            body={[
-              "This was my first project where the final design delivery was a coded prototype. We created multiple iterations using Cursor and VS Code, bringing together the conversation, the workbenches and the transitions between them.",
-              "Because the experience depended on more than a fixed sequence of screens, the prototype helped us communicate how an engineer would move through discovery, creation, inspection and refinement. We used it for stakeholder reviews, testing and developer handoff; it became a shared source of truth for key decisions.",
-            ]}
-          />
-          <CaseStudyFigure>
-            <MediaPlaceholder
-              kind="video"
-              needs="The coded prototype in use, moving through discovery, creation, inspection and refinement."
-              source="Fresh recording to come."
-            />
-          </CaseStudyFigure>
-        </CaseStudySection>
+      </CaseStudyColumn>
 
+      {/* The prototype is a breaker band, not a chapter with a clip: the
+          recordings above are the prototype in use, so another would repeat
+          them. The band has to sit outside the reading column to reach the
+          edges, so the column closes here and reopens for the reflection. */}
+      <div id="prototype" className="mt-16 scroll-mt-28 md:mt-20">
+        <Reveal>
+          <PullStatement
+            eyebrow="The prototype"
+            mark="exchange"
+            note="Built over several iterations in Cursor and VS Code, it became a shared source of truth for key decisions."
+          >
+            The design delivery was a coded prototype.
+          </PullStatement>
+        </Reveal>
+      </div>
+
+      <CaseStudyColumn>
         <CaseStudySection id="learned">
           <CaseStudyChapter
             layout="stacked"
