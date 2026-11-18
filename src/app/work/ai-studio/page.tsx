@@ -173,17 +173,28 @@ const WHO: Archetype[] = [
   {
     name: "Engineer",
     behaviour: "Builds capabilities for their teams: agents, skills, MCP servers and APIs.",
-    wants: ["Take what they build into production", "Make it usable by other teams"],
+    wants: [
+      "See what the AI generated, and work with it directly",
+      "Test it and know it is ready before others use it",
+    ],
     friction: [
-      "Data security and other limits made it hard to take what they built into production",
-      "Similar things were built separately, so it was hard to see what already existed",
+      "An open-ended chat did not gather the details a useful artifact needs",
+      "An agent, an API and an MCP do not share a structure, so one generic view did not fit",
     ],
   },
   {
     name: "Builder",
     behaviour: "Anyone else who can now build with AI, without being an engineer.",
     roles: ["Designer", "Product manager"],
-    wants: ["Take an idea to something that works"],
+    wants: [
+      "Take an idea to something that works",
+      "Take what they build into production",
+      "Make it usable by other teams",
+    ],
+    friction: [
+      "Data security and other limits made it hard to take what they built into production",
+      "Similar things were built separately, so it was hard to see what already existed",
+    ],
   },
 ];
 
