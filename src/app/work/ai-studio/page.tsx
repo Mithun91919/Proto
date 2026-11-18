@@ -532,7 +532,7 @@ export default function AiStudioPage() {
       <div className="mt-16 md:mt-20">
         <Reveal>
           <PullStatement eyebrow="What I believe now" mark="seam" note={<ConfidentialNote />}>
-            A successful workflow supports the full journey around what it generates.
+            When everyone can build, the workflow around what they build matters most.
           </PullStatement>
         </Reveal>
       </div>
