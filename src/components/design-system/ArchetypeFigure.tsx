@@ -40,6 +40,13 @@ export type Archetype = {
   /** The observed behaviour that separates this type from the others. */
   behaviour: string;
   /**
+   * Sub-categories of a broad role, shown as chips under the behaviour — for
+   * a role that is really a family ("Builder": designer, product manager…)
+   * where naming the members is the point. Leave it off for a role that is
+   * one thing.
+   */
+  roles?: string[];
+  /**
    * What they are trying to get done. The persona template's "goal", minus
    * the biography around it. A list reads better than a paragraph here — a
    * reader scanning wants the two or three that matter, not a sentence to
@@ -414,6 +421,15 @@ export function ArchetypeCards({
             {a.side ? <Chip className="ds-arch-side">{a.side}</Chip> : null}
           </div>
           <p className="ds-arch-behaviour">{a.behaviour}</p>
+          {a.roles?.length ? (
+            <ul className="ds-arch-roles" aria-label={`${a.name} includes`}>
+              {a.roles.map((role) => (
+                <Chip as="li" key={role}>
+                  {role}
+                </Chip>
+              ))}
+            </ul>
+          ) : null}
           {a.wants || a.friction ? (
             <div className="ds-arch-fields">
               {a.wants ? <ArchetypeField label="Top needs" items={a.wants} tone="need" /> : null}

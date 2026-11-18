@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import type { CSSProperties } from "react";
 import { caseStudyRobots } from "@/content/seo";
 import { Reveal } from "@/components/Reveal";
+import { ArchetypeSection } from "@/components/design-system/ArchetypeSection";
+import type { Archetype } from "@/components/design-system/ArchetypeFigure";
 import { ArtboardCarousel, type ArtboardSlide } from "@/components/design-system/ArtboardCarousel";
 import { BrowserMockup } from "@/components/design-system/BrowserMockup";
 import { BeforeAfterModel } from "@/components/design-system/BeforeAfterModel";
@@ -167,9 +169,28 @@ const TESTING_SLIDES: ArtboardSlide[] = [
   },
 ];
 
+const WHO: Archetype[] = [
+  {
+    name: "Engineer",
+    behaviour: "Builds capabilities for their teams: agents, skills, MCP servers and APIs.",
+    wants: ["Take what they build into production", "Make it usable by other teams"],
+    friction: [
+      "Data security and other limits made it hard to take what they built into production",
+      "Similar things were built separately, so it was hard to see what already existed",
+    ],
+  },
+  {
+    name: "Builder",
+    behaviour: "Anyone else who can now build with AI, without being an engineer.",
+    roles: ["Designer", "Product manager"],
+    wants: ["Take an idea to something that works"],
+  },
+];
+
 const CHAPTERS = [
   { id: "wibey", label: "What is Wibey" },
   { id: "problem", label: "The problem" },
+  { id: "builder", label: "Who it is for" },
   { id: "approach", label: "The approach" },
   { id: "path", label: "The conversation" },
   { id: "workbenches", label: "Workbenches" },
@@ -350,6 +371,15 @@ export default function AiStudioPage() {
               }}
             />
           </CaseStudyFigure>
+        </CaseStudySection>
+
+        <CaseStudySection id="builder">
+          <ArchetypeSection
+            heading="Engineers, and now everyone who builds"
+            intro="AI has made building possible for anyone, not only engineers. Studio is for engineers, and for the builders who now work alongside them."
+            archetypes={WHO}
+            variant="cards"
+          />
         </CaseStudySection>
 
         <CaseStudySection id="approach">
