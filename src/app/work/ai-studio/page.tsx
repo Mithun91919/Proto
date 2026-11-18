@@ -10,7 +10,6 @@ import { BeforeAfterModel } from "@/components/design-system/BeforeAfterModel";
 import { EditorialNumberedRows } from "@/components/design-system/EditorialNumberedRow";
 import { CompositionDiagram } from "@/components/design-system/CompositionDiagram";
 import { ConfidentialNote } from "@/components/design-system/ConfidentialNote";
-import { MediaPlaceholder } from "@/components/design-system/MediaPlaceholder";
 import { PullStatement } from "@/components/design-system/PullStatement";
 import {
   CaseStudyChapter,
@@ -195,6 +194,31 @@ const WHO: Archetype[] = [
       "Data security and other limits made it hard to take what they built into production",
       "Similar things were built separately, so it was hard to see what already existed",
     ],
+  },
+];
+
+const WORKSPACE_SLIDES: ArtboardSlide[] = [
+  {
+    title: "Related work stays together",
+    route: "Wibey",
+    src: "/work/ai-studio/workspaces-1-projects-poster.jpg",
+    mp4: "/work/ai-studio/workspaces-1-projects.mp4",
+    width: 1920,
+    height: 1104,
+    alt: "The sidebar opening a workspace into its projects, and a project listing the agents it holds.",
+    caption:
+      "A workspace opens into its projects, and each project lists the artifacts it holds, in the sidebar and in the main view.",
+  },
+  {
+    title: "A space for a team",
+    route: "Wibey",
+    src: "/work/ai-studio/workspaces-2-shared-poster.jpg",
+    mp4: "/work/ai-studio/workspaces-2-shared.mp4",
+    width: 1920,
+    height: 1104,
+    alt: "A team workspace with the people in it shown beside its name, listing the agents the team works on.",
+    caption:
+      "A team workspace shows who is in it beside its name, and lists the artifacts the team works on together.",
   },
 ];
 
@@ -458,22 +482,18 @@ export default function AiStudioPage() {
         </CaseStudySection>
 
         <CaseStudySection id="workspaces">
-          <CaseStudyChapter
+          <ArtboardCarousel
+            layout="split"
+            label="Workspaces, from their projects to a shared team space"
             eyebrow="Workspaces"
-            heading="As the work grew, context needed a home"
-            body={[
+            title="As the work grew, context needed a home"
+            description={[
               "The workbench addressed an individual artifact. But as users created more artifacts and returned to them across multiple conversations, another need became clear: related work needed to stay together.",
               "Workspaces, which shipped, group artifacts and sessions around a shared context. An engineer returning to improve a capability, or starting something related, could pick up work with relevant context available instead of repeatedly explaining it from the beginning.",
               "Workspaces also gave us a structure for collaboration and access: who could view the work, who could modify it, and how a team could organise the artifacts and conversations it shared.",
             ]}
+            slides={WORKSPACE_SLIDES}
           />
-          <CaseStudyFigure>
-            <MediaPlaceholder
-              kind="video"
-              needs="A workspace in use: artifacts and sessions grouped around a shared context, and who can view or modify the work."
-              source="Fresh recording to come."
-            />
-          </CaseStudyFigure>
         </CaseStudySection>
 
       </CaseStudyColumn>
