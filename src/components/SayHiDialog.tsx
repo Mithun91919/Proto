@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useEffect, useRef } from "react";
 import { CopyEmail } from "@/components/CopyEmail";
 import { DotText } from "@/components/DotText";
+import { DotGrid } from "@/components/design-system/primitives/DotGrid";
 import type { CSSProperties, PointerEvent } from "react";
 
 const EMAIL = "mithraj14@gmail.com";
@@ -41,6 +42,22 @@ const tilt = {
  * the tilt and the lift stop under reduced motion. The contact block on the
  * Home and About pages stays, so a link to it still lands somewhere.
  */
+/** A 3×3 dot mark for each way to get in touch, in the same dot language as the rest of the site. */
+const MARKS = {
+  resume: [1, 1, 1, 0, 0, 0, 1, 1, 0], // lines on a page
+  linkedin: [1, 0, 1, 1, 1, 1, 1, 0, 1], // two ends joined
+  instagram: [1, 1, 1, 1, 0.6, 1, 1, 1, 1], // a frame around a lens
+  email: [1, 0, 1, 0, 1, 0, 1, 1, 1], // the fold of an envelope
+} as const;
+
+function Mark({ name }: { name: keyof typeof MARKS }) {
+  return (
+    <span className="say-hi-card-mark" aria-hidden>
+      <DotGrid cols={3} size={5} gap={3} dots={[...MARKS[name]]} offStyle="small" />
+    </span>
+  );
+}
+
 export function SayHiDialog({ open, onClose }: { open: boolean; onClose: () => void }) {
   const ref = useRef<HTMLDialogElement>(null);
 
@@ -83,6 +100,7 @@ export function SayHiDialog({ open, onClose }: { open: boolean; onClose: () => v
         <ul className="say-hi-cards">
           <li>
             <Link href="/resume" className="ds-glass-lift say-hi-card say-hi-card-a" style={{ "--n": 0 } as CSSProperties} onClick={onClose} {...tilt}>
+              <Mark name="resume" />
               <span className="say-hi-card-name display-title">Résumé</span>
               <span className="say-hi-card-desc">Hiring? Start here.</span>
               <span className="say-hi-card-go" aria-hidden>
@@ -92,6 +110,7 @@ export function SayHiDialog({ open, onClose }: { open: boolean; onClose: () => v
           </li>
           <li>
             <a href={LINKEDIN} target="_blank" rel="noopener noreferrer" className="ds-glass-lift say-hi-card say-hi-card-b" style={{ "--n": 1 } as CSSProperties} {...tilt}>
+              <Mark name="linkedin" />
               <span className="say-hi-card-name display-title">LinkedIn</span>
               <span className="say-hi-card-desc">Curious? Have a look.</span>
               <span className="say-hi-card-go" aria-hidden>
@@ -101,6 +120,7 @@ export function SayHiDialog({ open, onClose }: { open: boolean; onClose: () => v
           </li>
           <li>
             <a href={INSTAGRAM} target="_blank" rel="noopener noreferrer" className="ds-glass-lift say-hi-card say-hi-card-c" style={{ "--n": 2 } as CSSProperties} {...tilt}>
+              <Mark name="instagram" />
               <span className="say-hi-card-name display-title">Instagram</span>
               <span className="say-hi-card-desc">Want to follow along?</span>
               <span className="say-hi-card-go" aria-hidden>
@@ -110,6 +130,7 @@ export function SayHiDialog({ open, onClose }: { open: boolean; onClose: () => v
           </li>
           <li>
             <div className="ds-glass-lift say-hi-card say-hi-card-d" style={{ "--n": 3 } as CSSProperties} {...tilt}>
+              <Mark name="email" />
               <span className="say-hi-card-name display-title">Email</span>
               <span className="say-hi-card-desc">Want to talk? Write to me.</span>
               <a href={`mailto:${EMAIL}`} className="say-hi-card-desc say-hi-card-link">

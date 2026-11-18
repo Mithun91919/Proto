@@ -2280,6 +2280,11 @@ a.say-hi-card:hover .say-hi-card-go {
   pointer-events: none;
 }
 
+.say-hi-card-mark {
+  display: block;
+  margin-bottom: 0.9rem;
+}
+
 .say-hi-card-name {
   font-size: 1.55rem;
   line-height: 1.1;
