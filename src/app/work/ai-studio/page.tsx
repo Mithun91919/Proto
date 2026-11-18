@@ -119,6 +119,53 @@ const WORKBENCH_SLIDES: ArtboardSlide[] = [
   },
 ];
 
+const TESTING_SLIDES: ArtboardSlide[] = [
+  {
+    title: "Agents: run a task and follow each step",
+    route: "Wibey",
+    src: "/work/ai-studio/testing-agent-poster.jpg",
+    mp4: "/work/ai-studio/testing-agent.mp4",
+    width: 1920,
+    height: 1104,
+    alt: "The agent playground: a list of sessions on the left, and a task that has been run, with the agent's steps and a Task completed result.",
+    caption:
+      "The agent playground keeps sessions, runs a task, and shows the steps the agent took and when the task completed.",
+  },
+  {
+    title: "MCPs: connect to the server and run a tool",
+    route: "Wibey",
+    src: "/work/ai-studio/testing-mcp-poster.jpg",
+    mp4: "/work/ai-studio/testing-mcp.mp4",
+    width: 1920,
+    height: 1104,
+    alt: "The MCP playground: connecting to an MCP server, choosing one of its tools, running it, and seeing that it executed successfully.",
+    caption:
+      "The MCP playground connects to a server, lists its tools, and runs one with its inputs, showing that it executed successfully.",
+  },
+  {
+    title: "APIs: send a request and read the response",
+    route: "Wibey",
+    src: "/work/ai-studio/testing-api-poster.jpg",
+    mp4: "/work/ai-studio/testing-api.mp4",
+    width: 1920,
+    height: 1104,
+    alt: "The API playground: a request with its parameters, and the response below it, first with a body and then as a failed request.",
+    caption:
+      "The API playground sends a request with its parameters and shows the response, whether it succeeds or fails.",
+  },
+  {
+    title: "Skills: try it with a prompt",
+    route: "Wibey",
+    src: "/work/ai-studio/testing-skill-poster.jpg",
+    mp4: "/work/ai-studio/testing-skill.mp4",
+    width: 1920,
+    height: 1104,
+    alt: "The skill playground: quick test prompts to choose from, and the skill's response to the one selected.",
+    caption:
+      "The skill playground offers quick test prompts, and shows how the skill responds to the one chosen.",
+  },
+];
+
 const CHAPTERS = [
   { id: "wibey", label: "What is Wibey" },
   { id: "problem", label: "The problem" },
@@ -324,21 +371,17 @@ export default function AiStudioPage() {
         </CaseStudySection>
 
         <CaseStudySection id="testing">
-          <CaseStudyChapter
+          <ArtboardCarousel
+            layout="split"
+            label="The playgrounds for agents, MCPs, APIs and skills"
             eyebrow="Testing"
-            heading="Testing was part of building"
-            body={[
+            title="Testing was part of building"
+            description={[
               "Creation was only one step in the journey. Engineers needed to understand how an artifact behaved, refine its output and assess whether it was ready for use.",
               "We designed playgrounds to support testing and iteration, as well as evaluations intended to help teams assess technical and security requirements. Review and publishing actions helped connect that work to the next stage of making a capability available to others.",
             ]}
+            slides={TESTING_SLIDES}
           />
-          <CaseStudyFigure>
-            <MediaPlaceholder
-              kind="video"
-              needs="A playground used to test an artifact, an evaluation, and the review and publishing actions."
-              source="Fresh recording to come."
-            />
-          </CaseStudyFigure>
         </CaseStudySection>
 
         <CaseStudySection id="workspaces">
