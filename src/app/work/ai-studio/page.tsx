@@ -24,7 +24,7 @@ import { getProject } from "@/content/projects";
 
 /**
  * Studio, from the new brief: a co-designed experience inside Wibey that takes
- * an engineer's AI capability from an idea towards production, with the coded
+ * a builder's AI capability from an idea towards production, with the coded
  * prototype as the deliverable.
  *
  * The prose is the brief's own. Every screen and recording is a stated
@@ -36,7 +36,7 @@ import { getProject } from "@/content/projects";
 export const metadata: Metadata = {
   title: "Studio — Taking AI capabilities from an idea towards production",
   description:
-    "Studio is the part of Wibey, Walmart’s internal AI platform, where engineers find what already exists, build what doesn’t, test it and publish it for others.",
+    "Studio is the part of Wibey, Walmart’s internal AI platform, where builders find what already exists, build what doesn’t, test it and publish it for others.",
   robots: caseStudyRobots,
 };
 
@@ -50,7 +50,7 @@ const CONVERSATION_SLIDES: ArtboardSlide[] = [
     height: 1104,
     alt: "A request in Wibey chat to build an agent that monitors Jira tickets stuck in review and sends Slack reminders. Wibey checks its registry, lists three similar agents, and asks whether to clone and modify one or create from scratch.",
     caption:
-      "Before building, the assistant looks for similar agents and lists the matches. The engineer chooses to clone and modify one, or to start from scratch.",
+      "Before building, the assistant looks for similar agents and lists the matches. The builder chooses to clone and modify one, or to start from scratch.",
   },
   {
     title: "Ask for the details that matter",
@@ -72,7 +72,7 @@ const CONVERSATION_SLIDES: ArtboardSlide[] = [
     height: 1104,
     alt: "The agent open as a flow in the workbench, an orchestrator with two sub-agents, with the chat in a narrow panel beside it.",
     caption:
-      "The agent opens as a flow beside the chat, where the engineer can inspect it and keep refining it through conversation.",
+      "The agent opens as a flow beside the chat, where the builder can inspect it and keep refining it through conversation.",
   },
 ];
 
@@ -97,7 +97,7 @@ const WORKBENCH_SLIDES: ArtboardSlide[] = [
     height: 1104,
     alt: "The API workbench: an overview of a service with its endpoints, datatypes and responses in tabs, a form for the selected endpoint, and the chat beside it.",
     caption:
-      "Endpoints, datatypes and responses sit in a structured view beside the chat, so the engineer can inspect each detail and move towards review.",
+      "Endpoints, datatypes and responses sit in a structured view beside the chat, so the builder can inspect each detail and move towards review.",
   },
   {
     title: "MCPs: review the generated tools",
@@ -119,7 +119,7 @@ const WORKBENCH_SLIDES: ArtboardSlide[] = [
     height: 1104,
     alt: "The skill workbench: a tree of generated files beside the contents of the selected file, with Save, Validate, Test and Publish in the toolbar.",
     caption:
-      "The generated files sit in a tree beside their contents. The engineer can inspect them, then test and validate before publishing.",
+      "The generated files sit in a tree beside their contents. The builder can inspect them, then test and validate before publishing.",
   },
 ];
 
@@ -172,29 +172,33 @@ const TESTING_SLIDES: ArtboardSlide[] = [
 
 const WHO: Archetype[] = [
   {
-    name: "Engineer",
-    behaviour: "Builds capabilities for their teams: agents, skills, MCP servers and APIs.",
+    name: "Engineers",
+    behaviour: "Build capabilities for their teams: agents, skills, MCP servers and APIs.",
     wants: [
       "See what the AI generated, and work with it directly",
       "Test it and know it is ready before others use it",
     ],
     friction: [
+      "Data security and other limits made it hard to take what they built into production",
       "An open-ended chat did not gather the details a useful artifact needs",
       "An agent, an API and an MCP do not share a structure, so one generic view did not fit",
     ],
   },
   {
-    name: "Builder",
+    name: "Builders",
+    sparkle: true,
     behaviour: "Anyone else who can now build with AI, without being an engineer.",
     roles: ["Designer", "Product manager"],
     wants: [
       "Take an idea to something that works",
-      "Take what they build into production",
-      "Make it usable by other teams",
+      "Know it is safe and ready before others use it",
+      "Publish it for others to use",
     ],
     friction: [
-      "Data security and other limits made it hard to take what they built into production",
-      "Similar things were built separately, so it was hard to see what already existed",
+      "Hard to know whether what they built was safe or ready",
+      "No way to inspect what was built",
+      "No path to publish it for others",
+      "Did not know what already existed",
     ],
   },
 ];
@@ -254,7 +258,7 @@ export default function AiStudioPage() {
             </>
           ),
           detail:
-            "Data security and other limitations made it difficult to take what engineers built into production, or to make it consumable by other teams. Teams also worked on similar needs independently, so similar capabilities accumulated.",
+            "Data security and other limitations made it difficult to take what builders built into production, or to make it consumable by other teams. Teams also worked on similar needs independently, so similar capabilities accumulated.",
         },
         {
           label: "The solution",
@@ -280,12 +284,12 @@ export default function AiStudioPage() {
       summary={{
         title: "Studio",
         standfirst:
-          "In Wibey, Walmart’s internal AI platform, I co-designed Studio, where engineers and builders find what exists, build what doesn’t, test it and publish it for others.",
+          "In Wibey, Walmart’s internal AI platform, I co-designed Studio, where builders and builders find what exists, build what doesn’t, test it and publish it for others.",
         body: <AiStudioSummary />,
       }}
       hero={{
         standfirst:
-          "In Wibey, Walmart’s internal AI platform, engineers find what already exists, build what doesn’t, test it and publish it for others. I co-designed the workbenches and the conversation.",
+          "In Wibey, Walmart’s internal AI platform, builders find what already exists, build what doesn’t, test it and publish it for others. I co-designed the workbenches and the conversation.",
         headline: (
           <>
             Studio: taking AI capabilities from an <span style={{ color: "var(--ds-mint)" }}>idea</span> towards{" "}
@@ -356,7 +360,7 @@ export default function AiStudioPage() {
               eyebrow="Wibey"
               heading="First, what is Wibey?"
               body={[
-                "Wibey is Walmart’s internal AI platform for engineers. They use it for everyday work, such as designing REST API endpoints, summarising release notes or refining an onboarding workflow. They can also build capabilities for their teams: agents, skills, MCP servers and APIs, which I call artifacts.",
+                "Wibey is Walmart’s internal AI platform for builders. They use it for everyday work, such as designing REST API endpoints, summarising release notes or refining an onboarding workflow. They can also build capabilities for their teams: agents, skills, MCP servers and APIs, which I call artifacts.",
               ]}
             />
             <CaseStudyFigure>
@@ -399,7 +403,7 @@ export default function AiStudioPage() {
             fullWidth
             heading="The problem extended beyond creation"
             body={[
-              "Before Studio, engineers could use tools available in the market to build these artifacts.",
+              "Before Studio, builders could use tools available in the market to build these artifacts.",
             ]}
           />
           <CaseStudyFigure>
@@ -421,6 +425,8 @@ export default function AiStudioPage() {
             heading="Engineers, and now everyone who builds"
             intro="AI has made building possible for anyone, not only engineers. Studio is for engineers, and for the builders who now work alongside them."
             archetypes={WHO}
+            basisLabel="How these were defined"
+            basis="Drawn from conversations with users."
             variant="cards"
           />
         </CaseStudySection>
@@ -432,7 +438,7 @@ export default function AiStudioPage() {
             fullWidth
             heading="Connect discovery, creation and reuse"
             body={[
-              "An engineer rarely builds just one artifact. We designed Studio around how they fit together, from describing a need to preparing it for publishing.",
+              "A builder rarely builds just one artifact. We designed Studio around how they fit together, from describing a need to preparing it for publishing.",
             ]}
           />
           <CaseStudyFigure label="One possible way these building blocks can work together">
@@ -455,7 +461,7 @@ export default function AiStudioPage() {
             description={[
               "Starting with a prompt is convenient, but an open-ended conversation may not gather all the information needed to produce a useful artifact. We needed the interaction to remain conversational while asking for the details that matter.",
               "I worked with the staff designer and developers to refine these workflows so the session followed a more directed path. The assistant would ask relevant questions as the user progressed, helping establish context and reduce the risk of hallucinations.",
-              "The conversation also gave users a way to continue refining their work. Suggestions in the prototype offered possible next steps, such as adding error handling or tests. The engineer could guide the outcome through chat and inspect the artifact in the adjacent workbench.",
+              "The conversation also gave users a way to continue refining their work. Suggestions in the prototype offered possible next steps, such as adding error handling or tests. The builder could guide the outcome through chat and inspect the artifact in the adjacent workbench.",
             ]}
             slides={CONVERSATION_SLIDES}
           />
@@ -469,7 +475,7 @@ export default function AiStudioPage() {
             title="One Studio, different workbenches"
             description={[
               "An agent, an API and an MCP do not all have the same structure. We therefore designed dedicated workbenches that shared a conversational approach but presented the details relevant to each type of artifact.",
-              "Across these experiences, the common idea was to make the result of the conversation tangible. Engineers needed to see what they were creating and have ways to work with it directly.",
+              "Across these experiences, the common idea was to make the result of the conversation tangible. Builders needed to see what they were creating and have ways to work with it directly.",
             ]}
             slides={WORKBENCH_SLIDES}
           />
@@ -482,7 +488,7 @@ export default function AiStudioPage() {
             eyebrow="Testing"
             title="Testing was part of building"
             description={[
-              "Creation was only one step in the journey. Engineers needed to understand how an artifact behaved, refine its output and assess whether it was ready for use.",
+              "Creation was only one step in the journey. Builders needed to understand how an artifact behaved, refine its output and assess whether it was ready for use.",
               "We designed playgrounds to support testing and iteration, as well as evaluations intended to help teams assess technical and security requirements. Review and publishing actions helped connect that work to the next stage of making a capability available to others.",
             ]}
             slides={TESTING_SLIDES}
@@ -497,7 +503,7 @@ export default function AiStudioPage() {
             title="As the work grew, context needed a home"
             description={[
               "The workbench addressed an individual artifact. But as users created more artifacts and returned to them across multiple conversations, another need became clear: related work needed to stay together.",
-              "Workspaces, which shipped, group artifacts and sessions around a shared context. An engineer returning to improve a capability, or starting something related, could pick up work with relevant context available instead of repeatedly explaining it from the beginning.",
+              "Workspaces, which shipped, group artifacts and sessions around a shared context. A builder returning to improve a capability, or starting something related, could pick up work with relevant context available instead of repeatedly explaining it from the beginning.",
               "Workspaces also gave us a structure for collaboration and access: who could view the work, who could modify it, and how a team could organise the artifacts and conversations it shared.",
             ]}
             slides={WORKSPACE_SLIDES}

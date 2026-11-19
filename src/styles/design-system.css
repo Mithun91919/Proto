@@ -4297,6 +4297,19 @@ a:hover .ds-compact-mark .ds-dot {
   margin-top: 0.85rem;
 }
 
+/* Four-point sparkle, the AI marker, beside a role's name. */
+.ds-arch-sparkle {
+  display: inline-block;
+  width: 0.95rem;
+  height: 0.95rem;
+  margin-left: 0.4rem;
+  vertical-align: 0.2em;
+  background: var(--ds-accent-deep);
+  mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M12 1c.6 5.6 5.4 10.4 11 11-5.6.6-10.4 5.4-11 11-.6-5.6-5.4-10.4-11-11C6.6 11.4 11.4 6.6 12 1z' fill='%23000'/%3E%3C/svg%3E");
+  mask-size: contain;
+  mask-repeat: no-repeat;
+}
+
 /* The members of a broad role: a row of chips under its behaviour. */
 .ds-arch-roles {
   display: flex;

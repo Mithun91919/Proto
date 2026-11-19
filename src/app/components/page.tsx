@@ -979,7 +979,7 @@ export default function ComponentsPage() {
             words a line. The section decides, so an author cannot pick the one that does not fit.
             A role that is really a family can name its members with{" "}
             <code className="font-mono text-[0.85em]">roles</code>, which sets them as chips under the
-            role&apos;s behaviour — Studio&apos;s &ldquo;Builder&rdquo; carries Designer and Product manager this way.
+            role&apos;s behaviour — Studio&apos;s &ldquo;Builders&rdquo; carries Designer and Product manager this way.
           </p>
 
           <div className="ds-rule mt-9 pb-12">

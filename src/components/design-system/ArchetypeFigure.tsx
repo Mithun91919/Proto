@@ -47,6 +47,11 @@ export type Archetype = {
    */
   roles?: string[];
   /**
+   * The four-point sparkle beside the name, the conventional marker for AI.
+   * Only for a role whose defining trait is working with AI.
+   */
+  sparkle?: boolean;
+  /**
    * What they are trying to get done. The persona template's "goal", minus
    * the biography around it. A list reads better than a paragraph here — a
    * reader scanning wants the two or three that matter, not a sentence to
@@ -417,6 +422,7 @@ export function ArchetypeCards({
             <span className="ds-arch-card-id">
               {showGlyph ? <ArchetypeGlyph archetype={a} stageCount={stages.length} /> : null}
               <span className="ds-arch-name">{a.name}</span>
+              {a.sparkle ? <span className="ds-arch-sparkle" aria-hidden /> : null}
             </span>
             {a.side ? <Chip className="ds-arch-side">{a.side}</Chip> : null}
           </div>
