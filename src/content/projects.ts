@@ -345,7 +345,7 @@ export const projects: Project[] = [
     metrics: [
       { value: "~985K", label: "monthly unique visitors", short: "monthly visitors" },
       { value: "139", label: "tools on the platform" },
-      { value: "62%", label: "less time on the landing page before reaching a tool", short: "less time to a tool" },
+      { value: "62%", label: "less time on the landing page before reaching a tool", short: "less time on the landing page" },
     ],
     org: "Walmart Global Tech",
     domain: "Enterprise",

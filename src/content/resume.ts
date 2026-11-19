@@ -38,7 +38,7 @@ export const resume = {
         "Enterprise portfolio platform (2023–2026). Sole designer. Ran three whiteboarding sessions of 12 people each, then replaced four external tools with one platform that links goals, initiatives, products and people, and persuaded three product managers to plan for the whole product. Worked a sprint ahead of three engineering teams, with weekly reviews and a monthly all-hands. 800+ hours a week reclaimed, per the product managers, and about $100K a year in average licence cost saved.",
         "API lifecycle platform (2022–2025). Owned the design direction for one platform to discover, design, test and govern APIs, built as one product, not three. 20K+ APIs onboarded and 60% less developer time spent defining API contracts.",
         "Dependency health platform (2025–2026). Turned a requested dashboard into one that acts: it starts the upgrade and assigns a flag to a person. Team migration fell from 3 days to about 2 hours, with 40% fewer library issues in releases.",
-        "Earlier at Walmart. Co-led the supply chain platform redesign, testing navigation models with users (139 tools, 62% less time to reach one), and designed the store associate support app (tickets closed in 1 day, from 3).",
+        "Earlier at Walmart. Co-led the supply chain platform redesign, testing navigation models with users (139 tools, 62% less time on the landing page), and designed the store associate support app (tickets closed in 1 day, from 3).",
       ],
     },
     {
