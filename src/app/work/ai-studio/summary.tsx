@@ -3,7 +3,7 @@ import { SummaryStory } from "@/components/design-system/SummaryStory";
 
 /**
  * What the Studio summary shows under its opener. Every line is the case
- * study's own wording, cut down. No figures: none have been supplied yet.
+ * study's own wording, cut down.
  */
 const SLIDES: ArtboardSlide[] = [
   {
@@ -70,6 +70,13 @@ export function AiStudioSummary() {
           detail: "I worked with a staff designer, and delivered a coded prototype built over several iterations.",
         },
       ]}
+      results={[
+        { value: "20K+", label: "monthly active users on Wibey", glyph: "field" },
+        { value: "4K+", label: "skills created", glyph: "modules" },
+        { value: "300+", label: "MCPs created", glyph: "ring" },
+        { value: "100+", label: "agents created", glyph: "layers" },
+      ]}
+      caveat="Counts since launch. The 20K+ is monthly active users of Wibey; the rest are artifacts created in Studio."
       carousel={{
         eyebrow: "The workbenches",
         title: "One Studio, different workbenches",

@@ -7,7 +7,7 @@
  */
 const MINUTES: Record<string, { full: number; summary: number }> = {
   "portfolio-management": { full: 10, summary: 2 },
-  "ai-studio": { full: 5, summary: 1 },
+  "ai-studio": { full: 5, summary: 2 },
   "api-lifecycle": { full: 8, summary: 2 },
   "dependency-health": { full: 7, summary: 1 },
   "store-support": { full: 7, summary: 1 },

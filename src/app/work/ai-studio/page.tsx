@@ -11,6 +11,7 @@ import { BeforeAfterModel } from "@/components/design-system/BeforeAfterModel";
 import { EditorialNumberedRows } from "@/components/design-system/EditorialNumberedRow";
 import { CompositionDiagram } from "@/components/design-system/CompositionDiagram";
 import { ConfidentialNote } from "@/components/design-system/ConfidentialNote";
+import { ProofStrip } from "@/components/design-system/ProofStrip";
 import { PullStatement } from "@/components/design-system/PullStatement";
 import {
   CaseStudyChapter,
@@ -522,6 +523,28 @@ export default function AiStudioPage() {
       </div>
 
       <CaseStudyColumn>
+        <CaseStudySection id="outcomes">
+          <CaseStudyChapter
+            layout="stacked"
+            eyebrow="What changed"
+            heading="What people have built since launch"
+            fullWidth
+            body={[
+              "Wibey has 20K+ monthly active users. These are the artifacts created in Studio since it launched.",
+            ]}
+          />
+          <CaseStudyFigure>
+            <ProofStrip
+              items={[
+                { value: "20K+", label: "monthly active users on Wibey", glyph: "field" },
+                { value: "4K+", label: "skills created", glyph: "modules" },
+                { value: "300+", label: "MCPs created", glyph: "ring" },
+                { value: "100+", label: "agents created", glyph: "layers" },
+              ]}
+            />
+          </CaseStudyFigure>
+        </CaseStudySection>
+
         <CaseStudySection id="learned">
           <Reveal>
             <div className="[&>h2]:max-w-[26ch]">
@@ -551,9 +574,6 @@ export default function AiStudioPage() {
           </div>
         </CaseStudySection>
 
-        {/* Numbers to come. Their place is left open on purpose: nothing is
-            stated here until the figures, what each measures and who owns it
-            are supplied. */}
       </CaseStudyColumn>
 
       <div className="mt-16 md:mt-20">
