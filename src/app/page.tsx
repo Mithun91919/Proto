@@ -168,7 +168,7 @@ export default function HomePage() {
               eyebrow="Say Hi"
               title="The work I want more of."
               measure="max-w-[47rem]"
-              lede="Complex platforms, dense decision screens and AI products that explain themselves. If you’re building one, say hello."
+              lede="Complex platforms, dense decision screens and AI products that explain themselves. If you’re building one, I’d like to hear about it. And if it’s about design, or a place you’ve discovered, I’d enjoy the conversation."
               dark
               sticky={false}
             >
