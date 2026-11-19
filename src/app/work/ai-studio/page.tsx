@@ -341,9 +341,9 @@ export default function AiStudioPage() {
           <PullStatement
             eyebrow="Where this started"
             mark="connection"
-            note="Security and other limits kept engineers’ work from reaching production, or from being usable by other teams."
+            note="Security and other limits kept what people built from reaching production, or from being usable by other teams."
           >
-            Building was the easy part. Shipping and sharing were not.
+            With AI, anyone can build. Shipping and publishing are still the hard part.
           </PullStatement>
         </Reveal>
       </div>
