@@ -226,7 +226,7 @@ export default function StoreSupportPage() {
                 stages: ["Issue", "Raise a ticket", "Wait"],
               }}
               after={{
-                heading: "A ticket is raised only if the fix fails",
+                heading: "The ticket became the fallback, not the starting point",
                 body: "The steps to clear it come first, and answering yes ends the journey. A ticket is raised only where they did not hold — and it carries the failed attempt with it.",
                 stages: ["Issue", "Fix it", "Back to work"],
               }}
