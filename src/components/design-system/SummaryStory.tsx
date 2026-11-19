@@ -120,6 +120,8 @@ export function SummaryStory({
 
       {figure ? (
         <section className={SECTION}>
+          {/* A figure with its own headings needs one above them: the summary opener is the only heading before it. */}
+          <h2 className="sr-only">{figureLabel ?? "Key visual"}</h2>
           <CaseStudyFigure label={figureLabel}>{figure}</CaseStudyFigure>
         </section>
       ) : null}

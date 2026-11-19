@@ -48,9 +48,9 @@ export function HeroThumbnailRail({ screens, label }: HeroThumbnailRailProps) {
           <p className="ds-eyebrow" style={{ color: "var(--ds-accent)" }}>
             {screen.route ?? `${active + 1} of ${screens.length}`}
           </p>
-          <h4 className="display-title mt-3" style={{ fontSize: "1.5rem" }}>
+          <h3 className="display-title mt-3" style={{ fontSize: "1.5rem" }}>
             {screen.title}
-          </h4>
+          </h3>
           <p className="ds-note mt-3 max-w-[40ch]">{screen.description}</p>
         </div>
 

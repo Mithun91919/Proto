@@ -47,9 +47,9 @@ export function DotCadence({ before, after }: DotCadenceProps) {
         <p className="ds-eyebrow" style={{ color: "var(--muted)" }}>
           Before
         </p>
-        <h4 className="display-title mt-3" style={{ fontSize: "1.4rem", color: "var(--ink-soft)" }}>
+        <h3 className="display-title mt-3" style={{ fontSize: "1.4rem", color: "var(--ink-soft)" }}>
           {before.heading}
-        </h4>
+        </h3>
         <p className="ds-note">{before.body}</p>
         <Track days={before.days} tone="muted" />
         <p className="ds-cadence-note">{before.note}</p>
@@ -61,9 +61,9 @@ export function DotCadence({ before, after }: DotCadenceProps) {
         <p className="ds-eyebrow" style={{ color: "var(--ds-accent)" }}>
           After
         </p>
-        <h4 className="display-title mt-3" style={{ fontSize: "1.4rem" }}>
+        <h3 className="display-title mt-3" style={{ fontSize: "1.4rem" }}>
           <span className="ds-accent-text">{after.heading}</span>
-        </h4>
+        </h3>
         <p className="ds-note">{after.body}</p>
         <Track days={after.days} tone="accent" />
         <p className="ds-cadence-note">{after.note}</p>

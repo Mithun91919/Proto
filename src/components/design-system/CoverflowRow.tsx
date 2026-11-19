@@ -95,9 +95,9 @@ export function CoverflowRow({ screens, label }: CoverflowRowProps) {
           <p className="ds-eyebrow" style={{ color: "var(--ds-accent)" }}>
             {screen.route ?? `${active + 1} of ${screens.length}`}
           </p>
-          <h4 className="display-title mt-3" style={{ fontSize: "1.3rem" }}>
+          <h3 className="display-title mt-3" style={{ fontSize: "1.3rem" }}>
             {screen.title}
-          </h4>
+          </h3>
           <p className="ds-note mt-3">{screen.description}</p>
         </div>
 

@@ -11,9 +11,9 @@ export function DecisionRecord({ optionA, chosen }: DecisionRecordProps) {
     <div className="grid grid-cols-1 gap-5 md:grid-cols-2">
       <GlassPanel variant="soft" className="rounded-2xl p-7">
         <p className="ds-eyebrow">Option A</p>
-        <h4 className="display-title mt-3" style={{ fontSize: "1.3rem" }}>
+        <h3 className="display-title mt-3" style={{ fontSize: "1.3rem" }}>
           {optionA.title}
-        </h4>
+        </h3>
         <p className="ds-note">{optionA.body}</p>
       </GlassPanel>
       <GlassPanel className="rounded-2xl p-7" style={{ borderColor: "color-mix(in oklab, var(--ds-accent) 28%, transparent)" }}>
@@ -24,9 +24,9 @@ export function DecisionRecord({ optionA, chosen }: DecisionRecordProps) {
           />
           Chosen
         </span>
-        <h4 className="display-title mt-3" style={{ fontSize: "1.3rem" }}>
+        <h3 className="display-title mt-3" style={{ fontSize: "1.3rem" }}>
           {chosen.title}
-        </h4>
+        </h3>
         <p className="ds-note">{chosen.body}</p>
       </GlassPanel>
     </div>

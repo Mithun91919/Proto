@@ -61,9 +61,9 @@ export function GuidedHotspotTour({ src, width, height, alt, stops, label }: Gui
         <p className="ds-eyebrow" style={{ color: "var(--ds-accent)" }}>
           {active + 1} of {stops.length}
         </p>
-        <h4 className="display-title mt-3" style={{ fontSize: "1.3rem" }}>
+        <h3 className="display-title mt-3" style={{ fontSize: "1.3rem" }}>
           {stop.title}
-        </h4>
+        </h3>
         <p className="ds-note mt-3">{stop.body}</p>
         <div className="mt-6">
           <PagingArrows onPrev={() => stepBy(-1)} onNext={() => stepBy(1)} label="stop" />

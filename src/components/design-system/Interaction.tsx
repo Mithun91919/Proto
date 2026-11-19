@@ -6,19 +6,19 @@ export function HoverLanguageDemo() {
     <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">
       <GlassPanel variant="base" hoverLift className="rounded-xl p-[1.625rem]">
         <p className="ds-eyebrow">Interactive glass</p>
-        <h4 className="display-title mt-3.5" style={{ fontSize: "1.35rem" }}>
+        <h3 className="display-title mt-3.5" style={{ fontSize: "1.35rem" }}>
           Lift 2–4px, strengthen the edge.
-        </h4>
+        </h3>
         <p className="ds-note">No dramatic scale. The interaction should confirm clickability, not perform.</p>
       </GlassPanel>
       <GlassPanel variant="soft" className="group rounded-xl p-[1.625rem]">
         <p className="ds-eyebrow">Directional link</p>
-        <h4 className="display-title mt-3.5 flex items-center gap-2" style={{ fontSize: "1.35rem" }}>
+        <h3 className="display-title mt-3.5 flex items-center gap-2" style={{ fontSize: "1.35rem" }}>
           Next project{" "}
           <span className="ds-arrow ds-accent-text inline-block transition-transform duration-200 group-hover:translate-x-1">
             →
           </span>
-        </h4>
+        </h3>
         <p className="ds-note">Arrow translates 3–4px. Text shifts from deep teal to accent.</p>
       </GlassPanel>
     </div>
@@ -60,9 +60,9 @@ export function ChapterProgressDemo() {
       </ol>
       <GlassPanel variant="base" className="rounded-xl p-[1.875rem]">
         <p className="ds-eyebrow">03 / The reframe</p>
-        <h4 className="display-title mt-3.5" style={{ fontSize: "1.5rem" }}>
+        <h3 className="display-title mt-3.5" style={{ fontSize: "1.5rem" }}>
           The current dot is larger and accent-coloured.
-        </h4>
+        </h3>
         <p className="ds-note">
           Completed chapters use deep teal; upcoming chapters remain hollow and muted. State is also conveyed by fill, not colour alone.
         </p>
