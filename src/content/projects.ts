@@ -131,8 +131,8 @@ export const projects: Project[] = [
     outcome: "Discovery, creation, testing and publishing in one workflow",
     metrics: [
       { value: "6K+", label: "monthly active users on Wibey", short: "monthly users on Wibey", glyph: "field" },
-      { value: "4K+", label: "skills created", short: "skills created", glyph: "modules" },
-      { value: "300+", label: "MCPs created", short: "MCPs created", glyph: "ring" },
+      { value: "4K+", label: "skills published", short: "skills published", glyph: "modules" },
+      { value: "300+", label: "MCPs published", short: "MCPs published", glyph: "ring" },
     ],
     org: "Walmart Global Tech",
     domain: "Developer tools",

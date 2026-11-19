@@ -423,7 +423,7 @@ export default function AiStudioPage() {
         <CaseStudySection id="builder">
           <ArchetypeSection
             heading="Engineers, and now everyone who builds"
-            intro="AI has made building possible for anyone, not only engineers. Studio is for engineers, and for the builders who now work alongside them."
+            intro="AI has made building possible for anyone, not only engineers. Studio is for engineers, and for the builders who now work alongside them. Anyone can build anything by conversation, in a sequence that walks them through it."
             archetypes={WHO}
             basisLabel="How these were defined"
             basis="Drawn from conversations with users."
@@ -438,7 +438,7 @@ export default function AiStudioPage() {
             fullWidth
             heading="Connect discovery, creation and reuse"
             body={[
-              "A builder rarely builds just one artifact. We designed Studio around how they fit together, from describing a need to preparing it for publishing.",
+              "We made the chat the hero. In one conversation a builder can make anything, and the AI opens the workbench that suits what they need. These are the pieces it works with, and how they fit together.",
             ]}
           />
           <CaseStudyFigure label="One possible way these building blocks can work together">
@@ -536,16 +536,16 @@ export default function AiStudioPage() {
             heading="What people have built since launch"
             fullWidth
             body={[
-              "Wibey has 6K+ monthly active users. These are the artifacts created in Studio since it launched.",
+              "Wibey has 6K+ monthly active users. These are the artifacts published to the marketplace since Studio launched.",
             ]}
           />
           <CaseStudyFigure>
             <ProofStrip
               items={[
                 { value: "6K+", label: "monthly active users on Wibey", glyph: "field" },
-                { value: "4K+", label: "skills created", glyph: "modules" },
-                { value: "300+", label: "MCPs created", glyph: "ring" },
-                { value: "100+", label: "agents created", glyph: "layers" },
+                { value: "4K+", label: "skills published", glyph: "modules" },
+                { value: "300+", label: "MCPs published", glyph: "ring" },
+                { value: "100+", label: "agents published", glyph: "layers" },
               ]}
             />
           </CaseStudyFigure>

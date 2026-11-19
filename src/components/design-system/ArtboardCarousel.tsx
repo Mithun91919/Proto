@@ -267,7 +267,7 @@ export function ArtboardCarousel({
         {eyebrow || title || description ? (
           <div className="ds-artboard-static-head">
             {eyebrow ? <p className="eyebrow">{eyebrow}</p> : null}
-            {title ? <h3 className="display-title display-section mt-3">{title}</h3> : null}
+            {title ? <h2 className="display-title display-section mt-3">{title}</h2> : null}
             {description ? (
               Array.isArray(description) && description.length > 1 ? (
                 <div className="mt-5 md:columns-2 md:gap-16">
