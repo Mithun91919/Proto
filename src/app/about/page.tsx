@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import type { ReactNode } from "react";
+import { Fragment } from "react";
 import Link from "next/link";
 import { FullWidthStatement } from "@/components/design-system/FullWidthStatement";
 import { GlyphSectionRow } from "@/components/design-system/GlyphSectionRow";
@@ -68,6 +69,38 @@ const TRAVEL: PhotoRowItem[] = [
   },
 ];
 
+/** The qualifications, kept as a quiet note near the foot of the page rather than in the middle of the story. */
+const EDUCATION = [
+  {
+    label: "2014 – 2015",
+    value: (
+      <>
+        <span className="text-[var(--ink)]">
+          Diploma in Graphic & Web Designing
+        </span>
+        <br />
+        <span className="text-[var(--ink-soft)]">
+          Zee Institute of Creative Arts
+        </span>
+      </>
+    ),
+  },
+  {
+    label: "2011 – 2014",
+    value: (
+      <>
+        <span className="text-[var(--ink)]">
+          Bachelor of Computer Applications
+        </span>
+        <br />
+        <span className="text-[var(--ink-soft)]">
+          St. Claret College, Bengaluru
+        </span>
+      </>
+    ),
+  },
+];
+
 const PARTS: Part[] = [
   {
     heading: "Curiosity drove me into design.",
@@ -81,41 +114,6 @@ const PARTS: Part[] = [
       },
       {
         text: "What started as an interest slowly became something I wanted to build a career around.",
-      },
-    ],
-  },
-  {
-    heading: "I studied computer applications, then design.",
-    glyph: "layers",
-    paragraphs: [],
-    education: [
-      {
-        label: "2014 – 2015",
-        value: (
-          <>
-            <span className="text-[var(--ink)]">
-              Diploma in Graphic & Web Designing
-            </span>
-            <br />
-            <span className="text-[var(--ink-soft)]">
-              Zee Institute of Creative Arts
-            </span>
-          </>
-        ),
-      },
-      {
-        label: "2011 – 2014",
-        value: (
-          <>
-            <span className="text-[var(--ink)]">
-              Bachelor of Computer Applications
-            </span>
-            <br />
-            <span className="text-[var(--ink-soft)]">
-              St. Claret College, Bengaluru
-            </span>
-          </>
-        ),
       },
     ],
   },
@@ -215,8 +213,8 @@ export default function AboutPage() {
       </div>
 
       {PARTS.map((part) => (
+        <Fragment key={part.heading}>
         <section
-          key={part.heading}
           className="mt-16 ds-section-boundary pt-12 md:mt-20 md:pt-14"
         >
           <GlyphSectionRow glyph={part.glyph} heading={part.heading}>
@@ -258,6 +256,16 @@ export default function AboutPage() {
             </Reveal>
           ) : null}
         </section>
+
+        {/* The qualifications sit just before the part about life outside work: a quiet note, not a turn in the story. */}
+        {part.heading === "I think out loud." ? (
+          <section className="mt-16 ds-section-boundary pt-12 md:mt-20 md:pt-14">
+            <GlyphSectionRow glyph="layers" heading="Where I studied.">
+              <SpecList facts={EDUCATION} valueFirst accentLabel />
+            </GlyphSectionRow>
+          </section>
+        ) : null}
+        </Fragment>
       ))}
 
       <section id="contact" className="mt-24">
