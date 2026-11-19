@@ -216,7 +216,7 @@ export function ArtboardCarousel({
       role="tabpanel"
       id={`${baseId}-panel-${active}`}
       aria-labelledby={`${baseId}-tab-${active}`}
-      className="ds-artboard-enter"
+      className={`ds-artboard-enter${current.mp4 ? " ds-artboard-dark" : ""}`}
     >
       {current.mp4 ? (
         <BrowserMockup

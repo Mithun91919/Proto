@@ -4959,3 +4959,17 @@ html.cs-view-changing .site-dock {
   }
 }
 
+
+
+/* A screen recording sits on a dark ground, as the opener's deck does, so the
+   pale product UI stands out from the page instead of blending into it. */
+.ds-artboard-dark {
+  padding: clamp(0.75rem, 2vw, 1.5rem);
+  border-radius: 1.1rem;
+  background-color: var(--ds-dark);
+  background-image: radial-gradient(
+    color-mix(in oklab, var(--ds-mint) 12%, transparent) 1.15px,
+    transparent 1.15px
+  );
+  background-size: 22px 22px;
+}

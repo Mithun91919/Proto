@@ -195,10 +195,10 @@ const WHO: Archetype[] = [
       "Publish it for others to use",
     ],
     friction: [
-      "Hard to know whether what they built was safe or ready",
-      "No way to inspect what was built",
-      "No path to publish it for others",
-      "Did not know what already existed",
+      "Hard to know whether what they built was safe or ready → the playgrounds",
+      "No way to inspect what was built → the workbenches",
+      "No path to publish it for others → a chat that follows a sequence",
+      "Did not know what already existed → the chat checks the registry first",
     ],
   },
 ];
