@@ -636,7 +636,7 @@ export default function PortfolioManagementPage() {
             eyebrow="What changed"
             heading="800+ hours a week stopped going on reconciliation"
             body={[
-              "The platform reached more than 6K monthly users and replaced four external tools with one platform, so the plan and the work sit on one shared set of records.",
+              "The platform reached more than 6K monthly users and replaced four external tools with one platform that connects to Jira, so the plan and the work sit on one shared set of records.",
               "That ended the manual reconciliation and the copying of data between tools. The product managers report 800+ hours a week reclaimed, and over 3,500 days of manual effort were eliminated in 2025. Retiring redundant licences saves $100K a year on average, and support tickets fell by a sustained 50% once changes no longer needed one.",
               "If I did it again I would go further on personalisation. It is one platform for everyone today: it knows who someone is from their sign-in and shows what is relevant to them, and it could be customised much more.",
             ]}
