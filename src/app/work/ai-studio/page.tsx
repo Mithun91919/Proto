@@ -536,7 +536,7 @@ export default function AiStudioPage() {
             heading="What people have built since launch"
             fullWidth
             body={[
-              "Wibey has 6K+ monthly active users. These are the artifacts published to the marketplace since Studio launched.",
+              "Wibey has 6K+ monthly active users. These are the artifacts published since Studio launched, and every one is in use.",
             ]}
           />
           <CaseStudyFigure>

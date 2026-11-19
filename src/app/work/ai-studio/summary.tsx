@@ -76,7 +76,7 @@ export function AiStudioSummary() {
         { value: "300+", label: "MCPs published", glyph: "ring" },
         { value: "100+", label: "agents published", glyph: "layers" },
       ]}
-      caveat="Counts since launch. The 6K+ is monthly active users of Wibey; the rest are artifacts published to the marketplace."
+      caveat="Counts since launch. The 6K+ is monthly active users of Wibey; the rest are artifacts published since launch, all in use."
       carousel={{
         eyebrow: "The workbenches",
         title: "One Studio, different workbenches",
