@@ -44,7 +44,7 @@ export default function CreoMark1Page() {
       summary={{
         title: "Mark 1 brand",
         standfirst:
-          "I built the visual language for the CREO Mark 1, a smartphone that changed every month, and supported it for 12 months with a new campaign around each update.",
+          "I extended CREO’s brand language across the Mark 1, a smartphone that changed every month, and supported it for 12 months with a new campaign around each update.",
         body: <CreoMark1Summary />,
       }}
       evidence={[

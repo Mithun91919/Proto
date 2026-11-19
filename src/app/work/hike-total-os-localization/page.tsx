@@ -48,12 +48,6 @@ export default function TotalOsLocalizationPage() {
           "I ran the research and the process that took TOTAL OS strings from English copy to a checked device build in eight Indian languages.",
         body: <TotalOsSummary />,
       }}
-      evidenceMetricsLabel="Hike at the time"
-      evidenceMetrics={[
-        { value: "100M", label: "registered users on Hike Messenger, as Hike stated in 2017" },
-        { value: "42%+", label: "of the telecom market covered by Total’s launch carriers: Airtel, Aircel and BSNL" },
-      ]}
-      evidenceCaveat="Hike’s own figures from 2017 press, not audited. They describe the platform at the time, not results caused by the design."
       evidence={[
         {
           label: "Why it mattered",
@@ -92,7 +86,7 @@ export default function TotalOsLocalizationPage() {
         src: "/work/total-os/cover.jpg",
         alt: "TOTAL, built by Hike, set over a photograph of a crowd of people in turbans and headscarves",
         standfirst:
-          "TOTAL OS was Hike’s mobile operating system, built to run without a connection, for people across India reading in their own script. Every string had to survive translation, review, build and a real handset before it counted as done.",
+          "TOTAL OS was Hike’s mobile operating system, built to run without a connection, for people across India reading in their own script. Hike said it had 100 million registered users on Hike Messenger in 2017. Every string had to survive translation, review, build and a real handset before it counted as done.",
         headline: (
           <>
             Multilingual Mobile Experience: one localisation system across <span style={{ color: "var(--ds-mint)" }}>8 Indian languages</span>.
