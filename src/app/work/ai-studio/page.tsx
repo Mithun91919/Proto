@@ -295,7 +295,7 @@ export default function AiStudioPage() {
       summary={{
         title: "Studio",
         standfirst:
-          "In Wibey, Walmart’s internal AI platform, I co-designed Studio, where builders and builders find what exists, build what doesn’t, test it and publish it for others.",
+          "In Wibey, Walmart’s internal AI platform, I co-designed Studio, where builders find what exists, build what doesn’t, test it and publish it for others.",
         body: <AiStudioSummary />,
       }}
       hero={{
