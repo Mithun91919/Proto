@@ -8,6 +8,7 @@ import type { SystemShape } from "@/components/design-system/FeaturedGlyph";
 import { glyphForMetric, type MetricMarkName } from "@/components/design-system/dotPatterns";
 import type { Project, ProjectMetric } from "@/content/projects";
 import { orgLogo } from "@/content/work-page";
+import { projectPlatforms } from "@/content/work-filters";
 
 /**
  * Which of the five system shapes (see design-system C · Dot language) a
@@ -72,7 +73,7 @@ export function FeaturedWorkCard({ project }: { project: Project }) {
               years right, on the same chip surface as the number above. */}
           <div className="absolute inset-x-4 bottom-4 flex flex-wrap items-center justify-between gap-2">
             <ul className="flex flex-wrap items-center gap-2">
-              {project.tags.slice(0, 2).map((t) => (
+              {[project.domain, ...projectPlatforms(project.slug)].map((t) => (
                 <Chip as="li" key={t}>
                   {t}
                 </Chip>
