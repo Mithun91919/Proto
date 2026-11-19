@@ -216,15 +216,26 @@ const WORKSPACE_SLIDES: ArtboardSlide[] = [
       "A workspace opens into its projects, and each project lists the artifacts it holds, in the sidebar and in the main view.",
   },
   {
-    title: "A space for a team",
+    title: "Set one up in five steps",
     route: "Wibey",
-    src: "/work/ai-studio/workspaces-2-shared-poster.jpg",
-    mp4: "/work/ai-studio/workspaces-2-shared.mp4",
+    src: "/work/ai-studio/workspaces-3-create-poster.jpg",
+    mp4: "/work/ai-studio/workspaces-3-create.mp4",
     width: 1920,
-    height: 1104,
-    alt: "A team workspace with the people in it shown beside its name, listing the agents the team works on.",
+    height: 1102,
+    alt: "Creating a workspace in five steps: its name and purpose, its members and their roles, the repositories and tools it can use, its rules, and a review before it is created.",
     caption:
-      "A team workspace shows who is in it beside its name, and lists the artifacts the team works on together.",
+      "Creating a workspace takes five steps: its name and purpose, its members, the repositories and tools it can use, its rules, and a review before it is created.",
+  },
+  {
+    title: "Who is in it, and what they can do",
+    route: "Wibey",
+    src: "/work/ai-studio/workspaces-4-members-poster.jpg",
+    mp4: "/work/ai-studio/workspaces-4-members.mp4",
+    width: 1920,
+    height: 1102,
+    alt: "A workspace's Members tab listing the people who can see it and their role, an owner or an editor, with a form to add a member.",
+    caption:
+      "The Members tab lists the people who can see the workspace and the role each has, owner or editor, and adds a member from the same screen.",
   },
 ];
 
@@ -498,7 +509,7 @@ export default function AiStudioPage() {
         <CaseStudySection id="workspaces">
           <ArtboardCarousel
             layout="split"
-            label="Workspaces, from their projects to a shared team space"
+            label="Workspaces: their projects, how one is set up, and who is in it"
             eyebrow="Workspaces"
             title="As the work grew, context needed a home"
             description={[
