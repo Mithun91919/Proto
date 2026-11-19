@@ -87,7 +87,7 @@ export default function RatingsReviewsPage() {
             </>
           ),
           detail:
-            "I defined reusable patterns for collecting a rating, writing a review and presenting what others had written, rather than designing each platform on its own.",
+            "I designed a configurable questionnaire for structured feedback on a product, with text, single-select, multi-select and emoji inputs, and reusable patterns for writing a review and presenting what others had written, rather than designing each platform on its own.",
         },
       ]}
       chapters={CHAPTERS}

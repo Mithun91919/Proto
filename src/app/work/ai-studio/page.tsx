@@ -358,7 +358,7 @@ export default function AiStudioPage() {
             mark="connection"
             note="Security and other limits kept what people built from reaching production, or from being usable by other teams."
           >
-            With AI, anyone can build. Shipping and publishing are still the hard part.
+            With AI, anyone can start to build. Shipping and publishing are still the hard part.
           </PullStatement>
         </Reveal>
       </div>
@@ -434,7 +434,7 @@ export default function AiStudioPage() {
         <CaseStudySection id="builder">
           <ArchetypeSection
             heading="Engineers, and now everyone who builds"
-            intro="AI has made building possible for anyone, not only engineers. Studio is for engineers, and for the builders who now work alongside them. Anyone can build anything by conversation, in a sequence that walks them through it."
+            intro="AI has made building possible for anyone, not only engineers. Studio is for engineers, and for the builders who now work alongside them. Anyone can describe what they want in conversation, and Studio walks them through building it."
             archetypes={WHO}
             basisLabel="How these were defined"
             basis="Drawn from conversations with users."

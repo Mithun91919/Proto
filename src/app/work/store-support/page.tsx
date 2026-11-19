@@ -42,7 +42,7 @@ import { StoreSupportSummary } from "./summary";
  */
 
 export const metadata: Metadata = {
-  title: "Store associate app — fix everything that breaks",
+  title: "Store associate app — try the fix first, raise a ticket only if it fails",
   description:
     "Redesigning frontline support so store associates can fix an issue themselves instead of raising a ticket — facilities and technology, on a phone, across a ~580K-device footprint.",  robots: caseStudyRobots,
 };
@@ -143,8 +143,8 @@ export default function StoreSupportPage() {
       hero={{
         headline: (
           <>
-            Store associate app: fix{" "}
-            <span style={{ color: "var(--ds-mint)" }}>everything that breaks</span>.
+            Store associate app:{" "}
+            <span style={{ color: "var(--ds-mint)" }}>try the fix first</span>, raise a ticket only if it fails.
           </>
         ),
         meta: [
@@ -226,7 +226,7 @@ export default function StoreSupportPage() {
                 stages: ["Issue", "Raise a ticket", "Wait"],
               }}
               after={{
-                heading: "The ticket is what is left over",
+                heading: "A ticket is raised only if the fix fails",
                 body: "The steps to clear it come first, and answering yes ends the journey. A ticket is raised only where they did not hold — and it carries the failed attempt with it.",
                 stages: ["Issue", "Fix it", "Back to work"],
               }}

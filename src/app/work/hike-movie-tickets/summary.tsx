@@ -11,7 +11,7 @@ export function MovieTicketsSummary() {
       beats={[
         {
           label: "Why it mattered",
-          lead: "Most people arrived already knowing the film.",
+          lead: "In a survey of 15, many arrived already knowing the film.",
           detail: "A survey with 15 participants found the decision was usually made before the app opened.",
         },
         {

@@ -99,7 +99,7 @@ export default function BbDailyPage() {
       summary={{
         title: "bb daily",
         standfirst:
-          "I ran research and UX for both sides of bigbasket’s recurring delivery service: the customer app, and the operations app behind each delivery. It reached 10+ cities and 1.5M+ users.",
+          "I ran research and UX for both sides of bigbasket’s recurring delivery service: the customer app, and the operations app behind each delivery. At the time, the service reached 10+ cities and 1.5M+ users.",
         body: <BbDailySummary />,
       }}
       evidenceCaveat="These figures describe the product when I worked on it, not results caused by the design."
@@ -174,7 +174,7 @@ export default function BbDailyPage() {
             body={[
               "Most grocery experiences are designed around a single order. bb daily needed to support a relationship that continued across days and weeks.",
               "bigbasket and bb daily were not the same product for the same person. One is a grocery run. The other is a standing arrangement for a household that has already decided what it needs each week. We looked at three placements: a separate app, an integrated experience, or a subscription feature inside bigbasket.",
-              "We built it separately, and the deciding argument was reversibility. A focused app could be folded back into bigbasket once we understood how subscription behaviour actually worked. A feature buried inside bigbasket could not be pulled back out. Building separately kept the cheaper move available.",
+              "We built it as a separate app, with an integration on bigbasket. People who want only a subscription can install bb daily, and people who shop on bigbasket can subscribe to essentials from there. Each app can then keep innovating in its own area.",
             ]}
           />
           <Reveal delay={80}>

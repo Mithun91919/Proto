@@ -336,7 +336,7 @@ export const projects: Project[] = [
     // adds nothing a reader outside Walmart can use.
     label: "Store associate app",
     title:
-      "Store associate app: fix everything that breaks.",
+      "Store associate app: try the fix first, raise a ticket only if it fails.",
     summary:
       "Support used to start at a manager\u2019s desk. I rebuilt it as a phone app that offers the fix before the form, with a ticket only if the steps do not work, and a work order the associate can follow.",
     outcome:
@@ -393,8 +393,8 @@ export const projects: Project[] = [
       "10+ cities · 1.5M+ users · 120K average daily deliveries",
     metrics: [
       { value: "10+", label: "cities" },
-      { value: "1.5M+", label: "users" },
-      { value: "120K", label: "average daily deliveries", short: "avg daily deliveries" },
+      { value: "1.5M+", label: "service users" },
+      { value: "120K", label: "average daily deliveries across the service", short: "avg daily deliveries" },
     ],
     org: "bigbasket",
     domain: "Commerce",

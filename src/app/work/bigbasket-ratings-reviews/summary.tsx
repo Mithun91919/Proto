@@ -22,7 +22,7 @@ export function RatingsReviewsSummary() {
         {
           label: "What I did",
           lead: "I worked the system across four surfaces at once.",
-          detail: "I defined reusable patterns for collecting a rating, writing a review and presenting what others had written, rather than designing each platform on its own.",
+          detail: "I designed a configurable questionnaire for structured feedback on a product, with text, single-select, multi-select and emoji inputs, and reusable patterns for writing a review and presenting what others had written, rather than designing each platform on its own.",
         },
       ]}
       figureLabel="The rating screen"

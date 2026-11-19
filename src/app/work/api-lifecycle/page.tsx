@@ -142,7 +142,7 @@ export default function ApiLifecyclePage() {
             </>
           ),
           detail:
-            "I owned the design direction and pushed for one platform with the controls built in, not three products. Launch was not the end: almost nobody turned up at first, so I ran over a hundred sessions to bring teams onto it, and the product grew from my first year on it to my fourth.",
+            "I owned the design direction and pushed for one platform with the controls built in, not three products. Launch was not the end: adoption was slow at first, so I ran over a hundred sessions to bring teams onto it, and the product grew from my first year on it to my fourth.",
         },
       ]}
       chapters={CHAPTERS}
@@ -623,7 +623,7 @@ export default function ApiLifecyclePage() {
           <CaseStudyChapter
             layout="stacked"
             eyebrow="Adoption"
-            heading="It shipped, and for three months almost nobody came"
+            heading="It shipped, and adoption stayed low for the first three months"
             body={[
               "The platform came out in batches: the marketplace first, then the Studio, then testing. Teams waited until all of it was there before moving. When it was, the assumption that it was unfinished stayed, and for the first three months adoption was low.",
               "I interviewed teams to find out why, and took what I learned into brown-bag sessions (short, informal demos): show the product to one team, watch where they got stuck, answer the workflow questions an announcement cannot. Whatever was stopping a team from migrating was raised and worked through in the same session.",

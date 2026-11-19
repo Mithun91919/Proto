@@ -261,7 +261,7 @@ export default function SupplyChainOperationsPage() {
             <DecisionRecord
               optionA={{
                 title: "Top navigation",
-                body: "The familiar option, but the platform already had domains and sub-domains, and the list of modules kept growing. A top bar would not have scaled.",
+                body: "The familiar option, but the platform already had domains and sub-domains, and the list of modules kept growing. A top bar would not have scaled. Feedback on it still improved the final design, including how market selection was folded into the navigation.",
               }}
               chosen={{
                 title: "Persistent left navigation",

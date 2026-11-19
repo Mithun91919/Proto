@@ -41,7 +41,7 @@ import { DependencyHealthSummary } from "./summary";
 export const metadata: Metadata = {
   title: "Dependency Health Platform — Catching outdated libraries before release",
   description:
-    "One platform for engineers and engineer managers: which library versions are behind, why it matters, and a guided way onto the Unified BOM.",
+    "One platform for engineers and engineering managers: which library versions are behind, why it matters, and a guided way onto the Unified BOM.",
   robots: caseStudyRobots,
 };
 
@@ -66,7 +66,7 @@ const ARCHETYPES: Archetype[] = [
     ],
   },
   {
-    name: "Engineer manager",
+    name: "Engineering manager",
     side: "Answers for it",
     behaviour: "Reads across teams: where the outdated libraries are, and which teams are furthest behind.",
     wants: [
@@ -84,7 +84,7 @@ const CHAPTERS = [
   { id: "outdated", label: "Outdated libraries" },
   { id: "solution", label: "The idea" },
   { id: "who", label: "Who it is for" },
-  { id: "manager", label: "Engineer manager" },
+  { id: "manager", label: "Engineering manager" },
   { id: "engineer", label: "Engineer" },
   { id: "catalogue", label: "The Unified BOM" },
   { id: "evidence", label: "Evidence" },
@@ -138,7 +138,7 @@ export default function DependencyHealthPage() {
       chapters={CHAPTERS}
       hero={{
         standfirst:
-          "The platform Walmart developers and engineer managers open to see which dependencies in a repository need attention, why they matter, and what to do next.",
+          "The platform Walmart developers and engineering managers open to see which dependencies in a repository need attention, why they matter, and what to do next.",
         headline: (
           <>
             Dependency Health Platform: catching <span style={{ color: "var(--ds-mint)" }}>outdated libraries</span> before release.
@@ -260,7 +260,7 @@ export default function DependencyHealthPage() {
         <CaseStudySection id="who">
           <ArchetypeSection
             heading="One fixes the libraries. The other answers for them."
-            intro="An engineer fixes the libraries in a repository. An engineer manager answers for the outdated libraries across their teams."
+            intro="An engineer fixes the libraries in a repository. An engineering manager answers for the outdated libraries across their teams."
             archetypes={ARCHETYPES}
             basisLabel="12+ teams spoken to"
             basis="I spoke to them to understand how they find and fix library problems today."
@@ -272,7 +272,7 @@ export default function DependencyHealthPage() {
       <div className="mt-16 md:mt-20">
         <Reveal>
           <PullStatement eyebrow="What research pointed to" mark="exchange">
-            Engineer managers needed a health report. Engineers needed a simple upgrade path.
+            Engineering managers needed a health report. Engineers needed a simple upgrade path.
           </PullStatement>
         </Reveal>
       </div>
@@ -282,16 +282,16 @@ export default function DependencyHealthPage() {
           <Reveal>
             <ArtboardCarousel
               layout="split"
-              eyebrow="The engineer manager"
+              eyebrow="The engineering manager"
               title="A bird’s-eye view that drills down to the service"
               description={[
                 "Outdated libraries used to surface when a release was already close. The dashboard shows it ahead of time, from the organisation down to a single product.",
-                "Three levels share one set of measures. The organisation view shows outdated libraries by division, the pillar view (one business area) by team, and the product view by service, so an engineer manager can see where to look and go there.",
+                "Three levels share one set of measures. The organisation view shows outdated libraries by division, the pillar view (one business area) by team, and the product view by service, so an engineering manager can see where to look and go there.",
                 "Each level opens with one sentence on what the numbers add up to, then the detail behind it.",
               ]}
               scrollable
               maxHeight="44rem"
-              label="The engineer manager’s view"
+              label="The engineering manager’s view"
               slides={[
                 {
                   title: "The organisation: which divisions have the most outdated libraries?",

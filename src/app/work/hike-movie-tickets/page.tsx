@@ -68,7 +68,7 @@ export default function MovieTicketsPage() {
           label: "Why it mattered",
           lead: (
             <>
-              Most people arrived <span className="ds-accent-text">already knowing the film</span>.
+              In a survey of 15, many arrived <span className="ds-accent-text">already knowing the film</span>.
             </>
           ),
           detail:
