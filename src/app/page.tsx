@@ -1,5 +1,4 @@
 import Link from "next/link";
-import { CopyEmail } from "@/components/CopyEmail";
 import { DotText } from "@/components/DotText";
 import { FeaturedWorkCard } from "@/components/FeaturedWorkCard";
 import { HeroPortrait } from "@/components/HeroPortrait";
@@ -169,7 +168,7 @@ export default function HomePage() {
               eyebrow="Say Hi"
               title="The work I want more of."
               measure="max-w-[47rem]"
-              lede="Platforms where the hard part is how things connect, not how they look; screens full of dense information that has to end in a decision; and products where an AI acts for a person and has to explain what it did. If you are building one of those, I would like to hear about it."
+              lede="Complex platforms, dense decision screens and AI products that explain themselves. If you’re building one, say hello."
               dark
               sticky={false}
             >
@@ -179,15 +178,6 @@ export default function HomePage() {
                 </Link>
                 <a href="mailto:mithraj14@gmail.com" className="button button-secondary">
                   Email
-                </a>
-                <CopyEmail address="mithraj14@gmail.com" />
-                <a
-                  href="https://www.linkedin.com/in/mithunrajuk"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="button button-secondary"
-                >
-                  LinkedIn
                 </a>
               </div>
             </SectionAnchor>
