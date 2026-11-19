@@ -66,7 +66,7 @@ const CHAPTERS = [
 ];
 
 export default function SupplyChainOperationsPage() {
-  const onward = getProject("bb-daily");
+  const onward = getProject("store-support");
 
   return (
     <CaseStudyShell

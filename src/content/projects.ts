@@ -281,8 +281,56 @@ export const projects: Project[] = [
     tags: ["Developer Tools", "Information Architecture", "Governance"],
   },
   {
-    slug: "store-support",
+    slug: "supply-chain-operations",
     number: "05",
+    label: "Supply Chain Operations Platform",
+    title:
+      "Supply Chain Operations Platform: getting to the right tool faster.",
+    summary:
+      "As the platform grew to 139 tools, people struggled to find the one they needed. I co-led the redesign of the landing page, sign-in and navigation, evaluating competing navigation models with users across multiple markets.",
+    outcome: "~985K monthly unique visitors · 139 modules",
+    metrics: [
+      { value: "~985K", label: "monthly unique visitors", short: "monthly visitors" },
+      { value: "139", label: "tools on the platform" },
+      { value: "62%", label: "less time on the landing page before reaching a tool", short: "less time on the landing page" },
+    ],
+    org: "Walmart Global Tech",
+    domain: "Enterprise",
+    ownership: "Co-led with another designer",
+    timeframe: "2021–2022",
+    role: "UX Designer",
+    tier: "range",
+    featured: false,
+    reconstructed: true,
+    accent: "#0891b2",
+    accentSoft: "#cffafe",
+    contentPath:
+      "projects/supply-chain-operations/web/supply-chain-operations-web.md",
+    media: {
+      mp4: "/work/supply-chain-operations/hero.mp4",
+      webm: "/work/supply-chain-operations/hero.webm",
+      poster: "/work/supply-chain-operations/hero-poster.jpg",
+      aspect: 1600 / 926,
+    },
+    systemMap: [
+      {
+        label: "Before",
+        detail: "Flat tile grid with no search, hierarchy, or personalisation",
+      },
+      {
+        label: "Intervention",
+        detail: "Shared IA, left navigation, search, and personalised shortcuts",
+      },
+      {
+        label: "After",
+        detail: "Scalable platform shell used across markets and teams",
+      },
+    ],
+    tags: ["Platform UX", "Information Architecture", "Navigation"],
+  },
+  {
+    slug: "store-support",
+    number: "06",
     // Named by what it is rather than by either of its product names —
     // the internal one is out under the copy guide, and the public one
     // adds nothing a reader outside Walmart can use.
@@ -332,54 +380,6 @@ export const projects: Project[] = [
       },
     ],
     tags: ["Mobile Product", "Research", "Service Design"],
-  },
-  {
-    slug: "supply-chain-operations",
-    number: "06",
-    label: "Supply Chain Operations Platform",
-    title:
-      "Supply Chain Operations Platform: getting to the right tool faster.",
-    summary:
-      "As the platform grew to 139 tools, people struggled to find the one they needed. I co-led the redesign of the landing page, sign-in and navigation, evaluating competing navigation models with users across multiple markets.",
-    outcome: "~985K monthly unique visitors · 139 modules",
-    metrics: [
-      { value: "~985K", label: "monthly unique visitors", short: "monthly visitors" },
-      { value: "139", label: "tools on the platform" },
-      { value: "62%", label: "less time on the landing page before reaching a tool", short: "less time on the landing page" },
-    ],
-    org: "Walmart Global Tech",
-    domain: "Enterprise",
-    ownership: "Co-led with another designer",
-    timeframe: "2021–2022",
-    role: "UX Designer",
-    tier: "range",
-    featured: false,
-    reconstructed: true,
-    accent: "#0891b2",
-    accentSoft: "#cffafe",
-    contentPath:
-      "projects/supply-chain-operations/web/supply-chain-operations-web.md",
-    media: {
-      mp4: "/work/supply-chain-operations/hero.mp4",
-      webm: "/work/supply-chain-operations/hero.webm",
-      poster: "/work/supply-chain-operations/hero-poster.jpg",
-      aspect: 1600 / 926,
-    },
-    systemMap: [
-      {
-        label: "Before",
-        detail: "Flat tile grid with no search, hierarchy, or personalisation",
-      },
-      {
-        label: "Intervention",
-        detail: "Shared IA, left navigation, search, and personalised shortcuts",
-      },
-      {
-        label: "After",
-        detail: "Scalable platform shell used across markets and teams",
-      },
-    ],
-    tags: ["Platform UX", "Information Architecture", "Navigation"],
   },
   {
     slug: "bb-daily",

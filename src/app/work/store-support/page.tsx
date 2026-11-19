@@ -94,7 +94,7 @@ const CHAPTERS = [
 ];
 
 export default function StoreSupportPage() {
-  const onward = getProject("supply-chain-operations");
+  const onward = getProject("bb-daily");
 
   return (
     <CaseStudyShell
