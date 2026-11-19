@@ -179,7 +179,7 @@ export default function AboutPage() {
             <h1 className="display-title display-hero mt-4 max-w-[18ch] text-[var(--ink)]">
               I learned design from{" "}
               <span className="text-[var(--accent-deep)]">
-                the people around me
+                people and mentors
               </span>
               .
             </h1>
