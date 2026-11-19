@@ -146,8 +146,10 @@ export const projects: Project[] = [
     accentSoft: "#ccfbf1",
     contentPath: "projects/ai-studio/web/ai-studio-web.md",
     media: {
-      poster: "/work/ai-studio/prototype-poster.jpg",
-      aspect: 1600 / 923,
+      mp4: "/work/ai-studio/hero.mp4",
+      webm: "/work/ai-studio/hero.webm",
+      poster: "/work/ai-studio/poster.jpg",
+      aspect: 1600 / 1068,
     },
     systemMap: [
       {
