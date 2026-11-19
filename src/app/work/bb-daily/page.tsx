@@ -113,7 +113,7 @@ export default function BbDailyPage() {
             </>
           ),
           detail:
-            "The customer promise was simple: choose what you need and have it arrive. Behind it sat procurement, inventory, packing, shipment creation and an early-morning delivery window that all had to stay coordinated.",
+            "The customer promise was simple: choose what you need and have it arrive. Behind it, buying, stock, packing, shipments and an early-morning delivery window all had to stay coordinated.",
         },
         {
           label: "The solution",
@@ -123,7 +123,7 @@ export default function BbDailyPage() {
             </>
           ),
           detail:
-            "The work covered both halves: the Android and iOS customer experience, and an Android operations product the teams used to coordinate the work behind each delivery.",
+            "The work covered both halves: the customer app on Android and iOS, and an Android app the operations teams used to coordinate each delivery.",
         },
         {
           label: "What I did",
@@ -133,7 +133,7 @@ export default function BbDailyPage() {
             </>
           ),
           detail:
-            "I ran research and UX across both sides, so the promise made in the customer app matched what the operations app actually had to coordinate.",
+            "I ran research and UX across both sides, so what the customer app promised matched what the operations app had to coordinate.",
         },
       ]}
       chapters={CHAPTERS}

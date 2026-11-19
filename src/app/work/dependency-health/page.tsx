@@ -112,17 +112,17 @@ export default function DependencyHealthPage() {
             </>
           ),
           detail:
-            "Teams found library problems late, close to a release, not ahead of it. Blind spots in their dependencies cost productivity, and one standard package of library versions went unused.",
+            "Teams found out about outdated libraries late, close to a release. Those blind spots cost time, and one standard package of library versions went unused.",
         },
         {
           label: "The solution",
           lead: (
             <>
-              One Unified BOM, and <span className="ds-accent-text">a guided way onto it</span>.
+              One approved set of libraries, and <span className="ds-accent-text">a guided way onto it</span>.
             </>
           ),
           detail:
-            "A Unified BOM: one package of approved library versions, Java and Spring Boot included, that one team builds and every other team onboards to, instead of upgrading each library by hand.",
+            "A Unified BOM (bill of materials) is one package of approved library versions, Java and Spring Boot included. One team builds it and every other team moves onto it, instead of upgrading each library by hand.",
         },
         {
           label: "What I did",
@@ -132,7 +132,7 @@ export default function DependencyHealthPage() {
             </>
           ),
           detail:
-            "The request was a dashboard to monitor library health at each level, from repository to organisation. I pushed for it to act as well, with a remediation flow that helps engineers raise pull requests and manage them. The platform team built the scanning behind it.",
+            "The request was a dashboard to monitor library health at every level, from one repository up to the organisation. I pushed for it to act as well, with a flow that helps engineers raise pull requests and manage them. The platform team built the scanning behind it.",
         },
       ]}
       chapters={CHAPTERS}

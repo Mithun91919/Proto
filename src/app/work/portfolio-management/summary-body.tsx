@@ -112,12 +112,12 @@ export function PortfolioSummaryBody() {
         {
           label: "The solution",
           lead: "The platform became the link.",
-          detail: "A goal connects to an initiative, a product and a person, then to the Jira epic the work is tagged to.",
+          detail: "It ties each goal to the initiative, product, people and Jira work behind it.",
         },
         {
           label: "What I did",
           lead: "Three product managers, three engineering teams, one designer.",
-          detail: "I ran the sessions that set the problem and designed a sprint ahead of each team.",
+          detail: "I ran the sessions that framed the problem and designed a sprint ahead of each team.",
         },
       ]}
       carousel={{

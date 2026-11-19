@@ -89,13 +89,13 @@ export function DependencyHealthSummary() {
         },
         {
           label: "The solution",
-          lead: "One Unified BOM, and a guided way onto it.",
-          detail: "One package of approved library versions that one team builds and every other team onboards to, instead of upgrading each library by hand.",
+          lead: "One approved set of libraries, and a guided way onto it.",
+          detail: "One package of approved library versions that one team builds and every other team moves onto, instead of upgrading each library by hand.",
         },
         {
           label: "What I did",
           lead: "I designed a dashboard that ends in a pull request.",
-          detail: "I pushed for the dashboard to act as well, with a remediation flow that helps engineers raise pull requests and manage them.",
+          detail: "I pushed for the dashboard to act as well, with a flow that helps engineers raise pull requests and manage them.",
         },
       ]}
       carousel={{

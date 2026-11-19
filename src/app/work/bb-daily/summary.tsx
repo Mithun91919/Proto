@@ -163,17 +163,17 @@ export function BbDailySummary() {
         {
           label: "The problem",
           lead: "Recurring groceries are not a checkout problem.",
-          detail: "Behind the promise sat procurement, inventory, packing, shipment creation and an early-morning delivery window that all had to stay coordinated.",
+          detail: "Behind the promise, buying, stock, packing, shipments and an early-morning delivery window all had to stay coordinated.",
         },
         {
           label: "The solution",
           lead: "The customer’s subscription, and the operations behind it.",
-          detail: "The work covered the Android and iOS customer experience, and an Android operations product the teams used to coordinate each delivery.",
+          detail: "The work covered the customer app on Android and iOS, and an Android app the operations teams used to coordinate each delivery.",
         },
         {
           label: "What I did",
           lead: "I worked the customer app and the operations app together.",
-          detail: "I ran research and UX across both sides, so the promise made in the customer app matched what the operations app actually had to coordinate.",
+          detail: "I ran research and UX across both sides, so what the customer app promised matched what the operations app had to coordinate.",
         },
       ]}
       carousel={{

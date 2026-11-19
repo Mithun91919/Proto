@@ -22,7 +22,7 @@ export function SupplyChainSummary() {
         {
           label: "What I did",
           lead: "I fixed the structure before the navigation.",
-          detail: "We regrouped the platform into Category → Module → Sub-module, then added pins, recent modules and search so the small working set most people rely on is a short trip away.",
+          detail: "We regrouped the platform into Category, Module and Sub-module, then added pins, recent modules and search so the few tools most people rely on are a short trip away.",
         },
       ]}
       figureLabel="The landing page, before and after"

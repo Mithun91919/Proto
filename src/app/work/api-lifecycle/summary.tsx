@@ -120,12 +120,12 @@ export function ApiLifecycleSummary() {
         {
           label: "The solution",
           lead: "One platform, with governance built into it.",
-          detail: "One place carrying every stage, with governance integrated into the work rather than waiting at the end of it.",
+          detail: "One place for every stage, with the controls built into the work instead of waiting at the end.",
         },
         {
           label: "What I did",
           lead: "I joined at inception and shaped the product model.",
-          detail: "I owned the design direction and pushed for one platform with the controls integrated, not three products.",
+          detail: "I owned the design direction and pushed for one platform with the controls built in, not three products.",
         },
       ]}
       carousel={{

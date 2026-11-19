@@ -269,7 +269,7 @@ export default function AiStudioPage() {
             </>
           ),
           detail:
-            "Data security and other limitations made it difficult to take what builders built into production, or to make it consumable by other teams. Teams also worked on similar needs independently, so similar capabilities accumulated.",
+            "Security and other limits made it hard to take what people built into production, or to let other teams use it. Teams also built similar things on their own, so similar capabilities piled up.",
         },
         {
           label: "The solution",
@@ -279,7 +279,7 @@ export default function AiStudioPage() {
             </>
           ),
           detail:
-            "Studio brings them together inside Wibey’s protection layer, with conversational creation and hands-on editing, and makes existing work part of the conversation.",
+            "Studio brings them together inside Wibey’s protection layer. You create by chatting, edit by hand in a workbench, and existing work comes up in the conversation.",
         },
         {
           label: "What I did",
@@ -289,7 +289,7 @@ export default function AiStudioPage() {
             </>
           ),
           detail:
-            "I worked with a staff designer on the workbenches and the conversational workflows, and with developers on the end-to-end experience. The deliverable was a coded prototype, built through multiple iterations in Cursor and VS Code.",
+            "I worked with a staff designer on the workbenches and the conversation, and with developers on the whole experience. The deliverable was a coded prototype, built over several iterations in Cursor and VS Code.",
         },
       ]}
       summary={{

@@ -116,7 +116,7 @@ export default function StoreSupportPage() {
             </>
           ),
           detail:
-            "An associate who found a cooler failing could not report it from the floor. There was little troubleshooting guidance, search returned an unstructured list with no next step, and the form came before anyone had tried the obvious fix.",
+            "An associate who found a cooler failing could not report it from the floor. There was little help with fixing it, search gave a plain list with no next step, and the form came before anyone had tried the obvious fix.",
         },
         {
           label: "The solution",
@@ -126,7 +126,7 @@ export default function StoreSupportPage() {
             </>
           ),
           detail:
-            "One experience covering both the building and the technology inside it, for associates supporting ~580K devices and for the central support teams receiving their tickets.",
+            "One app covering the building and the technology inside it, for associates looking after ~580K devices and for the central support teams who receive their tickets.",
         },
         {
           label: "What I did",

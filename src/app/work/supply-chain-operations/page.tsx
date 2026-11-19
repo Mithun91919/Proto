@@ -88,7 +88,7 @@ export default function SupplyChainOperationsPage() {
             </>
           ),
           detail:
-            "Tools had been added over time with no structure around them. Related modules were hard to identify, everyone started from the same view, frequently used tools could not be saved, and people who already knew what they wanted still had no fast route to it.",
+            "Tools had been added over time with no structure around them. Related modules were hard to spot, everyone started from the same view, tools people used often could not be saved, and people who knew what they wanted had no quick way to it.",
         },
         {
           label: "The solution",
@@ -99,7 +99,7 @@ export default function SupplyChainOperationsPage() {
             </>
           ),
           detail:
-            "I co-led this with another designer across 139 modules serving Walmart.com, Online Grocery and international markets, against one goal: less time finding a tool, more time using it.",
+            "A clearer structure for 139 modules serving Walmart.com, Online Grocery and international markets, with one goal: less time finding a tool, more time using it. I co-led it with another designer.",
         },
         {
           label: "What I did",
@@ -109,7 +109,7 @@ export default function SupplyChainOperationsPage() {
             </>
           ),
           detail:
-            "Other designers owned the categories inside the platform. I designed the landing page, the sign-in and the navigation. We regrouped the platform into Category → Module → Sub-module with users and platform teams, put two navigation directions in front of users, then added pins, recent modules and search so the small working set most people rely on is a short trip away.",
+            "Other designers owned the categories inside the platform. I designed the landing page, the sign-in and the navigation. With users and platform teams we regrouped everything into Category, Module and Sub-module, and put two navigation ideas in front of users. Then I added pins, recent modules and search, so the few tools most people rely on are a short trip away.",
         },
       ]}
       chapters={CHAPTERS}

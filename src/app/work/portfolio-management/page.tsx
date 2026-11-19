@@ -116,7 +116,7 @@ export default function PortfolioManagementPage() {
             </>
           ),
           detail:
-            "Leaders guessed at progress each quarter. Engineers searched across platforms for one answer. Data quality champions and finance chased approvals through email and Slack, and every change needed a ticket.",
+            "Nobody could see how the plan was going. Leaders guessed at progress each quarter, and teams chased answers and approvals through email, Slack and tickets.",
         },
         {
           label: "The solution",
@@ -126,7 +126,7 @@ export default function PortfolioManagementPage() {
             </>
           ),
           detail:
-            "Pfolio replaced four external tools with one platform. A goal connects to an initiative, a product and a person, then to the Jira epic (the group of tickets) the work is tagged to. Planned headcount sits beside actual headcount from Jira, so a blocked team shows up.",
+            "One platform replaced four external tools. It ties each goal to the work behind it, and shows planned headcount beside actual headcount from Jira, so a blocked team shows up.",
         },
         {
           label: "What I did",
@@ -136,7 +136,7 @@ export default function PortfolioManagementPage() {
             </>
           ),
           detail:
-            "I ran the sessions that set the problem, designed a sprint ahead of each team, and got every product manager to plan for the whole product, not only their piece.",
+            "I ran the sessions that framed the problem, designed a sprint ahead of each team, and got every product manager to plan for the whole product, not only their piece.",
         },
       ]}
       chapters={CHAPTERS}
