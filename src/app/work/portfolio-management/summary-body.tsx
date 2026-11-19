@@ -107,17 +107,17 @@ export function PortfolioSummaryBody() {
         {
           label: "Why it mattered",
           lead: "People were the only link between the plan and the work.",
-          detail: "Leaders guessed at progress each quarter, and every change needed a ticket.",
+          detail: "Leaders had no shared view of progress, and teams chased information and approvals across email, Slack and tickets.",
         },
         {
           label: "What we built",
-          lead: "The platform became the link.",
-          detail: "It ties each goal to the initiative, product, people and Jira work behind it.",
+          lead: "The platform made that connection visible.",
+          detail: "We replaced four external tools with one connected platform, so goals can be traced to the work behind them.",
         },
         {
           label: "What I did",
-          lead: "Three product managers, three engineering teams, one designer.",
-          detail: "I ran the sessions that framed the problem and designed a sprint ahead of each team.",
+          lead: "One designer across three product managers and three engineering teams.",
+          detail: "I led problem-framing sessions, worked a sprint ahead of engineering, and brought the teams together around one product experience.",
         },
       ]}
       carousel={{

@@ -116,27 +116,27 @@ export default function PortfolioManagementPage() {
             </>
           ),
           detail:
-            "Nobody could see how the plan was going. Leaders guessed at progress each quarter, and teams chased answers and approvals through email, Slack and tickets.",
+            "Leaders had no shared view of progress and relied on quarterly updates to understand where things stood. Meanwhile, teams spent time chasing information, decisions and approvals across email, Slack and tickets.",
         },
         {
           label: "What we built",
           lead: (
             <>
-              The platform became <span className="ds-accent-text">the link</span>.
+              The platform made that <span className="ds-accent-text">connection visible</span>.
             </>
           ),
           detail:
-            "One platform replaced four external tools. It ties each goal to the work behind it, and shows planned headcount beside actual headcount from Jira, so a blocked team shows up.",
+            "We replaced four external tools with one connected platform. Goals could now be traced to the work behind them, while planned and actual headcount from Jira appeared side by side, making capacity gaps easier to identify.",
         },
         {
           label: "What I did",
           lead: (
             <>
-              Three product managers, three engineering teams, <span className="ds-accent-text">one designer</span>.
+              One designer across <span className="ds-accent-text">three product managers</span> and three engineering teams.
             </>
           ),
           detail:
-            "I ran the sessions that framed the problem, designed a sprint ahead of each team, and got every product manager to plan for the whole product, not only their piece.",
+            "I led problem-framing sessions, worked a sprint ahead of engineering, and brought the teams together around one product experience rather than three separate workstreams.",
         },
       ]}
       chapters={CHAPTERS}
