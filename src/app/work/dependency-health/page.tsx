@@ -39,7 +39,7 @@ import { DependencyHealthSummary } from "./summary";
  */
 
 export const metadata: Metadata = {
-  title: "Dependency Health Platform — Moving teams onto one Unified BOM before release",
+  title: "Dependency Health Platform — Catching outdated libraries before release",
   description:
     "One platform for engineers and engineer managers: which library versions are behind, why it matters, and a guided way onto the Unified BOM.",
   robots: caseStudyRobots,
@@ -141,7 +141,7 @@ export default function DependencyHealthPage() {
           "The platform Walmart developers and engineer managers open to see which dependencies in a repository need attention, why they matter, and what to do next.",
         headline: (
           <>
-            Dependency Health Platform: moving teams onto one <span style={{ color: "var(--ds-mint)" }}>Unified BOM</span> before release.
+            Dependency Health Platform: catching <span style={{ color: "var(--ds-mint)" }}>outdated libraries</span> before release.
           </>
         ),
         // Desktop captures at about 1 — nearly square — so each card crops to

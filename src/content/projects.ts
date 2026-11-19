@@ -222,7 +222,7 @@ export const projects: Project[] = [
     number: "04",
     label: "Dependency Health Platform",
     title:
-      "Dependency Health Platform: moving teams onto one Unified BOM before release.",
+      "Dependency Health Platform: catching outdated libraries before release.",
     internalName: "Dependency Management",
     summary:
       "The request was a dashboard to monitor library health. I pushed for it to act as well: it generates the pull request that starts an upgrade, and a manager can assign a flag to a person, so teams move onto one approved set of libraries (the Unified BOM) before release.",
