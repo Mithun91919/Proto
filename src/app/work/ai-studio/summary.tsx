@@ -71,12 +71,12 @@ export function AiStudioSummary() {
         },
       ]}
       results={[
-        { value: "20K+", label: "monthly active users on Wibey", glyph: "field" },
+        { value: "6K+", label: "monthly active users on Wibey", glyph: "field" },
         { value: "4K+", label: "skills created", glyph: "modules" },
         { value: "300+", label: "MCPs created", glyph: "ring" },
         { value: "100+", label: "agents created", glyph: "layers" },
       ]}
-      caveat="Counts since launch. The 20K+ is monthly active users of Wibey; the rest are artifacts created in Studio."
+      caveat="Counts since launch. The 6K+ is monthly active users of Wibey; the rest are artifacts created in Studio."
       carousel={{
         eyebrow: "The workbenches",
         title: "One Studio, different workbenches",

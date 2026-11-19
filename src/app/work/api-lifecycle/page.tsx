@@ -187,7 +187,7 @@ export default function ApiLifecyclePage() {
         meta: [
           { label: "Role", value: "UX Designer → Senior UX Designer" },
           { label: "Client", value: "Walmart Global Tech" },
-          { label: "Year", value: "2022–Present" },
+          { label: "Year", value: "2022–2025" },
           { label: "Discipline", value: "Developer platform · Product design" },
         ],
       }}

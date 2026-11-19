@@ -177,7 +177,7 @@ export default function DependencyHealthPage() {
         meta: [
           { label: "Role", value: "Senior UX Designer" },
           { label: "Client", value: "Walmart Global Tech" },
-          { label: "Year", value: "2025–Present" },
+          { label: "Year", value: "2025–2026" },
           { label: "Discipline", value: "Developer platform · Product design" },
         ],
       }}

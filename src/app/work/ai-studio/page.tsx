@@ -530,13 +530,13 @@ export default function AiStudioPage() {
             heading="What people have built since launch"
             fullWidth
             body={[
-              "Wibey has 20K+ monthly active users. These are the artifacts created in Studio since it launched.",
+              "Wibey has 6K+ monthly active users. These are the artifacts created in Studio since it launched.",
             ]}
           />
           <CaseStudyFigure>
             <ProofStrip
               items={[
-                { value: "20K+", label: "monthly active users on Wibey", glyph: "field" },
+                { value: "6K+", label: "monthly active users on Wibey", glyph: "field" },
                 { value: "4K+", label: "skills created", glyph: "modules" },
                 { value: "300+", label: "MCPs created", glyph: "ring" },
                 { value: "100+", label: "agents created", glyph: "layers" },

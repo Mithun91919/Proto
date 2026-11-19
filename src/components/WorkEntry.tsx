@@ -115,15 +115,18 @@ export function WorkEntry({ project, reverse = false, emphasis = "full" }: WorkE
             nothing is cropped here that is not cropped there. */}
         <div className="ds-card-media relative">
           <ProjectMedia project={project} aspect={16 / 10} hoverScope=".work-entry" />
-          {contextFacets.length > 0 ? (
-            <ul className="absolute bottom-4 left-4 flex flex-wrap items-center gap-2">
+          {/* Context on the left, years on the right, on the same chip surface
+              as the home cards. */}
+          <div className="absolute inset-x-4 bottom-4 flex flex-wrap items-center justify-between gap-2">
+            <ul className="flex flex-wrap items-center gap-2">
               {contextFacets.map((facet) => (
                 <Chip as="li" key={facet}>
                   {facet}
                 </Chip>
               ))}
             </ul>
-          ) : null}
+            <Chip>{project.timeframe}</Chip>
+          </div>
         </div>
       </div>
     </Link>

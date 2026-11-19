@@ -176,7 +176,7 @@ export default function PortfolioManagementPage() {
         meta: [
           { label: "Role", value: "Senior UX Designer" },
           { label: "Client", value: "Walmart Global Tech" },
-          { label: "Year", value: "2023–Present" },
+          { label: "Year", value: "2023–2026" },
           { label: "Discipline", value: "Enterprise platform · Product design" },
         ],
       }}
