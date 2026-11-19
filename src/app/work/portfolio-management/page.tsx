@@ -109,7 +109,7 @@ export default function PortfolioManagementPage() {
       evidenceMetricsLabel="The impact"
       evidence={[
         {
-          label: "The problem",
+          label: "Why it mattered",
           lead: (
             <>
               People were <span className="ds-accent-text">the only link</span> between the plan and the work.
@@ -119,7 +119,7 @@ export default function PortfolioManagementPage() {
             "Nobody could see how the plan was going. Leaders guessed at progress each quarter, and teams chased answers and approvals through email, Slack and tickets.",
         },
         {
-          label: "The solution",
+          label: "What we built",
           lead: (
             <>
               The platform became <span className="ds-accent-text">the link</span>.

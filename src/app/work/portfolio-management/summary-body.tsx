@@ -105,12 +105,12 @@ export function PortfolioSummaryBody() {
     <SummaryStory
       beats={[
         {
-          label: "The problem",
+          label: "Why it mattered",
           lead: "People were the only link between the plan and the work.",
           detail: "Leaders guessed at progress each quarter, and every change needed a ticket.",
         },
         {
-          label: "The solution",
+          label: "What we built",
           lead: "The platform became the link.",
           detail: "It ties each goal to the initiative, product, people and Jira work behind it.",
         },
