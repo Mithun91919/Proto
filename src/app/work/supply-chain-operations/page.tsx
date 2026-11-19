@@ -81,7 +81,7 @@ export default function SupplyChainOperationsPage() {
       evidenceMetricsLabel="The impact"
       evidence={[
         {
-          label: "The problem",
+          label: "Why it mattered",
           lead: (
             <>
               Finding a tool meant <span className="ds-accent-text">remembering where it lived</span>.
@@ -91,7 +91,7 @@ export default function SupplyChainOperationsPage() {
             "Tools had been added over time with no structure around them. Related modules were hard to spot, everyone started from the same view, tools people used often could not be saved, and people who knew what they wanted had no quick way to it.",
         },
         {
-          label: "The solution",
+          label: "What we built",
           lead: (
             <>
               One front door: shared structure, search, and{" "}
@@ -99,7 +99,7 @@ export default function SupplyChainOperationsPage() {
             </>
           ),
           detail:
-            "A clearer structure for 139 modules serving Walmart.com, Online Grocery and international markets, with one goal: less time finding a tool, more time using it. I co-led it with another designer.",
+            "We built one front door to 139 modules serving Walmart.com, Online Grocery and international markets, with one goal: less time finding a tool, more time using it. I co-led it with another designer.",
         },
         {
           label: "What I did",

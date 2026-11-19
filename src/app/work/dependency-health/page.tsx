@@ -105,7 +105,7 @@ export default function DependencyHealthPage() {
       evidenceMetricsLabel="The impact"
       evidence={[
         {
-          label: "The problem",
+          label: "Why it mattered",
           lead: (
             <>
               <span className="ds-accent-text">Unexpected library rework</span> kept pushing release dates.
@@ -115,14 +115,14 @@ export default function DependencyHealthPage() {
             "Teams found out about outdated libraries late, close to a release. Those blind spots cost time, and one standard package of library versions went unused.",
         },
         {
-          label: "The solution",
+          label: "What we built",
           lead: (
             <>
               One approved set of libraries, and <span className="ds-accent-text">a guided way onto it</span>.
             </>
           ),
           detail:
-            "A Unified BOM (bill of materials) is one package of approved library versions, Java and Spring Boot included. One team builds it and every other team moves onto it, instead of upgrading each library by hand.",
+            "We built around a Unified BOM (bill of materials): one package of approved library versions, Java and Spring Boot included. One team builds it and every other team moves onto it, instead of upgrading each library by hand.",
         },
         {
           label: "What I did",

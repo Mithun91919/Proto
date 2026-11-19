@@ -54,13 +54,13 @@ export function AiStudioSummary() {
       slug="ai-studio"
       beats={[
         {
-          label: "The problem",
+          label: "Why it mattered",
           lead: "Building an agent got easier. Taking one to production did not.",
           detail:
             "Data security and other limits made it hard to take work into production or share it, and teams built similar things separately.",
         },
         {
-          label: "The solution",
+          label: "What we built",
           lead: "Discovery, creation, testing and publishing in one workflow.",
           detail: "Studio brings them together inside Wibey’s protection layer, with a workbench for each kind of artifact.",
         },

@@ -10,12 +10,12 @@ export function StoreSupportSummary() {
       slug="store-support"
       beats={[
         {
-          label: "The problem",
+          label: "Why it mattered",
           lead: "Reporting a fault meant finding a manager and a desktop.",
           detail: "An associate who found a cooler failing could not report it from the floor.",
         },
         {
-          label: "The solution",
+          label: "What we built",
           lead: "One app for the building and the technology inside it.",
           detail: "One experience for associates supporting ~580K devices and for the central support teams receiving their tickets.",
         },

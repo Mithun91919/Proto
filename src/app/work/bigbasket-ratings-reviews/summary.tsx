@@ -10,12 +10,12 @@ export function RatingsReviewsSummary() {
       slug="bigbasket-ratings-reviews"
       beats={[
         {
-          label: "The problem",
+          label: "Why it mattered",
           lead: "A star rating is quick to give and hard to act on.",
           detail: "The score arrives without the reason behind it, and the reason is the part the next shopper actually needs before buying.",
         },
         {
-          label: "The task",
+          label: "What we had to do",
           lead: "Design one feedback system for every surface.",
           detail: "The experience had to read the same whether someone was rating a product on their phone or reading reviews on the web.",
         },

@@ -60,7 +60,7 @@ export default function RatingsReviewsPage() {
       evidenceCaveat="Figures from bigbasket’s store listings, October 2026; the App Store shows 4.8 from 618K ratings. They describe the app today, not results caused by the design. Ratings & Reviews is still part of it."
       evidence={[
         {
-          label: "The problem",
+          label: "Why it mattered",
           lead: (
             <>
               A star rating is quick to give and <span className="ds-accent-text">hard to act on</span>.
@@ -70,7 +70,7 @@ export default function RatingsReviewsPage() {
             "The score arrives without the reason behind it, and the reason is the part the next shopper actually needs before buying.",
         },
         {
-          label: "The task",
+          label: "What we had to do",
           lead: (
             <>
               Design one feedback system for <span className="ds-accent-text">every surface</span>.

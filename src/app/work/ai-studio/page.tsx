@@ -241,7 +241,7 @@ const WORKSPACE_SLIDES: ArtboardSlide[] = [
 
 const CHAPTERS = [
   { id: "wibey", label: "What is Wibey" },
-  { id: "problem", label: "The problem" },
+  { id: "problem", label: "Why it mattered" },
   { id: "builder", label: "Who it is for" },
   { id: "approach", label: "The approach" },
   { id: "path", label: "The conversation" },
@@ -261,7 +261,7 @@ export default function AiStudioPage() {
       chapters={CHAPTERS}
       evidence={[
         {
-          label: "The problem",
+          label: "Why it mattered",
           lead: (
             <>
               Building an agent got easier. Taking one to production, and{" "}
@@ -272,14 +272,14 @@ export default function AiStudioPage() {
             "Security and other limits made it hard to take what people built into production, or to let other teams use it. Teams also built similar things on their own, so similar capabilities piled up.",
         },
         {
-          label: "The solution",
+          label: "What we built",
           lead: (
             <>
               Discovery, creation, testing and publishing in <span className="ds-accent-text">one workflow</span>.
             </>
           ),
           detail:
-            "Studio brings them together inside Wibey’s protection layer. You create by chatting, edit by hand in a workbench, and existing work comes up in the conversation.",
+            "Studio brings discovery, creation, testing and publishing together inside Wibey’s protection layer. People create by chatting, edit by hand in a workbench, and find existing work in the same conversation.",
         },
         {
           label: "What I did",

@@ -61,12 +61,12 @@ export function CreoMark1Summary() {
       slug="creo-mark-1"
       beats={[
         {
-          label: "The problem",
+          label: "Why it mattered",
           lead: "The product changed every month.",
           detail: "Announcing each release on its own terms would have left the brand as a run of unrelated campaigns with nothing holding them together.",
         },
         {
-          label: "The task",
+          label: "What we had to do",
           lead: "Build one visual language across every surface.",
           detail: "One visual system had to carry every channel and still absorb a change of subject each month.",
         },

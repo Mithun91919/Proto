@@ -108,7 +108,7 @@ export default function StoreSupportPage() {
       evidenceMetricsLabel="The impact"
       evidence={[
         {
-          label: "The problem",
+          label: "Why it mattered",
           lead: (
             <>
               Reporting a fault meant finding{" "}
@@ -119,14 +119,14 @@ export default function StoreSupportPage() {
             "An associate who found a cooler failing could not report it from the floor. There was little help with fixing it, search gave a plain list with no next step, and the form came before anyone had tried the obvious fix.",
         },
         {
-          label: "The solution",
+          label: "What we built",
           lead: (
             <>
               One app for the building and <span className="ds-accent-text">the technology inside it</span>.
             </>
           ),
           detail:
-            "One app covering the building and the technology inside it, for associates looking after ~580K devices and for the central support teams who receive their tickets.",
+            "We built one app covering the building and the technology inside it, for associates looking after ~580K devices and for the central support teams who receive their tickets.",
         },
         {
           label: "What I did",

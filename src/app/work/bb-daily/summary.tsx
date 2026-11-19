@@ -161,12 +161,12 @@ export function BbDailySummary() {
       slug="bb-daily"
       beats={[
         {
-          label: "The problem",
+          label: "Why it mattered",
           lead: "Recurring groceries are not a checkout problem.",
           detail: "Behind the promise, buying, stock, packing, shipments and an early-morning delivery window all had to stay coordinated.",
         },
         {
-          label: "The solution",
+          label: "What we built",
           lead: "The customer’s subscription, and the operations behind it.",
           detail: "The work covered the customer app on Android and iOS, and an Android app the operations teams used to coordinate each delivery.",
         },

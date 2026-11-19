@@ -65,7 +65,7 @@ export default function MovieTicketsPage() {
       evidenceCaveat="Hike’s own figures from 2017 press, not audited. They describe the platform at the time, not results caused by the design."
       evidence={[
         {
-          label: "The problem",
+          label: "Why it mattered",
           lead: (
             <>
               Most people arrived <span className="ds-accent-text">already knowing the film</span>.
@@ -75,7 +75,7 @@ export default function MovieTicketsPage() {
             "A survey with 15 participants found the decision was usually made before the app opened. Nearby theatres, preferred seats, trust and available offers then decided where the booking completed.",
         },
         {
-          label: "The task",
+          label: "What we had to do",
           lead: (
             <>
               Build the booking <span className="ds-accent-text">end to end</span>.

@@ -106,7 +106,7 @@ export default function BbDailyPage() {
       evidenceMetricsLabel="The impact"
       evidence={[
         {
-          label: "The problem",
+          label: "Why it mattered",
           lead: (
             <>
               Recurring groceries are <span className="ds-accent-text">not a checkout problem</span>.
@@ -116,14 +116,14 @@ export default function BbDailyPage() {
             "The customer promise was simple: choose what you need and have it arrive. Behind it, buying, stock, packing, shipments and an early-morning delivery window all had to stay coordinated.",
         },
         {
-          label: "The solution",
+          label: "What we built",
           lead: (
             <>
               The customer&apos;s subscription, and <span className="ds-accent-text">the operations behind it</span>.
             </>
           ),
           detail:
-            "The work covered both halves: the customer app on Android and iOS, and an Android app the operations teams used to coordinate each delivery.",
+            "We covered both halves: the customer app on Android and iOS, and an Android app the operations teams used to coordinate each delivery.",
         },
         {
           label: "What I did",

@@ -10,12 +10,12 @@ export function SupplyChainSummary() {
       slug="supply-chain-operations"
       beats={[
         {
-          label: "The problem",
+          label: "Why it mattered",
           lead: "Finding a tool meant remembering where it lived.",
           detail: "Tools had been added over time with no structure around them.",
         },
         {
-          label: "The solution",
+          label: "What we built",
           lead: "One front door: shared structure, search, and shortcuts to what you use.",
           detail: "Across 139 modules, against one goal: less time finding a tool, more time using it.",
         },

@@ -113,12 +113,12 @@ export function ApiLifecycleSummary() {
       slug="api-lifecycle"
       beats={[
         {
-          label: "The problem",
+          label: "Why it mattered",
           lead: "There was no single place to check whether an API already existed.",
           detail: "Documentation lived in Confluence, kept current by some teams and not others.",
         },
         {
-          label: "The solution",
+          label: "What we built",
           lead: "One platform, with governance built into it.",
           detail: "One place for every stage, with the controls built into the work instead of waiting at the end.",
         },

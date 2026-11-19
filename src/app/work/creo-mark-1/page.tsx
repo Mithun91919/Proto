@@ -49,7 +49,7 @@ export default function CreoMark1Page() {
       }}
       evidence={[
         {
-          label: "The problem",
+          label: "Why it mattered",
           lead: (
             <>
               The product changed <span className="ds-accent-text">every month</span>.
@@ -59,7 +59,7 @@ export default function CreoMark1Page() {
             "Announcing each release on its own terms would have left the brand as a run of unrelated campaigns with nothing holding them together.",
         },
         {
-          label: "The task",
+          label: "What we had to do",
           lead: (
             <>
               Build one visual language across <span className="ds-accent-text">every surface</span>.

@@ -113,7 +113,7 @@ export default function ApiLifecyclePage() {
       evidenceMetricsLabel="The impact"
       evidence={[
         {
-          label: "The problem",
+          label: "Why it mattered",
           lead: (
             <>
               There was <span className="ds-accent-text">no single place</span> to check whether
@@ -124,7 +124,7 @@ export default function ApiLifecyclePage() {
             "Documentation lived in Confluence, kept up to date by some teams and not others. A contract change went out as an org-wide email, and access to an API was tracked by hand. Each team used whatever tools suited them, and that alone slowed delivery.",
         },
         {
-          label: "The solution",
+          label: "What we built",
           lead: (
             <>
               One platform, with{" "}
@@ -132,7 +132,7 @@ export default function ApiLifecyclePage() {
             </>
           ),
           detail:
-            "Not another external tool to depend on. One place for every stage, with the controls built into the work instead of waiting at the end.",
+            "We built one platform for every stage of an API’s life, with the controls built into the work instead of waiting at the end. Not another external tool for teams to depend on.",
         },
         {
           label: "What I did",
@@ -142,7 +142,7 @@ export default function ApiLifecyclePage() {
             </>
           ),
           detail:
-            "I owned the design direction and pushed for one platform with the controls built in, not three products. Launch was not the end: almost nobody turned up at first, so I ran the sessions that got teams onto it, over a hundred of them, and the product grew from my first year on it to my fourth.",
+            "I owned the design direction and pushed for one platform with the controls built in, not three products. Launch was not the end: almost nobody turned up at first, so I ran over a hundred sessions to bring teams onto it, and the product grew from my first year on it to my fourth.",
         },
       ]}
       chapters={CHAPTERS}

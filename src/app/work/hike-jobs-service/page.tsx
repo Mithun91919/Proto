@@ -54,7 +54,7 @@ export default function HikeJobsServicePage() {
       evidenceCaveat="Hike’s own figure from 2017 press, not audited. It describes the platform at the time, not results caused by the design."
       evidence={[
         {
-          label: "The problem",
+          label: "Why it mattered",
           lead: (
             <>
               Finding a job is only <span className="ds-accent-text">half of applying</span>.
@@ -64,7 +64,7 @@ export default function HikeJobsServicePage() {
             "A generic feed surfaced opportunities without knowing what someone wanted, and the step after discovery — actually being ready to apply — sat outside the product.",
         },
         {
-          label: "The task",
+          label: "What we had to do",
           lead: (
             <>
               Take someone from discovery to <span className="ds-accent-text">ready to apply</span>.

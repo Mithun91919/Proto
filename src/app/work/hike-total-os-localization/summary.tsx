@@ -10,12 +10,12 @@ export function TotalOsSummary() {
       slug="hike-total-os-localization"
       beats={[
         {
-          label: "The problem",
+          label: "Why it mattered",
           lead: "Translation is not localisation.",
           detail: "Converting English word for word would have preserved the words and lost the intent.",
         },
         {
-          label: "The task",
+          label: "What we had to do",
           lead: "Build a repeatable process across eight languages.",
           detail: "A repeatable path had to exist from English source copy through translation, review, implementation and validation on the handset itself.",
         },

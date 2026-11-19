@@ -120,12 +120,12 @@ export function JobDiscoverySummary() {
       slug="hike-jobs-service"
       beats={[
         {
-          label: "The problem",
+          label: "Why it mattered",
           lead: "Finding a job is only half of applying.",
           detail: "A generic feed surfaced opportunities without knowing what someone wanted.",
         },
         {
-          label: "The task",
+          label: "What we had to do",
           lead: "Take someone from discovery to ready to apply.",
           detail: "The product had to carry someone from a set of suggestions worth reading through to an application they were ready to send.",
         },

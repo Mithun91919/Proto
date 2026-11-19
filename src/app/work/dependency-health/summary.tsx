@@ -83,12 +83,12 @@ export function DependencyHealthSummary() {
       slug="dependency-health"
       beats={[
         {
-          label: "The problem",
+          label: "Why it mattered",
           lead: "Unexpected library rework kept pushing release dates.",
           detail: "Teams found library problems late, close to a release, not ahead of it.",
         },
         {
-          label: "The solution",
+          label: "What we built",
           lead: "One approved set of libraries, and a guided way onto it.",
           detail: "One package of approved library versions that one team builds and every other team moves onto, instead of upgrading each library by hand.",
         },

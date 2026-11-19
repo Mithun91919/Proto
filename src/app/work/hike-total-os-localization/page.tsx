@@ -56,7 +56,7 @@ export default function TotalOsLocalizationPage() {
       evidenceCaveat="Hike’s own figures from 2017 press, not audited. They describe the platform at the time, not results caused by the design."
       evidence={[
         {
-          label: "The problem",
+          label: "Why it mattered",
           lead: (
             <>
               Translation is <span className="ds-accent-text">not localisation</span>.
@@ -66,7 +66,7 @@ export default function TotalOsLocalizationPage() {
             "Eight scripts, each with its own demands on meaning, clarity and layout. Converting English word for word would have preserved the words and lost the intent.",
         },
         {
-          label: "The task",
+          label: "What we had to do",
           lead: (
             <>
               Build a repeatable process across <span className="ds-accent-text">eight languages</span>.

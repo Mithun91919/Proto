@@ -10,12 +10,12 @@ export function MovieTicketsSummary() {
       slug="hike-movie-tickets"
       beats={[
         {
-          label: "The problem",
+          label: "Why it mattered",
           lead: "Most people arrived already knowing the film.",
           detail: "A survey with 15 participants found the decision was usually made before the app opened.",
         },
         {
-          label: "The task",
+          label: "What we had to do",
           lead: "Build the booking end to end.",
           detail: "Everything from choosing a theatre to holding the ticket had to work inside Hike Messenger.",
         },
