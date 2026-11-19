@@ -289,7 +289,7 @@ export default function AiStudioPage() {
             </>
           ),
           detail:
-            "I worked with a staff designer on the workbenches and the conversation, and with developers on the whole experience. The deliverable was a coded prototype, built over several iterations in Cursor and VS Code.",
+            "I worked with a staff designer on the workbenches and the conversation, and with developers on the whole experience. The deliverable was a coded prototype, built over several iterations in Cursor and VS Code, and engineering built the product from it.",
         },
       ]}
       summary={{
@@ -414,7 +414,7 @@ export default function AiStudioPage() {
             fullWidth
             heading="The problem extended beyond creation"
             body={[
-              "Before Studio, builders could use tools available in the market to build these artifacts.",
+              "Before Studio, builders could use tools available in the market to build these artifacts. Those tools could only work on mock data, because real data sources and APIs stay behind Wibey’s protection layer.",
             ]}
           />
           <CaseStudyFigure>

@@ -129,8 +129,8 @@ export function PortfolioSummaryBody() {
         slides: SLIDES,
       }}
       results={[
-        { value: "800+ hrs", label: "reclaimed every week", glyph: "field" },
-        { value: "3,500+ days", label: "of manual effort eliminated in 2025", glyph: "layers" },
+        { value: "800+ hrs", label: "reclaimed every week, across the platform", glyph: "field" },
+        { value: "3,500+ days", label: "of manual effort eliminated in 2025, across the platform", glyph: "layers" },
         { value: "$100K", label: "average yearly licence cost saved", glyph: "drop" },
         { value: "50%", label: "fewer support tickets", glyph: "bars" },
       ]}

@@ -67,7 +67,7 @@ export function AiStudioSummary() {
         {
           label: "What I did",
           lead: "I co-designed the workbenches and the conversation.",
-          detail: "I worked with a staff designer, and delivered a coded prototype built over several iterations.",
+          detail: "I worked with a staff designer, and delivered a coded prototype built over several iterations, which engineering built the product from.",
         },
       ]}
       results={[
