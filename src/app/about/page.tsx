@@ -46,26 +46,26 @@ const TRAVEL: PhotoRowItem[] = [
     kind: "image" as const,
     src: "/about/bamboo.jpg",
     alt: "Two people in kimonos, one pink and one red, standing in a bamboo grove",
-    caption: "Bossing with the boss.",
+    caption: "Dressed up in Kyoto, still taking directions from the boss.",
   },
   {
     kind: "image" as const,
     src: "/about/buddha.jpg",
     alt: "Two people standing in front of the Great Buddha, a large bronze statue, under a blue sky",
-    caption: "Learning the art of calm from the Buddha.",
+    caption: "Taking calm lessons from the Great Buddha. Very useful at home.",
   },
   {
     kind: "clip" as const,
     mp4: "/about/light-show.mp4",
     poster: "/about/light-show.jpg",
     alt: "Two people sitting on the floor of an immersive light installation, with flowers projected around them, at teamLab in Japan",
-    caption: "If my mind was a hologram.",
+    caption: "If my mind were a hologram, it would look a lot like this.",
   },
   {
     kind: "image" as const,
     src: "/about/python.jpg",
     alt: "Mithun smiling in sunglasses with a large python around his shoulders, in Vietnam",
-    caption: "Trying to handle danger, way before marriage.",
+    caption: "Learning to handle danger well before marriage. The python was the warm-up.",
   },
 ];
 
