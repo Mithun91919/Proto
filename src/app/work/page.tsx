@@ -27,7 +27,7 @@ export const metadata: Metadata = {
 
 const CHAPTERS = [
   { id: "path", label: "Path" },
-  { id: "selected", label: "Selected work" },
+  { id: "selected", label: "All work" },
   { id: "reflection", label: "Reflection" },
 ];
 
@@ -128,7 +128,7 @@ export default function WorkPage() {
       <section id="selected" className="work-section ds-section-boundary">
         <SectionHead
           eyebrow="Case studies"
-          title="Selected work"
+          title="All work"
           stacked
         />
         <WorkFilter targetId="selected" />
