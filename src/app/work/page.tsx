@@ -10,6 +10,7 @@ import { ChapterProgress } from "@/components/design-system/ChapterProgress";
 import { hasCaseStudyPage } from "@/content/case-study-routes";
 import { getFeaturedProjects, getRangeProjects } from "@/content/projects";
 import { Chip } from "@/components/design-system/primitives/Chip";
+import { WorkFilter } from "@/components/WorkFilter";
 import {
   CAREER_START,
   careerStages,
@@ -28,6 +29,11 @@ const CHAPTERS = [
   { id: "selected", label: "Selected work" },
   { id: "reflection", label: "Reflection" },
 ];
+
+/** Which side of the sector filter a project sits on. */
+function workGroup(domain: string): "enterprise" | "consumer" {
+  return domain === "Consumer" || domain === "Commerce" ? "consumer" : "enterprise";
+}
 
 export default function WorkPage() {
   const featured = getFeaturedProjects();
@@ -120,8 +126,8 @@ export default function WorkPage() {
           eyebrow="Case studies"
           title="Selected work"
           stacked
-          lede="Start with the first four. My earlier consumer and brand work is below the list."
         />
+        <WorkFilter targetId="selected" />
 
         {/* The gap carries half the separation and the boundary's own top
             padding carries the other half, so the rule lands in the middle
@@ -133,15 +139,17 @@ export default function WorkPage() {
             its boundary. */}
         <div className="mt-12 flex flex-col gap-20 md:mt-14 md:gap-28">
           {[...featured, ...more].map((project, index) => (
-            <Reveal key={project.slug} delay={index * 70}>
-              <div className={index > 0 ? "ds-section-boundary pt-20 md:pt-28" : ""}>
-                <WorkEntry project={project} reverse={index % 2 === 1} />
-              </div>
-            </Reveal>
+            <div key={project.slug} data-group={workGroup(project.domain)}>
+              <Reveal delay={index * 70}>
+                <div className={index > 0 ? "ds-section-boundary pt-20 md:pt-28" : ""}>
+                  <WorkEntry project={project} reverse={index % 2 === 1} />
+                </div>
+              </Reveal>
+            </div>
           ))}
         </div>
 
-        <div className="ds-section-boundary-minor mt-12 pt-7 md:mt-16 md:pt-8">
+        <div data-group="consumer" className="ds-section-boundary-minor mt-12 pt-7 md:mt-16 md:pt-8">
           <p className="eyebrow">Earlier work</p>
           <p className="body-text mt-2 max-w-[52ch]">
             Consumer product and brand work from before the enterprise projects.

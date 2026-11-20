@@ -2347,3 +2347,10 @@ a.say-hi-card:hover .say-hi-card-go {
     display: none;
   }
 }
+
+
+/* The work list's sector filter: hide the items of the other group. */
+#selected[data-filter="enterprise"] [data-group="consumer"],
+#selected[data-filter="consumer"] [data-group="enterprise"] {
+  display: none;
+}
