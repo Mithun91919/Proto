@@ -52,7 +52,7 @@ export default function WorkPage() {
           <span className="ds-accent-text">enterprise platforms</span>.
         </h1>
         <p className="lede mt-6" style={{ maxWidth: "84ch" }}>
-          Consumer, commerce, enterprise and developer products, at CREO, Hike, bigbasket and Walmart Global Tech. The same problem runs through all of it: too many tools, too much information, and no clear way through. I redesign them into products people can finish their work in. Over time I have moved from designing single screens to designing the workflows behind them.
+          I’ve designed consumer apps at CREO, Hike and bigbasket, and enterprise and developer platforms at Walmart Global Tech. Early on I designed single screens. Now I design the workflows behind them, for products where many people, tools and decisions have to work together.
         </p>
       </div>
 
