@@ -2350,7 +2350,22 @@ a.say-hi-card:hover .say-hi-card-go {
 
 
 /* The work list's sector filter: hide the items of the other group. */
-#selected[data-filter="enterprise"] [data-group="consumer"],
-#selected[data-filter="consumer"] [data-group="enterprise"] {
+#selected[data-filter="enterprise"] [data-group]:not([data-group="enterprise"]),
+#selected[data-filter="enterprise"] .work-earlier:not(:has([data-group="enterprise"])) {
+  display: none;
+}
+
+#selected[data-filter="developer"] [data-group]:not([data-group="developer"]),
+#selected[data-filter="developer"] .work-earlier:not(:has([data-group="developer"])) {
+  display: none;
+}
+
+#selected[data-filter="consumer"] [data-group]:not([data-group="consumer"]),
+#selected[data-filter="consumer"] .work-earlier:not(:has([data-group="consumer"])) {
+  display: none;
+}
+
+#selected[data-filter="commerce"] [data-group]:not([data-group="commerce"]),
+#selected[data-filter="commerce"] .work-earlier:not(:has([data-group="commerce"])) {
   display: none;
 }

@@ -4,8 +4,10 @@ import { useState } from "react";
 
 const OPTIONS = [
   { value: "all", label: "All" },
-  { value: "enterprise", label: "Enterprise & developer" },
-  { value: "consumer", label: "Consumer & commerce" },
+  { value: "enterprise", label: "Enterprise" },
+  { value: "developer", label: "Developer tools" },
+  { value: "consumer", label: "Consumer" },
+  { value: "commerce", label: "Commerce" },
 ] as const;
 
 type Value = (typeof OPTIONS)[number]["value"];

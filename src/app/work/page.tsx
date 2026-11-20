@@ -11,6 +11,7 @@ import { hasCaseStudyPage } from "@/content/case-study-routes";
 import { getFeaturedProjects, getRangeProjects } from "@/content/projects";
 import { Chip } from "@/components/design-system/primitives/Chip";
 import { WorkFilter } from "@/components/WorkFilter";
+import { earlierWorkDomain } from "@/content/work-filters";
 import {
   CAREER_START,
   careerStages,
@@ -31,8 +32,11 @@ const CHAPTERS = [
 ];
 
 /** Which side of the sector filter a project sits on. */
-function workGroup(domain: string): "enterprise" | "consumer" {
-  return domain === "Consumer" || domain === "Commerce" ? "consumer" : "enterprise";
+function workGroup(domain: string): "enterprise" | "developer" | "consumer" | "commerce" {
+  if (domain === "Developer tools") return "developer";
+  if (domain === "Consumer") return "consumer";
+  if (domain === "Commerce") return "commerce";
+  return "enterprise";
 }
 
 export default function WorkPage() {
@@ -149,7 +153,7 @@ export default function WorkPage() {
           ))}
         </div>
 
-        <div data-group="consumer" className="ds-section-boundary-minor mt-12 pt-7 md:mt-16 md:pt-8">
+        <div className="work-earlier ds-section-boundary-minor mt-12 pt-7 md:mt-16 md:pt-8">
           <p className="eyebrow">Earlier work</p>
           <p className="body-text mt-2 max-w-[52ch]">
             Consumer product and brand work from before the enterprise projects.
@@ -163,6 +167,7 @@ export default function WorkPage() {
               tags: entry.tags,
               image: entry.image,
               slug: hasCaseStudyPage(entry.slug) ? entry.slug : undefined,
+              group: workGroup(earlierWorkDomain(entry.slug)),
             }))}
           />
         </div>

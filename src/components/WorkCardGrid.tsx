@@ -15,6 +15,8 @@ export type WorkCard = {
   image?: string;
   /** Omitted when no page exists yet — the card then renders unlinked. */
   slug?: string;
+  /** The sector the work-page filter matches this card against. */
+  group?: string;
 };
 
 /**
@@ -106,15 +108,17 @@ export function WorkCardGrid({ items }: { items: WorkCard[] }) {
         );
 
         return (
-          <Reveal key={item.id} delay={index * 60}>
-            {item.slug ? (
-              <Link href={`/work/${item.slug}`} className="group block h-full no-underline">
-                {card}
-              </Link>
-            ) : (
-              card
-            )}
-          </Reveal>
+          <div key={item.id} data-group={item.group} className="h-full">
+            <Reveal delay={index * 60}>
+              {item.slug ? (
+                <Link href={`/work/${item.slug}`} className="group block h-full no-underline">
+                  {card}
+                </Link>
+              ) : (
+                card
+              )}
+            </Reveal>
+          </div>
         );
       })}
     </div>
