@@ -48,7 +48,7 @@ export default function WorkPage() {
         </div>
         <p className="eyebrow">Portfolio · {CAREER_START}–present</p>
         <h1 className="display-title display-hero mt-4 max-w-[40ch] text-[var(--ink)]">
-          {new Date().getFullYear() - CAREER_START} years of product design, <span className="ds-muted-text">from consumer apps</span> to{" "}
+          {new Date().getFullYear() - CAREER_START} years of product design, <span style={{ color: "color-mix(in oklab, var(--accent-deep) 72%, var(--ink))" }}>from consumer apps</span> to{" "}
           <span className="ds-accent-text">enterprise platforms</span>.
         </h1>
         <p className="lede mt-6" style={{ maxWidth: "84ch" }}>
