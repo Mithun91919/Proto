@@ -648,9 +648,16 @@ a {
     box-shadow: 0 0 0 4px var(--paper);
   }
 
+  /* The current role: larger and in the brighter accent, ringed so it reads
+     as where the line ends up. */
   .timeline-stage:last-child .timeline-track::after {
-    border-color: var(--accent-deep);
-    background: var(--accent-deep);
+    width: calc(var(--timeline-node) * 1.7);
+    height: calc(var(--timeline-node) * 1.7);
+    border-color: var(--ds-accent);
+    background: var(--ds-accent);
+    box-shadow:
+      0 0 0 4px var(--paper),
+      0 0 0 5.5px color-mix(in oklab, var(--ds-accent) 45%, transparent);
   }
 
   .timeline-org {
