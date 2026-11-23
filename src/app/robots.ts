@@ -11,6 +11,6 @@ export default function robots(): MetadataRoute.Robots {
       userAgent: "*",
       allow: "/",
     },
-    sitemap: "https://mithunraju.in/sitemap.xml",
+    sitemap: "https://mithun-raju.vercel.app/sitemap.xml",
   };
 }

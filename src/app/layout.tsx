@@ -46,7 +46,7 @@ const mono = localFont({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://mithunraju.in"),
+  metadataBase: new URL("https://mithun-raju.vercel.app"),
   title: {
     default: "Mithun Raju, Senior UX Designer",
     template: "%s · Mithun Raju",
@@ -57,10 +57,16 @@ export const metadata: Metadata = {
     title: "Mithun Raju, Senior UX Designer",
     description:
       "Senior UX designer for enterprise platforms, developer tools and AI-enabled products. Based in Bengaluru.",
-    url: "https://mithunraju.in",
+    url: "https://mithun-raju.vercel.app",
     siteName: "Mithun Raju",
     locale: "en_IN",
     type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Mithun Raju, Senior UX Designer",
+    description:
+      "Senior UX designer for enterprise platforms, developer tools and AI-enabled products. Based in Bengaluru.",
   },
 };
 

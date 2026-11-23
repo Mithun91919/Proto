@@ -1,6 +1,6 @@
 import type { MetadataRoute } from "next";
 
-const baseUrl = "https://mithunraju.in";
+const baseUrl = "https://mithun-raju.vercel.app";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   // /components is the design system, linked from the footer as a
