@@ -6,7 +6,7 @@ import { Reveal } from "@/components/Reveal";
 import { SectionAnchor } from "@/components/SectionAnchor";
 import { SectionHead } from "@/components/SectionHead";
 import { ChapterProgress } from "@/components/design-system/ChapterProgress";
-import { MetricGlyph } from "@/components/design-system/MetricGlyph";
+import { CompactMetricGlyph } from "@/components/design-system/MetricGlyph";
 import { GlassPanel } from "@/components/design-system/primitives/GlassPanel";
 import { getFeaturedProjects, getRangeProjects } from "@/content/projects";
 
@@ -105,7 +105,7 @@ export default function HomePage() {
               <GlassPanel variant="lift" hoverLift className="ds-stagger flex h-full flex-col rounded-2xl p-8">
                 {/* `modules` — discrete parts: every project, side by side. */}
                 <div className="mb-5">
-                  <MetricGlyph name="modules" />
+                  <CompactMetricGlyph name="modules" />
                 </div>
                 <p className="eyebrow">Work</p>
                 <h3
@@ -133,7 +133,7 @@ export default function HomePage() {
               <GlassPanel variant="lift" hoverLift className="ds-stagger flex h-full flex-col rounded-2xl p-8">
                 {/* `ramp` — a rising stair: a path built up over time. */}
                 <div className="mb-5">
-                  <MetricGlyph name="ramp" />
+                  <CompactMetricGlyph name="ramp" />
                 </div>
                 <p className="eyebrow">About</p>
                 <h3

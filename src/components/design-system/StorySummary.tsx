@@ -153,7 +153,7 @@ export function StorySummary({
             <div className="ds-story-intro-center">
               <Reveal>
                 <span className="ds-pull-dots" aria-hidden />
-                <p className="eyebrow ds-slide-eyebrow">Case study</p>
+                <p className="eyebrow ds-slide-eyebrow">Summary</p>
                 <h1 className="display-title mt-4" style={{ fontSize: "clamp(2.4rem, 4.6vw, 4.2rem)", lineHeight: 1.04 }}>
                   {title}
                 </h1>

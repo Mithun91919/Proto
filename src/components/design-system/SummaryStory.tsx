@@ -2,7 +2,7 @@ import type { ReactNode } from "react";
 import { Reveal } from "@/components/Reveal";
 import { ArtboardCarousel, type ArtboardSlide } from "./ArtboardCarousel";
 import { CaseStudyFigure } from "./CaseStudy";
-import { MetricGlyph } from "./MetricGlyph";
+import { CompactMetricGlyph } from "./MetricGlyph";
 import { ProofStrip, type ProofStripItem } from "./ProofStrip";
 import { GlassPanel } from "./primitives/GlassPanel";
 import type { MetricMarkName } from "./dotPatterns";
@@ -75,7 +75,7 @@ export function SummaryStory({
         <Reveal className="ds-stagger grid grid-cols-1 gap-4 md:grid-cols-3">
           {beats.map((beat, i) => (
             <GlassPanel key={beat.label} variant="soft" className="rounded-2xl p-7">
-              <MetricGlyph name={BEAT_GLYPHS[i]} />
+              <CompactMetricGlyph name={BEAT_GLYPHS[i]} />
               <p className="eyebrow mt-6" style={{ color: "var(--ds-accent-deep)" }}>
                 {beat.label}
               </p>

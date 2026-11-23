@@ -768,6 +768,17 @@ export default function ComponentsPage() {
             that many lit cells instead of any of this.
           </p>
 
+          <div className="mt-8 max-w-[68ch] border-l-2 pl-5" style={{ borderColor: "var(--ds-accent)" }}>
+            <p className="ds-eyebrow" style={{ color: "var(--ds-accent)" }}>Rule</p>
+            <p className="mt-2 text-[0.95rem] leading-7">
+              Use the 3×3 <code className="font-mono text-[0.85em]">CompactMetricGlyph</code> for every metric, wherever
+              it appears: beside a figure in a row, above one in a tile, in a proof strip, in a results grid, in the
+              evidence card. Do not use the 5×5 <code className="font-mono text-[0.85em]">MetricGlyph</code> in a page;
+              it is kept for the reference grid in C8b only. One glyph size across the site keeps the figures, not the
+              marks, as the thing the eye lands on.
+            </p>
+          </div>
+
           <div className="mt-8 grid grid-cols-2 gap-3.5 sm:grid-cols-4">
             {(Object.keys(METRIC_MARK_MEANINGS) as MetricMarkName[]).map((name) => (
               <div

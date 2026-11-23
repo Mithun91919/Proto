@@ -1,6 +1,6 @@
 import type { ReactNode } from "react";
 import { Reveal } from "@/components/Reveal";
-import { MetricGlyph } from "./MetricGlyph";
+import { CompactMetricGlyph } from "./MetricGlyph";
 import { DotGrid } from "./primitives/DotGrid";
 import { metricGlyph } from "@/components/FeaturedWorkCard";
 
@@ -142,7 +142,7 @@ export function CaseStudyEvidence({ beats, metrics, metricsLabel, caveat, keepIn
                       grid, and the empty text line that creates put ~12px of
                       air above the dots. */}
                   <span aria-hidden className="mt-1 block leading-[0]">
-                    <MetricGlyph name={metricGlyph(m)} />
+                    <CompactMetricGlyph name={metricGlyph(m)} />
                   </span>
                   <span>
                     <span

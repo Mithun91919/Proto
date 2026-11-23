@@ -12,8 +12,7 @@ type MetricGlyphProps = {
   /** Show the name + meaning caption (reference-page mode) vs. just the glyph (in-context use). */
   labelled?: boolean;
   /**
-   * Cell size / gap in px. The default, 5 and 3, is the one scale used
-   * everywhere a glyph sits above a figure. A denser
+   * Cell size / gap in px. A denser
    * context — a metric drawn inline beside its own small value/label —
    * needs a smaller glyph so it reads as an icon rather than towering over
    * the text next to it.
@@ -23,11 +22,15 @@ type MetricGlyphProps = {
 };
 
 /**
+ * Reference only. New work, and every metric on the site, uses the 3×3
+ * `CompactMetricGlyph` below (see C9). The 5×5 stays so the reference grid can
+ * show the full shapes the compact set is drawn from.
+ *
  * C8b · One semantic 5×5 glyph per metric meaning — never decorative, never
  * more than one per stat. Use `labelled` in a reference grid; drop it when
  * pairing the glyph with a real metric value in a ProofStrip.
  */
-export function MetricGlyph({ name, labelled = false, size = 5, gap = 3 }: MetricGlyphProps) {
+export function MetricGlyph({ name, labelled = false, size = 6, gap = 4 }: MetricGlyphProps) {
   return (
     <div>
       {/* `ds-dot-mark` is the entrance-animation hook, baked in here the way

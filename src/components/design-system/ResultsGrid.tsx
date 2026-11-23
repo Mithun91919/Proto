@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState, type CSSProperties } from "react";
-import { MetricGlyph } from "./MetricGlyph";
+import { CompactMetricGlyph } from "./MetricGlyph";
 import { GlassPanel } from "./primitives/GlassPanel";
 import type { MetricMarkName } from "./dotPatterns";
 
@@ -34,8 +34,9 @@ function CountUp({ value }: { value: string }) {
   useEffect(() => {
     if (!parts) return;
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
-      setShown(parts.number);
-      return;
+      // Set from a frame callback, not the effect body, so it is not a cascading render.
+      frame.current = requestAnimationFrame(() => setShown(parts.number));
+      return () => cancelAnimationFrame(frame.current);
     }
     const start = performance.now();
     const tick = (now: number) => {
@@ -76,7 +77,7 @@ export function ResultsGrid({ items }: { items: ResultItem[] }) {
       {items.map((item, i) => (
         <li key={item.label} className="ds-results-tile" style={{ "--i": i } as CSSProperties}>
           <GlassPanel variant="soft" className="h-full rounded-2xl p-7">
-            <MetricGlyph name={item.glyph} />
+            <CompactMetricGlyph name={item.glyph} />
             <p
               className="display-title mt-5"
               style={{ fontSize: "clamp(1.9rem, 3vw, 2.6rem)", color: "var(--ds-accent)", lineHeight: 1.05 }}
