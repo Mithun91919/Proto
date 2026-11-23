@@ -4,7 +4,7 @@ import Link from "next/link";
 import { caseStudyRobots } from "@/content/seo";
 import { getProject } from "@/content/projects";
 import { DotNodes, DotTrio, type DotNode } from "@/components/design-system/DotNodes";
-import { ProofStrip } from "@/components/design-system/ProofStrip";
+import { ResultsGrid } from "@/components/design-system/ResultsGrid";
 import { ClipVideo } from "@/components/design-system/ClipFigure";
 import { SlideDeck, WhenActive, type Slide } from "@/components/design-system/SlideDeck";
 
@@ -225,10 +225,18 @@ const SLIDES: Slide[] = [
   {
     label: "What changed",
     content: (
-      <div>
-        <p className="eyebrow ds-slide-eyebrow">What changed</p>
-        <div className="mt-6">
-          <ProofStrip
+      <div className="ds-slide-grid">
+        <div>
+          <p className="eyebrow ds-slide-eyebrow">What changed</p>
+          <h2 className="display-title ds-slide-lead mt-4">Time and money saved across the platform.</h2>
+          <p className="ds-slide-detail">
+            Hours are reported by the product managers. The software saving is the average yearly cost of licences that were no longer needed.
+          </p>
+        </div>
+        {/* Mounted only while this slide shows, so the figures count up each
+            time the reader arrives. */}
+        <WhenActive>
+          <ResultsGrid
             items={[
               { value: "800+ hrs", label: "saved every week, across the platform", glyph: "field" },
               { value: "3,500+ days", label: "of manual effort eliminated in 2025, across the platform", glyph: "layers" },
@@ -236,10 +244,7 @@ const SLIDES: Slide[] = [
               { value: "50%", label: "fewer support requests", glyph: "bars" },
             ]}
           />
-        </div>
-        <p className="mt-4 text-[0.85rem] text-[var(--muted)]">
-          Hours are reported by the product managers. The software saving is the average yearly cost of licences that were no longer needed.
-        </p>
+        </WhenActive>
       </div>
     ),
   },
@@ -260,11 +265,11 @@ export default function PortfolioSlidesPage() {
         <div className="ds-pull-inner">
           <h1 className="sr-only">Portfolio Management Platform, summary as slides</h1>
           <SlideDeck slides={SLIDES} label="Portfolio Management Platform, summary as slides" />
-          <p className="ds-stage-foot">
-            <Link href="/work/portfolio-management" className="underline underline-offset-4">
+          <div className="ds-stage-foot">
+            <Link href="/work/portfolio-management" className="button button-primary button-sm">
               Read the full case study →
             </Link>
-          </p>
+          </div>
         </div>
       </div>
     </div>
