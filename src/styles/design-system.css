@@ -5922,8 +5922,8 @@ body:has(main > .ds-stage-page) .site-spacer {
    The card has the height for bigger type, and the picture was limited by its
    shape (a wide crop in a tall space), not by room. */
 .ds-story-track .ds-slide-lead {
-  font-size: clamp(2.2rem, 3.7vw, 3.3rem);
-  line-height: 1.05;
+  font-size: clamp(2rem, 3.3vw, 2.9rem);
+  line-height: 1.06;
 }
 
 .ds-story-track .ds-slide-points {
@@ -5932,7 +5932,7 @@ body:has(main > .ds-stage-page) .site-spacer {
 }
 
 .ds-story-track .ds-slide-points li {
-  font-size: clamp(1.15rem, 1.5vw, 1.35rem);
+  font-size: clamp(1.02rem, 1.3vw, 1.18rem);
   line-height: 1.5;
   padding-left: 1.6rem;
 }
@@ -5972,8 +5972,10 @@ body:has(main > .ds-stage-page) .site-spacer {
 }
 
 .ds-slide-point-num {
-  /* Lines the numeral's top with the first line of the text beside it. */
-  padding-top: 0.25rem;
+  /* Puts the numeral's top on the top of the first line's letters: half the
+     line's spare height (1.5 line-height less the 1em of type) plus the small
+     gap between the top of a line box and the top of a capital. */
+  padding-top: calc((1.5em - 1em) / 2 + 0.16em);
 }
 
 .ds-slide.is-active .ds-slide-points.is-numbered .ds-compact-mark .ds-dot {

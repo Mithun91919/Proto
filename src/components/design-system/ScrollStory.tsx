@@ -7,6 +7,9 @@ import { SlideActive } from "./SlideDeck";
 /** How long each step is given before the card moves on to the next, in ms: the change itself is about 620. */
 const STEP_MS = 640;
 
+/** How long wheel input is held back after a step changes, to swallow the momentum of the swipe that caused it. */
+const HOLD_MS = 750;
+
 export type StoryStep = {
   /** Short name, for the accessible label and the dot's tooltip. */
   label: string;
@@ -26,6 +29,15 @@ export type StoryStep = {
  * words scroll at the reader's speed while the picture on its side swapped in
  * one jump, and the two disagreed, which read as jarring. Here nothing moves
  * with the scroll itself; the scroll only decides when the next step arrives.
+ *
+ * One swipe moves one step. A hard flick of a trackpad throws the page several
+ * steps' worth of scroll in an instant, and its momentum keeps coming for a
+ * second after the fingers lift, so it would otherwise land several steps on.
+ * While the card is pinned, a wheel event that would carry the page across a
+ * step's edge is stopped at that edge instead, and the momentum that follows is
+ * held back for the length of the change. The reader continues, with another
+ * swipe or by carrying on, to go to the next one. Scrolling that does not cross
+ * an edge, and scrolling out of either end of the story, is left alone.
  *
  * The card never skips a step. A hard flick of a trackpad can cover several
  * steps' worth of scroll at once, and showing only the last would drop the ones
@@ -65,6 +77,8 @@ export function ScrollStory({
   const walkTimer = useRef<number | null>(null);
   /** While set, scroll is a jump the reader asked for through the rail, and is not followed step by step. */
   const lockedUntil = useRef(0);
+  /** While set, wheel input is held back: a step has just changed and its momentum is still arriving. */
+  const heldUntil = useRef(0);
   const last = steps.length - 1;
 
   useEffect(() => {
@@ -105,12 +119,45 @@ export function ScrollStory({
       if (!frame) frame = requestAnimationFrame(update);
     };
 
+    const onWheel = (e: WheelEvent) => {
+      if (e.ctrlKey || performance.now() < lockedUntil.current) return; // a pinch, or the rail's own scroll
+      const rect = track.getBoundingClientRect();
+      const viewport = window.innerHeight;
+      const total = rect.height - viewport;
+      const y = -rect.top;
+      if (y < 0 || y > total) return; // not while the card is pinned
+      const delta = e.deltaMode === 1 ? e.deltaY * 16 : e.deltaMode === 2 ? e.deltaY * viewport : e.deltaY;
+      if (delta === 0) return;
+
+      const share = total / steps.length;
+      const current = Math.min(last, Math.floor(y / share));
+      const forward = delta > 0;
+      // Out of the top of the story, or on through the end of it: nothing to hold back.
+      if ((!forward && y <= 0) || (forward && current === last)) return;
+
+      if (performance.now() < heldUntil.current) {
+        e.preventDefault();
+        return;
+      }
+      const edge = forward ? (current + 1) * share : current * share;
+      const crosses = forward ? y + delta >= edge : y + delta < edge;
+      if (!crosses) return;
+
+      // Stop at the edge, just inside the next step, and hold the momentum that follows.
+      e.preventDefault();
+      heldUntil.current = performance.now() + HOLD_MS;
+      const top = rect.top + window.scrollY;
+      window.scrollTo({ top: top + edge + (forward ? 1 : -1), behavior: "instant" });
+    };
+
     update();
     window.addEventListener("scroll", onScroll, { passive: true });
     window.addEventListener("resize", onScroll);
+    window.addEventListener("wheel", onWheel, { passive: false });
     return () => {
       window.removeEventListener("scroll", onScroll);
       window.removeEventListener("resize", onScroll);
+      window.removeEventListener("wheel", onWheel);
       if (frame) cancelAnimationFrame(frame);
       if (walkTimer.current !== null) window.clearTimeout(walkTimer.current);
     };
