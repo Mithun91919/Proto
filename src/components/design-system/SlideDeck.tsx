@@ -50,7 +50,16 @@ export function WhenActive({ children }: { children: ReactNode }) {
  * Paging does not wrap. At the first slide "previous" does nothing and at the
  * last "next" does nothing, because a deck has a start and an end.
  */
-export function SlideDeck({ slides, label }: { slides: Slide[]; label: string }) {
+export function SlideDeck({
+  slides,
+  label,
+  action,
+}: {
+  slides: Slide[];
+  label: string;
+  /** Something to set at the far end of the controls row, such as a way on to the full page. */
+  action?: ReactNode;
+}) {
   const [index, setIndex] = useState(0);
   const [playing, setPlaying] = useState(false);
   const id = useId();
@@ -124,6 +133,7 @@ export function SlideDeck({ slides, label }: { slides: Slide[]; label: string })
         </div>
       </GlassPanel>
 
+      <div className="ds-slidedeck-bar">
       <div className="ds-artboard-dots">
         {slides.map((slide, i) => (
           <button
@@ -165,6 +175,8 @@ export function SlideDeck({ slides, label }: { slides: Slide[]; label: string })
         <span className="ds-artboard-count" aria-hidden="true">
           {index + 1} / {slides.length}
         </span>
+      </div>
+        {action ? <div className="ds-slidedeck-action">{action}</div> : null}
       </div>
     </div>
   );

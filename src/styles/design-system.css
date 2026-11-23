@@ -5377,13 +5377,6 @@ body:has(main > .ds-stage-page) .site-spacer {
   margin-top: 0.5rem;
 }
 
-.ds-stage-foot {
-  margin: 0.9rem 0 0;
-  text-align: center;
-  font-size: 0.9rem;
-  color: var(--ds-dark-muted);
-}
-
 
 /* The opening slide's title is the project's name, so it runs larger than the
    statements on the slides after it, and carries role, years and place. */
@@ -5604,9 +5597,13 @@ body:has(main > .ds-stage-page) .site-spacer {
    controls sit on the same bottom line, left-aligned with the text column. So
    neither moves as you page, and the cursor does not have to follow them. The
    picture beside the text is centred in the same height. */
-.ds-stage-full .ds-slidedeck > .ds-artboard-dots {
-  justify-content: flex-start;
+.ds-stage-full .ds-slidedeck-bar {
   margin-top: 1.75rem;
+}
+
+.ds-stage-full .ds-slidedeck-bar .ds-artboard-dots {
+  justify-content: flex-start;
+  margin-top: 0;
 }
 
 .ds-stage-full .ds-slide-grid {
@@ -5618,9 +5615,6 @@ body:has(main > .ds-stage-page) .site-spacer {
   padding-top: clamp(1rem, 5vh, 3rem);
 }
 
-.ds-stage-full .ds-stage-foot {
-  text-align: left;
-}
 
 /* ── Results tiles ─────────────────────────────────────────────────────────
    Two by two on the right of the slide. They rise in one after another; the
@@ -5649,4 +5643,27 @@ body:has(main > .ds-stage-page) .site-spacer {
   .ds-results-tile {
     animation: none;
   }
+}
+
+/* The controls and the way on share one row: the controls at the start, the
+   button at the far end, so both are always in the same two places. */
+.ds-slidedeck-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+/* A light button on the dark band, in the band's own ink. */
+.ds-stage-button {
+  background: var(--ds-dark-ink);
+  color: var(--ds-dark);
+  border-color: transparent;
+  box-shadow: none;
+}
+
+.ds-stage-button:hover {
+  background: #fff;
+  color: var(--ds-dark);
+  transform: translateY(-2px);
 }

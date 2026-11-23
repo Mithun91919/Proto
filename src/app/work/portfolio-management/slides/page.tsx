@@ -264,12 +264,15 @@ export default function PortfolioSlidesPage() {
       <div className="ds-pull ds-stage ds-stage-full">
         <div className="ds-pull-inner">
           <h1 className="sr-only">Portfolio Management Platform, summary as slides</h1>
-          <SlideDeck slides={SLIDES} label="Portfolio Management Platform, summary as slides" />
-          <div className="ds-stage-foot">
-            <Link href="/work/portfolio-management" className="button button-primary button-sm">
-              Read the full case study →
-            </Link>
-          </div>
+          <SlideDeck
+            slides={SLIDES}
+            label="Portfolio Management Platform, summary as slides"
+            action={
+              <Link href="/work/portfolio-management" className="button button-sm ds-stage-button">
+                Read the full case study →
+              </Link>
+            }
+          />
         </div>
       </div>
     </div>
