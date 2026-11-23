@@ -58,7 +58,7 @@ export default function HomePage() {
 
           <figure className="m-0 flex flex-col items-start gap-5 md:items-center">
             <HeroPortrait />
-            <figcaption className="ds-eyebrow max-w-[18rem] text-balance text-[0.62rem] italic leading-relaxed md:text-center">
+            <figcaption className="ds-eyebrow max-w-[18rem] text-balance italic leading-relaxed md:text-center" style={{ fontSize: "0.62rem" }}>
               Every dot is a decision. Design is what connects them.
             </figcaption>
           </figure>
