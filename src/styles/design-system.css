@@ -5120,10 +5120,10 @@ html.cs-view-changing .site-dock {
 }
 
 .ds-dn.is-scattered .ds-dn-node:nth-child(5n + 1) { margin-top: 0; }
-.ds-dn.is-scattered .ds-dn-node:nth-child(5n + 2) { margin-top: 3rem; }
-.ds-dn.is-scattered .ds-dn-node:nth-child(5n + 3) { margin-top: 0.9rem; }
-.ds-dn.is-scattered .ds-dn-node:nth-child(5n + 4) { margin-top: 3.6rem; }
-.ds-dn.is-scattered .ds-dn-node:nth-child(5n + 5) { margin-top: 1.6rem; }
+.ds-dn.is-scattered .ds-dn-node:nth-child(5n + 2) { margin-top: 4.8rem; }
+.ds-dn.is-scattered .ds-dn-node:nth-child(5n + 3) { margin-top: 1.45rem; }
+.ds-dn.is-scattered .ds-dn-node:nth-child(5n + 4) { margin-top: 5.75rem; }
+.ds-dn.is-scattered .ds-dn-node:nth-child(5n + 5) { margin-top: 2.6rem; }
 
 /* Joined: a dotted line from each dot to the next, drawn in once. */
 .ds-dn.is-connected .ds-dn-node:not(:last-child)::after {
@@ -5160,33 +5160,52 @@ html.cs-view-changing .site-dock {
 
 /* One dot joined to a group on each side. */
 .ds-dt {
-  display: flex;
+  display: grid;
+  grid-template-columns: auto minmax(1.5rem, 1fr) auto minmax(1.5rem, 1fr) auto;
+  grid-template-rows: auto auto;
+  column-gap: 0.9rem;
+  row-gap: 0.9rem;
   align-items: center;
-  justify-content: center;
-  gap: 0.9rem;
   width: 100%;
 }
 
+/* The groups give their parts to the grid, so every dot sits on one row and
+   every label on the next: the links meet the middle of the dots, and the
+   three labels share a line. */
 .ds-dt-group,
 .ds-dt-centre {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 0.9rem;
-  text-align: center;
+  display: contents;
 }
+
+.ds-dt-group:first-child > .ds-dt-dots,
+.ds-dt-group:first-child > .ds-dn-label { grid-column: 1; }
+.ds-dt-centre > .ds-dn-dot,
+.ds-dt-centre > .ds-dn-label { grid-column: 3; }
+.ds-dt-group:last-child > .ds-dt-dots,
+.ds-dt-group:last-child > .ds-dn-label { grid-column: 5; }
+
+.ds-dt-dots,
+.ds-dt-centre > .ds-dn-dot { grid-row: 1; }
+.ds-dt-group > .ds-dn-label,
+.ds-dt-centre > .ds-dn-label { grid-row: 2; justify-self: center; text-align: center; }
 
 .ds-dt-dots {
   display: flex;
   flex-direction: column;
   gap: 0.9rem;
+  justify-self: center;
 }
 
+.ds-dt-centre > .ds-dn-dot { justify-self: center; }
+
 .ds-dt-link {
-  flex: 1 1 0;
-  min-width: 1.5rem;
+  grid-row: 1;
+  align-self: center;
   border-top: 2px dotted var(--ds-accent);
 }
+
+.ds-dt > .ds-dt-link:nth-child(2) { grid-column: 2; }
+.ds-dt > .ds-dt-link:nth-child(4) { grid-column: 4; }
 
 .ds-dt-me {
   width: 28px;
@@ -5470,10 +5489,10 @@ body:has(main > .ds-stage-page) .site-spacer {
    motion budget allows no loop that runs for ever. */
 @keyframes ds-dn-courier {
   0%, 10%  { left: calc(10% - 6px); top: 2px; opacity: 1; }
-  20%, 30% { left: calc(50% - 6px); top: 16px; opacity: 1; }
-  40%, 50% { left: calc(30% - 6px); top: 50px; opacity: 1; }
-  60%, 70% { left: calc(90% - 6px); top: 28px; opacity: 1; }
-  80%, 90% { left: calc(70% - 6px); top: 60px; opacity: 1; }
+  20%, 30% { left: calc(50% - 6px); top: 25px; opacity: 1; }
+  40%, 50% { left: calc(30% - 6px); top: 79px; opacity: 1; }
+  60%, 70% { left: calc(90% - 6px); top: 44px; opacity: 1; }
+  80%, 90% { left: calc(70% - 6px); top: 94px; opacity: 1; }
   96%      { left: calc(10% - 6px); top: 2px; opacity: 1; }
   100%     { left: calc(10% - 6px); top: 2px; opacity: 0; }
 }
@@ -5493,10 +5512,10 @@ body:has(main > .ds-stage-page) .site-spacer {
    chain from the goal to the work, again and again, lighting each dot it
    passes: the traceability the platform is for. */
 .ds-dn.is-connected:not(.has-active) .ds-dn-node:nth-child(5n + 1) { --sy: 0; }
-.ds-dn.is-connected:not(.has-active) .ds-dn-node:nth-child(5n + 2) { --sy: 3rem; }
-.ds-dn.is-connected:not(.has-active) .ds-dn-node:nth-child(5n + 3) { --sy: 0.9rem; }
-.ds-dn.is-connected:not(.has-active) .ds-dn-node:nth-child(5n + 4) { --sy: 3.6rem; }
-.ds-dn.is-connected:not(.has-active) .ds-dn-node:nth-child(5n + 5) { --sy: 1.6rem; }
+.ds-dn.is-connected:not(.has-active) .ds-dn-node:nth-child(5n + 2) { --sy: 4.8rem; }
+.ds-dn.is-connected:not(.has-active) .ds-dn-node:nth-child(5n + 3) { --sy: 1.45rem; }
+.ds-dn.is-connected:not(.has-active) .ds-dn-node:nth-child(5n + 4) { --sy: 5.75rem; }
+.ds-dn.is-connected:not(.has-active) .ds-dn-node:nth-child(5n + 5) { --sy: 2.6rem; }
 
 @keyframes ds-dn-run {
   0%   { left: calc(10% - 5px); opacity: 0; }
@@ -5716,7 +5735,9 @@ body:has(main > .ds-stage-page) .site-spacer {
   justify-content: center;
   width: 100%;
   max-width: 85rem;
-  padding-bottom: 4.5rem;
+  /* Room under the clip for the scroll cue, so it sits inside the first screen
+     with space around it rather than on the fold. */
+  padding-bottom: 7.5rem;
 }
 
 .ds-story-intro-grid {
@@ -5734,14 +5755,14 @@ body:has(main > .ds-stage-page) .site-spacer {
 .ds-story-cue {
   position: absolute;
   left: 50%;
-  bottom: 1.75rem;
+  bottom: 2rem;
   transform: translateX(-50%);
   display: inline-flex;
   flex-direction: column;
   align-items: center;
-  gap: 0.5rem;
+  gap: 0.6rem;
   font-family: var(--font-mono), ui-monospace, monospace;
-  font-size: 0.68rem;
+  font-size: 0.8rem;
   letter-spacing: 0.14em;
   text-transform: uppercase;
   color: var(--ds-dark-muted);
@@ -5754,6 +5775,12 @@ body:has(main > .ds-stage-page) .site-spacer {
 }
 
 .ds-story-cue svg {
+  width: 1.75rem;
+  height: 1.75rem;
+  padding: 0.4rem;
+  box-sizing: border-box;
+  border: 1px solid currentColor;
+  border-radius: 999px;
   animation: ds-cue-bob 1.8s ease-in-out 3;
 }
 
@@ -5837,7 +5864,7 @@ body:has(main > .ds-stage-page) .site-spacer {
 
 .ds-story-intro .ds-slide-video {
   width: auto;
-  height: clamp(14rem, calc(100vh - 30rem), 30rem);
+  height: clamp(12rem, calc(100vh - 34rem), 28rem);
   max-width: 100%;
   object-fit: cover;
   margin-top: 2.25rem;
@@ -5855,7 +5882,9 @@ body:has(main > .ds-stage-page) .site-spacer {
   top: 0;
   height: 100vh;
   display: flex;
-  align-items: center;
+  /* From the top, not the middle: the card sits high, and the room that is left
+     falls between it and the divider rather than above it. */
+  align-items: flex-start;
 }
 
 .ds-story-inner {
@@ -5863,7 +5892,11 @@ body:has(main > .ds-stage-page) .site-spacer {
   width: 100%;
   max-width: 85rem;
   margin: 0 auto;
-  padding: 4.5rem clamp(1.25rem, 2.5vw, 2rem) 5rem;
+  padding: 4.25rem clamp(1.25rem, 2.5vw, 2rem) 5rem;
+  /* As tall as the screen, so the divider that sits at its foot sits at the
+     foot of the screen, not under whatever the step happens to hold. */
+  min-height: 100vh;
+  box-sizing: border-box;
 }
 
 .ds-story-stack {
@@ -5949,12 +5982,24 @@ body:has(main > .ds-stage-page) .site-spacer {
   font-size: 1rem;
 }
 
+/* Under the diagram it describes, centred on it. */
+.ds-slide-visual > .ds-slide-dots-note {
+  margin-top: 0;
+  text-align: center;
+}
+
 .ds-story-track .ds-slide-grid.has-shot {
   grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.25fr);
 }
 
 .ds-story-track .ds-slide-shot {
   aspect-ratio: 4 / 3;
+}
+
+/* A 16:9 recording keeps its own shape: cropped to 4:3 it would lose the chat
+   or the workbench, which sit side by side. */
+.ds-story-track .ds-slide-shot.is-wide {
+  aspect-ratio: 16 / 9;
 }
 
 /* ── Story divider ─────────────────────────────────────────────────────────
@@ -5966,10 +6011,10 @@ body:has(main > .ds-stage-page) .site-spacer {
   position: absolute;
   left: clamp(1.25rem, 2.5vw, 2rem);
   right: clamp(1.25rem, 2.5vw, 2rem);
-  bottom: 1.5rem;
+  bottom: 2.5rem;
   display: flex;
   align-items: center;
-  gap: 1.5rem;
+  gap: 1rem;
 }
 
 @media (min-width: 1150px) {
@@ -6000,32 +6045,70 @@ body:has(main > .ds-stage-page) .site-spacer {
   width: clamp(0%, calc((var(--story-p, 0) - var(--i)) * 100%), 100%);
 }
 
-.ds-story-hint {
+.ds-story-chev {
   display: inline-flex;
   align-items: center;
-  gap: 0.4rem;
+  justify-content: center;
+  width: 2.25rem;
+  height: 2.25rem;
+  padding: 0;
+  border: 1px solid var(--ds-solid-border);
+  border-radius: 999px;
+  background: transparent;
+  color: var(--ink-soft);
+  cursor: pointer;
+  transition: color 200ms ease, border-color 200ms ease, opacity 300ms ease;
+}
+
+.ds-story-chev:hover:not(:disabled),
+.ds-story-chev:focus-visible {
+  color: var(--ink);
+  border-color: var(--ds-accent);
+}
+
+.ds-story-chev:disabled {
+  cursor: default;
+}
+
+/* An end of the story: the chevron dims. */
+.ds-story-chev:disabled svg {
+  opacity: 0.35;
+}
+
+.ds-story-hint {
+  position: absolute;
+  bottom: calc(100% + 0.35rem);
+  left: 50%;
+  transform: translateX(-50%);
   font-family: var(--font-mono), ui-monospace, monospace;
   font-size: 0.66rem;
   letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: var(--muted);
-  transition: opacity 400ms ease;
+  color: var(--ink-soft);
+  white-space: nowrap;
 }
 
-.ds-story-hint::after {
-  content: "↓";
-  display: inline-block;
-  animation: ds-cue-bob 1.8s ease-in-out 3;
+/* The chevrons nudge once the card is pinned, to say they are there; three
+   times, then still. */
+.ds-story-chev-next:not(:disabled) svg {
+  animation: ds-chev-nudge 1.8s ease-in-out 3;
 }
 
-/* At the last step there is nothing more in the story to scroll for. */
-.ds-story-progress.is-last .ds-story-hint {
-  opacity: 0;
+.ds-story-chev-prev:not(:disabled) svg {
+  animation: ds-chev-nudge-back 1.8s ease-in-out 3;
+}
+
+@keyframes ds-chev-nudge {
+  50% { transform: translateX(3px); }
+}
+
+@keyframes ds-chev-nudge-back {
+  50% { transform: translateX(-3px); }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .ds-story-hint::after {
-    animation: none;
+  .ds-story-chev svg {
+    animation: none !important;
   }
 }
 

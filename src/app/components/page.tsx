@@ -1504,7 +1504,7 @@ export default function ComponentsPage() {
             </div>
             <div>
               <p className="ds-eyebrow" style={{ color: "var(--ds-accent)" }}>Write</p>
-              <p className="mt-2 max-w-[40ch] leading-7">The plan lived in four places, and the work in a fifth</p>
+              <p className="mt-2 max-w-[40ch] leading-7">The work’s data was spread across many tools and resources</p>
             </div>
           </div>
           <p className="mt-7 max-w-[66ch] text-[0.88rem] leading-6" style={{ color: "var(--ink-soft)" }}>

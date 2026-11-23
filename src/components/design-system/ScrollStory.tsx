@@ -265,17 +265,41 @@ export function ScrollStory({
           </div>
 
           {/* The divider along the bottom: a segment for each step, the current one
-              filling as you scroll through it. It is feedback and not a control (the
-              rail is the control), so it is hidden from assistive technology. */}
-          <div className={`ds-story-progress${active === last ? " is-last" : ""}`} aria-hidden="true">
-            <div className="ds-story-segments">
+              filling as you scroll through it, with a chevron at each end that steps
+              back or on, and "Scroll to view" centred above says how to move through the
+              story. The segments are feedback only
+              and hidden from assistive technology; the chevrons are real buttons. */}
+          <div className="ds-story-progress">
+            <span className="ds-story-hint" aria-hidden="true">Scroll to view</span>
+            <button
+              type="button"
+              className="ds-story-chev ds-story-chev-prev"
+              onClick={() => jumpTo(active - 1)}
+              disabled={active === 0}
+              aria-label="Previous step"
+            >
+              <svg width="8" height="14" viewBox="0 0 8 14" fill="none" aria-hidden="true">
+                <path d="M7 1 1 7l6 6" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
+              </svg>
+            </button>
+            <div className="ds-story-segments" aria-hidden="true">
               {steps.map((step, i) => (
                 <span key={step.label} className="ds-story-seg" style={{ "--i": i } as CSSProperties}>
                   <span className="ds-story-seg-fill" />
                 </span>
               ))}
             </div>
-            <span className="ds-story-hint">Scroll</span>
+            <button
+              type="button"
+              className="ds-story-chev ds-story-chev-next"
+              onClick={() => jumpTo(active + 1)}
+              disabled={active === last}
+              aria-label="Next step"
+            >
+              <svg width="8" height="14" viewBox="0 0 8 14" fill="none" aria-hidden="true">
+                <path d="m1 1 6 6-6 6" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
+              </svg>
+            </button>
           </div>
         </div>
       </div>

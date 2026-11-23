@@ -51,7 +51,7 @@ export function ConfidentialPill() {
       {open ? (
         <div id="confidential-note" role="note" className="confidential-note">
           Confidential internal work. This is a glimpse of the work, not all of it: some detail is confidential, and
-          some names and data have been replaced. I can talk through the decisions and what changed in an interview.
+          some names and data have been replaced.
         </div>
       ) : null}
     </div>

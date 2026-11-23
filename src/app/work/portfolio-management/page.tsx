@@ -104,6 +104,7 @@ export default function PortfolioManagementPage() {
         standfirst:
           "I designed the platform where Walmart’s product organisation connects goals to initiatives, products, people and Jira. It replaced four external tools and reclaims 800+ hours a week.",
         body: <PortfolioSummaryBody />,
+        ownOpener: true,
       }}
       evidenceCaveat="Hours are reported by the product managers. *Average yearly cost saved by retiring redundant licences."
       evidenceMetricsLabel="The impact"
@@ -203,7 +204,7 @@ export default function PortfolioManagementPage() {
           <CaseStudyChapter
             layout="stacked"
             eyebrow="In pieces"
-            heading="The plan lived in four places, and the work in a fifth"
+            heading="The work’s data was spread across many tools and resources"
             figure={{
               value: "3",
               label: "whiteboarding sessions",

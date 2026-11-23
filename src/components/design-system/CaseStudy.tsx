@@ -98,6 +98,10 @@ export function CaseStudyShell({
     /** A summary the page lays out itself. It replaces the evidence card and the
         generated blocks, and sits under the page's own hero. */
     body?: ReactNode;
+    /** The body opens the summary itself (its own title, facts and picture), so
+        the shell's summary opener is left out. For a body that is a whole page,
+        such as the scroll story. */
+    ownOpener?: boolean;
   };
   children: ReactNode;
 }) {
@@ -121,14 +125,16 @@ export function CaseStudyShell({
           confidentiality note, live in the header. */}
       <CaseStudyHero {...heroWithAxes} />
 
-      <SummaryHero
-        headline={summary?.title ?? hero.headline}
-        standfirst={summary?.standfirst ?? hero.standfirst}
-        meta={hero.meta}
-        art={hero.stack?.[0] ?? (hero.src ? { src: hero.src, width: hero.width ?? 2400, height: hero.height ?? 1380, alt: hero.alt } : undefined)}
-        artRatio={hero.stackRatio}
-        label={hero.alt}
-      />
+      {summary?.ownOpener ? null : (
+        <SummaryHero
+          headline={summary?.title ?? hero.headline}
+          standfirst={summary?.standfirst ?? hero.standfirst}
+          meta={hero.meta}
+          art={hero.stack?.[0] ?? (hero.src ? { src: hero.src, width: hero.width ?? 2400, height: hero.height ?? 1380, alt: hero.alt } : undefined)}
+          artRatio={hero.stackRatio}
+          label={hero.alt}
+        />
+      )}
 
       <CaseStudyEvidence
         keepInSummary={!summary?.body}

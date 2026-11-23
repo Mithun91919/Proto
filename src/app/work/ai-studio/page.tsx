@@ -297,6 +297,7 @@ export default function AiStudioPage() {
         standfirst:
           "In Wibey, Walmart’s internal AI platform, I co-designed Studio, where builders find what exists, build what doesn’t, test it and publish it for others.",
         body: <AiStudioSummary />,
+        ownOpener: true,
       }}
       hero={{
         standfirst:

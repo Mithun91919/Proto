@@ -49,14 +49,14 @@ function Code({ children }: { children: React.ReactNode }) {
 const WHEN: Rule[] = [
   { rule: "Use it when there is a chain", note: "Three to six real screens that follow one thread, such as a goal down to a person, and a problem whose shape can be drawn as pieces that were apart and are now joined. A list of unrelated features is not a chain." },
   { rule: "Do not use it without real screens", note: "Every middle step carries a real screenshot. A step with nothing real to show is a bullet list in a costume. The first two steps need none: the dots are the picture." },
-  { rule: "It is a choice, never the default", note: "The summary stays the way in for a reader who skims. The walkthrough is a separate route that the summary offers after it, for the reader who wants the shape of the project. Nobody is made to scroll through it." },
+  { rule: "It is the summary, for a project that has a chain", note: "It takes the place of the generated summary on that project's page. A project without a chain keeps the standard summary; do not force the format onto it. The header switch still works and the full case study is one button away at the foot, so nobody is made to scroll through it to reach the case study." },
   { rule: "Five to eight steps", note: "Each step costs a full screen of scrolling. Past eight, people leave, and the closing figures are never reached." },
   { rule: "Desktop only, like the site", note: "The rail needs 1150px and the swipe hold listens to the wheel. On a narrower window the page still scrolls through, but it is not designed there." },
-  { rule: "Not indexed", note: "The route uses the same robots rule as a case study (caseStudyRobots), because it shows the same screens." },
+  { rule: "Same page, same rules", note: "It lives on the case study's own route, so the same robots rule, confidentiality note and next-project link apply, and nothing separate needs indexing or hiding." },
 ];
 
 const ANATOMY: { part: string; file: string; job: string }[] = [
-  { part: "Opening", file: "page, a ds-pull band", job: "Dark, centred, one screen tall: kicker, title, standfirst, role, years and where, the card's own clip, a scroll cue. The same band carries the story, so it is one dark block." },
+  { part: "Opening", file: "StorySummary.tsx, a ds-pull band", job: "Dark, centred, one screen tall: kicker, title, standfirst, role, years and where, the card's own clip, a scroll cue. The same band carries the story, so it is one dark block." },
   { part: "Story", file: "ScrollStory.tsx", job: "A tall track holding one pinned card. Scrolling past the track changes what is in the card. Takes steps (label, text, visual), stepVh and holdSwipes." },
   { part: "Dots", file: "DotNodes.tsx", job: "DotNodes draws five dots apart, joined, or joined with one lit. DotTrio draws one dot joined to two groups." },
   { part: "Rail", file: "ChapterProgress.tsx", job: "The site's left rail in its controlled mode: activeId and onSelect. Hidden while the card is not pinned." },
@@ -70,7 +70,7 @@ const COPY_RULES: Rule[] = [
   { rule: "The dot labels are plain nouns, five of them", note: "Goal, Project, Product, Person, Tasks. The same word is the step's small label above its title. The tool's own name for a screen appears only in the image's description: titled Initiative Details in the tool." },
   { rule: "A step is a small label, a title and two or three points", note: "The label is one word and is the dot's name. The title is one claim, a full sentence ending in a full stop, about twelve words at most. Each point is one sentence of about twenty-four words at most. Three points is the ceiling; two is often better." },
   { rule: "Only the case study's own facts", note: "Every point comes from the case study's text or its screen notes, cut down and in plainer words. Nothing is added to make a step sound better. A figure is exactly the verified figure, with the plain word for what it counts." },
-  { rule: "One caption on the dots, on two steps at most", note: "A single short italic line on the apart step and the joined step, saying what the dots stand for: Picture each of these as a dot. Nothing joined them except people. The same dots, now joined. No third caption, and none on the screen steps." },
+  { rule: "One caption on the dots, on two steps at most", note: "A single short italic line on the apart step and the joined step, set under the diagram it describes, centred on it, not in the column of words (StoryDots takes it as note), saying what the dots stand for: Picture each of these as a dot. Nothing joined them except people. The same dots, now joined. No third caption, and none on the screen steps." },
   { rule: "Say who did what, once", note: "The what-I-did step is first person and carries only what the case study supports. Do not write the only designer or led unless the source says so." },
   { rule: "The results carry their caveat", note: "Who reports each figure, and what a saving counts, goes beside the figures as plain notes. A figure without its source reads as one that is too good to be true." },
   { rule: "The house rules still apply", note: "British spelling, arrows only as →, no buzzwords, no heading that merely names a section. See the copy guide, section K." },
@@ -111,7 +111,11 @@ const SCROLL_RULES: Rule[] = [
 
 const BUILD_NOTES: Rule[] = [
   { rule: "Scope every story rule to .ds-story-track", note: "That is the wrapper the component renders. An earlier wrapper name was changed and the rules written for it silently stopped applying." },
-  { rule: "Do not reuse the case-study hero classes", note: "ds-cs-hero is hidden by the case study's summary toggle. The walkthrough has its own root (ds-stage-page) and band (ds-pull ds-stage ds-stage-story); the root collapses the header's spacer so the band runs up under the header." },
+  { rule: "A project file holds words, dots and screens only", note: "StorySummary.tsx lays out the opening, the pinned card and the results for every project, and exports StoryWords, StoryVisual, StoryScreen and StoryClip for the steps. A new project writes its steps and its results and passes them in, so every summary behaves the same. Portfolio Management and Studio are the two examples." },
+  { rule: "A recording plays only while its step shows", note: "StoryClip mounts its video only for the active step, so one clip plays at a time and none plays behind a step that has gone. It holds on its poster under reduced motion. Recordings are 16:9 with the chat and the workbench side by side, so they keep that shape (is-wide) instead of the 4:3 crop used for stills." },
+  { rule: "Wire it through the summary slot", note: "In the project's page.tsx pass summary={{ body: <ProjectSummaryBody />, ownOpener: true }} to CaseStudyShell. The body is a fragment: the dark band (ds-pull ds-stage ds-stage-story) and the light results. ownOpener drops the shell's own summary opener, because the story opens itself. The shell already adds the way into the full page, so the body adds no link of its own." },
+  { rule: "The body carries the page's h1", note: "In the summary view the case study's hero is hidden, which takes its h1 with it, so the opening has its own h1 with the project's name. Do not reuse the case-study hero classes either: ds-cs-hero is hidden by the toggle." },
+  { rule: "Clear the floating header", note: "The card's top padding is 4.25rem so the eyebrow sits under the header pill rather than behind it. The header slides away on scroll, but it is there when the story is entered from a link." },
   { rule: "ds-slide is transparent until it is active", note: "By itself it is invisible, with its hidden state delayed. Anything outside a deck or a story that must show uses ds-slide is-active, which is what ReplayFrame does." },
   { rule: "Key both halves of a step", note: "The words and the visual arrive from a server component, and React warns about keys when they sit side by side. ScrollStory keys them. Keep that if you edit it." },
   { rule: "Hold the room open for late content", note: "The results use WhenInView with a minHeight, so the page does not jump when they arrive." },
@@ -131,7 +135,7 @@ const CHECKLIST = [
   "A hard trackpad flick moves one step. Try it on a real trackpad, not a script.",
   "The rail is operable by keyboard and jumps to its step; the page reads in order with a screen reader.",
   "Console has no warnings; tsc is clean; the dev server was restarted if the CSS looked wrong.",
-  "The route is not indexed, and the summary offers it after the skim.",
+  "It is wired through summary.body with ownOpener; the Case study and Summary switch works both ways, and the full case study is one button from the end.",
 ];
 
 export function ScrollStorySpec() {
@@ -143,12 +147,13 @@ export function ScrollStorySpec() {
         <SubLabel code="N1 · When to use it" />
         <Lede>
           A pinned card holds still while the page scrolls past it, and what is inside changes step by step. It
-          suits a project with a thread to follow and screens to follow it on. It is the heaviest thing in the
-          system, so it is offered, never imposed. A live one is the{" "}
-          <Link href="/work/portfolio-management/walkthrough" className="underline underline-offset-4">
-            Portfolio Management walkthrough
-          </Link>
-          .
+          suits a project with a thread to follow and screens to follow it on. It is the summary view of a case study,
+          so a reader who wants the shape of a project gets it in a minute, and the full case study stays one
+          button away. The live one is the{" "}
+          <Link href="/work/portfolio-management" className="underline underline-offset-4">
+            Portfolio Management summary
+          </Link>{" "}
+          (switch the header to Summary).
         </Lede>
         <RuleGrid rules={WHEN} />
       </div>
