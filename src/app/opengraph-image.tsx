@@ -7,15 +7,17 @@ export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
 /**
- * Share preview for links to the site: name and role on the site's stone
- * ground, beside a real Studio screen. Drawn with the platform default sans,
- * since the site's own fonts are not in a format the image renderer reads.
+ * Share preview for links to the site: the portrait from the About page beside
+ * the home page headline, on the site's pale ground. Drawn with the platform
+ * default sans, since the site's own fonts are not in a format the image
+ * renderer reads.
+ *
+ * The portrait is shown at 714 x 630 and shifted left so the 520-wide window
+ * is centred on the face; that also crops out the corner watermark.
  */
 export default async function Image() {
-  const shot = await readFile(
-    path.join(process.cwd(), "public/work/ai-studio/hero-home.jpg"),
-  );
-  const src = `data:image/jpeg;base64,${shot.toString("base64")}`;
+  const photo = await readFile(path.join(process.cwd(), "public/mithun-raju.jpg"));
+  const src = `data:image/jpeg;base64,${photo.toString("base64")}`;
 
   return new ImageResponse(
     (
@@ -24,47 +26,41 @@ export default async function Image() {
           width: "100%",
           height: "100%",
           display: "flex",
-          background: "#f1f0ec",
-          color: "#14181a",
+          background: "#f7fbfc",
+          color: "#0f1f26",
         }}
       >
         <div
           style={{
             display: "flex",
             flexDirection: "column",
-            justifyContent: "space-between",
-            width: 500,
-            padding: "64px 0 64px 64px",
+            justifyContent: "center",
+            width: 680,
+            padding: "0 32px 0 64px",
           }}
         >
-          <div style={{ display: "flex", fontSize: 22, letterSpacing: 3, color: "#0f5f5c" }}>
-            PORTFOLIO
+          <div style={{ display: "flex", fontSize: 88, fontWeight: 700, lineHeight: 1 }}>
+            Mithun Raju
           </div>
-          <div style={{ display: "flex", flexDirection: "column" }}>
-            <div style={{ display: "flex", fontSize: 76, lineHeight: 1.02, fontWeight: 700 }}>
-              Mithun Raju
-            </div>
-            <div style={{ display: "flex", fontSize: 34, marginTop: 20, color: "#3b4448" }}>
-              Senior UX Designer
-            </div>
-            <div style={{ display: "flex", fontSize: 24, marginTop: 20, color: "#5a6468", lineHeight: 1.35 }}>
-              Enterprise platforms, developer tools and AI products
-            </div>
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              fontSize: 30,
+              fontWeight: 600,
+              marginTop: 24,
+              lineHeight: 1.25,
+              color: "#2b4450",
+            }}
+          >
+            <div style={{ display: "flex" }}>Senior UX designer working across</div>
+            <div style={{ display: "flex", color: "#0e7490" }}>enterprise platforms,</div>
+            <div style={{ display: "flex" }}>developer tools and AI-enabled products.</div>
           </div>
         </div>
-        <div style={{ display: "flex", alignItems: "center", flex: 1, paddingLeft: 24, paddingRight: 56 }}>
+        <div style={{ display: "flex", width: 520, height: 630, overflow: "hidden" }}>
           {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img
-            src={src}
-            width={580}
-            height={334}
-            alt=""
-            style={{
-              borderRadius: 18,
-              border: "1px solid #d5d3cc",
-              boxShadow: "0 12px 40px rgba(20,24,26,0.12)",
-            }}
-          />
+          <img src={src} width={714} height={630} alt="" style={{ marginLeft: -96 }} />
         </div>
       </div>
     ),
