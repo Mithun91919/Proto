@@ -67,7 +67,7 @@ const ANATOMY: { part: string; file: string; job: string }[] = [
 
 const COPY_RULES: Rule[] = [
   { rule: "Plain words, or gloss at first use", note: "The case study is written for people inside the product; the walkthrough is read by strangers. Initiative becomes project (a funded project). Jira epic becomes tasks. Sprint becomes work cycle. Licence stays only as software licence. If a word needs the product to be understood, rewrite it or explain it once." },
-  { rule: "The dot labels are plain nouns, five of them", note: "Goal, Project, Product, Person, Tasks. The same word is the step's small label above its title. The tool's own name for a screen appears only in the image's description: titled Initiative Details in the tool." },
+  { rule: "The dot labels are plain nouns, one per stage", note: "Portfolio Management: Goal, Project, Product, Person, Tasks. Studio: Intent, Build, Inspect, Test, Publish. The same word is the step's small label above its title. The tool's own name for a screen appears only in the image's description: titled Initiative Details in the tool." },
   { rule: "A step is a small label, a title and two or three points", note: "The label is one word and is the dot's name. The title is one claim, a full sentence ending in a full stop, about twelve words at most. Each point is one sentence of about twenty-four words at most. Three points is the ceiling; two is often better." },
   { rule: "Only the case study's own facts", note: "Every point comes from the case study's text or its screen notes, cut down and in plainer words. Nothing is added to make a step sound better. A figure is exactly the verified figure, with the plain word for what it counts." },
   { rule: "One caption on the dots, on two steps at most", note: "A single short italic line on the apart step and the joined step, set under the diagram it describes, centred on it, not in the column of words (StoryDots takes it as note), saying what the dots stand for: Picture each of these as a dot. Nothing joined them except people. The same dots, now joined. No third caption, and none on the screen steps." },
@@ -87,7 +87,8 @@ const DOT_STATES: { state: string; looks: string; means: string; motion: string 
 const DOT_RULES: Rule[] = [
   { rule: "Every dot motion is keyed to the step being active", note: "Each rule starts with .ds-slide.is-active, so it begins on arrival and begins again on the next arrival. Anything holding a visual must carry ds-slide and gain is-active when its step shows. ScrollStory and SlideDeck do this; a specimen outside them uses ReplayFrame." },
   { rule: "Nothing loops for ever", note: "The pulse makes two passes, the glow three, the ring one tour, the cue three bobs. Every animation ends on the resting style, so nothing is left moving or half-drawn. The motion budget, J3e, has no exceptions, and this is where it was nearly broken." },
-  { rule: "Exactly five nodes", note: "The ring's path, the pulse's run and the placed pulse are written against five equal columns, with the dots at 10, 30, 50, 70 and 90 per cent. Another number of dots needs those keyframes redrawn. Do not pass four or six." },
+  { rule: "Draw new dots when the story needs them", note: "A project may need an arrangement none of the four states gives, such as a branching, a loop back, a set of unequal groups or two chains side by side. Build it. It must say one thing the case study says, take its counts from the source, end on a still resting state, be keyed to the active step, show finished under reduced motion, be listed in the motion inventory, and get a Replay specimen here beside the others. What is fixed is these conditions, not the shapes." },
+  { rule: "The chain is five nodes", note: "The ring's path, the pulse's run and the placed pulse are written against five equal columns, with the dots at 10, 30, 50, 70 and 90 per cent. Another number of dots in the chain needs those keyframes redrawn. Do not pass four or six without redrawing them." },
   { rule: "The dots stay one size", note: "A different size would imply a quantity the source does not give. The one exception is the lit dot, which is larger to mark a place, never a count." },
   { rule: "The finished state is the plain style", note: "Nothing depends on the motion to be understood. A reader with reduced motion gets the row as it ends: lit, joined, still. The animation rules are switched off with !important in that case, and the ring is hidden." },
   { rule: "Colour comes from variables", note: "The accent, the muted dot and the borders are read from custom properties. The dark band turns them over (ds-stage), so the same markup reads light on dark. Never write a colour into a dot rule." },
@@ -127,7 +128,7 @@ const BUILD_NOTES: Rule[] = [
 const CHECKLIST = [
   "There is a real chain, and a real screen for every middle step.",
   "The wording was shown as options and one was picked; every point traces to the case study.",
-  "Five plain dot labels, used as the step labels.",
+  "Plain dot labels, one per stage of the project's own chain, used as the step labels.",
   "Five to eight steps, each a label, a title and two or three points.",
   "The results are the verified figures, with their caveats beside them.",
   "Reduced motion on: nothing moves and every state is shown finished.",
@@ -195,8 +196,10 @@ export function ScrollStorySpec() {
       <div className="ds-rule py-11">
         <SubLabel code="N4 · The dots" />
         <Lede>
-          The dots are the way into each step. Four states cover it, and each says one thing. Press Replay to watch
-          one again: it plays when its step arrives, so on this page it is held in that state.
+          The dots are the way into each step. These four states are a starting vocabulary, not a closed list: draw
+          the picture the story needs, and add what it needs to the system. Each state says one thing, and the
+          conditions below hold for any new one. Press Replay to watch one again: it plays when its step arrives, so
+          on this page it is held in that state.
         </Lede>
         <div className="ds-motion-table mb-9" role="table">
           <div className="ds-motion-row is-head" role="row" style={{ gridTemplateColumns: "0.7fr 1.3fr 1.4fr 2fr" }}>
