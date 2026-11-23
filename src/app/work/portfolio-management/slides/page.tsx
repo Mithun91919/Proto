@@ -201,20 +201,16 @@ export default function PortfolioSlidesPage() {
           the page, so it carries the same dot field and runs up under the
           header. It takes none of the hero's own classes, because those are
           keyed to the case-study/summary toggle and would hide it. `ds-stage`
-          turns the colours over for the deck inside it. */}
-      <div className="ds-pull ds-stage">
+          turns the colours over for the deck inside it; `ds-stage-full` drops
+          the deck's card and lets it fill the band, so there is no title block
+          taking height from the slides. The page's name is still the h1, for
+          screen readers and the tab. */}
+      <div className="ds-pull ds-stage ds-stage-full">
         <div className="ds-pull-inner">
-          <span className="ds-pull-dots" aria-hidden />
-          <p className="eyebrow ds-slide-eyebrow">Case study · summary as slides</p>
-          <h1 className="display-title mt-4" style={{ fontSize: "clamp(2rem, 3.6vw, 3rem)", lineHeight: 1.05 }}>
-            Portfolio Management Platform
-          </h1>
-          <div className="mt-9">
-            <SlideDeck slides={SLIDES} label="Portfolio Management Platform, summary as slides" />
-          </div>
-
-          <p className="mt-10 text-[0.95rem]">
-            <Link href="/work/portfolio-management" className="underline underline-offset-4" style={{ color: "var(--ds-dark-ink)" }}>
+          <h1 className="sr-only">Portfolio Management Platform, summary as slides</h1>
+          <SlideDeck slides={SLIDES} label="Portfolio Management Platform, summary as slides" />
+          <p className="ds-stage-foot">
+            <Link href="/work/portfolio-management" className="underline underline-offset-4">
               Read the full case study →
             </Link>
           </p>

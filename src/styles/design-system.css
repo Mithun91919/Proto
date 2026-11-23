@@ -5266,3 +5266,81 @@ body:has(main > .ds-stage-page) .site-spacer {
 .ds-slide-grid.has-shot {
   grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.3fr);
 }
+
+/* ── Full-bleed deck ───────────────────────────────────────────────────────
+   The deck takes the whole band: no card, no title block, the slide centred in
+   the height that is left and the controls pinned under it. */
+.ds-stage-full {
+  min-height: 100vh;
+  display: flex;
+}
+
+.ds-stage-full > .ds-pull-inner {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  max-width: none;
+  width: 100%;
+  padding: 5.5rem clamp(1.5rem, 4.5vw, 5rem) 1.5rem;
+}
+
+.ds-stage-full .ds-slidedeck {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.ds-stage-full .ds-slidedeck-frame {
+  flex: 1;
+  min-height: 0;
+  padding: 0;
+  background: none;
+  border: 0;
+  box-shadow: none;
+}
+
+.ds-stage-full .ds-slidedeck-frame > div {
+  height: 100%;
+}
+
+.ds-stage-full .ds-slide {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.ds-stage-full .ds-slide-lead {
+  font-size: clamp(2rem, 3.4vw, 3.1rem);
+}
+
+.ds-stage-full .ds-slide-detail {
+  font-size: 1.12rem;
+  max-width: 34rem;
+}
+
+.ds-stage-full .ds-slide-grid.has-shot {
+  grid-template-columns: minmax(0, 0.7fr) minmax(0, 1.5fr);
+}
+
+/* The screen is as tall as the height allows, not a fixed ratio, so it grows
+   with the window instead of leaving the slide short. */
+.ds-stage-full .ds-slide-shot {
+  aspect-ratio: auto;
+  height: clamp(18rem, calc(100vh - 21rem), 42rem);
+}
+
+.ds-stage-full .ds-artboard-dots {
+  margin-top: 0.5rem;
+}
+
+.ds-stage-foot {
+  margin: 0.9rem 0 0;
+  text-align: center;
+  font-size: 0.9rem;
+  color: var(--ds-dark-muted);
+}
+
+.ds-stage-foot a {
+  color: var(--ds-dark-ink);
+}
