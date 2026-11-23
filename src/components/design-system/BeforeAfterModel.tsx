@@ -44,7 +44,7 @@ function CardLead({ card, muted = false }: { card: StateCard; muted?: boolean })
         // The Before side is the muted one: grey heading, grey figure, so the
         // glyph drops out of the accent too and only the After is coloured.
         <span style={muted ? ({ "--ds-accent": "var(--ds-dot-muted)" } as CSSProperties) : undefined}>
-          <MetricGlyph name={card.glyph} size={5} gap={3} />
+          <MetricGlyph name={card.glyph} />
         </span>
       ) : null}
       {card.figure ? (

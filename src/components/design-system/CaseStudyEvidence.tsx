@@ -142,7 +142,7 @@ export function CaseStudyEvidence({ beats, metrics, metricsLabel, caveat, keepIn
                       grid, and the empty text line that creates put ~12px of
                       air above the dots. */}
                   <span aria-hidden className="mt-1 block leading-[0]">
-                    <MetricGlyph name={metricGlyph(m)} size={5} gap={3} />
+                    <MetricGlyph name={metricGlyph(m)} />
                   </span>
                   <span>
                     <span

@@ -105,7 +105,7 @@ export default function HomePage() {
               <GlassPanel variant="lift" hoverLift className="ds-stagger flex h-full flex-col rounded-2xl p-8">
                 {/* `modules` — discrete parts: every project, side by side. */}
                 <div className="mb-5">
-                  <MetricGlyph name="modules" size={5} gap={3} />
+                  <MetricGlyph name="modules" />
                 </div>
                 <p className="eyebrow">Work</p>
                 <h3
@@ -133,7 +133,7 @@ export default function HomePage() {
               <GlassPanel variant="lift" hoverLift className="ds-stagger flex h-full flex-col rounded-2xl p-8">
                 {/* `ramp` — a rising stair: a path built up over time. */}
                 <div className="mb-5">
-                  <MetricGlyph name="ramp" size={5} gap={3} />
+                  <MetricGlyph name="ramp" />
                 </div>
                 <p className="eyebrow">About</p>
                 <h3
