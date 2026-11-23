@@ -5216,3 +5216,53 @@ body:has(main > .ds-stage-page) .site-spacer {
 .ds-stage .ds-pull-dots {
   margin-bottom: 1.125rem;
 }
+
+/* A chain with one dot lit: the others drop back, so the row says where the
+   screen beside it sits. The joins stay, since the place is in a sequence. */
+.ds-dn.has-active .ds-dn-node:not(.is-active) .ds-dn-dot {
+  background: var(--ds-dot-muted);
+  box-shadow: none;
+}
+
+.ds-dn.has-active .ds-dn-node:not(.is-active) .ds-dn-label {
+  color: var(--muted);
+}
+
+.ds-dn.has-active .ds-dn-node.is-active .ds-dn-label {
+  color: var(--ink);
+}
+
+.ds-dn.has-active .ds-dn-node.is-active .ds-dn-dot {
+  width: 20px;
+  height: 20px;
+  margin: -2px 0;
+}
+
+.ds-dn.has-active.is-connected .ds-dn-node:not(:last-child)::after {
+  border-top-color: var(--ds-dot-muted);
+}
+
+/* Words on the left, a place-marker and a real screen on the right. */
+.ds-slide-visual {
+  display: flex;
+  flex-direction: column;
+  gap: 1.75rem;
+  min-width: 0;
+}
+
+.ds-slide-shot {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  object-position: top;
+  border-radius: 0.9rem;
+  border: 1px solid var(--ds-solid-border);
+  background: var(--color-paper);
+  box-shadow: 0 18px 50px rgb(0 0 0 / 0.28);
+}
+
+.ds-slide-grid.has-shot {
+  grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.3fr);
+}

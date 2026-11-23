@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 import { caseStudyRobots } from "@/content/seo";
 import { DotNodes, DotTrio, type DotNode } from "@/components/design-system/DotNodes";
@@ -19,62 +20,44 @@ export const metadata: Metadata = {
   robots: caseStudyRobots,
 };
 
-/** The things a goal runs through, in order. The same five on the first two slides. */
-const CHAIN = ["Goal", "Initiative", "Product", "Person", "Jira epic"];
-const asNodes = (labels: string[]): DotNode[] => labels.map((label) => ({ label }));
+/** The things a goal runs through, in order. The same five on every slide that shows the chain. */
+const CHAIN = ["Goal", "Initiative", "Product", "Person", "Jira epic"].map((label): DotNode => ({ label }));
 
-/** The five screens, in the order a goal runs through them. */
-const SCREENS: DotNode[] = [
-  {
-    label: "Goal",
-    image: {
-      src: "/work/portfolio-management/okr-management-v2.png",
-      alt: "The Portfolio page: goals read by director and business area, with planned and actual headcount side by side",
-      width: 3456,
-      height: 3088,
-    },
-  },
-  {
-    label: "Initiative",
-    image: {
-      src: "/work/portfolio-management/initiative-details.png",
-      alt: "Initiative Details: the products that deliver it, its Jira link and its named roles",
-      width: 2880,
-      height: 2820,
-    },
-  },
-  {
-    label: "Product",
-    image: {
-      src: "/work/portfolio-management/product-details.png",
-      alt: "Product Details: its owners, its place in the organisation and each team tied to its Jira project",
-      width: 2880,
-      height: 2431,
-    },
-  },
-  {
-    label: "Person",
-    image: {
-      src: "/work/portfolio-management/my-profile.png",
-      alt: "My Profile: a person's place in the organisation and the products and initiatives they work on",
-      width: 2880,
-      height: 2557,
-    },
-  },
-  {
-    label: "Requests",
-    image: {
-      src: "/work/portfolio-management/admin.png",
-      alt: "The Manager page: product, initiative and application requests with their status",
-      width: 2880,
-      height: 2210,
-    },
-  },
-];
+type Shot = { src: string; alt: string };
+
+/** One slide: the words on the left; on the right the chain, and a screen if the step has one. */
+function Step({
+  eyebrow,
+  title,
+  description,
+  active,
+  shot,
+}: {
+  eyebrow: string;
+  title: string;
+  description: string;
+  /** Which dot of the chain is lit. */
+  active: number;
+  shot: Shot;
+}) {
+  return (
+    <div className="ds-slide-grid has-shot">
+      <div>
+        <p className="eyebrow ds-slide-eyebrow">{eyebrow}</p>
+        <h2 className="display-title ds-slide-lead mt-4">{title}</h2>
+        <p className="ds-slide-detail">{description}</p>
+      </div>
+      <div className="ds-slide-visual">
+        <DotNodes nodes={CHAIN} state="connected" active={active} label={`Step ${active + 1} of the chain: ${CHAIN[active].label}`} />
+        <Image className="ds-slide-shot" src={shot.src} alt={shot.alt} width={1920} height={1080} sizes="60vw" priority={false} />
+      </div>
+    </div>
+  );
+}
 
 const SLIDES: Slide[] = [
   {
-    label: "Why it mattered",
+    label: "The problem",
     content: (
       <div className="ds-slide-grid">
         <div>
@@ -85,28 +68,86 @@ const SLIDES: Slide[] = [
           <p className="ds-slide-detail">
             Leaders had no shared view of progress, and teams chased information and approvals across email, Slack and tickets.
           </p>
-          <p className="ds-slide-dots-note">
-            Picture each of these as a dot. Nothing joined them except people.
-          </p>
+          <p className="ds-slide-dots-note">Picture each of these as a dot. Nothing joined them except people.</p>
         </div>
-        <DotNodes nodes={asNodes(CHAIN)} state="scattered" label="The pieces of a goal, with nothing joining them" />
+        <DotNodes nodes={CHAIN} state="scattered" label="The pieces of a goal, with nothing joining them" />
       </div>
     ),
   },
   {
-    label: "What we built",
+    label: "The idea",
     content: (
       <div className="ds-slide-grid">
         <div>
           <p className="eyebrow ds-slide-eyebrow">What we built</p>
-          <h2 className="display-title ds-slide-lead mt-4">The platform made that connection visible.</h2>
+          <h2 className="display-title ds-slide-lead mt-4">One platform that connects them.</h2>
           <p className="ds-slide-detail">
             We replaced four external tools with one connected platform, so goals can be traced to the work behind them.
           </p>
           <p className="ds-slide-dots-note">The same dots, now joined.</p>
         </div>
-        <DotNodes nodes={asNodes(CHAIN)} state="connected" label="The pieces of a goal, joined from goal to Jira epic" />
+        <DotNodes nodes={CHAIN} state="connected" label="The pieces of a goal, joined from goal to Jira epic" />
       </div>
+    ),
+  },
+  {
+    label: "Goal",
+    content: (
+      <Step
+        eyebrow="Goal"
+        title="A goal and its work now come from the same records."
+        description="Each goal shows the planned number of people beside the actual number from Jira."
+        active={0}
+        shot={{
+          src: "/work/portfolio-management/okr-management-v2.png",
+          alt: "The Portfolio page: goals read by director and business area, with planned and actual headcount side by side",
+        }}
+      />
+    ),
+  },
+  {
+    label: "Initiative",
+    content: (
+      <Step
+        eyebrow="Initiative"
+        title="Where the money is declared, and tied to the work."
+        description="Each initiative lists the products that deliver it, its Jira link and a named person for every role."
+        active={1}
+        shot={{
+          src: "/work/portfolio-management/initiative-details.png",
+          alt: "Initiative Details: the products that deliver it, its Jira link and its named roles",
+        }}
+      />
+    ),
+  },
+  {
+    label: "Product",
+    content: (
+      <Step
+        eyebrow="Product"
+        title="Creating a product follows one standard workflow."
+        description="Each product team is tied to the Jira project its work is tracked in."
+        active={2}
+        shot={{
+          src: "/work/portfolio-management/product-details.png",
+          alt: "Product Details: its owners, its place in the organisation and each team tied to its Jira project",
+        }}
+      />
+    ),
+  },
+  {
+    label: "Person",
+    content: (
+      <Step
+        eyebrow="Person"
+        title="One place to find a person, and what they are working on."
+        description="Each person shows the products and initiatives they work on, as a share of their time."
+        active={3}
+        shot={{
+          src: "/work/portfolio-management/my-profile.png",
+          alt: "My Profile: a person's place in the organisation and the products and initiatives they work on",
+        }}
+      />
     ),
   },
   {
@@ -127,21 +168,6 @@ const SLIDES: Slide[] = [
           centre="Design"
           right={{ label: "Engineering teams", count: 3 }}
         />
-      </div>
-    ),
-  },
-  {
-    label: "The platform",
-    content: (
-      <div>
-        <p className="eyebrow ds-slide-eyebrow">The platform</p>
-        <h2 className="display-title ds-slide-lead mt-4">A goal runs down to the work.</h2>
-        <p className="ds-slide-detail" style={{ maxWidth: "46rem" }}>
-          Five screens follow one goal: the goal itself, the initiative it funds, the product that delivers it, the people on it, and the requests that change them.
-        </p>
-        <div className="mt-10">
-          <DotNodes nodes={SCREENS} state="connected" label="The five screens, from a goal down to the requests that change it" />
-        </div>
       </div>
     ),
   },

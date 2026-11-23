@@ -17,6 +17,13 @@ type DotNodesProps = {
   state: "scattered" | "connected";
   /** Names the row for screen readers, since the dots themselves carry no text. */
   label: string;
+  /**
+   * Lights one dot and quietens the rest, so the row doubles as a "you are
+   * here" marker for the screen shown beside it. Only meaningful when
+   * `connected`; the chain stays joined so the position reads as a place in a
+   * sequence.
+   */
+  active?: number;
 };
 
 /**
@@ -25,16 +32,22 @@ type DotNodesProps = {
  * point, and what matters is whether anything links them.
  *
  * The dots stay one size on purpose. Varying them would imply a size, a count
- * or an importance the source does not state.
+ * or an importance the source does not state. The one exception is `active`,
+ * which enlarges the lit dot to mark the current place, not a quantity.
  *
  * Pure CSS, so no client boundary. In `connected` state the links draw in left
  * to right once; reduced-motion readers get the finished row.
  */
-export function DotNodes({ nodes, state, label }: DotNodesProps) {
+export function DotNodes({ nodes, state, label, active }: DotNodesProps) {
   return (
-    <ol className={`ds-dn is-${state}`} aria-label={label}>
+    <ol className={`ds-dn is-${state}${active === undefined ? "" : " has-active"}`} aria-label={label}>
       {nodes.map((node, i) => (
-        <li key={node.label} className="ds-dn-node" style={{ "--i": i } as CSSProperties}>
+        <li
+          key={node.label}
+          className={`ds-dn-node${i === active ? " is-active" : ""}`}
+          aria-current={i === active ? "step" : undefined}
+          style={{ "--i": i } as CSSProperties}
+        >
           <span className="ds-dn-dot" aria-hidden="true" />
           {node.image ? (
             <Image
