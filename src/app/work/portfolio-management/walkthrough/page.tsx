@@ -5,6 +5,7 @@ import { caseStudyRobots } from "@/content/seo";
 import { getProject } from "@/content/projects";
 import { DotNodes, DotTrio, type DotNode } from "@/components/design-system/DotNodes";
 import { ClipVideo } from "@/components/design-system/ClipFigure";
+import { Reveal } from "@/components/Reveal";
 import { ResultsGrid } from "@/components/design-system/ResultsGrid";
 import { ScrollStory, WhenInView, type StoryStep } from "@/components/design-system/ScrollStory";
 
@@ -38,10 +39,18 @@ function Points({ items }: { items: string[] }) {
 function Words({ eyebrow, title, points, note }: { eyebrow: string; title: string; points: string[]; note?: string }) {
   return (
     <>
-      <p className="eyebrow ds-slide-eyebrow">{eyebrow}</p>
-      <h2 className="display-title ds-slide-lead mt-4">{title}</h2>
-      <Points items={points} />
-      {note ? <p className="ds-slide-dots-note">{note}</p> : null}
+      <Reveal>
+        <p className="eyebrow ds-slide-eyebrow">{eyebrow}</p>
+        <h2 className="display-title ds-slide-lead mt-4">{title}</h2>
+      </Reveal>
+      <Reveal delay={120}>
+        <Points items={points} />
+      </Reveal>
+      {note ? (
+        <Reveal delay={240}>
+          <p className="ds-slide-dots-note">{note}</p>
+        </Reveal>
+      ) : null}
     </>
   );
 }
@@ -189,13 +198,15 @@ export default function PortfolioWalkthroughPage() {
           page is light, so only this first screen is dark. */}
       <section className="ds-pull ds-stage ds-story-intro">
         <div className="ds-pull-inner">
-          <div className="ds-story-intro-grid">
-            <div>
+          <div className="ds-story-intro-center">
+            <Reveal>
               <span className="ds-pull-dots" aria-hidden />
               <p className="eyebrow ds-slide-eyebrow">Case study</p>
-              <h1 className="display-title mt-4" style={{ fontSize: "clamp(2.4rem, 4.4vw, 4rem)", lineHeight: 1.04 }}>
+              <h1 className="display-title mt-4" style={{ fontSize: "clamp(2.4rem, 4.6vw, 4.2rem)", lineHeight: 1.04 }}>
                 Portfolio Management Platform
               </h1>
+            </Reveal>
+            <Reveal delay={120}>
               <p className="ds-slide-detail">
                 I designed the tool Walmart’s product teams use to link big company goals to the work and the people doing it. It replaced four separate tools and saves 800+ hours a week.
               </p>
@@ -215,17 +226,19 @@ export default function PortfolioWalkthroughPage() {
                   </div>
                 </dl>
               ) : null}
-            </div>
+            </Reveal>
             {PROJECT?.media ? (
-              <ClipVideo
-                className="ds-slide-video"
-                mp4={PROJECT.media.mp4}
-                webm={PROJECT.media.webm}
-                poster={PROJECT.media.poster}
-                alt="The Portfolio Management Platform: its screens, from a goal down to the people on it"
-                width={1600}
-                height={1046}
-              />
+              <Reveal delay={240} variant="scale">
+                <ClipVideo
+                  className="ds-slide-video"
+                  mp4={PROJECT.media.mp4}
+                  webm={PROJECT.media.webm}
+                  poster={PROJECT.media.poster}
+                  alt="The Portfolio Management Platform: its screens, from a goal down to the people on it"
+                  width={1600}
+                  height={1046}
+                />
+              </Reveal>
             ) : null}
           </div>
           <a href="#story" className="ds-story-cue">
@@ -244,14 +257,18 @@ export default function PortfolioWalkthroughPage() {
       <section className="ds-story-results">
         <div className="ds-slide-grid">
           <div>
-            <p className="eyebrow ds-slide-eyebrow">What changed</p>
-            <h2 className="display-title ds-slide-lead mt-4">Time and money saved across the platform.</h2>
-            <Points
-              items={[
-                "Hours are reported by the product managers.",
-                "The software saving is the average yearly cost of licences that were no longer needed.",
-              ]}
-            />
+            <Reveal>
+              <p className="eyebrow ds-slide-eyebrow">What changed</p>
+              <h2 className="display-title ds-slide-lead mt-4">Time and money saved across the platform.</h2>
+            </Reveal>
+            <Reveal delay={120}>
+              <Points
+                items={[
+                  "Hours are reported by the product managers.",
+                  "The software saving is the average yearly cost of licences that were no longer needed.",
+                ]}
+              />
+            </Reveal>
           </div>
           <WhenInView minHeight="22rem">
             <ResultsGrid
@@ -264,11 +281,11 @@ export default function PortfolioWalkthroughPage() {
             />
           </WhenInView>
         </div>
-        <div className="ds-story-end">
+        <Reveal className="ds-story-end">
           <Link href="/work/portfolio-management" className="button button-primary">
             Read the full case study →
           </Link>
-        </div>
+        </Reveal>
       </section>
     </div>
   );

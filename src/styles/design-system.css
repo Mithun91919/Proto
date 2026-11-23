@@ -5863,11 +5863,33 @@ body:has(main > .ds-stage-page) .site-spacer {
   }
 }
 
-/* The opening clip fills its column at its own proportions, so there is no
-   light border where a fixed height would leave one. */
+/* The opening is centred: the title, the line under it, the facts, and the clip
+   below them, all on the middle of the screen. The clip is sized by the height
+   left after the words, so the whole screen fits at once. */
+.ds-story-intro-center {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.ds-story-intro-center .ds-pull-dots {
+  margin-inline: auto;
+}
+
+.ds-story-intro-center .ds-slide-detail {
+  margin-inline: auto;
+  max-width: 40rem;
+}
+
+.ds-story-intro-center .ds-slide-meta {
+  justify-content: center;
+}
+
 .ds-story-intro .ds-slide-video {
-  width: 100%;
-  height: auto;
-  max-width: none;
+  width: auto;
+  height: clamp(14rem, calc(100vh - 30rem), 30rem);
+  max-width: 100%;
   object-fit: cover;
+  margin-top: 2.25rem;
 }
