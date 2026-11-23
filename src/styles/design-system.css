@@ -4980,3 +4980,191 @@ html.cs-view-changing .site-dock {
   );
   background-size: 22px 22px;
 }
+
+/* ── Slide deck ────────────────────────────────────────────────────────────
+   One idea fills the frame at a time. Two columns inside a slide: the words
+   on the left, the picture on the right. */
+.ds-slidedeck-frame {
+  min-height: 31rem;
+  padding: clamp(2rem, 4vw, 3.5rem);
+  display: flex;
+  align-items: center;
+}
+
+.ds-slidedeck-frame > div {
+  width: 100%;
+}
+
+.ds-slide {
+  animation: ds-slide-in 360ms cubic-bezier(0.2, 0.7, 0.2, 1) both;
+}
+
+.ds-slide-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.15fr);
+  gap: clamp(2rem, 5vw, 4.5rem);
+  align-items: center;
+}
+
+.ds-slide-lead {
+  font-size: clamp(1.6rem, 2.6vw, 2.2rem);
+  line-height: 1.12;
+}
+
+.ds-slide-detail {
+  margin-top: 1.25rem;
+  font-size: 1.02rem;
+  line-height: 1.65;
+  color: var(--ink-soft);
+}
+
+/* The one line that says what the dots stand for. Set apart from the page's
+   own wording so it reads as the picture's caption. */
+.ds-slide-dots-note {
+  margin-top: 1.5rem;
+  font-size: 0.9rem;
+  line-height: 1.55;
+  font-style: italic;
+  color: var(--muted);
+}
+
+@keyframes ds-slide-in {
+  from {
+    opacity: 0;
+    transform: translateX(14px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* ── Dot nodes ─────────────────────────────────────────────────────────────
+   Equal columns, so a link can run from the centre of one dot to the centre of
+   the next without measuring anything. */
+.ds-dn {
+  display: flex;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+}
+
+.ds-dn-node {
+  position: relative;
+  flex: 1 1 0;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.8rem;
+  text-align: center;
+}
+
+.ds-dn-dot {
+  width: 16px;
+  height: 16px;
+  flex: none;
+  border-radius: 50%;
+  background: var(--ds-accent);
+  box-shadow: 0 0 0 5px color-mix(in oklab, var(--ds-accent) 16%, transparent);
+}
+
+.ds-dn-label {
+  font-family: var(--font-mono), ui-monospace, monospace;
+  font-size: 0.7rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  line-height: 1.4;
+  color: var(--ink-soft);
+}
+
+/* Apart: unlit dots at uneven heights, nothing between them. */
+.ds-dn.is-scattered .ds-dn-dot {
+  background: var(--ds-dot-muted);
+  box-shadow: none;
+}
+
+.ds-dn.is-scattered .ds-dn-node:nth-child(5n + 1) { margin-top: 0; }
+.ds-dn.is-scattered .ds-dn-node:nth-child(5n + 2) { margin-top: 3rem; }
+.ds-dn.is-scattered .ds-dn-node:nth-child(5n + 3) { margin-top: 0.9rem; }
+.ds-dn.is-scattered .ds-dn-node:nth-child(5n + 4) { margin-top: 3.6rem; }
+.ds-dn.is-scattered .ds-dn-node:nth-child(5n + 5) { margin-top: 1.6rem; }
+
+/* Joined: a dotted line from each dot to the next, drawn in once. */
+.ds-dn.is-connected .ds-dn-node:not(:last-child)::after {
+  content: "";
+  position: absolute;
+  top: 7px;
+  left: calc(50% + 16px);
+  width: calc(100% - 32px);
+  border-top: 2px dotted var(--ds-accent);
+  transform-origin: left center;
+  animation: ds-dn-draw 520ms ease-out both;
+  animation-delay: calc(var(--i) * 140ms + 200ms);
+}
+
+@keyframes ds-dn-draw {
+  from { transform: scaleX(0); opacity: 0; }
+  to { transform: scaleX(1); opacity: 1; }
+}
+
+/* A row that stands for real screens: the dot sits above a small view of it. */
+.ds-dn-shot {
+  width: 100%;
+  max-width: 11rem;
+  height: auto;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  object-position: top;
+  border-radius: 0.6rem;
+  border: 1px solid var(--ds-solid-border);
+  background: var(--color-paper);
+}
+
+.ds-dn.is-connected .ds-dn-node {
+  padding-inline: 0.4rem;
+}
+
+/* One dot joined to a group on each side. */
+.ds-dt {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.9rem;
+  width: 100%;
+}
+
+.ds-dt-group,
+.ds-dt-centre {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.9rem;
+  text-align: center;
+}
+
+.ds-dt-dots {
+  display: flex;
+  flex-direction: column;
+  gap: 0.9rem;
+}
+
+.ds-dt-link {
+  flex: 1 1 0;
+  min-width: 1.5rem;
+  border-top: 2px dotted var(--ds-accent);
+}
+
+.ds-dt-me {
+  width: 28px;
+  height: 28px;
+  box-shadow: 0 0 0 7px color-mix(in oklab, var(--ds-accent) 16%, transparent);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ds-slide,
+  .ds-dn.is-connected .ds-dn-node:not(:last-child)::after {
+    animation: none;
+  }
+}
