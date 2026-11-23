@@ -76,7 +76,7 @@ export function ResultsGrid({ items }: { items: ResultItem[] }) {
       {items.map((item, i) => (
         <li key={item.label} className="ds-results-tile" style={{ "--i": i } as CSSProperties}>
           <GlassPanel variant="soft" className="h-full rounded-2xl p-7">
-            <MetricGlyph name={item.glyph} />
+            <MetricGlyph name={item.glyph} size={5} gap={3} />
             <p
               className="display-title mt-5"
               style={{ fontSize: "clamp(1.9rem, 3vw, 2.6rem)", color: "var(--ds-accent)", lineHeight: 1.05 }}
