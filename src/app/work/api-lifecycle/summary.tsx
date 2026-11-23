@@ -1,146 +1,223 @@
-import type { ArtboardSlide } from "@/components/design-system/ArtboardCarousel";
-import { SummaryStory } from "@/components/design-system/SummaryStory";
+import { DotNodes, type DotNode } from "@/components/design-system/DotNodes";
+import { StorySummary, StoryDots, StoryScreen, StoryVisual, StoryWords } from "@/components/design-system/StorySummary";
+import type { StoryStep } from "@/components/design-system/ScrollStory";
 
 /**
- * What the API Lifecycle summary shows under its opener. Every line is the case study's own wording, cut down.
+ * The API Lifecycle summary: the case study told by scrolling, down the stages
+ * an API goes through on the platform. Every line is the case study's own
+ * wording; the only new words are the notes under the dots. Governance is not
+ * a stage here, because the case study says it is built into each one: it
+ * appears as a point inside the steps it belongs to.
+ * See the design system, section N, for the conditions.
  */
-const SLIDES: ArtboardSlide[] = [
+
+const STAGES: DotNode[] = ["Find", "Start", "Design", "Test", "Publish"].map((label) => ({ label }));
+
+/** A step along the stages: the stages with one dot lit, and the real screen of that step under it. */
+function stageVisual(active: number, src: string, alt: string, width: number, height: number) {
+  return (
+    <StoryVisual dots={<DotNodes nodes={STAGES} state="connected" active={active} label={`Step ${active + 1} of the stages: ${STAGES[active].label}`} />}>
+      <StoryScreen src={src} alt={alt} width={width} height={height} />
+    </StoryVisual>
+  );
+}
+
+const STEPS: StoryStep[] = [
   {
-                  title: "Search results",
-                  route: "/api-hub/search",
-                  src: "/work/api-lifecycle/search-results.png",
-                  width: 2880,
-                  height: 2704,
-                  alt: "Search results across services, each row carrying a rating, environment badges and a short description, with filters for type, environment, rating and popularity",
-                  caption: "Results carry the environment a service runs in and how widely it is used, so the shortlist is made before anything is opened.",
-                  hotspots: [
-                    {
-                      x: 22,
-                      y: 13,
-                      title: "Results narrow as you type",
-                      detail: "Typing narrows the 19 results shown here in place. There are no fixed category pages.",
-                    },
-                    {
-                      x: 84,
-                      y: 13,
-                      title: "Narrow the list first",
-                      detail: "Filter by type, environment, rating or popularity, so the shortlist shrinks here, not one card at a time.",
-                    },
-                    {
-                      x: 9.75,
-                      y: 24,
-                      title: "Where each service is live",
-                      detail: "Prod, Staging, Dev, QA and Beta show which stages a service runs in, without opening it.",
-                    },
-                  ],
-                },
+    label: "Why it mattered",
+    text: (
+      <StoryWords
+        eyebrow="Why it mattered"
+        title="There was no single place to see whether an API already existed."
+        points={[
+          "Documentation lived in Confluence, kept up to date by some teams and not others.",
+          "A change to a contract (the written description of what an API accepts and returns) went out as an org-wide email, and access was tracked by hand.",
+          "Teams used Swagger, Postman and Confluence, each with its own budget.",
+        ]}
+      />
+    ),
+    visual: (
+      <StoryDots
+        nodes={STAGES}
+        state="scattered"
+        label="The five stages of an API's life, with nothing joining them"
+        note="Each dot is one stage of an API’s life. Nothing joined them."
+      />
+    ),
+  },
   {
-                  title: "API Docs",
-                  route: "/api-hub/catalog/service/docs",
-                  src: "/work/api-lifecycle/api-docs.png",
-                  width: 2890,
-                  height: 2704,
-                  alt: "A service's API Docs tab: an environment selector, then each endpoint listed with its parameters and example request and response bodies, expandable in place",
-                  caption: "Every endpoint is documented on the service itself, parameters and example responses included — nothing to go find in a wiki someone else was supposed to keep current.",
-                  hotspots: [
-                    {
-                      x: 12,
-                      y: 17,
-                      title: "Documentation sits with the service",
-                      detail: "API Docs is a tab next to the overview, not a separate wiki page to go and find.",
-                    },
-                    {
-                      x: 28,
-                      y: 22,
-                      title: "All its environments, one screen",
-                      detail: "prod3, prod2, qa1, dev1 and sm2devmac are the full set a service runs in, switchable without leaving the page.",
-                    },
-                    {
-                      x: 83,
-                      y: 57,
-                      title: "Real examples beside each endpoint",
-                      detail: "Example requests and responses sit next to each endpoint (one action the API offers), not in a separate file.",
-                    },
-                  ],
-                },
+    label: "What we built",
+    text: (
+      <StoryWords
+        eyebrow="What we built"
+        title="One platform carries an API through every stage, with controls built in."
+        points={[
+          "We built one platform for every stage of an API’s life, not another outside tool.",
+          "The controls sit inside the work instead of waiting at the end.",
+          "A contract with flagged errors cannot be pushed to Git, and a push to production needs a manager’s approval.",
+        ]}
+      />
+    ),
+    visual: (
+      <StoryDots
+        nodes={STAGES}
+        state="connected"
+        label="The five stages of an API's life, joined from find to publish"
+        note="The same five stages, now linked from find to publish."
+      />
+    ),
+  },
   {
-                  title: "Basic: the contract as a form",
-                  route: "/api-hub/catalog/edit",
-                  src: "/work/api-lifecycle/basic-editor.png",
-                  width: 2890,
-                  height: 2712,
-                  alt: "The guided editor with the Basic Editor toggle on: URL paths, data types, responses and security on the left, and collapsible sections for operation details, parameters and servers on the right",
-                  caption: "Basic is the same contract as a form. The toggle between the two editors is the hard part: switching has to carry changes the form can’t show, and unsaved work, across without losing either.",
-                  hotspots: [
-                    { x: 44.7, y: 16.5, title: "Two editors, one switch", detail: "The Basic Editor toggle is in the toolbar, so changing mode never means leaving the contract." },
-                    { x: 70, y: 15.8, title: "Where it is in its life", detail: "Define, Specs, Docs, Publish: the contract’s stage stays visible while you edit." },
-                    { x: 26.5, y: 24.9, title: "The same outline in both editors", detail: "URL paths, data types, responses and security run down the left, whichever editor is open." },
-                  ],
-                },
+    label: "Find",
+    text: (
+      <StoryWords
+        eyebrow="Find"
+        title="Search shows what a service is before anyone opens it."
+        points={[
+          "Typing narrows the results in place, with no category pages.",
+          "Each result shows the stages a service runs in and how widely it is used.",
+          "Its documentation sits on the service itself, not in a separate wiki.",
+        ]}
+      />
+    ),
+    visual: stageVisual(
+      0,
+      "/work/api-lifecycle/search-results.png",
+      "Search results across services, each row carrying a rating, environment badges and a short description, with filters for type, environment, rating and popularity",
+      2880,
+      2704,
+    ),
+  },
   {
-                  title: "Advanced: the specification itself",
-                  route: "/api-hub/catalog/edit",
-                  src: "/work/api-lifecycle/spec-editor.png",
-                  width: 2890,
-                  height: 2712,
-                  alt: "The specification editor: URL paths, data types, responses and security down the left, the specification in the middle, parameters and example values on the right",
-                  caption: "Advanced keeps the specification in the middle with the structure it produces listed beside it, so someone editing directly can still see the shape they are making.",
-                  hotspots: [
-                    { x: 44.7, y: 16.5, title: "Switched off: the raw description", detail: "With the toggle off you see the specification itself, with the same toolbar and outline beside it." },
-                    { x: 37.7, y: 49, title: "Errors marked on the line", detail: "A marker sits on the line with the problem, with an Errors panel under the editor." },
-                    { x: 85, y: 26, title: "What the description produces", detail: "Parameters, example values and responses for each action are listed beside the code as it is written." },
-                  ],
-                },
+    label: "Start",
+    text: (
+      <StoryWords
+        eyebrow="Start"
+        title="Each contract starts by registering a new API or importing one."
+        points={[
+          "A provider’s own list of services is where a contract starts.",
+          "Register a new API, or import one that already exists.",
+          "A contract can come in from a URL, source control, the clipboard, a file or Azure.",
+        ]}
+      />
+    ),
+    visual: stageVisual(
+      1,
+      "/work/api-lifecycle/my-apis.png",
+      "My APIs: a searchable, filterable registry of a provider's services with status, tags and consumer counts, and Register New API and Import API actions at the top",
+      2890,
+      2712,
+    ),
+  },
   {
-                  title: "The result, in place",
-                  route: "/api-hub/testing",
-                  src: "/work/api-lifecycle/api-testing-2.png",
-                  width: 2892,
-                  height: 2052,
-                  alt: "A completed run showing the response and its result state",
-                  caption: "The result lands where the request was made, which is the handoff the old flow lost.",
-                  hotspots: [
-                    { x: 57.9, y: 24, title: "The result at a glance", detail: "Environment, repeats, average response time, share passed and failed, how long it took and the data received." },
-                    { x: 45, y: 31.7, title: "A timeline of the run", detail: "Each interval is marked passed or failed, so a bad stretch can be found without reading every row." },
-                    { x: 94, y: 13.3, title: "A report to take away", detail: "Download Report saves the run as a file for whoever needs it next." },
-                  ],
-                },
+    label: "Design",
+    text: (
+      <StoryWords
+        eyebrow="Design"
+        title="Two connected editors serve beginners and experts on one contract."
+        points={[
+          "Basic is the contract as a guided form. Advanced is the specification itself.",
+          "Switching between them carries unsaved work and unsupported changes across without losing either.",
+          "A contract with flagged errors cannot be pushed to Git.",
+        ]}
+      />
+    ),
+    visual: stageVisual(
+      2,
+      "/work/api-lifecycle/basic-editor.png",
+      "The guided editor with the Basic Editor toggle on: URL paths, data types, responses and security on the left, and collapsible sections for operation details, parameters and servers on the right",
+      2890,
+      2712,
+    ),
+  },
+  {
+    label: "Test",
+    text: (
+      <StoryWords
+        eyebrow="Test"
+        title="Testing happens in the same product, beside the contract."
+        points={[
+          "Saved collections sit beside the request, so a saved call is one click from its contract.",
+          "A collection can run once or on a schedule, and the team is told when it fails.",
+          "The result appears where the request was made.",
+        ]}
+      />
+    ),
+    visual: stageVisual(
+      3,
+      "/work/api-lifecycle/api-testing-2.png",
+      "A completed run showing the response and its result state",
+      2892,
+      2052,
+    ),
+  },
+  {
+    label: "Publish",
+    text: (
+      <StoryWords
+        eyebrow="Publish"
+        title="A published service has one overview and a record of every change."
+        points={[
+          "One overview shows who is subscribing, who has been editing, and an audit trail of what changed.",
+          "A push to production needs a manager’s approval.",
+        ]}
+      />
+    ),
+    visual: stageVisual(
+      4,
+      "/work/api-lifecycle/api-overview.png",
+      "A service's Overview: description, tags, environments and key details, then subscription requests, top contributors and an audit history of every change",
+      2890,
+      3306,
+    ),
+  },
+  {
+    label: "What I did",
+    text: (
+      <StoryWords
+        eyebrow="What I did"
+        title="I joined at inception and shaped the product model."
+        points={[
+          "I owned the design direction and pushed for one platform, not three products.",
+          "Adoption was low for the first three months, so I interviewed teams to find out why.",
+          "I then ran over a hundred brown-bag sessions (short, informal demos), averaging over sixty people each.",
+        ]}
+      />
+    ),
+    visual: (
+      <StoryVisual dots={<DotNodes nodes={STAGES} state="connected" label="The five stages of an API's life, joined from find to publish" />}>
+        <StoryScreen
+          src="/work/api-lifecycle/home.png"
+          alt="API Hub home: search across services, then eight Get Started routes for importing, defining, subscribing, generating code, registering, documenting, monitoring and publishing"
+          width={2890}
+          height={2712}
+        />
+      </StoryVisual>
+    ),
+  },
 ];
 
 export function ApiLifecycleSummary() {
   return (
-    <SummaryStory
+    <StorySummary
       slug="api-lifecycle"
-      beats={[
-        {
-          label: "Why it mattered",
-          lead: "There was no single place to check whether an API already existed.",
-          detail: "Documentation lived in Confluence, kept current by some teams and not others.",
-        },
-        {
-          label: "What we built",
-          lead: "One platform, with governance built into it.",
-          detail: "One place for every stage, with the controls built into the work instead of waiting at the end.",
-        },
-        {
-          label: "What I did",
-          lead: "I joined at inception and shaped the product model.",
-          detail: "I owned the design direction and pushed for one platform with the controls built in, not three products.",
-        },
-      ]}
-      carousel={{
-        eyebrow: "The platform",
-        title: "From finding a service to testing it",
-        description:
-          "Five screens follow an API through the platform: found by search, read on its own docs page, written in two connected editors, and tested without leaving.",
-        label: "The platform, from discovery to testing",
-        slides: SLIDES,
+      title="API Lifecycle Platform"
+      standfirst="I joined at inception and shaped the product model of the platform where Walmart engineers find, design, test and govern APIs, the way one piece of software talks to another. It has onboarded 20K+ APIs and reaches 10K+ monthly users."
+      introAlt="API Hub: its home, the contract editor and the API tester"
+      storyLabel="API Lifecycle Platform, told step by step"
+      steps={STEPS}
+      results={{
+        title: "Engineers carried context between tools less often.",
+        points: [
+          "The 60% is the reduction in developer time spent defining API contracts.",
+          "The other two figures are scale.",
+        ],
+        items: [
+          { value: "20K+", label: "APIs onboarded", glyph: "modules" },
+          { value: "10K+", label: "monthly users", glyph: "field" },
+          { value: "60%", label: "less developer time spent defining API contracts", glyph: "drop" },
+        ],
       }}
-      results={[
-                { from: "0", value: "20K+", label: "APIs onboarded", glyph: "modules" },
-                { from: "600", value: "10K+", label: "monthly users", glyph: "field" },
-                { value: "60%", label: "less developer time spent defining API contracts", glyph: "drop" },
-              ]}
     />
   );
 }

@@ -108,6 +108,7 @@ export default function ApiLifecyclePage() {
         standfirst:
           "I joined at inception and shaped the product model of the platform where Walmart engineers find, design, test and govern APIs. It has onboarded 20K+ APIs and reaches 10K+ monthly users.",
         body: <ApiLifecycleSummary />,
+        ownOpener: true,
       }}
       evidenceCaveat="The 60% is the reduction in developer time spent defining API contracts; the other two figures are scale."
       evidenceMetricsLabel="The impact"
