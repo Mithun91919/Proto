@@ -39,7 +39,7 @@ function Points({ items, numbered = false }: { items: string[]; numbered?: boole
         <li key={item} style={numbered ? ({ "--p": i } as React.CSSProperties) : undefined}>
           {numbered ? (
             <span className="ds-slide-point-num">
-              <CompactNumeral value={String(i + 1)} size={6} />
+              <CompactNumeral value={String(i + 1)} size={4} />
             </span>
           ) : null}
           <span>{item}</span>
