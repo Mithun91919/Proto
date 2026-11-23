@@ -1,6 +1,6 @@
 "use client";
 
-import { Fragment, useCallback, useEffect, useRef, useState, type ReactNode } from "react";
+import { Fragment, useCallback, useEffect, useRef, useState, type CSSProperties, type ReactNode } from "react";
 import { ChapterProgress } from "./ChapterProgress";
 import { SlideActive } from "./SlideDeck";
 
@@ -120,6 +120,9 @@ export function ScrollStory({
       // The rail is shown only while the card is pinned, so it does not hang over the rest of the page.
       const inView = rect.top <= window.innerHeight * 0.25 && rect.bottom >= window.innerHeight * 0.75;
       setPinned((current) => (current === inView ? current : inView));
+      // Published for the divider, which fills as you scroll. Written straight to the
+      // element, not through state, so scrolling does not re-render the whole story.
+      track.style.setProperty("--story-p", String(progress * steps.length));
       if (performance.now() < lockedUntil.current) return;
       // Each step owns an equal share of the track; the last one holds to its end.
       targetRef.current = Math.min(last, Math.floor(progress * steps.length));
@@ -251,6 +254,19 @@ export function ScrollStory({
             ))}
           </div>
 
+          {/* The divider along the bottom: a segment for each step, the current one
+              filling as you scroll through it. It is feedback and not a control (the
+              rail is the control), so it is hidden from assistive technology. */}
+          <div className={`ds-story-progress${active === last ? " is-last" : ""}`} aria-hidden="true">
+            <div className="ds-story-segments">
+              {steps.map((step, i) => (
+                <span key={step.label} className="ds-story-seg" style={{ "--i": i } as CSSProperties}>
+                  <span className="ds-story-seg-fill" />
+                </span>
+              ))}
+            </div>
+            <span className="ds-story-hint">Scroll</span>
+          </div>
         </div>
       </div>
     </div>

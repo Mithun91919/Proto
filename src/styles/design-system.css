@@ -5954,3 +5954,75 @@ body:has(main > .ds-stage-page) .site-spacer {
 .ds-story-track .ds-slide-shot {
   aspect-ratio: 4 / 3;
 }
+
+/* ── Story divider ─────────────────────────────────────────────────────────
+   Along the bottom of the pinned card: a segment per step, the current one
+   filling as the page scrolls through it. The step itself only changes at its
+   edge, so this is what shows that scrolling is doing something in between.
+   `--story-p` is the number of steps scrolled so far, set on the track. */
+.ds-story-progress {
+  position: absolute;
+  left: clamp(1.25rem, 2.5vw, 2rem);
+  right: clamp(1.25rem, 2.5vw, 2rem);
+  bottom: 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+@media (min-width: 1150px) {
+  .ds-story-progress {
+    left: max(clamp(1.25rem, 2.5vw, 2rem), 6.5rem);
+  }
+}
+
+.ds-story-segments {
+  flex: 1;
+  display: flex;
+  gap: 6px;
+}
+
+.ds-story-seg {
+  position: relative;
+  flex: 1;
+  height: 3px;
+  border-radius: 2px;
+  overflow: hidden;
+  background: var(--ds-dot-muted);
+}
+
+.ds-story-seg-fill {
+  position: absolute;
+  inset: 0 auto 0 0;
+  background: var(--ds-accent);
+  width: clamp(0%, calc((var(--story-p, 0) - var(--i)) * 100%), 100%);
+}
+
+.ds-story-hint {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-family: var(--font-mono), ui-monospace, monospace;
+  font-size: 0.66rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--muted);
+  transition: opacity 400ms ease;
+}
+
+.ds-story-hint::after {
+  content: "↓";
+  display: inline-block;
+  animation: ds-cue-bob 1.8s ease-in-out infinite;
+}
+
+/* At the last step there is nothing more in the story to scroll for. */
+.ds-story-progress.is-last .ds-story-hint {
+  opacity: 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ds-story-hint::after {
+    animation: none;
+  }
+}
