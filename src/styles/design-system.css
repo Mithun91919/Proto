@@ -5600,10 +5600,10 @@ body:has(main > .ds-stage-page) .site-spacer {
   }
 }
 
-/* The controls stay in one place under the slides, left-aligned with the text
-   column, and every slide's text sits on the same bottom line just above them.
-   So the controls never move as you page, and the cursor does not have to
-   follow them. The picture beside the text is centred in the same height. */
+/* Two fixed lines: every slide's title starts on the same top line, and the
+   controls sit on the same bottom line, left-aligned with the text column. So
+   neither moves as you page, and the cursor does not have to follow them. The
+   picture beside the text is centred in the same height. */
 .ds-stage-full .ds-slidedeck > .ds-artboard-dots {
   justify-content: flex-start;
   margin-top: 1.75rem;
@@ -5614,7 +5614,8 @@ body:has(main > .ds-stage-page) .site-spacer {
 }
 
 .ds-stage-full .ds-slide-grid > :first-child {
-  align-self: end;
+  align-self: start;
+  padding-top: clamp(1rem, 5vh, 3rem);
 }
 
 .ds-stage-full .ds-stage-foot {
