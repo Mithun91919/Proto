@@ -4,6 +4,9 @@ import { Fragment, useCallback, useEffect, useRef, useState, type ReactNode } fr
 import { ChapterProgress } from "./ChapterProgress";
 import { SlideActive } from "./SlideDeck";
 
+/** How long each step is given before the card moves on to the next, in ms: the change itself is about 620. */
+const STEP_MS = 640;
+
 export type StoryStep = {
   /** Short name, for the accessible label and the dot's tooltip. */
   label: string;
@@ -24,6 +27,14 @@ export type StoryStep = {
  * one jump, and the two disagreed, which read as jarring. Here nothing moves
  * with the scroll itself; the scroll only decides when the next step arrives.
  *
+ * The card never skips a step. A hard flick of a trackpad can cover several
+ * steps' worth of scroll at once, and showing only the last would drop the ones
+ * between. So the scroll only sets the step the card is heading for, and the
+ * card moves toward it one step at a time, each given its full change before the
+ * next begins. A flick past three steps shows them go by in order and settles
+ * on the right one. Pressing a dot in the rail is the exception: it asked for
+ * that step, so the card goes straight there.
+ *
  * How much scroll each step takes is set by `stepVh`, in screen heights. The
  * step is worked out from how far through the track the reader is, and no scroll
  * is captured or slowed: this is a tall block with a `position: sticky` child.
@@ -38,7 +49,7 @@ export type StoryStep = {
 export function ScrollStory({
   steps,
   label,
-  stepVh = 60,
+  stepVh = 70,
 }: {
   steps: StoryStep[];
   label: string;
@@ -47,24 +58,48 @@ export function ScrollStory({
   const [active, setActive] = useState(0);
   const [pinned, setPinned] = useState(false);
   const trackRef = useRef<HTMLDivElement>(null);
+  /** The step the scroll position points at; the card walks toward it. */
+  const targetRef = useRef(0);
+  /** The step the card is showing, readable from timers without a stale value. */
+  const shownRef = useRef(0);
+  const walkTimer = useRef<number | null>(null);
+  /** While set, scroll is a jump the reader asked for through the rail, and is not followed step by step. */
+  const lockedUntil = useRef(0);
   const last = steps.length - 1;
 
   useEffect(() => {
     const track = trackRef.current;
     if (!track) return;
     let frame = 0;
+    const calm = () => window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+    const show = (index: number) => {
+      shownRef.current = index;
+      setActive(index);
+    };
+
+    // Move one step toward the target, then wait out the change before the next.
+    const walk = () => {
+      walkTimer.current = null;
+      const from = shownRef.current;
+      const to = targetRef.current;
+      if (from === to) return;
+      show(from + Math.sign(to - from));
+      if (shownRef.current !== to) walkTimer.current = window.setTimeout(walk, calm() ? 0 : STEP_MS);
+    };
 
     const update = () => {
       frame = 0;
       const rect = track.getBoundingClientRect();
       const total = rect.height - window.innerHeight;
       const progress = total > 0 ? Math.min(1, Math.max(0, -rect.top / total)) : 0;
-      // Each step owns an equal share of the track; the last one holds to its end.
-      const index = Math.min(last, Math.floor(progress * steps.length));
-      setActive((current) => (current === index ? current : index));
       // The rail is shown only while the card is pinned, so it does not hang over the rest of the page.
       const inView = rect.top <= window.innerHeight * 0.25 && rect.bottom >= window.innerHeight * 0.75;
       setPinned((current) => (current === inView ? current : inView));
+      if (performance.now() < lockedUntil.current) return;
+      // Each step owns an equal share of the track; the last one holds to its end.
+      targetRef.current = Math.min(last, Math.floor(progress * steps.length));
+      if (walkTimer.current === null) walk();
     };
     const onScroll = () => {
       if (!frame) frame = requestAnimationFrame(update);
@@ -77,6 +112,7 @@ export function ScrollStory({
       window.removeEventListener("scroll", onScroll);
       window.removeEventListener("resize", onScroll);
       if (frame) cancelAnimationFrame(frame);
+      if (walkTimer.current !== null) window.clearTimeout(walkTimer.current);
     };
   }, [last, steps.length]);
 
@@ -89,6 +125,16 @@ export function ScrollStory({
       // Land just inside the step's share, not on the edge it shares with the one before.
       const target = top + ((index + 0.5) / steps.length) * total;
       const calm = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+      // The reader asked for this step: show it now and ignore the scroll that gets there,
+      // which passes through the steps between.
+      if (walkTimer.current !== null) {
+        window.clearTimeout(walkTimer.current);
+        walkTimer.current = null;
+      }
+      lockedUntil.current = performance.now() + (calm ? 100 : 1400);
+      targetRef.current = index;
+      shownRef.current = index;
+      setActive(index);
       window.scrollTo({ top: target, behavior: calm ? "auto" : "smooth" });
     },
     [steps.length],
@@ -103,7 +149,6 @@ export function ScrollStory({
       style={{ height: `calc(${steps.length * stepVh}vh + 100vh)` }}
     >
       <ChapterProgress
-        numbered
         chapters={steps.map((step, i) => ({ id: `step-${i}`, label: step.label }))}
         activeId={pinned ? `step-${active}` : null}
         onSelect={(id) => jumpTo(Number(id.replace("step-", "")))}
