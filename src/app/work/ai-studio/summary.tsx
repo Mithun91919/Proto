@@ -27,7 +27,7 @@ const STEPS: StoryStep[] = [
     text: (
       <StoryWords
         eyebrow="Why it mattered"
-        title="Building an agent got easier. Taking one to production did not."
+        title="Building agents got easier, but taking them to production did not."
         points={[
           "Real data stays behind Wibey’s protection layer, so tools on the market only worked on mock data.",
           "Data security and other limits made it hard to take work into production or share it.",
@@ -42,7 +42,7 @@ const STEPS: StoryStep[] = [
     text: (
       <StoryWords
         eyebrow="What we built"
-        title="One workflow, from intent to publishing."
+        title="Studio puts every stage in one workflow, from intent to publishing."
         points={[
           "Studio brings discovery, creation, testing and publishing together inside Wibey’s protection layer.",
           "People create by chatting, edit by hand in a workbench, and find existing work in the same conversation.",
@@ -56,7 +56,7 @@ const STEPS: StoryStep[] = [
     text: (
       <StoryWords
         eyebrow="Intent"
-        title="Say what you want to build. Wibey checks if it already exists."
+        title="Studio checks what already exists before anyone builds."
         points={[
           "Ask for an agent and Wibey searches its registry first.",
           "It lists the similar ones it finds.",
@@ -75,7 +75,7 @@ const STEPS: StoryStep[] = [
     text: (
       <StoryWords
         eyebrow="Build"
-        title="Ask for the details that matter."
+        title="Studio asks for the details a useful agent needs."
         points={[
           "An open chat did not collect what a useful agent needs, so the assistant asks follow-up questions.",
           "The answers give it context and cut the risk of made-up answers.",
@@ -94,7 +94,7 @@ const STEPS: StoryStep[] = [
     text: (
       <StoryWords
         eyebrow="Inspect"
-        title="Every kind of thing gets its own workbench."
+        title="Agents, APIs, MCPs and skills each get their own workbench."
         points={[
           "An agent, an API, an MCP (a connector that lets an agent use a tool) and a skill do not share a structure, so each has its own view beside the chat.",
           "The builder sees what the AI made and can edit it by hand.",
@@ -112,7 +112,7 @@ const STEPS: StoryStep[] = [
     text: (
       <StoryWords
         eyebrow="Test"
-        title="Test it before anyone else uses it."
+        title="Studio lets builders test what they made before others use it."
         points={[
           "Playgrounds let you run a task, call a tool or send a request, and see what happens.",
           "Evaluations are meant to help teams check technical and security needs.",
@@ -130,7 +130,7 @@ const STEPS: StoryStep[] = [
     text: (
       <StoryWords
         eyebrow="Publish"
-        title="Publish it so other teams can use it."
+        title="Studio lets builders publish what they made for other teams."
         points={[
           "Validate, Publish and Deploy sit in each workbench’s toolbar.",
           "Workspaces group related artifacts and conversations, and set who can view or change them.",
