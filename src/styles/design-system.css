@@ -5076,6 +5076,7 @@ html.cs-view-changing .site-dock {
    Equal columns, so a link can run from the centre of one dot to the centre of
    the next without measuring anything. */
 .ds-dn {
+  position: relative;
   display: flex;
   list-style: none;
   margin: 0;
@@ -5133,8 +5134,6 @@ html.cs-view-changing .site-dock {
   width: calc(100% - 32px);
   border-top: 2px dotted var(--ds-accent);
   transform-origin: left center;
-  animation: ds-dn-draw 520ms ease-out both;
-  animation-delay: calc(var(--i) * 140ms + 200ms);
 }
 
 @keyframes ds-dn-draw {
@@ -5423,4 +5422,183 @@ body:has(main > .ds-stage-page) .site-spacer {
   border: 0;
   box-shadow: none;
   background: none;
+}
+
+
+/* ── Dot stories ───────────────────────────────────────────────────────────
+   What the dots do, on each slide, says what that slide says. All of it is
+   keyed to `.ds-slide.is-active`, so it begins when the slide arrives and
+   begins again the next time, and none of it runs on a slide that is out of
+   view. The finished state is the plain style above, so nothing depends on
+   the motion to be understood.
+
+   Node centres: the row is five equal columns, so the dots sit at 10, 30, 50,
+   70 and 90% across, 8px down (half the 16px dot) plus each node's own offset
+   when scattered. The travelling marks below are placed against those. */
+
+/* The row's own mark, a pulse or a person. Hidden until an animation shows it. */
+.ds-dn::after {
+  content: "";
+  position: absolute;
+  top: 3px;
+  left: calc(10% - 5px);
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--ds-accent);
+  box-shadow:
+    0 0 0 6px color-mix(in oklab, var(--ds-accent) 24%, transparent),
+    0 0 16px color-mix(in oklab, var(--ds-accent) 60%, transparent);
+  opacity: 0;
+  pointer-events: none;
+}
+
+@keyframes ds-dn-light {
+  from {
+    background: var(--ds-dot-muted);
+    box-shadow: none;
+  }
+}
+
+@keyframes ds-dn-join {
+  from { transform: translateY(var(--sy, 0)); }
+}
+
+@keyframes ds-dn-ping {
+  0% { box-shadow: 0 0 0 0 color-mix(in oklab, var(--ds-accent) 70%, transparent); }
+  60% { box-shadow: 0 0 0 11px color-mix(in oklab, var(--ds-accent) 0%, transparent); }
+  100% { box-shadow: 0 0 0 5px color-mix(in oklab, var(--ds-accent) 16%, transparent); }
+}
+
+@keyframes ds-dn-breathe {
+  0%, 100% { box-shadow: 0 0 0 5px color-mix(in oklab, var(--ds-accent) 16%, transparent); }
+  50% { box-shadow: 0 0 0 10px color-mix(in oklab, var(--ds-accent) 6%, transparent); }
+}
+
+/* Apart: a person (the ring) carries things from dot to dot by hand, in no
+   order, and nothing stays joined behind them. */
+@keyframes ds-dn-courier {
+  0%, 10%  { left: calc(10% - 6px); top: 2px; }
+  20%, 30% { left: calc(50% - 6px); top: 16px; }
+  40%, 50% { left: calc(30% - 6px); top: 50px; }
+  60%, 70% { left: calc(90% - 6px); top: 28px; }
+  80%, 90% { left: calc(70% - 6px); top: 60px; }
+  100%     { left: calc(10% - 6px); top: 2px; }
+}
+
+.ds-slide.is-active .ds-dn.is-scattered::after {
+  width: 12px;
+  height: 12px;
+  background: transparent;
+  border: 2px solid var(--ds-accent);
+  box-shadow: 0 0 14px color-mix(in oklab, var(--ds-accent) 45%, transparent);
+  animation: ds-dn-courier 11s ease-in-out 600ms infinite;
+  opacity: 1;
+}
+
+/* Joined, from apart: the dots start where the scattered row had them, move
+   into one line, light, and only then do the links draw. Then a pulse runs the
+   chain from the goal to the work, again and again, lighting each dot it
+   passes: the traceability the platform is for. */
+.ds-dn.is-connected:not(.has-active) .ds-dn-node:nth-child(5n + 1) { --sy: 0; }
+.ds-dn.is-connected:not(.has-active) .ds-dn-node:nth-child(5n + 2) { --sy: 3rem; }
+.ds-dn.is-connected:not(.has-active) .ds-dn-node:nth-child(5n + 3) { --sy: 0.9rem; }
+.ds-dn.is-connected:not(.has-active) .ds-dn-node:nth-child(5n + 4) { --sy: 3.6rem; }
+.ds-dn.is-connected:not(.has-active) .ds-dn-node:nth-child(5n + 5) { --sy: 1.6rem; }
+
+@keyframes ds-dn-run {
+  0%   { left: calc(10% - 5px); opacity: 0; }
+  5%   { left: calc(10% - 5px); opacity: 1; }
+  45%  { left: calc(90% - 5px); opacity: 1; }
+  50%  { left: calc(90% - 5px); opacity: 0; }
+  100% { left: calc(90% - 5px); opacity: 0; }
+}
+
+.ds-slide.is-active .ds-dn.is-connected:not(.has-active) .ds-dn-node {
+  animation: ds-dn-join 900ms cubic-bezier(0.3, 0.7, 0.2, 1) 350ms both;
+}
+
+.ds-slide.is-active .ds-dn.is-connected:not(.has-active) .ds-dn-dot {
+  animation:
+    ds-dn-light 500ms ease-out 1100ms both,
+    ds-dn-ping 4s linear calc(2.8s + var(--i) * 0.4s) infinite;
+}
+
+.ds-slide.is-active .ds-dn.is-connected:not(.has-active) .ds-dn-node:not(:last-child)::after {
+  animation: ds-dn-draw 520ms ease-out calc(1.2s + var(--i) * 160ms) both;
+}
+
+.ds-slide.is-active .ds-dn.is-connected:not(.has-active)::after {
+  animation: ds-dn-run 4s linear 2.6s infinite;
+}
+
+/* A place in the chain: a pulse runs from the goal to the lit dot, lights the
+   dots it passes, and stops there, where the dot keeps breathing. */
+@keyframes ds-dn-arrive {
+  0%   { left: calc(10% - 5px); opacity: 0; }
+  10%  { left: calc(10% - 5px); opacity: 1; }
+  90%  { left: calc(10% + var(--a) * 20% - 5px); opacity: 1; }
+  100% { left: calc(10% + var(--a) * 20% - 5px); opacity: 0; }
+}
+
+.ds-slide.is-active .ds-dn.has-active .ds-dn-node:not(:last-child)::after {
+  animation: ds-dn-draw 420ms ease-out calc(120ms + var(--i) * 90ms) both;
+}
+
+.ds-slide.is-active .ds-dn.has-active::after {
+  animation: ds-dn-arrive calc(0.5s + var(--a) * 0.45s) ease-in-out 450ms both;
+}
+
+.ds-slide.is-active .ds-dn.has-active .ds-dn-node.is-reached .ds-dn-dot {
+  animation: ds-dn-ping 900ms ease-out calc(550ms + var(--i) * 450ms) both;
+}
+
+.ds-slide.is-active .ds-dn.has-active .ds-dn-node.is-active .ds-dn-dot {
+  animation:
+    ds-dn-ping 900ms ease-out calc(550ms + var(--i) * 450ms) both,
+    ds-dn-breathe 2.6s ease-in-out calc(1.6s + var(--i) * 450ms) infinite;
+}
+
+/* One dot, two groups: the links grow out from the middle, then the dots on
+   each side light in turn, while the middle one keeps breathing. */
+@keyframes ds-dt-grow-l { from { transform: scaleX(0); } }
+@keyframes ds-dt-grow-r { from { transform: scaleX(0); } }
+
+.ds-slide.is-active .ds-dt > .ds-dt-link:nth-child(2) {
+  transform-origin: right center;
+  animation: ds-dt-grow-l 600ms ease-out 500ms both;
+}
+
+.ds-slide.is-active .ds-dt > .ds-dt-link:nth-child(4) {
+  transform-origin: left center;
+  animation: ds-dt-grow-r 600ms ease-out 500ms both;
+}
+
+.ds-slide.is-active .ds-dt .ds-dt-dots .ds-dn-dot {
+  animation: ds-dn-light 450ms ease-out both;
+}
+
+.ds-slide.is-active .ds-dt .ds-dt-dots .ds-dn-dot:nth-child(1) { animation-delay: 1.1s; }
+.ds-slide.is-active .ds-dt .ds-dt-dots .ds-dn-dot:nth-child(2) { animation-delay: 1.3s; }
+.ds-slide.is-active .ds-dt .ds-dt-dots .ds-dn-dot:nth-child(3) { animation-delay: 1.5s; }
+
+.ds-slide.is-active .ds-dt .ds-dt-me {
+  animation: ds-dn-breathe 2.6s ease-in-out 1.8s infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  /* Stated with !important because the rules above are more specific than any
+     short selector can be, and a reader who asked for no motion must get none. */
+  .ds-slide .ds-dn::after,
+  .ds-slide .ds-dn .ds-dn-node,
+  .ds-slide .ds-dn .ds-dn-dot,
+  .ds-slide .ds-dn .ds-dn-node::after,
+  .ds-slide .ds-dt .ds-dt-link,
+  .ds-slide .ds-dt .ds-dn-dot {
+    animation: none !important;
+  }
+
+  .ds-slide .ds-dn::after {
+    opacity: 0 !important;
+  }
 }

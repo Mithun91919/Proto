@@ -35,16 +35,22 @@ type DotNodesProps = {
  * or an importance the source does not state. The one exception is `active`,
  * which enlarges the lit dot to mark the current place, not a quantity.
  *
- * Pure CSS, so no client boundary. In `connected` state the links draw in left
- * to right once; reduced-motion readers get the finished row.
+ * Pure CSS, so no client boundary. The motion tells the story the dots tell
+ * (see `design-system.css`, "Dot stories"), and runs only while the slide that
+ * holds the row is showing, so it starts again each time the reader arrives.
+ * Reduced-motion readers get the finished row.
  */
 export function DotNodes({ nodes, state, label, active }: DotNodesProps) {
   return (
-    <ol className={`ds-dn is-${state}${active === undefined ? "" : " has-active"}`} aria-label={label}>
+    <ol
+      className={`ds-dn is-${state}${active === undefined ? "" : " has-active"}`}
+      aria-label={label}
+      style={active === undefined ? undefined : ({ "--a": active } as CSSProperties)}
+    >
       {nodes.map((node, i) => (
         <li
           key={node.label}
-          className={`ds-dn-node${i === active ? " is-active" : ""}`}
+          className={`ds-dn-node${i === active ? " is-active" : ""}${active !== undefined && i <= active ? " is-reached" : ""}`}
           aria-current={i === active ? "step" : undefined}
           style={{ "--i": i } as CSSProperties}
         >
