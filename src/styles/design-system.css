@@ -5344,3 +5344,39 @@ body:has(main > .ds-stage-page) .site-spacer {
 .ds-stage-foot a {
   color: var(--ds-dark-ink);
 }
+
+/* The opening slide's title is the project's name, so it runs larger than the
+   statements on the slides after it, and carries role, years and place. */
+.ds-stage-full .ds-slide-title {
+  font-size: clamp(2.4rem, 4.4vw, 4rem);
+  line-height: 1.04;
+}
+
+.ds-slide-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem 2.5rem;
+  margin: 2rem 0 0;
+}
+
+.ds-slide-meta dd {
+  margin: 0.35rem 0 0;
+  font-size: 0.98rem;
+  color: var(--ink);
+}
+
+/* A composite that is already composed (the hero poster) is shown whole, at
+   its own proportions, not cropped to the screen frame. */
+.ds-stage-full .ds-slide-shot.ds-slide-poster {
+  height: auto;
+  aspect-ratio: 1600 / 1046;
+  max-height: calc(100vh - 13rem);
+  width: auto;
+  max-width: 100%;
+  margin-inline: auto;
+  object-fit: contain;
+  object-position: center;
+  border: 0;
+  box-shadow: none;
+  background: none;
+}

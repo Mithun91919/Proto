@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { caseStudyRobots } from "@/content/seo";
+import { getProject } from "@/content/projects";
 import { DotNodes, DotTrio, type DotNode } from "@/components/design-system/DotNodes";
 import { ProofStrip } from "@/components/design-system/ProofStrip";
 import { SlideDeck, type Slide } from "@/components/design-system/SlideDeck";
@@ -55,7 +56,50 @@ function Step({
   );
 }
 
+const PROJECT = getProject("portfolio-management");
+
 const SLIDES: Slide[] = [
+  {
+    label: "Introduction",
+    content: (
+      <div className="ds-slide-grid has-shot">
+        <div>
+          <p className="eyebrow ds-slide-eyebrow">Case study</p>
+          <h2 className="display-title ds-slide-lead ds-slide-title mt-4">Portfolio Management Platform</h2>
+          <p className="ds-slide-detail">
+            I designed the platform where Walmart’s product organisation connects goals to initiatives, products, people and Jira. It replaced four external tools and reclaims 800+ hours a week.
+          </p>
+          {PROJECT ? (
+            <dl className="ds-slide-meta">
+              <div>
+                <dt className="ds-eyebrow">Role</dt>
+                <dd>{PROJECT.role}</dd>
+              </div>
+              <div>
+                <dt className="ds-eyebrow">Years</dt>
+                <dd>{PROJECT.timeframe}</dd>
+              </div>
+              <div>
+                <dt className="ds-eyebrow">Where</dt>
+                <dd>{PROJECT.org}</dd>
+              </div>
+            </dl>
+          ) : null}
+        </div>
+        <div className="ds-slide-visual">
+          <Image
+            className="ds-slide-shot ds-slide-poster"
+            src="/work/portfolio-management/poster.jpg"
+            alt="The Portfolio Management Platform: its screens, from a goal down to the people on it"
+            width={1600}
+            height={1046}
+            sizes="60vw"
+            priority
+          />
+        </div>
+      </div>
+    ),
+  },
   {
     label: "The problem",
     content: (
