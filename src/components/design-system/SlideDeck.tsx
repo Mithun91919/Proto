@@ -13,7 +13,7 @@ export type Slide = {
 /** How long each slide holds while the deck plays itself. */
 const SLIDE_MS = 7000;
 
-const SlideActive = createContext(true);
+export const SlideActive = createContext(true);
 
 /**
  * Renders its children only while its slide is the one showing. For things
