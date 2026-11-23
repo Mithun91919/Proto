@@ -49,7 +49,7 @@ const STEPS: StoryStep[] = [
         ]}
       />
     ),
-    visual: <StoryDots nodes={PATH} state="connected" label="The five stages of building an agent, joined from intent to publishing" note="The same dots, now joined." />,
+    visual: <StoryDots nodes={PATH} state="connected" label="The five stages of building an agent, joined from intent to publishing" note="The same five stages, now linked from intent to publishing." />,
   },
   {
     label: "Intent",

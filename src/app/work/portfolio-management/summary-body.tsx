@@ -71,7 +71,7 @@ const STEPS: StoryStep[] = [
         ]}
       />
     ),
-    visual: <StoryDots nodes={CHAIN} state="connected" label="The pieces of a goal, joined from the goal down to its tasks" note="The same dots, now joined." />,
+    visual: <StoryDots nodes={CHAIN} state="connected" label="The pieces of a goal, joined from the goal down to its tasks" note="The same five pieces, now linked from goal to tasks." />,
   },
   {
     label: "Goal",
