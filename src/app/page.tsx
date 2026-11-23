@@ -56,7 +56,12 @@ export default function HomePage() {
             </p>
           </div>
 
-          <HeroPortrait />
+          <figure className="m-0 flex flex-col items-start gap-5 md:items-center">
+            <HeroPortrait />
+            <figcaption className="ds-eyebrow max-w-[18rem] text-balance leading-relaxed md:text-center">
+              Every dot is a decision. Design is what connects them.
+            </figcaption>
+          </figure>
         </div>
       </section>
 
