@@ -5,7 +5,6 @@ import { caseStudyRobots } from "@/content/seo";
 import { getProject } from "@/content/projects";
 import { DotNodes, DotTrio, type DotNode } from "@/components/design-system/DotNodes";
 import { ClipVideo } from "@/components/design-system/ClipFigure";
-import { CompactNumeral } from "@/components/design-system/CompactNumeral";
 import { Reveal } from "@/components/Reveal";
 import { ResultsGrid } from "@/components/design-system/ResultsGrid";
 import { ScrollStory, WhenInView, type StoryStep } from "@/components/design-system/ScrollStory";
@@ -27,23 +26,11 @@ export const metadata: Metadata = {
 const CHAIN: DotNode[] = ["Goal", "Project", "Product", "Person", "Tasks"].map((label) => ({ label }));
 const PROJECT = getProject("portfolio-management");
 
-/**
- * A short list under a title. In the story each point is led by its number in
- * dots (the site's own numeral) in place of a bullet; the results' footnotes
- * keep a plain dot bullet, because they are notes and not a sequence.
- */
-function Points({ items, numbered = false }: { items: string[]; numbered?: boolean }) {
+function Points({ items }: { items: string[] }) {
   return (
-    <ul className={`ds-slide-points${numbered ? " is-numbered" : ""}`}>
-      {items.map((item, i) => (
-        <li key={item} style={numbered ? ({ "--p": i } as React.CSSProperties) : undefined}>
-          {numbered ? (
-            <span className="ds-slide-point-num">
-              <CompactNumeral value={String(i + 1)} size={4} />
-            </span>
-          ) : null}
-          <span>{item}</span>
-        </li>
+    <ul className="ds-slide-points">
+      {items.map((item) => (
+        <li key={item}>{item}</li>
       ))}
     </ul>
   );
@@ -54,7 +41,7 @@ function Words({ eyebrow, title, points, note }: { eyebrow: string; title: strin
     <>
       <p className="eyebrow ds-slide-eyebrow">{eyebrow}</p>
       <h2 className="display-title ds-slide-lead mt-4">{title}</h2>
-      <Points items={points} numbered />
+      <Points items={points} />
       {note ? <p className="ds-slide-dots-note">{note}</p> : null}
     </>
   );
