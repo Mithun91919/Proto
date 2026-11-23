@@ -154,7 +154,7 @@ const STEPS: StoryStep[] = [
     text: (
       <StoryWords
         eyebrow="What I did"
-        title="I was the only designer, working with three product managers and three engineering teams."
+        title="I worked with three product managers and three engineering teams."
         points={[
           "I ran sessions to pin down the problem.",
           "I designed one work cycle ahead of the engineers.",
