@@ -6,6 +6,7 @@ import { ResetScrollOnNavigate } from "@/components/ResetScrollOnNavigate";
 import { DotGridBackground } from "@/components/DotGridBackground";
 import { RouteProgress } from "@/components/RouteProgress";
 import { SiteFooter } from "@/components/SiteFooter";
+import { DesktopNote } from "@/components/DesktopNote";
 import { SiteHeader } from "@/components/SiteHeader";
 import "./globals.css";
 
@@ -85,7 +86,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         {/* Applies a remembered Summary choice before the first paint, so a
             case study does not flash in full and then collapse. */}
         <Script id="cs-view" strategy="beforeInteractive">
-          {"try{if(localStorage.getItem('cs-view')==='summary')document.documentElement.dataset.csView='summary'}catch(e){}"}
+          {"try{if(localStorage.getItem('cs-view')==='summary')document.documentElement.dataset.csView='summary';if(sessionStorage.getItem('desktop-note')==='dismissed')document.documentElement.dataset.desktopNote='dismissed'}catch(e){}"}
         </Script>
         <a href="#main-content" className="skip-link">
           Skip to content
@@ -107,6 +108,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
           {children}
         </main>
         <SiteFooter />
+        <DesktopNote />
         <Analytics />
       </body>
     </html>

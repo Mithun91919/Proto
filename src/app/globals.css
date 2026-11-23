@@ -2089,6 +2089,54 @@ button.nav-switch-link {
   pointer-events: auto;
 }
 
+/* A note for phones: the site is built for a desktop. Hidden everywhere else,
+   and once dismissed for the visit. */
+.desktop-note {
+  display: none;
+}
+
+@media (max-width: 767px) {
+  .desktop-note {
+    position: fixed;
+    left: 0.75rem;
+    right: 0.75rem;
+    bottom: 0.75rem;
+    z-index: 60;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.75rem;
+    padding: 0.8rem 0.9rem 0.8rem 1.1rem;
+    border: 1px solid var(--line);
+    border-radius: 0.75rem;
+    background: var(--paper);
+    box-shadow: 0 12px 32px rgb(12 23 28 / 0.2);
+    font-size: 0.9rem;
+    line-height: 1.45;
+    color: var(--ink);
+  }
+
+  .desktop-note p {
+    margin: 0;
+  }
+
+  .desktop-note button {
+    flex: none;
+    display: grid;
+    place-items: center;
+    width: 2.25rem;
+    height: 2.25rem;
+    border-radius: 999px;
+    border: 1px solid var(--line);
+    background: transparent;
+    color: var(--ink-soft);
+  }
+
+  html[data-desktop-note="dismissed"] .desktop-note {
+    display: none;
+  }
+}
+
 /* The selected page is a filled pill that slides between the three. */
 .nav-switch-thumb {
   position: absolute;
