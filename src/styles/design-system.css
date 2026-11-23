@@ -5984,7 +5984,7 @@ body:has(main > .ds-stage-page) .site-spacer {
 
 /* Under the diagram it describes, centred on it. */
 .ds-slide-visual > .ds-slide-dots-note {
-  margin-top: 0;
+  margin-top: 1.25rem;
   text-align: center;
 }
 

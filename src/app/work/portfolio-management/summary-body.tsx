@@ -56,7 +56,7 @@ const STEPS: StoryStep[] = [
         ]}
       />
     ),
-    visual: <StoryDots nodes={CHAIN} state="scattered" label="The pieces of a goal, with nothing joining them" note="Picture each of these as a dot. Nothing joined them except people." />,
+    visual: <StoryDots nodes={CHAIN} state="scattered" label="The pieces of a goal, with nothing joining them" note="Each dot is one piece of the work. Only people linked them." />,
   },
   {
     label: "What we built",
