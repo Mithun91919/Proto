@@ -23,7 +23,7 @@ export const metadata: Metadata = {
 };
 
 /** The things a goal runs through, in order. The same five on every slide that shows the chain. */
-const CHAIN = ["Goal", "Initiative", "Product", "Person", "Jira epic"].map((label): DotNode => ({ label }));
+const CHAIN = ["Goal", "Project", "Product", "Person", "Tasks"].map((label): DotNode => ({ label }));
 
 type Shot = { src: string; alt: string };
 
@@ -68,7 +68,7 @@ const SLIDES: Slide[] = [
           <p className="eyebrow ds-slide-eyebrow">Case study</p>
           <h2 className="display-title ds-slide-lead ds-slide-title mt-4">Portfolio Management Platform</h2>
           <p className="ds-slide-detail">
-            I designed the platform where Walmart’s product organisation connects goals to initiatives, products, people and Jira. It replaced four external tools and reclaims 800+ hours a week.
+            I designed the tool Walmart’s product teams use to link big company goals to the work and the people doing it. It replaced four separate tools and saves 800+ hours a week.
           </p>
           {PROJECT ? (
             <dl className="ds-slide-meta">
@@ -114,10 +114,10 @@ const SLIDES: Slide[] = [
         <div>
           <p className="eyebrow ds-slide-eyebrow">Why it mattered</p>
           <h2 className="display-title ds-slide-lead mt-4">
-            People were the only link between the plan and the work.
+            Only people connected the plan to the work.
           </h2>
           <p className="ds-slide-detail">
-            Leaders had no shared view of progress, and teams chased information and approvals across email, Slack and tickets.
+            Leaders couldn’t see how things were going. Teams spent their time chasing answers and approvals over email, Slack and tickets.
           </p>
           <p className="ds-slide-dots-note">Picture each of these as a dot. Nothing joined them except people.</p>
         </div>
@@ -131,13 +131,13 @@ const SLIDES: Slide[] = [
       <div className="ds-slide-grid">
         <div>
           <p className="eyebrow ds-slide-eyebrow">What we built</p>
-          <h2 className="display-title ds-slide-lead mt-4">One platform that connects them.</h2>
+          <h2 className="display-title ds-slide-lead mt-4">One tool that joins them up.</h2>
           <p className="ds-slide-detail">
-            We replaced four external tools with one connected platform, so goals can be traced to the work behind them.
+            We replaced four separate tools with one, so you can follow a goal all the way down to the work being done for it.
           </p>
           <p className="ds-slide-dots-note">The same dots, now joined.</p>
         </div>
-        <DotNodes nodes={CHAIN} state="connected" label="The pieces of a goal, joined from goal to Jira epic" />
+        <DotNodes nodes={CHAIN} state="connected" label="The pieces of a goal, joined from the goal down to its tasks" />
       </div>
     ),
   },
@@ -146,8 +146,8 @@ const SLIDES: Slide[] = [
     content: (
       <Step
         eyebrow="Goal"
-        title="A goal and its work now come from the same records."
-        description="Each goal shows the planned number of people beside the actual number from Jira."
+        title="See a goal and the work behind it in one place."
+        description="Next to each goal: how many people were planned for it, and how many are actually working on it."
         active={0}
         shot={{
           src: "/work/portfolio-management/okr-management-v2.png",
@@ -157,16 +157,16 @@ const SLIDES: Slide[] = [
     ),
   },
   {
-    label: "Initiative",
+    label: "Project",
     content: (
       <Step
-        eyebrow="Initiative"
-        title="Where the money is declared, and tied to the work."
-        description="Each initiative lists the products that deliver it, its Jira link and a named person for every role."
+        eyebrow="Project"
+        title="Every funded project shows who is doing it."
+        description="Each project lists the products building it, a link to its tasks in Jira (the team’s task tracker), and a named person in every role."
         active={1}
         shot={{
           src: "/work/portfolio-management/initiative-details.png",
-          alt: "Initiative Details: the products that deliver it, its Jira link and its named roles",
+          alt: "The project page, titled Initiative Details in the tool: the products building it, its Jira link and its named roles",
         }}
       />
     ),
@@ -176,8 +176,8 @@ const SLIDES: Slide[] = [
     content: (
       <Step
         eyebrow="Product"
-        title="Creating a product follows one standard workflow."
-        description="Each product team is tied to the Jira project its work is tracked in."
+        title="Adding a product now follows one standard set of steps."
+        description="Each product’s teams are linked to the Jira project where their tasks are tracked."
         active={2}
         shot={{
           src: "/work/portfolio-management/product-details.png",
@@ -191,12 +191,12 @@ const SLIDES: Slide[] = [
     content: (
       <Step
         eyebrow="Person"
-        title="One place to find a person, and what they are working on."
-        description="Each person shows the products and initiatives they work on, as a share of their time."
+        title="Find anyone and see what they work on."
+        description="Each person’s page shows their products and projects, and how their time is split between them."
         active={3}
         shot={{
           src: "/work/portfolio-management/my-profile.png",
-          alt: "My Profile: a person's place in the organisation and the products and initiatives they work on",
+          alt: "My Profile: a person's place in the organisation and the products and projects they work on",
         }}
       />
     ),
@@ -208,10 +208,10 @@ const SLIDES: Slide[] = [
         <div>
           <p className="eyebrow ds-slide-eyebrow">What I did</p>
           <h2 className="display-title ds-slide-lead mt-4">
-            One designer across three product managers and three engineering teams.
+            I was the only designer, working with three product managers and three engineering teams.
           </h2>
           <p className="ds-slide-detail">
-            I led problem-framing sessions, worked a sprint ahead of engineering, and brought the teams together around one product experience.
+            I ran sessions to pin down the problem, designed one work cycle ahead of the engineers, and got the teams working on one product, not three.
           </p>
         </div>
         <DotTrio
@@ -230,15 +230,15 @@ const SLIDES: Slide[] = [
         <div className="mt-6">
           <ProofStrip
             items={[
-              { value: "800+ hrs", label: "reclaimed every week, across the platform", glyph: "field" },
+              { value: "800+ hrs", label: "saved every week, across the platform", glyph: "field" },
               { value: "3,500+ days", label: "of manual effort eliminated in 2025, across the platform", glyph: "layers" },
-              { value: "$100K", label: "average yearly licence cost saved", glyph: "drop" },
-              { value: "50%", label: "fewer support tickets", glyph: "bars" },
+              { value: "$100K", label: "saved each year on software licences, on average", glyph: "drop" },
+              { value: "50%", label: "fewer support requests", glyph: "bars" },
             ]}
           />
         </div>
         <p className="mt-4 text-[0.85rem] text-[var(--muted)]">
-          Hours are reported by the product managers. Licence figure is the average yearly cost saved by retiring redundant licences.
+          Hours are reported by the product managers. The software saving is the average yearly cost of licences that were no longer needed.
         </p>
       </div>
     ),
