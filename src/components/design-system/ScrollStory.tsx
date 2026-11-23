@@ -7,8 +7,12 @@ import { SlideActive } from "./SlideDeck";
 /** How long each step is given before the card moves on to the next, in ms: the change itself is about 620. */
 const STEP_MS = 640;
 
-/** How long wheel input is held back after a step changes, to swallow the momentum of the swipe that caused it. */
-const HOLD_MS = 750;
+/** A pause this long between wheel events means the swipe is over, in ms. */
+const GAP_MS = 140;
+/** A held swipe is never taken for a new one in this time, so the step can finish changing, in ms. */
+const MIN_HOLD_MS = 350;
+/** The longest a swipe is held back, in case its end is never recognised, in ms. */
+const MAX_HOLD_MS = 2500;
 
 export type StoryStep = {
   /** Short name, for the accessible label and the dot's tooltip. */
@@ -31,13 +35,19 @@ export type StoryStep = {
  * with the scroll itself; the scroll only decides when the next step arrives.
  *
  * One swipe moves one step. A hard flick of a trackpad throws the page several
- * steps' worth of scroll in an instant, and its momentum keeps coming for a
- * second after the fingers lift, so it would otherwise land several steps on.
- * While the card is pinned, a wheel event that would carry the page across a
- * step's edge is stopped at that edge instead, and the momentum that follows is
- * held back for the length of the change. The reader continues, with another
- * swipe or by carrying on, to go to the next one. Scrolling that does not cross
- * an edge, and scrolling out of either end of the story, is left alone.
+ * steps' worth of scroll in an instant, and its momentum keeps arriving for a
+ * second or two after the fingers lift, so it would otherwise land several steps
+ * on. While the card is pinned, a wheel event that would carry the page across a
+ * step's edge is stopped at that edge instead, and the rest of that swipe is
+ * held back until it is over. The end of a swipe is read from the events
+ * themselves: momentum fades smoothly, so a pause in them, a turn to the other
+ * direction, or a sudden rise after the fade is a new swipe, and that one is let
+ * through. A fixed timer was tried first and was too short for a long tail.
+ * Scrolling that does not cross an edge, and scrolling out of either end of the
+ * story, is left alone.
+ *
+ * Each step is also a full screen of scroll by default (`stepVh`), so even a
+ * flick that slips past the hold has a long way to go before it reaches the next.
  *
  * The card never skips a step. A hard flick of a trackpad can cover several
  * steps' worth of scroll at once, and showing only the last would drop the ones
@@ -61,7 +71,7 @@ export type StoryStep = {
 export function ScrollStory({
   steps,
   label,
-  stepVh = 70,
+  stepVh = 100,
 }: {
   steps: StoryStep[];
   label: string;
@@ -77,8 +87,8 @@ export function ScrollStory({
   const walkTimer = useRef<number | null>(null);
   /** While set, scroll is a jump the reader asked for through the rail, and is not followed step by step. */
   const lockedUntil = useRef(0);
-  /** While set, wheel input is held back: a step has just changed and its momentum is still arriving. */
-  const heldUntil = useRef(0);
+  /** The swipe being held back after it carried the page to a step's edge. */
+  const held = useRef({ active: false, since: 0, last: 0, lastAbs: 0, declined: false, dir: 0 });
   const last = steps.length - 1;
 
   useEffect(() => {
@@ -135,9 +145,27 @@ export function ScrollStory({
       // Out of the top of the story, or on through the end of it: nothing to hold back.
       if ((!forward && y <= 0) || (forward && current === last)) return;
 
-      if (performance.now() < heldUntil.current) {
-        e.preventDefault();
-        return;
+      const now = performance.now();
+      const abs = Math.abs(delta);
+      const hold = held.current;
+      if (hold.active) {
+        const age = now - hold.since;
+        const faded = abs < hold.lastAbs;
+        // The same swipe's momentum fades smoothly. A new swipe is told apart by a
+        // pause, a turn the other way, or a rise after the fade has begun.
+        const rising = hold.declined && abs > hold.lastAbs * 1.4 && abs > 12;
+        const fresh =
+          now - hold.last > GAP_MS ||
+          age > MAX_HOLD_MS ||
+          (age > MIN_HOLD_MS && (rising || Math.sign(delta) !== hold.dir));
+        if (!fresh) {
+          if (faded) hold.declined = true;
+          hold.last = now;
+          hold.lastAbs = abs;
+          e.preventDefault();
+          return;
+        }
+        hold.active = false;
       }
       const edge = forward ? (current + 1) * share : current * share;
       const crosses = forward ? y + delta >= edge : y + delta < edge;
@@ -145,7 +173,7 @@ export function ScrollStory({
 
       // Stop at the edge, just inside the next step, and hold the momentum that follows.
       e.preventDefault();
-      heldUntil.current = performance.now() + HOLD_MS;
+      held.current = { active: true, since: now, last: now, lastAbs: abs, declined: false, dir: Math.sign(delta) };
       const top = rect.top + window.scrollY;
       window.scrollTo({ top: top + edge + (forward ? 1 : -1), behavior: "instant" });
     };
