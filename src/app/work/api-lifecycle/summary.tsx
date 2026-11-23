@@ -24,15 +24,15 @@ function stageVisual(active: number, src: string, alt: string, width: number, he
 
 const STEPS: StoryStep[] = [
   {
-    label: "Why it mattered",
+    label: "How we found it",
     text: (
       <StoryWords
-        eyebrow="Why it mattered"
-        title="There was no single place to see whether an API already existed."
+        eyebrow="How we found it"
+        title="More than 20 interviews exposed the broken hand-offs."
         points={[
+          "Engineers decide whether they can trust and use an API. Architects create it, evolve it and answer for it, and often they are the same person.",
           "Documentation lived in Confluence, kept up to date by some teams and not others.",
           "A change to a contract (the written description of what an API accepts and returns) went out as an org-wide email, and access was tracked by hand.",
-          "Teams used Swagger, Postman and Confluence, each with its own budget.",
         ]}
       />
     ),
