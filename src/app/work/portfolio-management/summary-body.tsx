@@ -63,7 +63,7 @@ const STEPS: StoryStep[] = [
     text: (
       <StoryWords
         eyebrow="What we built"
-        title="One tool that joins them up."
+        title="One tool now links a goal to its work and its people."
         points={[
           "We replaced four separate tools with one.",
           "A goal now links to its project, its products, its people and the Jira tasks the work is tagged to.",
@@ -78,7 +78,7 @@ const STEPS: StoryStep[] = [
     text: (
       <StoryWords
         eyebrow="Goal"
-        title="See a goal and the work behind it in one place."
+        title="The tool shows each goal and the work behind it in one place."
         points={[
           "Every goal belongs to a leader. Pick a director to see the goals set under them.",
           "Each goal names its business area, product and program.",
@@ -135,7 +135,7 @@ const STEPS: StoryStep[] = [
     text: (
       <StoryWords
         eyebrow="Person"
-        title="Find anyone and see what they work on."
+        title="Each person’s page shows what they work on."
         points={[
           "A person’s page shows their job title, manager and organisation.",
           "It lists the products and projects they work on, each as a share of their time.",
