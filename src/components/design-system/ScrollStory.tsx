@@ -1,82 +1,135 @@
 "use client";
 
-import { useEffect, useRef, useState, type ReactNode } from "react";
+import { Fragment, useCallback, useEffect, useRef, useState, type ReactNode } from "react";
+import { ChapterProgress } from "./ChapterProgress";
 import { SlideActive } from "./SlideDeck";
 
 export type StoryStep = {
-  /** Short name, for the accessible label. */
+  /** Short name, for the accessible label and the dot's tooltip. */
   label: string;
-  /** The words, in the column that scrolls. */
+  /** The words, on the left of the pinned card. */
   text: ReactNode;
-  /** The picture, in the column that stays put while the words go by. */
+  /** The picture, on the right of it. */
   visual: ReactNode;
 };
 
 /**
- * A story told by scrolling: the words of each step scroll past on the left
- * while one picture stays in view on the right and changes to match the step
- * that is in the middle of the screen.
+ * A story advanced by scrolling, told in one pinned card. The card holds still
+ * on the screen while the page scrolls past it, and what is inside it changes
+ * from step to step: the old step fades and lifts away as the next settles in,
+ * the same change the slide deck makes when you press next.
  *
- * Scrolling is left alone: nothing is pinned by script and no scroll is
- * captured. The picture's column is `position: sticky`, and an observer only
- * notes which step is across the middle of the window. That is also why it
- * works with a trackpad, the keyboard and a scrollbar without a word of
- * instruction.
+ * Words and picture change together, in one place. An earlier version let the
+ * words scroll at the reader's speed while the picture on its side swapped in
+ * one jump, and the two disagreed, which read as jarring. Here nothing moves
+ * with the scroll itself; the scroll only decides when the next step arrives.
  *
- * Every picture is mounted in the same place and only the current one is shown
- * and reachable (`inert`), the way the slide deck does it, and each is given
- * `SlideActive`, so the same dot animations that play when a slide arrives play
- * when a step does. Every step's words stay in the page for everyone, whether
- * or not it is the current one. Under `prefers-reduced-motion` the pictures
- * change without moving.
+ * How much scroll each step takes is set by `stepVh`, in screen heights. The
+ * step is worked out from how far through the track the reader is, and no scroll
+ * is captured or slowed: this is a tall block with a `position: sticky` child.
+ * The site's own left-hand rail shows where you are while the card is pinned, and jumps to a step when pressed.
+ *
+ * Every step stays in the page for everyone: the ones not showing are only
+ * transparent, not hidden, so a screen reader reads the whole story in order.
+ * Each step is given `SlideActive`, so the dot animations that play when a slide
+ * arrives play when a step does. Under `prefers-reduced-motion` the steps change
+ * without moving.
  */
-export function ScrollStory({ steps, label }: { steps: StoryStep[]; label: string }) {
+export function ScrollStory({
+  steps,
+  label,
+  stepVh = 60,
+}: {
+  steps: StoryStep[];
+  label: string;
+  stepVh?: number;
+}) {
   const [active, setActive] = useState(0);
-  const stepRefs = useRef<(HTMLElement | null)[]>([]);
+  const [pinned, setPinned] = useState(false);
+  const trackRef = useRef<HTMLDivElement>(null);
+  const last = steps.length - 1;
 
   useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        for (const entry of entries) {
-          if (entry.isIntersecting) setActive(Number((entry.target as HTMLElement).dataset.step));
-        }
-      },
-      // A thin band across the middle of the window: the step across it is the one being read.
-      { rootMargin: "-45% 0px -45% 0px" },
-    );
-    stepRefs.current.forEach((el) => el && observer.observe(el));
-    return () => observer.disconnect();
-  }, []);
+    const track = trackRef.current;
+    if (!track) return;
+    let frame = 0;
+
+    const update = () => {
+      frame = 0;
+      const rect = track.getBoundingClientRect();
+      const total = rect.height - window.innerHeight;
+      const progress = total > 0 ? Math.min(1, Math.max(0, -rect.top / total)) : 0;
+      // Each step owns an equal share of the track; the last one holds to its end.
+      const index = Math.min(last, Math.floor(progress * steps.length));
+      setActive((current) => (current === index ? current : index));
+      // The rail is shown only while the card is pinned, so it does not hang over the rest of the page.
+      const inView = rect.top <= window.innerHeight * 0.25 && rect.bottom >= window.innerHeight * 0.75;
+      setPinned((current) => (current === inView ? current : inView));
+    };
+    const onScroll = () => {
+      if (!frame) frame = requestAnimationFrame(update);
+    };
+
+    update();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("resize", onScroll);
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+      window.removeEventListener("resize", onScroll);
+      if (frame) cancelAnimationFrame(frame);
+    };
+  }, [last, steps.length]);
+
+  const jumpTo = useCallback(
+    (index: number) => {
+      const track = trackRef.current;
+      if (!track) return;
+      const total = track.offsetHeight - window.innerHeight;
+      const top = track.getBoundingClientRect().top + window.scrollY;
+      // Land just inside the step's share, not on the edge it shares with the one before.
+      const target = top + ((index + 0.5) / steps.length) * total;
+      const calm = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+      window.scrollTo({ top: target, behavior: calm ? "auto" : "smooth" });
+    },
+    [steps.length],
+  );
 
   return (
-    <div className="ds-story" role="group" aria-label={label}>
-      <div className="ds-story-text">
-        {steps.map((step, i) => (
-          <section
-            key={step.label}
-            ref={(el) => {
-              stepRefs.current[i] = el;
-            }}
-            data-step={i}
-            aria-label={`${i + 1} of ${steps.length}: ${step.label}`}
-            className={`ds-story-step${i === active ? " is-active" : ""}`}
-          >
-            {step.text}
-          </section>
-        ))}
-      </div>
-      <div className="ds-story-visual">
-        <div className="ds-story-stack">
-          {steps.map((step, i) => (
-            <div
-              key={step.label}
-              aria-hidden={i === active ? undefined : true}
-              inert={i !== active}
-              className={`ds-slide ds-slide-vert ${i === active ? "is-active" : i < active ? "is-past" : "is-future"}`}
-            >
-              <SlideActive.Provider value={i === active}>{step.visual}</SlideActive.Provider>
-            </div>
-          ))}
+    <div
+      ref={trackRef}
+      className="ds-story-track"
+      role="group"
+      aria-label={label}
+      style={{ height: `calc(${steps.length * stepVh}vh + 100vh)` }}
+    >
+      <ChapterProgress
+        chapters={steps.map((step, i) => ({ id: `step-${i}`, label: step.label }))}
+        activeId={pinned ? `step-${active}` : null}
+        onSelect={(id) => jumpTo(Number(id.replace("step-", "")))}
+      />
+      <div className="ds-story-pin">
+        <div className="ds-story-inner">
+          <div className="ds-story-stack">
+            {steps.map((step, i) => (
+              <div
+                key={step.label}
+                role="group"
+                aria-roledescription="slide"
+                aria-label={`${i + 1} of ${steps.length}: ${step.label}`}
+                className={`ds-slide ds-slide-vert ${i === active ? "is-active" : i < active ? "is-past" : "is-future"}`}
+              >
+                <SlideActive.Provider value={i === active}>
+                  <div className="ds-slide-grid has-shot">
+                    {/* Keyed, because both halves arrive from a server component and
+                        React cannot vouch for their keys when they sit side by side. */}
+                    <div key="text">{step.text}</div>
+                    <Fragment key="visual">{step.visual}</Fragment>
+                  </div>
+                </SlideActive.Provider>
+              </div>
+            ))}
+          </div>
+
         </div>
       </div>
     </div>

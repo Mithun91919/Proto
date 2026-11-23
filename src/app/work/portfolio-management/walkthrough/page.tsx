@@ -39,18 +39,10 @@ function Points({ items }: { items: string[] }) {
 function Words({ eyebrow, title, points, note }: { eyebrow: string; title: string; points: string[]; note?: string }) {
   return (
     <>
-      <Reveal>
-        <p className="eyebrow ds-slide-eyebrow">{eyebrow}</p>
-        <h2 className="display-title ds-slide-lead mt-4">{title}</h2>
-      </Reveal>
-      <Reveal delay={120}>
-        <Points items={points} />
-      </Reveal>
-      {note ? (
-        <Reveal delay={240}>
-          <p className="ds-slide-dots-note">{note}</p>
-        </Reveal>
-      ) : null}
+      <p className="eyebrow ds-slide-eyebrow">{eyebrow}</p>
+      <h2 className="display-title ds-slide-lead mt-4">{title}</h2>
+      <Points items={points} />
+      {note ? <p className="ds-slide-dots-note">{note}</p> : null}
     </>
   );
 }
@@ -194,9 +186,11 @@ const STEPS: StoryStep[] = [
 export default function PortfolioWalkthroughPage() {
   return (
     <div className="ds-stage-page">
-      {/* The opening: the hero's own dark band, a full screen tall. After it the
-          page is light, so only this first screen is dark. */}
-      <section className="ds-pull ds-stage ds-story-intro">
+      {/* One dark band, the hero's own, holds the opening and the whole pinned
+          story, so the screens, which are light interfaces, stand out against
+          it. The page turns light after it, for the results. */}
+      <div className="ds-pull ds-stage ds-stage-story">
+      <section className="ds-story-intro">
         <div className="ds-pull-inner">
           <div className="ds-story-intro-center">
             <Reveal>
@@ -253,6 +247,7 @@ export default function PortfolioWalkthroughPage() {
       <section id="story" className="ds-story-section">
         <ScrollStory steps={STEPS} label="Portfolio Management Platform, told step by step" />
       </section>
+      </div>
 
       <section className="ds-story-results">
         <div className="ds-slide-grid">

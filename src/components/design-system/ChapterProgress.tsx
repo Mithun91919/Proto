@@ -4,7 +4,18 @@ import { useEffect, useRef, useState } from "react";
 
 export type ChapterRef = { id: string; label: string };
 
-type ChapterProgressProps = { chapters: ChapterRef[] };
+type ChapterProgressProps = {
+  chapters: ChapterRef[];
+  /**
+   * Controlled mode, for chapters that are not separate sections in the page
+   * flow, such as the steps of a pinned card. Pass the current chapter's id,
+   * or `null` while the rail should be hidden, and the rail follows it instead
+   * of watching the page for ids. Leave it out for the usual behaviour.
+   */
+  activeId?: string | null;
+  /** Called with a chapter's id when its dot is pressed, in place of following its `#id` link. */
+  onSelect?: (id: string) => void;
+};
 
 /**
  * J2 · Chapter progress — a fixed rail showing where the reader is.
@@ -17,11 +28,14 @@ type ChapterProgressProps = { chapters: ChapterRef[] };
  * Hidden below `lg`: the guide calls for a compact top indicator on mobile,
  * and a half-height rail crowding a phone screen would be worse than none.
  */
-export function ChapterProgress({ chapters }: ChapterProgressProps) {
-  const [activeId, setActiveId] = useState<string | null>(null);
+export function ChapterProgress({ chapters, activeId: controlledId, onSelect }: ChapterProgressProps) {
+  const [watchedId, setActiveId] = useState<string | null>(null);
+  const controlled = controlledId !== undefined;
+  const activeId = controlled ? controlledId : watchedId;
   const ratios = useRef(new Map<string, number>());
 
   useEffect(() => {
+    if (controlled) return;
     const nodes = chapters
       .map((c) => document.getElementById(c.id))
       .filter((n): n is HTMLElement => n !== null);
@@ -49,7 +63,7 @@ export function ChapterProgress({ chapters }: ChapterProgressProps) {
 
     nodes.forEach((n) => observer.observe(n));
     return () => observer.disconnect();
-  }, [chapters]);
+  }, [chapters, controlled]);
 
   const activeIndex = chapters.findIndex((c) => c.id === activeId);
 
@@ -64,6 +78,14 @@ export function ChapterProgress({ chapters }: ChapterProgressProps) {
                 href={`#${chapter.id}`}
                 className="ds-progress-item"
                 aria-current={i === activeIndex ? "true" : undefined}
+                onClick={
+                  onSelect
+                    ? (e) => {
+                        e.preventDefault();
+                        onSelect(chapter.id);
+                      }
+                    : undefined
+                }
               >
                 <span className={`ds-scroll-node${state}`} aria-hidden />
                 <span className="ds-progress-label">{chapter.label}</span>
