@@ -78,7 +78,7 @@ const SLIDES: Slide[] = [
     content: (
       <div className="ds-slide-grid">
         <div>
-          <p className="eyebrow" style={{ color: "var(--ds-accent-deep)" }}>Why it mattered</p>
+          <p className="eyebrow ds-slide-eyebrow">Why it mattered</p>
           <h2 className="display-title ds-slide-lead mt-4">
             People were the only link between the plan and the work.
           </h2>
@@ -98,7 +98,7 @@ const SLIDES: Slide[] = [
     content: (
       <div className="ds-slide-grid">
         <div>
-          <p className="eyebrow" style={{ color: "var(--ds-accent-deep)" }}>What we built</p>
+          <p className="eyebrow ds-slide-eyebrow">What we built</p>
           <h2 className="display-title ds-slide-lead mt-4">The platform made that connection visible.</h2>
           <p className="ds-slide-detail">
             We replaced four external tools with one connected platform, so goals can be traced to the work behind them.
@@ -114,7 +114,7 @@ const SLIDES: Slide[] = [
     content: (
       <div className="ds-slide-grid">
         <div>
-          <p className="eyebrow" style={{ color: "var(--ds-accent-deep)" }}>What I did</p>
+          <p className="eyebrow ds-slide-eyebrow">What I did</p>
           <h2 className="display-title ds-slide-lead mt-4">
             One designer across three product managers and three engineering teams.
           </h2>
@@ -134,7 +134,7 @@ const SLIDES: Slide[] = [
     label: "The platform",
     content: (
       <div>
-        <p className="eyebrow" style={{ color: "var(--ds-accent-deep)" }}>The platform</p>
+        <p className="eyebrow ds-slide-eyebrow">The platform</p>
         <h2 className="display-title ds-slide-lead mt-4">A goal runs down to the work.</h2>
         <p className="ds-slide-detail" style={{ maxWidth: "46rem" }}>
           Five screens follow one goal: the goal itself, the initiative it funds, the product that delivers it, the people on it, and the requests that change them.
@@ -149,7 +149,7 @@ const SLIDES: Slide[] = [
     label: "What changed",
     content: (
       <div>
-        <p className="eyebrow" style={{ color: "var(--ds-accent-deep)" }}>What changed</p>
+        <p className="eyebrow ds-slide-eyebrow">What changed</p>
         <div className="mt-6">
           <ProofStrip
             items={[
@@ -170,24 +170,30 @@ const SLIDES: Slide[] = [
 
 export default function PortfolioSlidesPage() {
   return (
-    <div className="mx-auto w-full max-w-[85rem] px-5 py-16 md:px-8 md:py-24">
-      <p className="eyebrow">Case study · summary as slides</p>
-      <h1 className="display-title mt-4" style={{ fontSize: "clamp(2.2rem, 4.4vw, 3.6rem)", lineHeight: 1.05 }}>
-        Portfolio Management Platform
-      </h1>
-      <p className="lede mt-5" style={{ maxWidth: "44rem" }}>
-        I designed the platform where Walmart’s product organisation connects goals to initiatives, products, people and Jira. It replaced four external tools and reclaims 800+ hours a week.
-      </p>
+    <div className="ds-stage-page">
+      {/* The case study hero's own dark band (`ds-pull`), run the full height of
+          the page, so it carries the same dot field and runs up under the
+          header. It takes none of the hero's own classes, because those are
+          keyed to the case-study/summary toggle and would hide it. `ds-stage`
+          turns the colours over for the deck inside it. */}
+      <div className="ds-pull ds-stage">
+        <div className="ds-pull-inner">
+          <span className="ds-pull-dots" aria-hidden />
+          <p className="eyebrow ds-slide-eyebrow">Case study · summary as slides</p>
+          <h1 className="display-title mt-4" style={{ fontSize: "clamp(2rem, 3.6vw, 3rem)", lineHeight: 1.05 }}>
+            Portfolio Management Platform
+          </h1>
+          <div className="mt-9">
+            <SlideDeck slides={SLIDES} label="Portfolio Management Platform, summary as slides" />
+          </div>
 
-      <div className="mt-12">
-        <SlideDeck slides={SLIDES} label="Portfolio Management Platform, summary as slides" />
+          <p className="mt-10 text-[0.95rem]">
+            <Link href="/work/portfolio-management" className="underline underline-offset-4" style={{ color: "var(--ds-dark-ink)" }}>
+              Read the full case study →
+            </Link>
+          </p>
+        </div>
       </div>
-
-      <p className="mt-10 text-[0.95rem] text-[var(--ink-soft)]">
-        <Link href="/work/portfolio-management" className="underline underline-offset-4">
-          Read the full case study →
-        </Link>
-      </p>
     </div>
   );
 }

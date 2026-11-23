@@ -4985,7 +4985,7 @@ html.cs-view-changing .site-dock {
    One idea fills the frame at a time. Two columns inside a slide: the words
    on the left, the picture on the right. */
 .ds-slidedeck-frame {
-  min-height: 31rem;
+  min-height: 29rem;
   padding: clamp(2rem, 4vw, 3.5rem);
   display: flex;
   align-items: center;
@@ -5167,4 +5167,52 @@ html.cs-view-changing .site-dock {
   .ds-dn.is-connected .ds-dn-node:not(:last-child)::after {
     animation: none;
   }
+}
+
+/* ── Dark stage ────────────────────────────────────────────────────────────
+   The deck on the hero's own dark band. Rather than a second set of rules for
+   every component, the colour variables the components already read are
+   turned over inside the band, so the same markup reads light on dark. The
+   accent becomes the band's mint, and the text on an accent fill becomes the
+   band's dark, so an arrow filled on hover stays legible. */
+.ds-stage {
+  --ink: var(--ds-dark-ink);
+  --ink-soft: var(--ds-dark-muted);
+  --muted: var(--ds-dark-muted);
+  --ds-accent: var(--ds-mint);
+  --ds-accent-deep: var(--ds-mint);
+  --ds-dot-muted: rgb(234 243 245 / 0.34);
+  --ds-solid-border: rgb(234 243 245 / 0.16);
+  --color-on-accent: var(--ds-dark);
+  min-height: calc(100vh - 4rem);
+  color: var(--ds-dark-ink);
+}
+
+.ds-stage .ds-glass,
+.ds-stage .ds-glass-soft {
+  background: rgb(234 243 245 / 0.05);
+  border-color: rgb(234 243 245 / 0.14);
+  box-shadow: none;
+  -webkit-backdrop-filter: none;
+  backdrop-filter: none;
+}
+
+.ds-slide-eyebrow {
+  color: var(--ds-accent-deep);
+}
+
+/* The stage runs up under the floating header, as the case-study hero does:
+   the header's spacer gives its height back and the band's own top padding
+   takes it up. Written out here, not shared with `.ds-cs-hero`, because that
+   class is also what the case study's summary toggle hides. */
+body:has(main > .ds-stage-page) .site-spacer {
+  height: 0;
+}
+
+.ds-stage > .ds-pull-inner {
+  padding-top: calc(clamp(1.25rem, 2.2vw, 2rem) + 4.5rem);
+}
+
+.ds-stage .ds-pull-dots {
+  margin-bottom: 1.125rem;
 }
