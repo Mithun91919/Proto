@@ -4995,8 +4995,51 @@ html.cs-view-changing .site-dock {
   width: 100%;
 }
 
+/* All the slides share one grid cell, so the frame is as tall as the tallest
+   and never changes height. The one showing is in place; the ones behind it
+   wait off to the left and the ones ahead off to the right, so paging forward
+   slides the old slide out to the left as the new one comes in from the right.
+   `visibility` waits out the slide so a slide that has gone is not reachable. */
+.ds-slidedeck-stack {
+  display: grid;
+}
+
 .ds-slide {
-  animation: ds-slide-in 360ms cubic-bezier(0.2, 0.7, 0.2, 1) both;
+  grid-area: 1 / 1;
+  min-width: 0;
+  opacity: 0;
+  visibility: hidden;
+  transition:
+    opacity 380ms ease,
+    transform 560ms cubic-bezier(0.2, 0.7, 0.2, 1),
+    visibility 0s linear 560ms;
+}
+
+.ds-slide.is-past {
+  transform: translateX(-3.5rem);
+}
+
+.ds-slide.is-future {
+  transform: translateX(3.5rem);
+}
+
+.ds-slide.is-active {
+  opacity: 1;
+  visibility: visible;
+  transform: none;
+  transition-delay: 120ms, 120ms, 0s;
+}
+
+.ds-slide-play {
+  margin-left: 0.4rem;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ds-slide,
+  .ds-slide.is-active {
+    transition: none;
+    transform: none;
+  }
 }
 
 .ds-slide-grid {
@@ -5028,16 +5071,6 @@ html.cs-view-changing .site-dock {
   color: var(--muted);
 }
 
-@keyframes ds-slide-in {
-  from {
-    opacity: 0;
-    transform: translateX(14px);
-  }
-  to {
-    opacity: 1;
-    transform: translateX(0);
-  }
-}
 
 /* ── Dot nodes ─────────────────────────────────────────────────────────────
    Equal columns, so a link can run from the centre of one dot to the centre of
@@ -5163,7 +5196,6 @@ html.cs-view-changing .site-dock {
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .ds-slide,
   .ds-dn.is-connected .ds-dn-node:not(:last-child)::after {
     animation: none;
   }
@@ -5303,8 +5335,20 @@ body:has(main > .ds-stage-page) .site-spacer {
   height: 100%;
 }
 
+.ds-slide-video {
+  display: block;
+  width: auto;
+  height: clamp(18rem, calc(100vh - 13rem), 40rem);
+  max-width: 100%;
+  object-fit: contain;
+  margin-inline: auto;
+  border-radius: 0.9rem;
+  border: 1px solid var(--ds-solid-border);
+  background: var(--color-paper);
+  box-shadow: 0 18px 50px rgb(0 0 0 / 0.28);
+}
+
 .ds-stage-full .ds-slide {
-  height: 100%;
   display: flex;
   flex-direction: column;
   justify-content: center;

@@ -5,7 +5,8 @@ import { caseStudyRobots } from "@/content/seo";
 import { getProject } from "@/content/projects";
 import { DotNodes, DotTrio, type DotNode } from "@/components/design-system/DotNodes";
 import { ProofStrip } from "@/components/design-system/ProofStrip";
-import { SlideDeck, type Slide } from "@/components/design-system/SlideDeck";
+import { ClipVideo } from "@/components/design-system/ClipFigure";
+import { SlideDeck, WhenActive, type Slide } from "@/components/design-system/SlideDeck";
 
 /**
  * Portfolio Management, as slides: the summary's content, one idea per slide,
@@ -87,15 +88,21 @@ const SLIDES: Slide[] = [
           ) : null}
         </div>
         <div className="ds-slide-visual">
-          <Image
-            className="ds-slide-shot ds-slide-poster"
-            src="/work/portfolio-management/poster.jpg"
-            alt="The Portfolio Management Platform: its screens, from a goal down to the people on it"
-            width={1600}
-            height={1046}
-            sizes="60vw"
-            priority
-          />
+          {/* The card's own clip. Mounted only while this slide shows, so it
+              does not keep playing behind the slides that follow. */}
+          {PROJECT?.media ? (
+            <WhenActive>
+              <ClipVideo
+                className="ds-slide-video"
+                mp4={PROJECT.media.mp4}
+                webm={PROJECT.media.webm}
+                poster={PROJECT.media.poster}
+                alt="The Portfolio Management Platform: its screens, from a goal down to the people on it"
+                width={1600}
+                height={1046}
+              />
+            </WhenActive>
+          ) : null}
         </div>
       </div>
     ),
