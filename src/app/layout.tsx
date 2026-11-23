@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Script from "next/script";
+import { Analytics } from "@vercel/analytics/next";
 import localFont from "next/font/local";
 import { ResetScrollOnNavigate } from "@/components/ResetScrollOnNavigate";
 import { DotGridBackground } from "@/components/DotGridBackground";
@@ -106,6 +107,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
           {children}
         </main>
         <SiteFooter />
+        <Analytics />
       </body>
     </html>
   );
