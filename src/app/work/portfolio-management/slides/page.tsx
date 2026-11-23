@@ -27,17 +27,28 @@ const CHAIN = ["Goal", "Project", "Product", "Person", "Tasks"].map((label): Dot
 
 type Shot = { src: string; alt: string };
 
+/** A short list under a slide's title, each point led by a dot to match the dots beside it. */
+function Points({ items }: { items: string[] }) {
+  return (
+    <ul className="ds-slide-points">
+      {items.map((item) => (
+        <li key={item}>{item}</li>
+      ))}
+    </ul>
+  );
+}
+
 /** One slide: the words on the left; on the right the chain, and a screen if the step has one. */
 function Step({
   eyebrow,
   title,
-  description,
+  points,
   active,
   shot,
 }: {
   eyebrow: string;
   title: string;
-  description: string;
+  points: string[];
   /** Which dot of the chain is lit. */
   active: number;
   shot: Shot;
@@ -47,7 +58,7 @@ function Step({
       <div>
         <p className="eyebrow ds-slide-eyebrow">{eyebrow}</p>
         <h2 className="display-title ds-slide-lead mt-4">{title}</h2>
-        <p className="ds-slide-detail">{description}</p>
+        <Points items={points} />
       </div>
       <div className="ds-slide-visual">
         <DotNodes nodes={CHAIN} state="connected" active={active} label={`Step ${active + 1} of the chain: ${CHAIN[active].label}`} />
@@ -116,9 +127,13 @@ const SLIDES: Slide[] = [
           <h2 className="display-title ds-slide-lead mt-4">
             Only people connected the plan to the work.
           </h2>
-          <p className="ds-slide-detail">
-            Leaders couldn’t see how things were going. Teams spent their time chasing answers and approvals over email, Slack and tickets.
-          </p>
+          <Points
+            items={[
+              "Leaders had no shared view of progress and relied on quarterly updates to see where things stood.",
+              "Teams spent their time chasing answers and approvals over email, Slack and tickets.",
+              "Goals, budgets and people were kept in one set of places, and the work in Jira.",
+            ]}
+          />
           <p className="ds-slide-dots-note">Picture each of these as a dot. Nothing joined them except people.</p>
         </div>
         <DotNodes nodes={CHAIN} state="scattered" label="The pieces of a goal, with nothing joining them" />
@@ -132,9 +147,13 @@ const SLIDES: Slide[] = [
         <div>
           <p className="eyebrow ds-slide-eyebrow">What we built</p>
           <h2 className="display-title ds-slide-lead mt-4">One tool that joins them up.</h2>
-          <p className="ds-slide-detail">
-            We replaced four separate tools with one, so you can follow a goal all the way down to the work being done for it.
-          </p>
+          <Points
+            items={[
+              "We replaced four separate tools with one.",
+              "A goal now links to its project, its products, its people and the Jira tasks the work is tagged to.",
+              "The people planned for a goal sit beside the people actually working on it, so gaps are easier to spot.",
+            ]}
+          />
           <p className="ds-slide-dots-note">The same dots, now joined.</p>
         </div>
         <DotNodes nodes={CHAIN} state="connected" label="The pieces of a goal, joined from the goal down to its tasks" />
@@ -147,7 +166,11 @@ const SLIDES: Slide[] = [
       <Step
         eyebrow="Goal"
         title="See a goal and the work behind it in one place."
-        description="Next to each goal: how many people were planned for it, and how many are actually working on it."
+        points={[
+          "Every goal belongs to a leader. Pick a director to see the goals set under them.",
+          "Each goal names its business area, product and program.",
+          "Goals are grouped by state: Behind, At Risk or On Track.",
+        ]}
         active={0}
         shot={{
           src: "/work/portfolio-management/okr-management-v2.png",
@@ -162,7 +185,11 @@ const SLIDES: Slide[] = [
       <Step
         eyebrow="Project"
         title="Every funded project shows who is doing it."
-        description="Each project lists the products building it, a link to its tasks in Jira (the team’s task tracker), and a named person in every role."
+        points={[
+          "Lists the products building it, with each one’s manager and status.",
+          "Names the markets and businesses it affects and depends on.",
+          "Costs and benefits are entered together, one financial year at a time.",
+        ]}
         active={1}
         shot={{
           src: "/work/portfolio-management/initiative-details.png",
@@ -177,7 +204,11 @@ const SLIDES: Slide[] = [
       <Step
         eyebrow="Product"
         title="Adding a product now follows one standard set of steps."
-        description="Each product’s teams are linked to the Jira project where their tasks are tracked."
+        points={[
+          "Names who is responsible: engineering manager, product manager, product leader and more, each with their job title.",
+          "Each team shows the Jira project its tasks are tracked in.",
+          "Asking for a new product starts on the product list, in four steps.",
+        ]}
         active={2}
         shot={{
           src: "/work/portfolio-management/product-details.png",
@@ -192,7 +223,11 @@ const SLIDES: Slide[] = [
       <Step
         eyebrow="Person"
         title="Find anyone and see what they work on."
-        description="Each person’s page shows their products and projects, and how their time is split between them."
+        points={[
+          "A person’s page shows their job title, manager and organisation.",
+          "It lists the products and projects they work on, each as a share of their time.",
+          "Managers can change what each of their reports works on.",
+        ]}
         active={3}
         shot={{
           src: "/work/portfolio-management/my-profile.png",
@@ -210,9 +245,13 @@ const SLIDES: Slide[] = [
           <h2 className="display-title ds-slide-lead mt-4">
             I was the only designer, working with three product managers and three engineering teams.
           </h2>
-          <p className="ds-slide-detail">
-            I ran sessions to pin down the problem, designed one work cycle ahead of the engineers, and got the teams working on one product, not three.
-          </p>
+          <Points
+            items={[
+              "I ran sessions to pin down the problem.",
+              "I designed one work cycle ahead of the engineers.",
+              "I got three product managers and three engineering teams working on one product, not three.",
+            ]}
+          />
         </div>
         <DotTrio
           left={{ label: "Product managers", count: 3 }}
@@ -229,9 +268,12 @@ const SLIDES: Slide[] = [
         <div>
           <p className="eyebrow ds-slide-eyebrow">What changed</p>
           <h2 className="display-title ds-slide-lead mt-4">Time and money saved across the platform.</h2>
-          <p className="ds-slide-detail">
-            Hours are reported by the product managers. The software saving is the average yearly cost of licences that were no longer needed.
-          </p>
+          <Points
+            items={[
+              "Hours are reported by the product managers.",
+              "The software saving is the average yearly cost of licences that were no longer needed.",
+            ]}
+          />
         </div>
         {/* Mounted only while this slide shows, so the figures count up each
             time the reader arrives. */}

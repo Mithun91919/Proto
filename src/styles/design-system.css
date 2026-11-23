@@ -5667,3 +5667,33 @@ body:has(main > .ds-stage-page) .site-spacer {
   color: var(--ds-dark);
   transform: translateY(-2px);
 }
+
+/* Points under a slide's title. Each is led by a small lit dot, the same mark
+   as the dots beside it, rather than a stock bullet. */
+.ds-slide-points {
+  list-style: none;
+  margin: 1.4rem 0 0;
+  padding: 0;
+  max-width: 34rem;
+  display: grid;
+  gap: 0.85rem;
+}
+
+.ds-slide-points li {
+  position: relative;
+  padding-left: 1.4rem;
+  font-size: 1.05rem;
+  line-height: 1.55;
+  color: var(--ink-soft);
+}
+
+.ds-slide-points li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.62em;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--ds-accent);
+}
