@@ -103,6 +103,7 @@ export function ScrollStory({
       style={{ height: `calc(${steps.length * stepVh}vh + 100vh)` }}
     >
       <ChapterProgress
+        numbered
         chapters={steps.map((step, i) => ({ id: `step-${i}`, label: step.label }))}
         activeId={pinned ? `step-${active}` : null}
         onSelect={(id) => jumpTo(Number(id.replace("step-", "")))}

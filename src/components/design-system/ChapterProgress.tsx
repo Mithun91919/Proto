@@ -15,6 +15,8 @@ type ChapterProgressProps = {
   activeId?: string | null;
   /** Called with a chapter's id when its dot is pressed, in place of following its `#id` link. */
   onSelect?: (id: string) => void;
+  /** Number the nodes (01, 02, ...) instead of leaving them as plain dots, for a sequence whose length is worth showing. */
+  numbered?: boolean;
 };
 
 /**
@@ -28,7 +30,7 @@ type ChapterProgressProps = {
  * Hidden below `lg`: the guide calls for a compact top indicator on mobile,
  * and a half-height rail crowding a phone screen would be worse than none.
  */
-export function ChapterProgress({ chapters, activeId: controlledId, onSelect }: ChapterProgressProps) {
+export function ChapterProgress({ chapters, activeId: controlledId, onSelect, numbered = false }: ChapterProgressProps) {
   const [watchedId, setActiveId] = useState<string | null>(null);
   const controlled = controlledId !== undefined;
   const activeId = controlled ? controlledId : watchedId;
@@ -68,7 +70,7 @@ export function ChapterProgress({ chapters, activeId: controlledId, onSelect }: 
   const activeIndex = chapters.findIndex((c) => c.id === activeId);
 
   return (
-    <nav className={`ds-progress${activeId ? " is-active" : ""}`} aria-label="Chapters">
+    <nav className={`ds-progress${activeId ? " is-active" : ""}${numbered ? " is-numbered" : ""}`} aria-label="Chapters">
       <ol className="ds-glass-soft ds-scroll-rail">
         {chapters.map((chapter, i) => {
           const state = activeIndex < 0 ? "" : i < activeIndex ? " done" : i === activeIndex ? " current" : "";
@@ -87,7 +89,9 @@ export function ChapterProgress({ chapters, activeId: controlledId, onSelect }: 
                     : undefined
                 }
               >
-                <span className={`ds-scroll-node${state}`} aria-hidden />
+                <span className={`ds-scroll-node${state}`} aria-hidden>
+                  {numbered ? String(i + 1).padStart(2, "0") : null}
+                </span>
                 <span className="ds-progress-label">{chapter.label}</span>
               </a>
             </li>

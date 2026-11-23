@@ -5783,11 +5783,11 @@ body:has(main > .ds-stage-page) .site-spacer {
   transform: none;
 }
 
-.ds-story .ds-slide-lead {
+.ds-story-track .ds-slide-lead {
   font-size: clamp(1.8rem, 2.9vw, 2.5rem);
 }
 
-.ds-story .ds-slide-points li {
+.ds-story-track .ds-slide-points li {
   font-size: 1.08rem;
 }
 
@@ -5916,4 +5916,78 @@ body:has(main > .ds-stage-page) .site-spacer {
 /* The rail's labels are solid chips; on the dark band they need a dark surface. */
 .ds-stage {
   --ds-solid-bg: #12303a;
+}
+
+/* ── Story: larger words, a taller picture, a numbered rail ────────────────
+   The card has the height for bigger type, and the picture was limited by its
+   shape (a wide crop in a tall space), not by room. */
+.ds-story-track .ds-slide-lead {
+  font-size: clamp(2.2rem, 3.7vw, 3.3rem);
+  line-height: 1.05;
+}
+
+.ds-story-track .ds-slide-points {
+  max-width: 38rem;
+  gap: 1.1rem;
+}
+
+.ds-story-track .ds-slide-points li {
+  font-size: clamp(1.15rem, 1.5vw, 1.35rem);
+  line-height: 1.5;
+  padding-left: 1.6rem;
+}
+
+.ds-story-track .ds-slide-points li::before {
+  top: 0.66em;
+  width: 8px;
+  height: 8px;
+}
+
+.ds-story-track .ds-slide-dots-note {
+  font-size: 1rem;
+}
+
+.ds-story-track .ds-slide-grid.has-shot {
+  grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.25fr);
+}
+
+.ds-story-track .ds-slide-shot {
+  aspect-ratio: 4 / 3;
+}
+
+/* The rail's nodes, numbered: the number stands where the dot did. */
+.ds-progress.is-numbered .ds-scroll-node {
+  width: auto;
+  height: auto;
+  min-width: 1.5rem;
+  border: 0;
+  background: none;
+  box-shadow: none;
+  font-family: var(--font-mono), ui-monospace, monospace;
+  font-size: 0.7rem;
+  letter-spacing: 0.06em;
+  line-height: 1;
+  text-align: center;
+  color: var(--muted);
+}
+
+.ds-progress.is-numbered .ds-scroll-node.done {
+  background: none;
+  color: var(--ds-accent-deep);
+}
+
+.ds-progress.is-numbered .ds-scroll-node.current {
+  width: auto;
+  height: auto;
+  font-size: 0.82rem;
+  font-weight: 600;
+  background: none;
+  color: var(--ds-accent);
+  box-shadow: none;
+  text-shadow: 0 0 12px color-mix(in oklab, var(--ds-accent) 70%, transparent);
+}
+
+.ds-progress.is-numbered .ds-scroll-rail {
+  gap: 12px;
+  padding: 16px 10px;
 }
