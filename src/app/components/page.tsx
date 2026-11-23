@@ -87,6 +87,7 @@ import { TimelineScrubber } from "@/components/design-system/TimelineScrubber";
 import { ZoomLens } from "@/components/design-system/ZoomLens";
 import { CoverflowRow } from "@/components/design-system/CoverflowRow";
 import { HeroThumbnailRail } from "@/components/design-system/HeroThumbnailRail";
+import { ScrollStorySpec } from "@/components/design-system/ScrollStorySpec";
 
 /**
  * Stand-in archetypes for the C13 demos.
@@ -171,6 +172,7 @@ const NAV = [
   { label: "Recipes", href: "#recipes" },
   { label: "Motion", href: "#interaction" },
   { label: "Case-study media", href: "#case-study-media" },
+  { label: "Scroll story", href: "#scroll-story" },
 ];
 
 const SWATCHES = [
@@ -2356,6 +2358,9 @@ export default function ComponentsPage() {
           />
         </div>
       </section>
+
+      {/* N — Scroll story: the walkthrough pattern, with the conditions it needs. */}
+      <ScrollStorySpec />
       </ProgressiveSections>
     </div>
   );

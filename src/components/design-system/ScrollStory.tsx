@@ -72,10 +72,20 @@ export function ScrollStory({
   steps,
   label,
   stepVh = 100,
+  holdSwipes = true,
 }: {
   steps: StoryStep[];
   label: string;
+  /** How much scroll each step takes, in screen heights. */
   stepVh?: number;
+  /**
+   * Stop a swipe at the next step's edge and hold back its momentum (see above).
+   * This is the one place the system touches scrolling, an exception to "no
+   * scroll-jacking" that the design system records. Pass `false` to leave
+   * scrolling entirely to the browser; the card then still never skips a step,
+   * it simply walks through the ones a hard flick passed.
+   */
+  holdSwipes?: boolean;
 }) {
   const [active, setActive] = useState(0);
   const [pinned, setPinned] = useState(false);
@@ -184,7 +194,7 @@ export function ScrollStory({
     update();
     window.addEventListener("scroll", onScroll, { passive: true });
     window.addEventListener("resize", onScroll);
-    window.addEventListener("wheel", onWheel, { passive: false });
+    if (holdSwipes) window.addEventListener("wheel", onWheel, { passive: false });
     return () => {
       window.removeEventListener("scroll", onScroll);
       window.removeEventListener("resize", onScroll);
@@ -192,7 +202,7 @@ export function ScrollStory({
       if (frame) cancelAnimationFrame(frame);
       if (walkTimer.current !== null) window.clearTimeout(walkTimer.current);
     };
-  }, [last, steps.length]);
+  }, [last, steps.length, holdSwipes]);
 
   const jumpTo = useCallback(
     (index: number) => {

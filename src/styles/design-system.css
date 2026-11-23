@@ -5466,14 +5466,16 @@ body:has(main > .ds-stage-page) .site-spacer {
 }
 
 /* Apart: a person (the ring) carries things from dot to dot by hand, in no
-   order, and nothing stays joined behind them. */
+   order, and nothing stays joined behind them. One tour, then it is gone: the
+   motion budget allows no loop that runs for ever. */
 @keyframes ds-dn-courier {
-  0%, 10%  { left: calc(10% - 6px); top: 2px; }
-  20%, 30% { left: calc(50% - 6px); top: 16px; }
-  40%, 50% { left: calc(30% - 6px); top: 50px; }
-  60%, 70% { left: calc(90% - 6px); top: 28px; }
-  80%, 90% { left: calc(70% - 6px); top: 60px; }
-  100%     { left: calc(10% - 6px); top: 2px; }
+  0%, 10%  { left: calc(10% - 6px); top: 2px; opacity: 1; }
+  20%, 30% { left: calc(50% - 6px); top: 16px; opacity: 1; }
+  40%, 50% { left: calc(30% - 6px); top: 50px; opacity: 1; }
+  60%, 70% { left: calc(90% - 6px); top: 28px; opacity: 1; }
+  80%, 90% { left: calc(70% - 6px); top: 60px; opacity: 1; }
+  96%      { left: calc(10% - 6px); top: 2px; opacity: 1; }
+  100%     { left: calc(10% - 6px); top: 2px; opacity: 0; }
 }
 
 .ds-slide.is-active .ds-dn.is-scattered::after {
@@ -5482,8 +5484,8 @@ body:has(main > .ds-stage-page) .site-spacer {
   background: transparent;
   border: 2px solid var(--ds-accent);
   box-shadow: 0 0 14px color-mix(in oklab, var(--ds-accent) 45%, transparent);
-  animation: ds-dn-courier 11s ease-in-out 600ms infinite;
-  opacity: 1;
+  animation: ds-dn-courier 9s ease-in-out 600ms 1 both;
+  opacity: 0;
 }
 
 /* Joined, from apart: the dots start where the scattered row had them, move
@@ -5511,7 +5513,7 @@ body:has(main > .ds-stage-page) .site-spacer {
 .ds-slide.is-active .ds-dn.is-connected:not(.has-active) .ds-dn-dot {
   animation:
     ds-dn-light 500ms ease-out 1100ms both,
-    ds-dn-ping 4s linear calc(2.8s + var(--i) * 0.4s) infinite;
+    ds-dn-ping 4s linear calc(2.8s + var(--i) * 0.4s) 2;
 }
 
 .ds-slide.is-active .ds-dn.is-connected:not(.has-active) .ds-dn-node:not(:last-child)::after {
@@ -5519,7 +5521,7 @@ body:has(main > .ds-stage-page) .site-spacer {
 }
 
 .ds-slide.is-active .ds-dn.is-connected:not(.has-active)::after {
-  animation: ds-dn-run 4s linear 2.6s infinite;
+  animation: ds-dn-run 4s linear 2.6s 2;
 }
 
 /* A place in the chain: a pulse runs from the goal to the lit dot, lights the
@@ -5546,7 +5548,7 @@ body:has(main > .ds-stage-page) .site-spacer {
 .ds-slide.is-active .ds-dn.has-active .ds-dn-node.is-active .ds-dn-dot {
   animation:
     ds-dn-ping 900ms ease-out calc(550ms + var(--i) * 450ms) both,
-    ds-dn-breathe 2.6s ease-in-out calc(1.6s + var(--i) * 450ms) infinite;
+    ds-dn-breathe 2.6s ease-in-out calc(1.6s + var(--i) * 450ms) 3;
 }
 
 /* One dot, two groups: the links grow out from the middle, then the dots on
@@ -5573,7 +5575,7 @@ body:has(main > .ds-stage-page) .site-spacer {
 .ds-slide.is-active .ds-dt .ds-dt-dots .ds-dn-dot:nth-child(3) { animation-delay: 1.5s; }
 
 .ds-slide.is-active .ds-dt .ds-dt-me {
-  animation: ds-dn-breathe 2.6s ease-in-out 1.8s infinite;
+  animation: ds-dn-breathe 2.6s ease-in-out 1.8s 3;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -5752,7 +5754,7 @@ body:has(main > .ds-stage-page) .site-spacer {
 }
 
 .ds-story-cue svg {
-  animation: ds-cue-bob 1.8s ease-in-out infinite;
+  animation: ds-cue-bob 1.8s ease-in-out 3;
 }
 
 @keyframes ds-cue-bob {
@@ -6013,7 +6015,7 @@ body:has(main > .ds-stage-page) .site-spacer {
 .ds-story-hint::after {
   content: "↓";
   display: inline-block;
-  animation: ds-cue-bob 1.8s ease-in-out infinite;
+  animation: ds-cue-bob 1.8s ease-in-out 3;
 }
 
 /* At the last step there is nothing more in the story to scroll for. */
@@ -6025,4 +6027,48 @@ body:has(main > .ds-stage-page) .site-spacer {
   .ds-story-hint::after {
     animation: none;
   }
+}
+
+/* ── Replay frame (design system specimens for step-keyed motion) ──────── */
+.ds-replay {
+  position: relative;
+  margin: 0;
+  padding: 2.25rem 2rem 2rem;
+  border: 1px solid var(--ds-solid-border);
+  border-radius: 1rem;
+  background: var(--ds-solid-bg);
+  min-height: 11rem;
+  display: flex;
+  align-items: center;
+}
+
+.ds-replay.ds-stage {
+  min-height: 11rem;
+  background: var(--ds-dark);
+}
+
+.ds-replay-stage {
+  width: 100%;
+}
+
+.ds-replay-button {
+  position: absolute;
+  top: 0.75rem;
+  right: 0.9rem;
+  font-family: var(--font-mono), ui-monospace, monospace;
+  font-size: 0.62rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--muted);
+  background: none;
+  border: 1px solid var(--ds-solid-border);
+  border-radius: 999px;
+  padding: 0.25rem 0.7rem;
+  cursor: pointer;
+}
+
+.ds-replay-button:hover,
+.ds-replay-button:focus-visible {
+  color: var(--ink);
+  border-color: var(--ds-accent);
 }

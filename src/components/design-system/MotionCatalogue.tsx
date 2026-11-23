@@ -227,6 +227,78 @@ const INVENTORY: MotionSpec[] = [
     loop: "Per change",
     means: "Content replaced in place, fast enough not to be a transition the reader waits through.",
   },
+  // Scroll story (section N). Every dot motion below is keyed to the step being
+  // the one showing, so it begins on arrival and begins again on the next.
+  {
+    name: "Courier ring",
+    trigger: "Step arrives",
+    timing: "9s, five hops, after 0.6s",
+    loop: "Once, then it is gone",
+    means: "Pieces that nothing joins are moved between by a person, by hand, in no order, and nothing stays joined behind them.",
+  },
+  {
+    name: "Join",
+    trigger: "Step arrives",
+    timing: "900ms to line up, 500ms to light, then 520ms per link, 160ms apart",
+    loop: "Once per arrival",
+    means: "The same pieces, before and after something joins them: they come into line, light, and are connected in order.",
+  },
+  {
+    name: "Chain pulse",
+    trigger: "After the join",
+    timing: "4s a pass, each dot it passes flares",
+    loop: "Twice, then rest",
+    means: "A goal can be traced down to the work: a light runs the whole chain and every dot on it answers.",
+  },
+  {
+    name: "Place in the chain",
+    trigger: "Step arrives",
+    timing: "Pulse 0.5s plus 0.45s a dot, then a 2.6s glow",
+    loop: "Pulse once, glow three times, then rest",
+    means: "Where this step sits: the pulse runs from the first dot to the lit one and the dots it passes answer. The longer the run, the further down the chain.",
+  },
+  {
+    name: "One to many",
+    trigger: "Step arrives",
+    timing: "600ms links grow from the middle, dots light 200ms apart, then a 2.6s glow",
+    loop: "Once, glow three times, then rest",
+    means: "One point holds two groups together: the links grow out from it, then each group lights in turn.",
+  },
+  {
+    name: "Count-up",
+    trigger: "Results in view",
+    timing: "1.4s ease-out",
+    loop: "Once per arrival",
+    means: "The figure arrives at its true value. Only the digits move; the words around them are fixed, and a screen reader is given the final figure.",
+  },
+  {
+    name: "Result tiles",
+    trigger: "Results in view",
+    timing: "600ms rise, 140ms apart",
+    loop: "Once per arrival",
+    means: "Four results come one after another, in the order they are read.",
+  },
+  {
+    name: "Step change",
+    trigger: "Scroll reaches a step's edge",
+    timing: "480ms fade, 620ms rise of 20px, the arriving step 140ms behind",
+    loop: "Per step, never skipped",
+    means: "Words and picture change together in one place, the same change a slide makes, so the reader never watches the two disagree.",
+  },
+  {
+    name: "Story divider",
+    trigger: "Scroll",
+    timing: "Follows the scroll",
+    loop: "Per scroll",
+    means: "How far through the current step you are. The step only changes at its edge, so this is what shows the scroll is counting.",
+  },
+  {
+    name: "Scroll cue",
+    trigger: "Opening screen, and the story until the last step",
+    timing: "1.8s bob of 4px",
+    loop: "Three times, then rest",
+    means: "There is more below. It goes quiet once seen, and is gone at the last step.",
+  },
 ];
 
 /** J3c · Every named motion in the system, with the claim that justifies it. */
