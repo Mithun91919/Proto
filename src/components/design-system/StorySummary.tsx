@@ -103,10 +103,23 @@ export function StoryClip({
  * them saying what the dots stand for. The note sits under the diagram it
  * describes, not in the column of words.
  */
-export function StoryDots({ nodes, state, label, note }: { nodes: DotNode[]; state: "scattered" | "connected"; label: string; note?: string }) {
+export function StoryDots({
+  nodes,
+  state,
+  label,
+  note,
+  active,
+}: {
+  nodes: DotNode[];
+  state: "scattered" | "connected";
+  label: string;
+  note?: string;
+  /** Lights one dot, to mark a place in the sequence, as `DotNodes` does. */
+  active?: number;
+}) {
   return (
     <div className="ds-slide-visual">
-      <DotNodes nodes={nodes} state={state} label={label} />
+      <DotNodes nodes={nodes} state={state} label={label} active={active} />
       {note ? <p className="ds-slide-dots-note">{note}</p> : null}
     </div>
   );

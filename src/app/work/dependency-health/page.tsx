@@ -101,6 +101,7 @@ export default function DependencyHealthPage() {
         standfirst:
           "I designed the dashboard where Walmart developers see which dependencies need attention, and a remediation flow that ends in a pull request. A team now migrates its libraries in about 2 hours, down from 3 days.",
         body: <DependencyHealthSummary />,
+        ownOpener: true,
       }}
       evidenceMetricsLabel="The impact"
       evidence={[
