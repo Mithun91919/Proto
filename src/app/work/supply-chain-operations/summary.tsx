@@ -1,4 +1,4 @@
-import { DotFork, DotNodes, type DotNode } from "@/components/design-system/DotNodes";
+import { DotChoice, DotNodes, type DotNode } from "@/components/design-system/DotNodes";
 import { StorySummary, StoryDots, StoryGroups, StoryScreen, StoryVisual, StoryWords } from "@/components/design-system/StorySummary";
 import type { StoryStep } from "@/components/design-system/ScrollStory";
 import type { HeroStackScreen } from "@/components/design-system/HeroScreenStack";
@@ -105,10 +105,9 @@ const STEPS: StoryStep[] = [
     visual: (
       <StoryVisual
         dots={
-          <DotFork
-            origin="Navigation"
-            options={[{ label: "Top navigation" }, { label: "Persistent left navigation", chosen: true }]}
-            label="Two navigation models were tested, a top bar and a persistent left menu; the persistent left menu was chosen"
+          <DotChoice
+            options={[{ label: "Top navigation" }, { label: "Left navigation", chosen: true }]}
+            label="Two navigation models were tested, a top bar and a persistent left menu; the left menu was chosen"
           />
         }
       >

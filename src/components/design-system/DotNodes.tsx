@@ -205,42 +205,24 @@ export function DotGroups({ label, sizes, places }: { label: string; sizes?: num
 
 
 /**
- * One point that forks into options, and the one that was chosen. For a step
- * where the story is a choice between ideas rather than a line from one thing to
- * the next: a dot for the question, a dotted fork, a dot for each option. Both
- * options light as they are drawn, then the ones not chosen go quiet and the
- * chosen one keeps its light.
+ * Two or three options side by side, and the one that was chosen: the chosen
+ * dot lit, the others grayed. For a step where the story is a choice between
+ * ideas rather than a line from one thing to the next. Both light as they appear,
+ * then the ones not chosen go quiet and the chosen one keeps its light.
  *
  * It says only that there were these options and which one was taken; it makes
- * no claim about how close the choice was. Two or three options.
+ * no claim about how close the choice was.
  */
-export function DotFork({
-  origin,
-  options,
-  label,
-}: {
-  origin: string;
-  options: { label: string; chosen?: boolean }[];
-  /** Names the picture for screen readers, since the dots carry no text. */
-  label: string;
-}) {
+export function DotChoice({ options, label }: { options: { label: string; chosen?: boolean }[]; label: string }) {
   return (
-    <div className="ds-df" role="group" aria-label={label}>
-      <div className="ds-df-origin">
-        <span className="ds-dn-dot" aria-hidden="true" />
-        <span className="ds-dn-label">{origin}</span>
-      </div>
-      <span className="ds-df-stem" aria-hidden="true" />
-      <div className="ds-df-branches">
-        {options.map((o, i) => (
-          <div key={o.label} className={`ds-df-branch${o.chosen ? " is-chosen" : ""}`} style={{ "--i": i } as CSSProperties}>
-            <span className="ds-df-link" aria-hidden="true" />
-            <span className="ds-dn-dot" aria-hidden="true" />
-            <span className="ds-dn-label">{o.label}</span>
-            {o.chosen ? <span className="sr-only"> (chosen)</span> : null}
-          </div>
-        ))}
-      </div>
+    <div className="ds-dc" role="group" aria-label={label}>
+      {options.map((o) => (
+        <div key={o.label} className={`ds-dc-option${o.chosen ? " is-chosen" : ""}`}>
+          <span className="ds-dn-dot" aria-hidden="true" />
+          <span className="ds-dn-label">{o.label}</span>
+          {o.chosen ? <span className="sr-only"> (chosen)</span> : null}
+        </div>
+      ))}
     </div>
   );
 }

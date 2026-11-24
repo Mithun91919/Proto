@@ -46,13 +46,19 @@ export function StoryWords({
   );
 }
 
-/** A real screen, cropped to the top. `wide` keeps a 16:9 recording's own shape instead of the 4:3 crop. */
+/**
+ * A real screen, cropped to the top to a 4:3 window. A landscape screen (wider
+ * than about 1.45:1, judged from the true `width` and `height` you pass) is shown
+ * whole at its own shape instead, because the 4:3 window would cut its sides and
+ * lose the left edge of the interface. `wide` forces the 16:9 window, for a
+ * recording that is exactly that shape. Pass the true dimensions.
+ */
 export function StoryScreen({
   src,
   alt,
   wide,
-  width = 1920,
-  height = 1080,
+  width,
+  height,
 }: {
   src: string;
   alt: string;
@@ -60,13 +66,15 @@ export function StoryScreen({
   width?: number;
   height?: number;
 }) {
+  const landscape = width && height && width / height >= 1.45 ? width / height : null;
   return (
     <Image
       className={`ds-slide-shot${wide ? " is-wide" : ""}`}
+      style={!wide && landscape ? { aspectRatio: String(landscape) } : undefined}
       src={src}
       alt={alt}
-      width={width}
-      height={height}
+      width={width ?? 1920}
+      height={height ?? 1080}
       sizes="55vw"
       // Eager, not lazy: every step's screen sits in the page at once, one over the
       // other, and the browser's lazy loading left some of them unfetched until the

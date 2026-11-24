@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { SectionHeader, SubLabel } from "./primitives/SectionHeader";
-import { DotFork, DotGroups, DotNodes, DotTrio, type DotNode } from "./DotNodes";
+import { DotChoice, DotGroups, DotNodes, DotTrio, type DotNode } from "./DotNodes";
 import { ReplayFrame } from "./ReplayFrame";
 import { ResultsGrid } from "./ResultsGrid";
 
@@ -84,7 +84,7 @@ const DOT_STATES: { state: string; looks: string; means: string; motion: string 
   { state: "Joined", looks: "Five lit dots in a line with dotted links", means: "The same pieces, now connected in order", motion: "They line up and light, the links draw, a pulse runs the chain twice" },
   { state: "Placed", looks: "The chain with one dot larger and lit, the rest quiet", means: "Where this step sits in the chain", motion: "A pulse runs from the first dot to the lit one; that dot then glows three times" },
   { state: "One to many", looks: "A large dot, a link each side, a group of dots on each", means: "One point holds two groups together", motion: "Links grow from the middle, each group lights in turn, the centre glows three times" },
-  { state: "Fork", looks: "One dot forking into two or three options, each with its label; the chosen one lit, the others quiet", means: "There were options, and this one was taken", motion: "The fork draws in, both options light, the ones not chosen go quiet, the chosen one glows three times" },
+  { state: "Choice", looks: "Two or three dots side by side, each with its label; the chosen one lit, the others gray", means: "There were options, and this one was taken", motion: "Both light as they appear, the ones not chosen go gray, the chosen one glows three times" },
   { state: "Clusters apart", looks: "One small cluster of dots for each named place, spread wide, unlit, each with its label", means: "The work was kept in many separate places", motion: "The clusters appear one after another, then each dot drifts a few pixels in its own way for five passes, and rests" },
   { state: "Gathered", looks: "A field of dots, one for each thing, resting in several groups", means: "The same things, now held in new groups; no line, no order", motion: "From scattered and quiet, each group's dots move home and light, one group after another, once" },
 ];
@@ -92,7 +92,7 @@ const DOT_STATES: { state: string; looks: string; means: string; motion: string 
 const DOT_RULES: Rule[] = [
   { rule: "Every dot motion is keyed to the step being active", note: "Each rule starts with .ds-slide.is-active, so it begins on arrival and begins again on the next arrival. Anything holding a visual must carry ds-slide and gain is-active when its step shows. ScrollStory and SlideDeck do this; a specimen outside them uses ReplayFrame." },
   { rule: "Nothing loops for ever", note: "The pulse makes two passes, the glow three, the ring one tour, the cue three bobs. Every animation ends on the resting style, so nothing is left moving or half-drawn. The motion budget, J3e, has no exceptions, and this is where it was nearly broken." },
-  { rule: "Draw new dots when the story needs them", note: "A project may need an arrangement none of the states gives, such as a loop back or two chains side by side. Fork is one such: Supply Chain Operations tested two navigation ideas and chose one, which a line of dots would have drawn as a sequence. Gathered is one such: Supply Chain Operations regrouped 139 tools into new groups, which a line of five dots would have drawn as a sequence. Build it. It must say one thing the case study says, take its counts from the source, end on a still resting state, be keyed to the active step, show finished under reduced motion, be listed in the motion inventory, and get a Replay specimen here beside the others. What is fixed is these conditions, not the shapes." },
+  { rule: "Draw new dots when the story needs them", note: "A project may need an arrangement none of the states gives, such as a loop back or two chains side by side. Choice is one such: Supply Chain Operations tested two navigation ideas and chose one, which a line of dots would have drawn as a sequence. Gathered is one such: Supply Chain Operations regrouped 139 tools into new groups, which a line of five dots would have drawn as a sequence. Build it. It must say one thing the case study says, take its counts from the source, end on a still resting state, be keyed to the active step, show finished under reduced motion, be listed in the motion inventory, and get a Replay specimen here beside the others. What is fixed is these conditions, not the shapes." },
   { rule: "The chain is five nodes", note: "The ring's path, the pulse's run and the placed pulse are written against five equal columns, with the dots at 10, 30, 50, 70 and 90 per cent. Another number of dots in the chain needs those keyframes redrawn. Do not pass four or six without redrawing them." },
   { rule: "The dots stay one size", note: "A different size would imply a quantity the source does not give. The one exception is the lit dot, which is larger to mark a place, never a count." },
   { rule: "The finished state is the plain style", note: "Nothing depends on the motion to be understood. A reader with reduced motion gets the row as it ends: lit, joined, still. The animation rules are switched off with !important in that case, and the ring is hidden." },
@@ -127,7 +127,7 @@ const BUILD_NOTES: Rule[] = [
   { rule: "Screens load eagerly", note: "Every step sits in the page at once, one over the other, and the browser's lazy loading left some screens unfetched until the reader reached them, so a step showed an empty frame. StoryScreen sets loading=\"eager\". Check by reading img.complete and naturalWidth for every screen in the story after the page settles; a blank frame is invisible to tsc and to a first glance." },
   { rule: "Hold the room open for late content", note: "The results use WhenInView with a minHeight, so the page does not jump when they arrive." },
   { rule: "The dev server can serve old CSS", note: "After a CSS edit the running dev server sometimes keeps the previous stylesheet, and what you see is not what you wrote. Stop the server, delete .next and start again, then check computed styles with a script, never by eye." },
-  { rule: "Crop to the top of the screen", note: "The pictures are 4:3 and cropped to the top with object-position: top. Choose screens whose top region carries the point, write the description from what is shown, and add the confidential note wherever the case study does." },
+  { rule: "Crop to the top of the screen", note: "The pictures are 4:3 and cropped to the top with object-position: top, except a landscape screen (wider than 1.45:1, from the width and height you pass), which is shown whole at its own shape so its edges are not cut. Always pass the true dimensions. Choose screens whose top region carries the point, write the description from what is shown, and add the confidential note wherever the case study does." },
   { rule: "Sizes", note: "Title about 43px, points about 17px, the picture about 630 by 475 at 1290px wide. The card has height to spare, so the type was made larger first and then reduced a little. Do not enlarge it to fill the space." },
 ];
 
@@ -259,12 +259,11 @@ export function ScrollStorySpec() {
             </ReplayFrame>
           </div>
           <div>
-            <SubLabel code="Fork · two ideas, one chosen" />
-            <ReplayFrame dark label="A dot forking into two options, one chosen">
-              <DotFork
-                origin="Navigation"
-                options={[{ label: "Top navigation" }, { label: "Persistent left navigation", chosen: true }]}
-                label="Two navigation models were tested; the persistent left menu was chosen"
+            <SubLabel code="Choice · two ideas, one chosen" />
+            <ReplayFrame dark label="Two dots, one chosen">
+              <DotChoice
+                options={[{ label: "Top navigation" }, { label: "Left navigation", chosen: true }]}
+                label="Two navigation models were tested; the left menu was chosen"
               />
             </ReplayFrame>
           </div>
