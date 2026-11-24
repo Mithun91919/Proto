@@ -11,8 +11,10 @@ const STEP_MS = 640;
 const GAP_MS = 140;
 /** A held swipe is never taken for a new one in this time, so the step can finish changing, in ms. */
 const MIN_HOLD_MS = 350;
-/** The longest a swipe is held back, in case its end is never recognised, in ms. */
+/** The longest one swipe is taken to last, in case its end is never recognised, in ms. */
 const MAX_HOLD_MS = 2500;
+/** A swipe is still moving the page this long after its last wheel event, in ms. */
+const ACTIVE_MS = 250;
 
 export type StoryStep = {
   /** Short name, for the accessible label and the dot's tooltip. */
@@ -97,8 +99,12 @@ export function ScrollStory({
   const walkTimer = useRef<number | null>(null);
   /** While set, scroll is a jump the reader asked for through the rail, and is not followed step by step. */
   const lockedUntil = useRef(0);
-  /** The swipe being held back after it carried the page to a step's edge. */
-  const held = useRef({ active: false, since: 0, last: 0, lastAbs: 0, declined: false, dir: 0 });
+  /**
+   * The swipe in progress, and the stretch of the track it may move the page
+   * through: one step either side of where it began. `lo` and `hi` are positions
+   * in the track, in px.
+   */
+  const gesture = useRef({ on: false, since: 0, last: 0, lastAbs: 0, declined: false, dir: 0, lo: -Infinity, hi: Infinity });
   const last = steps.length - 1;
 
   useEffect(() => {
@@ -138,7 +144,23 @@ export function ScrollStory({
       targetRef.current = Math.min(last, Math.floor(progress * steps.length));
       if (walkTimer.current === null) walk();
     };
+    /**
+     * While a swipe is moving the page, keep the page inside the stretch that swipe
+     * is allowed. Browsers hand a swipe's momentum over as events that cannot be
+     * cancelled once the swipe is under way, so stopping the events is not enough:
+     * the position itself is held to the limit, whichever way it got there.
+     */
+    const clampToGesture = () => {
+      const g = gesture.current;
+      if (!g.on || performance.now() - g.last > ACTIVE_MS) return;
+      const rect = track.getBoundingClientRect();
+      const y = -rect.top;
+      const top = rect.top + window.scrollY;
+      if (y > g.hi) window.scrollTo({ top: top + g.hi, behavior: "instant" });
+      else if (y < g.lo) window.scrollTo({ top: top + g.lo, behavior: "instant" });
+    };
     const onScroll = () => {
+      clampToGesture();
       if (!frame) frame = requestAnimationFrame(update);
     };
 
@@ -148,47 +170,61 @@ export function ScrollStory({
       const viewport = window.innerHeight;
       const total = rect.height - viewport;
       const y = -rect.top;
-      if (y < 0 || y > total) return; // not while the card is pinned
-      const delta = e.deltaMode === 1 ? e.deltaY * 16 : e.deltaMode === 2 ? e.deltaY * viewport : e.deltaY;
-      if (delta === 0) return;
-
       const share = total / steps.length;
-      const current = Math.min(last, Math.floor(y / share));
-      const forward = delta > 0;
-      // Out of the top of the story, or on through the end of it: nothing to hold back.
-      if ((!forward && y <= 0) || (forward && current === last)) return;
+      const delta = e.deltaMode === 1 ? e.deltaY * 16 : e.deltaMode === 2 ? e.deltaY * viewport : e.deltaY;
+      if (delta === 0 || total <= 0) return;
+      // Well clear of the story, in either direction: not ours.
+      if (y < -viewport || y > total + viewport) {
+        gesture.current.on = false;
+        return;
+      }
 
       const now = performance.now();
       const abs = Math.abs(delta);
-      const hold = held.current;
-      if (hold.active) {
-        const age = now - hold.since;
-        const faded = abs < hold.lastAbs;
+      const g = gesture.current;
+      let fresh = !g.on;
+      if (g.on) {
+        const age = now - g.since;
+        const faded = abs < g.lastAbs;
         // The same swipe's momentum fades smoothly. A new swipe is told apart by a
         // pause, a turn the other way, or a rise after the fade has begun.
-        const rising = hold.declined && abs > hold.lastAbs * 1.4 && abs > 12;
-        const fresh =
-          now - hold.last > GAP_MS ||
+        const rising = g.declined && abs > g.lastAbs * 1.4 && abs > 12;
+        fresh =
+          now - g.last > GAP_MS ||
           age > MAX_HOLD_MS ||
-          (age > MIN_HOLD_MS && (rising || Math.sign(delta) !== hold.dir));
+          (age > MIN_HOLD_MS && (rising || Math.sign(delta) !== g.dir));
         if (!fresh) {
-          if (faded) hold.declined = true;
-          hold.last = now;
-          hold.lastAbs = abs;
-          e.preventDefault();
-          return;
+          if (faded) g.declined = true;
+          g.last = now;
+          g.lastAbs = abs;
         }
-        hold.active = false;
       }
-      const edge = forward ? (current + 1) * share : current * share;
-      const crosses = forward ? y + delta >= edge : y + delta < edge;
-      if (!crosses) return;
+      if (fresh) {
+        // A new swipe may move the page one step either way from where it starts. Above
+        // or below the story counts as a step off either end, so a swipe that arrives
+        // from outside stops at the first or last step, not past it.
+        const s = Math.min(steps.length, Math.max(-1, Math.floor(y / share)));
+        gesture.current = {
+          on: true,
+          since: now,
+          last: now,
+          lastAbs: abs,
+          declined: false,
+          dir: Math.sign(delta),
+          lo: s <= 0 ? -Infinity : (s - 1) * share + 1, // a pixel inside, so the edge itself never reads as the step before
+          hi: s >= last ? Infinity : s + 1 >= last ? total - 1 : (s + 2) * share - 1,
+        };
+      }
 
-      // Stop at the edge, just inside the next step, and hold the momentum that follows.
-      e.preventDefault();
-      held.current = { active: true, since: now, last: now, lastAbs: abs, declined: false, dir: Math.sign(delta) };
-      const top = rect.top + window.scrollY;
-      window.scrollTo({ top: top + edge + (forward ? 1 : -1), behavior: "instant" });
+      // Where the cancellable part of a swipe would end up past the limit, stop it
+      // there. The rest is caught by `clampToGesture` as the page scrolls.
+      const limit = gesture.current;
+      const to = y + delta;
+      if (e.cancelable && (to > limit.hi || to < limit.lo)) {
+        e.preventDefault();
+        const top = rect.top + window.scrollY;
+        window.scrollTo({ top: top + Math.min(limit.hi, Math.max(limit.lo, to)), behavior: "instant" });
+      }
     };
 
     update();
