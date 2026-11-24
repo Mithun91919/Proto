@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import { caseStudyRobots } from "@/content/seo";
 import { BbDailySummary } from "./summary";
 import { Reveal } from "@/components/Reveal";
@@ -78,6 +79,7 @@ const ARCHETYPES: Archetype[] = [
 const CHAPTERS = [
   { id: "product-model", label: "The product model" },
   { id: "who", label: "Who it is for" },
+  { id: "reviews", label: "What customers said" },
   { id: "customer-side", label: "The customer side" },
   { id: "reach", label: "Where it could reach" },
   { id: "operations", label: "The operations side" },
@@ -217,6 +219,29 @@ export default function BbDailyPage() {
             archetypes={ARCHETYPES}
             variant="cards"
           />
+        </CaseStudySection>
+
+        {/* What customers said about the existing app, before the designs that follow. */}
+        <CaseStudySection id="reviews">
+          <CaseStudyChapter
+            layout="stacked"
+            eyebrow="What customers said"
+            heading="Reviews of the existing app named where ordering broke down"
+            body={[
+              "Reviews of the existing app described where ordering broke down. Modifying an order was hard, and there was no way to review the goods ordered before editing. A low wallet balance changed an order with no notification. And after a failed order there was no way back to the items already selected.",
+            ]}
+          />
+          <CaseStudyFigure>
+            <Image
+              src="/work/bbdaily/BB_Daily_Milk_Basket%20Copy%204%20(1).jpg"
+              alt="A collage of four user reviews of the existing app, each giving one or two stars and describing friction in ordering"
+              width={5034}
+              height={2481}
+              sizes="(min-width: 1280px) 1100px, 92vw"
+              className="block h-auto w-full rounded-2xl"
+            />
+            <p className="ds-media-caption">Documented user feedback from the period.</p>
+          </CaseStudyFigure>
         </CaseStudySection>
 
         {/* The title stands alone, then each clip gets its own alternating
