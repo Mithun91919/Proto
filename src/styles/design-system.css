@@ -6199,22 +6199,24 @@ body:has(main > .ds-stage-page) .site-spacer {
 .ds-story-segments {
   flex: 1;
   display: flex;
-  gap: 6px;
+  gap: 14px;
 }
 
+/* A step is a row of dots on the page grid's pitch, in place of a line. The dots
+   fill with light as you scroll through the step: the lit row is clipped to the
+   progress, so no dot is stretched. */
 .ds-story-seg {
   position: relative;
   flex: 1;
-  height: 3px;
-  border-radius: 2px;
+  height: 8px;
   overflow: hidden;
-  background: var(--ds-dot-muted);
+  background: radial-gradient(circle, var(--ds-dot-muted) 1.7px, transparent 2px) 0 50% / 10px 8px repeat-x;
 }
 
 .ds-story-seg-fill {
   position: absolute;
   inset: 0 auto 0 0;
-  background: var(--ds-accent);
+  background: radial-gradient(circle, var(--ds-accent) 1.7px, transparent 2px) 0 50% / 10px 8px repeat-x;
   width: clamp(0%, calc((var(--story-p, 0) - var(--i)) * 100%), 100%);
 }
 
