@@ -6424,19 +6424,16 @@ body:has(main > .ds-stage-page) .site-spacer {
   height: auto;
 }
 
-/* A phone recording in the opening: its own portrait shape, sized by height, with
-   a little less room under it so the scroll cue still shows on the first screen. */
-.ds-story-intro:has(.ds-story-intro-deck.is-phone) > .ds-pull-inner {
-  padding-bottom: 6.5rem;
-}
-
+/* A phone recording in the opening: its own portrait shape, sized by height. It is
+   large on purpose, so the phone reads as a phone, and runs past the fold: the cut
+   edge tells the reader there is more, and the scroll cue sits under it. */
 .ds-story-intro-deck.is-phone {
   width: auto;
 }
 
 .ds-story-intro-deck.is-phone video {
   display: block;
-  height: 22rem;
+  height: 32rem;
   width: auto;
   max-width: 92vw;
 }

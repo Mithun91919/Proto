@@ -5,8 +5,8 @@ import type { StoryStep } from "@/components/design-system/ScrollStory";
 /**
  * The bb daily summary: the case study told by scrolling, down the five stages
  * of a delivery the case study itself draws, from a customer's subscription to
- * the doorstep. The first step is the research (the field visits and the
- * prototype testing). The customer app is shown in phone recordings, the
+ * the doorstep. The first two steps are the research (the field visits and the
+ * prototype testing, then the customers' own reviews). The customer app is shown in phone recordings, the
  * operations app in its own screens. Every line is the case study's own wording;
  * the only new words are the notes under the pictures. See the design system,
  * section N, for the conditions.
@@ -47,6 +47,31 @@ const STEPS: StoryStep[] = [
           height={1200}
         />
         <p className="ds-slide-dots-note">My own photograph from a field visit. Faces are out of frame.</p>
+      </div>
+    ),
+  },
+  {
+    label: "What customers said",
+    text: (
+      <StoryWords
+        eyebrow="What customers said"
+        title="Customers’ own reviews named the friction in the existing app."
+        points={[
+          "Customers found it hard to modify an order, or to review the goods they had ordered before editing.",
+          "One said there was no notification when the wallet balance ran low, so the order was changed automatically.",
+          "Another said that after a failed order there was no way back to the items already selected.",
+        ]}
+      />
+    ),
+    visual: (
+      <div className="ds-slide-visual">
+        <StoryScreen
+          src="/work/bbdaily/BB_Daily_Milk_Basket%20Copy%204%20(1).jpg"
+          alt="A collage of four user reviews of the existing app, each giving one or two stars and describing friction in ordering"
+          width={5034}
+          height={2481}
+        />
+        <p className="ds-slide-dots-note">Documented user feedback from the period.</p>
       </div>
     ),
   },
