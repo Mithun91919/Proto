@@ -267,9 +267,9 @@ const INVENTORY: MotionSpec[] = [
   {
     name: "Clusters appear",
     trigger: "Step arrives",
-    timing: "600ms fade each, clusters 260ms apart, from 250ms",
-    loop: "Once, then rest",
-    means: "The work was kept in many separate places: one cluster for each, appearing apart from the others and left unjoined.",
+    timing: "600ms fade each, clusters 260ms apart, then each dot drifts a few pixels over 5 to 8s",
+    loop: "Fade once; drift five passes, then rest",
+    means: "The work was kept in many separate places: one cluster for each, apart from the others and unjoined, its dots loose rather than fixed.",
   },
   {
     name: "Gather into groups",

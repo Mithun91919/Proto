@@ -5670,9 +5670,20 @@ body:has(main > .ds-stage-page) .site-spacer {
   from { opacity: 0; }
 }
 
-.ds-slide.is-active .ds-dg.is-apart .ds-dg-dot,
+/* The dots drift, each its own way and for its own time, so the work feels loose
+   and unsettled. A few passes, then rest: nothing in the system loops for ever. */
+@keyframes ds-dg-float {
+  50% { transform: translate(calc(-50% + var(--fx, 0px)), calc(-50% + var(--fy, 0px))); }
+}
+
 .ds-slide.is-active .ds-dg.is-apart .ds-dg-label {
   animation: ds-dg-appear 600ms ease-out calc(250ms + var(--g) * 260ms) both;
+}
+
+.ds-slide.is-active .ds-dg.is-apart .ds-dg-dot {
+  animation:
+    ds-dg-appear 600ms ease-out calc(250ms + var(--g) * 260ms) both,
+    ds-dg-float var(--fd, 6s) ease-in-out calc(700ms + var(--g) * 260ms) 5;
 }
 
 .ds-slide.is-active .ds-dg-dot {

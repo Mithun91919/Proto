@@ -84,7 +84,7 @@ const DOT_STATES: { state: string; looks: string; means: string; motion: string 
   { state: "Joined", looks: "Five lit dots in a line with dotted links", means: "The same pieces, now connected in order", motion: "They line up and light, the links draw, a pulse runs the chain twice" },
   { state: "Placed", looks: "The chain with one dot larger and lit, the rest quiet", means: "Where this step sits in the chain", motion: "A pulse runs from the first dot to the lit one; that dot then glows three times" },
   { state: "One to many", looks: "A large dot, a link each side, a group of dots on each", means: "One point holds two groups together", motion: "Links grow from the middle, each group lights in turn, the centre glows three times" },
-  { state: "Clusters apart", looks: "One small cluster of dots for each named place, spread wide, unlit, each with its label", means: "The work was kept in many separate places", motion: "The clusters appear one after another, once, and rest" },
+  { state: "Clusters apart", looks: "One small cluster of dots for each named place, spread wide, unlit, each with its label", means: "The work was kept in many separate places", motion: "The clusters appear one after another, then each dot drifts a few pixels in its own way for five passes, and rests" },
   { state: "Gathered", looks: "A field of dots, one for each thing, resting in several groups", means: "The same things, now held in new groups; no line, no order", motion: "From scattered and quiet, each group's dots move home and light, one group after another, once" },
 ];
 

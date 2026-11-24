@@ -143,7 +143,8 @@ function seeded(seed: number) {
  *
  * **Apart** (`places`): one small cluster for each named place, set well apart
  * and left unjoined, each with its label. It says the work was kept in many
- * separate places. The clusters appear one after another and rest.
+ * separate places. The clusters appear one after another, then their dots drift
+ * a little, each in its own way, for a few passes, and rest.
  *
  * In both, the sizes of the groups are a picture, not a measurement: the source
  * says things were grouped or kept in places, not how many went where, so no
@@ -163,7 +164,7 @@ export function DotGroups({ label, sizes, places }: { label: string; sizes?: num
   const centres = counts.map((_, g): [number, number] =>
     apart ? PLACE_CENTRES[g % PLACE_CENTRES.length] : [17 + 33 * (g % cols), 10 + 16 * Math.floor(g / cols)],
   );
-  const dots: { gx: number; gy: number; dx: number; dy: number; g: number }[] = [];
+  const dots: { gx: number; gy: number; dx: number; dy: number; g: number; fx: number; fy: number; fd: number }[] = [];
   counts.forEach((count, g) => {
     const [cx, cy] = centres[g];
     for (let k = 0; k < count; k++) {
@@ -173,7 +174,8 @@ export function DotGroups({ label, sizes, places }: { label: string; sizes?: num
       const gy = cy + r * Math.sin(a);
       const sx = 3 + rand() * 94;
       const sy = 3 + rand() * (height - 6);
-      dots.push({ gx, gy, dx: sx - gx, dy: sy - gy, g });
+      // Each dot drifts its own way for its own time, so the cluster is never in step with itself.
+      dots.push({ gx, gy, dx: sx - gx, dy: sy - gy, g, fx: (rand() - 0.5) * 16, fy: (rand() - 0.5) * 16, fd: 5 + rand() * 3 });
     }
   });
   return (
@@ -182,7 +184,7 @@ export function DotGroups({ label, sizes, places }: { label: string; sizes?: num
         <span
           key={i}
           className="ds-dg-dot"
-          style={{ "--gx": d.gx.toFixed(2), "--gy": d.gy.toFixed(2), "--dx": d.dx.toFixed(2), "--dy": d.dy.toFixed(2), "--g": d.g } as CSSProperties}
+          style={{ "--gx": d.gx.toFixed(2), "--gy": d.gy.toFixed(2), "--dx": d.dx.toFixed(2), "--dy": d.dy.toFixed(2), "--g": d.g, "--fx": `${d.fx.toFixed(1)}px`, "--fy": `${d.fy.toFixed(1)}px`, "--fd": `${d.fd.toFixed(1)}s` } as CSSProperties}
         />
       ))}
       {apart
