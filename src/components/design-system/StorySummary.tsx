@@ -96,6 +96,7 @@ export function StoryClip({
   alt,
   width = 1920,
   height = 1104,
+  portrait,
 }: {
   mp4: string;
   webm?: string;
@@ -103,10 +104,12 @@ export function StoryClip({
   alt: string;
   width?: number;
   height?: number;
+  /** A portrait phone recording: shown at its own shape, sized by height, not as a 16:9 window. */
+  portrait?: boolean;
 }) {
   return (
     <WhenActive>
-      <ClipVideo className="ds-slide-shot is-wide" mp4={mp4} webm={webm} poster={poster} alt={alt} width={width} height={height} />
+      <ClipVideo className={`ds-slide-shot ${portrait ? "is-phone" : "is-wide"}`} mp4={mp4} webm={webm} poster={poster} alt={alt} width={width} height={height} />
     </WhenActive>
   );
 }
@@ -164,6 +167,7 @@ export function StorySummary({
   standfirst,
   heroScreens,
   heroRatio,
+  heroImage,
   introAlt,
   steps,
   storyLabel,
@@ -179,6 +183,8 @@ export function StorySummary({
   heroScreens?: HeroStackScreen[];
   /** The deck's aspect ratio, as the case study hero sets it. */
   heroRatio?: number;
+  /** Instead of a framed screen: a composite the case study hero shows plainly, such as phone screens. */
+  heroImage?: { src: string; alt: string; width: number; height: number };
   /** Describes the opening's picture. */
   introAlt?: string;
   steps: StoryStep[];
@@ -222,7 +228,13 @@ export function StorySummary({
                   </dl>
                 ) : null}
               </Reveal>
-              {heroScreens && heroScreens.length > 0 ? (
+              {heroImage ? (
+                <Reveal delay={240} variant="scale">
+                  <div className="ds-story-intro-deck is-composite">
+                    <Image src={heroImage.src} alt={heroImage.alt} width={heroImage.width} height={heroImage.height} sizes="32rem" loading="eager" />
+                  </div>
+                </Reveal>
+              ) : heroScreens && heroScreens.length > 0 ? (
                 <Reveal delay={240} variant="scale">
                   <div className="ds-story-intro-deck">
                     <HeroScreenStack screens={heroScreens.slice(0, 1)} ratio={heroRatio} label={introAlt ?? ""} />

@@ -265,6 +265,13 @@ const INVENTORY: MotionSpec[] = [
     means: "One point holds two groups together: the links grow out from it, then each group lights in turn.",
   },
   {
+    name: "Share lights",
+    trigger: "Step arrives",
+    timing: "Dots fade in 110ms apart from 250ms, the lit ones light over 600ms from 1.3s",
+    loop: "Once, then rest",
+    means: "A share drawn as a share: all the dots appear, then the ones that count light.",
+  },
+  {
     name: "Choose one",
     trigger: "Step arrives",
     timing: "Both light as they appear, the unchosen go gray at 1.2s over 700ms, the chosen glows 2.6s",

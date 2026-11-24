@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { SectionHeader, SubLabel } from "./primitives/SectionHeader";
-import { DotChoice, DotGroups, DotNodes, DotTrio, type DotNode } from "./DotNodes";
+import { DotChoice, DotGroups, DotShare, DotNodes, DotTrio, type DotNode } from "./DotNodes";
 import { ReplayFrame } from "./ReplayFrame";
 import { ResultsGrid } from "./ResultsGrid";
 
@@ -84,6 +84,7 @@ const DOT_STATES: { state: string; looks: string; means: string; motion: string 
   { state: "Joined", looks: "Five lit dots in a line with dotted links", means: "The same pieces, now connected in order", motion: "They line up and light, the links draw, a pulse runs the chain twice" },
   { state: "Placed", looks: "The chain with one dot larger and lit, the rest quiet", means: "Where this step sits in the chain", motion: "A pulse runs from the first dot to the lit one; that dot then glows three times" },
   { state: "One to many", looks: "A large dot, a link each side, a group of dots on each", means: "One point holds two groups together", motion: "Links grow from the middle, each group lights in turn, the centre glows three times" },
+  { state: "Share", looks: "A few dots, some lit: two in five is five dots with two lit", means: "A share, as the source states it", motion: "The dots appear, then the lit ones light, once" },
   { state: "Choice", looks: "Two or three dots side by side, each with its label; the chosen one lit, the others gray", means: "There were options, and this one was taken", motion: "Both light as they appear, the ones not chosen go gray, the chosen one glows three times" },
   { state: "Clusters apart", looks: "One small cluster of dots for each named place, spread wide, unlit, each with its label", means: "The work was kept in many separate places", motion: "The clusters appear one after another, then each dot drifts a few pixels in its own way for five passes, and rests" },
   { state: "Gathered", looks: "A field of dots, one for each thing, resting in several groups", means: "The same things, now held in new groups; no line, no order", motion: "From scattered and quiet, each group's dots move home and light, one group after another, once" },
@@ -124,6 +125,7 @@ const BUILD_NOTES: Rule[] = [
   { rule: "Clear the floating header", note: "The card's top padding is 4.76rem so the eyebrow sits under the header pill rather than behind it. The header slides away on scroll, but it is there when the story is entered from a link." },
   { rule: "ds-slide is transparent until it is active", note: "By itself it is invisible, with its hidden state delayed. Anything outside a deck or a story that must show uses ds-slide is-active, which is what ReplayFrame does." },
   { rule: "Key both halves of a step", note: "The words and the visual arrive from a server component, and React warns about keys when they sit side by side. ScrollStory keys them. Keep that if you edit it." },
+  { rule: "Phone recordings are shown at their own shape", note: "A portrait phone capture (about 0.5:1) does not fit the 16:9 or 4:3 windows. StoryClip with portrait sets it by height, centred in the picture column, so it comes out narrow: about 180px wide at a 863px-tall window. In the opening, a composite of phone screens is shown plainly through heroImage, at 32rem, with no address bar, as the case study hero shows it." },
   { rule: "Screens load eagerly", note: "Every step sits in the page at once, one over the other, and the browser's lazy loading left some screens unfetched until the reader reached them, so a step showed an empty frame. StoryScreen sets loading=\"eager\". Check by reading img.complete and naturalWidth for every screen in the story after the page settles; a blank frame is invisible to tsc and to a first glance." },
   { rule: "Hold the room open for late content", note: "The results use WhenInView with a minHeight, so the page does not jump when they arrive." },
   { rule: "The dev server can serve old CSS", note: "After a CSS edit the running dev server sometimes keeps the previous stylesheet, and what you see is not what you wrote. Stop the server, delete .next and start again, then check computed styles with a script, never by eye." },
@@ -203,7 +205,7 @@ export function ScrollStorySpec() {
       <div className="ds-rule py-11">
         <SubLabel code="N4 · The dots" />
         <Lede>
-          The dots are the way into each step. These seven states are a starting vocabulary, not a closed list: draw
+          The dots are the way into each step. These eight states are a starting vocabulary, not a closed list: draw
           the picture the story needs, and add what it needs to the system. Each state says one thing, and the
           conditions below hold for any new one. Press Replay to watch one again: it plays when its step arrives, so
           on this page it is held in that state.
@@ -256,6 +258,12 @@ export function ScrollStorySpec() {
             <SubLabel code="One to many" />
             <ReplayFrame dark label="One dot joined to two groups of three">
               <DotTrio left={{ label: "Product managers", count: 3 }} centre="Design" right={{ label: "Engineering teams", count: 3 }} />
+            </ReplayFrame>
+          </div>
+          <div>
+            <SubLabel code="Share · two in five" />
+            <ReplayFrame dark label="Five dots appearing, two of them lighting">
+              <DotShare total={5} lit={2} label="Five tickets, two of them lit: two in five did not need a technician" />
             </ReplayFrame>
           </div>
           <div>

@@ -226,3 +226,20 @@ export function DotChoice({ options, label }: { options: { label: string; chosen
     </div>
   );
 }
+
+
+/**
+ * A few dots, some of them lit: a share, drawn as a share. "Two in five" is five
+ * dots with two lit. The dots stay one size and only the lit ones carry the
+ * claim, so keep `total` small (the ratio as the source states it, not a
+ * percentage drawn out to a hundred). The dots appear, then the lit ones light.
+ */
+export function DotShare({ total, lit, label }: { total: number; lit: number; label: string }) {
+  return (
+    <div className="ds-sh" role="img" aria-label={label}>
+      {Array.from({ length: total }, (_, i) => (
+        <span key={i} className={`ds-dn-dot${i < lit ? " is-lit" : ""}`} style={{ "--i": i } as CSSProperties} />
+      ))}
+    </div>
+  );
+}

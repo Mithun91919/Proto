@@ -5754,6 +5754,40 @@ body:has(main > .ds-stage-page) .site-spacer {
 .ds-slide.is-active .ds-slide-points li:nth-child(3) { animation-delay: 980ms; }
 .ds-slide.is-active .ds-slide-points li:nth-child(4) { animation-delay: 1280ms; }
 
+/* ── Dot share ─────────────────────────────────────────────────────────────
+   A few dots, some lit: a share drawn as a share. They appear, then the lit
+   ones light. Once, then rest. */
+.ds-sh {
+  display: flex;
+  justify-content: center;
+  gap: clamp(1.5rem, 5vw, 3.5rem);
+  padding: 2rem 0;
+}
+
+.ds-sh .ds-dn-dot {
+  width: 22px;
+  height: 22px;
+  background: var(--ds-dot-muted);
+}
+
+.ds-sh .ds-dn-dot.is-lit {
+  background: var(--ds-accent);
+}
+
+@keyframes ds-sh-light {
+  from { background: var(--ds-dot-muted); }
+}
+
+.ds-slide.is-active .ds-sh .ds-dn-dot {
+  animation: ds-dg-appear 400ms ease-out calc(250ms + var(--i) * 110ms) both;
+}
+
+.ds-slide.is-active .ds-sh .ds-dn-dot.is-lit {
+  animation:
+    ds-dg-appear 400ms ease-out calc(250ms + var(--i) * 110ms) both,
+    ds-sh-light 600ms ease 1.3s both;
+}
+
 @media (prefers-reduced-motion: reduce) {
   /* Stated with !important because the rules above are more specific than any
      short selector can be, and a reader who asked for no motion must get none. */
@@ -5766,6 +5800,7 @@ body:has(main > .ds-stage-page) .site-spacer {
   .ds-slide .ds-slide-points li,
   .ds-slide .ds-dg .ds-dg-dot,
   .ds-slide .ds-dg .ds-dg-label,
+  .ds-slide .ds-sh .ds-dn-dot,
   .ds-slide .ds-dc-option .ds-dn-dot {
     animation: none !important;
   }
@@ -6366,4 +6401,25 @@ body:has(main > .ds-stage-page) .site-spacer {
   .ds-story-divider {
     padding-left: max(clamp(1.25rem, 2.5vw, 2rem), 6.5rem);
   }
+}
+
+/* A portrait phone recording is shown at its own shape, sized by height, and
+   centred in the picture column. */
+.ds-story-track .ds-slide-shot.is-phone {
+  width: auto;
+  height: clamp(16rem, calc(100vh - 31rem), 30rem);
+  max-width: 100%;
+  margin-inline: auto;
+  object-fit: contain;
+}
+
+/* A composite of phone screens in the opening is shown plain, at its own shape. */
+.ds-story-intro-deck.is-composite {
+  width: min(32rem, 92vw);
+}
+
+.ds-story-intro-deck.is-composite img {
+  display: block;
+  width: 100%;
+  height: auto;
 }

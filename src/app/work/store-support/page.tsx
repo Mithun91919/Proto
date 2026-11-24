@@ -104,6 +104,7 @@ export default function StoreSupportPage() {
         standfirst:
           "I designed the app where store associates report and fix faults from the floor, with the fix coming before the ticket. Tickets now close in 1 day instead of 3, and 40% fewer are raised.",
         body: <StoreSupportSummary />,
+        ownOpener: true,
       }}
       evidenceMetricsLabel="The impact"
       evidence={[
