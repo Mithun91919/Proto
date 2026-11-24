@@ -96,7 +96,7 @@ const STEPS: StoryStep[] = [
         eyebrow="Navigation"
         title="Two navigation models were tested with users before one was chosen."
         points={[
-          "We tested a top bar and a persistent left menu in moderated sessions, averaging 12 people each, with users from different operational groups and markets.",
+          "We tested a top bar and a left menu in moderated sessions, 12 people each on average, from different groups and markets.",
           "The top bar would not have scaled. The left menu gave categories room to grow and stays as you work.",
           "Feedback on the top bar still improved the final design, including how market selection was folded into the navigation.",
         ]}

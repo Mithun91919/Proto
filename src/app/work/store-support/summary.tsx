@@ -32,7 +32,7 @@ const STEPS: StoryStep[] = [
         title="Sitting with associates showed two in five tickets needed no technician."
         points={[
           "I sat with store associates and managers and went through the ticket record with them.",
-          "Around 40% of what was raised could have been cleared by the person who raised it, judged with store and support teams before the redesign.",
+          "Around 40% of tickets could have been cleared by whoever raised them, judged with store and support teams before the redesign.",
           "Reporting ran on a desktop, away from the fault, so reports were written from memory, minutes or hours later.",
         ]}
       />

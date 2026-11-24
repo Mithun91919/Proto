@@ -108,7 +108,7 @@ const STEPS: StoryStep[] = [
     text: (
       <StoryWords
         eyebrow="Goal"
-        title="The tool shows each goal and the work behind it in one place."
+        title="The tool shows each goal and its work in one place."
         points={[
           "Every goal belongs to a leader. Pick a director to see the goals set under them.",
           "Each goal names its business area, product and program.",

@@ -63,7 +63,7 @@ const STEPS: StoryStep[] = [
         title="12+ teams showed us the check for outdated libraries came too late."
         points={[
           "I spoke to 12+ teams to understand how they find and fix library problems today.",
-          "A library (code a team depends on but did not write) was usually checked at the last moment, close to a release, with little time to absorb it.",
+          "A library (code a team depends on but did not write) was usually checked at the last moment, close to a release.",
           "Engineering managers needed a health report. Engineers needed a simple upgrade path.",
         ]}
       />
@@ -83,7 +83,7 @@ const STEPS: StoryStep[] = [
     text: (
       <StoryWords
         eyebrow="What we built"
-        title="One approved set of libraries, and a dashboard that ends in a pull request."
+        title="One approved library set, and a dashboard ending in a pull request."
         points={[
           "We built around a Unified BOM, one package of approved library versions that one team builds and every other team moves onto.",
           "It was not forced: some legacy systems keep running on older versions.",

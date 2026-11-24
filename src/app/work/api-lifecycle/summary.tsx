@@ -56,9 +56,9 @@ const STEPS: StoryStep[] = [
         eyebrow="How we found it"
         title="More than 20 interviews exposed the broken hand-offs."
         points={[
-          "Engineers decide whether they can trust and use an API. Architects create it, evolve it and answer for it, and often they are the same person.",
+          "Engineers decide whether to trust and use an API. Architects create and evolve it, and often they are the same person.",
           "Documentation lived in Confluence, kept up to date by some teams and not others.",
-          "A change to a contract (the written description of what an API accepts and returns) went out as an org-wide email, and access was tracked by hand.",
+          "A change to a contract (an API’s written description) went out as an org-wide email, and access was tracked by hand.",
         ]}
       />
     ),

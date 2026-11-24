@@ -32,7 +32,7 @@ const STEPS: StoryStep[] = [
         eyebrow="How we found it"
         title="Field visits showed a service that ran on paper and handoffs."
         points={[
-          "I spent time in the dark stores (the warehouses that fill online orders) and went out on deliveries with the agents before designing any of it.",
+          "I spent time in the dark stores (warehouses that fill online orders) and went out on deliveries with the agents before designing.",
           "Field visits showed how much of the process depended on paperwork and manual handoffs.",
           "We tested by putting the prototype in the hands of the people who would use it and watching what they did with it.",
         ]}
@@ -198,7 +198,7 @@ const STEPS: StoryStep[] = [
     text: (
       <StoryWords
         eyebrow="One app"
-        title="Six roles share one app, and none of them see the same one."
+        title="Six roles share one app, and none see the same one."
         points={[
           "I argued against a common experience with everything in it, navigated differently by each role.",
           "After login the app resolves to the person’s own work, in the terms they already use.",

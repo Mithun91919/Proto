@@ -128,8 +128,8 @@ const STEPS: StoryStep[] = [
         eyebrow="Inspect"
         title="Agents, APIs, MCPs and skills each get their own workbench."
         points={[
-          "An agent, an API, an MCP (a connector that lets an agent use a tool) and a skill do not share a structure, so each has its own view beside the chat.",
-          "The builder sees what the AI made and can edit it by hand.",
+          "Agents, APIs, MCPs and skills each have their own view beside the chat.",
+          "The builder sees what the AI made, including MCPs (connectors that let an agent use a tool), and can edit it by hand.",
         ]}
       />
     ),
