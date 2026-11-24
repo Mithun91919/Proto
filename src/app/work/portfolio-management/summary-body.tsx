@@ -201,7 +201,7 @@ export function PortfolioSummaryBody() {
     <StorySummary
       slug="portfolio-management"
       title="Portfolio Management Platform"
-      standfirst="I designed the tool Walmart’s product teams use to link big company goals to the work and the people doing it. It replaced four separate tools and saves 800+ hours a week."
+      standfirst="I designed the tool Walmart’s product teams use to link organisation goals to the work and the people doing it. It replaced four separate tools and saves 800+ hours a week."
       heroScreens={HERO_SCREENS}
       heroRatio={1.39}
       introAlt="Screens from the platform"
