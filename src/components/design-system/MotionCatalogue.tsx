@@ -287,6 +287,13 @@ const INVENTORY: MotionSpec[] = [
     means: "The same things, now held in new groups: each dot moves home from a scattered place and lights as it lands.",
   },
   {
+    name: "Points arrive",
+    trigger: "Step arrives",
+    timing: "520ms rise and fade each, 300ms apart, from 380ms",
+    loop: "Once per arrival, then rest",
+    means: "The eye is led down the list at the pace of reading: each point arrives after the one before it.",
+  },
+  {
     name: "Count-up",
     trigger: "Results in view",
     timing: "1.4s ease-out",
