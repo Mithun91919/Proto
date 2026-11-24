@@ -6275,3 +6275,19 @@ body:has(main > .ds-stage-page) .site-spacer {
   color: var(--ink);
   border-color: var(--ds-accent);
 }
+
+/* The divider between the summary's opening and its story: the chapters' own
+   dotted rule, held to the story's text column. */
+.ds-story-divider {
+  width: 100%;
+  max-width: 85rem;
+  margin: 0 auto;
+  padding: 0 clamp(1.25rem, 2.5vw, 2rem);
+  box-sizing: border-box;
+}
+
+@media (min-width: 1150px) {
+  .ds-story-divider {
+    padding-left: max(clamp(1.25rem, 2.5vw, 2rem), 6.5rem);
+  }
+}

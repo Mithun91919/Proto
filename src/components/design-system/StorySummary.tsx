@@ -243,6 +243,12 @@ export function StorySummary({
           </div>
         </section>
 
+        {/* The same dotted divider the case study draws between its chapters, between
+            the opening and the story. */}
+        <div className="ds-story-divider" aria-hidden="true">
+          <div className="ds-section-boundary" />
+        </div>
+
         <section id="story" className="ds-story-section">
           <ScrollStory steps={steps} label={storyLabel} />
         </section>
