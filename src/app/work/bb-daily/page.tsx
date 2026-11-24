@@ -101,6 +101,7 @@ export default function BbDailyPage() {
         standfirst:
           "I ran research and UX for both sides of bigbasket’s recurring delivery service: the customer app, and the operations app behind each delivery. At the time, the service reached 10+ cities and 1.5M+ users.",
         body: <BbDailySummary />,
+        ownOpener: true,
       }}
       evidenceCaveat="These figures describe the product when I worked on it, not results caused by the design."
       evidenceMetricsLabel="The impact"

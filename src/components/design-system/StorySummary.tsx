@@ -168,6 +168,7 @@ export function StorySummary({
   heroScreens,
   heroRatio,
   heroImage,
+  heroClip,
   introAlt,
   steps,
   storyLabel,
@@ -183,8 +184,14 @@ export function StorySummary({
   heroScreens?: HeroStackScreen[];
   /** The deck's aspect ratio, as the case study hero sets it. */
   heroRatio?: number;
-  /** Instead of a framed screen: a composite the case study hero shows plainly, such as phone screens. */
-  heroImage?: { src: string; alt: string; width: number; height: number };
+  /**
+   * Instead of the hero's framed card: a composite the case study hero shows plainly, such as
+   * phone screens, or (with `framed`) one real screen that is not a browser page, shown whole
+   * with a rounded border.
+   */
+  heroImage?: { src: string; alt: string; width: number; height: number; framed?: boolean };
+  /** A phone recording from the case study, shown in the opening at its own portrait shape. */
+  heroClip?: { mp4: string; poster: string; alt: string; width: number; height: number };
   /** Describes the opening's picture. */
   introAlt?: string;
   steps: StoryStep[];
@@ -228,10 +235,25 @@ export function StorySummary({
                   </dl>
                 ) : null}
               </Reveal>
-              {heroImage ? (
+              {heroClip ? (
+                <Reveal delay={240} variant="scale">
+                  <div className="ds-story-intro-deck is-phone">
+                    <ClipVideo className="ds-clip-video" mp4={heroClip.mp4} poster={heroClip.poster} alt={heroClip.alt} width={heroClip.width} height={heroClip.height} />
+                  </div>
+                </Reveal>
+              ) : heroImage ? (
                 <Reveal delay={240} variant="scale">
                   <div className="ds-story-intro-deck is-composite">
-                    <Image src={heroImage.src} alt={heroImage.alt} width={heroImage.width} height={heroImage.height} sizes="32rem" loading="eager" />
+                    <Image
+                      className={heroImage.framed ? "ds-slide-shot" : undefined}
+                      style={heroImage.framed ? { aspectRatio: `${heroImage.width} / ${heroImage.height}` } : undefined}
+                      src={heroImage.src}
+                      alt={heroImage.alt}
+                      width={heroImage.width}
+                      height={heroImage.height}
+                      sizes="32rem"
+                      loading="eager"
+                    />
                   </div>
                 </Reveal>
               ) : heroScreens && heroScreens.length > 0 ? (

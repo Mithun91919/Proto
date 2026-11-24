@@ -1,191 +1,246 @@
-import type { ArtboardSlide } from "@/components/design-system/ArtboardCarousel";
-import { SummaryStory } from "@/components/design-system/SummaryStory";
+import { DotChoice, DotNodes, type DotNode } from "@/components/design-system/DotNodes";
+import { StorySummary, StoryClip, StoryDots, StoryScreen, StoryVisual, StoryWords } from "@/components/design-system/StorySummary";
+import type { StoryStep } from "@/components/design-system/ScrollStory";
 
 /**
- * What the bb daily summary shows under its opener. Every line is the case study's own wording, cut down.
+ * The bb daily summary: the case study told by scrolling, down the five stages
+ * of a delivery the case study itself draws, from a customer's subscription to
+ * the doorstep. The first step is the research (the field visits and the
+ * prototype testing). The customer app is shown in phone recordings, the
+ * operations app in its own screens. Every line is the case study's own wording;
+ * the only new words are the notes under the pictures. See the design system,
+ * section N, for the conditions.
  */
-const SLIDES: ArtboardSlide[] = [
+
+/** The five stages between a customer's subscription and a delivery, as the case study draws them. */
+const FLOW: DotNode[] = ["Subscription", "Procurement", "Inventory", "Shipment", "Delivery"].map((label) => ({ label }));
+
+/** A step along the flow: the flow with one dot lit, and a real screen of that step under it. */
+function flowVisual(active: number, children: React.ReactNode) {
+  return (
+    <StoryVisual dots={<DotNodes nodes={FLOW} state="connected" active={active} label={`Stage ${active + 1} of the delivery: ${FLOW[active].label}`} />}>
+      {children}
+    </StoryVisual>
+  );
+}
+
+const STEPS: StoryStep[] = [
   {
-                    src: "/work/bbdaily/BB_Daily_Milk_Basket%20Copy%2011.jpg",
-                    width: 4581,
-                    height: 2340,
-                    alt: "Operations app shipment receiving: milk shipment intake, reconciliation against expected crates, and completion",
-                    caption: "Receiving — reconciling what arrived against what was expected",
-                    hotspots: [
-                      {
-                        x: 18.3,
-                        y: 41,
-                        title: "Both directions start in one place",
-                        detail:
-                          "Receiving stock and sending a shipment are the same job in opposite directions, so they open from the same screen rather than separate parts of the app.",
-                      },
-                      {
-                        x: 48.8,
-                        y: 37.2,
-                        title: "Expected and received on the same row",
-                        detail:
-                          "Each line carries what was expected next to what actually arrived, so a shortfall shows up while someone is still counting.",
-                      },
-                      {
-                        x: 56.8,
-                        y: 58.7,
-                        title: "A discrepancy is raised at the item",
-                        detail:
-                          "Flagging sits on the line being counted, at the moment the count is made — the point where paperwork and manual handoffs used to lose the detail.",
-                      },
-                      {
-                        x: 81,
-                        y: 39.5,
-                        title: "The handoff carries the count",
-                        detail:
-                          "Missing and received totals are summarised on completion, so the next person inherits an accurate picture of what moved.",
-                      },
-                    ],
-                  },
+    label: "How we found it",
+    text: (
+      <StoryWords
+        eyebrow="How we found it"
+        title="Field visits showed a service that ran on paper and handoffs."
+        points={[
+          "I spent time in the dark stores (the warehouses that fill online orders) and went out on deliveries with the agents before designing any of it.",
+          "Field visits showed how much of the process depended on paperwork and manual handoffs.",
+          "We tested by putting the prototype in the hands of the people who would use it and watching what they did with it.",
+        ]}
+      />
+    ),
+    visual: (
+      <div className="ds-slide-visual">
+        <StoryScreen
+          src="/work/bbdaily/field-paper-slip.jpg"
+          alt="A delivery agent kneeling on the ground at night, reading a paper slip beside a crate of milk sachets and a sack"
+          width={1500}
+          height={1200}
+        />
+        <p className="ds-slide-dots-note">My own photograph from a field visit. Faces are out of frame.</p>
+      </div>
+    ),
+  },
   {
-                    src: "/work/bbdaily/BB_Daily_Milk_Basket%20Copy%2012.jpg",
-                    width: 4581,
-                    height: 2340,
-                    alt: "Operations app deliveries: delivery count, bag-ID search by drop point, and per-flat order detail",
-                    caption: "Delivering — working down a drop point, flat by flat",
-                    hotspots: [
-                      {
-                        x: 18.3,
-                        y: 50.9,
-                        title: "The round has three modes",
-                        detail:
-                          "Counting what is loaded, running the delivery, and reviewing what was completed are separated, because they happen at different points in the morning.",
-                      },
-                      {
-                        x: 49.8,
-                        y: 24.5,
-                        title: "Find a bag without reading the list",
-                        detail:
-                          "Bag ID search and a scanner sit above the list, so a specific bag is reachable without working down every drop point.",
-                      },
-                      {
-                        x: 49.8,
-                        y: 76.1,
-                        title: "Grouped by drop point, with a bag count",
-                        detail:
-                          "Each drop point carries its own total, so what belongs at a building is countable before the delivery executive leaves the vehicle.",
-                      },
-                      {
-                        x: 81.1,
-                        y: 24.5,
-                        title: "Floor and flat before the items",
-                        detail:
-                          "The address detail leads the order screen, matching the way the job actually runs — find the door first, then check the contents.",
-                      },
-                    ],
-                  },
+    label: "What we built",
+    text: (
+      <StoryWords
+        eyebrow="What we built"
+        title="One service, built as a customer app and an operations app."
+        points={[
+          "We covered both halves: the customer app on Android and iOS, and an Android app the operations teams used.",
+          "A customer action on one screen could create work for several people in the physical world.",
+          "It is a separate app with an integration on bigbasket, so each can keep innovating in its own area.",
+        ]}
+      />
+    ),
+    visual: (
+      <StoryDots
+        nodes={FLOW}
+        state="connected"
+        label="The five stages between a subscription and a doorstep, joined"
+        note="Each dot is a stage between a subscription and a doorstep."
+      />
+    ),
+  },
   {
-                    src: "/work/bbdaily/BB_Daily_Milk_Basket%20Copy%2013.jpg",
-                    width: 4581,
-                    height: 2340,
-                    alt: "Operations app payments: today's earnings, monthly earnings, and a per-day breakdown table",
-                    caption: "Payments — earnings a delivery executive can check against their own record",
-                    hotspots: [
-                      {
-                        x: 18.3,
-                        y: 36.5,
-                        title: "Today and this month, same shape",
-                        detail:
-                          "Both timeframes use one layout, so checking a day and checking a month read the same way.",
-                      },
-                      {
-                        x: 22.5,
-                        y: 55.8,
-                        title: "Quality sits beside the count",
-                        detail:
-                          "On-time delivery and exception counts appear next to the order totals, so earnings are never shown without the record behind them.",
-                      },
-                      {
-                        x: 54,
-                        y: 46.7,
-                        title: "The month is a total, not a new model",
-                        detail:
-                          "Monthly earnings reuse the daily structure, so nothing has to be re-learned to read a longer period.",
-                      },
-                      {
-                        x: 81,
-                        y: 48.9,
-                        title: "A day-by-day record to check against",
-                        detail:
-                          "The breakdown is per date and totalled at the foot, so a delivery executive can check the figure against their own count of the work.",
-                      },
-                    ],
-                  },
+    label: "Subscribe",
+    text: (
+      <StoryWords
+        eyebrow="Subscribe"
+        title="A recurring order opens a schedule, not a checkout."
+        points={[
+          "The product page offers two commitments side by side: subscribe, or buy once.",
+          "Subscribing opens a schedule: daily, alternate days, weekly, or days picked by hand.",
+          "The first delivery date is set before anything is confirmed.",
+        ]}
+      />
+    ),
+    visual: flowVisual(
+      0,
+      <StoryClip
+        mp4="/work/bbdaily/recurring-order.mp4"
+        poster="/work/bbdaily/recurring-order-poster.jpg"
+        alt="Starting a recurring order: choosing a product, picking a schedule, and subscribing"
+        width={704}
+        height={1294}
+        portrait
+      />,
+    ),
+  },
   {
-                    src: "/work/bbdaily/BB_Daily_Milk_Basket%20Copy%2010.jpg",
-                    width: 4581,
-                    height: 2340,
-                    alt: "Operations app login: welcome screen, OTP entry, and signing in as a customer experience executive",
-                    caption: "Signing in — the app resolves which role’s workspace to open",
-                    hotspots: [
-                      {
-                        x: 25.9,
-                        y: 54.9,
-                        title: "A password is not always the fastest way in",
-                        detail:
-                          "An OTP route sits beside the password field, because a shared handset at 4am is a different sign-in problem from a desk login.",
-                      },
-                      {
-                        x: 49.8,
-                        y: 36.9,
-                        title: "The code is timed and re-sendable",
-                        detail:
-                          "The countdown and resend sit together, so a delayed message does not become a dead end at the start of a shift.",
-                      },
-                      {
-                        x: 18.3,
-                        y: 74.9,
-                        title: "Six roles, one app",
-                        detail:
-                          "Signing in as a customer experience executive is offered as its own route, so the app opens the workspace for the job rather than a shared home screen.",
-                      },
-                      {
-                        x: 49.8,
-                        y: 77.3,
-                        title: "Numeric-first input",
-                        detail:
-                          "Every field on the way in takes digits, so the keypad opens straight onto numbers.",
-                      },
-                    ],
-                  },
+    label: "Reach",
+    text: (
+      <StoryWords
+        eyebrow="Reach"
+        title="Eligibility comes first, so no one builds a subscription they cannot have."
+        points={[
+          "Delivery was available only to supported apartments and gated communities.",
+          "Nearby societies come first, then apartment or individual house.",
+          "An address outside the rounds gets a request form, not a refusal.",
+        ]}
+      />
+    ),
+    visual: flowVisual(
+      0,
+      <StoryClip
+        mp4="/work/bbdaily/serviceability.mp4"
+        poster="/work/bbdaily/serviceability-poster.jpg"
+        alt="Choosing a serviceable address in the bb daily app: a list of nearby societies, an apartment or individual house choice, then a request form for an unsupported address"
+        width={982}
+        height={1698}
+        portrait
+      />,
+    ),
+  },
+  {
+    label: "Receive",
+    text: (
+      <StoryWords
+        eyebrow="Receive"
+        title="Receiving puts what was expected beside what arrived."
+        points={[
+          "Each line carries what was expected next to what actually arrived, so a shortfall shows while someone is still counting.",
+          "A discrepancy is raised at the item, at the moment the count is made.",
+          "The handoff carries the count, so the next person inherits an accurate picture.",
+        ]}
+      />
+    ),
+    visual: flowVisual(
+      2,
+      <StoryScreen
+        src="/work/bbdaily/BB_Daily_Milk_Basket%20Copy%2011.jpg"
+        alt="Operations app shipment receiving: milk shipment intake, reconciliation against expected crates, and completion"
+        width={4581}
+        height={2340}
+      />,
+    ),
+  },
+  {
+    label: "Deliver",
+    text: (
+      <StoryWords
+        eyebrow="Deliver"
+        title="Delivery works down a drop point, flat by flat."
+        points={[
+          "The round has three modes: counting what is loaded, running the delivery, and reviewing what was completed.",
+          "Bag ID search and a scanner sit above the list.",
+          "Each drop point carries its own bag count, and floor and flat lead the order screen.",
+        ]}
+      />
+    ),
+    visual: flowVisual(
+      4,
+      <StoryScreen
+        src="/work/bbdaily/BB_Daily_Milk_Basket%20Copy%2012.jpg"
+        alt="Operations app deliveries: delivery count, bag-ID search by drop point, and per-flat order detail"
+        width={4581}
+        height={2340}
+      />,
+    ),
+  },
+  {
+    label: "One app",
+    text: (
+      <StoryWords
+        eyebrow="One app"
+        title="Six roles share one app, and none of them see the same one."
+        points={[
+          "I argued against a common experience with everything in it, navigated differently by each role.",
+          "After login the app resolves to the person’s own work, in the terms they already use.",
+          "Everyone uses the same operational record, and almost none of the same screens.",
+        ]}
+      />
+    ),
+    visual: (
+      <StoryVisual
+        dots={
+          <DotChoice
+            options={[{ label: "One shared home" }, { label: "Each role’s own work", chosen: true }]}
+            label="Two ways to build the operations app: one shared home, or each role's own work; each role's own work was chosen"
+          />
+        }
+      >
+        <StoryScreen
+          src="/work/bbdaily/BB_Daily_Milk_Basket%20Copy%2010.jpg"
+          alt="Operations app login: welcome screen, OTP entry, and signing in as a customer experience executive"
+          width={4581}
+          height={2340}
+        />
+      </StoryVisual>
+    ),
+  },
+  {
+    label: "What I did",
+    text: (
+      <StoryWords
+        eyebrow="What I did"
+        title="I ran research and UX for both sides of the service."
+        points={[
+          "I worked across the customer app on Android and iOS and the Android operations app.",
+          "I ran the field visits and tested the prototype with the people who would use it.",
+          "What the customer app promised matched what the operations app had to coordinate.",
+        ]}
+      />
+    ),
+    visual: <StoryDots nodes={FLOW} state="connected" label="The five stages between a subscription and a doorstep, joined" />,
+  },
 ];
 
 export function BbDailySummary() {
   return (
-    <SummaryStory
+    <StorySummary
       slug="bb-daily"
-      beats={[
-        {
-          label: "Why it mattered",
-          lead: "Recurring groceries are not a checkout problem.",
-          detail: "Behind the promise, buying, stock, packing, shipments and an early-morning delivery window all had to stay coordinated.",
-        },
-        {
-          label: "What we built",
-          lead: "The customer’s subscription, and the operations behind it.",
-          detail: "The work covered the customer app on Android and iOS, and an Android app the operations teams used to coordinate each delivery.",
-        },
-        {
-          label: "What I did",
-          lead: "I worked the customer app and the operations app together.",
-          detail: "I ran research and UX across both sides, so what the customer app promised matched what the operations app had to coordinate.",
-        },
-      ]}
-      carousel={{
-        eyebrow: "The operations app",
-        title: "Each role opens its own work",
-        description:
-          "Four screens from the operations app, one for each part of a delivery round: receiving, delivering, payments and signing in.",
-        label: "Operations app workflows",
-        scrollable: false,
-        slides: SLIDES,
+      title="bb daily"
+      standfirst="I ran research and UX for both sides of bigbasket’s recurring delivery service: the customer app, and the operations app behind each delivery. At the time, the service reached 10+ cities and 1.5M+ users."
+      heroClip={{
+        mp4: "/work/bbdaily/home-experience.mp4",
+        poster: "/work/bbdaily/home-experience-poster.jpg",
+        alt: "The bb daily customer home: search, offers, everyday essentials, and popular products with subscribe actions",
+        width: 704,
+        height: 1322,
       }}
-      caveat="These figures describe the product when I worked on it, not results caused by the design."
+      introAlt="bb daily: the customer app and the operations app, two sides of one service"
+      storyLabel="bb daily, told step by step"
+      steps={STEPS}
+      results={{
+        title: "The service at the time I worked on it.",
+        points: ["These figures describe the product when I worked on it, not results caused by the design."],
+        items: [
+          { value: "10+", label: "cities", glyph: "ring" },
+          { value: "1.5M+", label: "service users", glyph: "field" },
+          { value: "120K", label: "average daily deliveries across the service", glyph: "layers" },
+        ],
+      }}
     />
   );
 }

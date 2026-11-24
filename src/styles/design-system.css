@@ -6423,3 +6423,20 @@ body:has(main > .ds-stage-page) .site-spacer {
   width: 100%;
   height: auto;
 }
+
+/* A phone recording in the opening: its own portrait shape, sized by height, with
+   a little less room under it so the scroll cue still shows on the first screen. */
+.ds-story-intro:has(.ds-story-intro-deck.is-phone) > .ds-pull-inner {
+  padding-bottom: 6.5rem;
+}
+
+.ds-story-intro-deck.is-phone {
+  width: auto;
+}
+
+.ds-story-intro-deck.is-phone video {
+  display: block;
+  height: 22rem;
+  width: auto;
+  max-width: 92vw;
+}
