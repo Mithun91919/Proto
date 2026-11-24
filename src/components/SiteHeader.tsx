@@ -6,9 +6,10 @@ import { useEffect, useState, type CSSProperties } from "react";
 import { ConfidentialPill } from "@/components/ConfidentialPill";
 import { GlassPanel } from "@/components/design-system/primitives/GlassPanel";
 import { SayHiDialog } from "@/components/SayHiDialog";
-import { setCaseStudyView, useCaseStudyView } from "@/components/caseStudyView";
+import { setCaseStudyView, syncCaseStudyView, useCaseStudyView } from "@/components/caseStudyView";
 import { caseStudySlug, shortTitle } from "@/content/case-study-nav";
 import { readTime } from "@/content/read-time";
+import { hasSummary } from "@/content/summaries";
 
 const links = [
   { href: "/", label: "Home", exact: true },
@@ -38,17 +39,25 @@ const views = [
 export function SiteHeader() {
   const pathname = usePathname();
   const slug = caseStudySlug(pathname);
-  const view = useCaseStudyView();
+  const storedView = useCaseStudyView();
+  // A case study with no summary shows in full, with no switch, and a remembered
+  // Summary choice waits for the next one that has a summary.
+  const switcher = Boolean(slug) && hasSummary(slug);
+  const view = switcher ? storedView : "full";
   const [sayHiOpen, setSayHiOpen] = useState(false);
   const [hidden, setHidden] = useState(false);
   const [tone, setTone] = useState<"light" | "dark">("light");
 
-  const activeIndex = slug
+  const activeIndex = switcher
     ? views.findIndex((item) => item.value === view)
     : links.findIndex((link) =>
         link.exact ? pathname === link.href : pathname === link.href || pathname.startsWith(`${link.href}/`),
       );
-  const count = slug ? views.length : links.length;
+  const count = switcher ? views.length : links.length;
+
+  useEffect(() => {
+    syncCaseStudyView(!slug || switcher);
+  }, [pathname, slug, switcher, storedView]);
 
   // Out of the way while reading down, back on the first scroll up. Always
   // there near the top of a page, and whenever focus moves into it. Over a dark
@@ -113,7 +122,7 @@ export function SiteHeader() {
               style={{ "--i": Math.max(activeIndex, 0), "--n": count } as CSSProperties}
             >
               <span className="nav-switch-thumb" aria-hidden data-on={activeIndex >= 0 ? "true" : "false"} />
-              {slug
+              {switcher
                 ? views.map((item, index) => (
                     <button
                       key={item.value}

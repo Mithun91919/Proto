@@ -75,3 +75,13 @@ export function setCaseStudyView(next: CaseStudyView) {
 export function useCaseStudyView(): CaseStudyView {
   return useSyncExternalStore(subscribe, getSnapshot, () => "full" as CaseStudyView);
 }
+
+/**
+ * Applies the view the current page may show. A page with no Summary shows the
+ * full case study whatever was remembered, and the remembered choice is left as
+ * it was, so it applies again on a page that does have a summary.
+ */
+export function syncCaseStudyView(allowSummary: boolean) {
+  load();
+  document.documentElement.dataset.csView = allowSummary ? view : "full";
+}

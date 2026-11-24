@@ -7,6 +7,7 @@ import { DotGridBackground } from "@/components/DotGridBackground";
 import { RouteProgress } from "@/components/RouteProgress";
 import { SiteFooter } from "@/components/SiteFooter";
 import { DesktopNote } from "@/components/DesktopNote";
+import { SUMMARY_SLUGS } from "@/content/summaries";
 import { SiteHeader } from "@/components/SiteHeader";
 import "./globals.css";
 
@@ -86,7 +87,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         {/* Applies a remembered Summary choice before the first paint, so a
             case study does not flash in full and then collapse. */}
         <Script id="cs-view" strategy="beforeInteractive">
-          {"try{if(localStorage.getItem('cs-view')==='summary')document.documentElement.dataset.csView='summary';if(sessionStorage.getItem('desktop-note')==='dismissed')document.documentElement.dataset.desktopNote='dismissed'}catch(e){}"}
+          {`try{var m=location.pathname.match(/^\\/work\\/([^\\/?#]+)/);var ok=!m||${JSON.stringify(SUMMARY_SLUGS)}.indexOf(m[1])>-1;if(ok&&localStorage.getItem('cs-view')==='summary')document.documentElement.dataset.csView='summary';if(sessionStorage.getItem('desktop-note')==='dismissed')document.documentElement.dataset.desktopNote='dismissed'}catch(e){}`}
         </Script>
         <a href="#main-content" className="skip-link">
           Skip to content
