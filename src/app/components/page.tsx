@@ -88,6 +88,7 @@ import { ZoomLens } from "@/components/design-system/ZoomLens";
 import { CoverflowRow } from "@/components/design-system/CoverflowRow";
 import { HeroThumbnailRail } from "@/components/design-system/HeroThumbnailRail";
 import { ScrollStorySpec } from "@/components/design-system/ScrollStorySpec";
+import { AddingAProjectSpec } from "@/components/design-system/AddingAProjectSpec";
 
 /**
  * Stand-in archetypes for the C13 demos.
@@ -173,6 +174,7 @@ const NAV = [
   { label: "J · Motion", href: "#interaction" },
   { label: "M · Case-study media", href: "#case-study-media" },
   { label: "N · Scroll story", href: "#scroll-story" },
+  { label: "O · Adding a project", href: "#adding-a-project" },
   { label: "Changelog", href: "#changelog" },
 ];
 
@@ -2413,6 +2415,8 @@ export default function ComponentsPage() {
 
       {/* N — Scroll story: the walkthrough pattern, with the conditions it needs. */}
       <ScrollStorySpec />
+
+      <AddingAProjectSpec />
 
       <section id="changelog" className="mx-auto max-w-[70rem] px-5 pt-14 scroll-mt-28 md:px-8">
         <div className="ds-rule py-11">
