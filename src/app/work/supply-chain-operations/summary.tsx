@@ -1,4 +1,4 @@
-import { DotNodes, type DotNode } from "@/components/design-system/DotNodes";
+import { DotFork, DotNodes, type DotNode } from "@/components/design-system/DotNodes";
 import { StorySummary, StoryDots, StoryGroups, StoryScreen, StoryVisual, StoryWords } from "@/components/design-system/StorySummary";
 import type { StoryStep } from "@/components/design-system/ScrollStory";
 import type { HeroStackScreen } from "@/components/design-system/HeroScreenStack";
@@ -103,7 +103,15 @@ const STEPS: StoryStep[] = [
       />
     ),
     visual: (
-      <StoryVisual dots={<DotNodes nodes={ROUTE} state="connected" label="The route to a tool, joined from sign in to sub-module" />}>
+      <StoryVisual
+        dots={
+          <DotFork
+            origin="Navigation"
+            options={[{ label: "Top navigation" }, { label: "Persistent left navigation", chosen: true }]}
+            label="Two navigation models were tested, a top bar and a persistent left menu; the persistent left menu was chosen"
+          />
+        }
+      >
         <StoryScreen
           src="/work/supply-chain-operations/new-navigation.png"
           alt="The redesigned platform with a persistent left navigation carrying the category hierarchy."

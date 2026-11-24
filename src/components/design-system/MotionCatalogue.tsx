@@ -265,6 +265,13 @@ const INVENTORY: MotionSpec[] = [
     means: "One point holds two groups together: the links grow out from it, then each group lights in turn.",
   },
   {
+    name: "Fork and choose",
+    trigger: "Step arrives",
+    timing: "Fork draws over 500ms from 300ms, options light, the unchosen go quiet at 2s, the chosen glows 2.6s",
+    loop: "Draw once; chosen glows three times, then rest",
+    means: "There were options and one was taken: the fork draws out, both light, then only the chosen one keeps its light.",
+  },
+  {
     name: "Clusters appear",
     trigger: "Step arrives",
     timing: "600ms fade each, clusters 260ms apart, then each dot drifts a few pixels over 5 to 8s",
