@@ -318,9 +318,12 @@ export function ScrollStory({
                 <path d="M7 1 1 7l6 6" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
               </svg>
             </button>
+            <span className="ds-story-count" aria-hidden="true">
+              {String(active + 1).padStart(2, "0")} / {String(steps.length).padStart(2, "0")} · {steps[active].label}
+            </span>
             <div className="ds-story-segments" aria-hidden="true">
               {steps.map((step, i) => (
-                <span key={step.label} className="ds-story-seg" style={{ "--i": i } as CSSProperties}>
+                <span key={step.label} className={`ds-story-seg${i === active ? " is-current" : ""}`} style={{ "--i": i } as CSSProperties}>
                   <span className="ds-story-seg-fill" />
                 </span>
               ))}
