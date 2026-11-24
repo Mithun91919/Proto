@@ -197,7 +197,7 @@ export function DependencyHealthSummary() {
       slug="dependency-health"
       title="Dependency Health Platform"
       standfirst="I designed the dashboard where Walmart developers see which dependencies need attention, and a remediation flow that ends in a pull request. A team now migrates its libraries in about 2 hours, down from 3 days."
-      introAlt="The Dependency Health Platform: from the organisation's view down to a repository's pull request"
+      intro={{ src: "/work/dependency-health/pillar.png", alt: "A pillar view: three health measures with a runtime distribution beside them, then every team's services against the same measures", width: 2880, height: 2960 }}
       storyLabel="Dependency Health Platform, told step by step"
       steps={STEPS}
       results={{

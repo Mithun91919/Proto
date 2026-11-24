@@ -172,7 +172,7 @@ export function PortfolioSummaryBody() {
       slug="portfolio-management"
       title="Portfolio Management Platform"
       standfirst="I designed the tool Walmart’s product teams use to link big company goals to the work and the people doing it. It replaced four separate tools and saves 800+ hours a week."
-      introAlt="The Portfolio Management Platform: its screens, from a goal down to the people on it"
+      intro={{ src: "/work/portfolio-management/home.png", alt: "The platform's home screen: a search field, alerts, quick links for new requests, a profile card and an assistant", width: 2880, height: 2210 }}
       storyLabel="Portfolio Management Platform, told step by step"
       steps={STEPS}
       results={{

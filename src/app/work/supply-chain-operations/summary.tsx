@@ -133,7 +133,7 @@ export function SupplyChainSummary() {
       slug="supply-chain-operations"
       title="Supply Chain Operations Platform"
       standfirst="I co-led the redesign of the entry point to 139 operational tools used across Walmart.com, Online Grocery and international markets. Time spent on its landing page fell by 62%."
-      introAlt="The Supply Chain Operations Platform: its landing page, module navigation and sign-in"
+      intro={{ src: "/work/supply-chain-operations/new-dashboard.png", alt: "The redesigned landing page: grouped module categories, pinned tools and recent modules.", width: 2560, height: 1576 }}
       storyLabel="Supply Chain Operations Platform, told step by step"
       steps={STEPS}
       results={{

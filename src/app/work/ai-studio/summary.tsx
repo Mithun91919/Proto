@@ -174,7 +174,7 @@ export function AiStudioSummary() {
       slug="ai-studio"
       title="Studio"
       standfirst="In Wibey, Walmart’s internal AI platform, I co-designed Studio, where builders find what exists, build what doesn’t, test it and publish it for others."
-      introAlt="Studio in Wibey: its home, the agent workbench and the MCP workbench"
+      intro={{ src: "/work/ai-studio/hero-home.jpg", alt: "Studio's home: the list of agents in a workspace, with the workspaces down the left", width: 1920, height: 1104 }}
       storyLabel="Studio, told step by step"
       steps={STEPS}
       results={{

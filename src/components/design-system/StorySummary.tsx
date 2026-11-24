@@ -143,6 +143,7 @@ export function StorySummary({
   slug,
   title,
   standfirst,
+  intro,
   introAlt,
   steps,
   storyLabel,
@@ -151,8 +152,13 @@ export function StorySummary({
   slug: string;
   title: string;
   standfirst: string;
-  /** Describes the card's own clip in the opening. */
-  introAlt: string;
+  /**
+   * One of the case study's own hero screens, shown in the opening in place of the
+   * project's card clip. Its alt text describes the screen.
+   */
+  intro?: { src: string; alt: string; width: number; height: number };
+  /** Describes the card's own clip in the opening, when no hero screen is given. */
+  introAlt?: string;
   steps: StoryStep[];
   storyLabel: string;
   results: { title: string; points: string[]; items: ResultItem[] };
@@ -194,14 +200,26 @@ export function StorySummary({
                   </dl>
                 ) : null}
               </Reveal>
-              {project?.media ? (
+              {intro ? (
+                <Reveal delay={240} variant="scale">
+                  <Image
+                    className="ds-slide-video"
+                    src={intro.src}
+                    alt={intro.alt}
+                    width={intro.width}
+                    height={intro.height}
+                    sizes="40vw"
+                    loading="eager"
+                  />
+                </Reveal>
+              ) : project?.media ? (
                 <Reveal delay={240} variant="scale">
                   <ClipVideo
                     className="ds-slide-video"
                     mp4={project.media.mp4}
                     webm={project.media.webm}
                     poster={project.media.poster}
-                    alt={introAlt}
+                    alt={introAlt ?? ""}
                     width={1600}
                     height={1046}
                   />

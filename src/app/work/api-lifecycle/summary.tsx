@@ -203,7 +203,7 @@ export function ApiLifecycleSummary() {
       slug="api-lifecycle"
       title="API Lifecycle Platform"
       standfirst="I joined at inception and shaped the product model of the platform where Walmart engineers find, design, test and govern APIs, the way one piece of software talks to another. It has onboarded 20K+ APIs and reaches 10K+ monthly users."
-      introAlt="API Hub: its home, the contract editor and the API tester"
+      intro={{ src: "/work/api-lifecycle/home.png", alt: "API Hub home: a search field over service keywords, then Get Started routes for importing, defining, subscribing, registering and publishing an API", width: 2890, height: 2712 }}
       storyLabel="API Lifecycle Platform, told step by step"
       steps={STEPS}
       results={{

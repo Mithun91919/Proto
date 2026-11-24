@@ -5854,6 +5854,17 @@ body:has(main > .ds-stage-page) .site-spacer {
   text-align: center;
 }
 
+/* Letter-spacing leaves a gap after the last letter, which pulls centred
+   mono text a little left of the centre line. Pad the front by the same amount
+   so the kicker and the facts sit on the middle with the dots and the title. */
+.ds-story-intro-center .ds-slide-eyebrow {
+  padding-left: 0.16em;
+}
+
+.ds-story-intro-center .ds-slide-meta .ds-eyebrow {
+  padding-left: 0.14em;
+}
+
 .ds-story-intro-center .ds-pull-dots {
   margin-inline: auto;
 }
@@ -5873,6 +5884,16 @@ body:has(main > .ds-stage-page) .site-spacer {
   max-width: 100%;
   object-fit: cover;
   margin-top: 2.25rem;
+}
+
+/* A hero screen in the opening is cropped to a wide window on the top of the
+   screen, about 60% of a tall one, so it reads as a screen without taking the
+   height of the page. */
+.ds-story-intro img.ds-slide-video {
+  width: auto;
+  aspect-ratio: 16 / 10;
+  object-fit: cover;
+  object-position: top;
 }
 
 /* ── Pinned story card ─────────────────────────────────────────────────────
