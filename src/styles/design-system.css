@@ -626,10 +626,28 @@
 .ds-framebar {
   display: flex;
   align-items: center;
-  gap: 10px;
-  padding: 10px 12px;
+  gap: 8px;
+  padding: 5px 10px;
   border-bottom: 1px solid var(--ds-solid-border);
   background: var(--color-paper-deep);
+}
+
+/* The browser bar is one slim strip everywhere a frame is drawn: the hero's card,
+   the screen stacks, the mockups and the summary opening. The dots and the
+   address pill are sized here, once, so no page sets its own. */
+.ds-framebar > span[aria-hidden]:first-child {
+  gap: 4px;
+}
+
+.ds-framebar > span[aria-hidden]:first-child > span {
+  width: 6px;
+  height: 6px;
+}
+
+.ds-framebar > span.flex-1 {
+  padding: 2px 8px;
+  font-size: 0.5rem;
+  line-height: 1.2;
 }
 
 .ds-framebody {
@@ -5888,33 +5906,11 @@ body:has(main > .ds-stage-page) .site-spacer {
 
 /* The opening's picture is the case study hero's own card, at the hero's own
    size: 92% of the column, up to 46rem. It runs past the fold on purpose: the
-   cut-off edge tells the reader there is more to scroll to. Its browser bar, the
-   strip with the dots and the address, is slimmer than the hero's, so the bar
-   does not take height from the screen. */
+   cut-off edge tells the reader there is more to scroll to. */
 .ds-story-intro-deck {
   width: min(46rem, 92vw);
   margin-top: 2.25rem;
   text-align: left;
-}
-
-.ds-story-intro-deck .ds-framebar {
-  padding: 5px 10px;
-  gap: 0.5rem;
-}
-
-.ds-story-intro-deck .ds-framebar > span:first-child {
-  gap: 4px;
-}
-
-.ds-story-intro-deck .ds-framebar > span:first-child > span {
-  width: 6px;
-  height: 6px;
-}
-
-.ds-story-intro-deck .ds-framebar > span:last-child {
-  padding: 2px 8px;
-  font-size: 0.5rem;
-  line-height: 1.2;
 }
 
 /* ── Pinned story card ─────────────────────────────────────────────────────
