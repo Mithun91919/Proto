@@ -5892,6 +5892,14 @@ body:has(main > .ds-stage-page) .site-spacer {
   position: relative;
 }
 
+/* The pinned card keeps its own top padding to clear the header, which shows as a
+   gap under the divider when the story first arrives. Pull the story up by most
+   of it, so the divider and the first words sit close. The card is pinned from
+   the same point as before, so nothing else moves. */
+.ds-story-divider + .ds-story-section {
+  margin-top: -3rem;
+}
+
 
 
 
