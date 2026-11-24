@@ -1,5 +1,5 @@
 import { DotNodes, type DotNode } from "@/components/design-system/DotNodes";
-import { StorySummary, StoryDots, StoryScreen, StoryVisual, StoryWords } from "@/components/design-system/StorySummary";
+import { StorySummary, StoryDots, StoryGroups, StoryScreen, StoryVisual, StoryWords } from "@/components/design-system/StorySummary";
 import type { StoryStep } from "@/components/design-system/ScrollStory";
 import type { HeroStackScreen } from "@/components/design-system/HeroScreenStack";
 
@@ -83,11 +83,9 @@ const STEPS: StoryStep[] = [
       />
     ),
     visual: (
-      <StoryDots
-        nodes={ROUTE}
-        state="connected"
-        label="The route to a tool: sign in, the landing page, then category, module and sub-module"
-        note="Each dot is a stop on the way to a tool."
+      <StoryGroups
+        label="139 dots, one for each tool, gathering into new groups"
+        note="Each dot is one of the 139 tools, gathered into new groups."
       />
     ),
   },

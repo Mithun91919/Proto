@@ -3,7 +3,7 @@ import type { ReactNode } from "react";
 import { getProject } from "@/content/projects";
 import { ClipVideo } from "./ClipFigure";
 import { HeroScreenStack, type HeroStackScreen } from "./HeroScreenStack";
-import { DotNodes, type DotNode } from "./DotNodes";
+import { DotGroups, DotNodes, type DotNode } from "./DotNodes";
 import { Reveal } from "@/components/Reveal";
 import { ResultsGrid, type ResultItem } from "./ResultsGrid";
 import { ScrollStory, WhenInView, type StoryStep } from "./ScrollStory";
@@ -125,6 +125,16 @@ export function StoryDots({
   return (
     <div className="ds-slide-visual">
       <DotNodes nodes={nodes} state={state} label={label} active={active} />
+      {note ? <p className="ds-slide-dots-note">{note}</p> : null}
+    </div>
+  );
+}
+
+/** A step whose picture is a field of dots gathering into groups, with at most one short note under it. */
+export function StoryGroups({ label, note, sizes }: { label: string; note?: string; sizes?: number[] }) {
+  return (
+    <div className="ds-slide-visual">
+      <DotGroups label={label} sizes={sizes} />
       {note ? <p className="ds-slide-dots-note">{note}</p> : null}
     </div>
   );

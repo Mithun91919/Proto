@@ -5615,6 +5615,39 @@ body:has(main > .ds-stage-page) .site-spacer {
   animation: ds-dn-breathe 2.6s ease-in-out 1.8s 3;
 }
 
+/* ── Dot groups ────────────────────────────────────────────────────────────
+   A field of dots that gathers into groups. Each dot sits in its group; the
+   motion starts it from a scattered place and moves it home, one group after
+   another, lighting as it lands. It runs once and rests. Sizes and positions are
+   in container units, so the picture scales with its frame. */
+.ds-dg {
+  position: relative;
+  container-type: inline-size;
+  width: 100%;
+}
+
+.ds-dg-dot {
+  position: absolute;
+  left: calc(var(--gx) * 1cqw);
+  top: calc(var(--gy) * 1cqw);
+  width: 1.3cqw;
+  height: 1.3cqw;
+  border-radius: 50%;
+  background: var(--ds-accent);
+  transform: translate(-50%, -50%);
+}
+
+@keyframes ds-dg-gather {
+  from {
+    transform: translate(calc(-50% + var(--dx) * 1cqw), calc(-50% + var(--dy) * 1cqw));
+    background: var(--ds-dot-muted);
+  }
+}
+
+.ds-slide.is-active .ds-dg-dot {
+  animation: ds-dg-gather 1700ms cubic-bezier(0.3, 0.7, 0.2, 1) calc(350ms + var(--g) * 140ms) both;
+}
+
 @media (prefers-reduced-motion: reduce) {
   /* Stated with !important because the rules above are more specific than any
      short selector can be, and a reader who asked for no motion must get none. */
@@ -5623,7 +5656,8 @@ body:has(main > .ds-stage-page) .site-spacer {
   .ds-slide .ds-dn .ds-dn-dot,
   .ds-slide .ds-dn .ds-dn-node::after,
   .ds-slide .ds-dt .ds-dt-link,
-  .ds-slide .ds-dt .ds-dn-dot {
+  .ds-slide .ds-dt .ds-dn-dot,
+  .ds-slide .ds-dg .ds-dg-dot {
     animation: none !important;
   }
 

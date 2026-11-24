@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { SectionHeader, SubLabel } from "./primitives/SectionHeader";
-import { DotNodes, DotTrio, type DotNode } from "./DotNodes";
+import { DotGroups, DotNodes, DotTrio, type DotNode } from "./DotNodes";
 import { ReplayFrame } from "./ReplayFrame";
 import { ResultsGrid } from "./ResultsGrid";
 
@@ -84,12 +84,13 @@ const DOT_STATES: { state: string; looks: string; means: string; motion: string 
   { state: "Joined", looks: "Five lit dots in a line with dotted links", means: "The same pieces, now connected in order", motion: "They line up and light, the links draw, a pulse runs the chain twice" },
   { state: "Placed", looks: "The chain with one dot larger and lit, the rest quiet", means: "Where this step sits in the chain", motion: "A pulse runs from the first dot to the lit one; that dot then glows three times" },
   { state: "One to many", looks: "A large dot, a link each side, a group of dots on each", means: "One point holds two groups together", motion: "Links grow from the middle, each group lights in turn, the centre glows three times" },
+  { state: "Gathered", looks: "A field of dots, one for each thing, resting in several groups", means: "The same things, now held in new groups; no line, no order", motion: "From scattered and quiet, each group's dots move home and light, one group after another, once" },
 ];
 
 const DOT_RULES: Rule[] = [
   { rule: "Every dot motion is keyed to the step being active", note: "Each rule starts with .ds-slide.is-active, so it begins on arrival and begins again on the next arrival. Anything holding a visual must carry ds-slide and gain is-active when its step shows. ScrollStory and SlideDeck do this; a specimen outside them uses ReplayFrame." },
   { rule: "Nothing loops for ever", note: "The pulse makes two passes, the glow three, the ring one tour, the cue three bobs. Every animation ends on the resting style, so nothing is left moving or half-drawn. The motion budget, J3e, has no exceptions, and this is where it was nearly broken." },
-  { rule: "Draw new dots when the story needs them", note: "A project may need an arrangement none of the four states gives, such as a branching, a loop back, a set of unequal groups or two chains side by side. Build it. It must say one thing the case study says, take its counts from the source, end on a still resting state, be keyed to the active step, show finished under reduced motion, be listed in the motion inventory, and get a Replay specimen here beside the others. What is fixed is these conditions, not the shapes." },
+  { rule: "Draw new dots when the story needs them", note: "A project may need an arrangement none of the states gives, such as a branching, a loop back or two chains side by side. Gathered is one such: Supply Chain Operations regrouped 139 tools into new groups, which a line of five dots would have drawn as a sequence. Build it. It must say one thing the case study says, take its counts from the source, end on a still resting state, be keyed to the active step, show finished under reduced motion, be listed in the motion inventory, and get a Replay specimen here beside the others. What is fixed is these conditions, not the shapes." },
   { rule: "The chain is five nodes", note: "The ring's path, the pulse's run and the placed pulse are written against five equal columns, with the dots at 10, 30, 50, 70 and 90 per cent. Another number of dots in the chain needs those keyframes redrawn. Do not pass four or six without redrawing them." },
   { rule: "The dots stay one size", note: "A different size would imply a quantity the source does not give. The one exception is the lit dot, which is larger to mark a place, never a count." },
   { rule: "The finished state is the plain style", note: "Nothing depends on the motion to be understood. A reader with reduced motion gets the row as it ends: lit, joined, still. The animation rules are switched off with !important in that case, and the ring is hidden." },
@@ -200,7 +201,7 @@ export function ScrollStorySpec() {
       <div className="ds-rule py-11">
         <SubLabel code="N4 · The dots" />
         <Lede>
-          The dots are the way into each step. These four states are a starting vocabulary, not a closed list: draw
+          The dots are the way into each step. These five states are a starting vocabulary, not a closed list: draw
           the picture the story needs, and add what it needs to the system. Each state says one thing, and the
           conditions below hold for any new one. Press Replay to watch one again: it plays when its step arrives, so
           on this page it is held in that state.
@@ -253,6 +254,12 @@ export function ScrollStorySpec() {
             <SubLabel code="One to many" />
             <ReplayFrame dark label="One dot joined to two groups of three">
               <DotTrio left={{ label: "Product managers", count: 3 }} centre="Design" right={{ label: "Engineering teams", count: 3 }} />
+            </ReplayFrame>
+          </div>
+          <div>
+            <SubLabel code="Gathered · 139 things into groups" />
+            <ReplayFrame dark label="139 dots gathering into nine groups">
+              <DotGroups label="139 dots, one for each tool, gathering into new groups" />
             </ReplayFrame>
           </div>
         </div>
