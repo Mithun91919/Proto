@@ -166,13 +166,14 @@ export const metadata: Metadata = {
  * so working down the row always moves down the page.
  */
 const NAV = [
-  { label: "Principles", href: "#principles" },
-  { label: "Foundations", href: "#foundations" },
-  { label: "Components", href: "#narrative" },
-  { label: "Recipes", href: "#recipes" },
-  { label: "Motion", href: "#interaction" },
-  { label: "Case-study media", href: "#case-study-media" },
-  { label: "Scroll story", href: "#scroll-story" },
+  { label: "A · Principles", href: "#principles" },
+  { label: "B · Foundations", href: "#foundations" },
+  { label: "E · Narrative components", href: "#narrative" },
+  { label: "I · Recipes", href: "#recipes" },
+  { label: "J · Motion", href: "#interaction" },
+  { label: "M · Case-study media", href: "#case-study-media" },
+  { label: "N · Scroll story", href: "#scroll-story" },
+  { label: "Changelog", href: "#changelog" },
 ];
 
 const SWATCHES = [
@@ -255,7 +256,7 @@ export default function ComponentsPage() {
           <span>Design system</span>
           <span>The system behind this site</span>
           <span className="ml-auto" style={{ color: "var(--ds-accent)" }}>
-            v6
+            v7 · updated 24 Nov 2026
           </span>
         </div>
         <h1 className="display-title mt-10 max-w-[18ch]" style={{ fontSize: "3rem", lineHeight: 1.05 }}>
@@ -279,13 +280,44 @@ export default function ComponentsPage() {
         </div>
       </header>
 
+      {/* What the site is built with, stated up front. */}
+      <section id="stack" className="mx-auto max-w-[70rem] px-5 pt-14 scroll-mt-28 md:px-8">
+        <div className="ds-rule py-8">
+          <p className="eyebrow">Built with</p>
+          <h2 className="display-title mt-3 max-w-[30ch]" style={{ fontSize: "1.5rem", lineHeight: 1.25 }}>
+            Next.js, React and Tailwind, hosted on Vercel.
+          </h2>
+          <dl className="mt-6 grid grid-cols-1 gap-x-10 gap-y-4 sm:grid-cols-2">
+            {[
+              { k: "Framework", v: "Next.js 16, App Router" },
+              { k: "UI", v: "React 19" },
+              { k: "Language", v: "TypeScript" },
+              { k: "Styling", v: "Tailwind CSS 4, with CSS variables for the design tokens" },
+              { k: "Type", v: "Sora, Instrument Sans and IBM Plex Mono, self-hosted" },
+              { k: "Dots", v: "interactive-dot-grid, for the dotted background" },
+              { k: "Hosting", v: "Vercel, with Web Analytics" },
+              { k: "Content", v: "Written in the repository, with no CMS" },
+            ].map((row) => (
+              <div key={row.k} className="flex items-baseline gap-4 border-t pt-3" style={{ borderColor: "var(--ds-solid-border)" }}>
+                <dt className="w-24 shrink-0 font-mono text-[0.65rem] uppercase tracking-[0.12em]" style={{ color: "var(--muted)" }}>
+                  {row.k}
+                </dt>
+                <dd className="text-[0.95rem] leading-6" style={{ color: "var(--ink)" }}>
+                  {row.v}
+                </dd>
+              </div>
+            ))}
+          </dl>
+        </div>
+      </section>
+
       {/* Start here — the front door. The page below is reference; this is the
           minute a visitor needs before deciding whether to read it. */}
       <section id="start" className="mx-auto max-w-[70rem] px-5 pt-16 scroll-mt-28 md:px-8">
         <div className="ds-rule py-10">
           <p className="eyebrow">Start here</p>
           <h2 className="display-title mt-3 max-w-[26ch]" style={{ fontSize: "1.9rem", lineHeight: 1.2 }}>
-            The rules and parts that make eleven case studies read as one body of work.
+            The rules and parts that make twelve case studies read as one body of work.
           </h2>
           <p className="mt-4 max-w-[62ch] text-base leading-7" style={{ color: "var(--ink-soft)" }}>
             The work I show is complex, so the page should spend a reader&apos;s attention on the work, not on the
@@ -1363,7 +1395,7 @@ export default function ComponentsPage() {
         <div className="ds-rule py-11">
           <SubLabel code="J2 · Chapter progress" />
           <p className="mb-7 max-w-[65ch] text-[0.95rem] leading-7" style={{ color: "var(--ink-soft)" }}>
-            Dots earn a UI role here: a subtle fixed rail can show chapter progress. Hover or focus reveals the chapter label; mobile collapses it into a compact top indicator.
+            Dots earn a UI role here: a subtle fixed rail can show chapter progress. Hover or focus reveals the chapter label. The rail is hidden below a desktop width, because the site is built for desktop.
           </p>
           <ChapterProgressDemo />
           <p className="mt-7 max-w-[65ch] text-[0.95rem] leading-7" style={{ color: "var(--ink-soft)" }}>
@@ -2381,6 +2413,41 @@ export default function ComponentsPage() {
 
       {/* N — Scroll story: the walkthrough pattern, with the conditions it needs. */}
       <ScrollStorySpec />
+
+      <section id="changelog" className="mx-auto max-w-[70rem] px-5 pt-14 scroll-mt-28 md:px-8">
+        <div className="ds-rule py-11">
+          <p className="eyebrow">Changelog</p>
+          <h2 className="display-title mt-3" style={{ fontSize: "1.5rem", lineHeight: 1.25 }}>
+            v7, 24 November 2026
+          </h2>
+          <ul className="mt-5 max-w-[70ch] space-y-3 text-[0.95rem] leading-7" style={{ color: "var(--ink-soft)" }}>
+            <li>
+              <strong style={{ color: "var(--ink)" }}>N · Scroll story.</strong> The pattern behind the seven case-study
+              summaries, with its copy, dot and scroll rules and a checklist.
+            </li>
+            <li>
+              <strong style={{ color: "var(--ink)" }}>Dot states.</strong> Apart, joined, placed, one to many, gathered,
+              clusters apart, share and choice, each with a replay specimen and a line in the motion inventory.
+            </li>
+            <li>
+              <strong style={{ color: "var(--ink)" }}>Metric glyph.</strong> One size everywhere, the 3×3; the 5×5 stays
+              as reference only.
+            </li>
+            <li>
+              <strong style={{ color: "var(--ink)" }}>Chapter bar.</strong> A reading-progress line on long case studies,
+              beside the chapter rail.
+            </li>
+            <li>
+              <strong style={{ color: "var(--ink)" }}>Browser bar.</strong> One slim strip in the base frame styles, shared
+              by the hero card, the screen stacks and the mockups.
+            </li>
+            <li>
+              <strong style={{ color: "var(--ink)" }}>Summary switch.</strong> Only the case studies that have a summary
+              offer it; the five short ones show in full.
+            </li>
+          </ul>
+        </div>
+      </section>
       </ProgressiveSections>
     </div>
   );
