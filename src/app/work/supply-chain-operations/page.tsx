@@ -240,7 +240,7 @@ export default function SupplyChainOperationsPage() {
           bleed
           eyebrow="Structure"
           heading="Re-skinning the front would have promised what the platform could not deliver"
-          body="The cheaper path was to leave the structure alone and redesign over it. We argued against that: better packaging raises what people expect, and the product underneath has to be worth the expectation it sets. Nothing could be grouped until we could say what each of the 139 modules actually did, so close to a dozen category teams settled that module by module. We landed on Category → Module → Sub-module. These were legacy systems and the teams were against changing them, so each had to be shown the merit before they agreed, and it took several rounds of leadership approval before it could ship."
+          body="We argued against re-skinning over the old structure, because better packaging raises expectations the product has to meet. So close to a dozen category teams settled what each of the 139 modules did, and we grouped them into Category → Module → Sub-module. Each legacy team had to be shown the merit, and it took several rounds of leadership approval."
         />
       </div>
 
