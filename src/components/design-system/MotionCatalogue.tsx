@@ -265,6 +265,13 @@ const INVENTORY: MotionSpec[] = [
     means: "One point holds two groups together: the links grow out from it, then each group lights in turn.",
   },
   {
+    name: "Clusters appear",
+    trigger: "Step arrives",
+    timing: "600ms fade each, clusters 260ms apart, from 250ms",
+    loop: "Once, then rest",
+    means: "The work was kept in many separate places: one cluster for each, appearing apart from the others and left unjoined.",
+  },
+  {
     name: "Gather into groups",
     trigger: "Step arrives",
     timing: "1.7s ease-out per dot, groups 140ms apart, from 350ms",

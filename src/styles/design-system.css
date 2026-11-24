@@ -5644,6 +5644,37 @@ body:has(main > .ds-stage-page) .site-spacer {
   }
 }
 
+/* Apart: one cluster for each place, unlit and left unjoined, arriving one after
+   another. The dots do not travel; they and the label appear where they are. */
+.ds-dg.is-apart .ds-dg-dot {
+  background: var(--ds-dot-muted);
+  width: 1.7cqw;
+  height: 1.7cqw;
+}
+
+.ds-dg-label {
+  position: absolute;
+  left: calc(var(--gx) * 1cqw);
+  top: calc(var(--gy) * 1cqw);
+  transform: translateX(-50%);
+  width: 22cqw;
+  text-align: center;
+  font-family: var(--font-mono), ui-monospace, monospace;
+  font-size: 0.66rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+@keyframes ds-dg-appear {
+  from { opacity: 0; }
+}
+
+.ds-slide.is-active .ds-dg.is-apart .ds-dg-dot,
+.ds-slide.is-active .ds-dg.is-apart .ds-dg-label {
+  animation: ds-dg-appear 600ms ease-out calc(250ms + var(--g) * 260ms) both;
+}
+
 .ds-slide.is-active .ds-dg-dot {
   animation: ds-dg-gather 1700ms cubic-bezier(0.3, 0.7, 0.2, 1) calc(350ms + var(--g) * 140ms) both;
 }
@@ -5657,7 +5688,8 @@ body:has(main > .ds-stage-page) .site-spacer {
   .ds-slide .ds-dn .ds-dn-node::after,
   .ds-slide .ds-dt .ds-dt-link,
   .ds-slide .ds-dt .ds-dn-dot,
-  .ds-slide .ds-dg .ds-dg-dot {
+  .ds-slide .ds-dg .ds-dg-dot,
+  .ds-slide .ds-dg .ds-dg-label {
     animation: none !important;
   }
 

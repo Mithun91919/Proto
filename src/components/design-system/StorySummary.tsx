@@ -130,11 +130,11 @@ export function StoryDots({
   );
 }
 
-/** A step whose picture is a field of dots gathering into groups, with at most one short note under it. */
-export function StoryGroups({ label, note, sizes }: { label: string; note?: string; sizes?: number[] }) {
+/** A step whose picture is a field of dots in groups (gathering, or one cluster for each named place), with at most one short note under it. */
+export function StoryGroups({ label, note, sizes, places }: { label: string; note?: string; sizes?: number[]; places?: string[] }) {
   return (
     <div className="ds-slide-visual">
-      <DotGroups label={label} sizes={sizes} />
+      <DotGroups label={label} sizes={sizes} places={places} />
       {note ? <p className="ds-slide-dots-note">{note}</p> : null}
     </div>
   );

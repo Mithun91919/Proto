@@ -1,5 +1,5 @@
 import { DotNodes, DotTrio, type DotNode } from "@/components/design-system/DotNodes";
-import { StorySummary, StoryDots, StoryScreen, StoryVisual, StoryWords } from "@/components/design-system/StorySummary";
+import { StorySummary, StoryDots, StoryGroups, StoryScreen, StoryVisual, StoryWords } from "@/components/design-system/StorySummary";
 import type { StoryStep } from "@/components/design-system/ScrollStory";
 import type { HeroStackScreen } from "@/components/design-system/HeroScreenStack";
 
@@ -41,8 +41,6 @@ const HERO_SCREENS: HeroStackScreen[] = [
  */
 
 const CHAIN: DotNode[] = ["Goal", "Project", "Product", "Person", "Tasks"].map((label) => ({ label }));
-/** The five places the whiteboarding sessions found the work living, in the order the section names them. */
-const PLACES: DotNode[] = ["Who works on what", "Products and projects", "Initiatives and budgets", "Goals", "The work, in Jira"].map((label) => ({ label }));
 
 /** A step along the chain: the chain with one dot lit, and the real screen under it. */
 function chainVisual(active: number, src: string, alt: string) {
@@ -67,7 +65,13 @@ const STEPS: StoryStep[] = [
         ]}
       />
     ),
-    visual: <StoryDots nodes={PLACES} state="scattered" label="The five places the work was kept, with nothing joining them" note="Each dot is a place the work was kept." />,
+    visual: (
+      <StoryGroups
+        places={["Who works on what", "Products and projects", "Initiatives and budgets", "Goals", "The work, in Jira"]}
+        label="The work, kept in five separate places, with nothing joining them"
+        note="Each cluster is a place the work was kept."
+      />
+    ),
   },
   {
     label: "Why it mattered",

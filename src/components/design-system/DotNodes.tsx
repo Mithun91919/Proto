@@ -113,6 +113,17 @@ export function DotTrio({ left, centre, right }: DotTrioProps) {
 /** How many dots go in each group by default: nine groups of unequal size that add up to 139. */
 const GROUP_SIZES = [18, 12, 20, 10, 16, 14, 17, 13, 19];
 
+/** Where each cluster of the `places` picture sits, in container units, spread wide on purpose. */
+const PLACE_CENTRES: [number, number][] = [
+  [13, 9],
+  [58, 7],
+  [36, 27],
+  [86, 23],
+  [17, 41],
+];
+/** How many dots each place gets: unequal, and a picture, not a measurement. */
+const PLACE_SIZES = [8, 5, 9, 4, 6];
+
 /** A small seeded generator, so the server and the browser draw the same picture. */
 function seeded(seed: number) {
   let state = seed;
@@ -123,30 +134,40 @@ function seeded(seed: number) {
 }
 
 /**
- * A field of dots, one for each thing, that gathers into groups: new groups
- * made to hold the things that were scattered. Not a line and not a hierarchy,
- * because nothing here comes before anything else: the things are the same and
- * the groups are what is new.
+ * Dots that stand for many things, in groups. Two pictures from one component.
  *
- * The total is the true count from the source (`sizes` add up to it). The sizes
- * of the groups are a picture, not a measurement: the source says things were
- * grouped, not how many went where, so no caption may read them as counts.
+ * **Gathered** (no `places`): a field of dots, one for each thing, that gathers
+ * into new groups. Not a line and not a hierarchy, because nothing comes before
+ * anything else: the things are the same and the groups are what is new. The
+ * total is the true count from the source (`sizes` add up to it).
  *
- * Positions are written once, as custom properties, and the gathering is a
- * finite CSS motion keyed to the step being active (see `design-system.css`,
- * "Dot groups"). Without motion the dots simply sit in their groups.
+ * **Apart** (`places`): one small cluster for each named place, set well apart
+ * and left unjoined, each with its label. It says the work was kept in many
+ * separate places. The clusters appear one after another and rest.
+ *
+ * In both, the sizes of the groups are a picture, not a measurement: the source
+ * says things were grouped or kept in places, not how many went where, so no
+ * caption may read them as counts.
+ *
+ * Positions are written once, as custom properties, and the motion is finite CSS
+ * keyed to the step being active (see `design-system.css`, "Dot groups"). Without
+ * motion the dots simply sit in place.
  */
-export function DotGroups({ label, sizes = GROUP_SIZES }: { label: string; sizes?: number[] }) {
+export function DotGroups({ label, sizes, places }: { label: string; sizes?: number[]; places?: string[] }) {
   const rand = seeded(7);
+  const apart = Boolean(places);
+  const counts = sizes ?? (apart ? PLACE_SIZES.slice(0, places!.length) : GROUP_SIZES);
   const cols = 3;
-  const rows = Math.ceil(sizes.length / cols);
-  const height = rows * 16 + 4;
+  const rows = apart ? 3 : Math.ceil(counts.length / cols);
+  const height = apart ? 52 : rows * 16 + 4;
+  const centres = counts.map((_, g): [number, number] =>
+    apart ? PLACE_CENTRES[g % PLACE_CENTRES.length] : [17 + 33 * (g % cols), 10 + 16 * Math.floor(g / cols)],
+  );
   const dots: { gx: number; gy: number; dx: number; dy: number; g: number }[] = [];
-  sizes.forEach((count, g) => {
-    const cx = 17 + 33 * (g % cols);
-    const cy = 10 + 16 * Math.floor(g / cols);
+  counts.forEach((count, g) => {
+    const [cx, cy] = centres[g];
     for (let k = 0; k < count; k++) {
-      const r = 1.5 * Math.sqrt(k + 0.5);
+      const r = (apart ? 1.3 : 1.5) * Math.sqrt(k + 0.5);
       const a = k * 2.39996 + g * 1.3;
       const gx = cx + r * Math.cos(a);
       const gy = cy + r * Math.sin(a);
@@ -156,7 +177,7 @@ export function DotGroups({ label, sizes = GROUP_SIZES }: { label: string; sizes
     }
   });
   return (
-    <div className="ds-dg" role="img" aria-label={label} style={{ aspectRatio: `100 / ${height}` }}>
+    <div className={`ds-dg${apart ? " is-apart" : ""}`} role="img" aria-label={label} style={{ aspectRatio: `100 / ${height}` }}>
       {dots.map((d, i) => (
         <span
           key={i}
@@ -164,6 +185,18 @@ export function DotGroups({ label, sizes = GROUP_SIZES }: { label: string; sizes
           style={{ "--gx": d.gx.toFixed(2), "--gy": d.gy.toFixed(2), "--dx": d.dx.toFixed(2), "--dy": d.dy.toFixed(2), "--g": d.g } as CSSProperties}
         />
       ))}
+      {apart
+        ? places!.map((name, g) => (
+            <span
+              key={name}
+              className="ds-dg-label"
+              aria-hidden="true"
+              style={{ "--gx": centres[g][0], "--gy": centres[g][1] + 8, "--g": g } as CSSProperties}
+            >
+              {name}
+            </span>
+          ))
+        : null}
     </div>
   );
 }

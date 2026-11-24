@@ -84,6 +84,7 @@ const DOT_STATES: { state: string; looks: string; means: string; motion: string 
   { state: "Joined", looks: "Five lit dots in a line with dotted links", means: "The same pieces, now connected in order", motion: "They line up and light, the links draw, a pulse runs the chain twice" },
   { state: "Placed", looks: "The chain with one dot larger and lit, the rest quiet", means: "Where this step sits in the chain", motion: "A pulse runs from the first dot to the lit one; that dot then glows three times" },
   { state: "One to many", looks: "A large dot, a link each side, a group of dots on each", means: "One point holds two groups together", motion: "Links grow from the middle, each group lights in turn, the centre glows three times" },
+  { state: "Clusters apart", looks: "One small cluster of dots for each named place, spread wide, unlit, each with its label", means: "The work was kept in many separate places", motion: "The clusters appear one after another, once, and rest" },
   { state: "Gathered", looks: "A field of dots, one for each thing, resting in several groups", means: "The same things, now held in new groups; no line, no order", motion: "From scattered and quiet, each group's dots move home and light, one group after another, once" },
 ];
 
@@ -201,7 +202,7 @@ export function ScrollStorySpec() {
       <div className="ds-rule py-11">
         <SubLabel code="N4 · The dots" />
         <Lede>
-          The dots are the way into each step. These five states are a starting vocabulary, not a closed list: draw
+          The dots are the way into each step. These six states are a starting vocabulary, not a closed list: draw
           the picture the story needs, and add what it needs to the system. Each state says one thing, and the
           conditions below hold for any new one. Press Replay to watch one again: it plays when its step arrives, so
           on this page it is held in that state.
@@ -254,6 +255,15 @@ export function ScrollStorySpec() {
             <SubLabel code="One to many" />
             <ReplayFrame dark label="One dot joined to two groups of three">
               <DotTrio left={{ label: "Product managers", count: 3 }} centre="Design" right={{ label: "Engineering teams", count: 3 }} />
+            </ReplayFrame>
+          </div>
+          <div>
+            <SubLabel code="Clusters apart · five places" />
+            <ReplayFrame dark label="Five labelled clusters of dots appearing, well apart">
+              <DotGroups
+                places={["Who works on what", "Products and projects", "Initiatives and budgets", "Goals", "The work, in Jira"]}
+                label="The work, kept in five separate places, with nothing joining them"
+              />
             </ReplayFrame>
           </div>
           <div>
