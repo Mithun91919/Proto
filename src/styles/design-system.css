@@ -5887,13 +5887,34 @@ body:has(main > .ds-stage-page) .site-spacer {
 }
 
 /* The opening's picture is the case study hero's own card, at the hero's own
-   size: 92% of the column, up to 46rem. It runs past the fold on purpose. The
-   cut-off edge tells the reader there is more to scroll to, and the cue sits
-   under it. */
+   size: 92% of the column, up to 46rem. It runs past the fold on purpose: the
+   cut-off edge tells the reader there is more to scroll to. Its browser bar, the
+   strip with the dots and the address, is slimmer than the hero's, so the bar
+   does not take height from the screen. */
 .ds-story-intro-deck {
   width: min(46rem, 92vw);
   margin-top: 2.25rem;
   text-align: left;
+}
+
+.ds-story-intro-deck .ds-framebar {
+  padding: 5px 10px;
+  gap: 0.5rem;
+}
+
+.ds-story-intro-deck .ds-framebar > span:first-child {
+  gap: 4px;
+}
+
+.ds-story-intro-deck .ds-framebar > span:first-child > span {
+  width: 6px;
+  height: 6px;
+}
+
+.ds-story-intro-deck .ds-framebar > span:last-child {
+  padding: 2px 8px;
+  font-size: 0.5rem;
+  line-height: 1.2;
 }
 
 /* ── Pinned story card ─────────────────────────────────────────────────────

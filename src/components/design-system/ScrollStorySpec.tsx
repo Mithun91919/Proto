@@ -56,7 +56,7 @@ const WHEN: Rule[] = [
 ];
 
 const ANATOMY: { part: string; file: string; job: string }[] = [
-  { part: "Opening", file: "StorySummary.tsx, a ds-pull band", job: "Dark, centred, one screen tall: kicker, title, standfirst, role, years and where, the case study hero's lead screen in its own framed card at the hero's size (it runs past the fold on purpose, so the cut edge says there is more), a scroll cue. The same band carries the story, so it is one dark block." },
+  { part: "Opening", file: "StorySummary.tsx, a ds-pull band", job: "Dark, centred, one screen tall: kicker, title, standfirst, role, years and where, the case study hero's lead screen in its own framed card at the hero's size, with a slimmer browser bar (it runs past the fold on purpose, so the cut edge says there is more), a scroll cue. The same band carries the story, so it is one dark block." },
   { part: "Story", file: "ScrollStory.tsx", job: "A tall track holding one pinned card. Scrolling past the track changes what is in the card. Takes steps (label, text, visual), stepVh and holdSwipes." },
   { part: "Dots", file: "DotNodes.tsx", job: "DotNodes draws five dots apart, joined, or joined with one lit. DotTrio draws one dot joined to two groups." },
   { part: "Rail", file: "ChapterProgress.tsx", job: "The site's left rail in its controlled mode: activeId and onSelect. Hidden while the card is not pinned." },
