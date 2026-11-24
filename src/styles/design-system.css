@@ -6466,3 +6466,52 @@ body:has(main > .ds-stage-page) .site-spacer {
   width: auto;
   max-width: 92vw;
 }
+
+/* ── Chapter bar ───────────────────────────────────────────────────────────
+   The reading-progress line along the foot of a long case study: a hairline in a
+   piece for each chapter, with the chapter's number and name at its left. It uses
+   the same pieces as the summaries' story bar (`.ds-story-count`, `-seg`) and only
+   places and colours them. */
+.ds-chapter-bar {
+  position: fixed;
+  left: 50%;
+  bottom: 1.1rem;
+  z-index: 40;
+  display: flex;
+  align-items: center;
+  gap: 1.1rem;
+  width: min(68rem, calc(100vw - 9rem));
+  padding: 0.6rem 1.1rem;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  /* A surface of its own, so the words and the line stay readable over body copy. */
+  background: color-mix(in oklab, var(--paper) 88%, transparent);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  box-shadow: 0 8px 24px rgb(12 23 28 / 0.1);
+  transform: translateX(-50%) translateY(0.6rem);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 300ms ease, transform 300ms ease;
+}
+
+.ds-chapter-bar.is-shown {
+  opacity: 1;
+  transform: translateX(-50%);
+}
+
+/* Over a dark band the words and the empty line take the light colours. */
+.ds-chapter-bar[data-tone="dark"] {
+  --ink-soft: var(--ds-dark-muted);
+  --ds-dot-muted: color-mix(in oklab, var(--ds-dark-ink) 28%, transparent);
+  --ds-accent: var(--ds-mint);
+  border-color: color-mix(in oklab, var(--ds-dark-ink) 16%, transparent);
+  background: color-mix(in oklab, var(--ds-dark) 82%, transparent);
+  box-shadow: 0 8px 24px rgb(0 0 0 / 0.3);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ds-chapter-bar {
+    transition: none;
+  }
+}

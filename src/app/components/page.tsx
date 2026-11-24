@@ -1366,6 +1366,15 @@ export default function ComponentsPage() {
             Dots earn a UI role here: a subtle fixed rail can show chapter progress. Hover or focus reveals the chapter label; mobile collapses it into a compact top indicator.
           </p>
           <ChapterProgressDemo />
+          <p className="mt-7 max-w-[65ch] text-[0.95rem] leading-7" style={{ color: "var(--ink-soft)" }}>
+            The rail shows where you are, but only a hover names the chapter. A long case study also gets{" "}
+            <code className="font-mono text-[0.85em]">ChapterBar</code>: a hairline along the foot of the screen, a
+            piece for each chapter sized by how long that chapter really is, filling as you read, with a small light at
+            its leading edge and the chapter&apos;s number and name at its left (&ldquo;05 / 10 &middot; Finding a
+            service&rdquo;). It has its own surface so it stays readable over body copy, takes the dark colours over a
+            dark band, appears once the first chapter is reached and goes when the last one ends. It is feedback, not a
+            control: the rail is how you jump. It uses the same pieces as the summaries&apos; story bar.
+          </p>
         </div>
 
         <div className="ds-rule py-11">

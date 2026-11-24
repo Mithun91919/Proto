@@ -14,6 +14,7 @@ import { SummaryHero } from "./SummaryHero";
 import { SummaryBlocks } from "./SummaryBlocks";
 import { SummaryCta } from "./SummaryCta";
 import { ChapterProgress, type ChapterRef } from "./ChapterProgress";
+import { ChapterBar } from "./ChapterBar";
 
 /**
  * The locked case-study template.
@@ -121,6 +122,7 @@ export function CaseStudyShell({
   return (
     <article className="ds-scope">
       {chapters.length > 0 ? <ChapterProgress chapters={chapters} /> : null}
+      {chapters.length > 0 ? <ChapterBar chapters={chapters} /> : null}
       {/* The band is the top-level item on the page. The way back, and the
           confidentiality note, live in the header. */}
       <CaseStudyHero {...heroWithAxes} />
