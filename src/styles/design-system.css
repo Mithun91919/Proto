@@ -6012,7 +6012,7 @@ body:has(main > .ds-stage-page) .site-spacer {
   width: 100%;
   max-width: 85rem;
   margin: 0 auto;
-  padding: 4.25rem clamp(1.25rem, 2.5vw, 2rem) 5rem;
+  padding: 4.76rem clamp(1.25rem, 2.5vw, 2rem) 5rem;
   /* As tall as the screen, so the divider that sits at its foot sits at the
      foot of the screen, not under whatever the step happens to hold. */
   min-height: 100vh;
