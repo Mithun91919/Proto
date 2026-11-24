@@ -67,6 +67,10 @@ export function StoryScreen({
       width={width}
       height={height}
       sizes="55vw"
+      // Eager, not lazy: every step's screen sits in the page at once, one over the
+      // other, and the browser's lazy loading left some of them unfetched until the
+      // reader arrived on them, so the step showed an empty frame.
+      loading="eager"
     />
   );
 }
