@@ -6223,7 +6223,7 @@ body:has(main > .ds-stage-page) .site-spacer {
   gap: 14px;
 }
 
-/* A step is a row of dots on the page grid's pitch, in place of a line. The dots
+/* A step is a row of dots, one every 20px, in place of a line. The dots
    fill with light as you scroll through the step: the lit row is clipped to the
    progress, so no dot is stretched. */
 .ds-story-seg {
@@ -6231,13 +6231,13 @@ body:has(main > .ds-stage-page) .site-spacer {
   flex: 1;
   height: 8px;
   overflow: hidden;
-  background: radial-gradient(circle, var(--ds-dot-muted) 1.7px, transparent 2px) 0 50% / 10px 8px repeat-x;
+  background: radial-gradient(circle, var(--ds-dot-muted) 2.3px, transparent 2.6px) 0 50% / 20px 8px repeat-x;
 }
 
 .ds-story-seg-fill {
   position: absolute;
   inset: 0 auto 0 0;
-  background: radial-gradient(circle, var(--ds-accent) 1.7px, transparent 2px) 0 50% / 10px 8px repeat-x;
+  background: radial-gradient(circle, var(--ds-accent) 2.3px, transparent 2.6px) 0 50% / 20px 8px repeat-x;
   width: clamp(0%, calc((var(--story-p, 0) - var(--i)) * 100%), 100%);
 }
 
