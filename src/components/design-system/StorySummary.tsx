@@ -2,6 +2,7 @@ import Image from "next/image";
 import type { ReactNode } from "react";
 import { getProject } from "@/content/projects";
 import { ClipVideo } from "./ClipFigure";
+import { HeroScreenStack, type HeroStackScreen } from "./HeroScreenStack";
 import { DotNodes, type DotNode } from "./DotNodes";
 import { Reveal } from "@/components/Reveal";
 import { ResultsGrid, type ResultItem } from "./ResultsGrid";
@@ -143,7 +144,8 @@ export function StorySummary({
   slug,
   title,
   standfirst,
-  intro,
+  heroScreens,
+  heroRatio,
   introAlt,
   steps,
   storyLabel,
@@ -153,11 +155,13 @@ export function StorySummary({
   title: string;
   standfirst: string;
   /**
-   * One of the case study's own hero screens, shown in the opening in place of the
-   * project's card clip. Its alt text describes the screen.
+   * The case study hero's own screens. The opening shows the first one, in the same
+   * framed card the case study opens with, in place of the project's card clip.
    */
-  intro?: { src: string; alt: string; width: number; height: number };
-  /** Describes the card's own clip in the opening, when no hero screen is given. */
+  heroScreens?: HeroStackScreen[];
+  /** The deck's aspect ratio, as the case study hero sets it. */
+  heroRatio?: number;
+  /** Describes the opening's picture. */
   introAlt?: string;
   steps: StoryStep[];
   storyLabel: string;
@@ -200,17 +204,11 @@ export function StorySummary({
                   </dl>
                 ) : null}
               </Reveal>
-              {intro ? (
+              {heroScreens && heroScreens.length > 0 ? (
                 <Reveal delay={240} variant="scale">
-                  <Image
-                    className="ds-slide-video"
-                    src={intro.src}
-                    alt={intro.alt}
-                    width={intro.width}
-                    height={intro.height}
-                    sizes="40vw"
-                    loading="eager"
-                  />
+                  <div className="ds-story-intro-deck">
+                    <HeroScreenStack screens={heroScreens.slice(0, 1)} ratio={heroRatio} label={introAlt ?? ""} />
+                  </div>
                 </Reveal>
               ) : project?.media ? (
                 <Reveal delay={240} variant="scale">

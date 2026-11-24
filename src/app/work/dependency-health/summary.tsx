@@ -1,6 +1,35 @@
 import { DotNodes, type DotNode } from "@/components/design-system/DotNodes";
 import { StorySummary, StoryDots, StoryScreen, StoryVisual, StoryWords } from "@/components/design-system/StorySummary";
 import type { StoryStep } from "@/components/design-system/ScrollStory";
+import type { HeroStackScreen } from "@/components/design-system/HeroScreenStack";
+
+/** The case study hero's own screens, shown in the opening as the same deck. */
+const HERO_SCREENS: HeroStackScreen[] = [
+  {
+    src: "/work/dependency-health/pillar.png",
+    width: 2880,
+    height: 2960,
+    alt: "A pillar view: three health measures with a runtime distribution beside them, then every team's services against the same measures",
+    route: "/stacklift/home",
+    name: "the pillar view",
+  },
+  {
+    src: "/work/dependency-health/development.png",
+    width: 2880,
+    height: 2560,
+    alt: "A product's development view: services with deprecated dependencies, version distribution by library, and a table of services with their version drift",
+    route: "/stacklift/products/orion",
+    name: "a product's development view",
+  },
+  {
+    src: "/work/dependency-health/remediation.png",
+    width: 2596,
+    height: 1626,
+    alt: "Remediations: every repository with its current stage, point of contact, ticket and pull-request status",
+    route: "/stacklift/remediation",
+    name: "the remediation list",
+  },
+];
 
 /**
  * The Dependency Health summary: the case study told by scrolling, down the
@@ -197,7 +226,9 @@ export function DependencyHealthSummary() {
       slug="dependency-health"
       title="Dependency Health Platform"
       standfirst="I designed the dashboard where Walmart developers see which dependencies need attention, and a remediation flow that ends in a pull request. A team now migrates its libraries in about 2 hours, down from 3 days."
-      intro={{ src: "/work/dependency-health/pillar.png", alt: "A pillar view: three health measures with a runtime distribution beside them, then every team's services against the same measures", width: 2880, height: 2960 }}
+      heroScreens={HERO_SCREENS}
+      heroRatio={1.39}
+      introAlt="Screens from the platform"
       storyLabel="Dependency Health Platform, told step by step"
       steps={STEPS}
       results={{

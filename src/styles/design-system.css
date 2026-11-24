@@ -5886,14 +5886,14 @@ body:has(main > .ds-stage-page) .site-spacer {
   margin-top: 2.25rem;
 }
 
-/* A hero screen in the opening is cropped to a wide window on the top of the
-   screen, about 60% of a tall one, so it reads as a screen without taking the
-   height of the page. */
-.ds-story-intro img.ds-slide-video {
-  width: auto;
-  aspect-ratio: 16 / 10;
-  object-fit: cover;
-  object-position: top;
+/* The opening's picture is the case study hero's own card, at the hero's own
+   size: 92% of the column, up to 46rem. It runs past the fold on purpose. The
+   cut-off edge tells the reader there is more to scroll to, and the cue sits
+   under it. */
+.ds-story-intro-deck {
+  width: min(46rem, 92vw);
+  margin-top: 2.25rem;
+  text-align: left;
 }
 
 /* ── Pinned story card ─────────────────────────────────────────────────────

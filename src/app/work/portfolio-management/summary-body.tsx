@@ -1,6 +1,32 @@
 import { DotNodes, DotTrio, type DotNode } from "@/components/design-system/DotNodes";
 import { StorySummary, StoryDots, StoryScreen, StoryVisual, StoryWords } from "@/components/design-system/StorySummary";
 import type { StoryStep } from "@/components/design-system/ScrollStory";
+import type { HeroStackScreen } from "@/components/design-system/HeroScreenStack";
+
+/** The case study hero's own screens, shown in the opening as the same deck. */
+const HERO_SCREENS: HeroStackScreen[] = [
+  {
+    src: "/work/portfolio-management/home.png",
+    width: 2880,
+    height: 2210,
+    alt: "The platform's home screen: a search field, alerts, quick links for new requests, a profile card and an assistant",
+    route: "/home",
+  },
+  {
+    src: "/work/portfolio-management/products.png",
+    width: 2880,
+    height: 2633,
+    alt: "A product page: its leaders, a written summary, headcount by type and by role, and the people allocated",
+    route: "/product",
+  },
+  {
+    src: "/work/portfolio-management/okr-management-v2.png",
+    width: 3456,
+    height: 3088,
+    alt: "The Portfolio page: strategic pillars across the top and a table of objectives with planned and actual headcount",
+    route: "/portfolio",
+  },
+];
 
 /**
  * The Portfolio Management summary: the case study told by scrolling. A dark
@@ -172,7 +198,9 @@ export function PortfolioSummaryBody() {
       slug="portfolio-management"
       title="Portfolio Management Platform"
       standfirst="I designed the tool Walmart’s product teams use to link big company goals to the work and the people doing it. It replaced four separate tools and saves 800+ hours a week."
-      intro={{ src: "/work/portfolio-management/home.png", alt: "The platform's home screen: a search field, alerts, quick links for new requests, a profile card and an assistant", width: 2880, height: 2210 }}
+      heroScreens={HERO_SCREENS}
+      heroRatio={1.39}
+      introAlt="Screens from the platform"
       storyLabel="Portfolio Management Platform, told step by step"
       steps={STEPS}
       results={{

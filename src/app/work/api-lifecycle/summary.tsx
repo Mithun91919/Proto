@@ -1,6 +1,32 @@
 import { DotNodes, type DotNode } from "@/components/design-system/DotNodes";
 import { StorySummary, StoryDots, StoryScreen, StoryVisual, StoryWords } from "@/components/design-system/StorySummary";
 import type { StoryStep } from "@/components/design-system/ScrollStory";
+import type { HeroStackScreen } from "@/components/design-system/HeroScreenStack";
+
+/** The case study hero's own screens, shown in the opening as the same deck. */
+const HERO_SCREENS: HeroStackScreen[] = [
+  {
+    src: "/work/api-lifecycle/home.png",
+    width: 2890,
+    height: 2712,
+    alt: "API Hub home: a search field over service keywords, then Get Started routes for importing, defining, subscribing, registering and publishing an API",
+    route: "/api-hub",
+  },
+  {
+    src: "/work/api-lifecycle/spec-editor.png",
+    width: 2890,
+    height: 2712,
+    alt: "The contract editor with URL paths, data types and responses down the left, the specification in the middle, and parameter detail on the right",
+    route: "/api-hub/catalog/edit",
+  },
+  {
+    src: "/work/api-lifecycle/api-testing.png",
+    width: 2892,
+    height: 2052,
+    alt: "The API tester with a saved collection, request builder and run controls",
+    route: "/api-hub/testing",
+  },
+];
 
 /**
  * The API Lifecycle summary: the case study told by scrolling, down the stages
@@ -203,7 +229,9 @@ export function ApiLifecycleSummary() {
       slug="api-lifecycle"
       title="API Lifecycle Platform"
       standfirst="I joined at inception and shaped the product model of the platform where Walmart engineers find, design, test and govern APIs, the way one piece of software talks to another. It has onboarded 20K+ APIs and reaches 10K+ monthly users."
-      intro={{ src: "/work/api-lifecycle/home.png", alt: "API Hub home: a search field over service keywords, then Get Started routes for importing, defining, subscribing, registering and publishing an API", width: 2890, height: 2712 }}
+      heroScreens={HERO_SCREENS}
+      heroRatio={1.39}
+      introAlt="Screens from the platform"
       storyLabel="API Lifecycle Platform, told step by step"
       steps={STEPS}
       results={{

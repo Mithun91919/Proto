@@ -1,6 +1,35 @@
 import { DotNodes, type DotNode } from "@/components/design-system/DotNodes";
 import { StorySummary, StoryDots, StoryScreen, StoryVisual, StoryWords } from "@/components/design-system/StorySummary";
 import type { StoryStep } from "@/components/design-system/ScrollStory";
+import type { HeroStackScreen } from "@/components/design-system/HeroScreenStack";
+
+/** The case study hero's own screens, shown in the opening as the same deck. */
+const HERO_SCREENS: HeroStackScreen[] = [
+  {
+    src: "/work/supply-chain-operations/new-dashboard.png",
+    width: 2560,
+    height: 1576,
+    route: "supply-chain / home",
+    name: "the landing page",
+    alt: "The redesigned landing page: grouped module categories, pinned tools and recent modules.",
+  },
+  {
+    src: "/work/supply-chain-operations/new-navigation.png",
+    width: 2560,
+    height: 1940,
+    route: "supply-chain / modules",
+    name: "the module navigation",
+    alt: "The module navigation, with all 139 modules grouped by operational area.",
+  },
+  {
+    src: "/work/supply-chain-operations/new-login.png",
+    width: 2560,
+    height: 1612,
+    route: "supply-chain / sign-in",
+    name: "the sign-in screen",
+    alt: "The platform sign-in screen.",
+  },
+];
 
 /**
  * The Supply Chain Operations summary: the case study told by scrolling. This
@@ -133,7 +162,9 @@ export function SupplyChainSummary() {
       slug="supply-chain-operations"
       title="Supply Chain Operations Platform"
       standfirst="I co-led the redesign of the entry point to 139 operational tools used across Walmart.com, Online Grocery and international markets. Time spent on its landing page fell by 62%."
-      intro={{ src: "/work/supply-chain-operations/new-dashboard.png", alt: "The redesigned landing page: grouped module categories, pinned tools and recent modules.", width: 2560, height: 1576 }}
+      heroScreens={HERO_SCREENS}
+      heroRatio={undefined}
+      introAlt="Screens from the platform"
       storyLabel="Supply Chain Operations Platform, told step by step"
       steps={STEPS}
       results={{

@@ -1,6 +1,38 @@
 import { DotNodes, type DotNode } from "@/components/design-system/DotNodes";
 import { StorySummary, StoryDots, StoryClip, StoryScreen, StoryVisual, StoryWords } from "@/components/design-system/StorySummary";
 import type { StoryStep } from "@/components/design-system/ScrollStory";
+import type { HeroStackScreen } from "@/components/design-system/HeroScreenStack";
+
+/** The case study hero's own screens, shown in the opening as the same deck. */
+const HERO_SCREENS: HeroStackScreen[] = [
+  {
+    src: "/work/ai-studio/hero-home.jpg",
+    width: 1920,
+    height: 1104,
+    name: "Studio home",
+    alt: "Studio's home: the list of agents in a workspace, with the workspaces down the left",
+    route: "Wibey",
+    focus: "top",
+  },
+  {
+    src: "/work/ai-studio/workbench-agent-poster.jpg",
+    width: 1920,
+    height: 1104,
+    name: "the agent workbench",
+    alt: "The agent workbench: a canvas showing an orchestrator and two connected agents, with the chat beside it",
+    route: "Wibey",
+    focus: "top",
+  },
+  {
+    src: "/work/ai-studio/workbench-mcp-poster.jpg",
+    width: 1920,
+    height: 1104,
+    name: "the MCP workbench",
+    alt: "The MCP workbench: a list of generated tools for review, with Playground, Validate and Publish in the toolbar",
+    route: "Wibey",
+    focus: "top",
+  },
+];
 
 /**
  * The Studio summary: the case study told by scrolling, down the path a builder
@@ -174,7 +206,9 @@ export function AiStudioSummary() {
       slug="ai-studio"
       title="Studio"
       standfirst="In Wibey, Walmart’s internal AI platform, I co-designed Studio, where builders find what exists, build what doesn’t, test it and publish it for others."
-      intro={{ src: "/work/ai-studio/hero-home.jpg", alt: "Studio's home: the list of agents in a workspace, with the workspaces down the left", width: 1920, height: 1104 }}
+      heroScreens={HERO_SCREENS}
+      heroRatio={1920 / 1104}
+      introAlt="Screens from the platform"
       storyLabel="Studio, told step by step"
       steps={STEPS}
       results={{
