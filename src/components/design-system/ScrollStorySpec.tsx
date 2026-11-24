@@ -60,7 +60,7 @@ const ANATOMY: { part: string; file: string; job: string }[] = [
   { part: "Story", file: "ScrollStory.tsx", job: "A tall track holding one pinned card. Scrolling past the track changes what is in the card. Takes steps (label, text, visual), stepVh and holdSwipes." },
   { part: "Dots", file: "DotNodes.tsx", job: "DotNodes draws five dots apart, joined, or joined with one lit. DotTrio draws one dot joined to two groups." },
   { part: "Rail", file: "ChapterProgress.tsx", job: "The site's left rail in its controlled mode: activeId and onSelect. Hidden while the card is not pinned." },
-  { part: "Divider", file: "ScrollStory.tsx", job: "A segment per step along the card's foot, filling as you scroll through the current one." },
+  { part: "Divider", file: "ScrollStory.tsx", job: "A row of dots per step along the card's foot, lighting as you scroll through the current one." },
   { part: "Results", file: "ResultsGrid.tsx", job: "Four tiles that rise in, each with a glyph and a figure that counts up. Light page, after the band. Mounted by WhenInView." },
   { part: "Active state", file: "SlideDeck.tsx", job: "SlideActive and WhenActive: tell a visual whether its step is the one showing, so a clip or a count-up starts on arrival and stops on leaving." },
 ];
