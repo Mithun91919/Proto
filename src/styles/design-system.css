@@ -6160,3 +6160,21 @@ body:has(main > .ds-stage-page) .site-spacer {
   color: var(--ink);
   border-color: var(--ds-accent);
 }
+
+/* ── Story as full pages ───────────────────────────────────────────────────
+   The same steps as the pinned card, each given a whole screen and scrolled
+   past like any other page. Nothing is pinned. */
+.ds-story-pages .ds-story-page {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  max-width: 85rem;
+  margin: 0 auto;
+  padding: 4.5rem clamp(1.25rem, 2.5vw, 2rem) 3rem;
+  box-sizing: border-box;
+}
+
+.ds-story-pages .ds-story-page > .ds-slide {
+  width: 100%;
+}

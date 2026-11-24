@@ -6,6 +6,7 @@ import { DotNodes, type DotNode } from "./DotNodes";
 import { Reveal } from "@/components/Reveal";
 import { ResultsGrid, type ResultItem } from "./ResultsGrid";
 import { ScrollStory, WhenInView, type StoryStep } from "./ScrollStory";
+import { StoryPages } from "./StoryPages";
 import { WhenActive } from "./SlideDeck";
 
 /**
@@ -143,6 +144,7 @@ export function StorySummary({
   steps,
   storyLabel,
   results,
+  layout = "scroll",
 }: {
   slug: string;
   title: string;
@@ -152,6 +154,8 @@ export function StorySummary({
   steps: StoryStep[];
   storyLabel: string;
   results: { title: string; points: string[]; items: ResultItem[] };
+  /** `scroll` pins one card and changes it as you scroll; `pages` gives each step its own full screen. */
+  layout?: "scroll" | "pages";
 }) {
   const project = getProject(slug);
 
@@ -214,7 +218,7 @@ export function StorySummary({
         </section>
 
         <section id="story" className="ds-story-section">
-          <ScrollStory steps={steps} label={storyLabel} />
+          {layout === "pages" ? <StoryPages steps={steps} label={storyLabel} /> : <ScrollStory steps={steps} label={storyLabel} />}
         </section>
       </div>
 
