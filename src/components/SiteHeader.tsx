@@ -1,5 +1,6 @@
 "use client";
 
+import { EvilEye } from "@/components/EvilEye";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState, type CSSProperties } from "react";
@@ -109,8 +110,10 @@ export function SiteHeader() {
               <Link href="/" className="flex items-center gap-2.5 no-underline">
                 <span
                   aria-hidden
-                  className="mark-pulse inline-block h-2.5 w-2.5 rounded-sm bg-[var(--accent)] shadow-[var(--shadow-mark)]"
-                />
+                  className="mark-pulse inline-flex h-[1.2rem] w-[1.2rem] rounded-full shadow-[var(--shadow-mark)]"
+                >
+                  <EvilEye />
+                </span>
                 <span className="display-title text-[1.05rem] text-[var(--dock-ink)]">Mithun.</span>
               </Link>
             </GlassPanel>

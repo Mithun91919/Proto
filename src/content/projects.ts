@@ -149,8 +149,9 @@ export const projects: Project[] = [
     accentSoft: "#ccfbf1",
     contentPath: "projects/ai-studio/web/ai-studio-web.md",
     media: {
-      poster: "/work/ai-studio/hero-home.jpg",
-      aspect: 1920 / 1104,
+      mp4: "/work/ai-studio/card.mp4",
+      poster: "/work/ai-studio/card-poster.jpg",
+      aspect: 1400 / 805,
     },
     systemMap: [
       {
@@ -194,8 +195,9 @@ export const projects: Project[] = [
     accentSoft: "#ccfbf1",
     contentPath: "projects/design-research/web/design-research-web.md",
     media: {
-      poster: "/work/design-research/prototype-poster-4.jpg",
-      aspect: 2664 / 1809,
+      mp4: "/work/design-research/card.mp4",
+      poster: "/work/design-research/card-poster.jpg",
+      aspect: 1400 / 950,
     },
     systemMap: [
       {
