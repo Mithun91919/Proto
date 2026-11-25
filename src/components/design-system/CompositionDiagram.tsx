@@ -135,7 +135,7 @@ export function CompositionDiagram() {
       className="grid list-none items-stretch gap-y-4 p-0"
       style={{ gridTemplateColumns: "1.1fr 6.5rem 1fr 7rem 1fr 6rem 1fr" }}
     >
-      <Node tone="dark" pictogram="agent" kind="Agent" note="An AI that plans and acts to complete a task." col={1} row="1 / span 2" />
+      <Node pictogram="agent" kind="Agent" note="An AI that plans and acts to complete a task." col={1} row="1 / span 2" />
       <Link label="can use" col={2} row={1} />
       <Node pictogram="skill" kind="Skill" note="Packaged instructions for a specific job." col={3} row={1} />
       <Link label="connects through" col={2} row={2} />

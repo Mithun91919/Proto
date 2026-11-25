@@ -42,7 +42,7 @@ export const metadata: Metadata = {
 const WHO: Archetype[] = [
   {
     name: "Engineers",
-    behaviour: "Build capabilities for their teams: agents, skills, MCP servers and APIs.",
+    behaviour: "Build AI capabilities for their teams.",
     wants: [
       "See what the AI generated, and work with it directly",
       "Test it and know it is ready before others use it",
@@ -50,7 +50,6 @@ const WHO: Archetype[] = [
     friction: [
       "Data security and other limits made it hard to take what they built into production",
       "An open-ended chat did not gather the details a useful artifact needs",
-      "An agent, an API and an MCP do not share a structure, so one generic view did not fit",
     ],
   },
   {
@@ -80,7 +79,7 @@ const WORKSPACE_SLIDES: ArtboardSlide[] = [
     mp4: "/work/ai-studio/workspaces-1-projects.mp4",
     width: 1920,
     height: 1104,
-    alt: "The sidebar opening a workspace into its projects, and a project listing the agents it holds.",
+    alt: "The sidebar opening a workspace into its projects, and a project listing the work it holds.",
     caption:
       "A workspace opens into its projects, and each project lists the artifacts it holds, in the sidebar and in the main view.",
   },
@@ -130,7 +129,7 @@ export default function AiStudioPage() {
           label: "Why it mattered",
           lead: (
             <>
-              Building an agent got easier. Taking one to production, and{" "}
+              Building with AI got easier. Taking it to production, and{" "}
               <span className="ds-accent-text">reusing it</span>, did not.
             </>
           ),
@@ -151,16 +150,16 @@ export default function AiStudioPage() {
           label: "What I did",
           lead: (
             <>
-              I co-designed Studio, and designed its <span className="ds-accent-text">workspaces</span> and how a chat creates an API.
+              I co-designed Studio, working out of a <span className="ds-accent-text">single repo</span>.
             </>
           ),
           detail:
-            "I co-designed Studio with a staff designer. I designed its workspaces and how a chat conversation creates an API, and we built the coded prototype together, each working in the other’s repository. Engineering built the product from it.",
+            "I co-designed Studio with a staff designer, working out of a single repository and sharing the responsibilities. I designed its workspaces and the chat conversation that creates an artifact, and we built the coded prototype together. Engineering built the product from it.",
         },
       ]}
       hero={{
         standfirst:
-          "In Wibey, Walmart’s internal AI platform, builders find what already exists, build what doesn’t, test it and publish it for others. I co-designed Studio with a staff designer, and designed its workspaces and how a chat creates an API.",
+          "In Wibey, Walmart’s internal AI platform, builders find what already exists, build what doesn’t, test it and publish it for others. I co-designed Studio with a staff designer, working out of a single repository.",
         headline: (
           <>
             Studio: taking AI capabilities from an <span style={{ color: "var(--ds-mint)" }}>idea</span> towards{" "}
@@ -181,7 +180,7 @@ export default function AiStudioPage() {
             width: 1920,
             height: 1104,
             name: "Studio home",
-            alt: "Studio's home: the list of agents in a workspace, with the workspaces down the left",
+            alt: "Studio's home: the list of work in a workspace, with the workspaces down the left",
             route: "Wibey",
             focus: "top",
           },
@@ -190,7 +189,7 @@ export default function AiStudioPage() {
             width: 1920,
             height: 1104,
             name: "a workspace and its projects",
-            alt: "The sidebar opening a workspace into its projects, and a project listing the agents it holds",
+            alt: "The sidebar opening a workspace into its projects, and a project listing the work it holds",
             route: "Wibey",
             focus: "top",
           },
@@ -231,7 +230,7 @@ export default function AiStudioPage() {
               eyebrow="Wibey"
               heading="First, what is Wibey?"
               body={[
-                "Wibey is Walmart’s internal AI platform for builders. They use it for everyday work, such as designing REST API endpoints, summarising release notes or refining an onboarding workflow. They can also build capabilities for their teams: agents, skills, MCP servers and APIs, which I call artifacts.",
+                "Wibey is Walmart’s internal AI platform for builders. They use it for everyday work, such as designing REST API endpoints, summarising release notes or refining an onboarding workflow. They can also build capabilities for their teams, which I call artifacts.",
               ]}
             />
             <CaseStudyFigure>

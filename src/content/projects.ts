@@ -127,7 +127,7 @@ export const projects: Project[] = [
     title:
       "Studio: taking AI capabilities from an idea towards production.",
     summary:
-      "Studio is the part of Wibey, Walmart\u2019s internal AI platform, where builders find what already exists, build what doesn\u2019t, test it and publish it for others. I co-designed Studio with a staff designer, and designed its workspaces and how a chat conversation creates an API; we built a coded prototype together.",
+      "Studio is the part of Wibey, Walmart\u2019s internal AI platform, where builders find what already exists, build what doesn\u2019t, test it and publish it for others. I co-designed Studio with a staff designer, working out of a single repository, and we built a coded prototype together.",
     outcome: "Discovery, creation, testing and publishing in one workflow",
     metrics: [
       { value: "6K+", label: "monthly active users on Wibey", short: "monthly users on Wibey", glyph: "field" },
