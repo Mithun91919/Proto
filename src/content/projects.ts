@@ -127,7 +127,7 @@ export const projects: Project[] = [
     title:
       "Studio: taking AI capabilities from an idea towards production.",
     summary:
-      "Studio is the part of Wibey, Walmart\u2019s internal AI platform, where builders find what already exists, build what doesn\u2019t, test it and publish it for others. I co-designed the workbenches and the conversation with a staff designer, and delivered a coded prototype.",
+      "Studio is the part of Wibey, Walmart\u2019s internal AI platform, where builders find what already exists, build what doesn\u2019t, test it and publish it for others. I co-designed Studio with a staff designer, and designed its workspaces and how a chat conversation creates an API; we built a coded prototype together.",
     outcome: "Discovery, creation, testing and publishing in one workflow",
     metrics: [
       { value: "6K+", label: "monthly active users on Wibey", short: "monthly users on Wibey", glyph: "field" },
@@ -146,10 +146,8 @@ export const projects: Project[] = [
     accentSoft: "#ccfbf1",
     contentPath: "projects/ai-studio/web/ai-studio-web.md",
     media: {
-      mp4: "/work/ai-studio/hero.mp4",
-      webm: "/work/ai-studio/hero.webm",
-      poster: "/work/ai-studio/poster.jpg",
-      aspect: 1600 / 1068,
+      poster: "/work/ai-studio/hero-home.jpg",
+      aspect: 1920 / 1104,
     },
     systemMap: [
       {
@@ -158,7 +156,7 @@ export const projects: Project[] = [
       },
       {
         label: "Intervention",
-        detail: "Discovery, conversational creation, workbenches, testing and publishing in one connected workflow",
+        detail: "Discovery, conversational creation, workspaces and publishing in one connected workflow",
       },
       {
         label: "After",

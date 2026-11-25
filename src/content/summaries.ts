@@ -11,7 +11,6 @@
  */
 export const SUMMARY_SLUGS = [
   "portfolio-management",
-  "ai-studio",
   "api-lifecycle",
   "dependency-health",
   "supply-chain-operations",

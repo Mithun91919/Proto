@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import type { CSSProperties } from "react";
 import { caseStudyRobots } from "@/content/seo";
 import { Reveal } from "@/components/Reveal";
-import { AiStudioSummary } from "./summary";
 import { ArchetypeSection } from "@/components/design-system/ArchetypeSection";
 import type { Archetype } from "@/components/design-system/ArchetypeFigure";
 import { ArtboardCarousel, type ArtboardSlide } from "@/components/design-system/ArtboardCarousel";
@@ -40,136 +39,6 @@ export const metadata: Metadata = {
   robots: caseStudyRobots,
 };
 
-const CONVERSATION_SLIDES: ArtboardSlide[] = [
-  {
-    title: "Check what already exists",
-    route: "Wibey",
-    src: "/work/ai-studio/conversation-1-check-poster.jpg",
-    mp4: "/work/ai-studio/conversation-1-check.mp4",
-    width: 1920,
-    height: 1104,
-    alt: "A request in Wibey chat to build an agent that monitors Jira tickets stuck in review and sends Slack reminders. Wibey checks its registry, lists three similar agents, and asks whether to clone and modify one or create from scratch.",
-    caption:
-      "Before building, the assistant looks for similar agents and lists the matches. The builder chooses to clone and modify one, or to start from scratch.",
-  },
-  {
-    title: "Ask for the details that matter",
-    route: "Wibey",
-    src: "/work/ai-studio/conversation-2-questions-poster.jpg",
-    mp4: "/work/ai-studio/conversation-2-questions.mp4",
-    width: 1920,
-    height: 1104,
-    alt: "Wibey asking questions about the stuck threshold, how Slack reminders are sent, the language and the scheduling, then setting out a plan with two sub-agents and offering to create the agent.",
-    caption:
-      "It asks about the stuck threshold, how reminders are sent, the language and the schedule, then sets out a plan and offers to create the agent.",
-  },
-  {
-    title: "Inspect it in the workbench",
-    route: "Wibey",
-    src: "/work/ai-studio/conversation-3-workbench-poster.jpg",
-    mp4: "/work/ai-studio/conversation-3-workbench.mp4",
-    width: 1920,
-    height: 1104,
-    alt: "The agent open as a flow in the workbench, an orchestrator with two sub-agents, with the chat in a narrow panel beside it.",
-    caption:
-      "The agent opens as a flow beside the chat, where the builder can inspect it and keep refining it through conversation.",
-  },
-];
-
-const WORKBENCH_SLIDES: ArtboardSlide[] = [
-  {
-    title: "Agents: see the pieces working together",
-    route: "Wibey",
-    src: "/work/ai-studio/workbench-agent-poster.jpg",
-    mp4: "/work/ai-studio/workbench-agent.mp4",
-    width: 1920,
-    height: 1104,
-    alt: "The agent workbench: a canvas showing an orchestrator and two connected agents, with a menu to add a sub-agent, an MCP server, tools, a human handoff or a termination, and the chat beside it.",
-    caption:
-      "A canvas shows an orchestrator and its connected agents, with their models, MCP servers and tools. A menu adds a sub-agent, an MCP server, tools, a human handoff or a termination.",
-  },
-  {
-    title: "APIs: work with the contract directly",
-    route: "Wibey",
-    src: "/work/ai-studio/workbench-api-poster.jpg",
-    mp4: "/work/ai-studio/workbench-api.mp4",
-    width: 1920,
-    height: 1104,
-    alt: "The API workbench: an overview of a service with its endpoints, datatypes and responses in tabs, a form for the selected endpoint, and the chat beside it.",
-    caption:
-      "Endpoints, datatypes and responses sit in a structured view beside the chat, so the builder can inspect each detail and move towards review.",
-  },
-  {
-    title: "MCPs: review the generated tools",
-    route: "Wibey",
-    src: "/work/ai-studio/workbench-mcp-poster.jpg",
-    mp4: "/work/ai-studio/workbench-mcp.mp4",
-    width: 1920,
-    height: 1104,
-    alt: "The MCP workbench: a list of generated tools, each with its method, name, description and annotations, and a toolbar with MCP Playground, Validate, Publish and Deploy.",
-    caption:
-      "The generated tools are listed for review, each with its description and annotations. MCP Playground, Validate, Publish and Deploy are in the toolbar.",
-  },
-  {
-    title: "Skills: inspect the generated files",
-    route: "Wibey",
-    src: "/work/ai-studio/workbench-skill-poster.jpg",
-    mp4: "/work/ai-studio/workbench-skill.mp4",
-    width: 1920,
-    height: 1104,
-    alt: "The skill workbench: a tree of generated files beside the contents of the selected file, with Save, Validate, Test and Publish in the toolbar.",
-    caption:
-      "The generated files sit in a tree beside their contents. The builder can inspect them, then test and validate before publishing.",
-  },
-];
-
-const TESTING_SLIDES: ArtboardSlide[] = [
-  {
-    title: "Agents: run a task and follow each step",
-    route: "Wibey",
-    src: "/work/ai-studio/testing-agent-poster.jpg",
-    mp4: "/work/ai-studio/testing-agent.mp4",
-    width: 1920,
-    height: 1104,
-    alt: "The agent playground: a list of sessions on the left, and a task that has been run, with the agent's steps and a Task completed result.",
-    caption:
-      "The agent playground keeps sessions, runs a task, and shows the steps the agent took and when the task completed.",
-  },
-  {
-    title: "MCPs: connect to the server and run a tool",
-    route: "Wibey",
-    src: "/work/ai-studio/testing-mcp-poster.jpg",
-    mp4: "/work/ai-studio/testing-mcp.mp4",
-    width: 1920,
-    height: 1104,
-    alt: "The MCP playground: connecting to an MCP server, choosing one of its tools, running it, and seeing that it executed successfully.",
-    caption:
-      "The MCP playground connects to a server, lists its tools, and runs one with its inputs, showing that it executed successfully.",
-  },
-  {
-    title: "APIs: send a request and read the response",
-    route: "Wibey",
-    src: "/work/ai-studio/testing-api-poster.jpg",
-    mp4: "/work/ai-studio/testing-api.mp4",
-    width: 1920,
-    height: 1104,
-    alt: "The API playground: a request with its parameters, and the response below it, first with a body and then as a failed request.",
-    caption:
-      "The API playground sends a request with its parameters and shows the response, whether it succeeds or fails.",
-  },
-  {
-    title: "Skills: try it with a prompt",
-    route: "Wibey",
-    src: "/work/ai-studio/testing-skill-poster.jpg",
-    mp4: "/work/ai-studio/testing-skill.mp4",
-    width: 1920,
-    height: 1104,
-    alt: "The skill playground: quick test prompts to choose from, and the skill's response to the one selected.",
-    caption:
-      "The skill playground offers quick test prompts, and shows how the skill responds to the one chosen.",
-  },
-];
-
 const WHO: Archetype[] = [
   {
     name: "Engineers",
@@ -195,10 +64,10 @@ const WHO: Archetype[] = [
       "Publish it for others to use",
     ],
     friction: [
-      "Hard to know whether what they built was safe or ready → the playgrounds",
-      "No way to inspect what was built → the workbenches",
-      "No path to publish it for others → a chat that follows a sequence",
-      "Did not know what already existed → the chat checks the registry first",
+      "Hard to know whether what they built was safe or ready",
+      "No way to inspect what was built",
+      "No path to publish it for others",
+      "Did not know what already existed",
     ],
   },
 ];
@@ -244,9 +113,6 @@ const CHAPTERS = [
   { id: "problem", label: "Why it mattered" },
   { id: "builder", label: "Who it is for" },
   { id: "approach", label: "The approach" },
-  { id: "path", label: "The conversation" },
-  { id: "workbenches", label: "Workbenches" },
-  { id: "testing", label: "Testing" },
   { id: "workspaces", label: "Workspaces" },
   { id: "prototype", label: "The prototype" },
   { id: "learned", label: "What I learned" },
@@ -279,29 +145,22 @@ export default function AiStudioPage() {
             </>
           ),
           detail:
-            "Studio brings discovery, creation, testing and publishing together inside Wibey’s protection layer. People create by chatting, edit by hand in a workbench, and find existing work in the same conversation.",
+            "Studio brings discovery, creation, testing and publishing together inside Wibey’s protection layer. People create by chatting and find existing work in the same conversation.",
         },
         {
           label: "What I did",
           lead: (
             <>
-              I co-designed the <span className="ds-accent-text">workbenches and the conversation</span>.
+              I co-designed Studio, and designed its <span className="ds-accent-text">workspaces</span> and how a chat creates an API.
             </>
           ),
           detail:
-            "I worked with a staff designer on the workbenches and the conversation, and with developers on the whole experience. The deliverable was a coded prototype, built over several iterations in Cursor and VS Code, and engineering built the product from it.",
+            "I co-designed Studio with a staff designer. I designed its workspaces and how a chat conversation creates an API, and we built the coded prototype together, each working in the other’s repository. Engineering built the product from it.",
         },
       ]}
-      summary={{
-        title: "Studio",
-        standfirst:
-          "In Wibey, Walmart’s internal AI platform, I co-designed Studio, where builders find what exists, build what doesn’t, test it and publish it for others.",
-        body: <AiStudioSummary />,
-        ownOpener: true,
-      }}
       hero={{
         standfirst:
-          "In Wibey, Walmart’s internal AI platform, builders find what already exists, build what doesn’t, test it and publish it for others. I co-designed the workbenches and the conversation.",
+          "In Wibey, Walmart’s internal AI platform, builders find what already exists, build what doesn’t, test it and publish it for others. I co-designed Studio with a staff designer, and designed its workspaces and how a chat creates an API.",
         headline: (
           <>
             Studio: taking AI capabilities from an <span style={{ color: "var(--ds-mint)" }}>idea</span> towards{" "}
@@ -314,7 +173,7 @@ export default function AiStudioPage() {
           { label: "Year", value: "2026–Present" },
           { label: "Discipline", value: "AI platform · Product design · Design in code" },
         ],
-        alt: "Studio in Wibey: its home, the agent workbench and the MCP workbench",
+        alt: "Studio in Wibey: its home, and its workspaces",
         stackRatio: 1920 / 1104,
         stack: [
           {
@@ -327,20 +186,20 @@ export default function AiStudioPage() {
             focus: "top",
           },
           {
-            src: "/work/ai-studio/workbench-agent-poster.jpg",
+            src: "/work/ai-studio/workspaces-1-projects-poster.jpg",
             width: 1920,
             height: 1104,
-            name: "the agent workbench",
-            alt: "The agent workbench: a canvas showing an orchestrator and two connected agents, with the chat beside it",
+            name: "a workspace and its projects",
+            alt: "The sidebar opening a workspace into its projects, and a project listing the agents it holds",
             route: "Wibey",
             focus: "top",
           },
           {
-            src: "/work/ai-studio/workbench-mcp-poster.jpg",
+            src: "/work/ai-studio/workspaces-3-create-poster.jpg",
             width: 1920,
-            height: 1104,
-            name: "the MCP workbench",
-            alt: "The MCP workbench: a list of generated tools for review, with Playground, Validate and Publish in the toolbar",
+            height: 1102,
+            name: "creating a workspace",
+            alt: "Creating a workspace in five steps: its name and purpose, its members, the repositories and tools it can use, its rules, and a review",
             route: "Wibey",
             focus: "top",
           },
@@ -450,7 +309,7 @@ export default function AiStudioPage() {
             fullWidth
             heading="Connect discovery, creation and reuse"
             body={[
-              "We made the chat the hero. In one conversation a builder can make anything, and the AI opens the workbench that suits what they need. These are the pieces it works with, and how they fit together.",
+              "We made the chat the hero. In one conversation a builder can make anything. These are the pieces it works with, and how they fit together.",
             ]}
           />
           <CaseStudyFigure label="One possible way these building blocks can work together">
@@ -464,49 +323,6 @@ export default function AiStudioPage() {
           </CaseStudyFigure>
         </CaseStudySection>
 
-        <CaseStudySection id="path">
-          <ArtboardCarousel
-            layout="split"
-            label="The conversation, from a request to the agent in its workbench"
-            eyebrow="The conversation"
-            title="Give the conversation a clearer path"
-            description={[
-              "Starting with a prompt is convenient, but an open-ended conversation may not gather all the information needed to produce a useful artifact. We needed the interaction to remain conversational while asking for the details that matter.",
-              "I worked with the staff designer and developers to refine these workflows so the session followed a more directed path. The assistant would ask relevant questions as the user progressed, helping establish context and reduce the risk of hallucinations.",
-              "The conversation also gave users a way to continue refining their work. Suggestions in the prototype offered possible next steps, such as adding error handling or tests. The builder could guide the outcome through chat and inspect the artifact in the adjacent workbench.",
-            ]}
-            slides={CONVERSATION_SLIDES}
-          />
-        </CaseStudySection>
-
-        <CaseStudySection id="workbenches">
-          <ArtboardCarousel
-            layout="split"
-            label="The workbenches for agents, APIs, MCPs and skills"
-            eyebrow="Workbenches"
-            title="One Studio, different workbenches"
-            description={[
-              "An agent, an API and an MCP do not all have the same structure. We therefore designed dedicated workbenches that shared a conversational approach but presented the details relevant to each type of artifact.",
-              "Across these experiences, the common idea was to make the result of the conversation tangible. Builders needed to see what they were creating and have ways to work with it directly.",
-            ]}
-            slides={WORKBENCH_SLIDES}
-          />
-        </CaseStudySection>
-
-        <CaseStudySection id="testing">
-          <ArtboardCarousel
-            layout="split"
-            label="The playgrounds for agents, MCPs, APIs and skills"
-            eyebrow="Testing"
-            title="Testing was part of building"
-            description={[
-              "Creation was only one step in the journey. Builders needed to understand how an artifact behaved, refine its output and assess whether it was ready for use.",
-              "We designed playgrounds to support testing and iteration, as well as evaluations intended to help teams assess technical and security requirements. Review and publishing actions helped connect that work to the next stage of making a capability available to others.",
-            ]}
-            slides={TESTING_SLIDES}
-          />
-        </CaseStudySection>
-
         <CaseStudySection id="workspaces">
           <ArtboardCarousel
             layout="split"
@@ -514,7 +330,7 @@ export default function AiStudioPage() {
             eyebrow="Workspaces"
             title="As the work grew, context needed a home"
             description={[
-              "The workbench addressed an individual artifact. But as users created more artifacts and returned to them across multiple conversations, another need became clear: related work needed to stay together.",
+              "As users created more artifacts and returned to them across multiple conversations, a need became clear: related work needed to stay together.",
               "Workspaces, which shipped, group artifacts and sessions around a shared context. A builder returning to improve a capability, or starting something related, could pick up work with relevant context available instead of repeatedly explaining it from the beginning.",
               "Workspaces also gave us a structure for collaboration and access: who could view the work, who could modify it, and how a team could organise the artifacts and conversations it shared.",
             ]}
