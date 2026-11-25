@@ -35,6 +35,7 @@ export const ALL_DOMAINS: ProjectDomain[] = [
   "Consumer",
   "Commerce",
   "Frontline ops",
+  "Research",
 ];
 
 /* ── Platform ─────────────────────────────────────────────────────────── */
@@ -56,6 +57,7 @@ const PROJECT_PLATFORMS: Record<string, ProjectPlatform[]> = {
   "hike-total-os-localization": ["Mobile"],
   "creo-mark-1": ["Web"],
   "ai-studio": ["Web"],
+  "design-research": ["Web"],
 };
 
 export function projectPlatforms(slug: string): ProjectPlatform[] {
@@ -101,6 +103,7 @@ const PROJECT_CRAFT: Record<string, ProjectCraft[]> = {
   "hike-total-os-localization": ["Research", "Localisation"],
   "creo-mark-1": ["Visual & Brand", "UI"],
   "ai-studio": ["UX", "UI"],
+  "design-research": ["Research"],
 };
 
 export function projectCraft(slug: string): ProjectCraft[] {

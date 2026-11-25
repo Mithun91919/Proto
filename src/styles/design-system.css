@@ -2992,6 +2992,15 @@ a:hover .ds-compact-mark .ds-dot {
   padding-top: 0.25rem;
 }
 
+/* A still in the side-by-side carousel stays in its column. The wide break-out
+   is for the stacked layout, where the artboard has the page to itself; here it
+   spread across the caption beside it. */
+.ds-artboard-split .ds-artboard {
+  width: 100%;
+  margin-left: 0;
+  transform: none;
+}
+
 /* The slide's position as a lead-in mark, same unit `CompactNumeral` gives
    every other row-leading number on the site (`DotFlow`'s stages) rather
    than the plain "1 / 3" text doing that job alone here too. */

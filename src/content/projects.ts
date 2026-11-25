@@ -5,7 +5,8 @@ export type ProjectDomain =
   | "Developer tools"
   | "Consumer"
   | "Commerce"
-  | "Frontline ops";
+  | "Frontline ops"
+  | "Research";
 
 export type SystemMapStep = {
   label: string;
@@ -62,6 +63,8 @@ export type Project = {
   featured: boolean;
   /** Kept as a record and a route, but left out of the listings and the next/previous links, such as while a case study is being rewritten. */
   unlisted?: boolean;
+  /** Listed on the Work page as normal, but left off the Home page's featured grid. */
+  homeHidden?: boolean;
   reconstructed: boolean;
   accent: string;
   accentSoft: string;
@@ -127,7 +130,7 @@ export const projects: Project[] = [
     title:
       "Studio: taking AI capabilities from an idea towards production.",
     summary:
-      "Studio is the part of Wibey, Walmart\u2019s internal AI platform, where builders find what already exists, build what doesn\u2019t, test it and publish it for others. I co-designed Studio with a staff designer, working out of a single repository, and we built a coded prototype together.",
+      "Studio is the part of Wibey, Walmart\u2019s internal AI platform, where builders find what already exists, build what doesn\u2019t, test it and publish it for others. I co-led Studio\u2019s design with a staff designer, working out of a single repository, and we built a coded prototype together.",
     outcome: "Discovery, creation, testing and publishing in one workflow",
     metrics: [
       { value: "6K+", label: "monthly active users on Wibey", short: "monthly users on Wibey", glyph: "field" },
@@ -136,7 +139,7 @@ export const projects: Project[] = [
     ],
     org: "Walmart Global Tech",
     domain: "Developer tools",
-    ownership: "Co-designer, with a staff designer",
+    ownership: "Co-lead",
     timeframe: "2026–Present",
     role: "Senior UX Designer",
     tier: "featured",
@@ -166,8 +169,53 @@ export const projects: Project[] = [
     tags: ["AI Platform", "Design in Code", "Developer Tools"],
   },
   {
-    slug: "api-lifecycle",
+    slug: "design-research",
     number: "03",
+    label: "Design research",
+    title: "Design research: how designers really use AI to prototype.",
+    summary:
+      "I led research with 54 participants, 16 interviewed and 38 surveyed, across India and the US, on how designers at Walmart use AI to prototype, and where it lets them down. It showed leaders that designers are not developers using AI, and led to a decision to build skills and agents for them.",
+    outcome: "Leaders chose to build skills and agents for designers",
+    metrics: [
+      { value: "54", label: "participants, interviewed and surveyed", short: "participants", glyph: "field" },
+      { value: "16", label: "interviewees, in India and the US", short: "interviewees", glyph: "ring" },
+      { value: "38", label: "survey responses", short: "survey responses", glyph: "modules" },
+    ],
+    org: "Walmart Global Tech",
+    domain: "Research",
+    ownership: "Research lead, with help from others",
+    timeframe: "2026",
+    role: "Senior UX Designer",
+    tier: "featured",
+    featured: true,
+    homeHidden: true,
+    reconstructed: true,
+    accent: "#0f766e",
+    accentSoft: "#ccfbf1",
+    contentPath: "projects/design-research/web/design-research-web.md",
+    media: {
+      poster: "/work/design-research/prototype-poster-4.jpg",
+      aspect: 2664 / 1809,
+    },
+    systemMap: [
+      {
+        label: "Before",
+        detail: "Designers seen through the same lens as developers using AI",
+      },
+      {
+        label: "Intervention",
+        detail: "Interviews and a survey across India and the US, presented to leaders",
+      },
+      {
+        label: "After",
+        detail: "A decision to build skills and agents for designers, and a kit to build on any platform",
+      },
+    ],
+    tags: ["Research", "AI Tooling", "Design Systems"],
+  },
+  {
+    slug: "api-lifecycle",
+    number: "04",
     label: "API Lifecycle Platform",
     title:
       "API Lifecycle Platform: one place to discover, design, test, and govern APIs.",
@@ -217,7 +265,7 @@ export const projects: Project[] = [
   },
   {
     slug: "dependency-health",
-    number: "04",
+    number: "05",
     label: "Dependency Health Platform",
     title:
       "Dependency Health Platform: catching outdated libraries before release.",
@@ -280,7 +328,7 @@ export const projects: Project[] = [
   },
   {
     slug: "supply-chain-operations",
-    number: "05",
+    number: "06",
     label: "Supply Chain Operations Platform",
     title:
       "Supply Chain Operations Platform: getting to the right tool faster.",
@@ -328,7 +376,7 @@ export const projects: Project[] = [
   },
   {
     slug: "store-support",
-    number: "06",
+    number: "07",
     // Named by what it is rather than by either of its product names —
     // the internal one is out under the copy guide, and the public one
     // adds nothing a reader outside Walmart can use.
@@ -381,7 +429,7 @@ export const projects: Project[] = [
   },
   {
     slug: "bb-daily",
-    number: "07",
+    number: "08",
     label: "bb daily",
     title: "bb daily: both sides of a recurring delivery service.",
     internalName: "bb daily",

@@ -5,6 +5,7 @@
 const SHORT_TITLES: Record<string, string> = {
   "portfolio-management": "Portfolio Management",
   "ai-studio": "Studio",
+  "design-research": "Design research",
   "api-lifecycle": "API Lifecycle",
   "dependency-health": "Dependency Health",
   "store-support": "Store associate app",

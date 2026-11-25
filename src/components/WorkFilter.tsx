@@ -8,6 +8,7 @@ const OPTIONS = [
   { value: "developer", label: "Developer tools" },
   { value: "consumer", label: "Consumer" },
   { value: "commerce", label: "Commerce" },
+  { value: "research", label: "Research" },
 ] as const;
 
 type Value = (typeof OPTIONS)[number]["value"];

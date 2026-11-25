@@ -8,7 +8,6 @@ import { ArtboardCarousel, type ArtboardSlide } from "@/components/design-system
 import { BrowserMockup } from "@/components/design-system/BrowserMockup";
 import { BeforeAfterModel } from "@/components/design-system/BeforeAfterModel";
 import { EditorialNumberedRows } from "@/components/design-system/EditorialNumberedRow";
-import { CompositionDiagram } from "@/components/design-system/CompositionDiagram";
 import { ConfidentialNote } from "@/components/design-system/ConfidentialNote";
 import { ProofStrip } from "@/components/design-system/ProofStrip";
 import { PullStatement } from "@/components/design-system/PullStatement";
@@ -20,6 +19,7 @@ import {
   CaseStudyShell,
 } from "@/components/design-system/CaseStudy";
 import { getProject } from "@/content/projects";
+import { WorkspaceDiagram } from "./WorkspaceDiagram";
 
 /**
  * Studio, from the new brief: a co-designed experience inside Wibey that takes
@@ -73,37 +73,37 @@ const WHO: Archetype[] = [
 
 const WORKSPACE_SLIDES: ArtboardSlide[] = [
   {
-    title: "Related work stays together",
+    title: "Everything in one place",
     route: "Wibey",
-    src: "/work/ai-studio/workspaces-1-projects-poster.jpg",
-    mp4: "/work/ai-studio/workspaces-1-projects.mp4",
-    width: 1920,
-    height: 1104,
-    alt: "The sidebar opening a workspace into its projects, and a project listing the work it holds.",
+    src: "/work/ai-studio/workspaces-new-1-poster.jpg",
+    mp4: "/work/ai-studio/workspaces-new-1.mp4",
+    width: 2800,
+    height: 1609,
+    alt: "A person's own workspace listing their artifacts, with filters by type and their chat sessions beside it, then the Recents view gathering work from every workspace.",
     caption:
-      "A workspace opens into its projects, and each project lists the artifacts it holds, in the sidebar and in the main view.",
+      "A person's own workspace holds their artifacts, filtered by type, with their chat sessions beside it. Recents and Shared with me gather work from every workspace.",
   },
   {
-    title: "Set one up in five steps",
+    title: "A workspace, its people and its work",
     route: "Wibey",
-    src: "/work/ai-studio/workspaces-3-create-poster.jpg",
-    mp4: "/work/ai-studio/workspaces-3-create.mp4",
-    width: 1920,
-    height: 1102,
-    alt: "Creating a workspace in five steps: its name and purpose, its members and their roles, the repositories and tools it can use, its rules, and a review before it is created.",
+    src: "/work/ai-studio/workspaces-new-2-poster.jpg",
+    mp4: "/work/ai-studio/workspaces-new-2.mp4",
+    width: 2800,
+    height: 1609,
+    alt: "A shared workspace with its members, sharing it with collaborators, and creating a new workspace by naming it, inviting people and choosing which artifacts to add.",
     caption:
-      "Creating a workspace takes five steps: its name and purpose, its members, the repositories and tools it can use, its rules, and a review before it is created.",
+      "A workspace has its own members and its own artifacts. It can be shared with collaborators, and a new one is made by naming it, inviting people and choosing the artifacts to add.",
   },
   {
-    title: "Who is in it, and what they can do",
+    title: "Find anything across workspaces",
     route: "Wibey",
-    src: "/work/ai-studio/workspaces-4-members-poster.jpg",
-    mp4: "/work/ai-studio/workspaces-4-members.mp4",
-    width: 1920,
-    height: 1102,
-    alt: "A workspace's Members tab listing the people who can see it and their role, an owner or an editor, with a form to add a member.",
+    src: "/work/ai-studio/workspaces-new-3-poster.jpg",
+    mp4: "/work/ai-studio/workspaces-new-3.mp4",
+    width: 2800,
+    height: 1609,
+    alt: "The Recents view across all workspaces, filtered by artifact type: agents, APIs, MCPs, PDLC, prototypes and skills.",
     caption:
-      "The Members tab lists the people who can see the workspace and the role each has, owner or editor, and adds a member from the same screen.",
+      "Recents lists everything across workspaces, and the type filters narrow it to agents, APIs, MCPs, PDLC items, prototypes or skills.",
   },
 ];
 
@@ -118,7 +118,7 @@ const CHAPTERS = [
 ];
 
 export default function AiStudioPage() {
-  const onward = getProject("api-lifecycle");
+  const onward = getProject("design-research");
 
   return (
     <CaseStudyShell
@@ -150,16 +150,16 @@ export default function AiStudioPage() {
           label: "What I did",
           lead: (
             <>
-              I co-designed Studio, working out of a <span className="ds-accent-text">single repo</span>.
+              I co-led Studio’s design, working out of a <span className="ds-accent-text">single repo</span>.
             </>
           ),
           detail:
-            "I co-designed Studio with a staff designer, working out of a single repository and sharing the responsibilities. I designed its workspaces and the chat conversation that creates an artifact, and we built the coded prototype together. Engineering built the product from it.",
+            "I co-led Studio’s design with a staff designer, working out of a single repository and sharing the responsibilities. I designed its workspaces and the chat conversation that creates an artifact, and we built the coded prototype together. Engineering built the product from it.",
         },
       ]}
       hero={{
         standfirst:
-          "In Wibey, Walmart’s internal AI platform, builders find what already exists, build what doesn’t, test it and publish it for others. I co-designed Studio with a staff designer, working out of a single repository.",
+          "In Wibey, Walmart’s internal AI platform, builders find what already exists, build what doesn’t, test it and publish it for others. I co-led Studio’s design with a staff designer, working out of a single repository.",
         headline: (
           <>
             Studio: taking AI capabilities from an <span style={{ color: "var(--ds-mint)" }}>idea</span> towards{" "}
@@ -167,7 +167,7 @@ export default function AiStudioPage() {
           </>
         ),
         meta: [
-          { label: "Role", value: "Senior UX Designer, with a staff designer" },
+          { label: "Role", value: "Senior UX Designer, co-lead" },
           { label: "Client", value: "Walmart Global Tech" },
           { label: "Year", value: "2026–Present" },
           { label: "Discipline", value: "AI platform · Product design · Design in code" },
@@ -176,29 +176,29 @@ export default function AiStudioPage() {
         stackRatio: 1920 / 1104,
         stack: [
           {
-            src: "/work/ai-studio/hero-home.jpg",
-            width: 1920,
-            height: 1104,
-            name: "Studio home",
-            alt: "Studio's home: the list of work in a workspace, with the workspaces down the left",
+            src: "/work/ai-studio/studio-new-220.jpg",
+            width: 2000,
+            height: 1378,
+            name: "Recents across workspaces",
+            alt: "Recents: every artifact across all workspaces, with filters for agents, APIs, MCPs, PDLC items, prototypes and skills",
             route: "Wibey",
             focus: "top",
           },
           {
-            src: "/work/ai-studio/workspaces-1-projects-poster.jpg",
-            width: 1920,
-            height: 1104,
-            name: "a workspace and its projects",
-            alt: "The sidebar opening a workspace into its projects, and a project listing the work it holds",
+            src: "/work/ai-studio/studio-new-219.jpg",
+            width: 2000,
+            height: 1379,
+            name: "a person's workspace",
+            alt: "A person's own workspace listing their artifacts, with their chat sessions beside it",
             route: "Wibey",
             focus: "top",
           },
           {
-            src: "/work/ai-studio/workspaces-3-create-poster.jpg",
-            width: 1920,
-            height: 1102,
-            name: "creating a workspace",
-            alt: "Creating a workspace in five steps: its name and purpose, its members, the repositories and tools it can use, its rules, and a review",
+            src: "/work/ai-studio/workspaces-new-2-poster.jpg",
+            width: 2800,
+            height: 1609,
+            name: "a shared workspace",
+            alt: "A shared workspace with its members and the artifacts it holds, filtered by type",
             route: "Wibey",
             focus: "top",
           },
@@ -306,18 +306,17 @@ export default function AiStudioPage() {
             layout="stacked"
             eyebrow="The approach"
             fullWidth
-            heading="Connect discovery, creation and reuse"
+            heading="A workspace that brings it all together"
             body={[
-              "We made the chat the hero. In one conversation a builder can make anything. These are the pieces it works with, and how they fit together.",
+              "We made the workspace the hero. It holds the agents, skills, MCPs and APIs a builder makes and finds, with the chat sessions that made them, so nothing has to be explained twice.",
             ]}
           />
-          <CaseStudyFigure label="One possible way these building blocks can work together">
-            <CompositionDiagram />
+          <CaseStudyFigure label="A workspace holds the chats, the artifacts and the people">
+            <WorkspaceDiagram />
             <p className="ds-media-caption">
-              For example, an agent helping with onboarding could use a skill for its instructions and an MCP tool to
-              retrieve information from another system. That tool may rely on an API to access the service. This is one
-              possible composition, not an inheritance hierarchy or a required recipe: agents can use different
-              combinations of skills and tools, and APIs can also be used independently.
+              The artifacts can work together. For example, an agent helping with onboarding could use a skill for its
+              instructions and an MCP tool to retrieve information from another system, and that tool may rely on an API.
+              This is one possible composition, not a required recipe.
             </p>
           </CaseStudyFigure>
         </CaseStudySection>
@@ -329,9 +328,8 @@ export default function AiStudioPage() {
             eyebrow="Workspaces"
             title="As the work grew, context needed a home"
             description={[
-              "As users created more artifacts and returned to them across multiple conversations, a need became clear: related work needed to stay together.",
-              "Workspaces, which shipped, group artifacts and sessions around a shared context. A builder returning to improve a capability, or starting something related, could pick up work with relevant context available instead of repeatedly explaining it from the beginning.",
-              "Workspaces also gave us a structure for collaboration and access: who could view the work, who could modify it, and how a team could organise the artifacts and conversations it shared.",
+              "As builders came back to their artifacts across many conversations, they had to explain the context again each time. Workspaces, which shipped, keep that context with the work.",
+              "They also gave teams a way to share it: who can view the work, who can modify it, and how a team organises the artifacts and conversations it shares.",
             ]}
             slides={WORKSPACE_SLIDES}
           />

@@ -32,7 +32,8 @@ const CHAPTERS = [
 ];
 
 /** Which side of the sector filter a project sits on. */
-function workGroup(domain: string): "enterprise" | "developer" | "consumer" | "commerce" {
+function workGroup(domain: string): "enterprise" | "developer" | "consumer" | "commerce" | "research" {
+  if (domain === "Research") return "research";
   if (domain === "Developer tools") return "developer";
   if (domain === "Consumer") return "consumer";
   if (domain === "Commerce") return "commerce";

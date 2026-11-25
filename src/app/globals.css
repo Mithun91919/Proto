@@ -2417,3 +2417,8 @@ a.say-hi-card:hover .say-hi-card-go {
 #selected[data-filter="commerce"] .work-earlier:not(:has([data-group="commerce"])) {
   display: none;
 }
+
+#selected[data-filter="research"] [data-group]:not([data-group="research"]),
+#selected[data-filter="research"] .work-earlier:not(:has([data-group="research"])) {
+  display: none;
+}

@@ -19,10 +19,11 @@ import { CAREER_START, earlierWork } from "@/content/work-page";
 import { collectFilterOptions } from "@/content/work-filters";
 
 export default function HomePage() {
-  const featured = getFeaturedProjects();
+  const allFeatured = getFeaturedProjects();
+  const featured = allFeatured.filter((project) => !project.homeHidden);
   const more = getRangeProjects();
-  const totalCaseStudies = featured.length + more.length + earlierWork.length;
-  const { domains } = collectFilterOptions(featured, more, earlierWork);
+  const totalCaseStudies = allFeatured.length + more.length + earlierWork.length;
+  const { domains } = collectFilterOptions(allFeatured, more, earlierWork);
   const yearsActive = new Date().getFullYear() - CAREER_START;
 
   return (
