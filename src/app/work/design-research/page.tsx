@@ -26,35 +26,12 @@ import { FindingBlock, type Finding } from "./FindingBlock";
  */
 
 export const metadata: Metadata = {
-  title: "Discovery user research — How designers at Walmart are adopting AI",
+  title: "Discovery user research — How Walmart designers use AI, and where their trust breaks",
   description:
     "A discovery study of how designers at Walmart are adopting AI in their work: 16 interviews and a survey of 38, what they showed leaders, and the decision that followed.",
   robots: caseStudyRobots,
 };
 
-
-/** A row of stages, each with a short note. */
-function Stages({ label, items }: { label: string; items: { name: string; note?: string }[] }) {
-  return (
-    <ol aria-label={label} className="grid gap-3" style={{ gridTemplateColumns: `repeat(${items.length}, minmax(0, 1fr))` }}>
-      {items.map((item, i) => (
-        <li key={item.name}>
-          <GlassPanel variant="soft" className="h-full rounded-2xl p-5">
-            <p className="ds-eyebrow">{String(i + 1).padStart(2, "0")}</p>
-            <p className="display-title mt-2" style={{ fontSize: "1.1rem", lineHeight: 1.25 }}>
-              {item.name}
-            </p>
-            {item.note ? (
-              <p className="mt-2 text-[0.88rem] leading-6" style={{ color: "var(--ink-soft)" }}>
-                {item.note}
-              </p>
-            ) : null}
-          </GlassPanel>
-        </li>
-      ))}
-    </ol>
-  );
-}
 
 const FINDINGS: Finding[] = [
   {
@@ -66,7 +43,7 @@ const FINDINGS: Finding[] = [
     heardTitle: "The workflow is a chain of tools held together by the designer.",
     heardPoints: [
       "Each tool helps with a specific task, but context is often recreated or re-explained as work moves between tools.",
-      "Everyone we asked described the same chain.",
+      "All 16 described the same chain.",
     ],
     stagesTitle: "The chain, by stage",
     stagesLabel: "The stages of a design project and the tools used at each",
@@ -78,6 +55,13 @@ const FINDINGS: Finding[] = [
       { name: "Handoff", note: "Figma, GitHub, videos" },
     ],
     means: "Designers want help that appears inside the tool they’re already using, when they need it. They don’t want to leave their work to go and find it.",
+    quotes: [
+      { text: "Jumping between ChatGPT, Figma, and Builder — never know which to start with.", by: "Staff UX Designer" },
+      { text: "Switching between multiple AI tools daily, losing context each time.", by: "UX Designer III" },
+    ],
+    meansLabel: "What designers want",
+    surveyStat: { value: "76%", label: "use three or more tools on a project" },
+    visualNote: "Wibey is Walmart’s internal AI platform.",
     surveyPoints: ["The survey: 76% use three or more tools on a project.", "29% lose over an hour a day to switching between tools."],
     chart: 0,
   },
@@ -93,7 +77,7 @@ const FINDINGS: Finding[] = [
     },
     heardTitle: "Output can look right and still fail the trust check.",
     heardPoints: [
-      "It fails if it does not use the right Walmart components, tokens or patterns.",
+      "It fails if it does not use the right Walmart components, colours or patterns.",
       "Designers manually review and correct it, which reduces confidence and slows review.",
       "For most, the check came late, and by hand.",
     ],
@@ -106,6 +90,12 @@ const FINDINGS: Finding[] = [
       { name: "Late manual correction", note: "Issues are caught during review or handoff, not during generation" },
     ],
     means: "If the AI used Walmart’s own design components correctly, accessibility would come built in, and designers would stop fixing it by hand.",
+    quotes: [
+      { text: "Spent 2 hours correcting color tokens that AI got wrong.", by: "Staff UX Designer" },
+      { text: "AI doesn’t understand PX components — keeps suggesting Material UI.", by: "UX Designer III" },
+    ],
+    meansLabel: "What would change it",
+    surveyStat: { value: "45%", label: "would add built-in Living Design components first, more than twice any other capability" },
     surveyPoints: ["The survey: 45% would add built-in Living Design components first, more than twice any other capability."],
     chart: 2,
   },
@@ -130,6 +120,12 @@ const FINDINGS: Finding[] = [
       { name: "Handoff", note: "Not trusted yet" },
     ],
     means: "AI is good enough for a prototype, but not for a design handoff like a Figma file.",
+    quotes: [
+      { text: "AI gets the layout right but details are always off.", by: "UX Designer III" },
+      { text: "Difficulties in merging AI-generated code with existing development repositories due to differences in file structures.", by: "Senior UX Designer" },
+    ],
+    meansLabel: "What it means",
+    surveyStat: { value: "74%", label: "somewhat trust AI prototypes, and say they need significant review" },
     surveyPoints: ["The survey: 74% somewhat trust AI prototypes but say they need significant review.", "Only 8% fully trust them."],
     chart: 1,
   },
@@ -153,6 +149,12 @@ const FINDINGS: Finding[] = [
       { name: "Reusable handoff", note: "Production-ready and Living Design aligned. This is the target." },
     ],
     means: "When a prototype is handed to engineers, they often start again, so the designer has to explain their intent a second time.",
+    quotes: [
+      { text: "Created a working prototype in Builder.io but dev team started over.", by: "Staff UX Designer" },
+      { text: "Only 60% of design intent initially realised; remaining 40% requires review sessions.", by: "UX Designer III" },
+    ],
+    meansLabel: "What it costs",
+    surveyStat: { value: "50%", label: "say less than 75% of their design intent survives the first developer build" },
     surveyPoints: ["The survey: 50% say less than 75% of their design intent survives the first developer build."],
     chart: { total: 2, lit: 1, label: "Half the designers say less than three quarters of their design intent survives the first build", note: "Half say less than 75% survives the first build: one lit dot of two." },
   },
@@ -204,7 +206,7 @@ export default function DesignResearchLandingPage() {
             </>
           ),
           detail:
-            "I ran the study with 16 interviewees and 38 survey respondents in India and the US, and presented what it showed to stakeholders and reviewers.",
+            "I ran the interviews, built the survey, and presented what it showed to stakeholders and reviewers.",
         },
         {
           label: "What changed",
@@ -221,7 +223,7 @@ export default function DesignResearchLandingPage() {
         standfirst: STANDFIRST,
         headline: (
           <>
-            Discovery user research: how designers at Walmart are adopting <span style={{ color: "var(--ds-mint)" }}>AI</span>.
+            Discovery user research: how Walmart designers use <span style={{ color: "var(--ds-mint)" }}>AI</span>, and where their trust breaks.
           </>
         ),
         meta: [
@@ -275,7 +277,7 @@ export default function DesignResearchLandingPage() {
             fullWidth
             heading="Methods I built to suit the study"
             body={[
-              "I built the parts of this study myself: the survey, the synthesis skill and the readout, the document I presented. Interviews gave depth and a short survey gave scale. Here is each one on its own, and then how I put them together.",
+              "I built the parts of this study myself: the survey, a skill that sorted the interview transcripts into themes, and the readout, the document I presented. Interviews gave depth and a short survey gave scale. Here is each one on its own, and then how I put them together.",
             ]}
           />
           <CaseStudyFigure>
@@ -329,7 +331,7 @@ export default function DesignResearchLandingPage() {
               <GlassPanel variant="soft" className="rounded-2xl p-7">
                 <p className="ds-eyebrow">What I presented</p>
                 <p className="display-title mt-3" style={{ fontSize: "1.4rem", lineHeight: 1.25 }}>
-                  Four findings from 16 interviews and 38 survey responses.
+                  Four findings from the interviews and the survey.
                 </p>
                 <p className="mt-3 text-[0.95rem] leading-7" style={{ color: "var(--ink-soft)" }}>
                   And a recommendation in two steps. Now: help designers get from a requirement to a first prototype. Next: from a final design to a handoff that has been checked.
@@ -363,7 +365,7 @@ export default function DesignResearchLandingPage() {
             eyebrow="The prototype"
             title="A concept: describe it, watch it build, check it"
             description={[
-              "The research also fed a concept for creating a prototype by chat. A designer describes a workspace in a prompt, and the screens are built in stages from Living Design patterns, then checked against the design system as they are made, not afterwards.",
+              "Finding 2 showed the Living Design check came late and by hand, so I made a concept that moves it earlier. A designer describes a workspace in a prompt, and the screens are built in stages from Living Design patterns, then checked against the design system as they are made, not afterwards.",
               "It is a concept, not a product in production, and the data in it is fictional. I built it by prompting Cursor, an AI coding tool, and refining what it produced.",
             ]}
             slides={PROTOTYPE_SLIDES}
@@ -375,19 +377,9 @@ export default function DesignResearchLandingPage() {
             layout="stacked"
             eyebrow="What changed"
             fullWidth
-            heading="Leaders saw designers differently, and chose what to build"
-            body={["I presented the research, and three things followed."]}
+            heading="Leaders stopped judging designers by how developers use AI."
+            body={["The Living Design team then created a kit that designers can use to build prototypes on any platform."]}
           />
-          <CaseStudyFigure>
-            <Stages
-              label="Three things that followed the research"
-              items={[
-                { name: "A different lens", note: "Leaders understood how designers use AI, and stopped treating them through the same lens as a developer using it." },
-                { name: "A decision to invest", note: "Leadership chose to invest in AI skills and agents, which are packaged instructions and assistants that complete a task, to help designers build prototypes." },
-                { name: "A kit to build with", note: "The Living Design team created a kit that can be used to build on any platform." },
-              ]}
-            />
-          </CaseStudyFigure>
         </CaseStudySection>
       </CaseStudyColumn>
 

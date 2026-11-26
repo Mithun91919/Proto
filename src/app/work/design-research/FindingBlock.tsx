@@ -70,6 +70,14 @@ export type Finding = {
   stages: { name: string; note?: string }[];
   surveyPoints: string[];
   means: string;
+  /** What the "what it means" box is called for this finding. */
+  meansLabel: string;
+  /** The one survey figure shown without a click. */
+  surveyStat: { value: string; label: string };
+  /** Two interviewees' words, each with a designation and never a name. */
+  quotes: { text: string; by: string }[];
+  /** A short note under the picture, for a term it uses. */
+  visualNote?: string;
   /** One of the survey's four charts, or a plain ratio of dots when the finding rests on a single figure. */
   chart: 0 | 1 | 2 | 3 | { total: number; lit: number; label: string; note: string };
 };
@@ -78,12 +86,28 @@ export function FindingBlock({ f }: { f: Finding }) {
   const panels: EvidencePanel[] = [
     {
       id: "heard",
-      label: "What we heard",
+      label: "What designers said",
       content: (
         <div className="grid items-start gap-x-14 gap-y-4 md:grid-cols-[minmax(0,1fr)_minmax(0,1.2fr)]">
-          <h3 className="display-title" style={{ fontSize: "1.6rem", lineHeight: 1.25 }}>
-            {f.heardTitle}
-          </h3>
+          <div>
+            <h3 className="display-title" style={{ fontSize: "1.6rem", lineHeight: 1.25 }}>
+              {f.heardTitle}
+            </h3>
+            <div className="mt-5 flex flex-col gap-4">
+              {f.quotes.map((q) => (
+                <figure key={q.text} className="m-0 border-l pl-4" style={{ borderColor: "color-mix(in oklab, var(--ds-accent) 30%, transparent)" }}>
+                  <blockquote className="m-0">
+                    <p className="text-[0.92rem] italic leading-6" style={{ color: "var(--ink-soft)" }}>
+                      “{q.text}”
+                    </p>
+                  </blockquote>
+                  <figcaption className="mt-1 font-mono text-[0.72rem] uppercase tracking-[0.08em]" style={{ color: "var(--muted)" }}>
+                    {q.by}
+                  </figcaption>
+                </figure>
+              ))}
+            </div>
+          </div>
           <div className="flex flex-col gap-3">
             {f.heardPoints.map((p) => (
               <p key={p} className="body-text" style={{ maxWidth: "none" }}>
@@ -148,16 +172,36 @@ export function FindingBlock({ f }: { f: Finding }) {
               </p>
             ) : null}
           </div>
-          <FindingVisual id={f.id} />
+          <div>
+            <FindingVisual id={f.id} />
+            {f.visualNote ? (
+              <p className="mt-2 text-[0.85rem] leading-6" style={{ color: "var(--muted)" }}>
+                {f.visualNote}
+              </p>
+            ) : null}
+          </div>
         </div>
       </Reveal>
 
       <Reveal delay={80}>
         <GlassPanel variant="soft" className="mt-10 rounded-2xl p-7" style={{ borderLeft: "3px solid var(--ds-accent)" }}>
-          <p className="eyebrow">What it means</p>
-          <p className="display-title mt-3" style={{ fontSize: "1.6rem", lineHeight: 1.3 }}>
-            {f.means}
-          </p>
+          <div className="grid items-center gap-x-12 gap-y-6 md:grid-cols-[minmax(0,1.6fr)_minmax(0,1fr)]">
+            <div>
+              <p className="eyebrow">{f.meansLabel}</p>
+              <p className="display-title mt-3" style={{ fontSize: "1.6rem", lineHeight: 1.3 }}>
+                {f.means}
+              </p>
+            </div>
+            <div className="md:border-l md:pl-10" style={{ borderColor: "color-mix(in oklab, var(--ds-solid-border) 70%, transparent)" }}>
+              <p className="eyebrow">In the survey</p>
+              <p className="display-title mt-2" style={{ fontSize: "2.8rem", lineHeight: 1, color: "var(--ds-accent)" }}>
+                {f.surveyStat.value}
+              </p>
+              <p className="mt-2 text-[0.92rem] leading-6" style={{ color: "var(--ink-soft)" }}>
+                {f.surveyStat.label}
+              </p>
+            </div>
+          </div>
         </GlassPanel>
       </Reveal>
 

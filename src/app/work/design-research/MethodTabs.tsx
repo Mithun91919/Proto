@@ -19,7 +19,7 @@ const TABS: Tab[] = [
     diagram: <InterviewChain />,
     text: [
       "I messaged every interviewee myself, across India and the US, and interviewed 16 people, with a staff designer helping.",
-      "Each interview worked through four questions. Every question started from a hypothesis, with prompts beneath it, and once the sessions were done I marked each hypothesis as confirmed or reframed, so the study could be wrong in public.",
+      "The 16 came from five design portfolios and from different levels, from UX Designer to Staff UX Designer and Principal Design Researcher, and included a vendor designer and a member of the Living Design team.",
     ],
   },
   {

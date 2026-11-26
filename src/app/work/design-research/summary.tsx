@@ -74,10 +74,10 @@ const STEPS: StoryStep[] = [
     ),
   },
   {
-    label: "What we found",
+    label: "What I found",
     text: (
       <StoryWords
-        eyebrow="What we found"
+        eyebrow="What I found"
         title="Four themes came up in nearly every interview."
         points={[
           "Designers move work between tools by hand, and lose context each time. 16 of 16.",
