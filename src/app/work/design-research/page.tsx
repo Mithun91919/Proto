@@ -298,7 +298,7 @@ export default function DesignResearchLandingPage() {
             mark="connection"
             note="Designers were already getting first drafts quickly. What broke was knowing the output was right: across tools, against Living Design, through refinement and into handoff."
           >
-            Designers are adopting AI, and trust is what holds them back.
+            Designers use AI to draft, and trust is what holds them back.
           </PullStatement>
         </Reveal>
       </div>
@@ -383,7 +383,7 @@ export default function DesignResearchLandingPage() {
             eyebrow="What changed"
             fullWidth
             heading="Leaders stopped judging designers by how developers use AI."
-            body={["The Living Design team then created a kit that designers can use to build prototypes on any platform."]}
+            body={[]}
           />
         </CaseStudySection>
       </CaseStudyColumn>
