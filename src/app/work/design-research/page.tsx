@@ -171,7 +171,6 @@ const CHAPTERS = [
   { id: "f4", label: "Finding 4" },
   { id: "direction", label: "Presenting it" },
   { id: "prototype", label: "The prototype" },
-  { id: "outcome", label: "What changed" },
   { id: "limits", label: "Limits" },
 ];
 
@@ -377,15 +376,6 @@ export default function DesignResearchLandingPage() {
           />
         </CaseStudySection>
 
-        <CaseStudySection id="outcome">
-          <CaseStudyChapter
-            layout="stacked"
-            eyebrow="What changed"
-            fullWidth
-            heading="Leaders stopped judging designers by how developers use AI."
-            body={[]}
-          />
-        </CaseStudySection>
       </CaseStudyColumn>
 
       <div id="limits" className="mt-16 scroll-mt-28 md:mt-20">
