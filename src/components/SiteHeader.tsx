@@ -106,17 +106,24 @@ export function SiteHeader() {
               {readTime(slug, view) ? <span className="nav-meta">{readTime(slug, view)}</span> : null}
             </GlassPanel>
           ) : (
-            <GlassPanel variant="lift" className="nav-dock nav-brand pointer-events-auto justify-self-start">
-              <Link href="/" className="flex items-center gap-2.5 no-underline">
-                <span
-                  aria-hidden
-                  className="mark-pulse inline-flex h-[1.2rem] w-[1.2rem] rounded-full shadow-[var(--shadow-mark)]"
-                >
+            <div className="relative justify-self-start">
+              <GlassPanel variant="lift" className="nav-dock nav-brand pointer-events-auto">
+                <Link href="/" className="flex items-center gap-2.5 no-underline">
+                  <span
+                    aria-hidden
+                    className="mark-pulse inline-block h-2.5 w-2.5 rounded-sm bg-[var(--accent)] shadow-[var(--shadow-mark)]"
+                  />
+                  <span className="display-title text-[1.05rem] text-[var(--dock-ink)]">Mithun.</span>
+                </Link>
+              </GlassPanel>
+              <span aria-hidden className="nazar-hang">
+                <span className="nazar-cord" />
+                <span className="nazar-bead">
                   <EvilEye />
                 </span>
-                <span className="display-title text-[1.05rem] text-[var(--dock-ink)]">Mithun.</span>
-              </Link>
-            </GlassPanel>
+              </span>
+              <span aria-hidden className="nazar-tip">Keeping bad crits away.</span>
+            </div>
           )}
 
           <GlassPanel variant="lift" as="nav" aria-label="Primary" className="nav-dock pointer-events-auto">
