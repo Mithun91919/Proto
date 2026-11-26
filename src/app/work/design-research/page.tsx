@@ -15,6 +15,7 @@ import { getProject } from "@/content/projects";
 import { STANDFIRST } from "./copy";
 import { DesignResearchSummary } from "./summary";
 import { MethodTabs } from "./MethodTabs";
+import { SessionPhotos } from "./SessionPhotos";
 import { PROTOTYPE_SLIDES } from "./prototype-slides";
 import { FindingBlock, type Finding } from "./FindingBlock";
 
@@ -276,10 +277,14 @@ export default function DesignResearchLandingPage() {
             eyebrow="How I ran it"
             fullWidth
             heading="Methods I built to suit the study"
-            body={[
-              "I built the parts of this study myself: the survey, a skill that sorted the interview transcripts into themes, and the readout, the document I presented. Interviews gave depth and a short survey gave scale. Here is each one on its own, and then how I put them together.",
-            ]}
+            body={[]}
           />
+          <div className="mt-2 grid items-start gap-16" style={{ gridTemplateColumns: "minmax(0,1fr) auto" }}>
+            <p className="body-text" style={{ maxWidth: "none" }}>
+              I built the parts of this study myself: the survey, a skill that sorted the interview transcripts into themes, and the readout, the document I presented. Interviews gave depth and a short survey gave scale. Here is each one on its own, and then how I put them together.
+            </p>
+            <SessionPhotos />
+          </div>
           <CaseStudyFigure>
             <MethodTabs />
           </CaseStudyFigure>
