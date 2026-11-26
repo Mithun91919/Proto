@@ -63,7 +63,12 @@ export function ProjectHero({
       return;
     }
 
-    const play = () => void video.play().catch(() => {});
+    const play = () => {
+      // A load that failed earlier (a file replaced while the page was open, say)
+      // leaves the element with no source. Ask it to load again before playing.
+      if (video.error || video.networkState === HTMLMediaElement.NETWORK_NO_SOURCE) video.load();
+      void video.play().catch(() => {});
+    };
     const onHover = playOn === "hover" && window.matchMedia("(hover: hover)").matches;
 
     if (onHover) {

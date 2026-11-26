@@ -16,6 +16,7 @@ export const SUMMARY_SLUGS = [
   "supply-chain-operations",
   "store-support",
   "bb-daily",
+  "design-research",
 ] as const;
 
 export function hasSummary(slug: string | null | undefined): boolean {

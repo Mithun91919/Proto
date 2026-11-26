@@ -56,3 +56,11 @@ Participant names, session log, Confluence links, competitor strategy and adopti
 - Proof image: the interview guide's first slide, cropped to the slide alone (no participant names). The room and interview photos are held back until the people in them agree to publication.
 - 2026-11-25 counts settled by Mithun: 16 interviewees (13 sessions, some with two people), 38 survey responses, and 54 participants combined. Some people did both; the page says so, because the survey (quantitative) and interviews (qualitative) asked different questions for different purposes. "One-to-one" is no longer used.
 - 2026-11-25 timing, from Mithun: the study was done early in 2026, when AI was only just becoming part of the designer workflow. The page now frames the findings as a snapshot of that moment. (The readout's own dates are April to June 2026, so the page says "early in 2026" and gives no month.)
+
+## 2026-11-26: the landing-page version replaces the earlier case study
+- Title: "Discovery user research: how designers at Walmart are adopting AI." The study was a discovery project; its question was how designers are adopting AI in their work.
+- Order: methodology first, then the four findings (each with a picture, a plain "what it means" line, and the evidence), then presenting to leadership and the decision, the prototype, what changed, and the limits.
+- "What it means" lines are plain-language versions of the readout's own conclusions; the readout's 89% and 94% are not used.
+- The five themes that did not reach saturation are not shown; one line says nine were tracked and four claimed.
+- Summary view rebuilt to match (eight steps).
+- Copy check applied: the line under the title says "discovery" and states the question; "readout" and "saturation" are explained at first use; the limits note says it is a discovery study and does not test a solution.

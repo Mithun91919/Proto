@@ -150,8 +150,9 @@ export const projects: Project[] = [
     contentPath: "projects/ai-studio/web/ai-studio-web.md",
     media: {
       mp4: "/work/ai-studio/card.mp4",
+      webm: "/work/ai-studio/card.webm",
       poster: "/work/ai-studio/card-poster.jpg",
-      aspect: 1400 / 805,
+      aspect: 1400 / 804,
     },
     systemMap: [
       {
@@ -172,10 +173,10 @@ export const projects: Project[] = [
   {
     slug: "design-research",
     number: "03",
-    label: "Design research",
-    title: "Design research: how designers really use AI to prototype.",
+    label: "Discovery research",
+    title: "Discovery user research: how designers at Walmart are adopting AI.",
     summary:
-      "I led research with 54 participants, 16 interviewed and 38 surveyed, across India and the US, on how designers at Walmart use AI to prototype, and where it lets them down. It showed leaders that designers are not developers using AI, and led to a decision to build skills and agents for them.",
+      "A discovery study of how designers at Walmart are adopting AI in their work. I led it with 54 participants, 16 interviewed and 38 surveyed, across India and the US. It showed leaders that designers are not developers using AI, and led to a decision to build skills and agents for them.",
     outcome: "Leaders chose to build skills and agents for designers",
     metrics: [
       { value: "54", label: "participants, interviewed and surveyed", short: "participants", glyph: "field" },
@@ -196,6 +197,7 @@ export const projects: Project[] = [
     contentPath: "projects/design-research/web/design-research-web.md",
     media: {
       mp4: "/work/design-research/card.mp4",
+      webm: "/work/design-research/card.webm",
       poster: "/work/design-research/card-poster.jpg",
       aspect: 1400 / 950,
     },
