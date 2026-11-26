@@ -122,7 +122,7 @@ export function SiteHeader() {
                   <EvilEye />
                 </span>
               </span>
-              <span aria-hidden className="nazar-tip">Keeping bad crits away.</span>
+              <span aria-hidden className="nazar-tip">No bad vibes pls!</span>
             </div>
           )}
 
