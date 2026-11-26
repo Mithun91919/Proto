@@ -26,9 +26,9 @@ import { FindingBlock, type Finding } from "./FindingBlock";
  */
 
 export const metadata: Metadata = {
-  title: "Discovery user research — How Walmart designers use AI, and where their trust breaks",
+  title: "Discovery user research — How Walmart designers use AI",
   description:
-    "A discovery study of how designers at Walmart are adopting AI in their work: 16 interviews and a survey of 38, what they showed leaders, and the decision that followed.",
+    "A discovery study of how Walmart designers use AI: 16 interviews and a survey of 38, what they showed leaders, and the decision that followed.",
   robots: caseStudyRobots,
 };
 
@@ -223,7 +223,7 @@ export default function DesignResearchLandingPage() {
         standfirst: STANDFIRST,
         headline: (
           <>
-            Discovery user research: how Walmart designers use <span style={{ color: "var(--ds-mint)" }}>AI</span>, and where their trust breaks.
+            Discovery user research: how Walmart designers use <span style={{ color: "var(--ds-mint)" }}>AI</span>.
           </>
         ),
         meta: [

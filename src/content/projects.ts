@@ -174,9 +174,9 @@ export const projects: Project[] = [
     slug: "design-research",
     number: "03",
     label: "Discovery research",
-    title: "Discovery user research: how Walmart designers use AI, and where their trust breaks.",
+    title: "Discovery user research: how Walmart designers use AI.",
     summary:
-      "A discovery study of how designers at Walmart are adopting AI in their work. I led it with 54 participants, 16 interviewed and 38 surveyed, across India and the US. Designers trust AI to draft, not to hand off, and leaders decided to build skills and agents for them.",
+      "I led this study with 54 participants, 16 interviewed and 38 surveyed, across India and the US. Designers trust AI to draft but not to hand off, and leaders decided to build skills and agents for them.",
     outcome: "Leaders chose to build skills and agents for designers",
     metrics: [
       { value: "54", label: "participants, some in both the interviews and the survey", short: "participants", glyph: "field" },
